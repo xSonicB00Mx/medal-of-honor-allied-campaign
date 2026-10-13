@@ -1,0 +1,67 @@
+{
+  "candidate": "CP00-r4",
+  "engine_source_commit": "af7bb7c6e706fcc64e5933a22457333274f3de22",
+  "profiles": [
+    {
+      "game": "AA",
+      "map": "m2l1",
+      "launcher": "Start-CP00-r4-MG42-AA.cmd",
+      "profile": "profiles-local/CP00-r4/mission-MG42-AA",
+      "reference_run": "r4-mg42-start-AA",
+      "wcr_package_fingerprint": "3b6b38b5b04ba320a526196946c44394c4519e4197dc8d3d05788e186501cfcc",
+      "files": [
+        {
+          "path": "Start-CP00-r4-MG42-AA.cmd",
+          "sha256": "83ff761d5009c9b60c64151b7e320303d261168309cc464a35eb4260a5e0c553"
+        },
+        {
+          "path": "profiles-local/CP00-r4/mission-MG42-AA/main/configs/omconfig.cfg",
+          "sha256": "b676ee770ec85fcc82adc97dc444b505f32adaac4775c1dcc649c5ac144735d6"
+        },
+        {
+          "path": "profiles-local/CP00-r4/mission-MG42-AA/main/save/omconfig/cp00_m2l1.sav",
+          "sha256": "498bda55ab8337656a13c15ad28b62156aca59eb1b74e26dfa9a321dc469568d"
+        },
+        {
+          "path": "profiles-local/CP00-r4/mission-MG42-AA/main/save/omconfig/cp00_m2l1.ssv",
+          "sha256": "6c7bcd6b3a081b781a1df467214d5f552870f93c7ab4c2fb6877d85f5c687e1d"
+        },
+        {
+          "path": "profiles-local/CP00-r4/mission-MG42-AA/main/save/omconfig/cp00_m2l1.tga",
+          "sha256": "6aba0bc4c8dc9980dd3ca3f0852a598acdbdfa602591e31431efb22c8fd26b72"
+        }
+      ]
+    },
+    {
+      "game": "BT",
+      "map": "e3l4",
+      "launcher": "Start-CP00-r4-Finale-BT.cmd",
+      "profile": "profiles-local/CP00-r4/mission-Finale-BT",
+      "reference_run": "r4-finale-start-BT",
+      "wcr_package_fingerprint": "3b6b38b5b04ba320a526196946c44394c4519e4197dc8d3d05788e186501cfcc",
+      "files": [
+        {
+          "path": "Start-CP00-r4-Finale-BT.cmd",
+          "sha256": "d310b9dbae6cab22111f5e1397987906c50688352948bfb6e8b794a9ec183651"
+        },
+        {
+          "path": "profiles-local/CP00-r4/mission-Finale-BT/maintt/configs/omconfig.cfg",
+          "sha256": "4bf51696a22ac1ce3f8287f5eb61b0c9ee843bd41e4b1427cb6bdb0eaff528e5"
+        },
+        {
+          "path": "profiles-local/CP00-r4/mission-Finale-BT/maintt/save/omconfig/cp00_e3l4.sav",
+          "sha256": "6f9b03e6b0afc8bee8c0a87de53ae74df56582ad5c38ebed9680c5a26475a01b"
+        },
+        {
+          "path": "profiles-local/CP00-r4/mission-Finale-BT/maintt/save/omconfig/cp00_e3l4.ssv",
+          "sha256": "e697e87369fa7b83a09c6fc108929ec0dec53212fd21af114145ae0b4cf514fa"
+        },
+        {
+          "path": "profiles-local/CP00-r4/mission-Finale-BT/maintt/save/omconfig/cp00_e3l4.tga",
+          "sha256": "3f67c3aa8d85042660e38e59383168311d71eaebbc4b5cc7d85c9c5442be983d"
+        }
+      ]
+    }
+  ],
+  "scope": "Unmodified r4 map-start saves; natural progression remains untested."
+}

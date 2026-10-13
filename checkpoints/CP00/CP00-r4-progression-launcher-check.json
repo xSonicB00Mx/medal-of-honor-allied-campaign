@@ -1,0 +1,55 @@
+{
+  "candidate": "CP00-r4",
+  "checks": [
+    {
+      "game": "AA",
+      "actual_launcher": "Start-CP00-r4-MG42-AA.cmd",
+      "no_fs_path_override": true,
+      "loaded": true,
+      "fov_90": true,
+      "user_config_restored": true,
+      "visual_check": "PASS: selected save, matching thumbnail and loaded scene inspected. First menu captures had the startup console overlay; separate capture with ui_console=0 verified the unobstructed menu. Original config restored.",
+      "screenshots": [
+        "generated-local/CP00-r4-progression/AA/shot0000.png",
+        "generated-local/CP00-r4-progression/AA/shot0001.png",
+        "generated-local/CP00-r4-progression/AA/menu-visible.png"
+      ],
+      "script_errors": [],
+      "log_sha256": "3787d03152e047d0260b16ffbdacbe04d61eb74694355b4f484e1cd585e86784",
+      "screenshots_sha256": {
+        "generated-local/CP00-r4-progression/AA/shot0000.png": "c28403b71270df8e8e1fdc42b5d72b33664f4eccee6bd585f2d2d0bdf44aa76e",
+        "generated-local/CP00-r4-progression/AA/shot0001.png": "433b8967eaecd30bf82ba64547fca5841c91648843e51d99a1d977a1cc9eda08",
+        "generated-local/CP00-r4-progression/AA/menu-visible.png": "fcd515a3f21669fbd546230e1997073781b1b700a16e6cd786fd9af7446c7243"
+      },
+      "load_method": "Console loadgame through actual workspace CMD; no mouse-button test claimed.",
+      "menu_log_sha256": "fefe0d49958beac5537b770d9e3433cf148878758544728b12cc3663efede7ce",
+      "save_display_name": "Secret Documents of the Kriegsmarine"
+    },
+    {
+      "game": "BT",
+      "actual_launcher": "Start-CP00-r4-Finale-BT.cmd",
+      "no_fs_path_override": true,
+      "loaded": true,
+      "fov_90": true,
+      "user_config_restored": true,
+      "visual_check": "PASS: selected save, matching thumbnail and loaded scene inspected. First menu captures had the startup console overlay; separate capture with ui_console=0 verified the unobstructed menu. Original config restored.",
+      "screenshots": [
+        "generated-local/CP00-r4-progression/BT/shot0000.png",
+        "generated-local/CP00-r4-progression/BT/shot0001.png",
+        "generated-local/CP00-r4-progression/BT/menu-visible.png"
+      ],
+      "script_errors": [],
+      "log_sha256": "bb7cbad153f8a9f5acd791249b87f8408d7b6e80978f5ddbd0cb7eb540cf1e1e",
+      "screenshots_sha256": {
+        "generated-local/CP00-r4-progression/BT/shot0000.png": "fc7de465f9a5f5821978b19770b93e8948e42331aaccff36410d7a368c94f4e2",
+        "generated-local/CP00-r4-progression/BT/shot0001.png": "a4758cd48a1f15e5f45e676f3e1a0a6475117a07959c7928baa3dcbe07969d5b",
+        "generated-local/CP00-r4-progression/BT/menu-visible.png": "56abb2f81060c341f21df7179674f96975af9fbea1746878bfa8aad15c84cdf1"
+      },
+      "load_method": "Console loadgame through actual workspace CMD; no mouse-button test claimed.",
+      "menu_log_sha256": "aff19787b512090631a78ba4d1079cd47b909fd04111a72d3419c1db5cd22014",
+      "save_display_name": "Italy - Monte Battaglia"
+    }
+  ],
+  "test_harness_note": "First AA post-run assertion expected a space after is: in cg_fov output; regex corrected, same successful run reused.",
+  "scope": "Menu and start-save load only; natural mission progress awaits user play."
+}
