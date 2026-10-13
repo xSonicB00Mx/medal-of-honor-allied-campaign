@@ -1,0 +1,47 @@
+{
+  "schema": 1,
+  "files": [
+    {
+      "path": "maxpayne.exe",
+      "size": 6295552,
+      "sha256": "e0b3b859c28adbf510dfc6285e1667173aaa7b05ac66a62403eb96d50eefae7b"
+    },
+    {
+      "path": "testapp.exe",
+      "size": 4952064,
+      "sha256": "97ab06a05b8f2063355f887c3c921ecf59934cf0469a18e0b36185204022323e"
+    },
+    {
+      "path": "x_data.ras",
+      "size": 134236027,
+      "sha256": "dcdf91e3d1097f0869a48abe8834504e02a8b53ca25234a630cd637200be7bbf"
+    },
+    {
+      "path": "x_english.ras",
+      "size": 230578113,
+      "sha256": "0779a80b62581626d0fbb14967eda564ae5294a18cfedfcca01c038c2b1e3a7e"
+    },
+    {
+      "path": "x_level1.ras",
+      "size": 123196327,
+      "sha256": "6e85a58edb53a9974473fd00cc97de9e86300abdb57a46d6b26287189bef2c76"
+    },
+    {
+      "path": "x_level2.ras",
+      "size": 70958070,
+      "sha256": "b062ed9fe34b90df2271f840efa75a31bca5606c1f0c37c9ac53bede3ee7b6c9"
+    },
+    {
+      "path": "x_level3.ras",
+      "size": 102462128,
+      "sha256": "f534594182c201437e9c827294320ede6a4707e55935e727f8dbf6d088253837"
+    },
+    {
+      "path": "x_music.ras",
+      "size": 144606272,
+      "sha256": "4edf3baacb1ae83935d66979849c95dc84c6392adc9a7d4b51bdf2a077d989f5"
+    }
+  ],
+  "status": "INVENTARISIERT_KEIN_IMPORT",
+  "extractor_found": false
+}

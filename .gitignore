@@ -1,4 +1,20 @@
 build*
+
+# Allied Campaign: private inputs and generated products never enter Git.
+/input-local/
+/generated-local/
+/runtime-local/
+/profiles-local/
+/artifacts-local/
+/config-local/
+/logs-local/
+/tools-local/
+*.pk3
+*.ras
+*.sav
+*.ssv
+*.bundle
+!tools/build-cp00.ps1
 *.swp
 *tags
 *~

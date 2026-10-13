@@ -1,0 +1,66 @@
+{
+  "schema": 1,
+  "status": "NUR_INVENTARISIERT_NICHT_AKTIV",
+  "source": "https://community.pcgamingwiki.com/files/file/2604-medal-of-honor-allied-assault-breakthrough-ammo-and-health-drops/",
+  "packages": [
+    {
+      "path": "_forCodex/ZZZ_more_ammo_health_Breakthrough.pk3",
+      "sha256": "d4122611afec4bb317eef1026f256cd0e1aa87fc85268218ceb19df71fb225fd",
+      "entries": [
+        {
+          "path": "global/giveall.scr",
+          "size": 1980,
+          "crc32": "76133593"
+        },
+        {
+          "path": "global/givenewweapons.scr",
+          "size": 964,
+          "crc32": "177ac35b"
+        },
+        {
+          "path": "global/loadout.scr",
+          "size": 6186,
+          "crc32": "a1dfa45d"
+        },
+        {
+          "path": "maps/e1l3.scr",
+          "size": 4563,
+          "crc32": "1f362360"
+        },
+        {
+          "path": "maps/e1l4.scr",
+          "size": 12395,
+          "crc32": "40a50de0"
+        },
+        {
+          "path": "maps/e2l1.scr",
+          "size": 11068,
+          "crc32": "054819c8"
+        },
+        {
+          "path": "maps/e2l2.scr",
+          "size": 10490,
+          "crc32": "4ba0d918"
+        },
+        {
+          "path": "maps/e3l1.scr",
+          "size": 7216,
+          "crc32": "f38e36fa"
+        },
+        {
+          "path": "maps/e3l2.scr",
+          "size": 12900,
+          "crc32": "3e577084"
+        },
+        {
+          "path": "maps/e3l4.scr",
+          "size": 11288,
+          "crc32": "e525946b"
+        }
+      ]
+    }
+  ],
+  "transport_zip": "No outer ZIP found. Provided PK3 is itself a ZIP container.",
+  "author": null,
+  "version": null
+}
