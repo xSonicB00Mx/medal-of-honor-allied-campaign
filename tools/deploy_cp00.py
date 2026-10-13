@@ -9,11 +9,12 @@ def main():
     ap.add_argument('--engine',required=True,type=Path)
     ap.add_argument('--openal',required=True,type=Path)
     ap.add_argument('--candidate',default='CP00-r1')
+    ap.add_argument('--input-manifest',type=Path)
     args=ap.parse_args(); repo=Path(__file__).resolve().parents[1]
     if not args.candidate.replace('-','').isalnum(): raise ValueError('Invalid candidate name')
     target=repo/'runtime-local'/args.candidate
     if target.exists(): raise ValueError('Candidate already exists; never overwrite')
-    source=repo/'generated-local/input-manifest.json'
+    source=(args.input_manifest or repo/'generated-local/input-manifest.json').resolve()
     inputs=json.loads(source.read_text(encoding='utf-8'))
     selected=[r for r in inputs if r['path'].split('/')[0] in ('main','mainta','maintt') and not {'save','configs'}.intersection(Path(r['path']).parts)]
     for row in selected:
@@ -59,9 +60,11 @@ def main():
     if subprocess.check_output(['git','diff',engine_commit,commit,'--','code','cmake','CMakeLists.txt'],cwd=repo):
         raise ValueError('Engine source differs from the built revision')
     manifest=dict(schema=1,build_id=args.candidate,source_commit=commit,engine_source_commit=engine_commit,upstream_commit='a2f340195975f4f042e28a60b62561dd9a0b2700',data_files=len(selected),data_manifest_sha256=sha(source),owned_files=[dict(path=n,sha256=sha(target/n)) for n in sorted(set(owned))],save_schema='Unmodified OpenMoHAA; original save compatibility untested',weapon_policy='No Allied Campaign effects implemented',status='TECHNICAL_TESTS_PENDING')
+    data_manifest=repo/'generated-local'/args.candidate/'runtime-data-manifest.json'
+    manifest.update(input_manifest=source.relative_to(repo).as_posix(),runtime_data_manifest=data_manifest.relative_to(repo).as_posix(),wcr_package_fingerprint=json.loads((repo/'third_party/wcr/manifest.json').read_text())['package_fingerprint'])
     save(target/'build-manifest.json',manifest)
     save(repo/f'checkpoints/CP00/{args.candidate}-build.json',manifest)
-    save(repo/'generated-local/runtime-data-manifest.json',selected)
+    save(data_manifest,selected)
     (target/'COMPLETE').write_text(args.candidate+'\n',encoding='ascii')
     print('DEPLOYED',target,len(selected),'unchanged data files')
 

@@ -13,13 +13,15 @@ ap.add_argument('game', choices=['AA', 'SH', 'BT'])
 ap.add_argument('map', choices=['m1l1', 'm2l1', 't1l2', 'e3l4'])
 ap.add_argument('--run-id', required=True)
 ap.add_argument('--seconds', type=int, default=30)
+ap.add_argument('--candidate', default='CP00-r2')
 args = ap.parse_args()
 assert re.fullmatch(r'[A-Za-z0-9-]+', args.run_id)
+assert re.fullmatch(r'CP00-r\d+', args.candidate)
 assert 5 <= args.seconds <= 120
 assert args.map in {'AA': ['m1l1', 'm2l1'], 'SH': ['t1l2'], 'BT': ['e3l4']}[args.game]
 repo = Path(__file__).resolve().parents[1]
-runtime = repo / 'runtime-local/CP00-r2'
-profile = repo / 'profiles-local/CP00-r2' / args.run_id
+runtime = repo / 'runtime-local' / args.candidate
+profile = repo / 'profiles-local' / args.candidate / args.run_id
 assert not profile.exists(), 'Never overwrite an existing profile'
 folder = {'AA': 'main', 'SH': 'mainta', 'BT': 'maintt'}[args.game]
 home = profile / folder
@@ -44,7 +46,7 @@ settings = {'com_target_game': str(['AA', 'SH', 'BT'].index(args.game)),
             'cl_playintro': '0', 'skill': '1'}
 for name, value in settings.items():
     cmd += ['+set', name, value]
-cmd += ['+echo', 'BUILD_ID=CP00-r2-PROBE-' + args.map, '+exec', 'cp00-probe.cfg']
+cmd += ['+echo', 'BUILD_ID=' + args.candidate + '-PROBE-' + args.map, '+exec', 'cp00-probe.cfg']
 started = time.monotonic()
 proc = subprocess.Popen(cmd, cwd=runtime)
 print('Started map probe', args.map, 'PID', proc.pid, flush=True)
@@ -58,10 +60,10 @@ except subprocess.TimeoutExpired:
 log = (home / 'qconsole.log').read_text(encoding='latin1')
 evidence = [{'path': p.relative_to(repo).as_posix(), 'sha256': sha(p)}
             for p in sorted(profile.rglob('*')) if p.is_file()]
-result = dict(candidate='CP00-r2', game=args.game, map=args.map, run_id=args.run_id,
+result = dict(candidate=args.candidate, game=args.game, map=args.map, run_id=args.run_id,
               engine_source_commit=json.loads((runtime / 'build-manifest.json').read_text())['engine_source_commit'],
               engine_sha256=sha(runtime / 'openmohaa.exe'),
-              wcr_package_fingerprint=json.loads((repo / 'third_party/wcr/manifest.json').read_text())['package_fingerprint'],
+              wcr_package_fingerprint=json.loads((runtime / 'build-manifest.json').read_text()).get('wcr_package_fingerprint','0d681481b7deaaa76fbeb5466de634e6e6b0caf271b975e1f8052408b41f4fe9'),
               exit_code=proc.returncode, timed_out=timed_out,
               elapsed_seconds=round(time.monotonic() - started, 2),
               active_state='CS_ACTIVE' in log,

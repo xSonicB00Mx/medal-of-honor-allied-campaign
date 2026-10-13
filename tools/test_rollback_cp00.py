@@ -11,7 +11,7 @@ def main():
         raise ValueError('A new runtime-local/rollback-test-* directory is required')
     if candidate.parent!=allowed or not (candidate/'COMPLETE').is_file(): raise ValueError('Invalid completed candidate')
     manifest=json.loads((candidate/'build-manifest.json').read_text())
-    data=json.loads((repo/'generated-local/runtime-data-manifest.json').read_text())
+    data=json.loads((repo/manifest.get('runtime_data_manifest','generated-local/runtime-data-manifest.json')).read_text())
     # Independent byte copies, not links. Profiles are deliberately outside the runtime.
     shutil.copytree(candidate,dest)
     profile=repo/'profiles-local'/manifest['build_id']

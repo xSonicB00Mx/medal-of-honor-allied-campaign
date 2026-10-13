@@ -1,0 +1,198 @@
+{
+  "revision": "CP00-r4",
+  "files": 9072,
+  "bytes": 2820126813,
+  "independent_copy_verified": true,
+  "write_protected": false,
+  "input_manifest_sha256": "79024db88fc0a193780087590452fdcbf73519988643d86e0eb3d530fe968e4d",
+  "package_fingerprint": "3b6b38b5b04ba320a526196946c44394c4519e4197dc8d3d05788e186501cfcc",
+  "added_files": [
+    "main/sound/dialogue/m4l3/a/FRdfr_m_02n.wav",
+    "main/sound/dialogue/m4l3/a/FRdfr_m_08n.wav",
+    "main/sound/dialogue/m4l3/a/frdfr_c_02n.wav",
+    "main/sound/dialogue/m4l3/a/frdfr_c_09n.wav",
+    "main/sound/dialogue/m4l3/a/frdfr_c_10n.wav",
+    "main/sound/dialogue/m4l3/a/frdfr_m_15n.wav",
+    "main/sound/dialogue/m4l3/a/frdfr_r_03n.wav",
+    "main/sound/music/Rescuing_G3_Officer.mp3"
+  ],
+  "removed_files": [],
+  "changed_files": [
+    {
+      "path": "Uninstall-WCRestored.bat",
+      "before": "eaa4c749bc0bb34fe8698e43993f07031b3c95c6ead15496071a806e19c52a5c",
+      "after": "9f96166721dd662424febae8bb0e6b0439bc0f35956c33666eb1c71433fe2ea8"
+    },
+    {
+      "path": "main/Restoration_AA_Pak1-Main.pk3",
+      "before": "7eabd9f0ec97b67d819bfad538c6d31ef9a369c0550bcb99ea67e11a6a5f1234",
+      "after": "87bf00e9210a8cb282aae020346ffc4c2f8cfcf915b639bdf6314780394eaa3a"
+    },
+    {
+      "path": "mainta/Restoration_SH_Pak1-Main.pk3",
+      "before": "febae06ba8417dfaaf0fa62e29474d2bc06dae4d7026d87ed4d0e07446c09b97",
+      "after": "6858b5d44dafbb8e772d12f3501925e1530dfb2c7bd29cfe79950bb54f76a9db"
+    },
+    {
+      "path": "mainta/Restoration_SH_Plus-Reflections.pk3",
+      "before": "8f6dfe7230857e59593b508d20f234786bfd14e9bed164057e089ea5e65ebaf1",
+      "after": "e40860dd59948121f9067c71a1c402e64abfcfb023631c859972909e0c406e2d"
+    },
+    {
+      "path": "maintt/Restoration_BT_Pak1-Main.pk3",
+      "before": "b50023f2ccd4eb2d34ced4b6b91e751d0c19e0e3af84c0f76420ff4d6ede2a22",
+      "after": "5c66188f2e11dee941fc9af239325f4732c129478306faca4da9e5199738f133"
+    },
+    {
+      "path": "maintt/Restoration_BT_Plus-Reflections.pk3",
+      "before": "e07bfc70a5182a76cc30885585cbe4803b74c4ae3730a15ba2fbc3244e6c7009",
+      "after": "00b12b691112fc1cce21cdf526ce7ce1b280771be026b31bf6513ced1e25fa23"
+    }
+  ],
+  "package_resource_changes": [
+    {
+      "path": "main/Restoration_AA_Pak1-Main.pk3",
+      "added": [
+        "global/ai.scr",
+        "global/bomber.scr",
+        "global/exploder.scr",
+        "global/movecrate.scr",
+        "global/say_to.scr",
+        "global/vehicles_thinkers.scr",
+        "models/ammo/us_bomb/us_bomb.skd",
+        "models/human/animation/dialogue/m3l2_dialogue_US.tik",
+        "models/human/new_generic_human.tik",
+        "models/items/ammo_boxes/bar_clip.skc",
+        "models/items/ammo_boxes/bar_clip.skd",
+        "models/items/ammo_boxes/colt_clip.skc",
+        "models/items/ammo_boxes/colt_clip.skd",
+        "models/items/ammo_boxes/garand_clip.skc",
+        "models/items/ammo_boxes/garand_clip.skd",
+        "models/items/ammo_boxes/kar98_clip.skc",
+        "models/items/ammo_boxes/kar98_clip.skd",
+        "models/items/ammo_boxes/mp40_clip.skc",
+        "models/items/ammo_boxes/mp40_clip.skd",
+        "models/items/ammo_boxes/mp44_clip.skc",
+        "models/items/ammo_boxes/mp44_clip.skd",
+        "models/items/ammo_boxes/p38_clip.skc",
+        "models/items/ammo_boxes/p38_clip.skd",
+        "models/items/ammo_boxes/silencedpistol_clip.skc",
+        "models/items/ammo_boxes/silencedpistol_clip.skd",
+        "models/items/ammo_boxes/springfield_clip.skc",
+        "models/items/ammo_boxes/springfield_clip.skd",
+        "models/items/ammo_boxes/thompson_clip.skc",
+        "models/items/ammo_boxes/thompson_clip.skd",
+        "models/items/binoculars.tik",
+        "models/items/item_bar_clip.tik",
+        "models/items/item_colt_clip.tik",
+        "models/items/item_garand_clip.tik",
+        "models/items/item_kar98_clip.tik",
+        "models/items/item_mp40_clip.tik",
+        "models/items/item_mp44_clip.tik",
+        "models/items/item_p38_clip.tik",
+        "models/items/item_shotgun_ammobox.tik",
+        "models/items/item_silencedpistol_clip.tik",
+        "models/items/item_springfield_clip.tik",
+        "models/items/item_thompson_clip.tik",
+        "music/m6l3b.mus",
+        "textures/mohmenu/briefingcall_smedal.tga"
+      ],
+      "removed": [],
+      "changed": [
+        "MENU.CFG",
+        "global/modelswap.scr",
+        "maps/m1l2a.scr",
+        "maps/m1l2b.scr",
+        "maps/m1l2b_precache.scr",
+        "maps/m1l3c.scr",
+        "maps/m2l1.scr",
+        "maps/m2l1_precache.scr",
+        "maps/m2l3.scr",
+        "maps/m3l1a.scr",
+        "maps/m3l1a_precache.scr",
+        "maps/m3l1b.scr",
+        "maps/m3l1b_precache.scr",
+        "maps/m3l2.scr",
+        "maps/m3l3.scr",
+        "maps/m4l0.scr",
+        "maps/m4l1.scr",
+        "maps/m4l2.scr",
+        "maps/m4l3.scr",
+        "maps/m5l1a.scr",
+        "maps/m5l1b.scr",
+        "maps/m5l1b_precache.scr",
+        "maps/m5l3.scr",
+        "maps/m6l1b.scr",
+        "maps/m6l1c_precache.scr",
+        "maps/m6l2a.scr",
+        "maps/m6l2b.scr",
+        "maps/m6l3a.scr",
+        "maps/m6l3c.scr",
+        "maps/medic_start.scr",
+        "models/items/camera.tik",
+        "progress_reset.cfg",
+        "scripts/mohmenu.shader",
+        "ubersound/uberdialog.scr",
+        "ubersound/ubersound.scr",
+        "ui/briefing_room.urc"
+      ]
+    },
+    {
+      "path": "main/Restoration_AA_Pak2-Bash.pk3",
+      "added": [],
+      "removed": [],
+      "changed": []
+    },
+    {
+      "path": "main/Restoration_AA_Plus-Reflections.pk3",
+      "added": [],
+      "removed": [],
+      "changed": []
+    },
+    {
+      "path": "mainta/Restoration_SH_Pak1-Main.pk3",
+      "added": [
+        "global/ai.scr",
+        "global/bomber.scr"
+      ],
+      "removed": [],
+      "changed": [
+        "global/exploder.scr",
+        "maps/briefing/briefingd1.scr",
+        "maps/briefing/briefingt1.scr",
+        "maps/briefing/briefingt2.scr",
+        "maps/briefing/briefingt3.scr"
+      ]
+    },
+    {
+      "path": "mainta/Restoration_SH_Plus-Reflections.pk3",
+      "added": [],
+      "removed": [],
+      "changed": [
+        "scripts/mohta_characters.shader"
+      ]
+    },
+    {
+      "path": "maintt/Restoration_BT_Pak1-Main.pk3",
+      "added": [
+        "global/ai.scr"
+      ],
+      "removed": [],
+      "changed": [
+        "global/bomber.scr",
+        "global/exploder.scr",
+        "maps/briefing/briefinge1.scr",
+        "maps/briefing/briefinge2.scr",
+        "maps/briefing/briefinge3.scr"
+      ]
+    },
+    {
+      "path": "maintt/Restoration_BT_Plus-Reflections.pk3",
+      "added": [],
+      "removed": [],
+      "changed": [
+        "scripts/mohta_characters.shader"
+      ]
+    }
+  ]
+}

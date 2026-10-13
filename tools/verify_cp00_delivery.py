@@ -5,14 +5,18 @@ from inventory_cp00 import sha, save
 
 ap=argparse.ArgumentParser(); ap.add_argument('--mp1',type=Path,required=True); ap.add_argument('--candidate',default='CP00-r1')
 ap.add_argument('--snapshot-only',action='store_true',help='Preserve the existing candidate from its verified snapshot; report original drift without importing it')
+ap.add_argument('--baseline',type=Path)
+ap.add_argument('--reference-candidate',default='CP00-r1')
+ap.add_argument('--reference-run-id',default='scene')
 args=ap.parse_args()
 if not args.candidate.replace('-','').isalnum(): raise ValueError('Invalid candidate')
 repo=Path(__file__).resolve().parents[1]
 src=repo.parent
-baseline=src/'_ac-backup-local/CP00-input'
+baseline=args.baseline or src/'_ac-backup-local/CP00-input'
 runtime=repo/'runtime-local'/args.candidate
+manifest=json.loads((runtime/'build-manifest.json').read_text())
 prefix='' if args.candidate=='CP00-r1' else args.candidate+'-'
-records=json.loads((repo/'generated-local/input-manifest.json').read_text())
+records=json.loads((repo/manifest.get('input_manifest','generated-local/input-manifest.json')).read_text())
 original_drift=[]
 for row in records:
     assert sha(baseline/row['path'])==row['sha256'], ('Snapshot mismatch',row['path'])
@@ -26,16 +30,15 @@ print('PASS: snapshot hashes',len(records),'original differences',len(original_d
 mp=json.loads((repo/'third_party/mp1/manifest.json').read_text())['files']
 for row in mp:
     assert sha(args.mp1/row['path'])==row['sha256']
-manifest=json.loads((runtime/'build-manifest.json').read_text())
-data=json.loads((repo/'generated-local/runtime-data-manifest.json').read_text())
+data=json.loads((repo/manifest.get('runtime_data_manifest','generated-local/runtime-data-manifest.json')).read_text())
 for row in data+manifest['owned_files']:
     assert sha(runtime/row['path'])==row['sha256'],row['path']
 print('PASS: runtime data and owned files',flush=True)
 evidence=[]
 for game,folder in [('AA','main'),('SH','mainta'),('BT','maintt')]:
-    report=json.loads((repo/f'checkpoints/CP00/scene-{game}.json').read_text())
+    report=json.loads((repo/f'checkpoints/CP00/{args.reference_run_id}-{game}.json').read_text())
     assert report['game_loaded'] and report['exit_code']==0 and not report['timeout']
-    profile=repo/f'profiles-local/CP00-r1/scene-{game}'
+    profile=repo/f'profiles-local/{args.reference_candidate}/{args.reference_run_id}-{game}'
     target=repo/f'profiles-local/{args.candidate}/{game}/{folder}/save/omconfig'
     target.mkdir(parents=True,exist_ok=True)
     # A save is a three-file set: level data, metadata, and menu thumbnail.

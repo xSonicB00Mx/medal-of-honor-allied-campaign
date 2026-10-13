@@ -10,13 +10,15 @@ from inventory_cp00 import sha, save
 ap=argparse.ArgumentParser()
 ap.add_argument('--candidate',required=True)
 ap.add_argument('--game',choices=['AA','SH','BT'],required=True)
+ap.add_argument('--reference-candidate',default='CP00-r1')
+ap.add_argument('--reference-run-id',default='scene')
 args=ap.parse_args()
 assert re.fullmatch(r'CP00-r[0-9]+',args.candidate)
 repo=Path(__file__).resolve().parents[1]
 game=args.game; folder={'AA':'main','SH':'mainta','BT':'maintt'}[game]
 profile=repo/'profiles-local'/args.candidate/game
 assert profile.exists() and not any(profile.iterdir()),'Use a fresh profile; preserve user data'
-reference=repo/f'profiles-local/CP00-r1/scene-{game}/{folder}/save/omconfig'
+reference=repo/f'profiles-local/{args.reference_candidate}/{args.reference_run_id}-{game}/{folder}/save/omconfig'
 saves=profile/folder/'save/omconfig'; saves.mkdir(parents=True)
 for ext in ('sav','ssv','tga'):
     source=reference/f'cp00_{game.lower()}.{ext}'
