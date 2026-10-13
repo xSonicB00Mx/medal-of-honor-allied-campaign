@@ -1,0 +1,30 @@
+{
+  "game": "SH",
+  "map": "t1l2",
+  "exit_code": 0,
+  "timeout": false,
+  "duration_seconds": 20.09,
+  "active_state": true,
+  "save_requested": true,
+  "load_lines": [
+    "[2026-10-13 21:32:34 UTC+1.000] Loading game...cp00_sh",
+    "[2026-10-13 21:32:39 UTC+1.000] CP00_SAVELOAD_COMMANDS_FINISHED"
+  ],
+  "commands_finished": true,
+  "menu_return_command_finished": true,
+  "screenshots": [
+    "mainta/screenshots/shot0000.tga",
+    "mainta/screenshots/shot0001.tga"
+  ],
+  "save_files": [
+    "mainta/save/omconfig/cp00_sh.sav",
+    "mainta/save/omconfig/cp00_sh.ssv"
+  ],
+  "note": "Command-driven rendered smoke, not manual gameplay or natural level transition.",
+  "run_id": "scene",
+  "game_loaded": true,
+  "resource_origins": [
+    "File \"maps/t1l2.scr\" found in \"$RUNTIME\\mainta\\Restoration_SH_Pak1-Main.pk3\"",
+    "File \"global/ai.scr\" found in \"$RUNTIME\\mainta\\pak1.pk3\""
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "game": "BT",
+  "map": "e1l2",
+  "exit_code": 0,
+  "timeout": false,
+  "duration_seconds": 21.33,
+  "active_state": true,
+  "save_requested": true,
+  "load_lines": [
+    "[2026-10-13 21:32:56 UTC+1.000] Loading game...cp00_bt",
+    "[2026-10-13 21:33:01 UTC+1.000] CP00_SAVELOAD_COMMANDS_FINISHED"
+  ],
+  "commands_finished": true,
+  "menu_return_command_finished": true,
+  "screenshots": [
+    "maintt/screenshots/shot0000.tga",
+    "maintt/screenshots/shot0001.tga"
+  ],
+  "save_files": [
+    "maintt/save/omconfig/cp00_bt.sav",
+    "maintt/save/omconfig/cp00_bt.ssv"
+  ],
+  "note": "Command-driven rendered smoke, not manual gameplay or natural level transition.",
+  "run_id": "scene",
+  "game_loaded": true,
+  "resource_origins": [
+    "File \"maps/e1l2.scr\" found in \"$RUNTIME\\maintt\\Restoration_BT_Pak1-Main.pk3\"",
+    "File \"global/ai.scr\" found in \"$RUNTIME\\maintt\\pak1.pk3\""
+  ]
+}
