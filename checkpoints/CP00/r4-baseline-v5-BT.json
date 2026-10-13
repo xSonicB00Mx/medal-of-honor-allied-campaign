@@ -216,5 +216,11 @@
       "sha256": "31b450b5fb5004cbc74e3add6356c92f61dd06d08acb8540cf1767aa98310245"
     }
   ],
-  "assessment": "INVALID_DEATH_SEQUENCE: target died before player firing; no valid live/dead comparison. Background map script errors remain unexplained."
+  "assessment": "INVALID_TEST_SETUP: user confirms selected starts place the player in a moving vehicle without an available weapon. Combat fixture started before player-control prerequisites were met; zero player shots cannot diagnose a BT weapon/combat defect. Target already dead before intended firing; background warnings are separate observations.",
+  "next_run_preconditions": [
+    "On foot after normal vehicle/intro completion",
+    "Free player movement",
+    "Visible active weapon",
+    "A real test shot confirmed before spawning the fixture"
+  ]
 }
