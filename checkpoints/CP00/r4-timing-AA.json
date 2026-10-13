@@ -1,0 +1,67 @@
+{
+  "candidate": "CP00-r4",
+  "game": "AA",
+  "map": "m2l1",
+  "record_seconds": 30,
+  "resolution": [
+    1280,
+    960
+  ],
+  "fov": 90,
+  "renderer": "GL1",
+  "skill": 1,
+  "engine_sha256": "5f1eee385de3b26750b45b7aa1e98566801b716566b97af11fa5586cb5c21c91",
+  "engine_source_commit": "af7bb7c6e706fcc64e5933a22457333274f3de22",
+  "wcr_package_fingerprint": "3b6b38b5b04ba320a526196946c44394c4519e4197dc8d3d05788e186501cfcc",
+  "replay_results": [
+    {
+      "run": "replay1",
+      "frames": 598,
+      "mean_ms": 8.477,
+      "median_ms": 8.0,
+      "p95_ms": 9,
+      "p99_ms": 10,
+      "max_ms": 17,
+      "clipped_at_255_ms": 0,
+      "engine_summary": "# 599 frames 5.1 seconds 118.2 fps 1.0/8.5/17.0/0.9 ms",
+      "duration_log_sha256": "f1d7b56def92a0644af76aceb72640634542bb25a80bce198d9d040d9b69c842"
+    },
+    {
+      "run": "replay2",
+      "frames": 598,
+      "mean_ms": 8.475,
+      "median_ms": 8.0,
+      "p95_ms": 9,
+      "p99_ms": 10,
+      "max_ms": 17,
+      "clipped_at_255_ms": 0,
+      "engine_summary": "# 599 frames 5.1 seconds 118.2 fps 1.0/8.5/17.0/0.8 ms",
+      "duration_log_sha256": "8eb8d4571eb62a87e857d6f587f56e855936b0b51bab92d588e9fa9ce59820d4"
+    }
+  ],
+  "demo_sha256": "7b22dc0edf12c2b7b21169bd5284803ee09119a8aedc8096abca024593bfc241",
+  "scope": "Idle-scene client timedemo; live AI runs only while recording. Not live-combat or display-present timings. Millisecond resolution, durations clipped to 255 ms by engine; two fresh replay processes.",
+  "visual_check": "Reviewed recording end screenshot: snowy road scene. Replay presentation was not visually checked.",
+  "evidence": [
+    {
+      "path": "generated-local/CP00-r4/r4-timing-AA/record.log",
+      "sha256": "1f47425ea04d554b22624edce787fcbc108dd9f713c4b97677a616c9f8772ea5"
+    },
+    {
+      "path": "generated-local/CP00-r4/r4-timing-AA/replay1-frametimes.txt",
+      "sha256": "f1d7b56def92a0644af76aceb72640634542bb25a80bce198d9d040d9b69c842"
+    },
+    {
+      "path": "generated-local/CP00-r4/r4-timing-AA/replay1.log",
+      "sha256": "8e713fea15505a2ba90db718cb26da2ac61679fac5cdcc8a52ca1f48571ec66d"
+    },
+    {
+      "path": "generated-local/CP00-r4/r4-timing-AA/replay2-frametimes.txt",
+      "sha256": "8eb8d4571eb62a87e857d6f587f56e855936b0b51bab92d588e9fa9ce59820d4"
+    },
+    {
+      "path": "generated-local/CP00-r4/r4-timing-AA/replay2.log",
+      "sha256": "7416517e33e14a3151bc6cc837ff8d66df22a4ed06cec1fe400fc9a33ac8a639"
+    }
+  ]
+}

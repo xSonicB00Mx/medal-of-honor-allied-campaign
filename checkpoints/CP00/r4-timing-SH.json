@@ -1,0 +1,67 @@
+{
+  "candidate": "CP00-r4",
+  "game": "SH",
+  "map": "t1l2",
+  "record_seconds": 30,
+  "resolution": [
+    1280,
+    960
+  ],
+  "fov": 90,
+  "renderer": "GL1",
+  "skill": 1,
+  "engine_sha256": "5f1eee385de3b26750b45b7aa1e98566801b716566b97af11fa5586cb5c21c91",
+  "engine_source_commit": "af7bb7c6e706fcc64e5933a22457333274f3de22",
+  "wcr_package_fingerprint": "3b6b38b5b04ba320a526196946c44394c4519e4197dc8d3d05788e186501cfcc",
+  "replay_results": [
+    {
+      "run": "replay1",
+      "frames": 598,
+      "mean_ms": 8.47,
+      "median_ms": 8.0,
+      "p95_ms": 9,
+      "p99_ms": 10,
+      "max_ms": 18,
+      "clipped_at_255_ms": 0,
+      "engine_summary": "# 599 frames 5.1 seconds 118.3 fps 2.0/8.5/18.0/0.8 ms",
+      "duration_log_sha256": "9e807c698aff2159b531ee8a8d9d661280dcc893c17c34167606cb48862b2bfb"
+    },
+    {
+      "run": "replay2",
+      "frames": 598,
+      "mean_ms": 8.477,
+      "median_ms": 8.0,
+      "p95_ms": 9,
+      "p99_ms": 10,
+      "max_ms": 17,
+      "clipped_at_255_ms": 0,
+      "engine_summary": "# 599 frames 5.1 seconds 118.2 fps 2.0/8.5/17.0/0.8 ms",
+      "duration_log_sha256": "e9bd6e44546d7834b64d42b9d152b974d8cc5f161990fa172188374730334c40"
+    }
+  ],
+  "demo_sha256": "c955f737208384d94587721609fb476ff8c0a4c9cc2242303cc81d912c86835f",
+  "scope": "Idle-scene client timedemo; live AI runs only while recording. Not live-combat or display-present timings. Millisecond resolution, durations clipped to 255 ms by engine; two fresh replay processes.",
+  "visual_check": "Reviewed recording end screenshot: introductory infantry scene. Replay presentation was not visually checked.",
+  "evidence": [
+    {
+      "path": "generated-local/CP00-r4/r4-timing-SH/record.log",
+      "sha256": "580465dfe081e5d57c3658276eeb03099c621b9e3211fa13c4e864081572f490"
+    },
+    {
+      "path": "generated-local/CP00-r4/r4-timing-SH/replay1-frametimes.txt",
+      "sha256": "9e807c698aff2159b531ee8a8d9d661280dcc893c17c34167606cb48862b2bfb"
+    },
+    {
+      "path": "generated-local/CP00-r4/r4-timing-SH/replay1.log",
+      "sha256": "f94f3076bf31591cb4bf051091db24b1bc39455fe6277faae45c4075ef2c2e4e"
+    },
+    {
+      "path": "generated-local/CP00-r4/r4-timing-SH/replay2-frametimes.txt",
+      "sha256": "e9bd6e44546d7834b64d42b9d152b974d8cc5f161990fa172188374730334c40"
+    },
+    {
+      "path": "generated-local/CP00-r4/r4-timing-SH/replay2.log",
+      "sha256": "ef6624b67fb4a71eecb2b34e4c1d7b15e7b63302cfbc7878fbc3c9f67b68b3eb"
+    }
+  ]
+}

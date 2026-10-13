@@ -1,0 +1,2201 @@
+{
+  "candidate": "CP00-r4",
+  "wcr_package_fingerprint": "3b6b38b5b04ba320a526196946c44394c4519e4197dc8d3d05788e186501cfcc",
+  "scope": "Static package-order inventory, not full runtime coverage. No original asset content included.",
+  "contexts": {
+    "AA": [
+      {
+        "resource": "global/ai.scr",
+        "kind": "death_script",
+        "predicted_provider": "main/Restoration_AA_Pak1-Main.pk3",
+        "entry": "global/ai.scr",
+        "sha256": "c52141ad30c2d5a8150c7f4e0d9710a90c68d1eeb53ea008914e713226f8c8ec"
+      },
+      {
+        "resource": "global/killed.scr",
+        "kind": "death_script",
+        "predicted_provider": "main/Pak0.pk3",
+        "entry": "global/killed.scr",
+        "sha256": "80f43f4e11ce15e34a70999b44772c071ea0b13b9a7a20903f0888b83ffbe978"
+      },
+      {
+        "resource": "models/animate/allied_1st-ranger-private_dead.tik",
+        "kind": "human_corpse_model",
+        "predicted_provider": "main/Pak0.pk3",
+        "entry": "models/animate/allied_1st-ranger-private_dead.tik",
+        "sha256": "064d229e7b46b307a77238edbccb142b08deb30cedad37e9078f49fcd272ca48"
+      },
+      {
+        "resource": "models/animate/allied_airborne_soldier_dead.tik",
+        "kind": "human_corpse_model",
+        "predicted_provider": "main/Pak0.pk3",
+        "entry": "models/animate/allied_airborne_soldier_dead.tik",
+        "sha256": "9d19acd29c57187ba9d40ab9a76962725fcef3ce7c4fa2717df0915e8f457e72"
+      },
+      {
+        "resource": "models/animate/allied_airborne_soldier_dead2.tik",
+        "kind": "human_corpse_model",
+        "predicted_provider": "main/Pak0.pk3",
+        "entry": "models/animate/allied_airborne_soldier_dead2.tik",
+        "sha256": "cecdf23d37f9e8be9e834caf3a93fa2360d97d6c731c08075e25bbf6e2347a19"
+      },
+      {
+        "resource": "models/animate/allied_airborne_soldier_dead3.tik",
+        "kind": "human_corpse_model",
+        "predicted_provider": "main/Pak0.pk3",
+        "entry": "models/animate/allied_airborne_soldier_dead3.tik",
+        "sha256": "fab715d72bbb0a46b0f2c3200e9352a27b5b07712323fb3113dc12f002c12af5"
+      },
+      {
+        "resource": "models/animate/body_2nd-ranger-engineer.tik",
+        "kind": "human_corpse_model",
+        "predicted_provider": "main/Pak0.pk3",
+        "entry": "models/animate/body_2nd-ranger-engineer.tik",
+        "sha256": "e39b02476e698e7dbddded0ee7445b310e7968771d23e7ef6cc254d1c7b9a3ee"
+      },
+      {
+        "resource": "models/animate/body_2nd-ranger-engineer2.tik",
+        "kind": "human_corpse_model",
+        "predicted_provider": "main/Pak0.pk3",
+        "entry": "models/animate/body_2nd-ranger-engineer2.tik",
+        "sha256": "cf1ae65884c07f1dc082f3427230c1cf2e467c5da5b5236f7cad33e5d610b00e"
+      },
+      {
+        "resource": "models/animate/body_2nd-ranger-engineer3.tik",
+        "kind": "human_corpse_model",
+        "predicted_provider": "main/Pak0.pk3",
+        "entry": "models/animate/body_2nd-ranger-engineer3.tik",
+        "sha256": "330e2a6b1cc08308f5c14da7ac5b06277c19623e40936a5c0abf834dda83f9f5"
+      },
+      {
+        "resource": "models/animate/body_us01.tik",
+        "kind": "human_corpse_model",
+        "predicted_provider": "main/Pak0.pk3",
+        "entry": "models/animate/body_us01.tik",
+        "sha256": "8faa493b6c19ee10e49b53b98264def4fd2f0d456f2ce66ad9173372c768bca6"
+      },
+      {
+        "resource": "models/animate/body_us02.tik",
+        "kind": "human_corpse_model",
+        "predicted_provider": "main/Pak0.pk3",
+        "entry": "models/animate/body_us02.tik",
+        "sha256": "fded988e7e1425292c615ede23f3608a4cfa48df59ab0c370330cce4165f857f"
+      },
+      {
+        "resource": "models/animate/body_us03.tik",
+        "kind": "human_corpse_model",
+        "predicted_provider": "main/Pak0.pk3",
+        "entry": "models/animate/body_us03.tik",
+        "sha256": "d9c3d3bbf08ed288cacfc80cfee2b0c1f034c571f92d40ba473d3f0d3a03de63"
+      },
+      {
+        "resource": "models/animate/body_us04.tik",
+        "kind": "human_corpse_model",
+        "predicted_provider": "main/Pak0.pk3",
+        "entry": "models/animate/body_us04.tik",
+        "sha256": "7e6b394404c00a950a2fb27bea7406bce481cbeefed7dcb53c531057dcfd46dd"
+      },
+      {
+        "resource": "models/animate/body_us05.tik",
+        "kind": "human_corpse_model",
+        "predicted_provider": "main/Pak0.pk3",
+        "entry": "models/animate/body_us05.tik",
+        "sha256": "15f6ffff00ea848b8179ff3f4c8c057954e0d53c71d318b769744a4fc0e82712"
+      },
+      {
+        "resource": "models/animate/body_us06.tik",
+        "kind": "human_corpse_model",
+        "predicted_provider": "main/Pak0.pk3",
+        "entry": "models/animate/body_us06.tik",
+        "sha256": "2b9e850661215daf0fa4cda8d58aa70ea21049dd5d95ab3ac29f0c2ea52c98b9"
+      },
+      {
+        "resource": "models/animate/body_usvest02.tik",
+        "kind": "human_corpse_model",
+        "predicted_provider": "main/Pak0.pk3",
+        "entry": "models/animate/body_usvest02.tik",
+        "sha256": "596e6a0a742b8b820f42cbe232fb954fe2ec0a2db9b6f3da0946c06ba91cd21b"
+      },
+      {
+        "resource": "models/animate/body_usvest03.tik",
+        "kind": "human_corpse_model",
+        "predicted_provider": "main/Pak0.pk3",
+        "entry": "models/animate/body_usvest03.tik",
+        "sha256": "d1fba5934eb0587b711db19a7e1b7179fe17299165a3a54752d746221df0f2a7"
+      },
+      {
+        "resource": "models/animate/body_usvest04.tik",
+        "kind": "human_corpse_model",
+        "predicted_provider": "main/Pak0.pk3",
+        "entry": "models/animate/body_usvest04.tik",
+        "sha256": "12195ba3de8473992ac6182492f29ad1a118a47e655c722c4cbd3e6dd76bcb40"
+      },
+      {
+        "resource": "models/animate/body_usvest05.tik",
+        "kind": "human_corpse_model",
+        "predicted_provider": "main/Pak0.pk3",
+        "entry": "models/animate/body_usvest05.tik",
+        "sha256": "be894da23f72c8c50ed7aec6fdf827d787900d0759d931bac6112968efadbd97"
+      },
+      {
+        "resource": "models/animate/body_usvest06.tik",
+        "kind": "human_corpse_model",
+        "predicted_provider": "main/Pak0.pk3",
+        "entry": "models/animate/body_usvest06.tik",
+        "sha256": "1c00f1fcfd081ad02cd3851dd317f16614138eacdb7b2b117b19afa1b5749df8"
+      },
+      {
+        "resource": "models/static/body_german01.tik",
+        "kind": "human_corpse_model",
+        "predicted_provider": "main/Pak0.pk3",
+        "entry": "models/static/body_german01.tik",
+        "sha256": "a61d7560bfcfb2a43e576de668a7356cd07c0019fb51b361d1032b070b8aa5c6"
+      },
+      {
+        "resource": "models/static/body_us01.tik",
+        "kind": "human_corpse_model",
+        "predicted_provider": "main/Pak0.pk3",
+        "entry": "models/static/body_us01.tik",
+        "sha256": "8faa493b6c19ee10e49b53b98264def4fd2f0d456f2ce66ad9173372c768bca6"
+      },
+      {
+        "resource": "models/static/body_us02.tik",
+        "kind": "human_corpse_model",
+        "predicted_provider": "main/Pak0.pk3",
+        "entry": "models/static/body_us02.tik",
+        "sha256": "fded988e7e1425292c615ede23f3608a4cfa48df59ab0c370330cce4165f857f"
+      },
+      {
+        "resource": "models/static/body_us03.tik",
+        "kind": "human_corpse_model",
+        "predicted_provider": "main/Pak0.pk3",
+        "entry": "models/static/body_us03.tik",
+        "sha256": "d9c3d3bbf08ed288cacfc80cfee2b0c1f034c571f92d40ba473d3f0d3a03de63"
+      },
+      {
+        "resource": "models/static/body_us04.tik",
+        "kind": "human_corpse_model",
+        "predicted_provider": "main/Pak0.pk3",
+        "entry": "models/static/body_us04.tik",
+        "sha256": "4d2aadcfd4a55187a478933bc7ed1eebc2f8f2de387b286a2367c9841b956eb7"
+      },
+      {
+        "resource": "models/static/body_us05.tik",
+        "kind": "human_corpse_model",
+        "predicted_provider": "main/Pak0.pk3",
+        "entry": "models/static/body_us05.tik",
+        "sha256": "dd18c590712a92d6efef9a91390c21fe63ffd2b9880ff615c582c167f80c970d"
+      },
+      {
+        "resource": "models/static/body_us06.tik",
+        "kind": "human_corpse_model",
+        "predicted_provider": "main/Pak0.pk3",
+        "entry": "models/static/body_us06.tik",
+        "sha256": "97babc7278f98124f450137ba560e55d8733669c6eb8e58565a93d95f51af09e"
+      },
+      {
+        "resource": "models/static/body_usvest02.tik",
+        "kind": "human_corpse_model",
+        "predicted_provider": "main/Pak0.pk3",
+        "entry": "models/static/body_usvest02.tik",
+        "sha256": "8d33b98db958971aeaacc6f28894dafcbc7da90f544defeb83e625c401ae3c00"
+      },
+      {
+        "resource": "models/static/body_usvest03.tik",
+        "kind": "human_corpse_model",
+        "predicted_provider": "main/Pak0.pk3",
+        "entry": "models/static/body_usvest03.tik",
+        "sha256": "695404fb0e85a93d063d1408b6b0eeca8ad01031cac486971abb10134a0f13d5"
+      },
+      {
+        "resource": "models/static/body_usvest04.tik",
+        "kind": "human_corpse_model",
+        "predicted_provider": "main/Pak0.pk3",
+        "entry": "models/static/body_usvest04.tik",
+        "sha256": "b8ab5a2ac7373d03f1c2ef290b91f40a5d2c2cd62ef1d258357dcdcbbd2d806d"
+      },
+      {
+        "resource": "models/static/body_usvest05.tik",
+        "kind": "human_corpse_model",
+        "predicted_provider": "main/Pak0.pk3",
+        "entry": "models/static/body_usvest05.tik",
+        "sha256": "cb0eff2e1a40fb3a1b89d74db100eafffeaa67b7465f9c581e3dfb570dc40c62"
+      },
+      {
+        "resource": "models/static/body_usvest06.tik",
+        "kind": "human_corpse_model",
+        "predicted_provider": "main/Pak0.pk3",
+        "entry": "models/static/body_usvest06.tik",
+        "sha256": "f145effdb3f97608e85bead657427b68ba09e356fb4391731b19cc6a4bfe3043"
+      },
+      {
+        "resource": "models/weapons/bar.tik",
+        "kind": "weapon",
+        "predicted_provider": "main/Restoration_AA_Pak2-Bash.pk3",
+        "entry": "models/weapons/bar.tik",
+        "sha256": "1f1efdc12cb4877fa3437cc763c00e6f45be986464690f5b01c1e2149af8a8e3",
+        "declared_fields": {
+          "name": [
+            "\"BAR\""
+          ],
+          "weapongroup": [
+            "bar"
+          ],
+          "bulletdamage": [
+            "60"
+          ],
+          "bulletrange": [
+            "4000"
+          ],
+          "ammotype": [
+            "\"mg\""
+          ]
+        },
+        "note": "Text declarations only; conditionals/includes and runtime origin require separate verification."
+      },
+      {
+        "resource": "models/weapons/bazooka.tik",
+        "kind": "weapon",
+        "predicted_provider": "main/Restoration_AA_Pak1-Main.pk3",
+        "entry": "models/weapons/bazooka.tik",
+        "sha256": "e5d79e60ace2a960e77ab6749bab927a92d36883aaf94c7bd19329e8fb4c0a4c",
+        "declared_fields": {
+          "name": [
+            "\"Bazooka\""
+          ],
+          "weapongroup": [
+            "bazooka"
+          ],
+          "ammotype": [
+            "\"heavy\""
+          ]
+        },
+        "note": "Text declarations only; conditionals/includes and runtime origin require separate verification."
+      },
+      {
+        "resource": "models/weapons/colt45.tik",
+        "kind": "weapon",
+        "predicted_provider": "main/Restoration_AA_Pak1-Main.pk3",
+        "entry": "models/weapons/colt45.tik",
+        "sha256": "95eab229afe7bb84f0cfd326f23a58220e76f5a4e4376957dad17875aefe4c6a",
+        "declared_fields": {
+          "name": [
+            "\"Colt 45\""
+          ],
+          "weapongroup": [
+            "pistol"
+          ],
+          "bulletdamage": [
+            "35"
+          ],
+          "bulletrange": [
+            "4000"
+          ],
+          "ammotype": [
+            "\"pistol\""
+          ]
+        },
+        "note": "Text declarations only; conditionals/includes and runtime origin require separate verification."
+      },
+      {
+        "resource": "models/weapons/kar98.tik",
+        "kind": "weapon",
+        "predicted_provider": "main/Restoration_AA_Pak2-Bash.pk3",
+        "entry": "models/weapons/kar98.tik",
+        "sha256": "bbe7c0c661949a8ea6ad64884611aa974155b8ef9529ab1983be44e1dda285a0",
+        "declared_fields": {
+          "name": [
+            "\"Mauser KAR 98K\""
+          ],
+          "weapongroup": [
+            "rifle"
+          ],
+          "bulletdamage": [
+            "75"
+          ],
+          "bulletrange": [
+            "4000"
+          ],
+          "ammotype": [
+            "\"rifle\""
+          ]
+        },
+        "note": "Text declarations only; conditionals/includes and runtime origin require separate verification."
+      },
+      {
+        "resource": "models/weapons/kar98sniper.tik",
+        "kind": "weapon",
+        "predicted_provider": "main/Restoration_AA_Pak1-Main.pk3",
+        "entry": "models/weapons/kar98sniper.tik",
+        "sha256": "a695a6f904f562f13906d0bca091c5b3f540c49cabf3c0d1c9751fb669f237cc",
+        "declared_fields": {
+          "name": [
+            "\"KAR98 - Sniper\""
+          ],
+          "weapongroup": [
+            "rifle"
+          ],
+          "bulletdamage": [
+            "100"
+          ],
+          "bulletrange": [
+            "4000"
+          ],
+          "ammotype": [
+            "\"rifle\""
+          ]
+        },
+        "note": "Text declarations only; conditionals/includes and runtime origin require separate verification."
+      },
+      {
+        "resource": "models/weapons/m1_garand.tik",
+        "kind": "weapon",
+        "predicted_provider": "main/Restoration_AA_Pak2-Bash.pk3",
+        "entry": "models/weapons/m1_garand.tik",
+        "sha256": "b92356e6fc6a911d5759f811fd40eb1da9aad5db9c6e9982b99bd6a621152fb9",
+        "declared_fields": {
+          "name": [
+            "\"M1 Garand\""
+          ],
+          "weapongroup": [
+            "rifle"
+          ],
+          "bulletdamage": [
+            "65"
+          ],
+          "bulletrange": [
+            "4000"
+          ],
+          "ammotype": [
+            "\"rifle\""
+          ]
+        },
+        "note": "Text declarations only; conditionals/includes and runtime origin require separate verification."
+      },
+      {
+        "resource": "models/weapons/mp40.tik",
+        "kind": "weapon",
+        "predicted_provider": "main/Restoration_AA_Pak2-Bash.pk3",
+        "entry": "models/weapons/mp40.tik",
+        "sha256": "a1dd2cef712bf36e6389c53f3b5ec0ea20341a0c3adaf017e3dac8e090e5cfd2",
+        "declared_fields": {
+          "name": [
+            "\"MP40\""
+          ],
+          "weapongroup": [
+            "mp40"
+          ],
+          "bulletdamage": [
+            "32"
+          ],
+          "bulletrange": [
+            "4000"
+          ],
+          "ammotype": [
+            "\"smg\""
+          ]
+        },
+        "note": "Text declarations only; conditionals/includes and runtime origin require separate verification."
+      },
+      {
+        "resource": "models/weapons/mp44.tik",
+        "kind": "weapon",
+        "predicted_provider": "main/Restoration_AA_Pak2-Bash.pk3",
+        "entry": "models/weapons/mp44.tik",
+        "sha256": "f020a5fb0cff1812add870da2962320eff16b06962b509b3c7683f8ab36611eb",
+        "declared_fields": {
+          "name": [
+            "\"StG 44\""
+          ],
+          "weapongroup": [
+            "mp44"
+          ],
+          "bulletdamage": [
+            "46"
+          ],
+          "bulletrange": [
+            "4000"
+          ],
+          "ammotype": [
+            "\"mg\""
+          ]
+        },
+        "note": "Text declarations only; conditionals/includes and runtime origin require separate verification."
+      },
+      {
+        "resource": "models/weapons/p38.tik",
+        "kind": "weapon",
+        "predicted_provider": "main/Restoration_AA_Pak1-Main.pk3",
+        "entry": "models/weapons/p38.tik",
+        "sha256": "750f529d99f584d6854627a244aebb1b69b82cdd02f25489a5ae2827afc79a3f",
+        "declared_fields": {
+          "name": [
+            "\"Walther P38\""
+          ],
+          "weapongroup": [
+            "pistol"
+          ],
+          "bulletdamage": [
+            "32"
+          ],
+          "bulletrange": [
+            "4000"
+          ],
+          "ammotype": [
+            "\"pistol\""
+          ]
+        },
+        "note": "Text declarations only; conditionals/includes and runtime origin require separate verification."
+      },
+      {
+        "resource": "models/weapons/panzerschreck.tik",
+        "kind": "weapon",
+        "predicted_provider": "main/Restoration_AA_Pak1-Main.pk3",
+        "entry": "models/weapons/panzerschreck.tik",
+        "sha256": "3396c36f443a1d26c0bedb973bfb676c87350a67a56d12fddbb6ed2fa621bfd5",
+        "declared_fields": {
+          "name": [
+            "\"Panzerschreck\""
+          ],
+          "weapongroup": [
+            "bazooka"
+          ],
+          "ammotype": [
+            "\"heavy\""
+          ]
+        },
+        "note": "Text declarations only; conditionals/includes and runtime origin require separate verification."
+      },
+      {
+        "resource": "models/weapons/shotgun.tik",
+        "kind": "weapon",
+        "predicted_provider": "main/Restoration_AA_Pak2-Bash.pk3",
+        "entry": "models/weapons/shotgun.tik",
+        "sha256": "181d692a58e6c4990a390b7226732252096f9d0691d97fece0db69124502666a",
+        "declared_fields": {
+          "name": [
+            "\"Shotgun\""
+          ],
+          "weapongroup": [
+            "rifle"
+          ],
+          "bulletdamage": [
+            "33"
+          ],
+          "bulletrange": [
+            "2400"
+          ],
+          "ammotype": [
+            "\"shotgun\""
+          ]
+        },
+        "note": "Text declarations only; conditionals/includes and runtime origin require separate verification."
+      },
+      {
+        "resource": "models/weapons/silencedpistol.tik",
+        "kind": "weapon",
+        "predicted_provider": "main/Restoration_AA_Pak1-Main.pk3",
+        "entry": "models/weapons/silencedpistol.tik",
+        "sha256": "e0df2b2fc2092ec229945475669b14371f3ce8b80919000bcd540a4a2f81bb2f",
+        "declared_fields": {
+          "name": [
+            "\"Hi-Standard Silenced\""
+          ],
+          "weapongroup": [
+            "pistol"
+          ],
+          "bulletdamage": [
+            "40"
+          ],
+          "bulletrange": [
+            "4000"
+          ],
+          "ammotype": [
+            "\"pistol\""
+          ]
+        },
+        "note": "Text declarations only; conditionals/includes and runtime origin require separate verification."
+      },
+      {
+        "resource": "models/weapons/springfield.tik",
+        "kind": "weapon",
+        "predicted_provider": "main/Restoration_AA_Pak1-Main.pk3",
+        "entry": "models/weapons/springfield.tik",
+        "sha256": "5824a49b3b8458eecb5fe63f8ac77771f33aaa84a49c084b40741ac3485f4108",
+        "declared_fields": {
+          "name": [
+            "\"Springfield '03 Sniper\""
+          ],
+          "weapongroup": [
+            "rifle"
+          ],
+          "bulletdamage": [
+            "100"
+          ],
+          "bulletrange": [
+            "4000"
+          ],
+          "ammotype": [
+            "\"rifle\""
+          ]
+        },
+        "note": "Text declarations only; conditionals/includes and runtime origin require separate verification."
+      },
+      {
+        "resource": "models/weapons/thompsonsmg.tik",
+        "kind": "weapon",
+        "predicted_provider": "main/Restoration_AA_Pak2-Bash.pk3",
+        "entry": "models/weapons/thompsonsmg.tik",
+        "sha256": "e0c58a8c053d5ce2dc62898608b8c49dc12bd65a5b638d5a99021dabf01337d3",
+        "declared_fields": {
+          "name": [
+            "\"Thompson\""
+          ],
+          "weapongroup": [
+            "thompson"
+          ],
+          "bulletdamage": [
+            "35"
+          ],
+          "bulletrange": [
+            "4000"
+          ],
+          "ammotype": [
+            "\"smg\""
+          ]
+        },
+        "note": "Text declarations only; conditionals/includes and runtime origin require separate verification."
+      }
+    ],
+    "SH": [
+      {
+        "resource": "global/ai.scr",
+        "kind": "death_script",
+        "predicted_provider": "mainta/Restoration_SH_Pak1-Main.pk3",
+        "entry": "global/ai.scr",
+        "sha256": "786ca1d2111ffe936eac7f2a481d93992acb66b749d03000219f56bc880a9dbc"
+      },
+      {
+        "resource": "global/killed.scr",
+        "kind": "death_script",
+        "predicted_provider": "main/Pak0.pk3",
+        "entry": "global/killed.scr",
+        "sha256": "80f43f4e11ce15e34a70999b44772c071ea0b13b9a7a20903f0888b83ffbe978"
+      },
+      {
+        "resource": "models/animate/allied_1st-ranger-private_dead.tik",
+        "kind": "human_corpse_model",
+        "predicted_provider": "main/Pak0.pk3",
+        "entry": "models/animate/allied_1st-ranger-private_dead.tik",
+        "sha256": "064d229e7b46b307a77238edbccb142b08deb30cedad37e9078f49fcd272ca48"
+      },
+      {
+        "resource": "models/animate/allied_airborne_soldier_dead.tik",
+        "kind": "human_corpse_model",
+        "predicted_provider": "main/Pak0.pk3",
+        "entry": "models/animate/allied_airborne_soldier_dead.tik",
+        "sha256": "9d19acd29c57187ba9d40ab9a76962725fcef3ce7c4fa2717df0915e8f457e72"
+      },
+      {
+        "resource": "models/animate/allied_airborne_soldier_dead2.tik",
+        "kind": "human_corpse_model",
+        "predicted_provider": "main/Pak0.pk3",
+        "entry": "models/animate/allied_airborne_soldier_dead2.tik",
+        "sha256": "cecdf23d37f9e8be9e834caf3a93fa2360d97d6c731c08075e25bbf6e2347a19"
+      },
+      {
+        "resource": "models/animate/allied_airborne_soldier_dead3.tik",
+        "kind": "human_corpse_model",
+        "predicted_provider": "main/Pak0.pk3",
+        "entry": "models/animate/allied_airborne_soldier_dead3.tik",
+        "sha256": "fab715d72bbb0a46b0f2c3200e9352a27b5b07712323fb3113dc12f002c12af5"
+      },
+      {
+        "resource": "models/animate/body_2nd-ranger-engineer.tik",
+        "kind": "human_corpse_model",
+        "predicted_provider": "main/Pak0.pk3",
+        "entry": "models/animate/body_2nd-ranger-engineer.tik",
+        "sha256": "e39b02476e698e7dbddded0ee7445b310e7968771d23e7ef6cc254d1c7b9a3ee"
+      },
+      {
+        "resource": "models/animate/body_2nd-ranger-engineer2.tik",
+        "kind": "human_corpse_model",
+        "predicted_provider": "main/Pak0.pk3",
+        "entry": "models/animate/body_2nd-ranger-engineer2.tik",
+        "sha256": "cf1ae65884c07f1dc082f3427230c1cf2e467c5da5b5236f7cad33e5d610b00e"
+      },
+      {
+        "resource": "models/animate/body_2nd-ranger-engineer3.tik",
+        "kind": "human_corpse_model",
+        "predicted_provider": "main/Pak0.pk3",
+        "entry": "models/animate/body_2nd-ranger-engineer3.tik",
+        "sha256": "330e2a6b1cc08308f5c14da7ac5b06277c19623e40936a5c0abf834dda83f9f5"
+      },
+      {
+        "resource": "models/animate/body_us01.tik",
+        "kind": "human_corpse_model",
+        "predicted_provider": "main/Pak0.pk3",
+        "entry": "models/animate/body_us01.tik",
+        "sha256": "8faa493b6c19ee10e49b53b98264def4fd2f0d456f2ce66ad9173372c768bca6"
+      },
+      {
+        "resource": "models/animate/body_us02.tik",
+        "kind": "human_corpse_model",
+        "predicted_provider": "main/Pak0.pk3",
+        "entry": "models/animate/body_us02.tik",
+        "sha256": "fded988e7e1425292c615ede23f3608a4cfa48df59ab0c370330cce4165f857f"
+      },
+      {
+        "resource": "models/animate/body_us03.tik",
+        "kind": "human_corpse_model",
+        "predicted_provider": "main/Pak0.pk3",
+        "entry": "models/animate/body_us03.tik",
+        "sha256": "d9c3d3bbf08ed288cacfc80cfee2b0c1f034c571f92d40ba473d3f0d3a03de63"
+      },
+      {
+        "resource": "models/animate/body_us04.tik",
+        "kind": "human_corpse_model",
+        "predicted_provider": "main/Pak0.pk3",
+        "entry": "models/animate/body_us04.tik",
+        "sha256": "7e6b394404c00a950a2fb27bea7406bce481cbeefed7dcb53c531057dcfd46dd"
+      },
+      {
+        "resource": "models/animate/body_us05.tik",
+        "kind": "human_corpse_model",
+        "predicted_provider": "main/Pak0.pk3",
+        "entry": "models/animate/body_us05.tik",
+        "sha256": "15f6ffff00ea848b8179ff3f4c8c057954e0d53c71d318b769744a4fc0e82712"
+      },
+      {
+        "resource": "models/animate/body_us06.tik",
+        "kind": "human_corpse_model",
+        "predicted_provider": "main/Pak0.pk3",
+        "entry": "models/animate/body_us06.tik",
+        "sha256": "2b9e850661215daf0fa4cda8d58aa70ea21049dd5d95ab3ac29f0c2ea52c98b9"
+      },
+      {
+        "resource": "models/animate/body_usvest02.tik",
+        "kind": "human_corpse_model",
+        "predicted_provider": "main/Pak0.pk3",
+        "entry": "models/animate/body_usvest02.tik",
+        "sha256": "596e6a0a742b8b820f42cbe232fb954fe2ec0a2db9b6f3da0946c06ba91cd21b"
+      },
+      {
+        "resource": "models/animate/body_usvest03.tik",
+        "kind": "human_corpse_model",
+        "predicted_provider": "main/Pak0.pk3",
+        "entry": "models/animate/body_usvest03.tik",
+        "sha256": "d1fba5934eb0587b711db19a7e1b7179fe17299165a3a54752d746221df0f2a7"
+      },
+      {
+        "resource": "models/animate/body_usvest04.tik",
+        "kind": "human_corpse_model",
+        "predicted_provider": "main/Pak0.pk3",
+        "entry": "models/animate/body_usvest04.tik",
+        "sha256": "12195ba3de8473992ac6182492f29ad1a118a47e655c722c4cbd3e6dd76bcb40"
+      },
+      {
+        "resource": "models/animate/body_usvest05.tik",
+        "kind": "human_corpse_model",
+        "predicted_provider": "main/Pak0.pk3",
+        "entry": "models/animate/body_usvest05.tik",
+        "sha256": "be894da23f72c8c50ed7aec6fdf827d787900d0759d931bac6112968efadbd97"
+      },
+      {
+        "resource": "models/animate/body_usvest06.tik",
+        "kind": "human_corpse_model",
+        "predicted_provider": "main/Pak0.pk3",
+        "entry": "models/animate/body_usvest06.tik",
+        "sha256": "1c00f1fcfd081ad02cd3851dd317f16614138eacdb7b2b117b19afa1b5749df8"
+      },
+      {
+        "resource": "models/static/body_german01.tik",
+        "kind": "human_corpse_model",
+        "predicted_provider": "main/Pak0.pk3",
+        "entry": "models/static/body_german01.tik",
+        "sha256": "a61d7560bfcfb2a43e576de668a7356cd07c0019fb51b361d1032b070b8aa5c6"
+      },
+      {
+        "resource": "models/static/body_us01.tik",
+        "kind": "human_corpse_model",
+        "predicted_provider": "main/Pak0.pk3",
+        "entry": "models/static/body_us01.tik",
+        "sha256": "8faa493b6c19ee10e49b53b98264def4fd2f0d456f2ce66ad9173372c768bca6"
+      },
+      {
+        "resource": "models/static/body_us02.tik",
+        "kind": "human_corpse_model",
+        "predicted_provider": "main/Pak0.pk3",
+        "entry": "models/static/body_us02.tik",
+        "sha256": "fded988e7e1425292c615ede23f3608a4cfa48df59ab0c370330cce4165f857f"
+      },
+      {
+        "resource": "models/static/body_us03.tik",
+        "kind": "human_corpse_model",
+        "predicted_provider": "main/Pak0.pk3",
+        "entry": "models/static/body_us03.tik",
+        "sha256": "d9c3d3bbf08ed288cacfc80cfee2b0c1f034c571f92d40ba473d3f0d3a03de63"
+      },
+      {
+        "resource": "models/static/body_us04.tik",
+        "kind": "human_corpse_model",
+        "predicted_provider": "main/Pak0.pk3",
+        "entry": "models/static/body_us04.tik",
+        "sha256": "4d2aadcfd4a55187a478933bc7ed1eebc2f8f2de387b286a2367c9841b956eb7"
+      },
+      {
+        "resource": "models/static/body_us05.tik",
+        "kind": "human_corpse_model",
+        "predicted_provider": "main/Pak0.pk3",
+        "entry": "models/static/body_us05.tik",
+        "sha256": "dd18c590712a92d6efef9a91390c21fe63ffd2b9880ff615c582c167f80c970d"
+      },
+      {
+        "resource": "models/static/body_us06.tik",
+        "kind": "human_corpse_model",
+        "predicted_provider": "main/Pak0.pk3",
+        "entry": "models/static/body_us06.tik",
+        "sha256": "97babc7278f98124f450137ba560e55d8733669c6eb8e58565a93d95f51af09e"
+      },
+      {
+        "resource": "models/static/body_usvest02.tik",
+        "kind": "human_corpse_model",
+        "predicted_provider": "main/Pak0.pk3",
+        "entry": "models/static/body_usvest02.tik",
+        "sha256": "8d33b98db958971aeaacc6f28894dafcbc7da90f544defeb83e625c401ae3c00"
+      },
+      {
+        "resource": "models/static/body_usvest03.tik",
+        "kind": "human_corpse_model",
+        "predicted_provider": "main/Pak0.pk3",
+        "entry": "models/static/body_usvest03.tik",
+        "sha256": "695404fb0e85a93d063d1408b6b0eeca8ad01031cac486971abb10134a0f13d5"
+      },
+      {
+        "resource": "models/static/body_usvest04.tik",
+        "kind": "human_corpse_model",
+        "predicted_provider": "main/Pak0.pk3",
+        "entry": "models/static/body_usvest04.tik",
+        "sha256": "b8ab5a2ac7373d03f1c2ef290b91f40a5d2c2cd62ef1d258357dcdcbbd2d806d"
+      },
+      {
+        "resource": "models/static/body_usvest05.tik",
+        "kind": "human_corpse_model",
+        "predicted_provider": "main/Pak0.pk3",
+        "entry": "models/static/body_usvest05.tik",
+        "sha256": "cb0eff2e1a40fb3a1b89d74db100eafffeaa67b7465f9c581e3dfb570dc40c62"
+      },
+      {
+        "resource": "models/static/body_usvest06.tik",
+        "kind": "human_corpse_model",
+        "predicted_provider": "main/Pak0.pk3",
+        "entry": "models/static/body_usvest06.tik",
+        "sha256": "f145effdb3f97608e85bead657427b68ba09e356fb4391731b19cc6a4bfe3043"
+      },
+      {
+        "resource": "models/weapons/bar.tik",
+        "kind": "weapon",
+        "predicted_provider": "mainta/Restoration_SH_Pak1-Main.pk3",
+        "entry": "models/weapons/bar.tik",
+        "sha256": "6ee41436dbac4a0c43d779a7ff9e23866890f4fb98c145a554237fba302c1dc0",
+        "declared_fields": {
+          "name": [
+            "\"BAR\""
+          ],
+          "weapongroup": [
+            "bar"
+          ],
+          "ammotype": [
+            "\"mg\""
+          ]
+        },
+        "note": "Text declarations only; conditionals/includes and runtime origin require separate verification."
+      },
+      {
+        "resource": "models/weapons/bazooka.tik",
+        "kind": "weapon",
+        "predicted_provider": "mainta/Restoration_SH_Pak1-Main.pk3",
+        "entry": "models/weapons/bazooka.tik",
+        "sha256": "c4ac665b84ec7aca305c0b35fefd85923f3a7519534be9dd050206990eac1cf6",
+        "declared_fields": {
+          "name": [
+            "\"Bazooka\""
+          ],
+          "weapongroup": [
+            "bazooka"
+          ],
+          "ammotype": [
+            "\"heavy\""
+          ]
+        },
+        "note": "Text declarations only; conditionals/includes and runtime origin require separate verification."
+      },
+      {
+        "resource": "models/weapons/colt45.tik",
+        "kind": "weapon",
+        "predicted_provider": "mainta/Restoration_SH_Pak1-Main.pk3",
+        "entry": "models/weapons/colt45.tik",
+        "sha256": "94be4d16a79bef79323f396c5e091eda65129e682c0815edaeecc84b42fa7fbe",
+        "declared_fields": {
+          "name": [
+            "\"Colt 45\""
+          ],
+          "weapongroup": [
+            "pistol"
+          ],
+          "ammotype": [
+            "\"pistol\""
+          ]
+        },
+        "note": "Text declarations only; conditionals/includes and runtime origin require separate verification."
+      },
+      {
+        "resource": "models/weapons/enfield.tik",
+        "kind": "weapon",
+        "predicted_provider": "mainta/Restoration_SH_Pak1-Main.pk3",
+        "entry": "models/weapons/enfield.tik",
+        "sha256": "e2ff8588160ec89c4a3c58bd3a06306b8c05a6ca604cb3ebea8b1f5a43c27f01",
+        "declared_fields": {
+          "name": [
+            "\"Lee-Enfield\""
+          ],
+          "weapongroup": [
+            "rifle"
+          ],
+          "ammotype": [
+            "\"rifle\""
+          ]
+        },
+        "note": "Text declarations only; conditionals/includes and runtime origin require separate verification."
+      },
+      {
+        "resource": "models/weapons/fg42.tik",
+        "kind": "weapon",
+        "predicted_provider": "mainta/Restoration_SH_Pak1-Main.pk3",
+        "entry": "models/weapons/FG42.tik",
+        "sha256": "d325acaabf11d17255ab603c1e9c7121fc0c3c8a69fbffcdc0ca903e7f0ec871",
+        "declared_fields": {
+          "name": [
+            "\"FG 42\""
+          ],
+          "weapongroup": [
+            "rifle"
+          ],
+          "ammotype": [
+            "\"rifle\""
+          ]
+        },
+        "note": "Text declarations only; conditionals/includes and runtime origin require separate verification."
+      },
+      {
+        "resource": "models/weapons/g43.tik",
+        "kind": "weapon",
+        "predicted_provider": "mainta/Restoration_SH_Pak1-Main.pk3",
+        "entry": "models/weapons/g43.tik",
+        "sha256": "23281e34db601f862a97ce50fab528d562b50b11726aa873e441e0fe707cbe41",
+        "declared_fields": {
+          "name": [
+            "\"G 43\""
+          ],
+          "weapongroup": [
+            "rifle"
+          ],
+          "ammotype": [
+            "\"rifle\""
+          ]
+        },
+        "note": "Text declarations only; conditionals/includes and runtime origin require separate verification."
+      },
+      {
+        "resource": "models/weapons/kar98.tik",
+        "kind": "weapon",
+        "predicted_provider": "mainta/Restoration_SH_Pak1-Main.pk3",
+        "entry": "models/weapons/kar98.tik",
+        "sha256": "95b34182415fcade4b9e414c9e7f20a9537402a6c48477a32cb45d63c72b39a1",
+        "declared_fields": {
+          "name": [
+            "\"Mauser KAR 98K\""
+          ],
+          "weapongroup": [
+            "rifle"
+          ],
+          "ammotype": [
+            "\"rifle\""
+          ]
+        },
+        "note": "Text declarations only; conditionals/includes and runtime origin require separate verification."
+      },
+      {
+        "resource": "models/weapons/kar98_mortar.tik",
+        "kind": "weapon",
+        "predicted_provider": "mainta/Restoration_SH_Pak1-Main.pk3",
+        "entry": "models/weapons/kar98_mortar.tik",
+        "sha256": "fb39f222444aaaea81d55c1a79b39480bdb9c37309d4626f7fe437f7c8b4031e",
+        "declared_fields": {
+          "name": [
+            "\"Gewehrgranate\""
+          ],
+          "weapongroup": [
+            "rifle"
+          ],
+          "ammotype": [
+            "\"rifle\""
+          ]
+        },
+        "note": "Text declarations only; conditionals/includes and runtime origin require separate verification."
+      },
+      {
+        "resource": "models/weapons/kar98sniper.tik",
+        "kind": "weapon",
+        "predicted_provider": "mainta/Restoration_SH_Pak1-Main.pk3",
+        "entry": "models/weapons/kar98sniper.tik",
+        "sha256": "18f009f3347cf14e8005926be23b5ce0f7f270da55a9fb504db4e3f1714088bc",
+        "declared_fields": {
+          "name": [
+            "\"KAR98 - Sniper\""
+          ],
+          "weapongroup": [
+            "rifle"
+          ],
+          "ammotype": [
+            "\"rifle\""
+          ]
+        },
+        "note": "Text declarations only; conditionals/includes and runtime origin require separate verification."
+      },
+      {
+        "resource": "models/weapons/m1_garand.tik",
+        "kind": "weapon",
+        "predicted_provider": "mainta/Restoration_SH_Pak1-Main.pk3",
+        "entry": "models/weapons/m1_garand.tik",
+        "sha256": "dbe855298a31c5ec69abcf3f7272e1d1a9aac5aaeeadea249788470caa80486b",
+        "declared_fields": {
+          "name": [
+            "\"M1 Garand\""
+          ],
+          "weapongroup": [
+            "rifle"
+          ],
+          "ammotype": [
+            "\"rifle\""
+          ]
+        },
+        "note": "Text declarations only; conditionals/includes and runtime origin require separate verification."
+      },
+      {
+        "resource": "models/weapons/mosin_nagant_rifle.tik",
+        "kind": "weapon",
+        "predicted_provider": "mainta/Restoration_SH_Pak1-Main.pk3",
+        "entry": "models/weapons/mosin_nagant_rifle.tik",
+        "sha256": "22f4ed506651b093e80be9288b0e28ec7291a568ff8b0baab2b3ff8829c111c9",
+        "declared_fields": {
+          "name": [
+            "\"Mosin Nagant Rifle\""
+          ],
+          "weapongroup": [
+            "rifle"
+          ],
+          "ammotype": [
+            "\"rifle\""
+          ]
+        },
+        "note": "Text declarations only; conditionals/includes and runtime origin require separate verification."
+      },
+      {
+        "resource": "models/weapons/mp40.tik",
+        "kind": "weapon",
+        "predicted_provider": "mainta/Restoration_SH_Pak1-Main.pk3",
+        "entry": "models/weapons/mp40.tik",
+        "sha256": "20fc517f305c9be8bf40df96ac04c4f5e3f7e56847957bd8ef4f580337925b71",
+        "declared_fields": {
+          "name": [
+            "\"MP40\""
+          ],
+          "weapongroup": [
+            "mp40"
+          ],
+          "ammotype": [
+            "\"smg\""
+          ]
+        },
+        "note": "Text declarations only; conditionals/includes and runtime origin require separate verification."
+      },
+      {
+        "resource": "models/weapons/mp44.tik",
+        "kind": "weapon",
+        "predicted_provider": "mainta/Restoration_SH_Pak1-Main.pk3",
+        "entry": "models/weapons/mp44.tik",
+        "sha256": "886b26d6e7b2f938644d7d5d7a7c05349f08b8e0de039ef9a29defedae75c86e",
+        "declared_fields": {
+          "name": [
+            "\"StG 44\""
+          ],
+          "weapongroup": [
+            "mp44"
+          ],
+          "ammotype": [
+            "\"mg\""
+          ]
+        },
+        "note": "Text declarations only; conditionals/includes and runtime origin require separate verification."
+      },
+      {
+        "resource": "models/weapons/nagant_revolver.tik",
+        "kind": "weapon",
+        "predicted_provider": "mainta/Restoration_SH_Pak1-Main.pk3",
+        "entry": "models/weapons/nagant_revolver.tik",
+        "sha256": "0e06ab2879cf9500446551b329e4c7a5378681be6e6322096978f0cddd61a8a2",
+        "declared_fields": {
+          "name": [
+            "\"Nagant Revolver\""
+          ],
+          "weapongroup": [
+            "pistol"
+          ],
+          "ammotype": [
+            "\"pistol\""
+          ]
+        },
+        "note": "Text declarations only; conditionals/includes and runtime origin require separate verification."
+      },
+      {
+        "resource": "models/weapons/p38.tik",
+        "kind": "weapon",
+        "predicted_provider": "mainta/Restoration_SH_Pak1-Main.pk3",
+        "entry": "models/weapons/p38.tik",
+        "sha256": "e8a61c21b4cce011f1d885cb8999e3393fbbb1ee33c38c1136af115c2b77c320",
+        "declared_fields": {
+          "name": [
+            "\"Walther P38\""
+          ],
+          "weapongroup": [
+            "pistol"
+          ],
+          "ammotype": [
+            "\"pistol\""
+          ]
+        },
+        "note": "Text declarations only; conditionals/includes and runtime origin require separate verification."
+      },
+      {
+        "resource": "models/weapons/panzerschreck.tik",
+        "kind": "weapon",
+        "predicted_provider": "mainta/Restoration_SH_Pak1-Main.pk3",
+        "entry": "models/weapons/panzerschreck.tik",
+        "sha256": "0cb881e161ca721f5ba15154d897ade48dfb5174705ddb52bba7dd3d8a8ce713",
+        "declared_fields": {
+          "name": [
+            "\"Panzerschreck\""
+          ],
+          "weapongroup": [
+            "bazooka"
+          ],
+          "ammotype": [
+            "\"heavy\""
+          ]
+        },
+        "note": "Text declarations only; conditionals/includes and runtime origin require separate verification."
+      },
+      {
+        "resource": "models/weapons/ppsh_smg.tik",
+        "kind": "weapon",
+        "predicted_provider": "mainta/Restoration_SH_Pak1-Main.pk3",
+        "entry": "models/weapons/ppsh_smg.tik",
+        "sha256": "893fd31b9d16a9f3beae9a22588925a4a9b9523039f2d44cb7b2761e3e183814",
+        "declared_fields": {
+          "name": [
+            "\"PPSH SMG\""
+          ],
+          "weapongroup": [
+            "thompson"
+          ],
+          "ammotype": [
+            "\"smg\""
+          ]
+        },
+        "note": "Text declarations only; conditionals/includes and runtime origin require separate verification."
+      },
+      {
+        "resource": "models/weapons/shotgun.tik",
+        "kind": "weapon",
+        "predicted_provider": "mainta/Restoration_SH_Pak1-Main.pk3",
+        "entry": "models/weapons/shotgun.tik",
+        "sha256": "cca3ad1aef6c25486f4b104b97637ca9563038a01343d8d55466f50221b65cdc",
+        "declared_fields": {
+          "name": [
+            "\"Shotgun\""
+          ],
+          "weapongroup": [
+            "rifle"
+          ],
+          "ammotype": [
+            "\"shotgun\""
+          ]
+        },
+        "note": "Text declarations only; conditionals/includes and runtime origin require separate verification."
+      },
+      {
+        "resource": "models/weapons/silencedpistol.tik",
+        "kind": "weapon",
+        "predicted_provider": "mainta/Restoration_SH_Pak1-Main.pk3",
+        "entry": "models/weapons/silencedpistol.tik",
+        "sha256": "9b40d7e8bc12fad5a93b56623f82b0f188d3c406f62846d78c3bd7c97e08d8dc",
+        "declared_fields": {
+          "name": [
+            "\"Hi-Standard Silenced\""
+          ],
+          "weapongroup": [
+            "pistol"
+          ],
+          "ammotype": [
+            "\"pistol\""
+          ]
+        },
+        "note": "Text declarations only; conditionals/includes and runtime origin require separate verification."
+      },
+      {
+        "resource": "models/weapons/springfield.tik",
+        "kind": "weapon",
+        "predicted_provider": "mainta/Restoration_SH_Pak1-Main.pk3",
+        "entry": "models/weapons/springfield.tik",
+        "sha256": "fa75f4847f5c8617f2a2b04d0bf884b0c600fc88be513af078fcfcdb6f0b282f",
+        "declared_fields": {
+          "name": [
+            "\"Springfield '03 Sniper\""
+          ],
+          "weapongroup": [
+            "rifle"
+          ],
+          "ammotype": [
+            "\"rifle\""
+          ]
+        },
+        "note": "Text declarations only; conditionals/includes and runtime origin require separate verification."
+      },
+      {
+        "resource": "models/weapons/sten.tik",
+        "kind": "weapon",
+        "predicted_provider": "mainta/Restoration_SH_Pak1-Main.pk3",
+        "entry": "models/weapons/sten.tik",
+        "sha256": "fc120e30cfde0f30c34f26f0f8bbf117699c81def1c2e725b38ac4e0f6582b80",
+        "declared_fields": {
+          "name": [
+            "\"Sten Mark II\""
+          ],
+          "weapongroup": [
+            "mp40"
+          ],
+          "ammotype": [
+            "\"smg\""
+          ]
+        },
+        "note": "Text declarations only; conditionals/includes and runtime origin require separate verification."
+      },
+      {
+        "resource": "models/weapons/svt_rifle.tik",
+        "kind": "weapon",
+        "predicted_provider": "mainta/Restoration_SH_Pak1-Main.pk3",
+        "entry": "models/weapons/svt_rifle.tik",
+        "sha256": "2fa9bb00f596c2b5eac93106dfb4744b3f497d1df7633d2bb6d66173f5bbbd97",
+        "declared_fields": {
+          "name": [
+            "\"SVT 40\""
+          ],
+          "weapongroup": [
+            "rifle"
+          ],
+          "ammotype": [
+            "\"rifle\""
+          ]
+        },
+        "note": "Text declarations only; conditionals/includes and runtime origin require separate verification."
+      },
+      {
+        "resource": "models/weapons/thompsonsmg.tik",
+        "kind": "weapon",
+        "predicted_provider": "mainta/Restoration_SH_Pak1-Main.pk3",
+        "entry": "models/weapons/thompsonsmg.tik",
+        "sha256": "d579188c8af8ca277d7054ddd4189dadd687e3f696907e898713e804c3ec3cd5",
+        "declared_fields": {
+          "name": [
+            "\"Thompson\""
+          ],
+          "weapongroup": [
+            "thompson"
+          ],
+          "ammotype": [
+            "\"smg\""
+          ]
+        },
+        "note": "Text declarations only; conditionals/includes and runtime origin require separate verification."
+      },
+      {
+        "resource": "models/weapons/webley_revolver.tik",
+        "kind": "weapon",
+        "predicted_provider": "mainta/Restoration_SH_Pak1-Main.pk3",
+        "entry": "models/weapons/webley_revolver.tik",
+        "sha256": "30afd5908f159b842eb4782c7f46c995e2f8a5552f3ba495672bac70fa3a4cb8",
+        "declared_fields": {
+          "name": [
+            "\"Webley Revolver\""
+          ],
+          "weapongroup": [
+            "pistol"
+          ],
+          "ammotype": [
+            "\"pistol\""
+          ]
+        },
+        "note": "Text declarations only; conditionals/includes and runtime origin require separate verification."
+      }
+    ],
+    "BT": [
+      {
+        "resource": "global/ai.scr",
+        "kind": "death_script",
+        "predicted_provider": "maintt/Restoration_BT_Pak1-Main.pk3",
+        "entry": "global/ai.scr",
+        "sha256": "e8888160a25f5080b73725b07cdf571d6e5f73543d0481f9614854d7456201e8"
+      },
+      {
+        "resource": "global/killed.scr",
+        "kind": "death_script",
+        "predicted_provider": "main/Pak0.pk3",
+        "entry": "global/killed.scr",
+        "sha256": "80f43f4e11ce15e34a70999b44772c071ea0b13b9a7a20903f0888b83ffbe978"
+      },
+      {
+        "resource": "models/animate/allied_1st-ranger-private_dead.tik",
+        "kind": "human_corpse_model",
+        "predicted_provider": "main/Pak0.pk3",
+        "entry": "models/animate/allied_1st-ranger-private_dead.tik",
+        "sha256": "064d229e7b46b307a77238edbccb142b08deb30cedad37e9078f49fcd272ca48"
+      },
+      {
+        "resource": "models/animate/allied_airborne_soldier_dead.tik",
+        "kind": "human_corpse_model",
+        "predicted_provider": "main/Pak0.pk3",
+        "entry": "models/animate/allied_airborne_soldier_dead.tik",
+        "sha256": "9d19acd29c57187ba9d40ab9a76962725fcef3ce7c4fa2717df0915e8f457e72"
+      },
+      {
+        "resource": "models/animate/allied_airborne_soldier_dead2.tik",
+        "kind": "human_corpse_model",
+        "predicted_provider": "main/Pak0.pk3",
+        "entry": "models/animate/allied_airborne_soldier_dead2.tik",
+        "sha256": "cecdf23d37f9e8be9e834caf3a93fa2360d97d6c731c08075e25bbf6e2347a19"
+      },
+      {
+        "resource": "models/animate/allied_airborne_soldier_dead3.tik",
+        "kind": "human_corpse_model",
+        "predicted_provider": "main/Pak0.pk3",
+        "entry": "models/animate/allied_airborne_soldier_dead3.tik",
+        "sha256": "fab715d72bbb0a46b0f2c3200e9352a27b5b07712323fb3113dc12f002c12af5"
+      },
+      {
+        "resource": "models/animate/body_2nd-ranger-engineer.tik",
+        "kind": "human_corpse_model",
+        "predicted_provider": "main/Pak0.pk3",
+        "entry": "models/animate/body_2nd-ranger-engineer.tik",
+        "sha256": "e39b02476e698e7dbddded0ee7445b310e7968771d23e7ef6cc254d1c7b9a3ee"
+      },
+      {
+        "resource": "models/animate/body_2nd-ranger-engineer2.tik",
+        "kind": "human_corpse_model",
+        "predicted_provider": "main/Pak0.pk3",
+        "entry": "models/animate/body_2nd-ranger-engineer2.tik",
+        "sha256": "cf1ae65884c07f1dc082f3427230c1cf2e467c5da5b5236f7cad33e5d610b00e"
+      },
+      {
+        "resource": "models/animate/body_2nd-ranger-engineer3.tik",
+        "kind": "human_corpse_model",
+        "predicted_provider": "main/Pak0.pk3",
+        "entry": "models/animate/body_2nd-ranger-engineer3.tik",
+        "sha256": "330e2a6b1cc08308f5c14da7ac5b06277c19623e40936a5c0abf834dda83f9f5"
+      },
+      {
+        "resource": "models/animate/body_us01.tik",
+        "kind": "human_corpse_model",
+        "predicted_provider": "main/Pak0.pk3",
+        "entry": "models/animate/body_us01.tik",
+        "sha256": "8faa493b6c19ee10e49b53b98264def4fd2f0d456f2ce66ad9173372c768bca6"
+      },
+      {
+        "resource": "models/animate/body_us02.tik",
+        "kind": "human_corpse_model",
+        "predicted_provider": "main/Pak0.pk3",
+        "entry": "models/animate/body_us02.tik",
+        "sha256": "fded988e7e1425292c615ede23f3608a4cfa48df59ab0c370330cce4165f857f"
+      },
+      {
+        "resource": "models/animate/body_us03.tik",
+        "kind": "human_corpse_model",
+        "predicted_provider": "main/Pak0.pk3",
+        "entry": "models/animate/body_us03.tik",
+        "sha256": "d9c3d3bbf08ed288cacfc80cfee2b0c1f034c571f92d40ba473d3f0d3a03de63"
+      },
+      {
+        "resource": "models/animate/body_us04.tik",
+        "kind": "human_corpse_model",
+        "predicted_provider": "main/Pak0.pk3",
+        "entry": "models/animate/body_us04.tik",
+        "sha256": "7e6b394404c00a950a2fb27bea7406bce481cbeefed7dcb53c531057dcfd46dd"
+      },
+      {
+        "resource": "models/animate/body_us05.tik",
+        "kind": "human_corpse_model",
+        "predicted_provider": "main/Pak0.pk3",
+        "entry": "models/animate/body_us05.tik",
+        "sha256": "15f6ffff00ea848b8179ff3f4c8c057954e0d53c71d318b769744a4fc0e82712"
+      },
+      {
+        "resource": "models/animate/body_us06.tik",
+        "kind": "human_corpse_model",
+        "predicted_provider": "main/Pak0.pk3",
+        "entry": "models/animate/body_us06.tik",
+        "sha256": "2b9e850661215daf0fa4cda8d58aa70ea21049dd5d95ab3ac29f0c2ea52c98b9"
+      },
+      {
+        "resource": "models/animate/body_usvest02.tik",
+        "kind": "human_corpse_model",
+        "predicted_provider": "main/Pak0.pk3",
+        "entry": "models/animate/body_usvest02.tik",
+        "sha256": "596e6a0a742b8b820f42cbe232fb954fe2ec0a2db9b6f3da0946c06ba91cd21b"
+      },
+      {
+        "resource": "models/animate/body_usvest03.tik",
+        "kind": "human_corpse_model",
+        "predicted_provider": "main/Pak0.pk3",
+        "entry": "models/animate/body_usvest03.tik",
+        "sha256": "d1fba5934eb0587b711db19a7e1b7179fe17299165a3a54752d746221df0f2a7"
+      },
+      {
+        "resource": "models/animate/body_usvest04.tik",
+        "kind": "human_corpse_model",
+        "predicted_provider": "main/Pak0.pk3",
+        "entry": "models/animate/body_usvest04.tik",
+        "sha256": "12195ba3de8473992ac6182492f29ad1a118a47e655c722c4cbd3e6dd76bcb40"
+      },
+      {
+        "resource": "models/animate/body_usvest05.tik",
+        "kind": "human_corpse_model",
+        "predicted_provider": "main/Pak0.pk3",
+        "entry": "models/animate/body_usvest05.tik",
+        "sha256": "be894da23f72c8c50ed7aec6fdf827d787900d0759d931bac6112968efadbd97"
+      },
+      {
+        "resource": "models/animate/body_usvest06.tik",
+        "kind": "human_corpse_model",
+        "predicted_provider": "main/Pak0.pk3",
+        "entry": "models/animate/body_usvest06.tik",
+        "sha256": "1c00f1fcfd081ad02cd3851dd317f16614138eacdb7b2b117b19afa1b5749df8"
+      },
+      {
+        "resource": "models/static/body_german01.tik",
+        "kind": "human_corpse_model",
+        "predicted_provider": "main/Pak0.pk3",
+        "entry": "models/static/body_german01.tik",
+        "sha256": "a61d7560bfcfb2a43e576de668a7356cd07c0019fb51b361d1032b070b8aa5c6"
+      },
+      {
+        "resource": "models/static/body_us01.tik",
+        "kind": "human_corpse_model",
+        "predicted_provider": "main/Pak0.pk3",
+        "entry": "models/static/body_us01.tik",
+        "sha256": "8faa493b6c19ee10e49b53b98264def4fd2f0d456f2ce66ad9173372c768bca6"
+      },
+      {
+        "resource": "models/static/body_us02.tik",
+        "kind": "human_corpse_model",
+        "predicted_provider": "main/Pak0.pk3",
+        "entry": "models/static/body_us02.tik",
+        "sha256": "fded988e7e1425292c615ede23f3608a4cfa48df59ab0c370330cce4165f857f"
+      },
+      {
+        "resource": "models/static/body_us03.tik",
+        "kind": "human_corpse_model",
+        "predicted_provider": "main/Pak0.pk3",
+        "entry": "models/static/body_us03.tik",
+        "sha256": "d9c3d3bbf08ed288cacfc80cfee2b0c1f034c571f92d40ba473d3f0d3a03de63"
+      },
+      {
+        "resource": "models/static/body_us04.tik",
+        "kind": "human_corpse_model",
+        "predicted_provider": "main/Pak0.pk3",
+        "entry": "models/static/body_us04.tik",
+        "sha256": "4d2aadcfd4a55187a478933bc7ed1eebc2f8f2de387b286a2367c9841b956eb7"
+      },
+      {
+        "resource": "models/static/body_us05.tik",
+        "kind": "human_corpse_model",
+        "predicted_provider": "main/Pak0.pk3",
+        "entry": "models/static/body_us05.tik",
+        "sha256": "dd18c590712a92d6efef9a91390c21fe63ffd2b9880ff615c582c167f80c970d"
+      },
+      {
+        "resource": "models/static/body_us06.tik",
+        "kind": "human_corpse_model",
+        "predicted_provider": "main/Pak0.pk3",
+        "entry": "models/static/body_us06.tik",
+        "sha256": "97babc7278f98124f450137ba560e55d8733669c6eb8e58565a93d95f51af09e"
+      },
+      {
+        "resource": "models/static/body_usvest02.tik",
+        "kind": "human_corpse_model",
+        "predicted_provider": "main/Pak0.pk3",
+        "entry": "models/static/body_usvest02.tik",
+        "sha256": "8d33b98db958971aeaacc6f28894dafcbc7da90f544defeb83e625c401ae3c00"
+      },
+      {
+        "resource": "models/static/body_usvest03.tik",
+        "kind": "human_corpse_model",
+        "predicted_provider": "main/Pak0.pk3",
+        "entry": "models/static/body_usvest03.tik",
+        "sha256": "695404fb0e85a93d063d1408b6b0eeca8ad01031cac486971abb10134a0f13d5"
+      },
+      {
+        "resource": "models/static/body_usvest04.tik",
+        "kind": "human_corpse_model",
+        "predicted_provider": "main/Pak0.pk3",
+        "entry": "models/static/body_usvest04.tik",
+        "sha256": "b8ab5a2ac7373d03f1c2ef290b91f40a5d2c2cd62ef1d258357dcdcbbd2d806d"
+      },
+      {
+        "resource": "models/static/body_usvest05.tik",
+        "kind": "human_corpse_model",
+        "predicted_provider": "main/Pak0.pk3",
+        "entry": "models/static/body_usvest05.tik",
+        "sha256": "cb0eff2e1a40fb3a1b89d74db100eafffeaa67b7465f9c581e3dfb570dc40c62"
+      },
+      {
+        "resource": "models/static/body_usvest06.tik",
+        "kind": "human_corpse_model",
+        "predicted_provider": "main/Pak0.pk3",
+        "entry": "models/static/body_usvest06.tik",
+        "sha256": "f145effdb3f97608e85bead657427b68ba09e356fb4391731b19cc6a4bfe3043"
+      },
+      {
+        "resource": "models/weapons/bar.tik",
+        "kind": "weapon",
+        "predicted_provider": "maintt/Restoration_BT_Pak1-Main.pk3",
+        "entry": "models/weapons/bar.tik",
+        "sha256": "6ee41436dbac4a0c43d779a7ff9e23866890f4fb98c145a554237fba302c1dc0",
+        "declared_fields": {
+          "name": [
+            "\"BAR\""
+          ],
+          "weapongroup": [
+            "bar"
+          ],
+          "ammotype": [
+            "\"mg\""
+          ]
+        },
+        "note": "Text declarations only; conditionals/includes and runtime origin require separate verification."
+      },
+      {
+        "resource": "models/weapons/bazooka.tik",
+        "kind": "weapon",
+        "predicted_provider": "maintt/Restoration_BT_Pak1-Main.pk3",
+        "entry": "models/weapons/bazooka.tik",
+        "sha256": "c4ac665b84ec7aca305c0b35fefd85923f3a7519534be9dd050206990eac1cf6",
+        "declared_fields": {
+          "name": [
+            "\"Bazooka\""
+          ],
+          "weapongroup": [
+            "bazooka"
+          ],
+          "ammotype": [
+            "\"heavy\""
+          ]
+        },
+        "note": "Text declarations only; conditionals/includes and runtime origin require separate verification."
+      },
+      {
+        "resource": "models/weapons/colt45.tik",
+        "kind": "weapon",
+        "predicted_provider": "maintt/Restoration_BT_Pak1-Main.pk3",
+        "entry": "models/weapons/colt45.tik",
+        "sha256": "94be4d16a79bef79323f396c5e091eda65129e682c0815edaeecc84b42fa7fbe",
+        "declared_fields": {
+          "name": [
+            "\"Colt 45\""
+          ],
+          "weapongroup": [
+            "pistol"
+          ],
+          "ammotype": [
+            "\"pistol\""
+          ]
+        },
+        "note": "Text declarations only; conditionals/includes and runtime origin require separate verification."
+      },
+      {
+        "resource": "models/weapons/delisle.tik",
+        "kind": "weapon",
+        "predicted_provider": "maintt/Restoration_BT_Pak1-Main.pk3",
+        "entry": "models/weapons/delisle.tik",
+        "sha256": "15a5407d7a6e5fae5e5412dd2d4181299f2e2e98df19d12d07b899c8909636f6",
+        "declared_fields": {
+          "name": [
+            "\"DeLisle\""
+          ],
+          "weapongroup": [
+            "rifle"
+          ],
+          "ammotype": [
+            "\"pistol\""
+          ]
+        },
+        "note": "Text declarations only; conditionals/includes and runtime origin require separate verification."
+      },
+      {
+        "resource": "models/weapons/enfield.tik",
+        "kind": "weapon",
+        "predicted_provider": "maintt/Restoration_BT_Pak1-Main.pk3",
+        "entry": "models/weapons/enfield.tik",
+        "sha256": "e2ff8588160ec89c4a3c58bd3a06306b8c05a6ca604cb3ebea8b1f5a43c27f01",
+        "declared_fields": {
+          "name": [
+            "\"Lee-Enfield\""
+          ],
+          "weapongroup": [
+            "rifle"
+          ],
+          "ammotype": [
+            "\"rifle\""
+          ]
+        },
+        "note": "Text declarations only; conditionals/includes and runtime origin require separate verification."
+      },
+      {
+        "resource": "models/weapons/enfield_lite.tik",
+        "kind": "weapon",
+        "predicted_provider": "maintt/pak3.pk3",
+        "entry": "models/weapons/enfield_lite.tik",
+        "sha256": "9cf0b894140fda3595446b5929aeda6a5517fc9ebbc4aeb4d4e621454fcbd477",
+        "declared_fields": {
+          "name": [
+            "\"Lee-Enfield\""
+          ],
+          "weapongroup": [
+            "rifle"
+          ],
+          "ammotype": [
+            "\"rifle\""
+          ]
+        },
+        "note": "Text declarations only; conditionals/includes and runtime origin require separate verification."
+      },
+      {
+        "resource": "models/weapons/g43.tik",
+        "kind": "weapon",
+        "predicted_provider": "maintt/Restoration_BT_Pak1-Main.pk3",
+        "entry": "models/weapons/g43.tik",
+        "sha256": "23281e34db601f862a97ce50fab528d562b50b11726aa873e441e0fe707cbe41",
+        "declared_fields": {
+          "name": [
+            "\"G 43\""
+          ],
+          "weapongroup": [
+            "rifle"
+          ],
+          "ammotype": [
+            "\"rifle\""
+          ]
+        },
+        "note": "Text declarations only; conditionals/includes and runtime origin require separate verification."
+      },
+      {
+        "resource": "models/weapons/gr_w_minedetector.tik",
+        "kind": "weapon",
+        "predicted_provider": "maintt/pak1.pk3",
+        "entry": "models/weapons/Gr_W_MineDetector.tik",
+        "sha256": "e01391f5e05854fb409e67130b2f86fe63a797475788f73de1df948f8e1e5ae8",
+        "declared_fields": {
+          "name": [
+            "\"Minensuchgerat\""
+          ],
+          "weapongroup": [
+            "grenade"
+          ],
+          "ammotype": [
+            "\"landmine\""
+          ]
+        },
+        "note": "Text declarations only; conditionals/includes and runtime origin require separate verification."
+      },
+      {
+        "resource": "models/weapons/it_w_beretta.tik",
+        "kind": "weapon",
+        "predicted_provider": "maintt/Restoration_BT_Pak1-Main.pk3",
+        "entry": "models/weapons/it_w_beretta.tik",
+        "sha256": "3f77594ef5f14e807fee1a857f98d720514a1b7b1d5ef50c57d35eef14b4b3ad",
+        "declared_fields": {
+          "name": [
+            "\"Beretta\""
+          ],
+          "weapongroup": [
+            "pistol"
+          ],
+          "ammotype": [
+            "\"pistol\""
+          ]
+        },
+        "note": "Text declarations only; conditionals/includes and runtime origin require separate verification."
+      },
+      {
+        "resource": "models/weapons/it_w_breda.tik",
+        "kind": "weapon",
+        "predicted_provider": "maintt/Restoration_BT_Pak1-Main.pk3",
+        "entry": "models/weapons/it_w_breda.tik",
+        "sha256": "7acab1bd6a16458a326e1aff255ba6345f0ef5309c1245606efab1003c07bb9a",
+        "declared_fields": {
+          "name": [
+            "\"Breda\""
+          ],
+          "weapongroup": [
+            "bar"
+          ],
+          "ammotype": [
+            "\"mg\""
+          ]
+        },
+        "note": "Text declarations only; conditionals/includes and runtime origin require separate verification."
+      },
+      {
+        "resource": "models/weapons/it_w_carcano.tik",
+        "kind": "weapon",
+        "predicted_provider": "maintt/Restoration_BT_Pak1-Main.pk3",
+        "entry": "models/weapons/it_w_carcano.tik",
+        "sha256": "c72001da6d8116541cb118a0d164d9fd2b115dc61df362a414ed1f41734520d3",
+        "declared_fields": {
+          "name": [
+            "\"Carcano\""
+          ],
+          "weapongroup": [
+            "rifle"
+          ],
+          "ammotype": [
+            "\"rifle\""
+          ]
+        },
+        "note": "Text declarations only; conditionals/includes and runtime origin require separate verification."
+      },
+      {
+        "resource": "models/weapons/it_w_carcano_lite.tik",
+        "kind": "weapon",
+        "predicted_provider": "maintt/pak3.pk3",
+        "entry": "models/weapons/It_W_Carcano_lite.tik",
+        "sha256": "48bb98f137a005a469777dbe051616731d8b85b16f504236084567f4533a2d00",
+        "declared_fields": {
+          "name": [
+            "\"Carcano\""
+          ],
+          "weapongroup": [
+            "rifle"
+          ],
+          "ammotype": [
+            "\"rifle\""
+          ]
+        },
+        "note": "Text declarations only; conditionals/includes and runtime origin require separate verification."
+      },
+      {
+        "resource": "models/weapons/it_w_moschetto.tik",
+        "kind": "weapon",
+        "predicted_provider": "maintt/Restoration_BT_Pak1-Main.pk3",
+        "entry": "models/weapons/it_w_moschetto.tik",
+        "sha256": "dc68a315050de144673b712019de65479d5e3c727b7b637cbff40584230a16d4",
+        "declared_fields": {
+          "name": [
+            "\"Moschetto\""
+          ],
+          "weapongroup": [
+            "bar"
+          ],
+          "ammotype": [
+            "\"smg\""
+          ]
+        },
+        "note": "Text declarations only; conditionals/includes and runtime origin require separate verification."
+      },
+      {
+        "resource": "models/weapons/kar98.tik",
+        "kind": "weapon",
+        "predicted_provider": "maintt/Restoration_BT_Pak1-Main.pk3",
+        "entry": "models/weapons/kar98.tik",
+        "sha256": "95b34182415fcade4b9e414c9e7f20a9537402a6c48477a32cb45d63c72b39a1",
+        "declared_fields": {
+          "name": [
+            "\"Mauser KAR 98K\""
+          ],
+          "weapongroup": [
+            "rifle"
+          ],
+          "ammotype": [
+            "\"rifle\""
+          ]
+        },
+        "note": "Text declarations only; conditionals/includes and runtime origin require separate verification."
+      },
+      {
+        "resource": "models/weapons/kar98_lite.tik",
+        "kind": "weapon",
+        "predicted_provider": "maintt/pak3.pk3",
+        "entry": "models/weapons/kar98_lite.tik",
+        "sha256": "d9e1321c3ecd0383782a6db7d48745b32317691c38165282d81d630ef9efc572",
+        "declared_fields": {
+          "name": [
+            "\"Mauser KAR 98K\""
+          ],
+          "weapongroup": [
+            "rifle"
+          ],
+          "ammotype": [
+            "\"rifle\""
+          ]
+        },
+        "note": "Text declarations only; conditionals/includes and runtime origin require separate verification."
+      },
+      {
+        "resource": "models/weapons/kar98_mortar.tik",
+        "kind": "weapon",
+        "predicted_provider": "maintt/Restoration_BT_Pak1-Main.pk3",
+        "entry": "models/weapons/kar98_mortar.tik",
+        "sha256": "fb39f222444aaaea81d55c1a79b39480bdb9c37309d4626f7fe437f7c8b4031e",
+        "declared_fields": {
+          "name": [
+            "\"Gewehrgranate\""
+          ],
+          "weapongroup": [
+            "rifle"
+          ],
+          "ammotype": [
+            "\"rifle\""
+          ]
+        },
+        "note": "Text declarations only; conditionals/includes and runtime origin require separate verification."
+      },
+      {
+        "resource": "models/weapons/kar98sniper.tik",
+        "kind": "weapon",
+        "predicted_provider": "maintt/Restoration_BT_Pak1-Main.pk3",
+        "entry": "models/weapons/kar98sniper.tik",
+        "sha256": "18f009f3347cf14e8005926be23b5ce0f7f270da55a9fb504db4e3f1714088bc",
+        "declared_fields": {
+          "name": [
+            "\"KAR98 - Sniper\""
+          ],
+          "weapongroup": [
+            "rifle"
+          ],
+          "ammotype": [
+            "\"rifle\""
+          ]
+        },
+        "note": "Text declarations only; conditionals/includes and runtime origin require separate verification."
+      },
+      {
+        "resource": "models/weapons/m1_garand.tik",
+        "kind": "weapon",
+        "predicted_provider": "maintt/Restoration_BT_Pak1-Main.pk3",
+        "entry": "models/weapons/m1_garand.tik",
+        "sha256": "dbe855298a31c5ec69abcf3f7272e1d1a9aac5aaeeadea249788470caa80486b",
+        "declared_fields": {
+          "name": [
+            "\"M1 Garand\""
+          ],
+          "weapongroup": [
+            "rifle"
+          ],
+          "ammotype": [
+            "\"rifle\""
+          ]
+        },
+        "note": "Text declarations only; conditionals/includes and runtime origin require separate verification."
+      },
+      {
+        "resource": "models/weapons/m1_garand_lite.tik",
+        "kind": "weapon",
+        "predicted_provider": "maintt/pak3.pk3",
+        "entry": "models/weapons/m1_garand_lite.tik",
+        "sha256": "5e833b5ab6f935b88728e9bb62cc041b877bc6da3fa48bdaeb686336b5ca1085",
+        "declared_fields": {
+          "name": [
+            "\"M1 Garand\""
+          ],
+          "weapongroup": [
+            "rifle"
+          ],
+          "ammotype": [
+            "\"rifle\""
+          ]
+        },
+        "note": "Text declarations only; conditionals/includes and runtime origin require separate verification."
+      },
+      {
+        "resource": "models/weapons/mosin_nagant_rifle.tik",
+        "kind": "weapon",
+        "predicted_provider": "maintt/Restoration_BT_Pak1-Main.pk3",
+        "entry": "models/weapons/mosin_nagant_rifle.tik",
+        "sha256": "22f4ed506651b093e80be9288b0e28ec7291a568ff8b0baab2b3ff8829c111c9",
+        "declared_fields": {
+          "name": [
+            "\"Mosin Nagant Rifle\""
+          ],
+          "weapongroup": [
+            "rifle"
+          ],
+          "ammotype": [
+            "\"rifle\""
+          ]
+        },
+        "note": "Text declarations only; conditionals/includes and runtime origin require separate verification."
+      },
+      {
+        "resource": "models/weapons/mosin_nagant_rifle_lite.tik",
+        "kind": "weapon",
+        "predicted_provider": "maintt/pak3.pk3",
+        "entry": "models/weapons/Mosin_Nagant_Rifle_lite.tik",
+        "sha256": "63459747ca263dde26d08993d361646db0a9f552937d5b622633baf38fcd7adb",
+        "declared_fields": {
+          "name": [
+            "\"Mosin Nagant Rifle\""
+          ],
+          "weapongroup": [
+            "rifle"
+          ],
+          "ammotype": [
+            "\"rifle\""
+          ]
+        },
+        "note": "Text declarations only; conditionals/includes and runtime origin require separate verification."
+      },
+      {
+        "resource": "models/weapons/mp40.tik",
+        "kind": "weapon",
+        "predicted_provider": "maintt/Restoration_BT_Pak1-Main.pk3",
+        "entry": "models/weapons/mp40.tik",
+        "sha256": "20fc517f305c9be8bf40df96ac04c4f5e3f7e56847957bd8ef4f580337925b71",
+        "declared_fields": {
+          "name": [
+            "\"MP40\""
+          ],
+          "weapongroup": [
+            "mp40"
+          ],
+          "ammotype": [
+            "\"smg\""
+          ]
+        },
+        "note": "Text declarations only; conditionals/includes and runtime origin require separate verification."
+      },
+      {
+        "resource": "models/weapons/mp44.tik",
+        "kind": "weapon",
+        "predicted_provider": "maintt/Restoration_BT_Pak1-Main.pk3",
+        "entry": "models/weapons/mp44.tik",
+        "sha256": "886b26d6e7b2f938644d7d5d7a7c05349f08b8e0de039ef9a29defedae75c86e",
+        "declared_fields": {
+          "name": [
+            "\"StG 44\""
+          ],
+          "weapongroup": [
+            "mp44"
+          ],
+          "ammotype": [
+            "\"mg\""
+          ]
+        },
+        "note": "Text declarations only; conditionals/includes and runtime origin require separate verification."
+      },
+      {
+        "resource": "models/weapons/nagant_revolver.tik",
+        "kind": "weapon",
+        "predicted_provider": "maintt/Restoration_BT_Pak1-Main.pk3",
+        "entry": "models/weapons/nagant_revolver.tik",
+        "sha256": "0e06ab2879cf9500446551b329e4c7a5378681be6e6322096978f0cddd61a8a2",
+        "declared_fields": {
+          "name": [
+            "\"Nagant Revolver\""
+          ],
+          "weapongroup": [
+            "pistol"
+          ],
+          "ammotype": [
+            "\"pistol\""
+          ]
+        },
+        "note": "Text declarations only; conditionals/includes and runtime origin require separate verification."
+      },
+      {
+        "resource": "models/weapons/p38.tik",
+        "kind": "weapon",
+        "predicted_provider": "maintt/Restoration_BT_Pak1-Main.pk3",
+        "entry": "models/weapons/p38.tik",
+        "sha256": "e8a61c21b4cce011f1d885cb8999e3393fbbb1ee33c38c1136af115c2b77c320",
+        "declared_fields": {
+          "name": [
+            "\"Walther P38\""
+          ],
+          "weapongroup": [
+            "pistol"
+          ],
+          "ammotype": [
+            "\"pistol\""
+          ]
+        },
+        "note": "Text declarations only; conditionals/includes and runtime origin require separate verification."
+      },
+      {
+        "resource": "models/weapons/panzerschreck.tik",
+        "kind": "weapon",
+        "predicted_provider": "maintt/Restoration_BT_Pak1-Main.pk3",
+        "entry": "models/weapons/panzerschreck.tik",
+        "sha256": "0cb881e161ca721f5ba15154d897ade48dfb5174705ddb52bba7dd3d8a8ce713",
+        "declared_fields": {
+          "name": [
+            "\"Panzerschreck\""
+          ],
+          "weapongroup": [
+            "bazooka"
+          ],
+          "ammotype": [
+            "\"heavy\""
+          ]
+        },
+        "note": "Text declarations only; conditionals/includes and runtime origin require separate verification."
+      },
+      {
+        "resource": "models/weapons/ppsh_smg.tik",
+        "kind": "weapon",
+        "predicted_provider": "maintt/Restoration_BT_Pak1-Main.pk3",
+        "entry": "models/weapons/ppsh_smg.tik",
+        "sha256": "893fd31b9d16a9f3beae9a22588925a4a9b9523039f2d44cb7b2761e3e183814",
+        "declared_fields": {
+          "name": [
+            "\"PPSH SMG\""
+          ],
+          "weapongroup": [
+            "thompson"
+          ],
+          "ammotype": [
+            "\"smg\""
+          ]
+        },
+        "note": "Text declarations only; conditionals/includes and runtime origin require separate verification."
+      },
+      {
+        "resource": "models/weapons/shotgun.tik",
+        "kind": "weapon",
+        "predicted_provider": "maintt/Restoration_BT_Pak1-Main.pk3",
+        "entry": "models/weapons/shotgun.tik",
+        "sha256": "cca3ad1aef6c25486f4b104b97637ca9563038a01343d8d55466f50221b65cdc",
+        "declared_fields": {
+          "name": [
+            "\"Shotgun\""
+          ],
+          "weapongroup": [
+            "rifle"
+          ],
+          "ammotype": [
+            "\"shotgun\""
+          ]
+        },
+        "note": "Text declarations only; conditionals/includes and runtime origin require separate verification."
+      },
+      {
+        "resource": "models/weapons/silencedpistol.tik",
+        "kind": "weapon",
+        "predicted_provider": "maintt/Restoration_BT_Pak1-Main.pk3",
+        "entry": "models/weapons/silencedpistol.tik",
+        "sha256": "9b40d7e8bc12fad5a93b56623f82b0f188d3c406f62846d78c3bd7c97e08d8dc",
+        "declared_fields": {
+          "name": [
+            "\"Hi-Standard Silenced\""
+          ],
+          "weapongroup": [
+            "pistol"
+          ],
+          "ammotype": [
+            "\"pistol\""
+          ]
+        },
+        "note": "Text declarations only; conditionals/includes and runtime origin require separate verification."
+      },
+      {
+        "resource": "models/weapons/springfield.tik",
+        "kind": "weapon",
+        "predicted_provider": "maintt/Restoration_BT_Pak1-Main.pk3",
+        "entry": "models/weapons/springfield.tik",
+        "sha256": "fa75f4847f5c8617f2a2b04d0bf884b0c600fc88be513af078fcfcdb6f0b282f",
+        "declared_fields": {
+          "name": [
+            "\"Springfield '03 Sniper\""
+          ],
+          "weapongroup": [
+            "rifle"
+          ],
+          "ammotype": [
+            "\"rifle\""
+          ]
+        },
+        "note": "Text declarations only; conditionals/includes and runtime origin require separate verification."
+      },
+      {
+        "resource": "models/weapons/sten.tik",
+        "kind": "weapon",
+        "predicted_provider": "maintt/Restoration_BT_Pak1-Main.pk3",
+        "entry": "models/weapons/sten.tik",
+        "sha256": "fc120e30cfde0f30c34f26f0f8bbf117699c81def1c2e725b38ac4e0f6582b80",
+        "declared_fields": {
+          "name": [
+            "\"Sten Mark II\""
+          ],
+          "weapongroup": [
+            "mp40"
+          ],
+          "ammotype": [
+            "\"smg\""
+          ]
+        },
+        "note": "Text declarations only; conditionals/includes and runtime origin require separate verification."
+      },
+      {
+        "resource": "models/weapons/svt_rifle.tik",
+        "kind": "weapon",
+        "predicted_provider": "maintt/Restoration_BT_Pak1-Main.pk3",
+        "entry": "models/weapons/svt_rifle.tik",
+        "sha256": "2fa9bb00f596c2b5eac93106dfb4744b3f497d1df7633d2bb6d66173f5bbbd97",
+        "declared_fields": {
+          "name": [
+            "\"SVT 40\""
+          ],
+          "weapongroup": [
+            "rifle"
+          ],
+          "ammotype": [
+            "\"rifle\""
+          ]
+        },
+        "note": "Text declarations only; conditionals/includes and runtime origin require separate verification."
+      },
+      {
+        "resource": "models/weapons/thompsonsmg.tik",
+        "kind": "weapon",
+        "predicted_provider": "maintt/Restoration_BT_Pak1-Main.pk3",
+        "entry": "models/weapons/thompsonsmg.tik",
+        "sha256": "d579188c8af8ca277d7054ddd4189dadd687e3f696907e898713e804c3ec3cd5",
+        "declared_fields": {
+          "name": [
+            "\"Thompson\""
+          ],
+          "weapongroup": [
+            "thompson"
+          ],
+          "ammotype": [
+            "\"smg\""
+          ]
+        },
+        "note": "Text declarations only; conditionals/includes and runtime origin require separate verification."
+      },
+      {
+        "resource": "models/weapons/uk_w_l42a1.tik",
+        "kind": "weapon",
+        "predicted_provider": "maintt/Restoration_BT_Pak1-Main.pk3",
+        "entry": "models/weapons/uk_w_l42a1.tik",
+        "sha256": "ba9a49ccd145312770ac4187cc45aed1a1a2264a596005cc5f0a6a0a29166534",
+        "declared_fields": {
+          "name": [
+            "\"Enfield L42A1\""
+          ],
+          "weapongroup": [
+            "rifle"
+          ],
+          "ammotype": [
+            "\"rifle\""
+          ]
+        },
+        "note": "Text declarations only; conditionals/includes and runtime origin require separate verification."
+      },
+      {
+        "resource": "models/weapons/uk_w_piat.tik",
+        "kind": "weapon",
+        "predicted_provider": "maintt/Restoration_BT_Pak1-Main.pk3",
+        "entry": "models/weapons/uk_w_piat.tik",
+        "sha256": "b3083f51ac6ab376292157c9bbfe6a041efc2476e59a46f7b8a66f84fb301977",
+        "declared_fields": {
+          "name": [
+            "\"PIAT\""
+          ],
+          "weapongroup": [
+            "bazooka"
+          ],
+          "ammotype": [
+            "\"heavy\""
+          ]
+        },
+        "note": "Text declarations only; conditionals/includes and runtime origin require separate verification."
+      },
+      {
+        "resource": "models/weapons/uk_w_vickers.tik",
+        "kind": "weapon",
+        "predicted_provider": "maintt/Restoration_BT_Pak1-Main.pk3",
+        "entry": "models/weapons/uk_w_vickers.tik",
+        "sha256": "5f859be0de282c74bbe2804ca2a3a2513299b856746ed21956194dc87ecfed96",
+        "declared_fields": {
+          "name": [
+            "\"Vickers-Berthier\""
+          ],
+          "weapongroup": [
+            "thompson"
+          ],
+          "ammotype": [
+            "\"mg\""
+          ]
+        },
+        "note": "Text declarations only; conditionals/includes and runtime origin require separate verification."
+      },
+      {
+        "resource": "models/weapons/us_w_minedetector.tik",
+        "kind": "weapon",
+        "predicted_provider": "maintt/pak1.pk3",
+        "entry": "models/weapons/US_W_MineDetector.tik",
+        "sha256": "7cd8ce885e3694f746fb5275ed534ccf444f8e0e9c7a8c4674bf7f7fa628b6d3",
+        "declared_fields": {
+          "name": [
+            "\"Minedetector\""
+          ],
+          "weapongroup": [
+            "grenade"
+          ],
+          "ammotype": [
+            "\"landmine\""
+          ]
+        },
+        "note": "Text declarations only; conditionals/includes and runtime origin require separate verification."
+      },
+      {
+        "resource": "models/weapons/webley_revolver.tik",
+        "kind": "weapon",
+        "predicted_provider": "maintt/Restoration_BT_Pak1-Main.pk3",
+        "entry": "models/weapons/webley_revolver.tik",
+        "sha256": "30afd5908f159b842eb4782c7f46c995e2f8a5552f3ba495672bac70fa3a4cb8",
+        "declared_fields": {
+          "name": [
+            "\"Webley Revolver\""
+          ],
+          "weapongroup": [
+            "pistol"
+          ],
+          "ammotype": [
+            "\"pistol\""
+          ]
+        },
+        "note": "Text declarations only; conditionals/includes and runtime origin require separate verification."
+      }
+    ]
+  }
+}

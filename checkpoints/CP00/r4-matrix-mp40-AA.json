@@ -1,0 +1,197 @@
+{
+  "candidate": "CP00-r4",
+  "game": "AA",
+  "map": "m2l1",
+  "scope": "Controlled spawned actor: AI off while alive for repeatable aim, AI on at genuine death to process corpse. Normal player attack input before/after death; not natural mission progression.",
+  "exit_code": 0,
+  "completed": true,
+  "fixture_ready": true,
+  "script_errors": [],
+  "records": [
+    "CP00_PLACEMENT=1",
+    "CP00_FIXTURE_READY origin=( -6628.000 -3864.000 482.262 ) target=( -6477.645 -3809.290 479.154 )",
+    "CP00_SNAPSHOT_BEGIN alive",
+    "CP00_DEATHS 0",
+    "CP00_SUBJECT health=100.000 origin=( -6477.645 -3809.290 479.154 ) mins=( -15.000 -15.000 0.000 ) maxs=( 15.000 15.000 94.000 ) anim=",
+    "CP00_TRACE start=( -6577.645 -3809.290 519.154 ) end=( -6377.645 -3809.290 519.154 ) hit=( -6492.770 -3809.290 519.154 )",
+    "CP00_LOW_TRACE start=( -6577.645 -3809.290 485.154 ) end=( -6377.645 -3809.290 485.154 ) hit=( -6492.770 -3809.290 485.154 )",
+    "CP00_ENTITY id=0 class=Player model=models/player/_american_army_winter_gloves.tik health=750.000 origin=( -6628.000 -3864.000 482.262 )",
+    "CP00_ENTITY id=199 class=Weapon model=models/weapons/springfield.tik health=0.000 origin=( -6603.737 -3863.474 551.941 )",
+    "CP00_ENTITY id=202 class=Actor model=models/human/german_wehrmact_soldier.tik health=100.000 origin=( -6477.645 -3809.290 479.154 )",
+    "CP00_ENTITY id=225 class=Weapon model=models/weapons/kar98.tik health=0.000 origin=( -6477.312 -3823.372 524.135 )",
+    "CP00_SNAPSHOT_END alive",
+    "CP00_STATS_BEGIN_alive",
+    "CP00_STATS_END_alive",
+    "CP00_DEATH_EVENT count=1",
+    "CP00_SNAPSHOT_BEGIN after_shots",
+    "CP00_DEATHS 1",
+    "CP00_SUBJECT health=0.000 origin=( -6441.188 -3796.024 476.052 ) mins=( -15.000 -15.000 0.000 ) maxs=( 15.000 15.000 42.000 ) anim=",
+    "CP00_TRACE start=( -6541.188 -3796.024 516.052 ) end=( -6341.188 -3796.024 516.052 ) hit=( -6341.188 -3796.024 516.052 )",
+    "CP00_LOW_TRACE start=( -6541.188 -3796.024 482.052 ) end=( -6341.188 -3796.024 482.052 ) hit=( -6341.188 -3796.024 482.052 )",
+    "CP00_ENTITY id=0 class=Player model=models/player/_american_army_winter_gloves.tik health=750.000 origin=( -6628.000 -3864.000 482.262 )",
+    "CP00_ENTITY id=199 class=Weapon model=models/weapons/springfield.tik health=0.000 origin=( -6611.930 -3852.027 557.212 )",
+    "CP00_ENTITY id=202 class=Actor model=models/human/german_wehrmact_soldier.tik health=0.000 origin=( -6441.188 -3796.024 476.052 )",
+    "CP00_ENTITY id=225 class=Weapon model=models/weapons/kar98.tik health=0.000 origin=( -6475.857 -3855.723 484.837 )",
+    "CP00_ENTITY id=226 class=Weapon model=models/weapons/mp40.tik health=0.000 origin=( -6602.293 -3858.510 551.938 )",
+    "CP00_SNAPSHOT_END after_shots",
+    "CP00_STATS_BEGIN_after_shots",
+    "CP00_STATS_END_after_shots",
+    "CP00_SNAPSHOT_BEGIN after_corpse_shots",
+    "CP00_DEATHS 1",
+    "CP00_SUBJECT health=0.000 origin=( -6441.188 -3796.024 476.052 ) mins=( -15.000 -15.000 0.000 ) maxs=( 15.000 15.000 8.000 ) anim=",
+    "CP00_TRACE start=( -6541.188 -3796.024 516.052 ) end=( -6341.188 -3796.024 516.052 ) hit=( -6341.188 -3796.024 516.052 )",
+    "CP00_LOW_TRACE start=( -6541.188 -3796.024 482.052 ) end=( -6341.188 -3796.024 482.052 ) hit=( -6341.188 -3796.024 482.052 )",
+    "CP00_ENTITY id=0 class=Player model=models/player/_american_army_winter_gloves.tik health=750.000 origin=( -6628.000 -3864.000 482.262 )",
+    "CP00_ENTITY id=199 class=Weapon model=models/weapons/springfield.tik health=0.000 origin=( -6611.930 -3852.027 557.212 )",
+    "CP00_ENTITY id=202 class=Actor model=models/human/german_wehrmact_soldier.tik health=0.000 origin=( -6441.188 -3796.024 476.052 )",
+    "CP00_ENTITY id=225 class=Weapon model=models/weapons/kar98.tik health=0.000 origin=( -6475.857 -3855.723 484.837 )",
+    "CP00_ENTITY id=226 class=Weapon model=models/weapons/mp40.tik health=0.000 origin=( -6601.581 -3863.201 551.242 )",
+    "CP00_SNAPSHOT_END after_corpse_shots",
+    "CP00_STATS_BEGIN_after_corpse_shots",
+    "CP00_STATS_END_after_corpse_shots",
+    "CP00_SNAPSHOT_BEGIN after_delay",
+    "CP00_DEATHS 1",
+    "CP00_SUBJECT health=0.000 origin=( -6441.188 -3796.024 476.052 ) mins=( -15.000 -15.000 0.000 ) maxs=( 15.000 15.000 8.000 ) anim=",
+    "CP00_TRACE start=( -6541.188 -3796.024 516.052 ) end=( -6341.188 -3796.024 516.052 ) hit=( -6341.188 -3796.024 516.052 )",
+    "CP00_LOW_TRACE start=( -6541.188 -3796.024 482.052 ) end=( -6341.188 -3796.024 482.052 ) hit=( -6341.188 -3796.024 482.052 )",
+    "CP00_ENTITY id=0 class=Player model=models/player/_american_army_winter_gloves.tik health=750.000 origin=( -6628.000 -3864.000 482.262 )",
+    "CP00_ENTITY id=199 class=Weapon model=models/weapons/springfield.tik health=0.000 origin=( -6611.930 -3852.027 557.212 )",
+    "CP00_ENTITY id=202 class=Actor model=models/human/german_wehrmact_soldier.tik health=0.000 origin=( -6441.188 -3796.024 476.052 )",
+    "CP00_ENTITY id=225 class=Weapon model=models/weapons/kar98.tik health=0.000 origin=( -6475.857 -3855.723 484.837 )",
+    "CP00_ENTITY id=226 class=Weapon model=models/weapons/mp40.tik health=0.000 origin=( -6601.051 -3858.232 548.631 )",
+    "CP00_SNAPSHOT_END after_delay",
+    "CP00_STATS_BEGIN_after_delay",
+    "CP00_STATS_END_after_delay",
+    "CP00_BASELINE_DONE"
+  ],
+  "visual_check": "Reviewed after-shots and after-corpse-fire screenshots: corpse substantially hidden by snow surface; valid statistics only, unsuitable full-pose reference.",
+  "reference_save": [],
+  "weapon": "models/weapons/mp40.tik",
+  "linger_seconds": 3,
+  "death_counts": [
+    "0",
+    "1",
+    "1",
+    "1"
+  ],
+  "valid_death_sequence": true,
+  "statistics": {
+    "alive": {
+      "ui_NumShotsFired": "0",
+      "ui_NumHits": "0",
+      "ui_NumEnemysKilled": "0",
+      "ui_NumComplete": "0"
+    },
+    "after_shots": {
+      "ui_NumShotsFired": "9",
+      "ui_NumHits": "4",
+      "ui_NumEnemysKilled": "1",
+      "ui_NumComplete": "0"
+    },
+    "after_corpse_shots": {
+      "ui_NumShotsFired": "13",
+      "ui_NumHits": "4",
+      "ui_NumEnemysKilled": "1",
+      "ui_NumComplete": "0"
+    },
+    "after_delay": {
+      "ui_NumShotsFired": "13",
+      "ui_NumHits": "4",
+      "ui_NumEnemysKilled": "1",
+      "ui_NumComplete": "0"
+    }
+  },
+  "engine_sha256": "5f1eee385de3b26750b45b7aa1e98566801b716566b97af11fa5586cb5c21c91",
+  "engine_source_commit": "af7bb7c6e706fcc64e5933a22457333274f3de22",
+  "wcr_package_fingerprint": "3b6b38b5b04ba320a526196946c44394c4519e4197dc8d3d05788e186501cfcc",
+  "evidence": [
+    {
+      "path": "profiles-local/CP00-r4/r4-matrix-mp40-AA/main/baseline.cfg",
+      "sha256": "5ae2cd38d1476442ae03c2c1dfb217024ba61bc198e56818321da7bc919c5523"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-matrix-mp40-AA/main/configs/omconfig.cfg",
+      "sha256": "956c011faac545b0c9e87c25762754e7f3e08cbadf9ff217b2fbfc3483441a40"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-matrix-mp40-AA/main/cp00/after_corpse_shots.scr",
+      "sha256": "43a3b76b1aed24ca327569c9d552756eb6df9551fcf4968d49ed5838f5f9c12a"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-matrix-mp40-AA/main/cp00/after_delay.scr",
+      "sha256": "d156491173a4f3bbde99d540caf0d6d0141ffc87cda9c26b188275a032dc9f4a"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-matrix-mp40-AA/main/cp00/after_shots.scr",
+      "sha256": "7964e396e3ee37960a22040130844b8fa2ee6a98a02a787b7577cbef146165c3"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-matrix-mp40-AA/main/cp00/aim_corpse.scr",
+      "sha256": "2f9f99738a6b084a30cc1cb6cc420b1289ec300fc561119bc30ce34826c67a13"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-matrix-mp40-AA/main/cp00/baseline.scr",
+      "sha256": "96160a33d49209e23e5fec98e96199be5172a60404abfec393a6d040b687dd56"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-matrix-mp40-AA/main/qconsole.log",
+      "sha256": "1cfca8f01ce1c010428b7a993df9d2d060e460bfd3681b0515dacc400f395644"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-matrix-mp40-AA/main/save/omconfig/cp00_after_combat.sav",
+      "sha256": "14543cbbe89afd575092adbbc9d94bd97e2d491248ab6597f20d9ddb80c890e7"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-matrix-mp40-AA/main/save/omconfig/cp00_after_combat.ssv",
+      "sha256": "c49e89f9e9fef624d005d8bb5683663916c5278c9fb34ba52a79e41b2f1b41ad"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-matrix-mp40-AA/main/save/omconfig/cp00_after_combat.tga",
+      "sha256": "43d9753d7fae218821dfd64bcc4df9b57433876f17733a853ca53b09ecc9d2b4"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-matrix-mp40-AA/main/save/omconfig/cp00_before_combat.sav",
+      "sha256": "6c46837802df76c7d2842c672d4ef68412ce883404c3d6a71b8742739e02ff24"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-matrix-mp40-AA/main/save/omconfig/cp00_before_combat.ssv",
+      "sha256": "f55baa862a153efc80d892e55acebbd98c76f02a999272d481827cd4193e97f7"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-matrix-mp40-AA/main/save/omconfig/cp00_before_combat.tga",
+      "sha256": "20eacc3ef20e32d9edb1c8dc18b0d4c1f25a0551abd09fb9cab06dff4928e870"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-matrix-mp40-AA/main/save/omconfig/m2l10000.sav",
+      "sha256": "250a47adbe9be32907089f21d28c03bce1e0f3e3e4bb5bbf31eb808f9a10ad9d"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-matrix-mp40-AA/main/save/omconfig/m2l10000.ssv",
+      "sha256": "121cb4e4d933b819fc179043249127c1637d95ca5c9101dfca7d4a86d9c92159"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-matrix-mp40-AA/main/save/omconfig/m2l10000.tga",
+      "sha256": "bb761bfe759ec4121cb2a2805e55cc4a6f4878f621ef95d4b87cc56f1af45621"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-matrix-mp40-AA/main/screenshots/shot0000.tga",
+      "sha256": "0ea05e063ad9c8cb46eb9e03cd92f486fc0b05d9c5c23b86f37ffc91970fbd7c"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-matrix-mp40-AA/main/screenshots/shot0001.tga",
+      "sha256": "7970d1631311dcd3042d121f2cfa2f77142f3e293168d5cd615ff176f622fff7"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-matrix-mp40-AA/main/screenshots/shot0002.tga",
+      "sha256": "99cc5d72804858b5886ba71e784f2bb67a2e8be4c4485c4b31ea3af55c5201a8"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-matrix-mp40-AA/main/screenshots/shot0003.tga",
+      "sha256": "b60c2382ba8ac8cbcf3f92a54f19fda28aba2a31d1b56bcf0b443563e1a64db6"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-matrix-mp40-AA/qkey",
+      "sha256": "aad7567632cfa19d88ee519a06d243cc05a1d72fb17dadfa68b58fd85c4fba3a"
+    }
+  ]
+}

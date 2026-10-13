@@ -1,0 +1,197 @@
+{
+  "candidate": "CP00-r4",
+  "game": "AA",
+  "map": "m2l1",
+  "scope": "Controlled spawned actor: AI off while alive for repeatable aim, AI on at genuine death to process corpse. Normal player attack input before/after death; not natural mission progression.",
+  "exit_code": 0,
+  "completed": true,
+  "fixture_ready": true,
+  "script_errors": [],
+  "records": [
+    "CP00_PLACEMENT=1",
+    "CP00_FIXTURE_READY origin=( -6628.103 -3862.844 482.347 ) target=( -6477.747 -3808.134 479.013 )",
+    "CP00_SNAPSHOT_BEGIN alive",
+    "CP00_DEATHS 0",
+    "CP00_SUBJECT health=100.000 origin=( -6477.747 -3808.134 479.013 ) mins=( -15.000 -15.000 0.000 ) maxs=( 15.000 15.000 94.000 ) anim=",
+    "CP00_TRACE start=( -6577.747 -3808.134 519.013 ) end=( -6377.747 -3808.134 519.013 ) hit=( -6492.872 -3808.134 519.013 )",
+    "CP00_LOW_TRACE start=( -6577.747 -3808.134 485.013 ) end=( -6377.747 -3808.134 485.013 ) hit=( -6492.872 -3808.134 485.013 )",
+    "CP00_ENTITY id=0 class=Player model=models/player/_american_army_winter_gloves.tik health=750.000 origin=( -6628.103 -3862.844 482.347 )",
+    "CP00_ENTITY id=199 class=Weapon model=models/weapons/springfield.tik health=0.000 origin=( -6603.771 -3862.316 551.961 )",
+    "CP00_ENTITY id=202 class=Actor model=models/human/german_wehrmact_soldier.tik health=100.000 origin=( -6477.747 -3808.134 479.013 )",
+    "CP00_ENTITY id=225 class=Weapon model=models/weapons/kar98.tik health=0.000 origin=( -6477.415 -3822.216 523.994 )",
+    "CP00_SNAPSHOT_END alive",
+    "CP00_STATS_BEGIN_alive",
+    "CP00_STATS_END_alive",
+    "CP00_DEATH_EVENT count=1",
+    "CP00_SNAPSHOT_BEGIN after_shots",
+    "CP00_DEATHS 1",
+    "CP00_SUBJECT health=0.000 origin=( -6444.583 -3758.071 471.953 ) mins=( -15.000 -15.000 0.000 ) maxs=( 15.000 15.000 42.000 ) anim=",
+    "CP00_TRACE start=( -6544.583 -3758.071 511.953 ) end=( -6344.583 -3758.071 511.953 ) hit=( -6344.583 -3758.071 511.953 )",
+    "CP00_LOW_TRACE start=( -6544.583 -3758.071 477.953 ) end=( -6344.583 -3758.071 477.953 ) hit=( -6344.583 -3758.071 477.953 )",
+    "CP00_ENTITY id=0 class=Player model=models/player/_american_army_winter_gloves.tik health=750.000 origin=( -6628.103 -3862.844 482.347 )",
+    "CP00_ENTITY id=199 class=Weapon model=models/weapons/springfield.tik health=0.000 origin=( -6612.020 -3850.866 557.281 )",
+    "CP00_ENTITY id=202 class=Actor model=models/human/german_wehrmact_soldier.tik health=0.000 origin=( -6444.583 -3758.071 471.953 )",
+    "CP00_ENTITY id=225 class=Weapon model=models/weapons/kar98.tik health=0.000 origin=( -6481.678 -3847.525 483.784 )",
+    "CP00_ENTITY id=226 class=Weapon model=models/weapons/kar98.tik health=0.000 origin=( -6602.444 -3857.327 551.995 )",
+    "CP00_SNAPSHOT_END after_shots",
+    "CP00_STATS_BEGIN_after_shots",
+    "CP00_STATS_END_after_shots",
+    "CP00_SNAPSHOT_BEGIN after_corpse_shots",
+    "CP00_DEATHS 1",
+    "CP00_SUBJECT health=0.000 origin=( -6444.583 -3758.071 471.953 ) mins=( -15.000 -15.000 0.000 ) maxs=( 15.000 15.000 8.000 ) anim=",
+    "CP00_TRACE start=( -6544.583 -3758.071 511.953 ) end=( -6344.583 -3758.071 511.953 ) hit=( -6344.583 -3758.071 511.953 )",
+    "CP00_LOW_TRACE start=( -6544.583 -3758.071 477.953 ) end=( -6344.583 -3758.071 477.953 ) hit=( -6344.583 -3758.071 477.953 )",
+    "CP00_ENTITY id=0 class=Player model=models/player/_american_army_winter_gloves.tik health=750.000 origin=( -6628.103 -3862.844 482.347 )",
+    "CP00_ENTITY id=199 class=Weapon model=models/weapons/springfield.tik health=0.000 origin=( -6612.020 -3850.866 557.281 )",
+    "CP00_ENTITY id=202 class=Actor model=models/human/german_wehrmact_soldier.tik health=0.000 origin=( -6444.583 -3758.071 471.953 )",
+    "CP00_ENTITY id=225 class=Weapon model=models/weapons/kar98.tik health=0.000 origin=( -6481.678 -3847.525 483.784 )",
+    "CP00_ENTITY id=226 class=Weapon model=models/weapons/kar98.tik health=0.000 origin=( -6613.048 -3866.556 543.837 )",
+    "CP00_SNAPSHOT_END after_corpse_shots",
+    "CP00_STATS_BEGIN_after_corpse_shots",
+    "CP00_STATS_END_after_corpse_shots",
+    "CP00_SNAPSHOT_BEGIN after_delay",
+    "CP00_DEATHS 1",
+    "CP00_SUBJECT health=0.000 origin=( -6444.583 -3758.071 471.953 ) mins=( -15.000 -15.000 0.000 ) maxs=( 15.000 15.000 8.000 ) anim=",
+    "CP00_TRACE start=( -6544.583 -3758.071 511.953 ) end=( -6344.583 -3758.071 511.953 ) hit=( -6344.583 -3758.071 511.953 )",
+    "CP00_LOW_TRACE start=( -6544.583 -3758.071 477.953 ) end=( -6344.583 -3758.071 477.953 ) hit=( -6344.583 -3758.071 477.953 )",
+    "CP00_ENTITY id=0 class=Player model=models/player/_american_army_winter_gloves.tik health=750.000 origin=( -6628.103 -3862.844 482.347 )",
+    "CP00_ENTITY id=199 class=Weapon model=models/weapons/springfield.tik health=0.000 origin=( -6612.020 -3850.866 557.281 )",
+    "CP00_ENTITY id=202 class=Actor model=models/human/german_wehrmact_soldier.tik health=0.000 origin=( -6444.583 -3758.071 471.953 )",
+    "CP00_ENTITY id=225 class=Weapon model=models/weapons/kar98.tik health=0.000 origin=( -6481.678 -3847.525 483.784 )",
+    "CP00_ENTITY id=226 class=Weapon model=models/weapons/kar98.tik health=0.000 origin=( -6610.935 -3869.884 538.798 )",
+    "CP00_SNAPSHOT_END after_delay",
+    "CP00_STATS_BEGIN_after_delay",
+    "CP00_STATS_END_after_delay",
+    "CP00_BASELINE_DONE"
+  ],
+  "visual_check": "Reviewed after-shots and after-corpse-fire screenshots: corpse substantially hidden by snow surface; valid statistics only, unsuitable full-pose reference.",
+  "reference_save": [],
+  "weapon": "models/weapons/kar98.tik",
+  "linger_seconds": 3,
+  "death_counts": [
+    "0",
+    "1",
+    "1",
+    "1"
+  ],
+  "valid_death_sequence": true,
+  "statistics": {
+    "alive": {
+      "ui_NumShotsFired": "0",
+      "ui_NumHits": "0",
+      "ui_NumEnemysKilled": "0",
+      "ui_NumComplete": "0"
+    },
+    "after_shots": {
+      "ui_NumShotsFired": "3",
+      "ui_NumHits": "2",
+      "ui_NumEnemysKilled": "1",
+      "ui_NumComplete": "0"
+    },
+    "after_corpse_shots": {
+      "ui_NumShotsFired": "5",
+      "ui_NumHits": "2",
+      "ui_NumEnemysKilled": "1",
+      "ui_NumComplete": "0"
+    },
+    "after_delay": {
+      "ui_NumShotsFired": "5",
+      "ui_NumHits": "2",
+      "ui_NumEnemysKilled": "1",
+      "ui_NumComplete": "0"
+    }
+  },
+  "engine_sha256": "5f1eee385de3b26750b45b7aa1e98566801b716566b97af11fa5586cb5c21c91",
+  "engine_source_commit": "af7bb7c6e706fcc64e5933a22457333274f3de22",
+  "wcr_package_fingerprint": "3b6b38b5b04ba320a526196946c44394c4519e4197dc8d3d05788e186501cfcc",
+  "evidence": [
+    {
+      "path": "profiles-local/CP00-r4/r4-matrix-kar98-AA/main/baseline.cfg",
+      "sha256": "ea788b7b04f0012ef3c034a033269115a583c735e25bf013d6434da238fb30ba"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-matrix-kar98-AA/main/configs/omconfig.cfg",
+      "sha256": "7edb8f7d3c56e61bf357c07d76a6c552ffb7c6d9bff01fda1e99eec7a49a5473"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-matrix-kar98-AA/main/cp00/after_corpse_shots.scr",
+      "sha256": "43a3b76b1aed24ca327569c9d552756eb6df9551fcf4968d49ed5838f5f9c12a"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-matrix-kar98-AA/main/cp00/after_delay.scr",
+      "sha256": "d156491173a4f3bbde99d540caf0d6d0141ffc87cda9c26b188275a032dc9f4a"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-matrix-kar98-AA/main/cp00/after_shots.scr",
+      "sha256": "7964e396e3ee37960a22040130844b8fa2ee6a98a02a787b7577cbef146165c3"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-matrix-kar98-AA/main/cp00/aim_corpse.scr",
+      "sha256": "2f9f99738a6b084a30cc1cb6cc420b1289ec300fc561119bc30ce34826c67a13"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-matrix-kar98-AA/main/cp00/baseline.scr",
+      "sha256": "e49bcfa6e4eb96a64dcd05f6ed4e38cf683503928324b1254dc34578ccde25f3"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-matrix-kar98-AA/main/qconsole.log",
+      "sha256": "51c155b7d9fcb785d7b01f34b5ff3733d5eea26ce09be23c28bd791f0dbc1524"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-matrix-kar98-AA/main/save/omconfig/cp00_after_combat.sav",
+      "sha256": "ed8889454a161905c3c4b54a3ec012bea819be3ddee5e376cd7e3e9745878207"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-matrix-kar98-AA/main/save/omconfig/cp00_after_combat.ssv",
+      "sha256": "b1b8aa2c3da08b0b6c9042691ab10e659a564640c7b6addd564df83a85d9de29"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-matrix-kar98-AA/main/save/omconfig/cp00_after_combat.tga",
+      "sha256": "eb1ddf5869c9bc9f3bb72f8227d3a5c88ceb3b6adc47017405a9aea0d6735db1"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-matrix-kar98-AA/main/save/omconfig/cp00_before_combat.sav",
+      "sha256": "fca353fe575baf092bf276f6747c05f15c506ed861a26c43ad68afbf7dfa480b"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-matrix-kar98-AA/main/save/omconfig/cp00_before_combat.ssv",
+      "sha256": "b5c3667ba40a27ec91349ffddae721e9ec69c5f5e46e70681d8305c4cc2e60e9"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-matrix-kar98-AA/main/save/omconfig/cp00_before_combat.tga",
+      "sha256": "041354ab88ee95084a9b9f46905b3a66cd5730da3c13638ae6f91c8cf4d114c3"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-matrix-kar98-AA/main/save/omconfig/m2l10000.sav",
+      "sha256": "41cf912da0dd489d7b0b3520726810bff42ab20444e67620f30176a800c28585"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-matrix-kar98-AA/main/save/omconfig/m2l10000.ssv",
+      "sha256": "eb23a21d4a5bb3b9f9eb7c28aeda8500f8212f886f069a63e619bc60c70b10a0"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-matrix-kar98-AA/main/save/omconfig/m2l10000.tga",
+      "sha256": "ba8667642b68326441f497f501944bc4c75066d97b9866d3740ac931572a9c19"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-matrix-kar98-AA/main/screenshots/shot0000.tga",
+      "sha256": "1503df216ce274e34445d6541bc9a717c963314acc0fb8df4b87576152d3ba52"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-matrix-kar98-AA/main/screenshots/shot0001.tga",
+      "sha256": "6845a62614f5781c86d4644dcd99d1bf495f6eb36252f08d231316e9d99949e1"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-matrix-kar98-AA/main/screenshots/shot0002.tga",
+      "sha256": "4b63484d64a9b17e19c4964f1725037213bbce000425a95a62d95159b191d480"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-matrix-kar98-AA/main/screenshots/shot0003.tga",
+      "sha256": "14849a63bda9b14e444354f457d01aef101d1df55a23928c7cc176b842a2a9e0"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-matrix-kar98-AA/qkey",
+      "sha256": "5444df26def383cccecfb18b0928fc0057413551480531adbc6a8b7be2e27458"
+    }
+  ]
+}

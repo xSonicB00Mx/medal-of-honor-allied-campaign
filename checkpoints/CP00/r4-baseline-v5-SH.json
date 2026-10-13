@@ -1,0 +1,236 @@
+{
+  "candidate": "CP00-r4",
+  "game": "SH",
+  "map": "t1l2",
+  "scope": "Controlled spawned actor: AI off while alive for repeatable aim, AI on at genuine death to process corpse. Normal player attack input before/after death; not natural mission progression.",
+  "exit_code": 0,
+  "completed": true,
+  "fixture_ready": true,
+  "script_errors": [],
+  "records": [
+    "CP00_FIXTURE_READY origin=( 2472.068 3067.491 168.868 ) target=( 2314.196 3093.499 168.868 )",
+    "CP00_SNAPSHOT_BEGIN alive",
+    "CP00_DEATHS 0",
+    "CP00_SUBJECT health=100.000 origin=( 2314.196 3093.499 168.868 ) mins=( -15.000 -15.000 0.000 ) maxs=( 15.000 15.000 94.000 ) anim=",
+    "CP00_TRACE start=( 2214.196 3093.499 208.868 ) end=( 2414.196 3093.499 208.868 ) hit=( 2299.071 3093.499 208.868 )",
+    "CP00_LOW_TRACE start=( 2214.196 3093.499 174.868 ) end=( 2414.196 3093.499 174.868 ) hit=( 2299.071 3093.499 174.868 )",
+    "CP00_ENTITY id=0 class=Player model=models/player/allied_501st_pir_scout.tik health=686.000 origin=( 2472.068 3067.491 168.868 )",
+    "CP00_ENTITY id=5 class=Actor model=models/human/german_wehrmact_soldier.tik health=0.000 origin=( 2458.430 3230.519 163.866 )",
+    "CP00_ENTITY id=6 class=Health model=models/items/item_25_healthbox.tik health=0.000 origin=( 2139.365 3132.177 162.960 )",
+    "CP00_ENTITY id=10 class=Weapon model=models/weapons/kar98.tik health=0.000 origin=( 2402.629 3292.397 166.809 )",
+    "CP00_ENTITY id=11 class=Actor model=models/human/german_wehrmact_soldier.tik health=0.000 origin=( 2491.630 3402.355 172.125 )",
+    "CP00_ENTITY id=15 class=Actor model=models/human/german_wehrmact_soldier.tik health=100.000 origin=( 2314.196 3093.499 168.868 )",
+    "CP00_ENTITY id=22 class=Actor model=models/human/german_wehrmact_officer.tik health=0.000 origin=( 2290.792 3344.012 161.985 )",
+    "CP00_ENTITY id=25 class=Weapon model=models/weapons/kar98.tik health=0.000 origin=( 2422.060 3415.098 193.824 )",
+    "CP00_ENTITY id=27 class=Actor model=models/human/german_wehrmact_soldier.tik health=0.000 origin=( 2334.345 3617.191 167.347 )",
+    "CP00_ENTITY id=70 class=Health model=models/items/item_25_healthbox.tik health=0.000 origin=( 2492.115 3396.008 174.125 )",
+    "CP00_ENTITY id=85 class=Weapon model=models/weapons/kar98.tik health=0.000 origin=( 2292.129 3704.107 177.514 )",
+    "CP00_ENTITY id=92 class=Actor model=models/human/german_wehrmact_soldier.tik health=0.000 origin=( 2313.588 3596.480 164.124 )",
+    "CP00_ENTITY id=94 class=Weapon model=models/weapons/kar98.tik health=0.000 origin=( 2187.031 3581.272 150.917 )",
+    "CP00_ENTITY id=95 class=Weapon model=models/weapons/kar98.tik health=0.000 origin=( 2314.529 3079.416 213.849 )",
+    "CP00_ENTITY id=97 class=ThrobbingBox_ExplodePlayerFlak88 model=models/items/pulse_explosive.tik health=0.000 origin=( 1948.000 2990.000 167.000 )",
+    "CP00_ENTITY id=98 class=FixedTurret model=models/statweapons/p_flak88.tik health=1000.000 origin=( 1952.000 3128.000 154.125 )",
+    "CP00_ENTITY id=292 class=VehicleSoundEntity model=models/vehicles/vehiclesoundentity.tik health=0.000 origin=( 1952.000 3128.000 154.125 )",
+    "CP00_ENTITY id=293 class=VehicleSoundEntity model=models/vehicles/vehiclesoundentity.tik health=0.000 origin=( 1952.000 3128.000 154.125 )",
+    "CP00_ENTITY id=294 class=VehicleSoundEntity model=models/vehicles/vehiclesoundentity.tik health=0.000 origin=( 1952.000 3128.000 154.125 )",
+    "CP00_ENTITY id=295 class=VehicleSoundEntity model=models/vehicles/vehiclesoundentity.tik health=0.000 origin=( 1952.000 3128.000 154.125 )",
+    "CP00_ENTITY id=298 class=Weapon model=models/weapons/sten.tik health=0.000 origin=( 2445.730 3075.675 235.163 )",
+    "CP00_ENTITY id=346 class=VehicleTurretGun model=models/statweapons/p_flak88_cannon.tik health=100.000 origin=( 1952.000 3128.000 203.702 )",
+    "CP00_ENTITY id=428 class=Weapon model=models/weapons/mp40.tik health=0.000 origin=( 2146.604 3331.872 142.125 )",
+    "CP00_ENTITY id=429 class=Weapon model=models/weapons/mp40.tik health=0.000 origin=( 2161.588 3191.431 163.557 )",
+    "CP00_ENTITY id=466 class=Weapon model=models/weapons/p38.tik health=0.000 origin=( 2330.356 3409.991 173.566 )",
+    "CP00_SNAPSHOT_END alive",
+    "CP00_DEATH_EVENT count=1",
+    "CP00_SNAPSHOT_BEGIN after_shots",
+    "CP00_DEATHS 1",
+    "CP00_SUBJECT health=0.000 origin=( 2265.835 3101.466 166.629 ) mins=( -15.000 -15.000 0.000 ) maxs=( 15.000 15.000 42.000 ) anim=",
+    "CP00_TRACE start=( 2165.835 3101.466 206.629 ) end=( 2365.835 3101.466 206.629 ) hit=( 2365.835 3101.466 206.629 )",
+    "CP00_LOW_TRACE start=( 2165.835 3101.466 172.629 ) end=( 2365.835 3101.466 172.629 ) hit=( 2365.835 3101.466 172.629 )",
+    "CP00_ENTITY id=0 class=Player model=models/player/allied_501st_pir_scout.tik health=686.000 origin=( 2472.068 3067.491 168.868 )",
+    "CP00_ENTITY id=5 class=Actor model=models/human/german_wehrmact_soldier.tik health=0.000 origin=( 2458.430 3230.519 163.866 )",
+    "CP00_ENTITY id=10 class=Weapon model=models/weapons/kar98.tik health=0.000 origin=( 2402.629 3292.397 166.809 )",
+    "CP00_ENTITY id=11 class=Actor model=models/human/german_wehrmact_soldier.tik health=0.000 origin=( 2491.630 3402.355 172.125 )",
+    "CP00_ENTITY id=15 class=Actor model=models/human/german_wehrmact_soldier.tik health=0.000 origin=( 2265.835 3101.466 166.629 )",
+    "CP00_ENTITY id=22 class=Actor model=models/human/german_wehrmact_officer.tik health=0.000 origin=( 2290.792 3344.012 161.985 )",
+    "CP00_ENTITY id=25 class=Weapon model=models/weapons/kar98.tik health=0.000 origin=( 2422.005 3413.273 177.535 )",
+    "CP00_ENTITY id=27 class=Actor model=models/human/german_wehrmact_soldier.tik health=0.000 origin=( 2334.345 3617.191 167.347 )",
+    "CP00_ENTITY id=70 class=Health model=models/items/item_25_healthbox.tik health=0.000 origin=( 2492.115 3396.008 174.125 )",
+    "CP00_ENTITY id=85 class=Weapon model=models/weapons/kar98.tik health=0.000 origin=( 2292.129 3704.107 177.514 )",
+    "CP00_ENTITY id=94 class=Weapon model=models/weapons/kar98.tik health=0.000 origin=( 2187.031 3581.272 150.917 )",
+    "CP00_ENTITY id=95 class=Weapon model=models/weapons/kar98.tik health=0.000 origin=( 2313.598 3034.058 172.845 )",
+    "CP00_ENTITY id=97 class=ThrobbingBox_ExplodePlayerFlak88 model=models/items/pulse_explosive.tik health=0.000 origin=( 1948.000 2990.000 167.000 )",
+    "CP00_ENTITY id=98 class=FixedTurret model=models/statweapons/p_flak88.tik health=1000.000 origin=( 1952.000 3128.000 154.125 )",
+    "CP00_ENTITY id=102 class=Weapon model=models/weapons/colt45.tik health=0.000 origin=( 2444.207 3067.599 224.634 )",
+    "CP00_ENTITY id=292 class=VehicleSoundEntity model=models/vehicles/vehiclesoundentity.tik health=0.000 origin=( 1952.000 3128.000 154.125 )",
+    "CP00_ENTITY id=293 class=VehicleSoundEntity model=models/vehicles/vehiclesoundentity.tik health=0.000 origin=( 1952.000 3128.000 154.125 )",
+    "CP00_ENTITY id=294 class=VehicleSoundEntity model=models/vehicles/vehiclesoundentity.tik health=0.000 origin=( 1952.000 3128.000 154.125 )",
+    "CP00_ENTITY id=295 class=VehicleSoundEntity model=models/vehicles/vehiclesoundentity.tik health=0.000 origin=( 1952.000 3128.000 154.125 )",
+    "CP00_ENTITY id=298 class=Weapon model=models/weapons/sten.tik health=0.000 origin=( 2461.825 3086.794 224.738 )",
+    "CP00_ENTITY id=346 class=VehicleTurretGun model=models/statweapons/p_flak88_cannon.tik health=100.000 origin=( 1952.000 3128.000 203.702 )",
+    "CP00_ENTITY id=466 class=Weapon model=models/weapons/p38.tik health=0.000 origin=( 2330.356 3409.991 173.566 )",
+    "CP00_SNAPSHOT_END after_shots",
+    "CP00_SNAPSHOT_BEGIN after_corpse_shots",
+    "CP00_DEATHS 1",
+    "CP00_SUBJECT health=0.000 origin=( 2265.835 3101.466 166.629 ) mins=( -15.000 -15.000 0.000 ) maxs=( 15.000 15.000 8.000 ) anim=",
+    "CP00_TRACE start=( 2165.835 3101.466 206.629 ) end=( 2365.835 3101.466 206.629 ) hit=( 2365.835 3101.466 206.629 )",
+    "CP00_LOW_TRACE start=( 2165.835 3101.466 172.629 ) end=( 2365.835 3101.466 172.629 ) hit=( 2365.835 3101.466 172.629 )",
+    "CP00_ENTITY id=0 class=Player model=models/player/allied_501st_pir_scout.tik health=686.000 origin=( 2472.068 3067.491 168.868 )",
+    "CP00_ENTITY id=5 class=Actor model=models/human/german_wehrmact_soldier.tik health=0.000 origin=( 2458.430 3230.519 163.866 )",
+    "CP00_ENTITY id=10 class=Weapon model=models/weapons/kar98.tik health=0.000 origin=( 2402.629 3292.397 166.809 )",
+    "CP00_ENTITY id=11 class=Actor model=models/human/german_wehrmact_soldier.tik health=0.000 origin=( 2491.630 3402.355 172.125 )",
+    "CP00_ENTITY id=15 class=Actor model=models/human/german_wehrmact_soldier.tik health=0.000 origin=( 2265.835 3101.466 166.629 )",
+    "CP00_ENTITY id=22 class=Actor model=models/human/german_wehrmact_officer.tik health=0.000 origin=( 2290.792 3344.012 161.985 )",
+    "CP00_ENTITY id=25 class=Weapon model=models/weapons/kar98.tik health=0.000 origin=( 2422.005 3413.273 177.535 )",
+    "CP00_ENTITY id=27 class=Actor model=models/human/german_wehrmact_soldier.tik health=0.000 origin=( 2334.345 3617.191 167.347 )",
+    "CP00_ENTITY id=70 class=Health model=models/items/item_25_healthbox.tik health=0.000 origin=( 2492.115 3396.008 174.125 )",
+    "CP00_ENTITY id=95 class=Weapon model=models/weapons/kar98.tik health=0.000 origin=( 2313.598 3034.058 172.845 )",
+    "CP00_ENTITY id=97 class=ThrobbingBox_ExplodePlayerFlak88 model=models/items/pulse_explosive.tik health=0.000 origin=( 1948.000 2990.000 167.000 )",
+    "CP00_ENTITY id=98 class=FixedTurret model=models/statweapons/p_flak88.tik health=1000.000 origin=( 1952.000 3128.000 154.125 )",
+    "CP00_ENTITY id=102 class=Weapon model=models/weapons/colt45.tik health=0.000 origin=( 2445.058 3070.478 217.678 )",
+    "CP00_ENTITY id=292 class=VehicleSoundEntity model=models/vehicles/vehiclesoundentity.tik health=0.000 origin=( 1952.000 3128.000 154.125 )",
+    "CP00_ENTITY id=293 class=VehicleSoundEntity model=models/vehicles/vehiclesoundentity.tik health=0.000 origin=( 1952.000 3128.000 154.125 )",
+    "CP00_ENTITY id=294 class=VehicleSoundEntity model=models/vehicles/vehiclesoundentity.tik health=0.000 origin=( 1952.000 3128.000 154.125 )",
+    "CP00_ENTITY id=295 class=VehicleSoundEntity model=models/vehicles/vehiclesoundentity.tik health=0.000 origin=( 1952.000 3128.000 154.125 )",
+    "CP00_ENTITY id=298 class=Weapon model=models/weapons/sten.tik health=0.000 origin=( 2461.825 3086.794 224.738 )",
+    "CP00_ENTITY id=346 class=VehicleTurretGun model=models/statweapons/p_flak88_cannon.tik health=100.000 origin=( 1952.000 3128.000 203.702 )",
+    "CP00_ENTITY id=466 class=Weapon model=models/weapons/p38.tik health=0.000 origin=( 2330.356 3409.991 173.566 )",
+    "CP00_SNAPSHOT_END after_corpse_shots",
+    "CP00_SNAPSHOT_BEGIN after_20s",
+    "CP00_DEATHS 1",
+    "CP00_SUBJECT health=0.000 origin=( 2265.835 3101.466 166.629 ) mins=( -15.000 -15.000 0.000 ) maxs=( 15.000 15.000 8.000 ) anim=",
+    "CP00_TRACE start=( 2165.835 3101.466 206.629 ) end=( 2365.835 3101.466 206.629 ) hit=( 2365.835 3101.466 206.629 )",
+    "CP00_LOW_TRACE start=( 2165.835 3101.466 172.629 ) end=( 2365.835 3101.466 172.629 ) hit=( 2365.835 3101.466 172.629 )",
+    "CP00_ENTITY id=0 class=Player model=models/player/allied_501st_pir_scout.tik health=686.000 origin=( 2472.068 3067.491 168.868 )",
+    "CP00_ENTITY id=5 class=Actor model=models/human/german_wehrmact_soldier.tik health=0.000 origin=( 2458.430 3230.519 163.866 )",
+    "CP00_ENTITY id=11 class=Actor model=models/human/german_wehrmact_soldier.tik health=0.000 origin=( 2491.630 3402.355 172.125 )",
+    "CP00_ENTITY id=15 class=Actor model=models/human/german_wehrmact_soldier.tik health=0.000 origin=( 2265.835 3101.466 166.629 )",
+    "CP00_ENTITY id=22 class=Actor model=models/human/german_wehrmact_officer.tik health=0.000 origin=( 2290.792 3344.012 161.985 )",
+    "CP00_ENTITY id=27 class=Actor model=models/human/german_wehrmact_soldier.tik health=0.000 origin=( 2334.345 3617.191 167.347 )",
+    "CP00_ENTITY id=97 class=ThrobbingBox_ExplodePlayerFlak88 model=models/items/pulse_explosive.tik health=0.000 origin=( 1948.000 2990.000 167.000 )",
+    "CP00_ENTITY id=98 class=FixedTurret model=models/statweapons/p_flak88.tik health=1000.000 origin=( 1952.000 3128.000 154.125 )",
+    "CP00_ENTITY id=102 class=Weapon model=models/weapons/colt45.tik health=0.000 origin=( 2448.156 3075.066 222.487 )",
+    "CP00_ENTITY id=292 class=VehicleSoundEntity model=models/vehicles/vehiclesoundentity.tik health=0.000 origin=( 1952.000 3128.000 154.125 )",
+    "CP00_ENTITY id=293 class=VehicleSoundEntity model=models/vehicles/vehiclesoundentity.tik health=0.000 origin=( 1952.000 3128.000 154.125 )",
+    "CP00_ENTITY id=294 class=VehicleSoundEntity model=models/vehicles/vehiclesoundentity.tik health=0.000 origin=( 1952.000 3128.000 154.125 )",
+    "CP00_ENTITY id=295 class=VehicleSoundEntity model=models/vehicles/vehiclesoundentity.tik health=0.000 origin=( 1952.000 3128.000 154.125 )",
+    "CP00_ENTITY id=298 class=Weapon model=models/weapons/sten.tik health=0.000 origin=( 2461.825 3086.794 224.738 )",
+    "CP00_ENTITY id=346 class=VehicleTurretGun model=models/statweapons/p_flak88_cannon.tik health=100.000 origin=( 1952.000 3128.000 203.702 )",
+    "CP00_SNAPSHOT_END after_20s",
+    "CP00_BASELINE_DONE"
+  ],
+  "visual_check": "Reviewed four screenshots: corpse lies face-down, visible after 20 seconds.",
+  "reference_save": [
+    {
+      "path": "profiles-local/CP00-r4/SH/mainta/save/omconfig/t1l20005.sav",
+      "sha256": "9e410c5c4fe304948226ac8076825ff201e6777e095849dfafd06786c61d4ecd"
+    },
+    {
+      "path": "profiles-local/CP00-r4/SH/mainta/save/omconfig/t1l20005.ssv",
+      "sha256": "f5f1cde465b87eed9867ebde1c2fc6871e2a5c718f551e36d279340fa1f9f8c4"
+    },
+    {
+      "path": "profiles-local/CP00-r4/SH/mainta/save/omconfig/t1l20005.tga",
+      "sha256": "fc5c73904bba33b0c613606e0c8324e17dcf9fb653d8aeb7b220d0147e24f050"
+    }
+  ],
+  "engine_sha256": "5f1eee385de3b26750b45b7aa1e98566801b716566b97af11fa5586cb5c21c91",
+  "engine_source_commit": "af7bb7c6e706fcc64e5933a22457333274f3de22",
+  "wcr_package_fingerprint": "3b6b38b5b04ba320a526196946c44394c4519e4197dc8d3d05788e186501cfcc",
+  "evidence": [
+    {
+      "path": "profiles-local/CP00-r4/r4-baseline-v5-SH/mainta/baseline.cfg",
+      "sha256": "62ddcbe9ed014b5dc20d00d23361dc0c7695dcbbb751c5b2f4419ddbccba5461"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-baseline-v5-SH/mainta/configs/omconfig.cfg",
+      "sha256": "fbf788820ab7228ad0273f71b2586c4b3cb9ed3d5ebd6c7882f7b45c164aeb6c"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-baseline-v5-SH/mainta/cp00/after_20s.scr",
+      "sha256": "1ef1bde1132399dd2093452728ccf18a36a1afe6d53658746b09f3f4a903b2a5"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-baseline-v5-SH/mainta/cp00/after_corpse_shots.scr",
+      "sha256": "43a3b76b1aed24ca327569c9d552756eb6df9551fcf4968d49ed5838f5f9c12a"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-baseline-v5-SH/mainta/cp00/after_shots.scr",
+      "sha256": "7964e396e3ee37960a22040130844b8fa2ee6a98a02a787b7577cbef146165c3"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-baseline-v5-SH/mainta/cp00/aim_corpse.scr",
+      "sha256": "2f9f99738a6b084a30cc1cb6cc420b1289ec300fc561119bc30ce34826c67a13"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-baseline-v5-SH/mainta/cp00/baseline.scr",
+      "sha256": "256ed4b8d2ffec0c61ffcf4b149367fbef35a86f39d426faca142219f366ff13"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-baseline-v5-SH/mainta/qconsole.log",
+      "sha256": "8ed739e7e906837b5320d12d3049b9c4e0062f808e2d4dbba528bde2591042aa"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-baseline-v5-SH/mainta/save/omconfig/cp00_after_combat.sav",
+      "sha256": "11fafd0e38702877861e199db06de49cac849ab08963a41eccb931be324e9f66"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-baseline-v5-SH/mainta/save/omconfig/cp00_after_combat.ssv",
+      "sha256": "0cee78a352db684b6358906cf080ed1397addbfb5c355a9acbf2da34ae277e24"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-baseline-v5-SH/mainta/save/omconfig/cp00_after_combat.tga",
+      "sha256": "1f1798a80800c122f443e1af2642fefe25124d50a885cbd6d13ed7603f134e92"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-baseline-v5-SH/mainta/save/omconfig/cp00_before_combat.sav",
+      "sha256": "de0d1d19a282d148439bb9e6858b9ad35ff346147f60d019b24246fea9599465"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-baseline-v5-SH/mainta/save/omconfig/cp00_before_combat.ssv",
+      "sha256": "85181ca8843dcfcc6523d6cf7bf5f3b837de94762bce4750d0edd51c10e6ccf2"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-baseline-v5-SH/mainta/save/omconfig/cp00_before_combat.tga",
+      "sha256": "fbe9128e0345c8e9c26dbd4ff99a98c2d170a0474c405c8c18acf32a901311d4"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-baseline-v5-SH/mainta/save/omconfig/cp00_reference.sav",
+      "sha256": "9e410c5c4fe304948226ac8076825ff201e6777e095849dfafd06786c61d4ecd"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-baseline-v5-SH/mainta/save/omconfig/cp00_reference.ssv",
+      "sha256": "f5f1cde465b87eed9867ebde1c2fc6871e2a5c718f551e36d279340fa1f9f8c4"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-baseline-v5-SH/mainta/save/omconfig/cp00_reference.tga",
+      "sha256": "fc5c73904bba33b0c613606e0c8324e17dcf9fb653d8aeb7b220d0147e24f050"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-baseline-v5-SH/mainta/screenshots/shot0000.tga",
+      "sha256": "b5106a2610265e9872d9f338cbab919458ed41d24f6033a6efa9e442816852d8"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-baseline-v5-SH/mainta/screenshots/shot0001.tga",
+      "sha256": "b93285eee82409e20aa32e458b596418787abe4eb029f2c5ef32885caac0ffb9"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-baseline-v5-SH/mainta/screenshots/shot0002.tga",
+      "sha256": "ca84cb277d6a2d0f555c0a147910087933be83261e63fa78f6ad8af437d2047f"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-baseline-v5-SH/mainta/screenshots/shot0003.tga",
+      "sha256": "2f316e2445596c9e2840b1c92988ef5b3a5f1d2bc3229044643949ba40c00582"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-baseline-v5-SH/qkey",
+      "sha256": "14022bd8023d5a6412c427cda32d115d2aa12c40346652fcfc1b690c380b26b5"
+    }
+  ],
+  "death_counts": [
+    "0",
+    "1",
+    "1",
+    "1"
+  ],
+  "valid_death_sequence": true
+}

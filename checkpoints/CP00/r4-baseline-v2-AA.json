@@ -1,0 +1,120 @@
+{
+  "candidate": "CP00-r4",
+  "game": "AA",
+  "map": "m2l1",
+  "scope": "Controlled spawned actor and normal player attack input; not natural mission progression.",
+  "exit_code": 0,
+  "completed": true,
+  "fixture_ready": true,
+  "script_errors": [
+    "^~^~^ Script Error : binary '+' applied to incompatible types 'string' and 'none'",
+    "^~^~^ Script Error : binary '+' applied to incompatible types 'none' and 'const string'",
+    "^~^~^ Script Error : binary '+' applied to incompatible types 'none' and 'none'",
+    "^~^~^ Script Error : binary '+' applied to incompatible types 'none' and 'const string'",
+    "^~^~^ Script Error : binary '+' applied to incompatible types 'none' and 'const string'",
+    "^~^~^ Game ( Event 'exec', Client 'UnnamedSoldier#17327' ) : Script 'cp00/baseline.scr::snapshot' was not properly loaded",
+    "Script 'cp00/baseline.scr::snapshot' was not properly loaded",
+    "Console: 'exec' : Script 'cp00/baseline.scr::snapshot' was not properly loaded",
+    "^~^~^ Game ( Event 'exec', Client 'UnnamedSoldier#17327' ) : Script 'cp00/baseline.scr::snapshot' was not properly loaded",
+    "Script 'cp00/baseline.scr::snapshot' was not properly loaded",
+    "^~^~^ Game ( Event 'exec', Client 'UnnamedSoldier#17327' ) : Script 'cp00/baseline.scr::snapshot' was not properly loaded",
+    "Script 'cp00/baseline.scr::snapshot' was not properly loaded",
+    "Console: 'exec' : Script 'cp00/baseline.scr::snapshot' was not properly loaded",
+    "Console: 'exec' : Script 'cp00/baseline.scr::snapshot' was not properly loaded"
+  ],
+  "records": [
+    "CP00_FIXTURE_READY origin=( -6628.000 -3864.000 482.262 ) target=( -6477.645 -3809.290 482.262 )",
+    "CP00_SNAPSHOT_BEGIN alive",
+    "CP00_DEATHS 0",
+    "        println (\"CP00_SUBJECT health=\" + level.cp00_subject.health + \" origin=\" + level.cp00_subject.origin + \" mins=\" + level.cp00_subject.mins + \" maxs=\" + level.cp00_subject.maxs + \" anim=\" + level.cp00_subject.animname)",
+    "        println (\"CP00_SUBJECT health=\" + level.cp00_subject.health + \" origin=\" + level.cp00_subject.origin + \" mins=\" ^",
+    "        println (\"CP00_SUBJECT health=\" + level.cp00_subject.health + \" origin=\" + level.cp00_subject.origin + \" mins=\" + level.cp00_subject.mins + \" maxs=\" + level.cp00_subject.maxs + \" anim=\" + level.cp00_subject.animname)",
+    "        println (\"CP00_SUBJECT health=\" + level.cp00_subject.health + \" origin=\" + level.cp00_subject.origin + \" mins=\" + level.cp00_subject.mins ^",
+    "        println (\"CP00_SUBJECT health=\" + level.cp00_subject.health + \" origin=\" + level.cp00_subject.origin + \" mins=\" + level.cp00_subject.mins + \" maxs=\" + level.cp00_subject.maxs + \" anim=\" + level.cp00_subject.animname)",
+    "        println (\"CP00_SUBJECT health=\" + level.cp00_subject.health + \" origin=\" + level.cp00_subject.origin + \" mins=\" + level.cp00_subject.mins + \" maxs=\" ^",
+    "        println (\"CP00_SUBJECT health=\" + level.cp00_subject.health + \" origin=\" + level.cp00_subject.origin + \" mins=\" + level.cp00_subject.mins + \" maxs=\" + level.cp00_subject.maxs + \" anim=\" + level.cp00_subject.animname)",
+    "        println (\"CP00_SUBJECT health=\" + level.cp00_subject.health + \" origin=\" + level.cp00_subject.origin + \" mins=\" + level.cp00_subject.mins + \" maxs=\" + level.cp00_subject.maxs ^",
+    "        println (\"CP00_SUBJECT health=\" + level.cp00_subject.health + \" origin=\" + level.cp00_subject.origin + \" mins=\" + level.cp00_subject.mins + \" maxs=\" + level.cp00_subject.maxs + \" anim=\" + level.cp00_subject.animname)",
+    "        println (\"CP00_SUBJECT health=\" + level.cp00_subject.health + \" origin=\" + level.cp00_subject.origin + \" mins=\" + level.cp00_subject.mins + \" maxs=\" + level.cp00_subject.maxs + \" anim=\" ^",
+    "CP00_TRACE start=( -6577.645 -3809.290 522.262 ) end=( -6377.645 -3809.290 522.262 ) hit=( -6377.645 -3809.290 522.262 )",
+    "CP00_ENTITY id=0 class=Player model=models/player/_american_army_winter_gloves.tik health=750.000 origin=( -6628.000 -3864.000 482.262 )",
+    "CP00_ENTITY id=199 class=Weapon model=models/weapons/springfield.tik health=0.000 origin=( -6603.737 -3863.474 551.941 )",
+    "CP00_ENTITY id=202 class=Actor model=models/human/german_wehrmact_soldier.tik health=100.000 origin=( -6477.645 -3809.290 482.262 )",
+    "CP00_ENTITY id=225 class=Weapon model=models/weapons/kar98.tik health=0.000 origin=( -6477.312 -3823.372 527.243 )",
+    "CP00_SNAPSHOT_END alive",
+    "CP00_BASELINE_DONE"
+  ],
+  "visual_check": "PENDING",
+  "engine_sha256": "5f1eee385de3b26750b45b7aa1e98566801b716566b97af11fa5586cb5c21c91",
+  "evidence": [
+    {
+      "path": "profiles-local/CP00-r4/r4-baseline-v2-AA/main/baseline.cfg",
+      "sha256": "678d6faa50735ce98b980ccbbfd8ce12089250cb58be2e8c2edd1ace49dadad3"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-baseline-v2-AA/main/configs/omconfig.cfg",
+      "sha256": "1aadd885139d47703b9c7a12ccf8a39a3af8e2f4258db972a31e4bcf7597b315"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-baseline-v2-AA/main/cp00/baseline.scr",
+      "sha256": "08b5c01c42cbbf2d68951f9d960240fa612f9b6781c5649e4d69b3d4809fc9a5"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-baseline-v2-AA/main/qconsole.log",
+      "sha256": "df4094217b0bee0816ce9582af2c926320628be3fe9f1d60ada6ca9e85160924"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-baseline-v2-AA/main/save/omconfig/cp00_after_combat.sav",
+      "sha256": "edda4e6add9b6c06125885fc3aac9a61e28b691496c679d399ef9576e407a7a2"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-baseline-v2-AA/main/save/omconfig/cp00_after_combat.ssv",
+      "sha256": "ff2382493c97c282ae0a8b61c273fdc850b35167faadcb6de69dca77147e641c"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-baseline-v2-AA/main/save/omconfig/cp00_after_combat.tga",
+      "sha256": "56d48fd227de6a81979f15ddb9a8bdec9006f6e05095de603d4c269e28f87eb7"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-baseline-v2-AA/main/save/omconfig/cp00_before_combat.sav",
+      "sha256": "bce494ce12812e7c407c2cf0b811e32d84864d45d6c10e4a5553c8b4424c7605"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-baseline-v2-AA/main/save/omconfig/cp00_before_combat.ssv",
+      "sha256": "3204a284d83a3ee66d110292c6cf8c42946738dbe292c627354a3b1bd84f3156"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-baseline-v2-AA/main/save/omconfig/cp00_before_combat.tga",
+      "sha256": "5660a153b66d8705219ea2838b8c37450261b6c890d7c83b9b9b2833270c37f4"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-baseline-v2-AA/main/save/omconfig/m2l10000.sav",
+      "sha256": "8ff3b15fe97b570f1957c0b5bc76c5e0e271fe15723fd74aaad121efda50ebb6"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-baseline-v2-AA/main/save/omconfig/m2l10000.ssv",
+      "sha256": "a05f23256fbc4017b7607e41eefa14e6167cacf58b43aedbf478ffa002cea186"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-baseline-v2-AA/main/save/omconfig/m2l10000.tga",
+      "sha256": "bb761bfe759ec4121cb2a2805e55cc4a6f4878f621ef95d4b87cc56f1af45621"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-baseline-v2-AA/main/screenshots/shot0000.tga",
+      "sha256": "c96883746553b55016dbed60a698c423c8562f15645279f1f04e3237ef01a09d"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-baseline-v2-AA/main/screenshots/shot0001.tga",
+      "sha256": "e3fa7c0b3d24c2a22a978276cf927cc40b14cc7163b1c3ba793f8dfb7eac4ed0"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-baseline-v2-AA/main/screenshots/shot0002.tga",
+      "sha256": "f9da7a27478334e486f2ebcfc286d1ae4cac77adda09dfc284b039ce38c5c605"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-baseline-v2-AA/qkey",
+      "sha256": "d7aabfb0a3bc7e074444c96df747819b14f3fb781090c1383e1e6492899c2768"
+    }
+  ],
+  "assessment": "INVALID: missing bounds getters and console script-label invocation failed."
+}

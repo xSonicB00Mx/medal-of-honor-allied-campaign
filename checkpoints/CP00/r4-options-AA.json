@@ -1,0 +1,110 @@
+{
+  "candidate": "CP00-r4",
+  "game": "AA",
+  "engine_source_commit": "af7bb7c6e706fcc64e5933a22457333274f3de22",
+  "engine_sha256": "5f1eee385de3b26750b45b7aa1e98566801b716566b97af11fa5586cb5c21c91",
+  "wcr_package_fingerprint": "3b6b38b5b04ba320a526196946c44394c4519e4197dc8d3d05788e186501cfcc",
+  "checks": [
+    {
+      "option": "s_volume",
+      "requested": "0.55",
+      "after_restart": "0.9",
+      "original": "0.9",
+      "restored_after_restart": "0.9",
+      "passed": false
+    },
+    {
+      "option": "s_musicvolume",
+      "requested": "0.35",
+      "after_restart": "0.9",
+      "original": "0.9",
+      "restored_after_restart": "0.9",
+      "passed": false
+    },
+    {
+      "option": "sensitivity",
+      "requested": "4.25",
+      "after_restart": "5",
+      "original": "5",
+      "restored_after_restart": "5",
+      "passed": false
+    },
+    {
+      "option": "m_pitch",
+      "requested": "-0.022",
+      "after_restart": "0.022",
+      "original": "0.022",
+      "restored_after_restart": "0.022",
+      "passed": false
+    },
+    {
+      "option": "g_subtitle",
+      "requested": "0",
+      "after_restart": "1",
+      "original": "1",
+      "restored_after_restart": "1",
+      "passed": false
+    },
+    {
+      "option": "ui_crosshair",
+      "requested": "0",
+      "after_restart": "1",
+      "original": "1",
+      "restored_after_restart": "1",
+      "passed": false
+    },
+    {
+      "option": "cg_shadows",
+      "requested": "0",
+      "after_restart": "1",
+      "original": "1",
+      "restored_after_restart": "1",
+      "passed": false
+    },
+    {
+      "option": "r_picmip",
+      "requested": "1",
+      "after_restart": "0",
+      "original": "0",
+      "restored_after_restart": "0",
+      "passed": false
+    },
+    {
+      "option": "r_gamma",
+      "requested": "1.15",
+      "after_restart": "1.3",
+      "original": "1.3",
+      "restored_after_restart": "1.3",
+      "passed": false
+    }
+  ],
+  "user_config_unchanged": true,
+  "scope": "Cvar persistence and restoration across three processes; no UI-click or perceptual audio/input test.",
+  "evidence": [
+    {
+      "path": "generated-local/CP00-r4/r4-options-AA/change-config.cfg",
+      "sha256": "10e6091c3cc95dc8102c4f66f664e00bcb08316a2fb479bda226337e4517c0dc"
+    },
+    {
+      "path": "generated-local/CP00-r4/r4-options-AA/change.log",
+      "sha256": "7c338a812a4ce698a132a5fc28d370e4c96a670caf1b04837f1d528d11ea6217"
+    },
+    {
+      "path": "generated-local/CP00-r4/r4-options-AA/restart-config.cfg",
+      "sha256": "10e6091c3cc95dc8102c4f66f664e00bcb08316a2fb479bda226337e4517c0dc"
+    },
+    {
+      "path": "generated-local/CP00-r4/r4-options-AA/restart.log",
+      "sha256": "e2151cbf00a3e052d399258467e0e81b5f88b2ffbd4f6e8d245a97bb19b3988c"
+    },
+    {
+      "path": "generated-local/CP00-r4/r4-options-AA/restore-restart-config.cfg",
+      "sha256": "10e6091c3cc95dc8102c4f66f664e00bcb08316a2fb479bda226337e4517c0dc"
+    },
+    {
+      "path": "generated-local/CP00-r4/r4-options-AA/restore-restart.log",
+      "sha256": "cf5025060832ee8862dc4e417083a89a393b6d18cf394eeeb92bb0a430ee0ff2"
+    }
+  ],
+  "assessment": "INVALID_METHOD: immediate set+quit never reached automatic config-write frame; corrected in v2."
+}

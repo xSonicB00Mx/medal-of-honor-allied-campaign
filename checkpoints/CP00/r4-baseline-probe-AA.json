@@ -1,0 +1,86 @@
+{
+  "candidate": "CP00-r4",
+  "game": "AA",
+  "map": "m2l1",
+  "scope": "Controlled spawned actor and normal player attack input; not natural mission progression.",
+  "exit_code": 0,
+  "completed": true,
+  "fixture_ready": false,
+  "script_errors": [],
+  "records": [
+    "CP00_BASELINE_DONE"
+  ],
+  "visual_check": "PENDING",
+  "engine_sha256": "5f1eee385de3b26750b45b7aa1e98566801b716566b97af11fa5586cb5c21c91",
+  "evidence": [
+    {
+      "path": "profiles-local/CP00-r4/r4-baseline-probe-AA/main/baseline.cfg",
+      "sha256": "98b6dbd574bba2f4b86572a970027bfd83412e40c02e33c66d3e9158b37865d6"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-baseline-probe-AA/main/configs/omconfig.cfg",
+      "sha256": "7f51b5dfcbede11f27a3f8faac0bb5303abc041afa5095819fb484f748d9927e"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-baseline-probe-AA/main/cp00/baseline.scr",
+      "sha256": "3c063151265da54a8e50a9fc70911207018572c420dac5608d80f8beb5708066"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-baseline-probe-AA/main/qconsole.log",
+      "sha256": "7427757a5b3b97cf7b73ee2a6022e7607f7f49daad2fb5b1911ca474deba19cf"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-baseline-probe-AA/main/save/omconfig/cp00_after_combat.sav",
+      "sha256": "24e65f07dbbc3675bd320718c2c718718cbae0648432bc036ec3250b412d614d"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-baseline-probe-AA/main/save/omconfig/cp00_after_combat.ssv",
+      "sha256": "c44cb77823bb8b830e95b01b9384d0466113f8db533dcb8b5f6a15758b8caf8c"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-baseline-probe-AA/main/save/omconfig/cp00_after_combat.tga",
+      "sha256": "b9e82a4dc8142b142627412f296c07b472db9ecd1edc92cf69ed4ef49db9ad33"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-baseline-probe-AA/main/save/omconfig/cp00_before_combat.sav",
+      "sha256": "33789d03315b3650b9d4d87dd75cba14799fec29f1bfdc7470ef1253d7b80178"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-baseline-probe-AA/main/save/omconfig/cp00_before_combat.ssv",
+      "sha256": "62ff36b0e2be660b69ecfc57bd6cbfbaa729527ee3603ff798bb11d030101b67"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-baseline-probe-AA/main/save/omconfig/cp00_before_combat.tga",
+      "sha256": "d6615de235ba1d567f6a9b13ab172d00029d941fd4ce0deef0e7cc7b5d5a4434"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-baseline-probe-AA/main/save/omconfig/m2l10000.sav",
+      "sha256": "abf31b0c3cfa0d40d5ba8cecf2f15d891720aec61611b9ca77b6354a347c227b"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-baseline-probe-AA/main/save/omconfig/m2l10000.ssv",
+      "sha256": "69edbb63773c4ee2ed26ceed2ea81775b94e9ff1165c96c6738a1c5c3d0fd527"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-baseline-probe-AA/main/save/omconfig/m2l10000.tga",
+      "sha256": "ba8667642b68326441f497f501944bc4c75066d97b9866d3740ac931572a9c19"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-baseline-probe-AA/main/screenshots/shot0000.tga",
+      "sha256": "f2ff807d09daf0f3d0368181145056e22a73d712287b283721fa34b69763fd9d"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-baseline-probe-AA/main/screenshots/shot0001.tga",
+      "sha256": "85fdfff49d8f08660cb4d6c416c6909dbd64248564419b942c00579106b22c99"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-baseline-probe-AA/main/screenshots/shot0002.tga",
+      "sha256": "2ff2c6207639c80e6f85ca1ed03c5b6d5d9a2a2615713db8525fd66a9595f858"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-baseline-probe-AA/qkey",
+      "sha256": "33fbc7e1ac0c8bd9d008836136f9a4f31049a6126a7f6647c981525113a5c176"
+    }
+  ],
+  "assessment": "INVALID: fixture vector syntax compile failure."
+}
