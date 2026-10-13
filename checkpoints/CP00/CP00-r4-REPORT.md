@@ -23,8 +23,8 @@ Deploymentstand `58ee14ba801ebbc1d34c1985df671d865d0d133b`, Engine unverändert 
 | SH-Offsetkompatibilität | Keine Befehlsablehnung; beide Testvektoren nach Speichern und Laden erhalten, beide Test-Detonationscallbacks ausgeführt (`offset-r4-accepted.json`). Keine künstlich abgeschlossenen Originalziele. |
 | AA-Briefing | `briefing/briefing1` mit WCR-Skript gestartet; Projektion, Untertitel und Skip-Hinweis sichtbar. Kein vollständiger Briefingdurchlauf. |
 | SH-/BT-Filmbriefings | Filme in separaten echten Spielfenstern sichtbar; danach t1l1 bzw. e1l1 mit Autosave geladen. BT erreichte die erste Mission ohne Skip-Eingabe. Bei SH wurden Escape/Alt+F4 versucht, daher kein ununterbrochener Gesamtdurchlauf behauptet. `CP00-r4-visual.json`. |
-| AA-MG42-Karte | m2l1 startet mit sichtbarer Schneeszene und vollständigem Save, keine Script-Error-Meldung. Natürlicher MG42-Fortschritt nicht gespielt (`r4-mg42-start-AA.json`). |
-| BT-Finale | e3l4 startet, Haupt-/Tower-/Escape-/Outro-Ressourcen aus neuem WCR-Paket bestätigt; Szene und Save vorhanden. Bestehende acht Script-Error-Meldungen bleiben; kein Finalerfolg oder Timerfehlschlag getestet (`r4-finale-start-BT.json`). |
+| AA-MG42-Karte | m2l1 startet mit sichtbarer Schneeszene und vollständigem Save, keine Script-Error-Meldung. Kartenstart technisch geprüft (`r4-mg42-start-AA.json`); späterer natürlicher MG42-Test samt Missionsabschluss am 14.10.2026 vom Nutzer bestätigt. |
+| BT-Finale | e3l4 startet, Haupt-/Tower-/Escape-/Outro-Ressourcen aus neuem WCR-Paket bestätigt; Szene und Save vorhanden. Bestehende acht Script-Error-Meldungen bleiben; Finalerfolg und Timerfehlschlag auf Nutzerwunsch vom 14.10.2026 nicht getestet (`r4-finale-start-BT.json`). |
 
 **Fehlgeschlagene Testmethode erhalten:** Die ersten SH-/BT-Briefingproben hatten wartende Screenshot-/Quit-Befehle im Konsolenbuffer. `EventPlayMovie` hängt `cinematic` an denselben Buffer an; deshalb waren ihre Aufnahmen schwarz. Diese beiden Proben gelten ausdrücklich nicht als visuell bestanden. Der korrigierte Live-Test startet nur die Briefingkarte ohne nachfolgende Testbefehle; Filmaufnahmen und Logs bleiben lokal. Die erste BT-Liveaufnahme wurde erst im folgenden Missionsintro erfasst; eine getrennte Wiederholung dokumentiert den Briefingfilm selbst. Fenster nach den Tests geschlossen.
 
@@ -50,10 +50,10 @@ Auf die Rückfrage zum Zwischenschritt Speichern, regulär beenden und neu laden
 2. Normal bis zu den Flakzielen weiterspielen. Vor dem Anbringen einer Ladung einen eigenen Save anlegen, regulär beenden und diesen über denselben r4-Startweg laden.
 3. Flakziele regulär sprengen und prüfen, ob der anschließende Missionsfortschritt funktioniert. Bei einer Blockade den letzten funktionierenden Schritt und den Save nennen. Keine Diagnosebefehle erforderlich.
 
-AA und BT sind zusätzlich über `Start-CP00-r4-AA.cmd` bzw. `Start-CP00-r4-BT.cmd` startbar. Die bereits bestätigten Speicher-/FOV-Schritte müssen nicht nochmals in allen drei Spielen manuell wiederholt werden. Vollständige MG42-/Finaldurchläufe, weitere Übergänge, Kampf-/Leichen-/Drop-Referenzen, Frametimes, übrige Optionspersistenz und verbleibende Skriptwarnungen sind weiter offene CP0-Fälle.
+AA und BT sind zusätzlich über `Start-CP00-r4-AA.cmd` bzw. `Start-CP00-r4-BT.cmd` startbar. Die bereits bestätigten Speicher-/FOV-Schritte müssen nicht nochmals in allen drei Spielen manuell wiederholt werden. Zum Zeitpunkt der SH-Übergabe waren MG42-/Finaldurchläufe und übrige CP0-Fälle noch offen; die spätere MG42-Bestätigung und der BT-Testverzicht sind unten dokumentiert.
 
 
-## Nächster Spieltest: MG42 und BT-Finale (14.10.2026)
+## Vorbereitung des MG42-/BT-Spieltests (14.10.2026)
 
 `tools/prepare_cp00_progression.py` erzeugt zwei unabhängige Profile und Workspace-Startdateien. Das Werkzeug prüft r4-Binärdateien, aktive WCR-Pakete, Engine-/Inhaltszuordnung und die drei Dateien jedes Referenzsaves gegen die bestehenden Manifeste; vorhandene Zielprofile/Launcher werden zurückgewiesen. Die unveränderten r4-Startspielstände stammen aus `r4-mg42-start-AA` und `r4-finale-start-BT`. Es werden keine Erfolgsflags gesetzt oder Originalskripte verändert. Bestehende AA-/SH-/BT-Nutzerprofile bleiben erhalten; Einstellungen werden ausschließlich in die neuen Profile kopiert. Engine und Runtime bleiben identisch.
 
@@ -66,7 +66,7 @@ Beide tatsächlichen CMDs wurden ohne fs-Pfadüberschreibung gestartet, die Refe
 
 Die BT-Ladeprobe erzeugt keine neuen Script-Error-Zeilen; dies erklärt die acht Fehler beim ursprünglichen Kartenstart ausdrücklich nicht als behoben. Beide Saves liegen am Kartenanfang, nicht direkt vor dem späteren Prüfziel. Die neuen Launcher laden beim nächsten Start keinen Spielstand automatisch; eigener Fortschritt wird über das Lademenü fortgesetzt.
 
-### Fünf konkrete Prüfschritte
+### Ursprünglich übergebene Prüfschritte (AA abgeschlossen, BT anschließend abgewählt)
 
 1. Zuerst `Start-CP00-r4-MG42-AA.cmd` im Workspace starten und **Secret Documents of the Kriegsmarine** laden. Normal mit Grillo durch die Mission spielen, bis eine stationäre MG42 benutzbar ist.
 2. Vor der Benutzung einen eigenen Save anlegen. Die MG42 mit der Benutzen-Taste (übernommene Belegung: **E**) übernehmen, schießen, verlassen und erneut übernehmen. Danach die Mission normal bis zum nächsten Abschnitt abschließen. Rückmeldung: Benutzung möglich, Gegner-/Missionsablauf weitergegangen, Levelübergang erreicht? Bei Stillstand den letzten Schritt und Save nennen. Der lokale `m2l1::s7_test`-Callback steuert zeitbegrenzte zusätzliche Gegnerwellen; ein bloßer Kartenstart ist kein Fortschrittsnachweis.
@@ -74,4 +74,13 @@ Die BT-Ladeprobe erzeugt keine neuen Script-Error-Zeilen; dies erklärt die acht
 4. Luftangriff bestätigen und die anschließende Flucht vollständig spielen. Prüfen, ob die Route bis zum echten Ende, Outro und Abspann weiterläuft. Die Funkbestätigung allein ist kein bestandener Finaltest. Das lokale Escape-Skript wartet auf fünf aufeinanderfolgende Trigger und erst danach auf den Abschluss der Sequenz.
 5. Den Save vor der Funkbestätigung erneut laden, den Luftangriff bestätigen und diesmal die Fluchtzeit verstreichen lassen. Erwartet: Scheitern/Tod mit fehlgeschlagener Mission, kein erfolgreicher Abspann. Bei unverändertem mittlerem Schwierigkeitsgrad beträgt die Skriptfrist 90 Sekunden; danach folgt noch die kurze Fehlschlagsequenz. Ergebnis beider BT-Fälle getrennt melden.
 
-Zunächst wird nur das Ergebnis des AA-Tests erwartet; BT ist für den anschließenden Schritt vorbereitet. Vollständige CP0-Abnahme, Merge und CP0a bleiben offen.
+Bei der Übergabe wurde zunächst das AA-Ergebnis erwartet; BT war für danach vorbereitet. Die folgende Nutzerentscheidung ersetzt diese weitere Testaufforderung.
+
+
+## Nutzerbestätigung MG42 und Verzicht auf BT-Finaltest (14.10.2026)
+
+Der Nutzer meldet zum übergebenen AA-MG42-Test: „Hat alles funktioniert und ich konnte die Mission auch abschließen.“ Damit gelten MG42 übernehmen, schießen, verlassen, erneut übernehmen und anschließender Missionsabschluss als durch den Nutzer bestätigt. Dies ist der natürliche Spieltest auf CP00-r4; der ältere synthetische Komponententest bleibt ein eigener Nachweis.
+
+Anschließend entscheidet der Nutzer: „Lass uns den BT Final Test überspringen. Da wird auch schon alles funktionieren“. Diese direkte Anweisung ersetzt die entsprechende Testanforderung für die aktuelle CP0-Runde. Die vollständige BT-Flucht, Outro/Abspann und der Timerfehlschlag werden **auf Nutzerwunsch nicht durchgeführt**. Die Erwartung des Nutzers ist kein Prüfnachweis; diese Fälle erhalten keinen Erfolgsstatus. Die acht bekannten e3l4-Startfehler bleiben ungeklärt. Vorhandene Start-/Save-/Ladenachweise bleiben gültig; vorbereitete BT-Profile und Startdateien werden erhalten. Keine erneute Aufforderung zum BT-Finaltest ohne neuen Auftrag.
+
+Weitere offene CP0-Punkte: zusätzliche Übergänge, Kampf-/Leichen-/Drop-Referenzen, Frametimes, übrige Optionspersistenz und noch ungeklärte Skriptwarnungen. Der Verzicht betrifft ausschließlich den BT-Finaltest; vollständige CP0-Abnahme, Merge oder CP0a wurden nicht freigegeben. Engine, Runtime und Spielstände wurden für diese Dokumentationsänderung nicht verändert.
