@@ -10,7 +10,7 @@ from inventory_cp00 import sha, save
 
 ap = argparse.ArgumentParser()
 ap.add_argument('game', choices=['AA', 'SH', 'BT'])
-ap.add_argument('map', choices=['m1l1', 'm2l1', 't1l2', 'e3l4'])
+ap.add_argument('map', choices=['m1l1', 'm2l1', 't1l2', 'e3l4','briefing/briefing1','briefing/briefingt1','briefing/briefinge1'])
 ap.add_argument('--run-id', required=True)
 ap.add_argument('--seconds', type=int, default=30)
 ap.add_argument('--candidate', default='CP00-r2')
@@ -18,7 +18,8 @@ args = ap.parse_args()
 assert re.fullmatch(r'[A-Za-z0-9-]+', args.run_id)
 assert re.fullmatch(r'CP00-r\d+', args.candidate)
 assert 5 <= args.seconds <= 120
-assert args.map in {'AA': ['m1l1', 'm2l1'], 'SH': ['t1l2'], 'BT': ['e3l4']}[args.game]
+assert args.map in {'AA': ['m1l1', 'm2l1','briefing/briefing1'], 'SH': ['t1l2','briefing/briefingt1'], 'BT': ['e3l4','briefing/briefinge1']}[args.game]
+briefing=args.map.startswith('briefing/')
 repo = Path(__file__).resolve().parents[1]
 runtime = repo / 'runtime-local' / args.candidate
 profile = repo / 'profiles-local' / args.candidate / args.run_id
@@ -31,9 +32,9 @@ if args.map == 'e3l4':
     resources += ['maps/e3l4/escape.scr', 'maps/e3l4/tower.scr', 'maps/e3l4/outro.scr']
 commands = ['wait 1000', f'map {args.map}', 'wait 3000', 'finishloadingscreen']
 commands += [f'which {name}' for name in resources]
-commands += ['wait 2000', 'screenshot', f'wait {args.seconds * 1000}',
-             'screenshot', f'savegame cp00_{args.map}', 'wait 1500',
-             f'echo CP00_MAP_PROBE_DONE_{args.map}', 'quit']
+commands += ['wait 2000', 'screenshot', f'wait {args.seconds * 1000}', 'screenshot']
+if not briefing: commands += [f'savegame cp00_{args.map}', 'wait 1500']
+commands += [f'echo CP00_MAP_PROBE_DONE_{args.map}', 'quit']
 (home / 'cp00-probe.cfg').write_text('\n'.join(commands) + '\n', encoding='ascii')
 cmd = [str(runtime / 'openmohaa.exe')]
 settings = {'com_target_game': str(['AA', 'SH', 'BT'].index(args.game)),
@@ -69,7 +70,7 @@ result = dict(candidate=args.candidate, game=args.game, map=args.map, run_id=arg
               active_state='CS_ACTIVE' in log,
               script_errors=[line.split('] ', 1)[-1] for line in log.splitlines() if 'Script Error :' in line],
               commands_finished=f'CP00_MAP_PROBE_DONE_{args.map}' in log,
-              complete_save_triplet=all((home / f'save/omconfig/cp00_{args.map}.{ext}').is_file()
+              complete_save_triplet=not briefing and all((home / f'save/omconfig/cp00_{args.map}.{ext}').is_file()
                                        for ext in ('sav', 'ssv', 'tga')),
               resource_origins=[line.split('] ', 1)[-1].replace(str(runtime), '$RUNTIME')
                                 for line in log.splitlines() if 'File "' in line and 'found in' in line],
@@ -77,3 +78,4 @@ result = dict(candidate=args.candidate, game=args.game, map=args.map, run_id=arg
               scope='Map startup and idle scene only. No combat, MG42 progression, natural transition or finale completion asserted.')
 save(repo / f'checkpoints/CP00/{args.run_id}.json', result)
 print(json.dumps({k: v for k, v in result.items() if k != 'evidence'}), flush=True)
+raise SystemExit(0 if proc.returncode==0 and not timed_out and result['active_state'] and result['commands_finished'] and (briefing or result['complete_save_triplet']) else 1)

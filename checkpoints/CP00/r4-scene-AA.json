@@ -1,0 +1,34 @@
+{
+  "game": "AA",
+  "map": "m1l2a",
+  "exit_code": 0,
+  "timeout": false,
+  "duration_seconds": 19.53,
+  "active_state": true,
+  "save_requested": true,
+  "load_lines": [
+    "[2026-10-13 23:47:33 UTC+1.000] Loading game...cp00_aa",
+    "[2026-10-13 23:47:38 UTC+1.000] CP00_SAVELOAD_COMMANDS_FINISHED"
+  ],
+  "commands_finished": true,
+  "menu_return_command_finished": true,
+  "screenshots": [
+    "main/screenshots/shot0000.tga",
+    "main/screenshots/shot0001.tga",
+    "main/screenshots/shot0002.tga"
+  ],
+  "save_files": [
+    "main/save/omconfig/cp00_aa.sav",
+    "main/save/omconfig/cp00_aa.ssv",
+    "main/save/omconfig/cp00_aa.tga"
+  ],
+  "note": "Command-driven rendered smoke, not manual gameplay or natural level transition.",
+  "run_id": "r4-scene",
+  "game_loaded": true,
+  "resource_origins": [
+    "File \"maps/m1l2a.scr\" found in \"$RUNTIME\\main\\Restoration_AA_Pak1-Main.pk3\"",
+    "File \"global/ai.scr\" found in \"$RUNTIME\\main\\Restoration_AA_Pak1-Main.pk3\""
+  ],
+  "candidate": "CP00-r4",
+  "pre_continue_screenshot_requested": true
+}

@@ -1,0 +1,49 @@
+{
+  "scope": "Targeted entry scripts only; no complete mission or general harmlessness claim",
+  "resources": [
+    {
+      "package": "main/Restoration_AA_Pak1-Main.pk3",
+      "resource": "maps/m2l1.scr",
+      "before": "dcada82f39e0ea1411a07d65d5c4cf4517634c70bc9a3a8c41bf64baa39cd750",
+      "after": "4162b8ce0495cc64af8b0acedbe8461c920b970a31ece12d4b282ecb3fd1c121",
+      "unchanged": false
+    },
+    {
+      "package": "mainta/Restoration_SH_Pak1-Main.pk3",
+      "resource": "maps/t1l2.scr",
+      "before": "66acad9100c2b21bc010d129a45d50cf5e4ee99f05ba28624a7cd9fe982e3621",
+      "after": "66acad9100c2b21bc010d129a45d50cf5e4ee99f05ba28624a7cd9fe982e3621",
+      "unchanged": true
+    },
+    {
+      "package": "maintt/Restoration_BT_Pak1-Main.pk3",
+      "resource": "maps/e3l4.scr",
+      "before": "c7d05bdb2bc228f25367e39545dd3a99ceec83d1b55892241a9363ff60fc2bca",
+      "after": "c7d05bdb2bc228f25367e39545dd3a99ceec83d1b55892241a9363ff60fc2bca",
+      "unchanged": true
+    },
+    {
+      "package": "maintt/Restoration_BT_Pak1-Main.pk3",
+      "resource": "maps/e3l4/escape.scr",
+      "before": "5d2f8291422f056bb555d28f3cac2d21def58b032cf64eaaa32e457201cfbf95",
+      "after": "5d2f8291422f056bb555d28f3cac2d21def58b032cf64eaaa32e457201cfbf95",
+      "unchanged": true
+    },
+    {
+      "package": "maintt/Restoration_BT_Pak1-Main.pk3",
+      "resource": "maps/e3l4/tower.scr",
+      "before": "1b6f8c00638aba60570e04eaa922e5cf6b44d7a8cef26f102d89eeb247bc842c",
+      "after": "1b6f8c00638aba60570e04eaa922e5cf6b44d7a8cef26f102d89eeb247bc842c",
+      "unchanged": true
+    },
+    {
+      "package": "maintt/Restoration_BT_Pak1-Main.pk3",
+      "resource": "maps/e3l4/outro.scr",
+      "before": "1bb76a79272822d2e26550d393d64ab931cb79e95da2da74491a2a6b11cc2428",
+      "after": "1bb76a79272822d2e26550d393d64ab931cb79e95da2da74491a2a6b11cc2428",
+      "unchanged": true
+    }
+  ],
+  "aa_m2l1_diff": "Diagnostic print statements commented; MG callback logic preserved",
+  "new_ai_overrides": "New effective providers; runtime validation required. Not assumed to be diagnostic-only changes."
+}

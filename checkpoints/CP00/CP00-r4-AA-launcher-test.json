@@ -1,0 +1,63 @@
+{
+  "candidate": "CP00-r4",
+  "game": "AA",
+  "actual_workspace_cmd_used": true,
+  "fs_path_override_in_test": false,
+  "menu_callback_save_created": [
+    "m1l2a0000.ssv"
+  ],
+  "new_save_has_thumbnail": true,
+  "new_menu_save_loaded_after_restart": true,
+  "load_method": "Console command; actual Load-button click requires separate UI check",
+  "fov_90_persisted": true,
+  "fov_restart_lines": [
+    "[2026-10-13 23:47:54 UTC+1.000] \"cg_fov\" is:\"90\" default:\"80\""
+  ],
+  "path_rejection": false,
+  "visual_check": "PASS: inspected shot0001, thumbnail plus reference and new save rows visible",
+  "evidence": [
+    {
+      "path": "generated-local/CP00-r4/AA/menu.log",
+      "sha256": "78578b6a4688865cdd7977f3cd76e52aa14cddce55b146e3911bdb50100b02e2"
+    },
+    {
+      "path": "generated-local/CP00-r4/AA/restart.log",
+      "sha256": "56838c8ef7547580f2d7e6bfb47b04a22e0d45be18b5286bdfb21c651abb366d"
+    },
+    {
+      "path": "profiles-local/CP00-r4/AA/main/screenshots/shot0000.tga",
+      "sha256": "68615e7a6a01978d1f915b6a67383e797e16a6c8f1468870aeec14cf952714af"
+    },
+    {
+      "path": "profiles-local/CP00-r4/AA/main/screenshots/shot0001.tga",
+      "sha256": "053bc35a8cbe49cdf0aeb454f4203e6ae6f90a3aacf1df0ace6fe0959d9e8456"
+    },
+    {
+      "path": "profiles-local/CP00-r4/AA/main/screenshots/shot0002.tga",
+      "sha256": "fc8041e215ec5faefa3535131a393180daf3ac576baccc80b4c54415aec658e6"
+    },
+    {
+      "path": "profiles-local/CP00-r4/AA/main/screenshots/shot0003.tga",
+      "sha256": "9e586d692728feaf1329bb779b5ad60459f0239f2cf660c157e603e20d8102c0"
+    },
+    {
+      "path": "profiles-local/CP00-r4/AA/main/screenshots/shot0004.tga",
+      "sha256": "b8d7f146f89061e41c8f205ea950218d568d0340dad8ee5bb2a308bec321bd7b"
+    },
+    {
+      "path": "profiles-local/CP00-r4/AA/main/save/omconfig/cp00_aa.tga",
+      "sha256": "ae411cac369b9bc5c2933b00aaf90a63eec8ecc5ad05d8e3b95487780e9d31e7"
+    },
+    {
+      "path": "profiles-local/CP00-r4/AA/main/save/omconfig/m1l2a0000.tga",
+      "sha256": "5f3bff14557298ff02e1b8b247cc5b622885db7f08ce4b985b152bb6804eb622"
+    },
+    {
+      "path": "generated-local/CP00-r4/AA/tested-omconfig.cfg",
+      "sha256": "8a024cc86c29922f324f01c728573b04c755ce3b5542fac06942c29239eb0a9e"
+    }
+  ],
+  "engine_source_commit": "af7bb7c6e706fcc64e5933a22457333274f3de22",
+  "reference_save_basis": "Fresh r4-scene saves on new WCR revision; no r1/r2/r3 save migration",
+  "delivery_profile_note": "Test configuration preserved; developer changed to 0 afterwards, FOV remains 90"
+}

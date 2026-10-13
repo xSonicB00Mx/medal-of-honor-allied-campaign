@@ -1,0 +1,59 @@
+{
+  "candidate": "CP00-r4",
+  "game": "BT",
+  "map": "briefing/briefinge1",
+  "run_id": "r4-briefing-BT",
+  "engine_source_commit": "af7bb7c6e706fcc64e5933a22457333274f3de22",
+  "engine_sha256": "5f1eee385de3b26750b45b7aa1e98566801b716566b97af11fa5586cb5c21c91",
+  "wcr_package_fingerprint": "3b6b38b5b04ba320a526196946c44394c4519e4197dc8d3d05788e186501cfcc",
+  "exit_code": 0,
+  "timed_out": false,
+  "elapsed_seconds": 22.03,
+  "active_state": true,
+  "script_errors": [],
+  "commands_finished": true,
+  "complete_save_triplet": false,
+  "resource_origins": [
+    "File \"maps/briefing/briefinge1.scr\" found in \"$RUNTIME\\maintt\\Restoration_BT_Pak1-Main.pk3\""
+  ],
+  "evidence": [
+    {
+      "path": "profiles-local/CP00-r4/r4-briefing-BT/maintt/configs/omconfig.cfg",
+      "sha256": "7b8867fcc391d8237e9df15e920a2ccbff64d4a4c1a737a68004e98a9c130493"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-briefing-BT/maintt/cp00-probe.cfg",
+      "sha256": "0a7c1ddc8ffffe292e2e6061b78a861969bee4eb1782cfc51b13d7528d6afac0"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-briefing-BT/maintt/qconsole.log",
+      "sha256": "000b8f26eef63d536a5c00ac21da9de7bf5a06b152cf28cac2008cc68b50fec6"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-briefing-BT/maintt/save/omconfig/briefing_briefinge10000.sav",
+      "sha256": "b8dc865971570f1d435fcfed93107c8a490b50a71d203f198108d53c1c0459df"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-briefing-BT/maintt/save/omconfig/briefing_briefinge10000.ssv",
+      "sha256": "9d6cbf717ba981c24bdd430334de6a053a3b370238a8424e84302d143e8e1734"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-briefing-BT/maintt/save/omconfig/briefing_briefinge10000.tga",
+      "sha256": "404257eb51fc07b0b567b9e9f67406960487ceda79471d9e4b0767fc3740d61e"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-briefing-BT/maintt/screenshots/shot0000.tga",
+      "sha256": "0be7f0fdcda32a816c4b4af100c81450f496bec1ebcc0c8b33b33577192aaab0"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-briefing-BT/maintt/screenshots/shot0001.tga",
+      "sha256": "8d4bf536c69dc90fddfbbc2b6272720f9e0fd269927434c2c0d8ef53dd49f5d5"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-briefing-BT/qkey",
+      "sha256": "70140b1e4b3316e564f9dc5b9aa500780dcf499dad783a67def5b94efa3d0450"
+    }
+  ],
+  "scope": "Map startup and idle scene only. No combat, MG42 progression, natural transition or finale completion asserted.",
+  "visual_check": "FAILED TEST METHOD: black frames because queued cinematic was delayed by wait/screenshot/quit buffer. Superseded only for visual verification by separate live startup test in CP00-r4-visual.json."
+}
