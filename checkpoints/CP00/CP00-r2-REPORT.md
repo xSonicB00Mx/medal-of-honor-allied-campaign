@@ -32,6 +32,8 @@ Einzelnachweise: `CP00-r2-AA-launcher-test.json`, `CP00-r2-SH-launcher-test.json
 
 ## Erneuter Nutzertest
 
+**Rückmeldung am 13.10.2026:** Der Nutzer bestätigt mit „hat geklappt. fahre fort“ den unten beschriebenen Korrekturtest. Damit sind Speichern/Laden, Missionsvorschaubilder und FOV-Persistenz zusätzlich durch Nutzerfeedback bestätigt. Die Aussage wird nicht auf die noch offenen Missions-/Finalprüfungen ausgedehnt; kein Merge und kein CP0a.
+
 1. **AA:** Im Workspace `Start-CP00-r2-AA.cmd` per Windows-Explorer starten. Im Ladebildschirm muss das Missionsbild sichtbar sein. „The Rescue Mission“ / `cp00_aa` laden, speichern und den neu angelegten Eintrag wieder laden.
 2. **Spearhead:** `Start-CP00-r2-SH.cmd` starten; denselben Ablauf mit „Normandy – Invasion“ / `cp00_sh` prüfen.
 3. **Breakthrough:** `Start-CP00-r2-BT.cmd` starten; denselben Ablauf mit „Tunisia – Battle of Kasserine Pass II“ / `cp00_bt` prüfen.

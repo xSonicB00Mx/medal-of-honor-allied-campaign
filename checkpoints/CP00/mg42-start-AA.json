@@ -1,0 +1,70 @@
+{
+  "candidate": "CP00-r2",
+  "game": "AA",
+  "map": "m2l1",
+  "run_id": "mg42-start-AA",
+  "exit_code": 0,
+  "timed_out": false,
+  "elapsed_seconds": 24.28,
+  "active_state": true,
+  "commands_finished": true,
+  "resource_origins": [
+    "File \"maps/m2l1.scr\" found in \"$RUNTIME\\main\\Restoration_AA_Pak1-Main.pk3\""
+  ],
+  "evidence": [
+    {
+      "path": "profiles-local/CP00-r2/mg42-start-AA/main/configs/omconfig.cfg",
+      "sha256": "7948b7e9e38d9f3e57e5d123f633219a530b77f2b8a22c42d0a2a406ea26d33d"
+    },
+    {
+      "path": "profiles-local/CP00-r2/mg42-start-AA/main/cp00-probe.cfg",
+      "sha256": "a044d9cac525deade03adc4a73f3ac5ef56b82c03ec0b12703ad95a7d344e766"
+    },
+    {
+      "path": "profiles-local/CP00-r2/mg42-start-AA/main/qconsole.log",
+      "sha256": "89baca519f41f8c7f1bb0a79e8a2a68927140a9c4931f3a9b32a80cc398dce68"
+    },
+    {
+      "path": "profiles-local/CP00-r2/mg42-start-AA/main/save/omconfig/cp00_m2l1.sav",
+      "sha256": "70a5471f2401bafb400d66681b3bdf4bbc32e6be287eee19cbcb68ec22572378"
+    },
+    {
+      "path": "profiles-local/CP00-r2/mg42-start-AA/main/save/omconfig/cp00_m2l1.ssv",
+      "sha256": "a1858f70b614b7f3926922ac0f727c03ecf3ef0a4307a8e7ed184ba36fb3eef1"
+    },
+    {
+      "path": "profiles-local/CP00-r2/mg42-start-AA/main/save/omconfig/cp00_m2l1.tga",
+      "sha256": "b5fa4f42ba49dbb8c0aedd34e3ba747a0844adcec7f06463e5dbec79bacd802f"
+    },
+    {
+      "path": "profiles-local/CP00-r2/mg42-start-AA/main/save/omconfig/m2l10000.sav",
+      "sha256": "a0783d1bb60765431500031d69ab8d88ee50c1d7ec90466f493039bc5cd5c1bc"
+    },
+    {
+      "path": "profiles-local/CP00-r2/mg42-start-AA/main/save/omconfig/m2l10000.ssv",
+      "sha256": "741accf82af3474c65d6c85132b24e3a53d3b08d4fffe9d5293b0266aaffca73"
+    },
+    {
+      "path": "profiles-local/CP00-r2/mg42-start-AA/main/save/omconfig/m2l10000.tga",
+      "sha256": "f497a2b3a78cf418155e5c85bdc0bf0cbe93bfeb024d345570ec237a1441031a"
+    },
+    {
+      "path": "profiles-local/CP00-r2/mg42-start-AA/main/screenshots/shot0000.tga",
+      "sha256": "360a507e5f8a92737b17697e07f5de89d830ef3ad86dc6e916f603f1313c2fe6"
+    },
+    {
+      "path": "profiles-local/CP00-r2/mg42-start-AA/main/screenshots/shot0001.tga",
+      "sha256": "1bd4c63554e49ec07ec4b11c8b3a0203c6cdfbede5d782253c9a39524f1ad808"
+    },
+    {
+      "path": "profiles-local/CP00-r2/mg42-start-AA/qkey",
+      "sha256": "81b286e3494c8fee2aa4bb52aa37110e2b786f15150152f75cfd496ea058443c"
+    }
+  ],
+  "scope": "Map startup and idle scene only. No combat, MG42 progression, natural transition or finale completion asserted.",
+  "engine_source_commit": "3eec4afb22093421b8776d2df92b87ec2fb4119e",
+  "engine_sha256": "ed50e53a812d9ef1ef5ba196d1ce95f6fbecf75b388eabffec11cbfc2f61a464",
+  "wcr_package_fingerprint": "0d681481b7deaaa76fbeb5466de634e6e6b0caf271b975e1f8052408b41f4fe9",
+  "script_errors": [],
+  "complete_save_triplet": true
+}

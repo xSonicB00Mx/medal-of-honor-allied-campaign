@@ -1,0 +1,60 @@
+{
+  "candidate": "CP00-r2",
+  "scope": "Isolated turret use callback; not natural MG42 mission progression",
+  "cheats_enabled_for_fixture_execution": true,
+  "mission_flags_modified": false,
+  "observed": [
+    [
+      "FIRST",
+      "1"
+    ],
+    [
+      "DISMOUNT",
+      "1"
+    ],
+    [
+      "SECOND",
+      "2"
+    ]
+  ],
+  "passed": true,
+  "exit_code": 0,
+  "upstream_fix": "44ce0595c2bbe1c3d5933e16e9130c2d7cf1306d",
+  "evidence": [
+    {
+      "path": "profiles-local/CP00-r2/turret-callback-AA-v2/main/configs/omconfig.cfg",
+      "sha256": "b2bb93eb79c57da534eca2d638786d85e66fb507ad46bcad2348db648753bdf4"
+    },
+    {
+      "path": "profiles-local/CP00-r2/turret-callback-AA-v2/main/cp00/turret.scr",
+      "sha256": "cc6526e2d4e7d1796e77f5abfff29d036181ec9445c26f88d08b82e68e211ff4"
+    },
+    {
+      "path": "profiles-local/CP00-r2/turret-callback-AA-v2/main/cp00-turret.cfg",
+      "sha256": "166db5c0b49d4da153f70fdda2c06114f95e61281b9c8d49780d34e68d4d73cf"
+    },
+    {
+      "path": "profiles-local/CP00-r2/turret-callback-AA-v2/main/qconsole.log",
+      "sha256": "2ffa22909222495a4d9fe51877881574f8f227a88906dd408fd95af79b7548dd"
+    },
+    {
+      "path": "profiles-local/CP00-r2/turret-callback-AA-v2/main/save/omconfig/m2l10000.sav",
+      "sha256": "e9587b2db90bdebcb22a8a0a12c164525965190f7e4f7b6c46d56eca8c6d4f1c"
+    },
+    {
+      "path": "profiles-local/CP00-r2/turret-callback-AA-v2/main/save/omconfig/m2l10000.ssv",
+      "sha256": "9dab3a5dbadbc7418d684ea75c5e6de52588634637bb32bb060e8b403636156e"
+    },
+    {
+      "path": "profiles-local/CP00-r2/turret-callback-AA-v2/main/save/omconfig/m2l10000.tga",
+      "sha256": "bab2b6ef03bd225c42b995c71e24e8812046a27868fe2018868774fb86350409"
+    },
+    {
+      "path": "profiles-local/CP00-r2/turret-callback-AA-v2/qkey",
+      "sha256": "b3d35ad91d086cd891e1f7771640527cd88590bed25dcc1e591e9a536fe2adb6"
+    }
+  ],
+  "engine_source_commit": "3eec4afb22093421b8776d2df92b87ec2fb4119e",
+  "engine_sha256": "ed50e53a812d9ef1ef5ba196d1ce95f6fbecf75b388eabffec11cbfc2f61a464",
+  "wcr_package_fingerprint": "0d681481b7deaaa76fbeb5466de634e6e6b0caf271b975e1f8052408b41f4fe9"
+}
