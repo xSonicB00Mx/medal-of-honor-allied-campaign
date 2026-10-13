@@ -38,7 +38,13 @@ Lokales Paket `artifacts-local/CP00-r4-local-runtime.zip`: CRC geprüft, vollst�
 
 Nutzerprofile `AA`, `SH`, `BT` enthalten nur frisch auf r4 erzeugte Referenz-/Testsaves. Die zusätzlichen Skript-/Briefingproben liegen in separaten Profilen. FOV 90, Fenster 1280×960, GL1/OpenAL, 60-FPS-Limit; Diagnosemodus für die drei Nutzerprofile nach Sicherung der Testkonfiguration deaktiviert. Keine alten Nutzer-Saves migriert. Zur Rückkehr r4 schließen und die bisherigen `Start-CP00-r2-*.cmd` mit ihren erhaltenen r2-Profilen verwenden. Nicht EXE oder einzelne Pakete zwischen Kandidaten austauschen.
 
-## Nächster Nutzertest
+## Nutzerprüfung vom 14.10.2026
+
+Der Nutzer bestätigt für den übergebenen CP00-r4-SH-Test: „Erstes Flakziel wurde gesprengt. Mission setzte normal fort“ und anschließend „Zweites Flakziel zerstört. Mission lief normal weiter“. Damit sind beide natürlichen Flaksprengungen mit jeweiligem anschließendem Missionsfortschritt durch Nutzerfeedback bestätigt. Dies ergänzt den synthetischen Ereignistest; es ist keine vollständige CP0-Abnahme oder Mergefreigabe.
+
+Der vorgesehene Zwischenschritt Speichern, regulär beenden und neu laden wurde in diesen Rückmeldungen noch nicht ausdrücklich bestätigt. Die automatisierten r4-Save-/Load-Nachweise bleiben davon getrennt gültig. Vollständiger Missionsabschluss und natürlicher Levelübergang sind ebenfalls nicht aus „lief normal weiter“ abzuleiten. Beide erfolgreichen Sprengungen müssen für ihre Bestätigung nicht wiederholt werden.
+
+## Übergebener Nutzertest
 
 1. Im Workspace **`Start-CP00-r4-SH.cmd`** starten. Im Ladebildschirm „Normandy – Invasion“ / `cp00_sh` laden; neuere automatische Testeinträge stehen ebenfalls in der Liste.
 2. Normal bis zu den Flakzielen weiterspielen. Vor dem Anbringen einer Ladung einen eigenen Save anlegen, regulär beenden und diesen über denselben r4-Startweg laden.
