@@ -30,7 +30,9 @@ extern "C" {
 #endif
 
 #define PRODUCT_NAME					"OpenMoHAA"
+#ifndef PRODUCT_DATE
 #define PRODUCT_DATE					__DATE__
+#endif
 
 #define BASEGAME				"main"
 // We're always legacy

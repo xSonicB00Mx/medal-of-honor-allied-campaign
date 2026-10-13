@@ -14,6 +14,8 @@ build*
 *.sav
 *.ssv
 *.bundle
+__pycache__/
+*.pyc
 !tools/build-cp00.ps1
 *.swp
 *tags

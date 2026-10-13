@@ -1,0 +1,26 @@
+name: CP00 validation
+on:
+  pull_request:
+  push:
+    branches: ['codex/cp00-baseline']
+permissions:
+  contents: read
+jobs:
+  source-and-build:
+    runs-on: windows-2022
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Validate metadata and excluded products
+        run: python tools/validate_cp00.py
+      - name: Prepare pinned parser tools
+        shell: pwsh
+        run: |
+          Invoke-WebRequest 'https://github.com/lexxmark/winflexbison/releases/download/v2.5.25/win_flex_bison-2.5.25.zip' -OutFile "$env:RUNNER_TEMP/parser.zip"
+          if ((Get-FileHash "$env:RUNNER_TEMP/parser.zip").Hash -ne '8D324B62BE33604B2C45AD1DD34AB93D722534448F55A16CA7292DE32B6AC135') { throw 'Parser tools hash mismatch' }
+          Expand-Archive "$env:RUNNER_TEMP/parser.zip" "$env:RUNNER_TEMP/parser"
+      - name: Build pinned source without game assets
+        shell: pwsh
+        run: ./tools/build-cp00.ps1 -CMake (Get-Command cmake).Source -FlexBison "$env:RUNNER_TEMP/parser"

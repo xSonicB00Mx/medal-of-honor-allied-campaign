@@ -600,7 +600,7 @@ extern "C"
 #endif
 
 #ifdef GAME_DLL
-#    ifdef WIN32
+#    ifdef _WIN32
     __declspec(dllexport)
 #    else
 __attribute__((visibility("default")))

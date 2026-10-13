@@ -16,7 +16,7 @@ def main():
                 key=e.filename.replace('\\','/').lower()
                 resources[key].append(dict(package=rel,entry=e.filename,crc32=f'{e.CRC:08x}',size=e.file_size))
     contexts={}
-    for name,dirs in [('AA',['main']),('SH',['main','mainta']),('BT',['main','mainta','maintt'])]:
+    for name,dirs in [('AA',['main']),('SH',['main','mainta']),('BT',['main','maintt'])]:
         # Derived from FS_Startup and FS_AddGameDirectory. Runtime `path/which` must confirm.
         effective={}
         for game in dirs:

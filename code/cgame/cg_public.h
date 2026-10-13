@@ -525,7 +525,7 @@ functions exported to the main executable
     } clientGameExport_t;
 
 #ifdef CGAME_DLL
-#    ifdef WIN32
+#    ifdef _WIN32
     __declspec(dllexport)
 #    else
     __attribute__((visibility("default")))
