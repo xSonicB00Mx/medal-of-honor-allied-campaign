@@ -16,6 +16,7 @@ build*
 *.bundle
 __pycache__/
 *.pyc
+/Start-CP00*.cmd
 !tools/build-cp00.ps1
 *.swp
 *tags
