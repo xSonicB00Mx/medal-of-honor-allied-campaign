@@ -42,7 +42,7 @@ Nutzerprofile `AA`, `SH`, `BT` enthalten nur frisch auf r4 erzeugte Referenz-/Te
 
 Der Nutzer bestätigt für den übergebenen CP00-r4-SH-Test: „Erstes Flakziel wurde gesprengt. Mission setzte normal fort“ und anschließend „Zweites Flakziel zerstört. Mission lief normal weiter“. Damit sind beide natürlichen Flaksprengungen mit jeweiligem anschließendem Missionsfortschritt durch Nutzerfeedback bestätigt. Dies ergänzt den synthetischen Ereignistest; es ist keine vollständige CP0-Abnahme oder Mergefreigabe.
 
-Der vorgesehene Zwischenschritt Speichern, regulär beenden und neu laden wurde in diesen Rückmeldungen noch nicht ausdrücklich bestätigt. Die automatisierten r4-Save-/Load-Nachweise bleiben davon getrennt gültig. Vollständiger Missionsabschluss und natürlicher Levelübergang sind ebenfalls nicht aus „lief normal weiter“ abzuleiten. Beide erfolgreichen Sprengungen müssen für ihre Bestätigung nicht wiederholt werden.
+Auf die Rückfrage zum Zwischenschritt Speichern, regulär beenden und neu laden bestätigt der Nutzer: „Beim ersten Flakziel ja. Beim zweiten Flakziel nicht“. Somit sind Save/Neustart/Laden am ersten Ziel sowie beide natürlichen Sprengungen und ihr anschließender Missionsfortschritt bestätigt. Der übergebene gezielte SH-Flaktest ist damit bestanden; ein zweiter separater Neustarttest am zweiten Ziel ist nicht erforderlich und wird nicht als durchgeführt behauptet. Die automatisierten r4-Save-/Load-Nachweise bleiben davon getrennt gültig. Vollständiger Missionsabschluss und natürlicher Levelübergang sind nicht aus „lief normal weiter“ abzuleiten. Keine vollständige CP0-Abnahme oder Mergefreigabe.
 
 ## Übergebener Nutzertest
 
