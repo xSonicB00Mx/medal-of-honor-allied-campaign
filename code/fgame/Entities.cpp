@@ -1631,6 +1631,7 @@ CLASS_DECLARATION(Animate, ThrobbingBox_Explosive, "ThrobbingBox_Explosive") {
     {&EV_DoExplosion,        &ThrobbingBox_Explosive::DoExplosion         },
     {&EV_SetTriggered,       &ThrobbingBox_Explosive::SetTriggered        },
     {&EV_SetExplosionEffect, &ThrobbingBox_Explosive::SetExplosionEffect  },
+    {&EV_SetExplosionOffset, &ThrobbingBox_Explosive::SetExplosionOffset  },
     {NULL,                   NULL                                         }
 };
 

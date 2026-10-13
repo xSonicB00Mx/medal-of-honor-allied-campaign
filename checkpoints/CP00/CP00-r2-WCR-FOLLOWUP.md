@@ -2,6 +2,8 @@
 
 13.10.2026. CP0 bleibt offen. Engine `3eec4afb22093421b8776d2df92b87ec2fb4119e`, unveränderte CP00-r2-Binärdateien und WCR-Pakete. Kein neuer Kandidat, kein Merge, kein CP0a. Nutzerbestätigung „hat geklappt. fahre fort“ gilt für die zuvor übergebenen Save-/Vorschaubild-/FOV-Korrekturen.
 
+**Nachträgliche Berichtigung:** Das Original-BT-Log wurde inzwischen in der isolierten Runtime gefunden; der Abbruch geschah nach Initialisierung/Kartenstart. Mehrere Warnungen sind dort ebenfalls belegt. Auch die SH-Offset-Einordnung wurde durch Prüfung der Original-DLL präzisiert: Registrierung fehlt, die unveränderte Explosionsposition entspricht jedoch der Originalroutine. Die damaligen Einschätzungen unten sind durch den [r3-Bericht](CP00-r3-REPORT.md) berichtigt.
+
 ## Zusätzlich ausgeführt
 
 - **AA m2l1:** unveränderte WCR-Karte in frischem Profil gestartet, aktive Schneeszene mit Springfield und HUD gerendert, vollständigen Save erzeugt, normal beendet. `mg42-start-AA.json` enthält Dateihashes. Kein durchgespielter Level.

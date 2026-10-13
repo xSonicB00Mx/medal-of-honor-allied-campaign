@@ -1,0 +1,98 @@
+{
+  "candidate": "CP00-r2",
+  "engine_source_commit": "3eec4afb22093421b8776d2df92b87ec2fb4119e",
+  "game_dll_sha256": "a648c146a9c94522b3fc2720fac9611e836a10e1d6d2c8bc79c72e39dfd54ef4",
+  "expected": "rejected",
+  "accepted": false,
+  "offset_rejection_count": 4,
+  "vector_occurrences": {
+    "before": [
+      0,
+      0
+    ],
+    "after": [
+      0,
+      0
+    ]
+  },
+  "callbacks": [
+    "cp00_offset_b",
+    "cp00_offset_a"
+  ],
+  "passed": true,
+  "scope": "Event acceptance, native-compatible inert offset, archive retention and synthetic detonation callbacks; not natural Flak mission completion",
+  "evidence": [
+    {
+      "path": "profiles-local/CP00-r2/offset-r2-control-v2/mainta/configs/omconfig.cfg",
+      "sha256": "8f8d09fafd0866eb0f755ec5dd7388b2d77b63bb6fd078722fd3d80a65c10993"
+    },
+    {
+      "path": "profiles-local/CP00-r2/offset-r2-control-v2/mainta/cp00/setup.scr",
+      "sha256": "59120a0030c2c4624b4f06dd1b5e2cca2002073323908a68a32ec6a6df4fd902"
+    },
+    {
+      "path": "profiles-local/CP00-r2/offset-r2-control-v2/mainta/cp00/trigger.scr",
+      "sha256": "2dcc1f3c9fcf58b0bf1449070341c1416131d04e91bdbd5db47c8b7f9d058565"
+    },
+    {
+      "path": "profiles-local/CP00-r2/offset-r2-control-v2/mainta/cp00-first.cfg",
+      "sha256": "4929219f031672b7c3bb5e7280c0d74b92932c60a7a2745a8fdc21c429de5f02"
+    },
+    {
+      "path": "profiles-local/CP00-r2/offset-r2-control-v2/mainta/cp00-reload.cfg",
+      "sha256": "b74faf25cfdd765ff9f1c67a72e8b9bdce28512808ded63b72ff2ea5d7077d94"
+    },
+    {
+      "path": "profiles-local/CP00-r2/offset-r2-control-v2/mainta/first.log",
+      "sha256": "3225d5ccf99ad815dd1c515dc1a2c478369e31a0ff4d42207b59a05ce4ac0e4c"
+    },
+    {
+      "path": "profiles-local/CP00-r2/offset-r2-control-v2/mainta/qconsole.log",
+      "sha256": "7e4884e1097c618e6ad12035c1c152b35f56c1b970b6699258d1145f6964e8d8"
+    },
+    {
+      "path": "profiles-local/CP00-r2/offset-r2-control-v2/mainta/reload.log",
+      "sha256": "7e4884e1097c618e6ad12035c1c152b35f56c1b970b6699258d1145f6964e8d8"
+    },
+    {
+      "path": "profiles-local/CP00-r2/offset-r2-control-v2/mainta/save/omconfig/cp00_offset_after.sav",
+      "sha256": "70cd04d69a8ae87c9cb0ce54946363b7c49d24290dbeb91f79bc1f9613e821b9"
+    },
+    {
+      "path": "profiles-local/CP00-r2/offset-r2-control-v2/mainta/save/omconfig/cp00_offset_after.ssv",
+      "sha256": "d4c8883d16e4c98c60507ebcd76d91db51da34af29e685682529ebf59089fa99"
+    },
+    {
+      "path": "profiles-local/CP00-r2/offset-r2-control-v2/mainta/save/omconfig/cp00_offset_after.tga",
+      "sha256": "050f749d358f6c361c3c662087263e4203eebfc9458b2de70beb78c905bddf7c"
+    },
+    {
+      "path": "profiles-local/CP00-r2/offset-r2-control-v2/mainta/save/omconfig/cp00_offset_before.sav",
+      "sha256": "4291661822c35f8524ebaabc8dac074165e98355d6edd077b831ecc13ee88e40"
+    },
+    {
+      "path": "profiles-local/CP00-r2/offset-r2-control-v2/mainta/save/omconfig/cp00_offset_before.ssv",
+      "sha256": "b08ecedfe6cffc17b14aa60a31eab58fec9ad8998e1961aa2a4728254c9cd262"
+    },
+    {
+      "path": "profiles-local/CP00-r2/offset-r2-control-v2/mainta/save/omconfig/cp00_offset_before.tga",
+      "sha256": "3579092abe05dac3aff3f87b631b6e1c41edfea1b7734ec9c8b6c169eac27608"
+    },
+    {
+      "path": "profiles-local/CP00-r2/offset-r2-control-v2/mainta/save/omconfig/t1l20000.sav",
+      "sha256": "4281dc3962f34e659873dbbf091c502ee48a0716312719134edf7b0b979c010c"
+    },
+    {
+      "path": "profiles-local/CP00-r2/offset-r2-control-v2/mainta/save/omconfig/t1l20000.ssv",
+      "sha256": "36bda2975e0cfc646473d8eb2ec80b9c09e25d937a903184b9b9205b4f4560da"
+    },
+    {
+      "path": "profiles-local/CP00-r2/offset-r2-control-v2/mainta/save/omconfig/t1l20000.tga",
+      "sha256": "2e2d4c03daaf32892c0c4f98812fd827ec53529cdcc224442f7af4b5c535bb40"
+    },
+    {
+      "path": "profiles-local/CP00-r2/offset-r2-control-v2/qkey",
+      "sha256": "22d0e6f50d89f5e50f368be3a49aa0929807b2cd0a07fa5cce4f4a02d46408ce"
+    }
+  ]
+}
