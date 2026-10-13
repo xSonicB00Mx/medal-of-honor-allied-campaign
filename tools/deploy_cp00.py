@@ -41,14 +41,18 @@ def main():
         profile=repo/'profiles-local'/args.candidate/game; profile.mkdir(parents=True)
         # Relative cmd paths keep the workspace movable. Dedicated profiles keep old saves untouched.
         text='@echo off\nsetlocal\ncd /d "%~dp0"\n'
+        # FS_CreatePath rejects literal '..' even in otherwise absolute paths.
+        # Expand both paths before passing them to the engine; retain portability.
+        text+='for %%I in ("%~dp0.") do set "AC_BASE=%%~fI"\n'
+        text+=f'for %%I in ("%~dp0..\\..\\profiles-local\\{args.candidate}\\{game}") do set "AC_PROFILE=%%~fI"\n'
         text+='if not exist "COMPLETE" (echo Kandidat unvollstaendig. & pause & exit /b 1)\n'
         text+=f'echo Medal of Honor: Allied Campaign - {args.candidate} - {game}\n'
         text+='start "" "openmohaa.exe" '
-        text+=f'+set com_target_game {num} +set fs_basepath "%~dp0." +set fs_homepath "%~dp0..\\..\\profiles-local\\{args.candidate}\\{game}" '
-        text+='+set fs_steampath "%~dp0." +set fs_gogpath "%~dp0." +set fs_microsoftstorepath "%~dp0." +set logfile 2 '
-        text+=f'+echo "BUILD_ID={args.candidate}"\n'
+        text+=f'+set com_target_game {num} +set fs_basepath "%AC_BASE%" +set fs_homepath "%AC_PROFILE%" '
+        text+='+set fs_steampath "%AC_BASE%" +set fs_gogpath "%AC_BASE%" +set fs_microsoftstorepath "%AC_BASE%" +set logfile 2 '
+        text+=f'+echo "BUILD_ID={args.candidate}" %*\n'
         (target/f'Start-{game}.cmd').write_text(text,encoding='ascii'); owned.append(f'Start-{game}.cmd')
-        (repo/f'Start-{args.candidate}-{game}.cmd').write_text(f'@echo off\ncall "%~dp0runtime-local\\{args.candidate}\\Start-{game}.cmd"\n',encoding='ascii')
+        (repo/f'Start-{args.candidate}-{game}.cmd').write_text(f'@echo off\ncall "%~dp0runtime-local\\{args.candidate}\\Start-{game}.cmd" %*\n',encoding='ascii')
     commit=subprocess.check_output(['git','rev-parse','HEAD'],cwd=repo,text=True).strip()
     header=(args.engine.parent/'generated/q_version.generated.h').read_text()
     engine_commit=re.search(r'#define GIT_REVISION_HASH "([0-9a-f]{40})"',header).group(1)

@@ -28,7 +28,9 @@ for game,folder in [('AA','main'),('SH','mainta'),('BT','maintt')]:
     profile=repo/f'profiles-local/CP00-r1/scene-{game}'
     target=repo/f'profiles-local/CP00-r1/{game}/{folder}/save/omconfig'
     target.mkdir(parents=True,exist_ok=True)
-    for path in report['save_files']:
+    # A save is a three-file set: level data, metadata, and menu thumbnail.
+    save_paths=[f'{folder}/save/omconfig/cp00_{game.lower()}.{ext}' for ext in ('sav','ssv','tga')]
+    for path in save_paths:
         source=profile/path; dest=target/source.name
         if dest.exists(): assert sha(dest)==sha(source),'Refuse changed user save'
         else: shutil.copy2(source,dest)
