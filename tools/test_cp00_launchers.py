@@ -51,24 +51,26 @@ first=run('menu',[
     'wait 1000',f'loadgame cp00_{game.lower()}','wait 2500','finishloadingscreen',
     'wait 1500','pushmenu loadsave','wait 1200','screenshot',
     'widgetcommand LoadSaveList savegame','wait 1800','screenshot',
-    'widgetcommand LoadSaveList loadgame','wait 2500','finishloadingscreen',
-    'wait 1500','set cg_fov 90','cg_fov','wait 1200'])
+    'popmenu 0','set cg_fov 90','cg_fov','wait 1200'])
 created=[p for p in saves.glob('*.ssv') if not p.name.startswith('cp00_')]
 assert created,'Menu callback did not create a new save'
 for p in created:
     assert p.with_suffix('.sav').is_file() and p.with_suffix('.tga').stat().st_size>18
-assert first.count('Game Loaded')>=2,'Menu callback load failed'
+assert 'Game Loaded' in first,'Reference load failed'
 configs=list(profile.rglob('omconfig.cfg'))
 assert len(configs)==1
 assert re.search(r'seta cg_fov "90"',configs[0].read_text(encoding='latin1'))
 second=run('restart',[
     'wait 1000','echo CP00_FOV_RESTART','cg_fov','pushmenu video_options',
-    'wait 1200','screenshot','popmenu 0','pushmenu loadsave','wait 1200','screenshot'])
+    'wait 1200','screenshot','popmenu 0','pushmenu loadsave','wait 1200','screenshot',
+    f'loadgame {created[0].stem}','wait 2500','finishloadingscreen','wait 1200','screenshot'])
 fov_lines=[l for l in second.splitlines() if '"cg_fov"' in l]
 assert any(re.search(r'is:\s*"90',l) for l in fov_lines),fov_lines
+assert 'Game Loaded' in second,'New menu save could not be loaded after restart'
 result=dict(candidate=args.candidate,game=game,actual_workspace_cmd_used=True,
     fs_path_override_in_test=False,menu_callback_save_created=[p.name for p in created],
-    new_save_has_thumbnail=True,menu_callback_load=True,fov_90_persisted=True,
+    new_save_has_thumbnail=True,new_menu_save_loaded_after_restart=True,
+    load_method='Console command; actual Load-button click requires separate UI check',fov_90_persisted=True,
     fov_restart_lines=fov_lines,path_rejection=False,
     visual_check='PENDING; inspect screenshots before claiming menu rendering passed',
     evidence=[dict(path=p.relative_to(repo).as_posix(),sha256=sha(p))

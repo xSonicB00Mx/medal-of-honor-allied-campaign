@@ -1,5 +1,7 @@
 # CP00-r1 – technische Ausgangsbasis und offene Spielabnahme
 
+**Nach Nutzerprüfung zurückgezogen:** Die r1-Startdateien enthalten einen nicht normalisierten Profilpfad, der Schreibzugriffe verhindert; den bereitgestellten Saves fehlen außerdem Vorschaubilder. Die unten protokollierten Konsolentests umgingen den Launcherfehler. Aktueller Korrekturkandidat: [CP00-r2](CP00-r2-REPORT.md). Dies sind Bereitstellungsfehler von Allied Campaign, keine nachgewiesenen WCR-Basisfehler.
+
 Stand: 13.10.2026. Dieser Kandidat ist startbar, aber **keine vollständige CP0-Abnahme**. Ausschließlich Einrichtung, Inventar, Engine-Build und Basistests wurden umgesetzt. CP0a ist nicht freigegeben.
 
 ## Start und Teststände

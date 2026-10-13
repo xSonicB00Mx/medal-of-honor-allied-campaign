@@ -28,7 +28,8 @@ def main():
     if actual!=expected: raise ValueError('Rollback did not restore exact WCR data set')
     after={p.relative_to(profile).as_posix():sha(p) for p in profile.rglob('*') if p.is_file()}
     assert before==after
-    save(repo/'checkpoints/CP00/rollback-result.json',dict(status='PASS',candidate=manifest['build_id'],data_files=len(actual),wcr_preserved=True,profiles_unchanged=True,original_candidate_unchanged=all(sha(candidate/r['path'])==r['sha256'] for r in manifest['owned_files']),scope='Disposable runtime copy; engine and owned launchers removed, exact pre-engine WCR data restored. Original programs remain in the full input snapshot.'))
+    prefix='' if manifest['build_id']=='CP00-r1' else manifest['build_id']+'-'
+    save(repo/f'checkpoints/CP00/{prefix}rollback-result.json',dict(status='PASS',candidate=manifest['build_id'],data_files=len(actual),wcr_preserved=True,profiles_unchanged=True,original_candidate_unchanged=all(sha(candidate/r['path'])==r['sha256'] for r in manifest['owned_files']),scope='Disposable runtime copy; engine and owned launchers removed, exact pre-engine WCR data restored. Original programs remain in the full input snapshot.'))
     print('PASS: isolated rollback, exact WCR data, unchanged profiles and original candidate')
 
 if __name__=='__main__': main()
