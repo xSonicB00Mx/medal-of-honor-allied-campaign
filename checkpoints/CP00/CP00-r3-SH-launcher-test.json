@@ -1,0 +1,62 @@
+{
+  "candidate": "CP00-r3",
+  "game": "SH",
+  "actual_workspace_cmd_used": true,
+  "fs_path_override_in_test": false,
+  "menu_callback_save_created": [
+    "t1l20000.ssv"
+  ],
+  "new_save_has_thumbnail": true,
+  "new_menu_save_loaded_after_restart": true,
+  "load_method": "Console command; actual Load-button click requires separate UI check",
+  "fov_90_persisted": true,
+  "fov_restart_lines": [
+    "[2026-10-13 23:37:18 UTC+1.000] \"cg_fov\" is:\"90\" default:\"80\""
+  ],
+  "path_rejection": false,
+  "visual_check": "PASS: inspected shot0001; menu background, mission thumbnail, reference and newly saved rows visible",
+  "evidence": [
+    {
+      "path": "generated-local/CP00-r3/SH/menu.log",
+      "sha256": "42e34401ecf8cf4bc88bc4cc8cd212301f81b3a94ff8b80eec3201ae31fc92b1"
+    },
+    {
+      "path": "generated-local/CP00-r3/SH/restart.log",
+      "sha256": "f672eb3ddecc083dd6c24b949e3dca558bb5988033cd129afed2123793ee64ad"
+    },
+    {
+      "path": "profiles-local/CP00-r3/SH/mainta/screenshots/shot0000.tga",
+      "sha256": "978c702de7dbd96a5c67d331128e1ce5b1d367aab80066ad298883f8c501dc20"
+    },
+    {
+      "path": "profiles-local/CP00-r3/SH/mainta/screenshots/shot0001.tga",
+      "sha256": "6deacfec57fecc5df1b67276dfadb03039a3171d99ccdded1d70cff94db6cb71"
+    },
+    {
+      "path": "profiles-local/CP00-r3/SH/mainta/screenshots/shot0002.tga",
+      "sha256": "fbb4375dbd4856eced0ff689304c25ad5f66475760d16fc23b5d6ae16793afe7"
+    },
+    {
+      "path": "profiles-local/CP00-r3/SH/mainta/screenshots/shot0003.tga",
+      "sha256": "e194d0239e873dfe3d6a76d9cd1a2abebe75b5f283d9fd6d3b54c1bb935ae8c0"
+    },
+    {
+      "path": "profiles-local/CP00-r3/SH/mainta/screenshots/shot0004.tga",
+      "sha256": "47a4b8bcf0add76e015ca167f2276371975ba7c6f3c576a07ccb2332bfd785d3"
+    },
+    {
+      "path": "profiles-local/CP00-r3/SH/mainta/save/omconfig/cp00_sh.tga",
+      "sha256": "aa88f8d382b02ff7a13f4ceb3df3519008a0d1b9f3c5c257ea7a0cb560d688cb"
+    },
+    {
+      "path": "profiles-local/CP00-r3/SH/mainta/save/omconfig/t1l20000.tga",
+      "sha256": "74ab1320171cb058bcfd723e2a602381f35bc9571f7a806ca07cdbf6d5a8ac79"
+    },
+    {
+      "path": "generated-local/CP00-r3/SH/tested-omconfig.cfg",
+      "sha256": "535cc6090a9dba1b8fb9149eaab3b4894524592802a5cb35d2a85eb1bb0dbfa8"
+    }
+  ],
+  "engine_source_commit": "af7bb7c6e706fcc64e5933a22457333274f3de22",
+  "delivery_profile_note": "Test config preserved in generated-local; developer changed from 1 to 0 afterwards. FOV remains 90."
+}

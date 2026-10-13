@@ -1,0 +1,186 @@
+{
+  "candidate": "CP00-r3",
+  "files": [
+    {
+      "path": "profiles-local/CP00-r1/scene-AA/main/qconsole.log",
+      "sha256": "773d2e847affb6ba72e0a661dd01db1122519aaf09ea2c591f072984363adbb8",
+      "bytes": 68272
+    },
+    {
+      "path": "profiles-local/CP00-r1/scene-AA/main/screenshots/shot0000.tga",
+      "sha256": "091bf546ef6deb6db0e7ff9cf09beca280ffff856250fa3ec04785075ff0dace",
+      "bytes": 3686418
+    },
+    {
+      "path": "profiles-local/CP00-r1/scene-AA/main/screenshots/shot0001.tga",
+      "sha256": "cab351c9aabd30cb0e5a9d31b32e52131da4a7ad7f1064343fab31bc2304bb34",
+      "bytes": 3686418
+    },
+    {
+      "path": "profiles-local/CP00-r3/AA/main/save/omconfig/cp00_aa.sav",
+      "sha256": "3ab6248f13db12afa6673adcd3d1699785fe2ea734bed73641b6bc2e3b7c6a07",
+      "bytes": 341244
+    },
+    {
+      "path": "profiles-local/CP00-r3/AA/main/save/omconfig/cp00_aa.ssv",
+      "sha256": "1008f8a3bcc66c0a5ff168e44c1d5347d4b1cab3bb9eb8373587f3d10e061c47",
+      "bytes": 14860
+    },
+    {
+      "path": "profiles-local/CP00-r3/AA/main/save/omconfig/cp00_aa.tga",
+      "sha256": "ae411cac369b9bc5c2933b00aaf90a63eec8ecc5ad05d8e3b95487780e9d31e7",
+      "bytes": 196626
+    },
+    {
+      "path": "profiles-local/CP00-r3/AA/main/qconsole.log",
+      "sha256": "b455fde20c99d4a59b2c41bc969a779a2365d5157bafb00832fbaff2c749325f",
+      "bytes": 48553
+    },
+    {
+      "path": "profiles-local/CP00-r3/AA/main/screenshots/shot0000.tga",
+      "sha256": "c90d8d322ba9293cb2296764af187620b15a79d4895afe1ac26441aa9f5c3b10",
+      "bytes": 3686418
+    },
+    {
+      "path": "profiles-local/CP00-r3/AA/main/screenshots/shot0001.tga",
+      "sha256": "494c518d3c2a03fc09a3c1ff01736005f79bdf4f79cc884496b81937fbbc8ab0",
+      "bytes": 3686418
+    },
+    {
+      "path": "profiles-local/CP00-r3/AA/main/screenshots/shot0002.tga",
+      "sha256": "0308a91f79508ba7d2fa9f3b62685806b9e924c3eb653072a9de5d1c33f694f5",
+      "bytes": 3686418
+    },
+    {
+      "path": "profiles-local/CP00-r3/AA/main/screenshots/shot0003.tga",
+      "sha256": "e260d0f42a22a4f341761a76a40bec62902ff8606633d04b7c6745233598fb23",
+      "bytes": 3686418
+    },
+    {
+      "path": "profiles-local/CP00-r3/AA/main/screenshots/shot0004.tga",
+      "sha256": "cf8e9f4d4920f789e65870ef1bd5f4f0f263ba3d1aaf26a7d90da352147addd3",
+      "bytes": 3686418
+    },
+    {
+      "path": "profiles-local/CP00-r1/scene-SH/mainta/qconsole.log",
+      "sha256": "009e499392f2247d29082c35ad5f7b3c250dfd0848b85908b80bb5afef395065",
+      "bytes": 71905
+    },
+    {
+      "path": "profiles-local/CP00-r1/scene-SH/mainta/screenshots/shot0000.tga",
+      "sha256": "dd50df715e21c1d7120b056b2aaf4bef3aae003d6d29d9ecaed0b03ebdeb984e",
+      "bytes": 3686418
+    },
+    {
+      "path": "profiles-local/CP00-r1/scene-SH/mainta/screenshots/shot0001.tga",
+      "sha256": "a58b728df2048b38207c191b49097a466622f3c66e820714b2043ae9708e555b",
+      "bytes": 3686418
+    },
+    {
+      "path": "profiles-local/CP00-r3/SH/mainta/save/omconfig/cp00_sh.sav",
+      "sha256": "1095332fcab2935cc3fdc4a4902b58c119b37daa34021fccee19dd86aaea9d66",
+      "bytes": 324844
+    },
+    {
+      "path": "profiles-local/CP00-r3/SH/mainta/save/omconfig/cp00_sh.ssv",
+      "sha256": "4c21681ddc914df758b76bcc83206e5b9070227d3cbe3a2acee25b184db4533d",
+      "bytes": 14860
+    },
+    {
+      "path": "profiles-local/CP00-r3/SH/mainta/save/omconfig/cp00_sh.tga",
+      "sha256": "aa88f8d382b02ff7a13f4ceb3df3519008a0d1b9f3c5c257ea7a0cb560d688cb",
+      "bytes": 196626
+    },
+    {
+      "path": "profiles-local/CP00-r3/SH/mainta/qconsole.log",
+      "sha256": "f672eb3ddecc083dd6c24b949e3dca558bb5988033cd129afed2123793ee64ad",
+      "bytes": 59267
+    },
+    {
+      "path": "profiles-local/CP00-r3/SH/mainta/screenshots/shot0000.tga",
+      "sha256": "978c702de7dbd96a5c67d331128e1ce5b1d367aab80066ad298883f8c501dc20",
+      "bytes": 3686418
+    },
+    {
+      "path": "profiles-local/CP00-r3/SH/mainta/screenshots/shot0001.tga",
+      "sha256": "6deacfec57fecc5df1b67276dfadb03039a3171d99ccdded1d70cff94db6cb71",
+      "bytes": 3686418
+    },
+    {
+      "path": "profiles-local/CP00-r3/SH/mainta/screenshots/shot0002.tga",
+      "sha256": "fbb4375dbd4856eced0ff689304c25ad5f66475760d16fc23b5d6ae16793afe7",
+      "bytes": 3686418
+    },
+    {
+      "path": "profiles-local/CP00-r3/SH/mainta/screenshots/shot0003.tga",
+      "sha256": "e194d0239e873dfe3d6a76d9cd1a2abebe75b5f283d9fd6d3b54c1bb935ae8c0",
+      "bytes": 3686418
+    },
+    {
+      "path": "profiles-local/CP00-r3/SH/mainta/screenshots/shot0004.tga",
+      "sha256": "47a4b8bcf0add76e015ca167f2276371975ba7c6f3c576a07ccb2332bfd785d3",
+      "bytes": 3686418
+    },
+    {
+      "path": "profiles-local/CP00-r1/scene-BT/maintt/qconsole.log",
+      "sha256": "fed50382f7d81b9a1f896d13ac27b08f7ac62256e5fcf6621cead02cdc8f799d",
+      "bytes": 92362
+    },
+    {
+      "path": "profiles-local/CP00-r1/scene-BT/maintt/screenshots/shot0000.tga",
+      "sha256": "450ce3a1179bd7b0cc93d62e004b6813aeac05b5fe5fa3dbe2e696334e2083be",
+      "bytes": 3686418
+    },
+    {
+      "path": "profiles-local/CP00-r1/scene-BT/maintt/screenshots/shot0001.tga",
+      "sha256": "b98f5e869212debbfb230567204bf5d12822dec01cdb5600526b66dc9b8eae59",
+      "bytes": 3686418
+    },
+    {
+      "path": "profiles-local/CP00-r3/BT/maintt/save/omconfig/cp00_bt.sav",
+      "sha256": "f5f09414048a646017436944c9c881504473d9ed7ed9f0ff7b02b6f32293e84f",
+      "bytes": 634501
+    },
+    {
+      "path": "profiles-local/CP00-r3/BT/maintt/save/omconfig/cp00_bt.ssv",
+      "sha256": "9fee8684b6e083dfe195870c8f2fe21744660b9a9395567c29e9c92b66f95332",
+      "bytes": 14828
+    },
+    {
+      "path": "profiles-local/CP00-r3/BT/maintt/save/omconfig/cp00_bt.tga",
+      "sha256": "03319748cee7f578330b373fd1d99316b3c7cb058a59a947be7a53dbad0ffeca",
+      "bytes": 196626
+    },
+    {
+      "path": "profiles-local/CP00-r3/BT/maintt/qconsole.log",
+      "sha256": "f04e55683051205b76225e2fc7266954d725432ff63d6d502dd69cf87a4273b1",
+      "bytes": 57885
+    },
+    {
+      "path": "profiles-local/CP00-r3/BT/maintt/screenshots/shot0000.tga",
+      "sha256": "9007710ba17a8c49f355c81263b6c2474f9914f0fa5e324353ebc47d3a0940fe",
+      "bytes": 3686418
+    },
+    {
+      "path": "profiles-local/CP00-r3/BT/maintt/screenshots/shot0001.tga",
+      "sha256": "6297da7beed0e9909008836179a4be96c86533c9f9ad74d2c57c10523af88648",
+      "bytes": 3686418
+    },
+    {
+      "path": "profiles-local/CP00-r3/BT/maintt/screenshots/shot0002.tga",
+      "sha256": "21b3161745883663bb204a7426616ff3e5288c1f192ab1b5ef93658f94330652",
+      "bytes": 3686418
+    },
+    {
+      "path": "profiles-local/CP00-r3/BT/maintt/screenshots/shot0003.tga",
+      "sha256": "081acb40cbe1209368253baa4e6cfd82312575a291cfce8a6b13439289472a20",
+      "bytes": 3686418
+    },
+    {
+      "path": "profiles-local/CP00-r3/BT/maintt/screenshots/shot0004.tga",
+      "sha256": "bc19a761f73464b55c88d9df330be8ebad059e616b0129a433cd2a5305ef92b7",
+      "bytes": 3686418
+    }
+  ],
+  "assets_uploaded": false
+}

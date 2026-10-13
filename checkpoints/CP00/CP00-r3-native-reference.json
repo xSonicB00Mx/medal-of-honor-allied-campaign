@@ -1,0 +1,55 @@
+{
+  "native_bt_log": {
+    "path": "runtime-local/CP00-original-reference/maintt/qconsole.log",
+    "sha256": "2a9935ef485d71d00f4192625ebb6b9710f9ee277df917000de5ee6aa20e7440",
+    "matches": {
+      "aispawn_wait": [
+        1580,
+        1586,
+        1592,
+        1598,
+        1610
+      ],
+      "pathnode_wait": [
+        1604
+      ],
+      "weather_wait": [
+        1676
+      ],
+      "missing_prone": [
+        658,
+        667,
+        671,
+        675,
+        679,
+        683,
+        691
+      ],
+      "missing_crouch": [
+        660,
+        669,
+        673,
+        677,
+        681,
+        685,
+        693
+      ],
+      "spline": [
+        842
+      ]
+    },
+    "renderer_initialized": true,
+    "autosave_written": true,
+    "full_original_playthrough": false
+  },
+  "native_sh_static": {
+    "path": "mainta/gamex86.dll",
+    "sha256": "33f8c707da12d746b474634f11ce1701c53ebe7cd74d71904c453811eb5d7ec7",
+    "event_registered": true,
+    "offset_setter_stores_vector": true,
+    "offset_used_by_explosion_routine": false,
+    "damage_z_offset": 128,
+    "disassembly_local_only": true
+  },
+  "scope": "Local original DLL and partial original-engine log comparison, not full gameplay acceptance"
+}

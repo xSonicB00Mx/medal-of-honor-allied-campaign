@@ -3,7 +3,9 @@ import argparse, json, shutil, zipfile
 from pathlib import Path
 from inventory_cp00 import sha, save
 
-ap=argparse.ArgumentParser(); ap.add_argument('--mp1',type=Path,required=True); ap.add_argument('--candidate',default='CP00-r1'); args=ap.parse_args()
+ap=argparse.ArgumentParser(); ap.add_argument('--mp1',type=Path,required=True); ap.add_argument('--candidate',default='CP00-r1')
+ap.add_argument('--snapshot-only',action='store_true',help='Preserve the existing candidate from its verified snapshot; report original drift without importing it')
+args=ap.parse_args()
 if not args.candidate.replace('-','').isalnum(): raise ValueError('Invalid candidate')
 repo=Path(__file__).resolve().parents[1]
 src=repo.parent
@@ -11,10 +13,16 @@ baseline=src/'_ac-backup-local/CP00-input'
 runtime=repo/'runtime-local'/args.candidate
 prefix='' if args.candidate=='CP00-r1' else args.candidate+'-'
 records=json.loads((repo/'generated-local/input-manifest.json').read_text())
+original_drift=[]
 for row in records:
-    for root in (src,baseline):
-        assert sha(root/row['path'])==row['sha256'], (root,row['path'])
-print('PASS: all original and snapshot hashes',len(records),flush=True)
+    assert sha(baseline/row['path'])==row['sha256'], ('Snapshot mismatch',row['path'])
+    original=src/row['path']
+    actual=sha(original) if original.is_file() else None
+    if actual!=row['sha256']:
+        original_drift.append(dict(path=row['path'],expected=row['sha256'],actual=actual))
+if original_drift and not args.snapshot_only:
+    raise ValueError('Original inputs changed; preserve and investigate. Snapshot-only packaging requires explicit selection.')
+print('PASS: snapshot hashes',len(records),'original differences',len(original_drift),flush=True)
 mp=json.loads((repo/'third_party/mp1/manifest.json').read_text())['files']
 for row in mp:
     assert sha(args.mp1/row['path'])==row['sha256']
@@ -40,7 +48,7 @@ for game,folder in [('AA','main'),('SH','mainta'),('BT','maintt')]:
     paths=[*profile.rglob('qconsole.log'),*profile.rglob('shot*.tga'),*target.glob('cp00_*'),*tested_profile.rglob('qconsole.log'),*tested_profile.rglob('shot*.tga')]
     evidence.extend(dict(path=p.relative_to(repo).as_posix(),sha256=sha(p),bytes=p.stat().st_size) for p in paths)
 save(repo/f'checkpoints/CP00/{prefix}local-evidence.json',dict(candidate=args.candidate,files=evidence,assets_uploaded=False))
-save(repo/f'checkpoints/CP00/{prefix}integrity-final.json',dict(original_files=len(records),original_hashes_unchanged=True,independent_snapshot_hashes_match=True,mp1_recorded_files_unchanged=len(mp),runtime_data_hashes_match=len(data),runtime_owned_hashes_match=len(manifest['owned_files']),independent_write_protection=False))
+save(repo/f'checkpoints/CP00/{prefix}integrity-final.json',dict(original_files=len(records),original_hashes_unchanged=not original_drift,original_differences=original_drift,snapshot_only=args.snapshot_only,independent_snapshot_hashes_match=True,mp1_recorded_files_unchanged=len(mp),runtime_data_hashes_match=len(data),runtime_owned_hashes_match=len(manifest['owned_files']),independent_write_protection=False))
 art=repo/'artifacts-local'; art.mkdir(exist_ok=True)
 package=art/f'{args.candidate}-local-runtime.zip'
 if package.exists(): raise ValueError('Package exists; preserve it')
