@@ -1,0 +1,44 @@
+{
+  "engine_sha256": "c2bc8c02856a024f3cf9b78fd732d185b038ae2eb0dd71958efc09509315d054",
+  "exit": 0,
+  "views": [
+    [
+      "01-Overview",
+      0,
+      0
+    ],
+    [
+      "02-North-Africa",
+      2,
+      1
+    ],
+    [
+      "03-Italy-and-Sicily",
+      4,
+      2
+    ],
+    [
+      "04-Western-Europe",
+      7,
+      3
+    ],
+    [
+      "05-Norway",
+      1,
+      4
+    ],
+    [
+      "06-Berlin",
+      14,
+      5
+    ]
+  ],
+  "profile": "Separate fresh campaign profile; user progress unchanged",
+  "size": [
+    1920,
+    1080
+  ],
+  "zip": "artifacts-local/Allied-Campaign-Karten-Rot.zip",
+  "zip_sha256": "2a72bc1ffa8d49ef0997d662b57029626a60e1cc515afd66f992b176b917d431",
+  "bytes": 3821054
+}

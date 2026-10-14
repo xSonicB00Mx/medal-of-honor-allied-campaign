@@ -2,7 +2,7 @@
 #include "ac_map.h"
 
 static const char *AC_StateColor(int state)
-{return state==0?"0.62 0.64 0.57 1":state==2?"0.57 0.80 0.61 1":state==3?"1 0.82 0.32 1":"0.72 0.87 1 1";}
+{return state==0?"1 0.30 0.25 1":state==2?"0.57 0.80 0.61 1":state==3?"1 0.82 0.32 1":"0.72 0.87 1 1";}
 static const char *AC_StateName(int state)
 {return state==0?"LOCKED":state==2?"COMPLETE":state==3?"NEXT":"AVAILABLE";}
 static void AC_UIItem(fileHandle_t f,const char *name,const char *title,int x,int y,int w,int h,const char *command,const char *color="0.95 0.89 0.7 1")
