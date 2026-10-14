@@ -456,6 +456,15 @@ Event EV_Layout_Fullscreen
     "Set container to be fullscreen.  This will disable the game rendering if it's active"
 );
 
+Event EV_Layout_WidescreenBackground
+(
+    "widescreenbackground",
+    EV_DEFAULT,
+    "s",
+    "shader",
+    "Draw only the side extensions of a 16:9 background around the original 4:3 menu"
+);
+
 Event EV_Layout_VidMode
 (
     "vidmode",
@@ -2478,6 +2487,7 @@ void UIWidget::SetDontLocalize()
 
 CLASS_DECLARATION(UIWidget, UIWidgetContainer, NULL) {
     {&EV_Layout_BGFill,     &UIWidgetContainer::SetBGFill    },
+    {&EV_Layout_WidescreenBackground, &UIWidgetContainer::SetWidescreenBackground},
     {&EV_Layout_Fullscreen, &UIWidgetContainer::SetFullscreen},
     {&EV_Layout_VidMode,    &UIWidgetContainer::SetVidMode   },
     {NULL,                  NULL                             }
@@ -2486,6 +2496,7 @@ CLASS_DECLARATION(UIWidget, UIWidgetContainer, NULL) {
 UIWidgetContainer::UIWidgetContainer()
 {
     m_bgfill        = UColor(0, 0, 0, 0);
+    m_widescreenBackground = NULL;
     m_fullscreen    = false;
     m_vidmode       = -1;
     m_currentwidnum = 0;
@@ -2542,7 +2553,28 @@ void UIWidgetContainer::Draw(void)
         DrawBox(0, 0, uid.vidWidth, uid.vidHeight, m_bgfill, m_local_alpha);
     }
 
+    // The original widgets, text and animated overlays retain their exact
+    // geometry. AI artwork is sampled only outside the original 4:3 canvas.
+    // Screen scissoring crops the wings on 16:10; ultrawide keeps a 16:9 frame.
+    if (m_widescreenBackground && uid.vidWidth * 3 > uid.vidHeight * 4
+        && m_frame.size.width > 0 && m_frame.size.height > 0) {
+        const float wing = m_frame.size.width / 6.0f;
+        const float color[4] = {1, 1, 1, m_local_alpha};
+        uii.Rend_SetColor(color);
+        const uihandle_t material = m_widescreenBackground->GetMaterial();
+        uii.Rend_DrawPicStretched(m_frame.pos.x - wing, m_frame.pos.y,
+            wing, m_frame.size.height, 0, 0, .125f, 1, material);
+        uii.Rend_DrawPicStretched(m_frame.pos.x + m_frame.size.width, m_frame.pos.y,
+            wing, m_frame.size.height, .875f, 0, 1, 1, material);
+        uii.Rend_SetColor(NULL);
+    }
+
     set2D();
+}
+
+void UIWidgetContainer::SetWidescreenBackground(Event *ev)
+{
+    m_widescreenBackground = uWinMan.RegisterShader(ev->GetString(1));
 }
 
 void UIWidgetContainer::Realign(void)
