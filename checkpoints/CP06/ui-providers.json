@@ -1,0 +1,20 @@
+[
+  {
+    "game": "AA",
+    "source": "runtime-local/CP05a-r3/main/Restoration_AA_Pak1-Main.pk3",
+    "source_sha256": "e179c7e2bff5627d2fd7007ee49c92a0e579ab62f14c68dd108994c408629052",
+    "package_sha256": "aba7b86750f32aca6796f20946cebe8a1b7cd121b4e2e7f90032220680a76a05"
+  },
+  {
+    "game": "SH",
+    "source": "runtime-local/CP05a-r3/mainta/Restoration_SH_Pak1-Main.pk3",
+    "source_sha256": "5026c546852de97de7ac750fbb4c430288a5684522c3e7b96a3a62587313bb0b",
+    "package_sha256": "bb347ef74068851f7aa974e8483aceaf7bca76b7ddf410ef5ab3f0f1115e4076"
+  },
+  {
+    "game": "BT",
+    "source": "runtime-local/CP05a-r3/maintt/Restoration_BT_Pak1-Main.pk3",
+    "source_sha256": "f19b1fa71654fdb07ed162dcab00518f9b5151ee88fc6f6938ddd8bc62ba6d6f",
+    "package_sha256": "3d038374d8e9124730b76d2ce63bce37a4e918a4aaa7a15029a4c5c15e8a2ee5"
+  }
+]

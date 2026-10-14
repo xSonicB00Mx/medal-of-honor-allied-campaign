@@ -1,5 +1,7 @@
 # Status
 
+Aktueller Auftrag: autonom bis einschliesslich CP8. CP6 Missionslader IN_ARBEIT auf Basis CP05a-r3; danach CP7 chronologische Progression und CP8 Einsatzkarte. Noch keine dieser Funktionen als fertig oder abgenommen ausgewiesen.
+
 Stand 14.10.2026 nach Menuefeedback: **CP05a-r3 benennt das gemeinsame Zusatzmenue in Allied Campaign Options um und liefert ein mittiges 16:9-Layout ohne ueberlappende Bedienelemente.** [Startdateien](CP05a-r3-START.md), [Pruefbericht](checkpoints/CP05a/r3/REPORT.md). Getrennte Bereiche fuer Display/HUD und Effekte; die Seite bleibt beim Verstellen ihrer Regler stabil. 56 Nutzerdateien aus r2 uebernommen. Quelle `5a9b6aa7e9877d4fb3dd328838d9ab4940deb5ce` remote verifiziert. Keine persoenliche Abnahme oder Merge unterstellt.
 
 Stand 14.10.2026 nach BT-Strassenfeedback: **CP05a-r2 korrigiert fehlende Blutspuren auf der erdigen Strasse im Breakthrough-Test.** [Startanleitung](CP05a-r2-START.md), [Vorher/Nachher und Pruefbericht](checkpoints/CP05a/r2/REPORT.md). Die sichtbare gekruemmte Strasse lag knapp unter der Kollisionsflaeche; die begrenzte Projektion gleicht dies jetzt aus. 47 Nutzerdateien aus CP05a-r1 uebernommen. Quellstand `a3c13d93689f47044c5fa6e79ea10b723135c162` frisch remote verifiziert. Persoenliche Abnahme und Merge bleiben offen.

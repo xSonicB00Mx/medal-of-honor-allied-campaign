@@ -589,7 +589,7 @@ quake3 set test blah + map test
 ============================================================================
 */
 
-#define	MAX_CONSOLE_LINES	32
+#define	MAX_CONSOLE_LINES	64
 int		com_numConsoleLines;
 char	*com_consoleLines[MAX_CONSOLE_LINES];
 
@@ -1534,6 +1534,10 @@ void Com_GameRestart_f(void)
 	Com_GameRestart(0, qtrue);
 }
 
+void Com_WriteConfiguration(void);
+void Com_InitTargetGameWithType(target_game_e target_game, qboolean bIsDemo);
+#include "ac_context_impl.h"
+
 #ifndef STANDALONE
 
 // TTimo: centralizing the cl_cdkey stuff after I discovered a buffer overflow problem with the dedicated server version
@@ -1752,6 +1756,8 @@ void Com_Init( char *commandLine ) {
 	// override anything from the config files with command line args
 	Com_StartupVariable( NULL );
 
+	AC_WaitForPreviousContext();
+
 	// get the developer cvar set as early as possible
 	Com_StartupVariable( "developer" );
 
@@ -1876,6 +1882,9 @@ void Com_Init( char *commandLine ) {
 	Cmd_SetCommandCompletionFunc( "writeconfig", Cmd_CompleteCfgName );
 	Cmd_AddCommand("pause", Com_Pause_f);
 	Cmd_AddCommand("game_restart", Com_GameRestart_f);
+	Cmd_AddCommand("ac_context", AC_Context_f);
+	Cmd_AddCommand("ac_load", AC_Context_f);
+	Cvar_Get("ac_campaign_mode", "0", CVAR_INIT);
 
 	// override anything from the config files with command line args
 	Com_StartupVariable( NULL );

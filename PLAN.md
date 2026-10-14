@@ -1,4 +1,5 @@
 # Medal of Honor: Allied Campaign
+> Aktuelle Freigabe 14.10.2026: eigenstaendig bis einschliesslich CP8 weiterarbeiten. Die frueheren Umfangsgrenzen und Zwischenstopps bis CP8 sind aufgehoben. Anforderungen, Integritaet und getrennte technische/persoenliche Abnahme gelten weiter; keine Mergefreigabe.
 > Frühere Arbeitsfreigabe 14.10.2026: Der Nutzer beauftragt die eigenständige Fortsetzung bis einschließlich CP1 ohne Zwischenfreigaben. Die Stopps nach CP0 und CP0a sind für diesen Lauf aufgehoben. Fachliche Anforderungen und ehrliche Testgrenzen bleiben bestehen; persönliche Spielabnahmen werden nicht erfunden. Der ausdrücklich abgewählte BT-Finaltest bleibt ausgelassen.
 > Neueste Erweiterung 14.10.2026 nach CP05-r2: Weltblut 30 Sekunden, 1,5-fache Groesse, AA-Boden-/Wandkorrekturen und Leichentreffer sind jetzt direkt im Chat beauftragt. Die fruehere CP5-Grenze ist insoweit erweitert; keine Mergefreigabe oder persoenliche Abnahme unterstellt.
 

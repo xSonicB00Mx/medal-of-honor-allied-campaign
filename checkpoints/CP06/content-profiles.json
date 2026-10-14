@@ -1,0 +1,76 @@
+[
+  {
+    "game": "AA",
+    "fingerprint": "a1fd29c088740c742daa7e7b76a506fb39a8d7d926e62dd5ea39fdd385d45dd8",
+    "packages": [
+      {
+        "path": "main/Restoration_AA_Pak1-Main.pk3",
+        "sha256": "87bf00e9210a8cb282aae020346ffc4c2f8cfcf915b639bdf6314780394eaa3a"
+      },
+      {
+        "path": "main/Restoration_AA_Pak2-Bash.pk3",
+        "sha256": "7759c88b2ca96ec6ed8899e82d38b72344dbecf21ee753264fd9ec654711af02"
+      },
+      {
+        "path": "main/Restoration_AA_Plus-Reflections.pk3",
+        "sha256": "1f0c900fb75b27c32e81eaeab42f47d4132a590bb9e506941d85a1e4d0eb65bd"
+      }
+    ]
+  },
+  {
+    "game": "SH",
+    "fingerprint": "ffcf323250e3b7e36c72c15f8430f4af580a190a84b7e1312a51d1ddc855fa65",
+    "packages": [
+      {
+        "path": "main/Restoration_AA_Pak1-Main.pk3",
+        "sha256": "87bf00e9210a8cb282aae020346ffc4c2f8cfcf915b639bdf6314780394eaa3a"
+      },
+      {
+        "path": "main/Restoration_AA_Pak2-Bash.pk3",
+        "sha256": "7759c88b2ca96ec6ed8899e82d38b72344dbecf21ee753264fd9ec654711af02"
+      },
+      {
+        "path": "main/Restoration_AA_Plus-Reflections.pk3",
+        "sha256": "1f0c900fb75b27c32e81eaeab42f47d4132a590bb9e506941d85a1e4d0eb65bd"
+      },
+      {
+        "path": "mainta/Restoration_SH_Pak1-Main.pk3",
+        "sha256": "6858b5d44dafbb8e772d12f3501925e1530dfb2c7bd29cfe79950bb54f76a9db"
+      },
+      {
+        "path": "mainta/Restoration_SH_Plus-Reflections.pk3",
+        "sha256": "e40860dd59948121f9067c71a1c402e64abfcfb023631c859972909e0c406e2d"
+      }
+    ]
+  },
+  {
+    "game": "BT",
+    "fingerprint": "e3cba53377fc8c42372c9bc9e28797564004a5b52ceaaac62a64ca1f1a567779",
+    "packages": [
+      {
+        "path": "main/Restoration_AA_Pak1-Main.pk3",
+        "sha256": "87bf00e9210a8cb282aae020346ffc4c2f8cfcf915b639bdf6314780394eaa3a"
+      },
+      {
+        "path": "main/Restoration_AA_Pak2-Bash.pk3",
+        "sha256": "7759c88b2ca96ec6ed8899e82d38b72344dbecf21ee753264fd9ec654711af02"
+      },
+      {
+        "path": "main/Restoration_AA_Plus-Reflections.pk3",
+        "sha256": "1f0c900fb75b27c32e81eaeab42f47d4132a590bb9e506941d85a1e4d0eb65bd"
+      },
+      {
+        "path": "maintt/Restoration_BT_Pak1-Main.pk3",
+        "sha256": "5c66188f2e11dee941fc9af239325f4732c129478306faca4da9e5199738f133"
+      },
+      {
+        "path": "maintt/Restoration_BT_Plus-Reflections.pk3",
+        "sha256": "00b12b691112fc1cce21cdf526ce7ce1b280771be026b31bf6513ced1e25fa23"
+      },
+      {
+        "path": "maintt/zzzz_AC_BT_Drops.pk3",
+        "sha256": "3638dca7306fe570278fe9ae4497acbe57bb398a7ffc8967d750fff36a699da8"
+      }
+    ]
+  }
+]

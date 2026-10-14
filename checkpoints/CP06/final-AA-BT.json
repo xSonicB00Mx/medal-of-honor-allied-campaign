@@ -1,0 +1,24 @@
+{
+  "source": 0,
+  "target": 2,
+  "exit": 0,
+  "seconds": 25.125,
+  "completed": true,
+  "source_active": true,
+  "target_active": true,
+  "events": [
+    "[2026-10-14 12:17:51 UTC+1.000] AC_CONTEXT_RESTART 0 -> 2 e2l2 child=26628"
+  ],
+  "saves": [
+    "main/save/omconfig/cp06_before.sav",
+    "main/save/omconfig/m1l2a0000.sav",
+    "maintt/save/omconfig/cp06_after.sav",
+    "maintt/save/omconfig/e2l20000.sav"
+  ],
+  "providers": [
+    "[2026-10-14 12:18:01 UTC+1.000] File \"global/ai.scr\" found in \"$RUNTIME\\maintt\\Restoration_BT_Pak1-Main.pk3\"",
+    "[2026-10-14 12:18:01 UTC+1.000] File \"maps/e2l2.scr\" found in \"$RUNTIME\\maintt\\zzzz_AC_BT_Drops.pk3\""
+  ],
+  "errors": [],
+  "engine_sha256": "cbf90dbf466db6a7c95ec79e17771612b8ff4d7b3b912547eb9deccd6212a06f"
+}

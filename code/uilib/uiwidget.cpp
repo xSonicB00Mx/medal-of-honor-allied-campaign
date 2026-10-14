@@ -2427,7 +2427,7 @@ void UIWidget::SetVirtualScale(vec2_t out)
     // controls stable while changing the scaling of the legacy menus/HUD.
     // Descendants use the same scale for drawing, clipping and hit testing.
     for (const UIWidget *p = this; p; p = p->m_parent) {
-        if (p->m_name == "ac_scaling") {
+        if (p->m_name == "ac_scaling" || !strncmp(p->m_name.c_str(), "ac_campaign_", 12)) {
             out[0] = out[1] = fminf(uid.vidWidth / 960.0f, uid.vidHeight / 540.0f);
             return;
         }

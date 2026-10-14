@@ -1,0 +1,19 @@
+{
+  "source": 0,
+  "target": 1,
+  "exit": 0,
+  "seconds": 65.10899999993853,
+  "completed": false,
+  "source_active": false,
+  "target_active": false,
+  "events": [
+    "[2026-10-14 12:12:38 UTC+1.000] AC_CONTEXT_RESTART 0 -> 1 t1l2 child=9364"
+  ],
+  "saves": [
+    "main/save/omconfig/cp06_before.sav",
+    "main/save/omconfig/m1l2a0000.sav"
+  ],
+  "providers": [],
+  "errors": [],
+  "engine_sha256": "6c27cec4722e0abd32d4cb597b19015c0bdafaf27b0823f34da224200d44c0a7"
+}

@@ -1,0 +1,24 @@
+{
+  "source": 2,
+  "target": 1,
+  "exit": 0,
+  "seconds": 24.07800000021234,
+  "completed": true,
+  "source_active": true,
+  "target_active": true,
+  "events": [
+    "[2026-10-14 12:16:26 UTC+1.000] AC_CONTEXT_RESTART 2 -> 1 t1l2 child=21612"
+  ],
+  "saves": [
+    "mainta/save/omconfig/cp06_after.sav",
+    "mainta/save/omconfig/t1l20000.sav",
+    "maintt/save/omconfig/cp06_before.sav",
+    "maintt/save/omconfig/e2l20000.sav"
+  ],
+  "providers": [
+    "[2026-10-14 12:16:35 UTC+1.000] File \"global/ai.scr\" found in \"$RUNTIME\\mainta\\Restoration_SH_Pak1-Main.pk3\"",
+    "[2026-10-14 12:16:35 UTC+1.000] File \"maps/t1l2.scr\" found in \"$RUNTIME\\mainta\\Restoration_SH_Pak1-Main.pk3\""
+  ],
+  "errors": [],
+  "engine_sha256": "6c27cec4722e0abd32d4cb597b19015c0bdafaf27b0823f34da224200d44c0a7"
+}

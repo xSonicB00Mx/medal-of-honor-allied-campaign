@@ -3583,6 +3583,21 @@ static void UI_CampaignOptions_f(void)
     UI_PushMenu("ac_scaling");
 }
 
+static void UI_AlliedCampaign_f(void)
+{
+    const char *pages[] = {"ac_campaign_aa1", "ac_campaign_aa2", "ac_campaign_sh", "ac_campaign_bt"};
+    int page = Cmd_Argc() > 1 ? atoi(Cmd_Argv(1)) : 0;
+    if (page < 0 || page >= 4) return;
+    if (!menuManager.FindMenu(pages[page])) UI_LoadMenu(pages[page]);
+    UI_PushMenu(pages[page]);
+}
+
+static void UI_AlliedSaves_f(void)
+{
+    if (!menuManager.FindMenu("loadsave")) UI_LoadMenu("loadsave");
+    UI_PushMenu("loadsave");
+}
+
 static void UI_CampaignReport_f(void)
 {
     const char *name = Cmd_Argc() > 1 ? Cmd_Argv(1) : "hud_compass";
@@ -5344,6 +5359,8 @@ void CL_InitializeUI(void)
 
     // Add all commands
     Cmd_AddCommand("ac_ui_options", UI_CampaignOptions_f);
+    Cmd_AddCommand("ac_campaign", UI_AlliedCampaign_f);
+    Cmd_AddCommand("ac_saves", UI_AlliedSaves_f);
     Cmd_AddCommand("ac_ui_report", UI_CampaignReport_f);
     Cmd_AddCommand("pushmenu", UI_PushMenu_f);
     Cmd_AddCommand("pushmenu_sp", UI_PushMenuSP_f);

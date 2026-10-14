@@ -2405,6 +2405,8 @@ qboolean SV_ArchiveServerFile(qboolean loading, qboolean autosave)
 SV_Loadgame_f
 ==================
 */
+#include "ac_save_metadata.h"
+
 void SV_Loadgame_f(void)
 {
 #ifndef DEDICATED
@@ -2446,7 +2448,9 @@ void SV_Loadgame_f(void)
 	Com_Printf("Loading game...%s\n", name);
 	if (strstr(name, "..") || strchr(name, '/') || strchr(name, '\\')) {
 		Com_Printf("Bad savedir.\n");
+		return;
 	}
+	if (!AC_CheckSaveMetadata(name)) return;
 
 	Q_strncpyz(svs.gameName, name, sizeof(svs.gameName));
 	archive_name = Com_GetArchiveFileName(name, "sav");
@@ -2612,7 +2616,7 @@ void SV_SaveGame(const char *gamename, qboolean autosave)
 		}
 	}
 
-	SV_ArchiveServerFile(qfalse, autosave);
+	if (SV_ArchiveServerFile(qfalse, autosave)) AC_WriteSaveMetadata(name);
 
 	Com_Printf("Done.\n");
 
