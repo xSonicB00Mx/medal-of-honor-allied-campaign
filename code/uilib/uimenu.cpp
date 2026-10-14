@@ -21,6 +21,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
 #include "ui_local.h"
+#include "../qcommon/ac_singleplayer.h"
 
 MenuManager menuManager;
 
@@ -115,6 +116,10 @@ void Menu::setName(str name)
 
 void Menu::ShowMenu(Event *ev)
 {
+    if (ACIsMultiplayerMenu(m_name.c_str())) {
+        uii.Sys_Printf("Allied Campaign is single-player only.\n");
+        return;
+    }
     qboolean activate;
     int      i;
     int      n;
@@ -182,6 +187,10 @@ void Menu::HideMenu(Event *ev)
 
 void Menu::ForceShow(void)
 {
+    if (ACIsMultiplayerMenu(m_name.c_str())) {
+        uii.Sys_Printf("Allied Campaign is single-player only.\n");
+        return;
+    }
     int i;
     int n;
 
@@ -515,6 +524,10 @@ Menu *MenuManager::FindMenu(str name)
 
 bool MenuManager::PushMenu(str name)
 {
+    if (ACIsMultiplayerMenu(name.c_str())) {
+        uii.Sys_Printf("Allied Campaign is single-player only.\n");
+        return false;
+    }
     Menu *m;
     float maxouttime = 0.0;
     float maxintime;
@@ -561,6 +574,10 @@ bool MenuManager::PushMenu(str name)
 
 bool MenuManager::ShowMenu(str name)
 {
+    if (ACIsMultiplayerMenu(name.c_str())) {
+        uii.Sys_Printf("Allied Campaign is single-player only.\n");
+        return false;
+    }
     Menu *m;
     float maxintime;
 

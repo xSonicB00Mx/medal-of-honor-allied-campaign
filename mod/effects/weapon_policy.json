@@ -1,5 +1,5 @@
 {
-  "version": 3,
+  "version": 4,
   "unknown": "no new blood; preserve existing WCR effects",
   "special": {
     "shotgun": "excluded",
@@ -337,6 +337,15 @@
     },
     {
       "weapon_id": "models/statweapons/mg42_gun_fake.tik",
+      "group": "mg",
+      "code": 4,
+      "entry_wound_material": "ac/wound_large",
+      "exit_wound_material": "ac/wound_large",
+      "allow_exit_wound": true,
+      "allow_exit_spray": true
+    },
+    {
+      "weapon_id": "models/vehicles/jeep_30cal.tik",
       "group": "mg",
       "code": 4,
       "entry_wound_material": "ac/wound_large",

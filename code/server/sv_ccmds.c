@@ -181,6 +181,12 @@ static void SV_Map_f( void ) {
 
 	Com_BackslashToSlash( mapname );
 
+	if (!Q_stricmpn(mapname, "dm/", 3) || !Q_stricmpn(mapname, "obj/", 4)
+		|| !Q_stricmpn(mapname, "lib/", 4) || !Q_stricmpn(mapname, "tow/", 4)) {
+		Com_Printf("Allied Campaign is single-player only.\n");
+		return;
+	}
+
 	spawnpos = strchr( mapname, '$' );
 	if( spawnpos )
 	{

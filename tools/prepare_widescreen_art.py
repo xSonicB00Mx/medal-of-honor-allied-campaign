@@ -12,6 +12,7 @@ import zipfile
 from pathlib import Path
 
 from PIL import Image, ImageDraw
+from singleplayer_ui import multiplayer_ui
 
 
 def digest(data):
@@ -54,6 +55,8 @@ def main():
                     shaders[match.group(1).lower()] = maps[0].lower()
 
         for name in sorted(entries):
+            if multiplayer_ui(name):
+                continue
             if not name.startswith('ui/') or not name.endswith(('.urc', '.inc')):
                 continue
             loading = name.startswith('ui/loading_')

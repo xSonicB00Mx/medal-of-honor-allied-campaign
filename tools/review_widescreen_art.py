@@ -10,6 +10,7 @@ ap = argparse.ArgumentParser(description=__doc__)
 ap.add_argument('asset')
 ap.add_argument('--download', type=Path)
 ap.add_argument('--approve', help='Visual inspection notes; only use after inspecting the composite')
+ap.add_argument('--conversation', help='Gemini conversation that generated this image')
 args = ap.parse_args()
 root = Path(__file__).resolve().parents[1]
 work = root/'generated-local/widescreen'
@@ -31,6 +32,6 @@ if args.approve:
     approvals = json.loads(path.read_text(encoding='utf-8'))
     approvals[args.asset] = dict(status='approved', file=str(target.relative_to(root)),
         sha256=hashlib.sha256(target.read_bytes()).hexdigest(),
-        conversation='https://gemini.google.com/app/4cc7b207ff2827b7', review=args.approve)
+        conversation=args.conversation or 'https://gemini.google.com/app/4cc7b207ff2827b7', review=args.approve)
     path.write_text(json.dumps(approvals,indent=2)+'\n', encoding='utf-8')
 print(preview)

@@ -14,6 +14,7 @@ ap = argparse.ArgumentParser(description=__doc__)
 ap.add_argument('--batch', required=True)
 ap.add_argument('--mp1', required=True, type=Path)
 ap.add_argument('--loading-zoom', action='store_true', help='Install only the existing SH/BT artwork zoom packages')
+ap.add_argument('--with-game-binaries', action='store_true', help='Install tested game and cgame DLLs alongside the engine')
 args = ap.parse_args()
 assert args.batch.replace('-', '').isalnum()
 root = Path(__file__).resolve().parents[1]
@@ -25,6 +26,9 @@ source = subprocess.check_output(['git','rev-parse','HEAD'],cwd=root,text=True).
 assert not subprocess.check_output(['git','diff','HEAD','--','code'],cwd=root,text=True), 'Commit engine changes first'
 old = json.loads((runtime/'build-manifest.json').read_text())
 approved = json.loads((work/'approved.json').read_text())
+progress = json.loads((work/'progress.json').read_text())
+remaining = [item for item in progress['remaining'] if item not in approved]
+completion = 'COMPLETE' if not remaining else ('PARTIAL_GEMINI_QUOTA_BLOCKED' if progress['status']=='BLOCKED_BY_GEMINI_QUOTA' else 'PARTIAL_IN_PROGRESS')
 packages = json.loads((work/('loading-zoom/packages/package-report.json' if args.loading_zoom else 'packages/package-report.json')).read_text())
 profile = root/'profiles-local/CP08-r1/user'
 def profile_hashes():
@@ -46,6 +50,9 @@ integrity['mp1_files_unchanged'] = len(mp)
 for row in old['owned_files']:
     assert sha(runtime/row['path']) == row['sha256'], ('Runtime drift',row['path'])
 updates = {'openmohaa.exe':root/'build-local/cp00-r3/RelWithDebInfo/openmohaa.exe'}
+if args.with_game_binaries:
+    for name in ['game.dll','cgame.dll']:
+        updates[name] = root/'build-local/cp00-r3/RelWithDebInfo'/name
 for package in packages:
     file = root/package['package']
     assert sha(file) == package['sha256']
@@ -70,7 +77,7 @@ for name,file in updates.items():
 owned = {r['path'] for r in old['owned_files']} | set(updates)
 widescreen = old.get('widescreen', {}) if args.loading_zoom else dict(
     batch=args.batch,approved_artworks=sorted(approved),
-    completion='PARTIAL_GEMINI_QUOTA_BLOCKED',center='Original textures and widgets unchanged',
+    completion=completion,center='Original central artwork and controls preserved; MP entry disabled',
     provider='Google Gemini / Nano Banana',breakthrough_loading_changed=False,
     spearhead_letterboxed_loading_changed=False)
 if not args.loading_zoom and old.get('widescreen', {}).get('loading_zoom'):
@@ -82,7 +89,7 @@ if args.loading_zoom:
         'loading_zoom':dict(batch=args.batch, maps={p['game']:len(p['maps']) for p in packages},
             generation=False, fit='Proportional cropped artwork, centered; full original frame on 4:3')}
 manifest = {**old,'source_commit':source,'engine_source_commit':source,
-    'game_dll_source_commit':old.get('game_dll_source_commit',old['engine_source_commit']),
+    'game_dll_source_commit':source if args.with_game_binaries else old.get('game_dll_source_commit',old['engine_source_commit']),
     'owned_files':[dict(path=n,sha256=sha(runtime/n)) for n in sorted(owned)],
     'widescreen':widescreen,
     'personal_acceptance':False,'merged':False}
@@ -100,5 +107,5 @@ with zipfile.ZipFile(artifact) as z:
 save(work/(args.batch+'-delivery.json'),dict(source_commit=source,integrity=integrity,
     package=artifact.relative_to(root).as_posix(),sha256=sha(artifact),upload_allowed=False,
     approved_artworks=sorted(approved),
-    completion='LOADING_ZOOM_COMPLETE_OTHER_ART_PARTIAL' if args.loading_zoom else 'PARTIAL_GEMINI_QUOTA_BLOCKED'))
+    completion='LOADING_ZOOM_COMPLETE_OTHER_ART_PARTIAL' if args.loading_zoom else completion))
 print(json.dumps(integrity),flush=True)

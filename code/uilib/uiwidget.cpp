@@ -1640,6 +1640,8 @@ void UIWidget::Disable(void)
 
 bool UIWidget::isEnabled(void)
 {
+    // Covers the original AA/SH/BT main-menu hotspot, including keyboard focus.
+    if (Q_stristr(m_command.c_str(), "multiplayer")) return false;
     if (!strcmp(m_enabledCvar.c_str(), "")) {
         return m_enabled;
     }
@@ -2070,6 +2072,10 @@ void UIWidget::LinkCvar(str cvarname)
 void UIWidget::LinkCommand(str cmd)
 {
     m_command = cmd;
+    if (Q_stristr(cmd.c_str(), "multiplayer")) {
+        Disable();
+        AllowActivate(false);
+    }
 }
 
 void UIWidget::ExecuteShowCommands(void)

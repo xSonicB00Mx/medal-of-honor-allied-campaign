@@ -3194,154 +3194,7 @@ UI_StartDMMap_f
 */
 void UI_StartDMMap_f(void)
 {
-    int         iDedicated;
-    int         iMaxClients;
-    int         iUseGameSpy;
-    int         iGameType = GT_FFA;
-    int         iFragLimit;
-    int         iTimeLimit;
-    int         iTeamDamage;
-    int         iInactiveSpectate;
-    int         iInactiveKick;
-    const char *pszTemp;
-    const char *pszGameTypeString = "Free-For-All";
-    const char *pszMapName;
-    const char *pszMapListCvar = "sv_maplist";
-    const char *pszMapListString;
-    char        szHostName[32];
-
-    if (Cmd_Argc() > 1) {
-        iGameType = atoi(Cmd_Argv(1));
-        if (Cmd_Argc() > 2) {
-            pszGameTypeString = Cmd_Argv(2);
-
-            if (Cmd_Argc() > 3) {
-                pszMapListCvar = Cmd_Argv(3);
-            }
-        }
-    }
-
-    pszMapName = CvarGetForUI("ui_dmmap", "");
-
-    if (!*pszMapName) {
-        return;
-    }
-
-    iDedicated = atoi(CvarGetForUI("ui_dedicated", "0"));
-
-    if (iDedicated < 0) {
-        iDedicated = 0;
-    } else if (iDedicated > 1) {
-        iDedicated = 1;
-    }
-
-    Cvar_SetValue("ui_dedicated", iDedicated);
-
-    iMaxClients = atoi(CvarGetForUI("ui_maxclients", "0"));
-
-    if (iMaxClients < 1) {
-        iMaxClients = 1;
-    } else if (iMaxClients > MAX_CLIENTS) {
-        iMaxClients = MAX_CLIENTS;
-    }
-
-    Cvar_SetValue("ui_maxclients", iMaxClients);
-
-    iUseGameSpy = atoi(CvarGetForUI("ui_gamespy", "0"));
-
-    if (iUseGameSpy < 0) {
-        iUseGameSpy = 0;
-    } else if (iUseGameSpy > 1) {
-        iUseGameSpy = 1;
-    }
-
-    Cvar_SetValue("ui_gamespy", iUseGameSpy);
-
-    iFragLimit = atoi(CvarGetForUI("ui_fraglimit", "0"));
-
-    if (iFragLimit < 0) {
-        iFragLimit = 0;
-    }
-
-    Cvar_SetValue("ui_fraglimit", iFragLimit);
-
-    iTimeLimit = atoi(CvarGetForUI("ui_timelimit", "0"));
-
-    if (iTimeLimit < 0) {
-        iTimeLimit = 0;
-    }
-
-    Cvar_SetValue("ui_timelimit", iTimeLimit);
-
-    iTeamDamage = atoi(CvarGetForUI("ui_teamdamage", "0"));
-
-    if (iTeamDamage < 0) {
-        iTeamDamage = 0;
-    } else if (iTeamDamage > 1) {
-        iTeamDamage = 1;
-    }
-
-    Cvar_SetValue("ui_teamdamage", iTeamDamage);
-
-    iInactiveSpectate = atoi(CvarGetForUI("ui_inactivespectate", "0"));
-
-    if (iInactiveSpectate < 0) {
-        iInactiveSpectate = 0;
-    }
-
-    Cvar_SetValue("ui_inactivespectate", iInactiveSpectate);
-
-    iInactiveKick = atoi(CvarGetForUI("ui_inactivekick", "0"));
-
-    if (iInactiveKick < 0) {
-        iInactiveKick = 0;
-    }
-
-    Cvar_SetValue("ui_inactivekick", iInactiveKick);
-
-    pszMapListString = CvarGetForUI(pszMapListCvar, "");
-
-    pszTemp = CvarGetForUI("ui_hostname", "Nameless Battle");
-    Q_strncpyz(szHostName, pszTemp, sizeof(szHostName));
-
-    for (int i = 0; i < sizeof(szHostName); i++) {
-        if (szHostName[i] == ';' || szHostName[i] == '"' || szHostName[i] == '\\') {
-            szHostName[i] = '_';
-        }
-    }
-
-    Cvar_Set("ui_hostname", szHostName);
-
-    Cbuf_AddText(
-        va("set dedicated %i;"
-           "set sv_maxclients %i;"
-           "set sv_gamespy %i;"
-           "set g_gametype %i;"
-           "set g_gametypestring \"%s\";"
-           "set fraglimit %i;"
-           "set timelimit %i;"
-           "set g_teamdamage %i;"
-           "set g_inactivespectate %i;"
-           "set g_inactivekick %i;"
-           "set sv_maplist \"%s\";"
-           "set sv_hostname \"%s\";"
-           "set cheats 0;"
-           "wait;"
-           "map \"%s\"\n",
-           iDedicated,
-           iMaxClients,
-           iUseGameSpy,
-           iGameType,
-           pszGameTypeString,
-           iFragLimit,
-           iTimeLimit,
-           iTeamDamage,
-           iInactiveSpectate,
-           iInactiveKick,
-           pszMapListString,
-           szHostName,
-           pszMapName)
-    );
+    Com_Printf("Allied Campaign is single-player only.\n");
 }
 
 /*
@@ -3598,6 +3451,8 @@ static void UI_AlliedSaves_f(void)
 
 static void UI_CampaignReport_f(void)
 {
+    Menu *current = menuManager.CurrentMenu();
+    Com_Printf("AC_UI_CURRENT %s\n", current ? current->m_name.c_str() : "none");
     const char *name = Cmd_Argc() > 1 ? Cmd_Argv(1) : "hud_compass";
     Menu *menu = menuManager.FindMenu(name);
     Com_Printf("AC_UI drawable=%dx%d base=%.4f menu=%.4f hud=%.4f safe=%.4f\n",
@@ -3608,6 +3463,8 @@ static void UI_CampaignReport_f(void)
     UIRect2D f = root->getFrame();
     Com_Printf("AC_UI_ROOT %s %.3f %.3f %.3f %.3f\n", name, f.pos.x, f.pos.y, f.size.width, f.size.height);
     for (UIWidget *child = root->getFirstChild(); child; child = root->getNextChild(child)) {
+        if (Q_stristr(child->getCommand().c_str(), "multiplayer"))
+            Com_Printf("AC_UI_MP_ENTRY enabled=%d\n", child->isEnabled());
         UIRect2D c = child->getFrame();
         Com_Printf("AC_UI_CHILD %s %.3f %.3f %.3f %.3f scale=%.4f,%.4f\n",
             child->getName(), c.pos.x, c.pos.y, c.size.width, c.size.height,

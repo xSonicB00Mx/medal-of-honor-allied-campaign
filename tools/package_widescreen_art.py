@@ -9,6 +9,7 @@ from functools import lru_cache
 from pathlib import Path
 
 from PIL import Image
+from singleplayer_ui import multiplayer_ui
 
 
 def main():
@@ -41,7 +42,7 @@ def main():
         modifications, textures, shaders = {}, {}, []
         for row in inventory['assets']:
             asset = row['asset_id']
-            if row['game'] != game or asset not in approved:
+            if row['game'] != game or asset not in approved or multiplayer_ui(row['ui']):
                 continue
             item = approved[asset]
             if item['status'] != 'approved':
@@ -66,6 +67,8 @@ def main():
                 and re.search(r'(?mi)^\s*include\s+"?'+re.escape(ui)+r'"?\s*$',
                     read(name).decode('latin1').replace('\r', ''))]
             for target in targets:
+                if multiplayer_ui(target):
+                    continue
                 assert not (game == 'BT' and target.startswith('ui/loading_'))
                 body = read(target).decode('latin1').replace('\r', '')
                 assert re.search(r'(?m)^menu\b', body), target
