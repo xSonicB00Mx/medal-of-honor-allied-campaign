@@ -1,8 +1,10 @@
 # Status
 
-Stand 14.10.2026: **Die Features bis einschließlich CP5 sind als CP05-r1 implementiert und lokal spielbereit.** Vollständige technische Abnahme, persönliche Nutzerabnahme und Merge sind getrennt davon und bleiben offen. Die autonome Fortsetzung bis CP5 sowie englische Spieloptionen wurden im Chat freigegeben. Keine weitere „mach weiter“-Bestätigung erforderlich; CP5a und Kampagnenarbeit bleiben außerhalb des Auftrags.
+Stand 14.10.2026 nach Nutzerfeedback: **CP05-r2 korrigiert sichtbare MP1-Partikel/Weltflecken, die Charakterbeleuchtung der Wunden und die Zentrierung der Briefings.** [Neue Startanleitung](CP05-r2-START.md), [Korrekturbericht](checkpoints/CP05/r2/REPORT.md). Einstellungen und Saves aus r1 wurden in ein getrenntes Profil kopiert; r1 und Originaldaten bleiben unverändert. Der Korrektur-Quellstand `89437fe58fc41a4d11b21e0a762560bced56c12a` wurde auf GitHub frisch verifiziert. Persönliche Abnahme und Merge bleiben offen.
 
-Empfohlener Einstieg: [CP05-r1 starten](CP05-r1-START.md). Quellstand der Engine: `c0f6342352b2971f52c462574e528f58edf9220b`. [CP5-Bericht](checkpoints/CP05/REPORT.md) und die zugehörigen JSON-Nachweise enthalten Binärhashes, Testbedingungen, lokale Paketsicherung und Grenzen.
+Vorheriger Stand 14.10.2026: **Die Features bis einschließlich CP5 sind als CP05-r1 implementiert und lokal spielbereit.** Vollständige technische Abnahme, persönliche Nutzerabnahme und Merge sind getrennt davon und bleiben offen. Die autonome Fortsetzung bis CP5 sowie englische Spieloptionen wurden im Chat freigegeben. Keine weitere „mach weiter“-Bestätigung erforderlich; CP5a und Kampagnenarbeit bleiben außerhalb des Auftrags.
+
+Vorheriger Einstieg: [CP05-r1 starten](CP05-r1-START.md). Quellstand der Engine: `c0f6342352b2971f52c462574e528f58edf9220b`. [CP5-Bericht](checkpoints/CP05/REPORT.md) und die zugehörigen JSON-Nachweise enthalten Binärhashes, Testbedingungen, lokale Paketsicherung und Grenzen.
 
 | Bereich | Lieferstand |
 | --- | --- |

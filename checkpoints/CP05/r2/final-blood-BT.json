@@ -1,0 +1,53 @@
+{
+  "run": "final-blood-BT",
+  "revision": "r2",
+  "game": "BT",
+  "reacting": true,
+  "wall": false,
+  "mist": 1,
+  "completed": true,
+  "exit": 0,
+  "images": [
+    "profiles-local/CP05-r2/final-blood-BT/maintt/screenshots/shot0000.png",
+    "profiles-local/CP05-r2/final-blood-BT/maintt/screenshots/shot0001.png",
+    "profiles-local/CP05-r2/final-blood-BT/maintt/screenshots/shot0002.png",
+    "profiles-local/CP05-r2/final-blood-BT/maintt/screenshots/shot0003.png",
+    "profiles-local/CP05-r2/final-blood-BT/maintt/screenshots/shot0004.png",
+    "profiles-local/CP05-r2/final-blood-BT/maintt/screenshots/shot0005.png",
+    "profiles-local/CP05-r2/final-blood-BT/maintt/screenshots/shot0006.png",
+    "profiles-local/CP05-r2/final-blood-BT/maintt/screenshots/shot0007.png"
+  ],
+  "binaries": {
+    "openmohaa.exe": "3aba7b0cf0a45c3b7da92251219a58cc7b1c2fe00c11c6a5eee095ec191fae16",
+    "game.dll": "c1481a6a0010c275bed5d25d042cd6112bd174c21f28a95220f698e906828771",
+    "cgame.dll": "56813968e2a4f2aeab75665b6a9c99d135c01db705735cddf875906ee4048136"
+  },
+  "events": [
+    "AC_HIT id=1 time=68700 entity=401 generation=65.450 weapon=models/weapons/colt45.tik group=1 seed=1644760938 entry=1 exit=1 surface=0/1/491",
+    "AC_RECEIVE argc=31",
+    "AC_REAR_BODY_BLOCK status=1",
+    "AC_DROP_BODY_BLOCK status=1",
+    "AC_DROP_BODY_BLOCK status=1",
+    "AC_DROP_BODY_BLOCK status=1",
+    "AC_DROP_BODY_BLOCK status=1",
+    "AC_DROP_BODY_BLOCK status=1",
+    "AC_DROP_BODY_BLOCK status=1",
+    "AC_DROP_BODY_BLOCK status=1",
+    "AC_DROP_HIT entity=1022 solid=0 fraction=0.683618 flags=524288",
+    "AC_MARK_FRAGMENTS 1",
+    "AC_MARK drop 6140.249 -5724.290 2487.650",
+    "AC_DROP_HIT entity=1022 solid=0 fraction=0.188271 flags=524288",
+    "AC_MARK_FRAGMENTS 2",
+    "AC_MARK drop 6138.870 -5723.231 2488.170",
+    "AC_DROP_HIT entity=1022 solid=0 fraction=0.590308 flags=524288",
+    "AC_MARK_FRAGMENTS 1",
+    "AC_MARK drop 6127.532 -5723.690 2491.302",
+    "AC_DROP_HIT entity=1022 solid=0 fraction=0.931029 flags=524288",
+    "AC_MARK_FRAGMENTS 1",
+    "AC_MARK drop 6127.794 -5722.363 2491.394",
+    "AC_DROP_HIT entity=1022 solid=0 fraction=0.519553 flags=524288",
+    "AC_MARK_FRAGMENTS 1",
+    "AC_MARK drop 6136.776 -5719.081 2489.278"
+  ],
+  "errors": []
+}

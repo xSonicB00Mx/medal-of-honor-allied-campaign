@@ -1,0 +1,33 @@
+{
+  "textures": [
+    {
+      "source": "bulletwound_smallCal.png",
+      "sha256": "c9bc4ed8f1c5425f0befb26962e0247fbb766c9340f96bff6cd3d69f4d39ab9f",
+      "size": [
+        70,
+        60
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "conversion": "Unscaled PNG RGBA to TGA; original colors and alpha retained"
+    },
+    {
+      "source": "bulletwound_highCal.png",
+      "sha256": "1c31acd26a786d535596e81229bf9f96fbb936d2888b26bb4691f52ca6e86e3c",
+      "size": [
+        110,
+        90
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "conversion": "Unscaled PNG RGBA to TGA; original colors and alpha retained"
+    }
+  ],
+  "package_sha256": "a1ce7ca3c9434209d6b0112501c49854ee6c9a6966df5dcea77237a2225e4526",
+  "large_profile": "One large material for rifle/MG entry and all CP5 exits",
+  "assets_in_git": false
+}

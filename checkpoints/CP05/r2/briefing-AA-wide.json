@@ -1,0 +1,25 @@
+{
+  "kind": "briefing",
+  "game": "AA",
+  "revision": "r2",
+  "dimensions": [
+    2560,
+    1080
+  ],
+  "completed": true,
+  "exit": 0,
+  "images": [
+    "profiles-local/CP05-r2/briefing-AA-wide/main/screenshots/shot0000.png",
+    "profiles-local/CP05-r2/briefing-AA-wide/main/screenshots/shot0001.png",
+    "profiles-local/CP05-r2/briefing-AA-wide/main/screenshots/shot0002.png"
+  ],
+  "binaries": {
+    "openmohaa.exe": "5392e6851e35dbbe4db4d2b83156e34ba610f8e0ec9aecf840a3e00fac68bc9e",
+    "game.dll": "c1481a6a0010c275bed5d25d042cd6112bd174c21f28a95220f698e906828771",
+    "cgame.dll": "56813968e2a4f2aeab75665b6a9c99d135c01db705735cddf875906ee4048136"
+  },
+  "archive": [
+    "AC_WOUND_ARCHIVE save count=0"
+  ],
+  "errors": []
+}

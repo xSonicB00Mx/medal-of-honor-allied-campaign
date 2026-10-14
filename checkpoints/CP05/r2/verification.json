@@ -1,0 +1,73 @@
+{
+  "candidate": "CP05-r2",
+  "source": "89437fe58fc41a4d11b21e0a762560bced56c12a",
+  "validated_wounds": [
+    {
+      "run": "final-wall-groups-AA",
+      "valid_wounds": 18,
+      "restored": 16,
+      "stable_transforms": true,
+      "exit_checked": true
+    },
+    {
+      "run": "final-motion-SH",
+      "valid_wounds": 4,
+      "restored": 4,
+      "stable_transforms": true,
+      "exit_checked": true
+    },
+    {
+      "run": "final-death-BT",
+      "valid_wounds": 6,
+      "restored": 6,
+      "stable_transforms": true,
+      "exit_checked": true
+    }
+  ],
+  "wall": {
+    "confirmed_hits": 9,
+    "world_marks": 117,
+    "rear_marks": 9,
+    "all_four_groups": true
+  },
+  "independent_options": true,
+  "persisted_after_restart": true,
+  "original_assets_unchanged": true,
+  "r1_preserved": true,
+  "technical_feedback_fix": true,
+  "personal_acceptance": false,
+  "merged": false,
+  "binaries": {
+    "openmohaa.exe": "5392e6851e35dbbe4db4d2b83156e34ba610f8e0ec9aecf840a3e00fac68bc9e",
+    "cgame.dll": "56813968e2a4f2aeab75665b6a9c99d135c01db705735cddf875906ee4048136",
+    "game.dll": "c1481a6a0010c275bed5d25d042cd6112bd174c21f28a95220f698e906828771"
+  },
+  "source_ci": {
+    "id": 38530780174,
+    "conclusion": "success"
+  },
+  "final_briefing_aspects": {
+    "briefing-AA-wide": {
+      "dimensions": [
+        2560,
+        1080
+      ],
+      "canvas_x_bounds": [
+        560,
+        1999
+      ],
+      "visually_reviewed": true
+    },
+    "briefing-AA-4x3": {
+      "dimensions": [
+        1280,
+        960
+      ],
+      "canvas_x_bounds": [
+        0,
+        1279
+      ],
+      "visually_reviewed": true
+    }
+  }
+}
