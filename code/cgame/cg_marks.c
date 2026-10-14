@@ -94,6 +94,7 @@ typedef struct cg_treadmarkinfo_s {
 } cg_treadmarkinfo_t;
 
 static qboolean cg_acPreciseMark = qfalse;
+static int cg_acMarkEntity = ENTITYNUM_WORLD;
 
 int CG_GetMarkFragments(
     int             numVerts,
@@ -120,6 +121,14 @@ int CG_GetMarkFragments(
     markFragment_t *pCurrFragment;
     markFragment_t *pFragment;
 
+    if (cg_acPreciseMark && cg_acMarkEntity != ENTITYNUM_WORLD) {
+        centity_t *cent = &cg_entities[cg_acMarkEntity];
+        iNewFragments = cgi.R_MarkFragmentsForInlineModel(cgi.CM_InlineModel(cent->currentState.modelindex),
+            cent->lerpAngles,cent->lerpOrigin,numVerts,pVerts,vProjection,MAX_MARK_POINTS,(float*)pPointBuffer,
+            MAX_MARK_FRAGMENTS,pFragmentBuffer,fRadiusSquared);
+        for(i=0;i<iNewFragments;++i)pFragmentBuffer[i].iIndex=-cg_acMarkEntity;
+        return iNewFragments;
+    }
     iNewFragments = cgi.R_MarkFragments(
         numVerts,
         pVerts,
@@ -465,12 +474,12 @@ void CG_FreeBestMarkObj(qboolean bAllowFade)
     }
 
     for (pMark = cg_activeMarkObjs.prevMark; pMark != &cg_activeMarkObjs; pMark = pMark->prevMark) {
-        if (!pMark->alphaFade || pMark->time > cg.time - 9000) {
+        if (!pMark->alphaFade || pMark->time > cg.time - (pMark->lifetime ? pMark->lifetime-1000 : 9000)) {
             break;
         }
     }
 
-    pMark->time = cg.time - 9000;
+    pMark->time = cg.time - (pMark->lifetime ? pMark->lifetime-1000 : 9000);
     pMark->alphaFade = qtrue;
 }
 
@@ -794,9 +803,13 @@ void CG_AssembleFinalMarks(
         }
 
         pMark->time       = cg.time;
+        pMark->lifetime = cg_acPreciseMark ? 30000 : 0;
+        pMark->usage = cg_acPreciseMark && iGroup<0 ? cg_entities[-iGroup].currentState.usageIndex : 0;
         pMark->alphaFade  = alphaFade;
         pMark->markShader = markShader;
         pMark->fadein     = fadein;
+        if(cg_acPreciseMark && cgi.Cvar_Get("ac_fx_debug","0",0)->integer>1)
+            cgi.Printf("AC_MARK_CREATED time=%d lifetime=%d owner=%d radius=%.3f polys=%d\n",cg.time,pMark->lifetime,iGroup,radius,numFragsForMark);
         VectorCopy(pos, pMark->pos);
         pMark->radius = radius;
 
@@ -924,11 +937,17 @@ void CG_AddMarks(void)
         pNext = pMark->nextMark;
 
         // see if it is time to completely remove it
-        if (pMark->alphaFade && cg.time > pMark->time + MARK_TOTAL_TIME) {
+        if (pMark->alphaFade && cg.time > pMark->time + (pMark->lifetime ? pMark->lifetime : MARK_TOTAL_TIME)) {
+            if(pMark->lifetime && cgi.Cvar_Get("ac_fx_debug","0",0)->integer>1)
+                cgi.Printf("AC_MARK_EXPIRED age=%d lifetime=%d\n",cg.time-pMark->time,pMark->lifetime);
             CG_FreeMarkObj(pMark);
             continue;
         }
 
+        if(pMark->usage && pMark->markPolys->iIndex<0 &&
+            cg_entities[-pMark->markPolys->iIndex].currentState.usageIndex!=pMark->usage) {
+            CG_FreeMarkObj(pMark);continue;
+        }
         if (pMark->markPolys->iIndex < 0 && !CG_UpdateMarkPosition(pMark)) {
             if (pMark->lastVisTime < cg.time - 3000) {
                 CG_FreeMarkObj(pMark);
@@ -968,7 +987,7 @@ void CG_AddMarks(void)
         }
 
         if (pMark->alphaFade) {
-            t = pMark->time + MARK_TOTAL_TIME - cg.time;
+            t = pMark->time + (pMark->lifetime ? pMark->lifetime : MARK_TOTAL_TIME) - cg.time;
             if (t < MARK_FADE_TIME) {
                 fade = 255 * t / MARK_FADE_TIME;
                 for (pPoly = pMark->markPolys; pPoly; pPoly = pPoly->nextPoly) {
@@ -2082,8 +2101,8 @@ int CG_PermanentUpdateTreadMark(
 
 // A negative squared-radius argument is the renderer's precise projection mode:
 // include small terrain fragments, and clip to 0.5 units around first contact.
-void CG_ACImpactMark(qhandle_t shader,const vec3_t pos,const vec3_t normal,float rotation,float radius) {
-    cg_acPreciseMark=qtrue;
+void CG_ACImpactMark(qhandle_t shader,const vec3_t pos,const vec3_t normal,float rotation,float radius,int entity) {
+    cg_acMarkEntity=entity;cg_acPreciseMark=qtrue;
     CG_ImpactMarkSimple(shader,pos,normal,rotation,radius,1,1,1,0.85f,qtrue,qfalse,qtrue,qfalse);
     cg_acPreciseMark=qfalse;
 }

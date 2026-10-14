@@ -1,6 +1,7 @@
 // Included once by tiki_surface.cpp. Server-time skinned triangles, not hitbox decals.
 #include "../qcommon/ac_effects.h"
 #include "../qcommon/ac_interval.h"
+#include "../qcommon/ac_corpse_models.h"
 #include "../skeletor/skeletor.h"
 #include <vector>
 #include <algorithm>
@@ -8,9 +9,15 @@
 
 namespace {
 struct ACVertex { vec3_t p; };
+bool ACSupportedBody(dtiki_t *tiki) {
+    if(!tiki)return false;
+    if(tiki->a->bIsCharacter)return true;
+    for(const char *name:acCorpseModels)if(!Q_stricmp(tiki->a->name,name))return true;
+    return false;
+}
 bool ACBodySurface(const char *name) {
     char lower[MAX_QPATH]; Q_strncpyz(lower,name,sizeof(lower)); Q_strlwr(lower);
-    const char *excluded[] = {"helmet","weapon","rifle","pistol","pack","gear","canteen","pouch","eye","teeth","loadout","clips","holster","gasmask","ammo","belt","hat.","cull_"};
+    const char *excluded[] = {"equipment","helmet","weapon","rifle","pistol","pack","gear","canteen","pouch","eye","teeth","loadout","clips","holster","gasmask","ammo","belt","hat.","cull_"};
     for (const char *word : excluded) if (strstr(lower,word)) return false;
     return true;
 }
@@ -57,7 +64,7 @@ bool ACRayTriangle(const vec3_t start,const vec3_t dir,const vec3_t a,const vec3
 }
 }
 void TIKI_ACSurfaceTrace(dtiki_t *tiki,const ac_pose_t *pose,const vec3_t start,const vec3_t direction,ac_surface_hit_t *hit) {
-    memset(hit,0,sizeof(*hit));if(!tiki || !pose || !tiki->a->bIsCharacter)return;
+    memset(hit,0,sizeof(*hit));if(!ACSupportedBody(tiki) || !pose)return;
     TIKI_SetPoseInternal(TIKI_GetSkeletor(tiki,pose->entityNumber),pose->frames,pose->boneTags,pose->boneQuats,pose->actionWeight);
     std::vector<ac_surface_point_t> contacts;std::vector<ACVertex> vertices;int globalSurface=0;
     for(int m=0;m<tiki->numMeshes;++m) {

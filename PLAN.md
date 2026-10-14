@@ -1,6 +1,8 @@
 # Medal of Honor: Allied Campaign
 > Frühere Arbeitsfreigabe 14.10.2026: Der Nutzer beauftragt die eigenständige Fortsetzung bis einschließlich CP1 ohne Zwischenfreigaben. Die Stopps nach CP0 und CP0a sind für diesen Lauf aufgehoben. Fachliche Anforderungen und ehrliche Testgrenzen bleiben bestehen; persönliche Spielabnahmen werden nicht erfunden. Der ausdrücklich abgewählte BT-Finaltest bleibt ausgelassen.
-> Aktuelle Erweiterung 14.10.2026: autonom bis einschließlich CP5, ohne Zwischenfreigaben; neue Spieloptionen ausschließlich Englisch. Technische Anforderungen bleiben bestehen. Keine persönliche Abnahme oder Mergefreigabe unterstellt. CP5a bleibt außerhalb des Auftrags.
+> Neueste Erweiterung 14.10.2026 nach CP05-r2: Weltblut 30 Sekunden, 1,5-fache Groesse, AA-Boden-/Wandkorrekturen und Leichentreffer sind jetzt direkt im Chat beauftragt. Die fruehere CP5-Grenze ist insoweit erweitert; keine Mergefreigabe oder persoenliche Abnahme unterstellt.
+
+> Vorherige Erweiterung 14.10.2026: autonom bis einschließlich CP5, ohne Zwischenfreigaben; neue Spieloptionen ausschließlich Englisch. Technische Anforderungen bleiben bestehen. Keine persönliche Abnahme oder Mergefreigabe unterstellt. CP5a bleibt außerhalb des Auftrags.
 ## Verbindlicher Arbeitsauftrag für Codex
 
 Stand des Plans: 13. Oktober 2026 · Revision 8. Vollständig aktualisierte Anleitung; ersetzt Revision 1 bis 7, nicht nur ein Ergänzungsblatt. Dieses Dokument beschreibt den Sollzustand und die Umsetzung; es behauptet nicht, dass die lokale Installation bereits untersucht oder die Mod bereits gebaut wurde.

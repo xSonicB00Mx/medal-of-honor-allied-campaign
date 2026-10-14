@@ -2205,6 +2205,7 @@ float BulletAttack(
 
     for (i = 0; i < count; i++) {
         trace_t tracethrough;
+        bool acCorpseSeen[MAX_GENTITIES]={};
 
         vTraceEnd = start + (dir * range) + (right * grandom() * spread.x) + (up * grandom() * spread.y);
 
@@ -2337,6 +2338,15 @@ float BulletAttack(
                     ent = NULL;
                 }
 
+                Vector acEnd=vTmpEnd;
+                if(ent && ACCorpse(ent)) {
+                    // A legacy corpse box can end the native trace before its mesh.
+                    // Recheck only the small remainder against the unchanged world mask.
+                    trace_t visual=G_Trace(vTraceStart,vec_zero,vec_zero,vTmpEnd+vDir*128,ent,MASK_SHOT,false,"AC corpse visibility",true);
+                    acEnd=visual.endpos;
+                }
+                ACCorpseSegment(vTraceStart,acEnd,vDir,weap,acCorpseSeen);
+
                 if (ent && ent != world && ent != owner) {
                     const bool acMistContact = g_gametype->integer==GT_SINGLE_PLAYER && ent->takedamage
                         && ent->IsSubclassOfActor() && ent->health>0 && weap && ACWeaponGroup(weap->model.c_str());
@@ -2350,6 +2360,7 @@ float BulletAttack(
                         // Get the original value of the victims health or water
 
                         original_value = ent->health;
+                        acCorpseSeen[ent->edict->s.number]=true;
                         ACVisualHit(ent, weap, trace.endpos, vDir);
 
                         ent->Damage(

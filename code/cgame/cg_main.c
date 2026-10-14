@@ -131,6 +131,7 @@ void CG_RegisterCvars(void)
     cgi.Cvar_Get("ac_blood_mist", "1", CVAR_ARCHIVE);
     cgi.Cvar_Get("ac_world_blood", "1", CVAR_ARCHIVE);
     cgi.Cvar_Get("ac_body_wounds", "1", CVAR_ARCHIVE);
+    cgi.Cvar_Get("ac_corpse_effects", "1", CVAR_ARCHIVE);
     cg_viewsize                   = cgi.Cvar_Get("viewsize", "100", CVAR_ARCHIVE);
     cg_addMarks                   = cgi.Cvar_Get("cg_marks_add", "1", CVAR_ARCHIVE);
     cg_maxMarks                   = cgi.Cvar_Get("cg_marks_max", "256", CVAR_ARCHIVE | CVAR_LATCH);

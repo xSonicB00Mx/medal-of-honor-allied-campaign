@@ -10,15 +10,14 @@ ACEmission acEmissions[128]={};unsigned acEmissionCursor=0;
 unsigned ACRandom(unsigned& state){state^=state<<13;state^=state>>17;state^=state<<5;return state;}
 float ACUnit(unsigned& state){return (ACRandom(state)&0xffffff)/16777216.f;}
 bool ACMarkable(const trace_t& tr) {
-    return tr.fraction<1 && !tr.startsolid && !tr.allsolid && tr.entityNum==ENTITYNUM_WORLD
+    return tr.fraction<1 && !tr.startsolid && !tr.allsolid && (tr.entityNum==ENTITYNUM_WORLD || (tr.entityNum>0 && tr.entityNum<ENTITYNUM_WORLD && cg_entities[tr.entityNum].currentValid && cg_entities[tr.entityNum].currentState.solid==SOLID_BMODEL))
         && !(tr.surfaceFlags&(SURF_SKY|SURF_PUDDLE))
-        // Terrain collision proxies carry NOMARKS/NODRAW; actual draw surfaces are filtered by the renderer.
-        && (!(tr.surfaceFlags&(SURF_NOMARKS|SURF_NODRAW)) || (tr.surfaceFlags&(SURF_SNOW|SURF_DIRT|SURF_GRASS|SURF_SAND|SURF_MUD|SURF_GRAVEL)))
+        // Invisible collision proxies may carry NOMARKS/NODRAW. Filter the actual draw surface instead.
         && !(tr.contents&(CONTENTS_WATER|CONTENTS_SLIME|CONTENTS_LAVA));
 }
 void ACBloodMark(const trace_t& tr,float radius,unsigned& seed,const char *branch) {
     if(!ACMarkable(tr))return;
-    CG_ACImpactMark(cgi.R_RegisterShader("ac/mp1_blood"),tr.endpos,tr.plane.normal,ACUnit(seed)*360,radius);
+    CG_ACImpactMark(cgi.R_RegisterShader("ac/mp1_blood"),tr.endpos,tr.plane.normal,ACUnit(seed)*360,radius*1.5f,tr.entityNum);
     if(cgi.Cvar_Get("ac_fx_debug","0",0)->integer)cgi.Printf("AC_MARK %s %.3f %.3f %.3f\n",branch,tr.endpos[0],tr.endpos[1],tr.endpos[2]);
 }
 void ACSpawnDrops(const vec3_t point,const vec3_t normal,int target,unsigned seed,bool exit,int usage) {
@@ -115,7 +114,7 @@ extern "C" void CG_ACBloodFrame(void) {
             VectorCopy(next,d.pos);d.velocity[2]-=320*dt;d.last+=ms;
         }
         if(d.active){refEntity_t sprite={};sprite.reType=RT_SPRITE;sprite.customShader=cgi.R_RegisterShader("ac/mp1_drop");
-            VectorCopy(d.pos,sprite.origin);sprite.radius=1.8f;sprite.scale=1;sprite.shaderTime=d.born*.001f;for(int i=0;i<4;++i)sprite.shaderRGBA[i]=255;cgi.R_AddRefEntityToScene(&sprite,ENTITYNUM_NONE);}
+            VectorCopy(d.pos,sprite.origin);sprite.radius=2.7f;sprite.scale=1;sprite.shaderTime=d.born*.001f;for(int i=0;i<4;++i)sprite.shaderRGBA[i]=255;cgi.R_AddRefEntityToScene(&sprite,ENTITYNUM_NONE);}
     }
 }
 extern "C" void CG_ACBloodReset(void){memset(acDrops,0,sizeof(acDrops));memset(acRear,0,sizeof(acRear));memset(acEmissions,0,sizeof(acEmissions));memset(acSeen,0,sizeof(acSeen));acCursor=acSeenCursor=acRearCursor=acEmissionCursor=0;}

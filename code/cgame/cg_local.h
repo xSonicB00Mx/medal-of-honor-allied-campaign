@@ -40,7 +40,7 @@ class MemArchiver;
 extern "C" {
 #endif
 
-    void CG_ACImpactMark(qhandle_t,const vec3_t,const vec3_t,float,float);
+    void CG_ACImpactMark(qhandle_t,const vec3_t,const vec3_t,float,float,int);
     void CG_ACWoundsEvent(void);
     void CG_ACWoundsReset(void);
     void CG_ACWoundsDraw(refEntity_t *model,int usage);
@@ -169,6 +169,8 @@ extern "C" {
         float radius;
         int markShader;
         int alphaFade;
+        int lifetime; // zero keeps the original mark lifetime
+        int usage; // owner generation for attached blood marks
         int fadein;
         markPoly_t* markPolys;
     } markObj_t;

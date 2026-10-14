@@ -52,6 +52,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 static char G_ErrorMessage[4096];
 profGame_t  G_profStruct;
 
+void ACSpawnStaticCorpses();
 qboolean  LoadingSavegame = false;
 qboolean  LoadingServer   = false;
 Archiver *currentArc      = NULL;
@@ -1574,6 +1575,7 @@ qboolean G_ArchiveLevel(
         if (arc.Loading()) {
             arc.Close();
             LoadingSavegame = false;
+            ACSpawnStaticCorpses();
             gi.Printf(HUD_MESSAGE_YELLOW "%s\n", gi.LV_ConvertString("Game Loaded"));
         } else {
             arc.Close();

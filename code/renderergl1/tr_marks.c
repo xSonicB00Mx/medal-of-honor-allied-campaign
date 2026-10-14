@@ -159,7 +159,7 @@ void R_BoxSurfaces_r(mnode_t *node, vec3_t mins, vec3_t maxs, surfaceType_t **li
 		//
 		surf = *mark;
 		// check if the surface has NOIMPACT or NOMARKS set
-		if ( ( surf->shader->surfaceFlags & ( SURF_NOIMPACT | SURF_NOMARKS ) ) ) {
+		if ( ( surf->shader->surfaceFlags & (precise ? (SURF_SKY|SURF_NODRAW|SURF_PUDDLE) : ( SURF_NOIMPACT | SURF_NOMARKS )) ) ) {
 			surf->viewCount = tr.viewCount;
 		}
 		// extra check for surfaces to avoid list overflows
@@ -853,7 +853,7 @@ int R_MarkFragments( int numPoints, const vec3_t *points, const vec3_t projectio
 #endif
 }
 
-void R_BoxSurfacesForBModel_r(bmodel_t* pBmodel, const vec3_t mins, const vec3_t maxs, surfaceType_t** list, int listsize, int* listlength, const vec3_t dir)
+void R_BoxSurfacesForBModel_r(bmodel_t* pBmodel, const vec3_t mins, const vec3_t maxs, surfaceType_t** list, int listsize, int* listlength, const vec3_t dir, qboolean precise)
 {
 	int s;
 	int c;
@@ -866,8 +866,7 @@ void R_BoxSurfacesForBModel_r(bmodel_t* pBmodel, const vec3_t mins, const vec3_t
 		s = surf->shader->surfaceFlags;
 		c = surf->shader->contentFlags;
 
-		if (!(s & SURF_NOIMPACT)
-			&& !(s & SURF_NOMARKS)
+		if (!(s & (precise ? (SURF_SKY|SURF_NODRAW|SURF_PUDDLE) : (SURF_NOIMPACT|SURF_NOMARKS)))
 			&& !(c & CONTENTS_FOG))
 		{
 			switch (*surf->data)
@@ -888,7 +887,7 @@ void R_BoxSurfacesForBModel_r(bmodel_t* pBmodel, const vec3_t mins, const vec3_t
 				break;
 			}
             case SF_GRID:
-                surf->viewCount = tr.viewCount;
+                if(!precise)surf->viewCount = tr.viewCount;
 				break;
 			default:
 				break;
@@ -977,17 +976,17 @@ int R_MarkFragmentsForInlineModel(clipHandle_t bmodel, const vec3_t vAngles, con
 	}
 
 	VectorCopy(vTransProjDir, normals[numPoints]);
-	dists[numPoints] = DotProduct(normals[numPoints], vTransPoints[0]) - 32.f;
+	dists[numPoints] = DotProduct(normals[numPoints], vTransPoints[0]) - (fRadiusSquared<0 ? .5f : 32.f);
 
 	VectorCopy(vTransProjDir, normals[numPoints + 1]);
 	VectorInverse(normals[numPoints + 1]);
-	dists[numPoints + 1] = DotProduct(normals[numPoints + 1], vTransPoints[0]) - 20.f;
+	dists[numPoints + 1] = DotProduct(normals[numPoints + 1], vTransPoints[0]) - (fRadiusSquared<0 ? .5f : 20.f);
 
 	returnedPoints = 0;
 	returnedFragments = 0;
 	numsurfaces = 0;
 
-	R_BoxSurfacesForBModel_r(pBmodel, vMins, vMaxs, surfaces, ARRAY_LEN(surfaces), &numsurfaces, vTransProjDir);
+	R_BoxSurfacesForBModel_r(pBmodel, vMins, vMaxs, surfaces, ARRAY_LEN(surfaces), &numsurfaces, vTransProjDir, fRadiusSquared<0);
 	if (!numsurfaces) {
 		return 0;
 	}

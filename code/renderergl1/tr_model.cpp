@@ -849,6 +849,7 @@ void R_AddSkelSurfaces(trRefEntity_t *ent)
     ent->e.bonestart = TIKI_Skel_Bones_Index;
     TIKI_Skel_Bones_Index += num_tags;
 
+    if(ent->e.renderfx&RF_AC_CORPSE_PROXY)return; // BSP body already renders; keep only its decal adapter.
     ent->e.hasMorph = qfalse;
 
     //

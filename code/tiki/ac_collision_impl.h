@@ -5,7 +5,7 @@ struct ACCollisionBody {int frame=-1,entity=-1;std::vector<ACCollisionTriangle> 
 ACCollisionBody acCollision[8];int acCollisionFrame=-1,acCollisionCount=0;
 }
 void TIKI_ACCacheCollision(dtiki_t *tiki,const ac_pose_t *pose,int frame) {
-    if(!tiki || !pose || !tiki->a->bIsCharacter)return;
+    if(!ACSupportedBody(tiki) || !pose)return;
     if(acCollisionFrame!=frame){acCollisionFrame=frame;acCollisionCount=0;}
     if(acCollisionCount==8)return;
     auto& body=acCollision[acCollisionCount++];body.frame=frame;body.entity=pose->entityNumber;body.triangles.clear();

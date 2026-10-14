@@ -45,6 +45,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 #include <cfloat>
 
 Level level;
+#include "ac_corpse_spawn.h"
 
 gclient_t *spawn_client = NULL;
 
@@ -1257,6 +1258,7 @@ void Level::SpawnEntities(char *entities, int svsTime)
     //
     // create landmarks
     //
+    ACSpawnStaticCorpses();
     ComputeDMWaypoints();
 }
 

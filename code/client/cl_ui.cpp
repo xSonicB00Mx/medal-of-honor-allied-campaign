@@ -3579,6 +3579,7 @@ static void UI_CampaignOptions_f(void)
     Cvar_Get("ac_blood_mist", "1", CVAR_ARCHIVE);
     Cvar_Get("ac_world_blood", "1", CVAR_ARCHIVE);
     Cvar_Get("ac_body_wounds", "1", CVAR_ARCHIVE);
+    Cvar_Get("ac_corpse_effects", "1", CVAR_ARCHIVE);
     UI_PushMenu("ac_scaling");
 }
 
