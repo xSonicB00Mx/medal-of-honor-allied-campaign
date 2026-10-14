@@ -1,9 +1,9 @@
 {
   "path": "artifacts-local/CP01-r1-local-runtime.zip",
-  "sha256": "72d8e06a2477377fc4dbe8b84ac59043334a34a8ab93999d8eac70bf5f1d3de2",
-  "bytes": 2814448166,
+  "sha256": "3a78988d5461920e632e41816b61ed83a7413efa31e06c58d225dc17ec72b2d4",
+  "bytes": 2814447654,
   "crc_verified": true,
   "contains_original_game_data": true,
   "upload_allowed": false,
-  "source_commit": "cc88cacc6b922c28bbd718916c3f3e5bbb49b86a"
+  "source_commit": "114c0d8d941a15b5d748a058cb9d529319ac5506"
 }

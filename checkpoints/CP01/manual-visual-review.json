@@ -7,16 +7,18 @@
   ],
   "discovered_and_fixed": [
     "UISlider MouseExited canceled own menu resize",
-    "popmenu 1 restored opening cvars; page now keeps instant settings"
+    "popmenu 1 restored opening cvars; page now keeps instant settings",
+    "Separate physical Escape path bypassed UI_PopMenu; shared Menu::RestoreCVars now protects only ac_scaling preferences. Final popmenu path exercised in released tests."
   ],
   "visual_review": [
     "AA 1280x960 four wrapped German objectives",
     "SH 3840x2160 German objectives and multiline subtitle",
     "BT 3440x1440 objectives/subtitles, binocular and sniper mask, save thumbnail",
-    "BT final 5120x1440 binocular black coverage and centered notification"
+    "BT final 5120x1440 binocular black coverage and centered notification",
+    "Clean BT advanced options screenshot: all controls within centered canvas; blank values for unmatched legacy presets are not claimed verified effects."
   ],
   "invalid_fixture": "text-BT-wide-v1 deliberately used wrong status=1 (hidden objectives); corrected to status=2 in v2 and final delivery tests",
-  "later_capture_failure": "FrameArrived timed out: timed out waiting on channel, repeated after one refresh/activation recovery",
+  "later_capture_failure": "FrameArrived timed out: timed out waiting on channel, repeated after one refresh/activation recovery; also occurred on a fresh AA window with developer=0, so physical final keyboard interaction is unverified.",
   "unverified": [
     "OS DPI changes 100/150/200 percent",
     "native window dragging and Alt-Tab",

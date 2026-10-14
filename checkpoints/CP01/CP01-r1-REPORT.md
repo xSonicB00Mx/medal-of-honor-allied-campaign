@@ -4,11 +4,11 @@ Stand: 14.10.2026. **Implementiert und als lokaler Spielkandidat bereitgestellt.
 
 ## Eindeutiger Kandidat
 
-- Quell-/Engine-Commit: `cc88cacc6b922c28bbd718916c3f3e5bbb49b86a`. Buildkennung im Spielprotokoll: `0.83.0-unstable+0.cc88cacc`.
+- Quell-/Engine-Commit: `114c0d8d941a15b5d748a058cb9d529319ac5506`. Buildkennung im Spielprotokoll: `0.83.0-unstable+0.114c0d8d`.
 - Runtime: `runtime-local/CP01-r1`. Start: `Start-CP01-r1-AA.cmd`, `Start-CP01-r1-SH.cmd`, `Start-CP01-r1-BT.cmd` im Workspace.
 - Eigene Benutzerprofile: `profiles-local/CP01-r1/user`. Diagnoseprofile sind davon getrennt. Keine alten Saves automatisch migriert.
 - Privater Entwurfs-PR #3, gestapelt auf CP00a-PR #2 und CP0-PR #1. Kein Merge.
-- Lokales Paket: `artifacts-local/CP01-r1-local-runtime.zip`, SHA-256 `72d8e06a2477377fc4dbe8b84ac59043334a34a8ab93999d8eac70bf5f1d3de2`, 2.814.448.166 Bytes, ZIP-CRC geprüft. Enthält Originaldaten: **nicht hochladen**.
+- Lokales Paket: `artifacts-local/CP01-r1-local-runtime.zip`, SHA-256 `3a78988d5461920e632e41816b61ed83a7413efa31e06c58d225dc17ec72b2d4`, 2.814.447.654 Bytes, ZIP-CRC geprüft. Enthält Originaldaten: **nicht hochladen**.
 - Alle Binär-/Paketprüfsummen und Buildoptionen: `build-manifest.json`. Originaleingaben 9072/9072 unverändert, Runtime-Basis 9000/9000 unverändert, erfasste Max-Payne-Dateien unverändert (`integrity.json`). Keine Hardlinks oder externe Datensicherung behauptet.
 
 ## Verhalten
@@ -29,13 +29,13 @@ Kompass-Ebenen, Drehmitte, Textmessung und Widget-Klickflächen teilen das Koord
 | Neue und bestehende Werte | 14 Werte je Kontext über Änderung, Prozessneustart und Wiederherstellung, 42/42; einschließlich FOV 90. `persistence-v1-*.json`. |
 | Kontextwechsel | Echte Workspace-CMDs: AA schreibt, SH und BT übernehmen alle vier Größenwerte. Abschließend Standardgrößen und FOV 90. `launcher-persistence.json`. |
 | Native Mausbedienung | HUD-Regler, Automatikschalter, Menüregler, Zurück und WCR-Einstieg bedient. Entdecktes Zurückspringen des sich selbst verschiebenden Reglers korrigiert. Rücknahme bei `popmenu 1` anschließend per Laufzeitprüfung korrigiert/verifiziert. |
-| Deutsche Texte / Optik / Saves | Vier lange Ziele, Umlaute, mehrzeilige Untertitel, Script-HUD, echte ausgerüstete Ferngläser/Sniper und Save-Menü mit Vorschaubild. Endgültige Binärdateien in `delivery-AA-text`, `delivery-SH-text`, `delivery-BT-text`, jeweils ohne Skript-/Befehlsfehler. |
+| Deutsche Texte / Optik / Saves | Vier lange Ziele, Umlaute, mehrzeilige Untertitel, Script-HUD, echte ausgerüstete Ferngläser/Sniper und Save-Menü mit Vorschaubild. Endgültige Binärdateien in `released-AA-text`, `released-SH-text`, `released-BT-text`, jeweils ohne Skript-/Befehlsfehler. |
 | Erhaltene WCR-Ressourcen | 195 AA-, 283 SH-, 323 BT-UI-Ressourcen inventarisiert. Alle ursprünglichen Bindungen bleiben erhalten; nur ein Einstieg ergänzt. `CP01-ui-resource-audit.json`. |
 | Vollbild | 1920×1080 mit Spiel, HUD, Save/Load und Menüs bestanden. Große Fenster sind nicht als physische Ultrawide-Monitore ausgegeben. |
-| Optionsseiten / Neuinitialisierung | Je AA/SH/BT fünf bestehende Optionsseiten geladen, dargestellt und vermessen; danach Fenster 1600×900 → Vollbild 1920×1200 → Fenster 1280×960 im selben Prozess. Menügröße 0,85 bleibt erhalten, acht Screenshots je Lauf. `reflow-*.json`, ausgelieferte Binärdateien. |
+| Optionsseiten / Neuinitialisierung | Je AA/SH/BT fünf bestehende Optionsseiten geladen, dargestellt und vermessen; danach Fenster 1600×900 → Vollbild 1920×1200 → Fenster 1280×960 im selben Prozess. Menügröße 0,85 bleibt erhalten, acht Screenshots je Lauf. `reflow-*.json`, Build vor dem letzten Escape-Fix. Saubere visuelle Aufnahmen ohne Diagnosekonsole: `reflow-clean-*.json`. |
 | Build / Integrität | Lokaler MSVC-x64-Build erfolgreich; Quellstand und Produkt-Hashes festgehalten. Separate GitHub-Builds, keine Spielassets in Git. |
 
-Die 24er-Matrix gehört zum ersten UI-Build; spätere Text-, Regler- und Persistenzkorrekturen sind separat mit Binärhash dokumentiert. Die abschließenden `delivery-*-text.json` beziehen sich auf den ausgelieferten Commit. Nicht alle früheren Berichte werden deshalb als Tests derselben Binärdatei ausgegeben.
+Die 24er-Matrix gehört zum ersten UI-Build; spätere Text-, Regler- und Persistenzkorrekturen sind separat mit Binärhash dokumentiert. Die abschließenden `released-*-text.json` beziehen sich auf den ausgelieferten Commit. Der letzte Fix verlegt den Schutz vor Rücknahme direkt in `Menu::RestoreCVars`, sodass Escape und `popmenu` dieselbe geprüfte Stelle benutzen; physische Escape-Tastenbedienung am finalen Build bleibt wegen des Aufnahmefehlers unbestätigt. Nicht alle früheren Berichte werden deshalb als Tests derselben Binärdatei ausgegeben.
 
 ## Noch offene Abnahmepunkte
 
