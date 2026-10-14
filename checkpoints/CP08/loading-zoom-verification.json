@@ -1,0 +1,237 @@
+{
+  "status": "LOCAL_INSTALLED_TESTED",
+  "engine_source_commit": "dcd7b900f8b4b420061284290568c296b6bc423c",
+  "scope": {
+    "SH": 9,
+    "BT": 11
+  },
+  "generated_images": 0,
+  "tests": [
+    {
+      "run": "loading-zoom-sh-1080",
+      "game": "SH",
+      "dimensions": [
+        1920,
+        1080
+      ],
+      "menus": [
+        "t1l1",
+        "t1l2",
+        "t1l3",
+        "t2l1",
+        "t2l2",
+        "t2l3",
+        "t2l4",
+        "t3l1",
+        "t3l2"
+      ],
+      "completed": true,
+      "errors": []
+    },
+    {
+      "run": "loading-zoom-bt-1080",
+      "game": "BT",
+      "dimensions": [
+        1920,
+        1080
+      ],
+      "menus": [
+        "e1l1",
+        "e1l2",
+        "e1l3",
+        "e1l4",
+        "e2l1",
+        "e2l2",
+        "e2l3",
+        "e3l1",
+        "e3l2",
+        "e3l3",
+        "e3l4"
+      ],
+      "completed": true,
+      "errors": []
+    },
+    {
+      "run": "loading-reference-sh-43",
+      "game": "SH",
+      "dimensions": [
+        1280,
+        960
+      ],
+      "menus": [
+        "t1l1"
+      ],
+      "completed": true,
+      "errors": []
+    },
+    {
+      "run": "loading-zoom-sh-43",
+      "game": "SH",
+      "dimensions": [
+        1280,
+        960
+      ],
+      "menus": [
+        "t1l1"
+      ],
+      "completed": true,
+      "errors": []
+    },
+    {
+      "run": "loading-reference-bt-43",
+      "game": "BT",
+      "dimensions": [
+        1280,
+        960
+      ],
+      "menus": [
+        "e1l1"
+      ],
+      "completed": true,
+      "errors": []
+    },
+    {
+      "run": "loading-zoom-bt-43",
+      "game": "BT",
+      "dimensions": [
+        1280,
+        960
+      ],
+      "menus": [
+        "e1l1"
+      ],
+      "completed": true,
+      "errors": []
+    },
+    {
+      "run": "loading-zoom-sh-1610",
+      "game": "SH",
+      "dimensions": [
+        1920,
+        1200
+      ],
+      "menus": [
+        "t2l2"
+      ],
+      "completed": true,
+      "errors": []
+    },
+    {
+      "run": "loading-zoom-bt-ultrawide",
+      "game": "BT",
+      "dimensions": [
+        2560,
+        1080
+      ],
+      "menus": [
+        "e3l4"
+      ],
+      "completed": true,
+      "errors": []
+    },
+    {
+      "run": "loading-zoom-aa-regression",
+      "game": "AA",
+      "dimensions": [
+        1920,
+        1080
+      ],
+      "menus": [
+        "main",
+        "m1l1",
+        "ac_campaign_operations"
+      ],
+      "completed": true,
+      "errors": []
+    },
+    {
+      "run": "loading-installed-sh",
+      "game": "SH",
+      "dimensions": [
+        1920,
+        1080
+      ],
+      "menus": [
+        "t1l1",
+        "t2l2"
+      ],
+      "completed": true,
+      "errors": []
+    },
+    {
+      "run": "loading-installed-bt",
+      "game": "BT",
+      "dimensions": [
+        1920,
+        1080
+      ],
+      "menus": [
+        "e1l1",
+        "e3l4"
+      ],
+      "completed": true,
+      "errors": []
+    }
+  ],
+  "reference_comparisons": [
+    {
+      "game": "SH",
+      "crop_excluding_animated_indicator": [
+        0,
+        0,
+        1280,
+        890
+      ],
+      "mean_channel_difference_255": [
+        0.004431179775280899,
+        0.009950842696629214,
+        0.010381846910112359
+      ],
+      "difference_bounds": [
+        1023,
+        149,
+        1280,
+        813
+      ],
+      "note": "Same framing; tiny filtering differences at the original two-texture seam, not pixel-identical."
+    },
+    {
+      "game": "BT",
+      "crop_excluding_animated_indicator": [
+        0,
+        0,
+        1280,
+        890
+      ],
+      "mean_channel_difference_255": [
+        0.002214712078651685,
+        0.0023762289325842696,
+        0.0024692766853932585
+      ],
+      "difference_bounds": [
+        1023,
+        150,
+        1025,
+        809
+      ],
+      "note": "Same framing; tiny filtering differences at the original two-texture seam, not pixel-identical."
+    }
+  ],
+  "integrity": {
+    "original_files_unchanged": 9072,
+    "runtime_base_files_unchanged": 9000,
+    "mp1_files_unchanged": 8,
+    "user_profile_files_unchanged": 26,
+    "rollback_copy": "generated-local/widescreen/backups/loading-zoom-r1"
+  },
+  "owned_runtime_files_verified": 32,
+  "screenshots": {
+    "path": "artifacts-local/CP08-r1-LoadingZoom-Screenshots.zip",
+    "sha256": "74ee29f421b6d634b77e0da7597054a1d45ca6a8fbab8e8d1043b7a9511210a4",
+    "count": 21
+  },
+  "build": "RelWithDebInfo native MSVC build passed",
+  "other_gemini_backgrounds_remaining": 36,
+  "personal_acceptance": false,
+  "merged": false
+}

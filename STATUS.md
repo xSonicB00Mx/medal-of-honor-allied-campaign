@@ -1,4 +1,8 @@
-## Aktuell: 16:9-Bilder, Teilpaket
+## Aktuell: SH-/BT-Ladebilder vergroessert
+
+Alle neun SH- und elf BT-Kampagnenladebilder werden auf Breitbild proportional vergroessert und zentriert. Motive, Fotorand und Ladeanzeige bleiben erhalten; in 4:3 bleibt der urspruengliche Ausschnitt. In CP08-r1 installiert, elf isolierte native Prueflaeufe bestanden. Keine neuen KI-Bilder erforderlich. [Nachweise](checkpoints/CP08/loading-zoom.md). Die 36 weiteren Gemini-Hintergruende des vorherigen Auftrags bleiben offen.
+
+## 16:9-Bilder, vorheriges Teilpaket
 
 Zwoelf Gemini-/Nano-Banana-Erweiterungen sind im CP08-r1-Startstand eingebaut: drei Hauptmenues, AA-Briefing-/Missionsraum, AA-Optionshauptmenue und sechs AA-Ladebilder. Originalzentren und Bedienelemente bleiben erhalten. 36 weitere ausgewaehlte Hintergruende sind offen; Gemini meldete ein Kontingentlimit bis 15.10.2026, 00:32 Uhr. Kein vollstaendiger Abschluss des Bildauftrags. [Umfang, Nachweise und Fortsetzung](checkpoints/CP08/widescreen-art.md).
 

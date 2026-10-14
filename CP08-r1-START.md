@@ -2,6 +2,8 @@
 
 Start: **Start-CP08-r1.cmd** im Workspace. Im Hauptmenue auf die Karte klicken: Sie oeffnet die gemeinsame Einsatzwahl anstelle der bisherigen Missionsauswahl.
 
+Aktuell: Alle SH-/BT-Kampagnenladebilder werden im Breitbild proportional vergroessert und zentriert; schmale Restbalken erhalten das vollstaendige Motiv. [Pruefbericht](checkpoints/CP08/loading-zoom.md).
+
 - **Continue Campaign** beginnt mit Operation Torch oder laedt den letzten Kampagnenspielstand, auch nach einem Programmneustart oder aus einem anderen Spielkontext.
 - Die zwei Bereiche **North Africa & Italy** und **Europe** waehlen. **Previous / Next**, Marker und Liste zeigen ausschliesslich bereits freigeschaltete Einsaetze. Nahe beieinanderliegende sichtbare Marker werden zu durchschaltbaren Gruppen zusammengefasst.
 - **Start Mission** beginnt den freigeschalteten Einsatz mit Originalbriefing/Startzustand. **Replay Mission** wiederholt einen abgeschlossenen Einsatz, ohne den Haupt-Fortsetzenpunkt zu ersetzen.

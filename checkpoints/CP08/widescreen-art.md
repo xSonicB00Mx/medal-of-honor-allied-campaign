@@ -1,5 +1,7 @@
 # CP08-r1: 16:9-Hintergruende, erstes Teilpaket
 
+Nachtrag: Die folgende Beschreibung ist der historische Stand des ersten Teilpakets. Nach neuer Nutzerfreigabe werden jetzt alle SH-/BT-Kampagnenladebilder ohne KI proportional vergroessert; siehe [Loading Zoom](loading-zoom.md). Die Outpainting-Warteliste bleibt davon getrennt.
+
 Zwischenstand 15.10.2026: Zwoelf visuell gepruefte Gemini-/Nano-Banana-Erweiterungen sind lokal eingebaut. Der Gesamtauftrag ist noch nicht abgeschlossen. Gemini verweigerte den naechsten Bildauftrag wegen des Kontingents und zeigte als Ruecksetzzeit den 15.10. um 00:32 Uhr an. Es wurden keine parallelen Generierungsanfragen und keine Upgrades ausgefuehrt.
 
 Enthalten sind die Hauptmenues von AA, SH und BT, der dunkle AA-Briefingraum mit seinen bestehenden Projektionsfolien, der helle AA-Missionsraum, das AA-Optionshauptmenue sowie sechs AA-Ladebilder: m1l1, m1l2a, m1l2b, m1l3a, m2l1 und m2l3. Gemeinsame Briefingressourcen werden in den Erweiterungen wiederverwendet. Die vorhandene Einsatzkarte bleibt der Hauptmenue-Kartenaufruf.
