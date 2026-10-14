@@ -1,0 +1,9 @@
+{
+  "path": "artifacts-local/CP04-r1-runtime.zip",
+  "sha256": "56b78d665fbc42738671140c903a76c5dfa5fbef795f70018d6299724b795a77",
+  "bytes": 2814547736,
+  "crc_verified": true,
+  "upload_allowed": false,
+  "contains_original_assets": true,
+  "source_commit": "e4de696cb837c3d34f995aedcd4c18bbdba5c4af"
+}
