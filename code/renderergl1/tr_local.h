@@ -782,6 +782,7 @@ typedef struct srfPoly_s {
 	int				numVerts;
 	polyVert_t		*verts;
 	int				renderfx;
+    int entityNumber; // ENTITYNUM_WORLD, or a skinned decal's owning actor.
 } srfPoly_t;
 
 typedef struct srfMarkFragment_s {
@@ -2084,6 +2085,7 @@ void RE_AddRefSpriteToScene(const refEntity_t* ent);
 void RE_AddTerrainMarkToScene(int iTerrainIndex, qhandle_t hShader, int numVerts, const polyVert_t* verts, int renderfx);
 refEntity_t* RE_GetRenderEntity(int entityNumber);
 qboolean RE_AddPolyToScene(qhandle_t hShader, int numVerts, const polyVert_t* verts, int renderfx);
+qboolean RE_AddEntityPolyToScene(qhandle_t shader, int numVerts, const polyVert_t *verts, const refEntity_t *entity);
 void RE_AddLightToScene( const vec3_t org, float intensity, float r, float g, float b, int type );
 void RE_AddAdditiveLightToScene( const vec3_t org, float intensity, float r, float g, float b );
 void RE_RenderScene( const refdef_t *fd );

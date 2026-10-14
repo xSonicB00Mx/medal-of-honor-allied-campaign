@@ -735,6 +735,7 @@ void CL_InitCGameDLL( clientGameImport_t *cgi, clientGameExport_t **cge ) {
 	
 	cgi->R_AddLightToScene			= re.AddLightToScene;
 	cgi->R_AddPolyToScene			= re.AddPolyToScene;
+    cgi->R_AddEntityPolyToScene = re.AddEntityPolyToScene;
 	cgi->R_AddTerrainMarkToScene	= re.AddTerrainMarkToScene;
 	cgi->R_SetColor					= re.SetColor;
 	cgi->R_DrawStretchPic			= re.DrawStretchPic;

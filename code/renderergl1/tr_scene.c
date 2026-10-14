@@ -114,9 +114,20 @@ void R_AddPolygonSurfaces( void ) {
 	tr.shiftedEntityNum = tr.currentEntityNum << QSORT_ENTITYNUM_SHIFT;
 
 	for ( i = 0, poly = tr.refdef.polys; i < tr.refdef.numPolys ; i++, poly++ ) {
+        tr.currentEntityNum = ENTITYNUM_WORLD;
+        if (poly->entityNumber != ENTITYNUM_WORLD) {
+            int e;
+            for(e=0;e<tr.refdef.num_entities;++e)
+                if(tr.refdef.entities[e].e.entityNumber==poly->entityNumber && tr.refdef.entities[e].e.tiki)break;
+            if(e==tr.refdef.num_entities)continue;
+            tr.currentEntityNum=e;
+        }
+        tr.shiftedEntityNum=tr.currentEntityNum << QSORT_ENTITYNUM_SHIFT;
 		sh = R_GetShaderByHandle( poly->hShader );
 		R_AddDrawSurf( ( void * )poly, sh, qfalse );
 	}
+    tr.currentEntityNum=ENTITYNUM_WORLD;
+    tr.shiftedEntityNum=ENTITYNUM_WORLD << QSORT_ENTITYNUM_SHIFT;
 }
 
 /*
@@ -143,12 +154,28 @@ qboolean RE_AddPolyToScene(qhandle_t hShader, int numVerts, const polyVert_t* ve
 	poly->numVerts = numVerts;
 	poly->verts = &backEndData->polyVerts[r_numpolyverts];
 	poly->renderfx = renderfx;
+    poly->entityNumber = ENTITYNUM_WORLD;
 
 	Com_Memcpy(poly->verts, verts, sizeof(polyVert_t) * numVerts);
 	++r_numpolys;
 	r_numpolyverts += numVerts;
 
 	return qtrue;
+}
+
+// Keep decals on the same entity lighting sphere as the underlying character.
+// Vertices arrive skinned in world space; the backend uses the actor transform.
+qboolean RE_AddEntityPolyToScene(qhandle_t shader,int numVerts,const polyVert_t *verts,const refEntity_t *entity) {
+    if(!entity || !entity->tiki || numVerts<3 || !RE_AddPolyToScene(shader,numVerts,verts,0))return qfalse;
+    srfPoly_t *poly=&backEndData->polys[r_numpolys-1];poly->entityNumber=entity->entityNumber;
+    for(int i=0;i<numVerts;++i) {
+        vec3_t delta;VectorSubtract(verts[i].xyz,entity->origin,delta);
+        for(int k=0;k<3;++k) {
+            float length=VectorLengthSquared(entity->axis[k]);
+            poly->verts[i].xyz[k]=length>0?DotProduct(delta,entity->axis[k])/length:0;
+        }
+    }
+    return qtrue;
 }
 
 /*

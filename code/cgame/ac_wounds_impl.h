@@ -72,9 +72,11 @@ extern "C" void CG_ACWoundsDraw(refEntity_t *model,int usage) {
     for(int i=0;i<count;++i) {
         if(VectorCompare(positions[i*3],vec3_origin))continue;
         vec3_t e1,e2,normal,light;VectorSubtract(positions[i*3+1],positions[i*3],e1);VectorSubtract(positions[i*3+2],positions[i*3],e2);CrossProduct(e2,e1,normal);VectorNormalize(normal);
-        cgi.R_GetLightingForDecal(light,normal,positions[i*3]);polyVert_t verts[3]={};
+        if(cgi.R_AddEntityPolyToScene)VectorSet(light,255,255,255);
+        else cgi.R_GetLightingForDecal(light,normal,positions[i*3]);polyVert_t verts[3]={};
         for(int j=0;j<3;++j){VectorCopy(positions[i*3+j],verts[j].xyz);for(int k=0;k<2;++k)verts[j].st[k]=triangles[i].vertex[j].uv[k];for(int k=0;k<3;++k)verts[j].modulate[k]=(byte)Q_clamp_int((int)light[k],0,255);verts[j].modulate[3]=(byte)(255*alpha);}
-        cgi.R_AddPolyToScene(shader[materials[i]],3,verts,0);
+        if(cgi.R_AddEntityPolyToScene)cgi.R_AddEntityPolyToScene(shader[materials[i]],3,verts,model);
+        else cgi.R_AddPolyToScene(shader[materials[i]],3,verts,0);
     }
 }
 void CG_ACWoundsArchive(MemArchiver& archive) {

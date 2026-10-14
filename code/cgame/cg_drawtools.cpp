@@ -604,6 +604,13 @@ void CG_HudDrawElements()
     }
 
     virtualScale[0] = virtualScale[1] = cgs.uiHiResScale[1] * 2.0f;
+    // Scripted briefing layers form one 640x480 canvas, not edge-anchored HUD.
+    // Keep their shared origin centered, independently of the player's HUD size.
+    const bool briefing = !Q_stricmpn(cgs.mapname,"maps/briefing/",14);
+    const float canvasScale=fminf(cgs.glconfig.vidWidth/640.f,cgs.glconfig.vidHeight/480.f);
+    const float canvasX=(cgs.glconfig.vidWidth-640*canvasScale)*.5f;
+    const float canvasY=(cgs.glconfig.vidHeight-480*canvasScale)*.5f;
+    if(briefing)virtualScale[0]=virtualScale[1]=canvasScale;
     const float safe = Com_Clamp(.8f, 1.0f, cgi.Cvar_Get("ac_hud_safe", "1", CVAR_ARCHIVE)->value);
     const float insetX = fmaxf(cgs.glconfig.vidWidth * (1-safe) * .5f,
         (cgs.glconfig.vidWidth - cgs.glconfig.vidHeight * (16.0f/9.0f)) * .5f);
@@ -628,6 +635,12 @@ void CG_HudDrawElements()
         const bool screenFill = isVirtual && !cgi.HudDrawElements[i].string[0]
             && fWidth >= 640 && fHeight >= 480 && fX == 0 && fY == 0;
         fX *= scale; fY *= scale; fWidth *= scale; fHeight *= scale;
+        if (briefing && isVirtual) {
+            const int alignX=cgi.HudDrawElements[i].iHorizontalAlign;
+            const int alignY=cgi.HudDrawElements[i].iVerticalAlign;
+            fX+=canvasX+(alignX==HUD_ALIGN_X_CENTER?(640*scale-fWidth)*.5f:alignX==HUD_ALIGN_X_RIGHT?640*scale:0);
+            fY+=canvasY+(alignY==HUD_ALIGN_Y_CENTER?(480*scale-fHeight)*.5f:alignY==HUD_ALIGN_Y_BOTTOM?480*scale:0);
+        } else {
         if (cgi.HudDrawElements[i].iHorizontalAlign == HUD_ALIGN_X_CENTER)
             fX += cgs.glconfig.vidWidth * .5f - fWidth * .5f;
         else if (cgi.HudDrawElements[i].iHorizontalAlign == HUD_ALIGN_X_RIGHT)
@@ -638,6 +651,7 @@ void CG_HudDrawElements()
         else if (cgi.HudDrawElements[i].iVerticalAlign == HUD_ALIGN_Y_BOTTOM)
             fY += cgs.glconfig.vidHeight - insetY;
         else fY += insetY;
+        }
         if (screenFill) {
             fX = fY = 0; fWidth = cgs.glconfig.vidWidth; fHeight = cgs.glconfig.vidHeight;
         }

@@ -10,7 +10,7 @@ with zipfile.ZipFile(package,'w',zipfile.ZIP_DEFLATED) as z:
   data=(a.source/name).read_bytes();assert hashlib.sha256(data).hexdigest()==expected
   im=Image.open(io.BytesIO(data));assert im.mode=='RGBA';blob=io.BytesIO();im.save(blob,format='TGA');image_path='textures/ac/wound_'+kind+'.tga'
   info=zipfile.ZipInfo(image_path,(2026,10,14,0,0,0));info.compress_type=zipfile.ZIP_DEFLATED;z.writestr(info,blob.getvalue())
-  shaders.append('ac/wound_'+kind+'\n{\n polygonOffset\n cull none\n {\n  map '+image_path+'\n  blendFunc GL_SRC_ALPHA GL_ONE_MINUS_SRC_ALPHA\n  rgbGen vertex\n  alphaGen vertex\n }\n}\n')
+  shaders.append('ac/wound_'+kind+'\n{\n polygonOffset\n cull none\n {\n  map '+image_path+'\n  blendFunc GL_SRC_ALPHA GL_ONE_MINUS_SRC_ALPHA\n  rgbGen lightingSpherical\n  alphaGen vertex\n }\n}\n')
   records.append(dict(source=name,sha256=expected,size=list(im.size),alpha=im.getchannel('A').getextrema(),conversion='Unscaled PNG RGBA to TGA; original colors and alpha retained'))
  info=zipfile.ZipInfo('scripts/ac_wounds.shader',(2026,10,14,0,0,0));info.compress_type=zipfile.ZIP_DEFLATED;z.writestr(info,''.join(shaders))
 (out/'zzzz_AC_Wounds.pk3').write_bytes(package.getvalue())

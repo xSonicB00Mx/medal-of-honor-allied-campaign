@@ -1,8 +1,9 @@
 """Exercise independent live effect switches and a policy-excluded shotgun."""
-import hashlib,json,re,subprocess,shutil
+import argparse,hashlib,json,re,subprocess,shutil
 from pathlib import Path
 from PIL import Image
-r=Path(__file__).resolve().parents[1];rt=r/'runtime-local/CP05-r1';p=r/'profiles-local/CP05-r1/options';h=p/'main'
+ap=argparse.ArgumentParser();ap.add_argument('--revision',default='r1');a=ap.parse_args()
+r=Path(__file__).resolve().parents[1];rt=r/'runtime-local'/('CP05-'+a.revision);p=r/'profiles-local'/('CP05-'+a.revision)/'options';h=p/'main'
 assert not p.exists();(h/'cp00').mkdir(parents=True)
 fixture=(r/'tools/cp00_baseline_fixture.scr').read_text().replace('german_wehrmact_soldier','german_misc_worker').replace('level.cp00_subject ai_off','level.cp00_subject ai_off\n    level.cp00_subject.health = 10000')
 (h/'cp00/base.scr').write_text(fixture)
@@ -44,4 +45,4 @@ images=[]
 for im in sorted((h/'screenshots').glob('*.tga')):
  out=im.with_suffix('.png');Image.open(im).save(out);images.append(out.relative_to(r).as_posix())
 result=dict(complete=True,cases=results,persisted_after_process_restart=True,images=images,binaries={f:hashlib.sha256((rt/f).read_bytes()).hexdigest() for f in ('openmohaa.exe','cgame.dll','game.dll')})
-(r/'checkpoints/CP05/options.json').write_text(json.dumps(result,indent=2));print(json.dumps({k:v for k,v in result.items() if k!='cases'}),flush=True)
+(r/'checkpoints/CP05'/('options.json' if a.revision=='r1' else a.revision+'/options.json')).write_text(json.dumps(result,indent=2));print(json.dumps({k:v for k,v in result.items() if k!='cases'}),flush=True)

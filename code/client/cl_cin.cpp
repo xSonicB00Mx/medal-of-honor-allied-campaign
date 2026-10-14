@@ -1630,7 +1630,11 @@ void CIN_DrawCinematic (int handle) {
 	w = cinTable[handle].width;
 	h = cinTable[handle].height;
 	buf = cinTable[handle].buf;
-	SCR_AdjustFrom640( &x, &y, &w, &h );
+    if(x==0 && y==0 && w==640 && h==480) {
+        // Full-screen briefing movies share the centered 4:3 presentation.
+        const float scale=fminf(cls.glconfig.vidWidth/640.f,cls.glconfig.vidHeight/480.f);
+        w=640*scale;h=480*scale;x=(cls.glconfig.vidWidth-w)*.5f;y=(cls.glconfig.vidHeight-h)*.5f;
+    } else SCR_AdjustFrom640( &x, &y, &w, &h );
 
 	if (cinTable[handle].dirty && (cinTable[handle].CIN_WIDTH != cinTable[handle].drawX || cinTable[handle].CIN_HEIGHT != cinTable[handle].drawY)) {
 		int *buf2;

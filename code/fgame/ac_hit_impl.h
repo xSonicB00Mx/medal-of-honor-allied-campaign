@@ -28,7 +28,8 @@ static void ACVisualHit(Entity *target,Weapon *weapon,const Vector& point,const 
     ACSendWound(target,pose,geometry.entry,event,seed,group,0);
     if(geometry.exitValid)ACSendWound(target,pose,geometry.exit,event,seed,group,1);
     const auto& a=geometry.entry;const auto& b=geometry.exit;
-    gi.SendServerCommand(-1,"ac_hit %u %u %d %d %d %.3f %.3f %.3f %.5f %.5f %.5f %.3f %.3f %.3f %.5f %.5f %.5f %d",
+    gi.SendServerCommand(-1,"ac_hit %u %u %d %d %d %.3f %.3f %.3f %.5f %.5f %.5f %.3f %.3f %.3f %.5f %.5f %.5f %d %d %d %d %.6f %.6f %.6f %d %d %d %.6f %.6f %.6f",
         event,seed,e->s.number,group,geometry.exitValid,a.position[0],a.position[1],a.position[2],a.normal[0],a.normal[1],a.normal[2],
-        b.position[0],b.position[1],b.position[2],direction.x,direction.y,direction.z,e->s.usageIndex);
+        b.position[0],b.position[1],b.position[2],direction.x,direction.y,direction.z,e->s.usageIndex,
+        a.mesh,a.surface,a.triangle,a.bary[0],a.bary[1],a.bary[2],b.mesh,b.surface,b.triangle,b.bary[0],b.bary[1],b.bary[2]);
 }

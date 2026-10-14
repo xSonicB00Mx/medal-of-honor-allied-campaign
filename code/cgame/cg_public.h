@@ -300,6 +300,7 @@ functions exported to the main executable
         void (*R_AddRefSpriteToScene)(const refEntity_t *ent);
         void (*R_AddLightToScene)(const vec3_t origin, float intensity, float r, float g, float b, int type);
         qboolean (*R_AddPolyToScene)(qhandle_t hShader, int numVerts, const polyVert_t *verts, int renderfx);
+        qboolean (*R_AddEntityPolyToScene)(qhandle_t shader, int numVerts, const polyVert_t *verts, const refEntity_t *entity);
         void (*R_AddTerrainMarkToScene)(
             int terrainIndex, qhandle_t hShader, int numVerts, const polyVert_t *verts, int renderFx
         );

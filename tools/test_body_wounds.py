@@ -3,8 +3,11 @@ import argparse, hashlib, json, re, shutil, subprocess
 from pathlib import Path
 from PIL import Image
 
-ap=argparse.ArgumentParser();ap.add_argument('game',choices=['AA','SH','BT']);ap.add_argument('--run-id',required=True);ap.add_argument('--regions',action='store_true');ap.add_argument('--death',action='store_true');ap.add_argument('--lod',action='store_true');ap.add_argument('--motion',action='store_true');ap.add_argument('--fps',type=int,default=60);ap.add_argument('--model',default='models/human/german_wehrmact_soldier.tik');ap.add_argument('--checkpoint',choices=['CP04','CP05'],default='CP04');ap.add_argument('--wall',action='store_true');ap.add_argument('--quick',action='store_true');ap.add_argument('--facing',choices=['front','rear','side'],default='front');ap.add_argument('--one-volley',action='store_true');ap.add_argument('--crouch',action='store_true');a=ap.parse_args()
-r=Path(__file__).resolve().parents[1];rt=r/'runtime-local'/(a.checkpoint+'-r1');p=r/'profiles-local'/(a.checkpoint+'-r1')/a.run_id
+ap=argparse.ArgumentParser();ap.add_argument('game',choices=['AA','SH','BT']);ap.add_argument('--run-id',required=True);ap.add_argument('--regions',action='store_true');ap.add_argument('--death',action='store_true');ap.add_argument('--lod',action='store_true');ap.add_argument('--motion',action='store_true');ap.add_argument('--fps',type=int,default=60);ap.add_argument('--model',default='models/human/german_wehrmact_soldier.tik');ap.add_argument('--checkpoint',choices=['CP04','CP05'],default='CP04');ap.add_argument('--wall',action='store_true');ap.add_argument('--quick',action='store_true');ap.add_argument('--facing',choices=['front','rear','side'],default='front');ap.add_argument('--one-volley',action='store_true');ap.add_argument('--crouch',action='store_true');ap.add_argument('--revision',default='r1');a=ap.parse_args()
+r=Path(__file__).resolve().parents[1];rt=r/'runtime-local'/(a.checkpoint+'-'+a.revision);p=r/'profiles-local'/(a.checkpoint+'-'+a.revision)/a.run_id
+report=r/'checkpoints'/a.checkpoint
+if a.revision!='r1':report=report/a.revision
+report.mkdir(parents=True,exist_ok=True)
 assert re.fullmatch('[A-Za-z0-9-]+',a.run_id) and not p.exists()
 n,f,src={'AA':(0,'main',None),'SH':(1,'mainta','profiles-local/CP00-r4/SH/mainta/save/omconfig/t1l20005.sav'),'BT':(2,'maintt','profiles-local/CP00-r4/r4-bt-foot-e2l2/maintt/save/omconfig/cp00_foot_ready.sav')}[a.game]
 h=p/f;(h/'cp00').mkdir(parents=True);start='map m2l1'
@@ -57,15 +60,15 @@ log=(h/'qconsole.log').read_text(encoding='latin1');images=[]
 for image in sorted((h/'screenshots').glob('*.tga')):
  out=image.with_suffix('.png');Image.open(image).save(out);images.append(out.relative_to(r).as_posix())
 result=dict(game=a.game,exit=proc.returncode,completed='CP03_DONE' in log,engine_sha256=hashlib.sha256((rt/'openmohaa.exe').read_bytes()).hexdigest(),cgame_sha256=hashlib.sha256((rt/'cgame.dll').read_bytes()).hexdigest(),images=images,geometry_events=re.findall(r'AC_HIT[^\r\n]+',log),mark_events=re.findall(r'AC_MARK (?:drop|rear)[^\r\n]+',log),mist_events=re.findall(r'AC_MIST[^\r\n]+',log),errors=[l for l in log.splitlines() if any(t in l for t in ['Script Error','Unknown command','Invalid event','compile error','command not available'])],saved_off='seta ac_blood_mist "0"' in (h/'configs/omconfig.cfg').read_text())
-(r/'checkpoints'/a.checkpoint/f'{a.run_id}.json').write_text(json.dumps(result,indent=2))
+(report/f'{a.run_id}.json').write_text(json.dumps(result,indent=2))
 result['rendered_mark_fragments']=list(map(int,re.findall(r'AC_MARK_FRAGMENTS (\d+)',log)))
-(r/'checkpoints'/a.checkpoint/f'{a.run_id}.json').write_text(json.dumps(result,indent=2))
+(report/f'{a.run_id}.json').write_text(json.dumps(result,indent=2))
 result['wounds']=re.findall(r'AC_WOUND [^\r\n]+',log)
 result['received']=re.findall(r'AC_WOUND_RECEIVED[^\r\n]+',log)
 result['drawn']=re.findall(r'AC_WOUND_DRAW[^\r\n]+',log)
 result['states']=re.findall(r'AC_WOUND_STATE[^\r\n]+',log)
 result['archive']=re.findall(r'AC_WOUND_ARCHIVE[^\r\n]+',log)
-(r/'checkpoints'/a.checkpoint/f'{a.run_id}.json').write_text(json.dumps(result,indent=2))
+(report/f'{a.run_id}.json').write_text(json.dumps(result,indent=2))
 result['body_blocks']=len(re.findall(r'AC_DROP_BODY_BLOCK status=1',log))
 result['rear_body_blocks']=len(re.findall(r'AC_REAR_BODY_BLOCK status=1',log))
 result['cache_unavailable']=len(re.findall(r'AC_(?:DROP|REAR)_BODY_BLOCK status=-1',log))
@@ -73,10 +76,10 @@ result['patch_budget_exceeded']=log.count('AC_PATCH_BUDGET')
 result['intervals']=re.findall(r'AC_INTERVAL[^\r\n]+',log)
 result['game_sha256']=hashlib.sha256((rt/'game.dll').read_bytes()).hexdigest()
 result['test_conditions']=dict(animation_drive="scripted_no_enemy_follow_camera",crouch=a.crouch,facing=a.facing,fps=a.fps,model=a.model,regions=a.regions,motion=a.motion,lod=a.lod,death=a.death)
-(r/'checkpoints'/a.checkpoint/f'{a.run_id}.json').write_text(json.dumps(result,indent=2))
+(report/f'{a.run_id}.json').write_text(json.dumps(result,indent=2))
 print(json.dumps({k:len(v) if isinstance(v,list) else v for k,v in result.items()}),flush=True)
 assert result['completed'] and proc.returncode==0 and not result['errors'] and result['saved_off'] and len(result['mist_events'])>=(1 if a.quick else 4 if a.one_volley else 8)
 
 if a.checkpoint=='CP05':
  from validate_wound_run import validate
- validate(r/'checkpoints'/a.checkpoint/f'{a.run_id}.json',True)
+ validate(report/f'{a.run_id}.json',True)

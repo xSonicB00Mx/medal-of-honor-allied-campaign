@@ -1013,6 +1013,14 @@ void RE_StretchRaw (int x, int y, int w, int h, int cols, int rows, int componen
 		return;
 	}
 	R_IssuePendingRenderCommands();
+    // Raw movies draw immediately, outside the queued UI shader path. Clear
+    // the full-screen movie's pillarbox here so old frames/window color cannot
+    // remain beside a centered 4:3 image. Embedded movie rectangles are unchanged.
+    if((w==glConfig.vidWidth || h==glConfig.vidHeight)
+        && abs(2*x+w-glConfig.vidWidth)<=1 && abs(2*y+h-glConfig.vidHeight)<=1) {
+        qglClearColor(0,0,0,1);
+        qglClear(GL_COLOR_BUFFER_BIT);
+    }
 
 	// we definately want to sync every frame for the cinematics
 	qglFinish();
