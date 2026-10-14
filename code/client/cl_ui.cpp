@@ -2574,9 +2574,6 @@ void UI_PopMenu(qboolean restore_cvars)
     }
 
     if (menuManager.CurrentMenu()) {
-        // These preferences apply immediately, including when Escape closes
-        // the page. Legacy WCR dialogs retain their own cancel behavior.
-        if (menuManager.CurrentMenu()->m_name == "ac_scaling") restore_cvars = qfalse;
         menuManager.PopMenu(restore_cvars);
     }
 

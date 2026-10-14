@@ -343,6 +343,10 @@ void Menu::SaveCVars(void)
 
 void Menu::RestoreCVars(void)
 {
+    // The campaign size page applies immediately. Both Escape and popmenu
+    // reach this path; legacy WCR dialogs retain their cancel behavior.
+    if (m_name == "ac_scaling") return;
+
     int i;
     int n;
 
