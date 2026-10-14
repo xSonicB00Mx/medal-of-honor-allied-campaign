@@ -14,6 +14,6 @@ for region in d['map']['regions']:
   assert -90<o['latitude']<90 and -180<o['longitude']<180 and o['location_source']['provider']=='GeoNames'
   expected.append(((o['longitude']-left)*s,330-(merc(o['latitude'])-bottom)*s,o['map_region']))
 actual=[(float(x),float(y),int(r)) for x,y,r in re.findall(r'\{(-?[\d.]+)f,(-?[\d.]+)f,(\d)\}',(R/'code/client/ac_map.h').read_text())]
-assert len(actual)==90 and all(abs(a[0]-b[0])<.00002 and abs(a[1]-b[1])<.00002 and a[2]==b[2] for a,b in zip(actual,expected))
+assert len(actual)==30 and all(abs(a[0]-b[0])<.00002 and abs(a[1]-b[1])<.00002 and a[2]==b[2] for a,b in zip(actual,expected))
 assert not d['map']['political_borders'] and not d['map']['front_lines']
-print('PASS: 54 unique sections, ordered operations, source references, all 90 projected markers and crop coverage')
+print('PASS: 54 unique sections, ordered operations, source references, all 30 projected markers and crop coverage')

@@ -1,5 +1,5 @@
 """Reproducible cartography from sourced polygons; no baked labels or markers."""
-import json,math,hashlib,zipfile
+import json,math,hashlib,zipfile,re
 from pathlib import Path
 from PIL import Image,ImageDraw,ImageFilter
 R=Path(__file__).resolve().parents[1];D=R/'mod/campaign';O=R/'generated-local/CP08/map';O.mkdir(parents=True,exist_ok=True)
@@ -25,7 +25,7 @@ for i,reg in enumerate(data['map']['regions']):
   for x in range(W*S):
    n=rng.choice((-2,-1,0,0,0,1,2));pix[x,y]=tuple(max(0,min(255,c+n)) for c in pix[x,y])
  im.save(O/f'region{i}.tga')
-lines+=['};','typedef struct {float x,y;int region;} acMapMarker_t;','static const acMapMarker_t ac_mapMarkers[6][15] = {']
+lines+=['};','typedef struct {float x,y;int region;} acMapMarker_t;','static const acMapMarker_t ac_mapMarkers[2][15] = {']
 audit=[]
 for reg in data['map']['regions']:
  ex=extent(reg['bounds']);row=[]
@@ -39,13 +39,24 @@ for i,o in enumerate(data['operations']):
 (R/'checkpoints/CP08').mkdir(exist_ok=True)
 (R/'checkpoints/CP08/marker-validation.json').write_text(json.dumps(audit,indent=2)+'\n')
 shader=''
-for i in range(6):shader+=f'ac_map_{i}\n{{\n nopicmip\n nomipmaps\n {{\n map textures/ac_campaign/region{i}.tga\n rgbGen identity\n }}\n}}\n'
+for i in range(2):shader+=f'ac_map_{i}\n{{\n nopicmip\n nomipmaps\n {{\n map textures/ac_campaign/region{i}.tga\n rgbGen identity\n }}\n}}\n'
 (O/'ac_campaign.shader').write_text(shader)
 rt=R/'runtime-local/CP08-r1'
 for folder in ['main','mainta','maintt']:
  with zipfile.ZipFile(R/'runtime-local/CP07-r1'/folder/'zzzzz_AC_Campaign.pk3') as z:files={n:z.read(n) for n in z.namelist()}
+ # Replace the original map/new-game selection action while preserving every other WCR widget.
+ main=files['ui/main.urc'].decode('latin1')
+ def route(match):
+  block=match.group(0)
+  if 'name "ac_campaign_entry"' in block:return ''
+  if 'name "new game old"' in block or 'name "bigmap"' in block or 'name "briefing"' in block:
+   block=re.sub(r'stuffcommand "[^"]*"','stuffcommand "ac_campaign"',block)
+  return block
+ main=re.sub(r'resource\s+Button\s*\{[^}]*\}',route,main)
+ assert 'name "new game old"' in main and 'stuffcommand "ac_campaign"' in main
+ files['ui/main.urc']=main.encode('latin1')
  files['scripts/ac_campaign.shader']=shader.encode()
- for i in range(6):files[f'textures/ac_campaign/region{i}.tga']=(O/f'region{i}.tga').read_bytes()
+ for i in range(2):files[f'textures/ac_campaign/region{i}.tga']=(O/f'region{i}.tga').read_bytes()
  with zipfile.ZipFile(rt/folder/'zzzzz_AC_Campaign.pk3','w',zipfile.ZIP_DEFLATED) as z:
   for n,b in files.items():z.writestr(n,b)
-print('Six 2240 x 1320 map backgrounds; all 15 regional anchors validated.')
+print('Two 2240 x 1320 map backgrounds; all 15 regional anchors validated.')

@@ -52,13 +52,34 @@ static bool ACCorpse(Entity *ent) {
     for(const char *name:acCorpseModels)if(!Q_stricmp(ent->model.c_str(),name))return true;
     return false;
 }
+// A killed actor may retain a solid box throughout its death animation. Ignore
+// only those actors for this synchronous bullet query, then restore contents
+// before any damage/event processing. No relink, death callback or RNG draw.
+// Independent of all visual toggles: disabling blood cannot change bullet damage.
+static trace_t ACTraceBullet(const Vector& start,const Vector& end,Entity *owner,int mask=MASK_SHOT_TRIG) {
+    int skipped[MAX_GENTITIES],contents[MAX_GENTITIES],count=0;
+    trace_t hit;
+    for(;;) {
+        hit=G_Trace(start,vec_zero,vec_zero,end,owner,mask,false,"BulletAttack",true);
+        Entity *ent=hit.ent?hit.ent->entity:nullptr;
+        if(g_gametype->integer!=GT_SINGLE_PLAYER || !ent || !ent->IsSubclassOfActor()
+            || (!ent->IsDead() && ent->health>0) || !ent->edict->r.contents || count==MAX_GENTITIES)break;
+        skipped[count]=ent->edict->s.number;contents[count++]=ent->edict->r.contents;
+        if(gi.Cvar_Get("ac_fx_debug","0",0)->integer)
+            gi.Printf("AC_BULLET_PASS entity=%d health=%.1f dead=%d solid=%d contents=%d\n",ent->edict->s.number,ent->health,ent->deadflag,ent->edict->solid,ent->edict->r.contents);
+        ent->edict->r.contents=0;
+    }
+    while(count) {--count;g_entities[skipped[count]].r.contents=contents[count];}
+    return hit;
+}
 static void ACCorpseSegment(const Vector& start,const Vector& end,const Vector& direction,
     Weapon *weapon,bool *seen) {
     if(g_gametype->integer!=GT_SINGLE_PLAYER || !weapon || !ACWeaponGroup(weapon->model.c_str())
         || !gi.Cvar_Get("ac_corpse_effects","1",CVAR_ARCHIVE)->integer)return;
     float length=DotProduct(end-start,direction);if(length<=0)return;
     for(int i=0;i<globals.num_entities;++i) {
-        auto& e=g_entities[i];if(!e.inuse || !e.entity || seen[i] || !ACCorpse(e.entity))continue;
+        auto& e=g_entities[i];
+        if(!e.inuse || !e.entity || seen[i] || !ACCorpse(e.entity))continue;
         // The engine shrinks corpse collision boxes. Broadphase uses a conservative
         // sphere; exact skinned triangles decide the hit, never that old box.
         float radius=128*fmaxf(1,e.s.scale);Vector delta=e.entity->origin-start;
@@ -72,6 +93,6 @@ static void ACCorpseSegment(const Vector& start,const Vector& end,const Vector& 
         if(!geometry.entryValid || offset+geometry.entry.distance>length+.05f)continue;
         seen[i]=true;
         ACVisualHit(e.entity,weapon,geometry.entry.position,direction,true,&geometry);
-        if(gi.Cvar_Get("ac_fx_debug","0",0)->integer)gi.Printf("AC_CORPSE entity=%d usage=%d health=%.1f dead=%d model=%s distance=%.3f\n",i,e.s.usageIndex,e.entity->health,e.entity->deadflag,e.entity->model.c_str(),offset+geometry.entry.distance);
+        if(gi.Cvar_Get("ac_fx_debug","0",0)->integer)gi.Printf("AC_CORPSE entity=%d usage=%d health=%.1f dead=%d solid=%d model=%s distance=%.3f\n",i,e.s.usageIndex,e.entity->health,e.entity->deadflag,e.solid,e.entity->model.c_str(),offset+geometry.entry.distance);
     }
 }

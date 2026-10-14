@@ -2233,26 +2233,14 @@ float BulletAttack(
             while (trace.fraction < 1.0f) {
                 Vector vDeltaTrace;
 
-                trace = G_Trace(
-                    vTraceStart, vec_zero, vec_zero, vTraceEnd, newowner, MASK_SHOT_TRIG, false, "BulletAttack", true
-                );
+                trace = ACTraceBullet(vTraceStart, vTraceEnd, newowner);
 
                 vTmpEnd = trace.endpos;
 
                 if (bThroughThing) {
                     bThroughThing = qfalse;
 
-                    tracethrough = G_Trace(
-                        vTmpEnd,
-                        vec_zero,
-                        vec_zero,
-                        vTraceStart + vDir * -4,
-                        newowner,
-                        MASK_SHOT,
-                        qfalse,
-                        "BulletAttack2",
-                        qtrue
-                    );
+                    tracethrough = ACTraceBullet(vTmpEnd, vTraceStart + vDir * -4, newowner, MASK_SHOT);
 
                     if (!(tracethrough.surfaceFlags & (SURF_FOLIAGE | SURF_GLASS | SURF_PUDDLE | SURF_PAPER))
                         && (!(tracethrough.surfaceFlags & SURF_WOOD) || !bulletthroughwood)

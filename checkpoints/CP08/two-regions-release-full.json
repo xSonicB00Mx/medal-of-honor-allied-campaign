@@ -1,0 +1,22 @@
+{
+  "exit": 0,
+  "game": 2,
+  "completed_seed": 15,
+  "requested": [
+    3440,
+    1440
+  ],
+  "engine_sha256": "2f4806421b90c6f9dd286cabbed3438ad40bdd6163e08b6ea28f01fe21402255",
+  "images": [
+    "profiles-local/CP08-r1/two-regions-release-full/maintt/screenshots/shot0000.png",
+    "profiles-local/CP08-r1/two-regions-release-full/maintt/screenshots/shot0001.png",
+    "profiles-local/CP08-r1/two-regions-release-full/maintt/screenshots/shot0002.png"
+  ],
+  "locked_names_hidden": true,
+  "main_map_action": "ac_campaign",
+  "geometry": [
+    "[2026-10-14 22:06:19 UTC+1.000] AC_UI_ROOT main 760.000 0.000 1920.000 1440.000",
+    "[2026-10-14 22:06:19 UTC+1.000] AC_UI_ROOT ac_campaign_operations 440.000 0.000 2560.000 1440.000",
+    "[2026-10-14 22:06:20 UTC+1.000] AC_UI_ROOT ac_campaign_operations 440.000 0.000 2560.000 1440.000"
+  ]
+}

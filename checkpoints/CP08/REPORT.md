@@ -1,5 +1,7 @@
 # CP08-r1 – gemeinsame Einsatzkarte
 
+Aktueller Stand: [Zwei Regionen, unsichtbare gesperrte Einsaetze und Sterbeanimationstreffer](feedback-two-regions.md). Der folgende Bericht dokumentiert den urspruenglichen CP8-Kandidaten; sein sechs-Ansichten-/vier-Zustaende-Layout wurde durch das neue Feedback ersetzt.
+
 Technischer Kandidat auf CP7 mit einer geografisch belegten Uebersicht und fuenf regionalen Ausschnitten. Alle 15 Einsaetze, ihre Daten, Orte, Originalspiele und Protagonisten kommen aus dem gemeinsamen Manifest. Drei Normandy-Einsaetze teilen einen Ortsanker und bleiben ueber Marker und regionale Liste einzeln erreichbar. Previous/Next bietet einen zusaetzlichen vollstaendigen Auswahlweg.
 
 Die Karte verwendet Natural-Earth-Kuesten und GeoNames-Regionanker in einer einheitlichen Mercatorprojektion. Unbekannte/fiktive Ziele werden als ungefaehre Regionen bezeichnet. Keine politischen Grenz- oder Frontbehauptungen. Sechs 2240 x 1320 Hintergrundbilder enthalten weder Texte noch Missionsmarker; alle Bedienelemente werden nativ gerendert. Quellen, Lizenzen und Einschraenkungen: `mod/campaign/GEOGRAPHY.md`.

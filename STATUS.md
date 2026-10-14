@@ -1,3 +1,7 @@
+## Aktuelles Feedback: CP08-r1
+
+Hauptmenue-Karte ersetzt die alte Missionsauswahl; nur zwei Regionen und ausschliesslich freigeschaltete Einsaetze. Blut/Wunden waehrend der Sterbeanimation mit durchdringenden Kugeln. 72 gepaarte Schadensvergleiche in sechs nativen Laeufen bestanden. [Aenderungen, Nachweise und Grenzen](checkpoints/CP08/feedback-two-regions.md). Die folgenden sechs-Ansichten-/vier-Zustaende-Angaben beschreiben historische Staende.
+
 ## Fortsetzung bis CP8
 
 CP6 bis CP8 sind als technische Kandidaten implementiert. CP6-/CP7-CI bestanden; alle 54 Karten starten mit Save-Ausgabe. CP7: 15 synthetische Abschlussgrenzen mit korrektem Fortschritt, getrennte Wiederholungen, Save-Metadaten und Wiederherstellung. CP8: geografische Einsatzkarte mit 15 Operationen, vier Zustaenden und sechs Ansichten; native Menuepruefungen in Full HD, 4K, 4:3 und Ultrawide bestanden. Continue Campaign und FOV 90 ueber Programmneustart und SH-zu-AA-Wechsel bestaetigt. [Start](CP08-r1-START.md), [Nachweise und Grenzen](checkpoints/CP08/REPORT.md). Natuerliche Vollabnahme bleibt offen.

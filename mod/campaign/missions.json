@@ -49,7 +49,7 @@
         "license": "CC BY 4.0",
         "anchor_name": "Arzew"
       },
-      "map_region": 1
+      "map_region": 0
     },
     {
       "id": "aa_trondheim",
@@ -100,7 +100,7 @@
         "license": "CC BY 4.0",
         "anchor_name": "Trondheim"
       },
-      "map_region": 4
+      "map_region": 1
     },
     {
       "id": "bt_kasserine",
@@ -149,7 +149,7 @@
         "license": "CC BY 4.0",
         "anchor_name": "Kasserine"
       },
-      "map_region": 1
+      "map_region": 0
     },
     {
       "id": "bt_bizerte",
@@ -198,7 +198,7 @@
         "license": "CC BY 4.0",
         "anchor_name": "Bizerte"
       },
-      "map_region": 1
+      "map_region": 0
     },
     {
       "id": "bt_sicily",
@@ -248,7 +248,7 @@
         "license": "CC BY 4.0",
         "anchor_name": "Sicilia"
       },
-      "map_region": 2
+      "map_region": 0
     },
     {
       "id": "bt_cassino",
@@ -297,7 +297,7 @@
         "license": "CC BY 4.0",
         "anchor_name": "Cassino"
       },
-      "map_region": 2
+      "map_region": 0
     },
     {
       "id": "bt_anzio",
@@ -345,7 +345,7 @@
         "license": "CC BY 4.0",
         "anchor_name": "Anzio"
       },
-      "map_region": 2
+      "map_region": 0
     },
     {
       "id": "sh_normandy",
@@ -395,7 +395,7 @@
         "license": "CC BY 4.0",
         "anchor_name": "Caen"
       },
-      "map_region": 3
+      "map_region": 1
     },
     {
       "id": "aa_normandy",
@@ -446,7 +446,7 @@
         "license": "CC BY 4.0",
         "anchor_name": "Caen"
       },
-      "map_region": 3
+      "map_region": 1
     },
     {
       "id": "aa_resistance",
@@ -499,7 +499,7 @@
         "license": "CC BY 4.0",
         "anchor_name": "Caen"
       },
-      "map_region": 3
+      "map_region": 1
     },
     {
       "id": "aa_brittany",
@@ -553,7 +553,7 @@
         "license": "CC BY 4.0",
         "anchor_name": "Brest"
       },
-      "map_region": 3
+      "map_region": 1
     },
     {
       "id": "bt_battaglia",
@@ -601,7 +601,7 @@
         "license": "CC BY 4.0",
         "anchor_name": "Monte Battaglia"
       },
-      "map_region": 2
+      "map_region": 0
     },
     {
       "id": "sh_ardennes",
@@ -652,7 +652,7 @@
         "license": "CC BY 4.0",
         "anchor_name": "Bastogne"
       },
-      "map_region": 3
+      "map_region": 1
     },
     {
       "id": "aa_schmerzen",
@@ -708,7 +708,7 @@
         "license": "CC BY 4.0",
         "anchor_name": "Trier"
       },
-      "map_region": 3
+      "map_region": 1
     },
     {
       "id": "sh_berlin",
@@ -760,7 +760,7 @@
         "license": "CC BY 4.0",
         "anchor_name": "Berlin"
       },
-      "map_region": 5
+      "map_region": 1
     }
   ],
   "optional": [
@@ -786,57 +786,21 @@
     "front_lines": false,
     "regions": [
       {
-        "name": "Overview",
+        "name": "North Africa & Italy",
         "bounds": [
-          -20,
-          35,
-          30,
-          67
+          -2,
+          20,
+          31,
+          47
         ]
       },
       {
-        "name": "North Africa",
+        "name": "Europe",
         "bounds": [
-          -4,
-          14,
-          32,
-          39
-        ]
-      },
-      {
-        "name": "Italy & Sicily",
-        "bounds": [
-          9,
-          18,
-          35.5,
-          46
-        ]
-      },
-      {
-        "name": "Western Europe",
-        "bounds": [
-          -7,
-          10,
+          -8,
+          20,
           46,
-          53
-        ]
-      },
-      {
-        "name": "Norway",
-        "bounds": [
-          3,
-          18,
-          60,
-          66.5
-        ]
-      },
-      {
-        "name": "Berlin",
-        "bounds": [
-          10,
-          17,
-          50.5,
-          54.5
+          65
         ]
       }
     ]
