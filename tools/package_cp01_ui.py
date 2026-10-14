@@ -7,7 +7,7 @@ import argparse,hashlib,json,re,zipfile
 from pathlib import Path
 def sha(b):return hashlib.sha256(b).hexdigest()
 def main():
- ap=argparse.ArgumentParser();ap.add_argument('--runtime',required=True,type=Path);args=ap.parse_args()
+ ap=argparse.ArgumentParser();ap.add_argument('--runtime',required=True,type=Path);ap.add_argument('--report-dir',type=Path,default=Path('checkpoints/CP01'));args=ap.parse_args()
  repo=Path(__file__).resolve().parents[1];rows=[]
  for game,folder in [('AA','main'),('SH','mainta'),('BT','maintt')]:
   effective={}
@@ -22,7 +22,7 @@ def main():
 Button
 {
 name "ac_scaling"
-title "HUD / Schriftgröße"
+title "HUD / Font Size"
 rect 404 438 224 32
 font facfont-20
 fgcolor 1 0.9 0.65 1
@@ -44,7 +44,7 @@ stuffcommand "ac_ui_options"
    body=b.decode('latin1').replace('\r','')
    inventory.append(dict(resource=n,provider=provider,sha256=sha(b),bindings=bindings(body)))
   rows.append(dict(game=game,options_source_sha256=sha(data),package_sha256=sha(output.read_bytes()),preserved_option_bindings=len(bindings(s)),ui_inventory=inventory))
- out=repo/'checkpoints/CP01';out.mkdir(exist_ok=True)
+ out=args.report_dir;out.mkdir(parents=True,exist_ok=True)
  (out/'CP01-ui-resource-audit.json').write_text(json.dumps(rows,indent=2)+'\n',encoding='utf-8')
  print([(x['game'],len(x['ui_inventory']),x['preserved_option_bindings']) for x in rows])
 if __name__=='__main__':main()

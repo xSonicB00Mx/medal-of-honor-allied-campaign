@@ -1,0 +1,29 @@
+[
+  {
+    "game": "AA",
+    "exit": 0,
+    "completed": true,
+    "images": [
+      "profiles-local/CP01-r2/english-AA/main/screenshots/shot0000.png",
+      "profiles-local/CP01-r2/english-AA/main/screenshots/shot0001.png"
+    ]
+  },
+  {
+    "game": "SH",
+    "exit": 0,
+    "completed": true,
+    "images": [
+      "profiles-local/CP01-r2/english-SH/mainta/screenshots/shot0000.png",
+      "profiles-local/CP01-r2/english-SH/mainta/screenshots/shot0001.png"
+    ]
+  },
+  {
+    "game": "BT",
+    "exit": 0,
+    "completed": true,
+    "images": [
+      "profiles-local/CP01-r2/english-BT/maintt/screenshots/shot0000.png",
+      "profiles-local/CP01-r2/english-BT/maintt/screenshots/shot0001.png"
+    ]
+  }
+]

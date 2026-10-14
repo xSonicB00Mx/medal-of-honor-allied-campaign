@@ -14,7 +14,7 @@ resource
 Label
 {
 name "heading"
-title "ALLIED CAMPAIGN | Anzeige"
+title "ALLIED CAMPAIGN | Display"
 rect 30 24 580 35
 fgcolor 0.91 0.86 0.7 1
 bgcolor 0.12 0.14 0.12 1
@@ -27,7 +27,7 @@ resource
 Label
 {
 name "intro"
-title "Menüs und HUD an deinen Bildschirm anpassen."
+title "Adjust menus and HUD to your screen."
 rect 30 62 580 25
 fgcolor 0.91 0.86 0.7 1
 bgcolor 0.12 0.14 0.12 1
@@ -40,7 +40,7 @@ resource
 Label
 {
 name "autoLabel"
-title "Automatische Skalierung"
+title "Automatic scaling"
 rect 30 117 300 26
 fgcolor 0.91 0.86 0.7 1
 bgcolor 0.12 0.14 0.12 1
@@ -68,7 +68,7 @@ resource
 Label
 {
 name "menuLabel"
-title "Menü- und Schriftgröße"
+title "Menu and font size"
 rect 30 156 300 26
 fgcolor 0.91 0.86 0.7 1
 bgcolor 0.12 0.14 0.12 1
@@ -112,7 +112,7 @@ resource
 Label
 {
 name "hudLabel"
-title "HUD-Größe"
+title "HUD size"
 rect 30 226 300 26
 fgcolor 0.91 0.86 0.7 1
 bgcolor 0.12 0.14 0.12 1
@@ -156,7 +156,7 @@ resource
 Label
 {
 name "safeLabel"
-title "HUD-Sicherheitsbereich"
+title "HUD safe area"
 rect 30 296 300 26
 fgcolor 0.91 0.86 0.7 1
 bgcolor 0.12 0.14 0.12 1
@@ -200,7 +200,7 @@ resource
 Label
 {
 name "hint"
-title "Änderungen gelten sofort und werden gespeichert."
+title "Changes apply immediately and are saved."
 rect 30 366 580 26
 fgcolor 0.91 0.86 0.7 1
 bgcolor 0.12 0.14 0.12 1
@@ -213,7 +213,7 @@ resource
 Button
 {
 name "back"
-title "Zurück"
+title "Back"
 rect 30 422 150 32
 fgcolor 0.91 0.86 0.7 1
 bgcolor 0.12 0.14 0.12 1
@@ -227,7 +227,7 @@ resource
 Button
 {
 name "reset"
-title "Standardwerte"
+title "Defaults"
 rect 210 422 200 32
 fgcolor 0.91 0.86 0.7 1
 bgcolor 0.12 0.14 0.12 1
