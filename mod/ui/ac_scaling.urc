@@ -1,0 +1,240 @@
+menu "ac_scaling" 640 480 NONE 0
+
+virtualres 1
+
+fullscreen 1
+
+bgcolor 0.055 0.065 0.06 1
+
+bgfill 0.02 0.025 0.02 1
+
+borderstyle NONE
+
+resource
+Label
+{
+name "heading"
+title "ALLIED CAMPAIGN | Anzeige"
+rect 30 24 580 35
+fgcolor 0.91 0.86 0.7 1
+bgcolor 0.12 0.14 0.12 1
+borderstyle NONE
+font facfont-20
+
+}
+
+resource
+Label
+{
+name "intro"
+title "Menüs und HUD an deinen Bildschirm anpassen."
+rect 30 62 580 25
+fgcolor 0.91 0.86 0.7 1
+bgcolor 0.12 0.14 0.12 1
+borderstyle NONE
+font facfont-20
+
+}
+
+resource
+Label
+{
+name "autoLabel"
+title "Automatische Skalierung"
+rect 30 117 300 26
+fgcolor 0.91 0.86 0.7 1
+bgcolor 0.12 0.14 0.12 1
+borderstyle NONE
+font facfont-20
+
+}
+
+resource
+CheckBox
+{
+name "auto"
+title ""
+rect 438 117 30 26
+fgcolor 0.91 0.86 0.7 1
+bgcolor 0.12 0.14 0.12 1
+borderstyle NONE
+font facfont-20
+linkcvar ac_ui_auto
+checked_shader textures/menu/checkbox_checked
+unchecked_shader textures/menu/checkbox_unchecked
+}
+
+resource
+Label
+{
+name "menuLabel"
+title "Menü- und Schriftgröße"
+rect 30 156 300 26
+fgcolor 0.91 0.86 0.7 1
+bgcolor 0.12 0.14 0.12 1
+borderstyle NONE
+font facfont-20
+
+}
+
+resource
+Slider
+{
+name "menuSlider"
+title ""
+rect 315 174 210 20
+fgcolor 0.91 0.86 0.7 1
+bgcolor 0.12 0.14 0.12 1
+borderstyle NONE
+font facfont-20
+shader textures/menu/slider
+linkcvar ac_menu_scale
+slidertype float
+setrange 0.65 1
+stepsize 0.05
+}
+
+resource
+Field
+{
+name "menuValue"
+title ""
+rect 533 169 94 26
+fgcolor 0.91 0.86 0.7 1
+bgcolor 0.12 0.14 0.12 1
+borderstyle NONE
+font facfont-20
+linkcvar ac_menu_scale
+borderstyle INDENT_BORDER
+}
+
+resource
+Label
+{
+name "hudLabel"
+title "HUD-Größe"
+rect 30 226 300 26
+fgcolor 0.91 0.86 0.7 1
+bgcolor 0.12 0.14 0.12 1
+borderstyle NONE
+font facfont-20
+
+}
+
+resource
+Slider
+{
+name "hudSlider"
+title ""
+rect 315 244 210 20
+fgcolor 0.91 0.86 0.7 1
+bgcolor 0.12 0.14 0.12 1
+borderstyle NONE
+font facfont-20
+shader textures/menu/slider
+linkcvar ac_hud_scale
+slidertype float
+setrange 0.5 2
+stepsize 0.05
+}
+
+resource
+Field
+{
+name "hudValue"
+title ""
+rect 533 239 94 26
+fgcolor 0.91 0.86 0.7 1
+bgcolor 0.12 0.14 0.12 1
+borderstyle NONE
+font facfont-20
+linkcvar ac_hud_scale
+borderstyle INDENT_BORDER
+}
+
+resource
+Label
+{
+name "safeLabel"
+title "HUD-Sicherheitsbereich"
+rect 30 296 300 26
+fgcolor 0.91 0.86 0.7 1
+bgcolor 0.12 0.14 0.12 1
+borderstyle NONE
+font facfont-20
+
+}
+
+resource
+Slider
+{
+name "safeSlider"
+title ""
+rect 315 314 210 20
+fgcolor 0.91 0.86 0.7 1
+bgcolor 0.12 0.14 0.12 1
+borderstyle NONE
+font facfont-20
+shader textures/menu/slider
+linkcvar ac_hud_safe
+slidertype float
+setrange 0.8 1
+stepsize 0.01
+}
+
+resource
+Field
+{
+name "safeValue"
+title ""
+rect 533 309 94 26
+fgcolor 0.91 0.86 0.7 1
+bgcolor 0.12 0.14 0.12 1
+borderstyle NONE
+font facfont-20
+linkcvar ac_hud_safe
+borderstyle INDENT_BORDER
+}
+
+resource
+Label
+{
+name "hint"
+title "Änderungen gelten sofort und werden gespeichert."
+rect 30 366 580 26
+fgcolor 0.91 0.86 0.7 1
+bgcolor 0.12 0.14 0.12 1
+borderstyle NONE
+font facfont-20
+
+}
+
+resource
+Button
+{
+name "back"
+title "Zurück"
+rect 30 422 150 32
+fgcolor 0.91 0.86 0.7 1
+bgcolor 0.12 0.14 0.12 1
+borderstyle NONE
+font facfont-20
+borderstyle RAISED
+stuffcommand "popmenu 0"
+}
+
+resource
+Button
+{
+name "reset"
+title "Standardwerte"
+rect 210 422 200 32
+fgcolor 0.91 0.86 0.7 1
+bgcolor 0.12 0.14 0.12 1
+borderstyle NONE
+font facfont-20
+borderstyle RAISED
+stuffcommand "set ac_ui_auto 1; set ac_menu_scale 1; set ac_hud_scale 1; set ac_hud_safe 1"
+}
+
+end.

@@ -35,6 +35,16 @@ static pCursorFree cursor_free = NULL;
 
 void IN_GetMousePosition(int *x, int *y) {
     SDL_GetMouseState(x, y);
+    SDL_Window *window = SDL_GetMouseFocus();
+    if (window) {
+        int ww, wh, dw, dh;
+        SDL_GetWindowSize(window, &ww, &wh);
+        SDL_GL_GetDrawableSize(window, &dw, &dh);
+        if (ww > 0 && wh > 0 && dw > 0 && dh > 0) {
+            *x = (int)((double)*x * dw / ww);
+            *y = (int)((double)*y * dh / wh);
+        }
+    }
 }
 
 qboolean IN_SetCursorFromImage(const byte *pic, int width, int height, pCursorFree cursorFreeFn) {

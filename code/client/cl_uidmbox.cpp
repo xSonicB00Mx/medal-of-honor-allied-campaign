@@ -227,6 +227,8 @@ float UIDMBox::PrintWrap(UIFont *font, float x, float y, str text)
     size_t      n, l;
     float       fY;
 
+    vec2_t textScale;
+    UI_GetHighResolutionScale(textScale);
     fY = y;
     p1 = text.c_str();
     l  = text.length();
@@ -242,14 +244,14 @@ float UIDMBox::PrintWrap(UIFont *font, float x, float y, str text)
             break;
         }
 
-        font->Print(x, fY, p1, p2 - p1, getHighResScale());
+        font->Print(x, fY, p1, p2 - p1, textScale);
         p1 = p2 + 1;
         l -= n;
         fY += font->getHeight();
     }
 
     if (*p1) {
-        font->Print(x, fY, p1, l, getHighResScale());
+        font->Print(x, fY, p1, l, textScale);
         fY += font->getHeight();
     }
 
@@ -332,7 +334,9 @@ void UIDMBox::Print(const char *text)
 
 void UIDMBox::OnSizeChanged(Event *ev)
 {
-    s_dmboxWidth = m_frame.size.width;
+    vec2_t textScale;
+    UI_GetHighResolutionScale(textScale);
+    s_dmboxWidth = m_frame.size.width / textScale[0];
 }
 
 void UIDMBox::Create(const UIRect2D& rect, const UColor& fore, const UColor& back, float alpha)
@@ -403,7 +407,7 @@ void UIDMBox::Draw(void)
 
     for (i = 1; i < m_numitems; i++) {
         fsY += DrawItem(&m_items[i], s_dmboxOffsetX, fsY, alphaScale);
-        if (fsY > m_frame.size.height) {
+        if (fsY * uid.scaleRes[1] * Com_Clamp(.5f, 2, Cvar_VariableValue("ac_hud_scale")) > m_frame.size.height) {
             if (EventPending(EV_DMBox_Decay)) {
                 CancelEventsOfType(EV_DMBox_Decay);
             }

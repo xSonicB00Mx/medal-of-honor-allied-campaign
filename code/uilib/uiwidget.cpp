@@ -1056,18 +1056,9 @@ void UIWidget::Motion(void)
 
 void UIWidget::AlignPosition(void)
 {
-    if (m_bVirtual) {
-        vec2_t vNewVirtualScale;
-
-        SetVirtualScale(vNewVirtualScale);
-
-        scaleFrameVirtualRes(m_frame, m_vVirtualScale, vNewVirtualScale);
-    } else if (uid.bHighResScaling) {
-        scaleFrameVirtualRes(m_frame, m_vVirtualScale, uid.scaleRes);
-    } else {
-        vec2_t vNewVirtualScale = {1.0, 1.0};
-        scaleFrameVirtualRes(m_frame, m_vVirtualScale, vNewVirtualScale);
-    }
+    vec2_t layoutScale;
+    SetLayoutScale(layoutScale);
+    scaleFrameVirtualRes(m_frame, m_vVirtualScale, layoutScale);
 
     if (m_flags & WF_STRETCH_VERTICAL) {
         m_frame.pos.y       = 0;
@@ -2142,22 +2133,9 @@ void UIWidget::ResetMotion(motion_t type)
 
 void UIWidget::Realign(void)
 {
-    bool bScaled = false;
-
-    if (m_bVirtual) {
-        vec2_t vNewVirtualScale;
-
-        SetVirtualScale(vNewVirtualScale);
-
-        scaleFrameVirtualRes(m_frame, m_vVirtualScale, vNewVirtualScale);
-        bScaled = true;
-    } else if (uid.bHighResScaling) {
-        scaleFrameVirtualRes(m_frame, m_vVirtualScale, uid.scaleRes);
-        bScaled = true;
-    } else {
-        vec2_t vNewVirtualScale = {1.0, 1.0};
-        bScaled                 = scaleFrameVirtualRes(m_frame, m_vVirtualScale, vNewVirtualScale);
-    }
+    vec2_t layoutScale;
+    SetLayoutScale(layoutScale);
+    bool bScaled = scaleFrameVirtualRes(m_frame, m_vVirtualScale, layoutScale);
 
     if (m_flags & WF_STRETCH_VERTICAL) {
         m_frame.pos.y       = 0;
@@ -2407,11 +2385,7 @@ bool UIWidget::isVirtual() const
 
 const vec2_t& UIWidget::getVirtualScale() const
 {
-    if (m_bVirtual) {
-        return m_vVirtualScale;
-    } else {
-        return uid.scaleRes;
-    }
+    return m_vVirtualScale;
 }
 
 const vec2_t& UIWidget::getHighResScale() const
@@ -2429,18 +2403,47 @@ void UIWidget::SetScaleCvar(Event *ev)
     m_scaleCvar = uii.Cvar_Find(ev->GetString(1).c_str());
 }
 
+// All proportional UI uses drawable pixels once. Widget frames also drive
+// scissoring and hit testing, so the renderer and pointer cannot diverge.
+static float CampaignUIValue(const char *name, float fallback, float low, float high)
+{
+    cvar_t *var = uii.Cvar_Find(name);
+    float value = var ? var->value : fallback;
+    if (!(value >= low)) return low; // also reject NaN
+    return value > high ? high : value;
+}
+
+bool UIWidget::IsCampaignHUD() const
+{
+    for (const UIWidget *p = this; p; p = p->m_parent) {
+        if (!Q_stricmpn(p->m_name.c_str(), "hud_", 4)) return true;
+    }
+    return false;
+}
+
 void UIWidget::SetVirtualScale(vec2_t out)
 {
-    if (m_scaleCvar) {
-        const float vidRatio  = (float)uid.vidWidth / (float)uid.vidHeight;
-        const float minHeight = 480;
-        const float minWidth  = minHeight * vidRatio;
-
-        out[0] = uid.vidWidth / minWidth * m_scaleCvar->value;
-        out[1] = uid.vidHeight / minHeight * m_scaleCvar->value;
+    const bool automatic = CampaignUIValue("ac_ui_auto", 1, 0, 1) != 0;
+    const float fit = fminf(uid.vidWidth / 640.0f, uid.vidHeight / 480.0f);
+    const float base = automatic ? fit : fminf(1.0f, fit);
+    if (IsCampaignHUD()) {
+        const float legacy = m_scaleCvar ? m_scaleCvar->value : 1.0f;
+        out[0] = out[1] = base * legacy * CampaignUIValue("ac_hud_scale", 1, .5f, 2);
     } else {
-        out[0] = uid.vidWidth / 640.0;
-        out[1] = uid.vidHeight / 480.0;
+        // Full-size menus cannot grow beyond their visible 640x480 canvas.
+        out[0] = out[1] = fminf(fit, base * CampaignUIValue("ac_menu_scale", 1, .65f, 1.5f));
+    }
+}
+
+void UIWidget::SetLayoutScale(vec2_t out)
+{
+    if (m_bVirtual || m_scaleCvar) {
+        SetVirtualScale(out);
+    } else {
+        const float factor = IsCampaignHUD()
+            ? CampaignUIValue("ac_hud_scale", 1, .5f, 2)
+            : CampaignUIValue("ac_menu_scale", 1, .65f, 1.5f);
+        out[0] = out[1] = uid.scaleRes[1] * factor;
     }
 }
 
@@ -2484,18 +2487,9 @@ UIWidgetContainer::UIWidgetContainer()
 
 void UIWidgetContainer::AlignPosition(void)
 {
-    if (m_bVirtual) {
-        vec2_t vNewVirtualScale;
-
-        SetVirtualScale(vNewVirtualScale);
-
-        scaleFrameVirtualRes(m_frame, m_vVirtualScale, vNewVirtualScale);
-    } else if (uid.bHighResScaling) {
-        scaleFrameVirtualRes(m_frame, m_vVirtualScale, uid.scaleRes);
-    } else {
-        vec2_t vNewVirtualScale = {1.0, 1.0};
-        scaleFrameVirtualRes(m_frame, m_vVirtualScale, vNewVirtualScale);
-    }
+    vec2_t layoutScale;
+    SetLayoutScale(layoutScale);
+    scaleFrameVirtualRes(m_frame, m_vVirtualScale, layoutScale);
 
     if (m_align & WA_LEFT) {
         m_frame.pos.x = 0;
@@ -2513,6 +2507,17 @@ void UIWidgetContainer::AlignPosition(void)
     } else {
         // default to center
         m_frame.pos.y = (uid.vidHeight - m_frame.size.height) * 0.5;
+    }
+
+    if (IsCampaignHUD()) {
+        const float safe = CampaignUIValue("ac_hud_safe", 1, .8f, 1);
+        const float insetX = fmaxf(uid.vidWidth * (1 - safe) * .5f,
+            (uid.vidWidth - uid.vidHeight * (16.0f / 9.0f)) * .5f);
+        const float insetY = uid.vidHeight * (1 - safe) * .5f;
+        if (m_align & WA_LEFT) m_frame.pos.x = insetX;
+        else if (m_align & WA_RIGHT) m_frame.pos.x -= insetX;
+        if (m_align & WA_TOP) m_frame.pos.y = insetY;
+        else if (m_align & WA_BOTTOM) m_frame.pos.y -= insetY;
     }
 
     setFrame(m_frame);

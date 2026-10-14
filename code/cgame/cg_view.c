@@ -826,6 +826,8 @@ Generates and draws a game scene and status information at the given time.
 */
 void CG_DrawActiveFrame(int serverTime, int frameTime, stereoFrame_t stereoView, qboolean demoPlayback)
 {
+    cgi.UI_GetHighResolutionScale(cgs.uiHiResScale);
+
     cg.time         = serverTime;
     cg.frametime    = frameTime;
     cg.demoPlayback = demoPlayback;

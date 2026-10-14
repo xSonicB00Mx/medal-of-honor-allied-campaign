@@ -259,6 +259,8 @@ public:
     //====
 
     void            SetVirtualScale(vec2_t out);
+    void            SetLayoutScale(vec2_t out);
+    bool            IsCampaignHUD() const;
     void            SetDontLocalize();
     void            setParent(UIWidget *parent);
     class UIWidget *getParent(void);

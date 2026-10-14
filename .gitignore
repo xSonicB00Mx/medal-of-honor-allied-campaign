@@ -66,3 +66,5 @@ out
 # Flex and Bison
 ####################
 /code/parser/generated
+
+/Start-CP01*.cmd

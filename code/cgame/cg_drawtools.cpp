@@ -24,6 +24,8 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 // Some tools used to drawing 2d stuff
 
 #include "cg_local.h"
+#include <string>
+#include <vector>
 
 /*
 ================
@@ -483,13 +485,20 @@ void CG_DrawOverlayFullScreen(qhandle_t handle, float fAlpha)
     color[3] = fAlpha;
     cgi.R_SetColor(color);
 
+    const float height = cgs.glconfig.vidHeight;
+    const float width = fminf((float)cgs.glconfig.vidWidth, height * (4.0f / 3.0f));
+    const float left = (cgs.glconfig.vidWidth - width) * .5f;
     iHalfHeight = cgs.glconfig.vidHeight >> 1;
-    iHalfWidth  = cgs.glconfig.vidWidth >> 1;
+    iHalfWidth = (int)(width * .5f);
+    cgi.R_DrawStretchPic(left, 0, iHalfWidth, iHalfHeight, 0, 0, 1, 1, handle);
+    cgi.R_DrawStretchPic(left+iHalfWidth, 0, iHalfWidth, iHalfHeight, 1, 0, 0, 1, handle);
+    cgi.R_DrawStretchPic(left, iHalfHeight, iHalfWidth, iHalfHeight, 0, 1, 1, 0, handle);
+    cgi.R_DrawStretchPic(left+iHalfWidth, iHalfHeight, iHalfWidth, iHalfHeight, 1, 1, 0, 0, handle);
+    color[0] = color[1] = color[2] = 0;
+    cgi.R_SetColor(color);
+    cgi.R_DrawStretchPic(0, 0, left+1, height, 0, 0, 1, 1, cgs.media.lagometerShader);
+    cgi.R_DrawStretchPic(left+width-1, 0, left+1, height, 0, 0, 1, 1, cgs.media.lagometerShader);
 
-    cgi.R_DrawStretchPic(0.0, 0.0, iHalfWidth, iHalfHeight, 0.0, 0.0, 1.0, 1.0, handle);
-    cgi.R_DrawStretchPic(iHalfWidth, 0.0, iHalfWidth, iHalfHeight, 1.0, 0.0, 0.0, 1.0, handle);
-    cgi.R_DrawStretchPic(0.0, iHalfHeight, iHalfWidth, iHalfHeight, 0.0, 1.0, 1.0, 0.0, handle);
-    cgi.R_DrawStretchPic(iHalfWidth, iHalfHeight, iHalfWidth, iHalfHeight, 1.0, 1.0, 0.0, 0.0, handle);
 }
 
 void CG_DrawZoomOverlay()
@@ -594,8 +603,11 @@ void CG_HudDrawElements()
         return;
     }
 
-    virtualScale[0] = cgs.glconfig.vidWidth / 640.0;
-    virtualScale[1] = cgs.glconfig.vidHeight / 480.0;
+    virtualScale[0] = virtualScale[1] = cgs.uiHiResScale[1] * 2.0f;
+    const float safe = Com_Clamp(.8f, 1.0f, cgi.Cvar_Get("ac_hud_safe", "1", CVAR_ARCHIVE)->value);
+    const float insetX = fmaxf(cgs.glconfig.vidWidth * (1-safe) * .5f,
+        (cgs.glconfig.vidWidth - cgs.glconfig.vidHeight * (16.0f/9.0f)) * .5f);
+    const float insetY = cgs.glconfig.vidHeight * (1-safe) * .5f;
 
     for (i = 0; i < MAX_HUDDRAW_ELEMENTS; i++) {
         if ((!cgi.HudDrawElements[i].hShader && !cgi.HudDrawElements[i].string[0])
@@ -609,39 +621,25 @@ void CG_HudDrawElements()
         fWidth  = cgi.HudDrawElements[i].iWidth;
         fHeight = cgi.HudDrawElements[i].iHeight;
 
-        if (!cgi.HudDrawElements[i].bVirtualScreen) {
-            fWidth *= cgs.uiHiResScale[0];
-            fHeight *= cgs.uiHiResScale[1];
-            fX *= cgs.uiHiResScale[0];
-            fY *= cgs.uiHiResScale[1];
-        }
-
-        if (cgi.HudDrawElements[i].iHorizontalAlign == HUD_ALIGN_X_CENTER) {
-            if (cgi.HudDrawElements[i].bVirtualScreen) {
-                fX += 320.0 - fWidth * 0.5;
-            } else {
-                fX += cgs.glconfig.vidWidth * 0.5 - fWidth * 0.5;
-            }
-        } else if (cgi.HudDrawElements[i].iHorizontalAlign == HUD_ALIGN_X_RIGHT) {
-            if (cgi.HudDrawElements[i].bVirtualScreen) {
-                fX += 640.0;
-            } else {
-                fX += cgs.glconfig.vidWidth;
-            }
-        }
-
-        if (cgi.HudDrawElements[i].iVerticalAlign == HUD_ALIGN_Y_CENTER) {
-            if (cgi.HudDrawElements[i].bVirtualScreen) {
-                fY += 240.0 - fHeight * 0.5;
-            } else {
-                fY += cgs.glconfig.vidHeight * 0.5 - fHeight * 0.5;
-            }
-        } else if (cgi.HudDrawElements[i].iVerticalAlign == HUD_ALIGN_Y_BOTTOM) {
-            if (cgi.HudDrawElements[i].bVirtualScreen) {
-                fY += 480.0;
-            } else {
-                fY += cgs.glconfig.vidHeight;
-            }
+        const bool isVirtual = cgi.HudDrawElements[i].bVirtualScreen != 0;
+        const float scale = isVirtual ? virtualScale[1] : cgs.uiHiResScale[1];
+        // Full-canvas shader fills (fades/letterboxes) are explicitly classified.
+        // They cover the scene; text and ordinary HUD artwork stay proportional.
+        const bool screenFill = isVirtual && !cgi.HudDrawElements[i].string[0]
+            && fWidth >= 640 && fHeight >= 480 && fX == 0 && fY == 0;
+        fX *= scale; fY *= scale; fWidth *= scale; fHeight *= scale;
+        if (cgi.HudDrawElements[i].iHorizontalAlign == HUD_ALIGN_X_CENTER)
+            fX += cgs.glconfig.vidWidth * .5f - fWidth * .5f;
+        else if (cgi.HudDrawElements[i].iHorizontalAlign == HUD_ALIGN_X_RIGHT)
+            fX += cgs.glconfig.vidWidth - insetX;
+        else fX += insetX;
+        if (cgi.HudDrawElements[i].iVerticalAlign == HUD_ALIGN_Y_CENTER)
+            fY += cgs.glconfig.vidHeight * .5f - fHeight * .5f;
+        else if (cgi.HudDrawElements[i].iVerticalAlign == HUD_ALIGN_Y_BOTTOM)
+            fY += cgs.glconfig.vidHeight - insetY;
+        else fY += insetY;
+        if (screenFill) {
+            fX = fY = 0; fWidth = cgs.glconfig.vidWidth; fHeight = cgs.glconfig.vidHeight;
         }
 
         cgi.R_SetColor(cgi.HudDrawElements[i].vColor);
@@ -652,7 +650,7 @@ void CG_HudDrawElements()
             }
 
             if (cgi.HudDrawElements[i].bVirtualScreen) {
-                cgi.R_DrawString(pFont, cgi.LV_ConvertString(cgi.HudDrawElements[i].string), fX, fY, -1, virtualScale);
+                cgi.R_DrawString(pFont, cgi.LV_ConvertString(cgi.HudDrawElements[i].string), fX / scale, fY / scale, -1, virtualScale);
             } else {
                 cgi.R_DrawString(
                     pFont,
@@ -664,10 +662,6 @@ void CG_HudDrawElements()
                 );
             }
         } else {
-            if (cgi.HudDrawElements[i].bVirtualScreen) {
-                CG_AdjustFrom640(&fX, &fY, &fWidth, &fHeight);
-            }
-
             cgi.R_DrawStretchPic(fX, fY, fWidth, fHeight, 0.0, 0.0, 1.0, 1.0, cgi.HudDrawElements[i].hShader);
         }
     }
@@ -688,173 +682,74 @@ void CG_InitializeObjectives()
     }
 }
 
+// Wrap with the same font metrics used to draw. Explicit newlines and long
+// words are both supported; this is UI layout only, never objective state.
+static std::vector<std::string> CG_ObjectiveLines(const char *text, float width)
+{
+    std::vector<std::string> lines;
+    std::string line;
+    for (const char *p = text; *p; ++p) {
+        if (*p == '\n') { lines.push_back(line); line.clear(); continue; }
+        line += *p;
+        if (cgi.UI_FontStringWidth(cgs.media.objectiveFont, line.c_str(), -1) > width && line.size() > 1) {
+            size_t split = line.find_last_of(" ");
+            if (split == std::string::npos || split == 0) split = line.size() - 1;
+            lines.push_back(line.substr(0, split));
+            line = line.substr(split + (line[split] == ' ' ? 1 : 0));
+        }
+    }
+    if (!line.empty() || lines.empty()) lines.push_back(line);
+    return lines;
+}
+
 void CG_DrawObjectives()
 {
-    float        vColor[4];
-    float        fX, fY;
-    int          iNumObjectives;
-    float        fObjectivesTop;
-    static float fWidth;
-    float        fHeight;
-    int          iNumLines[20];
-    int          iTotalNumLines;
-    int          i;
-    int          iCurrentObjective;
-    float        fTimeDelta;
-    const char  *pszLocalizedText;
-    const char  *pszLine;
-
-    iTotalNumLines = 0;
-    for (i = CS_OBJECTIVES; i < CS_OBJECTIVES + MAX_OBJECTIVES; ++i) {
+    for (int i = CS_OBJECTIVES; i < CS_OBJECTIVES + MAX_OBJECTIVES; ++i)
         CG_ProcessConfigString(i, qfalse);
-    }
-
-    iCurrentObjective         = atoi(CG_ConfigString(CS_CURRENT_OBJECTIVE));
-    fTimeDelta                = cg.ObjectivesAlphaTime - cg.time;
+    float delta = cg.ObjectivesAlphaTime - cg.time;
     cg.ObjectivesCurrentAlpha = cg.ObjectivesDesiredAlpha;
-    if (fTimeDelta > 0) {
-        cg.ObjectivesCurrentAlpha =
-            (cg.ObjectivesBaseAlpha - cg.ObjectivesDesiredAlpha) * sin(fTimeDelta / (M_PI * 50.f + 2.f))
-            + cg.ObjectivesDesiredAlpha;
+    if (delta > 0) cg.ObjectivesCurrentAlpha = (cg.ObjectivesBaseAlpha - cg.ObjectivesDesiredAlpha)
+        * sin(delta / (M_PI * 50.f + 2.f)) + cg.ObjectivesDesiredAlpha;
+    if (cg.ObjectivesCurrentAlpha < .02f) return;
+
+    const float safe = Com_Clamp(.8f, 1, cgi.Cvar_Get("ac_hud_safe", "1", CVAR_ARCHIVE)->value);
+    const float insetX = fmaxf(cgs.glconfig.vidWidth * (1-safe) * .5f,
+        (cgs.glconfig.vidWidth - cgs.glconfig.vidHeight * (16.f/9.f)) * .5f);
+    const float top = cgi.UI_GetObjectivesTop() + 5 * cgs.uiHiResScale[1];
+    const int current = atoi(CG_ConfigString(CS_CURRENT_OBJECTIVE));
+    std::vector<std::string> lines[MAX_OBJECTIVES];
+    float logicalHeight = 35;
+    for (int i = 0; i < MAX_OBJECTIVES; ++i) {
+        if (!cg.Objectives[i].flags || (cg.Objectives[i].flags & OBJ_FLAG_HIDDEN)) continue;
+        lines[i] = CG_ObjectiveLines(cgi.LV_ConvertString(cg.Objectives[i].text), 385);
+        logicalHeight += lines[i].size() * 16 + 12;
     }
-
-    if (cg.ObjectivesCurrentAlpha < 0.02) {
-        return;
-    }
-
-    // Added in 2.0
-    //  Get the minimum Y value, it should be below the compass
-    fObjectivesTop = cgi.UI_GetObjectivesTop();
-    iNumObjectives = 0;
-
-    for (i = 0; i < MAX_OBJECTIVES; i++) {
-        if ((cg.Objectives[i].flags == OBJ_FLAG_NONE) || (cg.Objectives[i].flags & OBJ_FLAG_HIDDEN)) {
-            continue;
+    float size = fminf(cgs.uiHiResScale[1], (cgs.glconfig.vidWidth - 2*insetX - 50) / 450.f);
+    size = fminf(size, (cgs.glconfig.vidHeight - top - 20) / logicalHeight);
+    if (size <= 0) return;
+    vec2_t scale = {size, size};
+    float x = insetX + 25*size;
+    float y = top;
+    vec4_t color = {.2f, .2f, .2f, cg.ObjectivesCurrentAlpha * .75f};
+    cgi.R_SetColor(color);
+    cgi.R_DrawStretchPic(x, y, 450*size, logicalHeight*size, 0, 0, 1, 1, cgs.media.objectivesBackShader);
+    color[0]=color[1]=color[2]=1; color[3]=cg.ObjectivesCurrentAlpha;
+    cgi.R_SetColor(color);
+    cgi.R_DrawString(cgs.media.objectiveFont, cgi.LV_ConvertString("Mission Objectives:"), x/size+8, y/size+8, -1, scale);
+    y += 35*size;
+    for (int i = 0; i < MAX_OBJECTIVES; ++i) {
+        if (lines[i].empty()) continue;
+        const bool completed = (cg.Objectives[i].flags & OBJ_FLAG_COMPLETED) != 0;
+        color[0]=color[1]=color[2]=completed ? .75f : 1.f;
+        if (i == current && !completed) color[2]=0;
+        cgi.R_SetColor(color);
+        cgi.R_DrawStretchPic(x+5*size, y, 16*size, 16*size, 0, 0, 1, 1,
+            completed ? cgs.media.checkedBoxShader : cgs.media.uncheckedBoxShader);
+        for (const auto& line : lines[i]) {
+            cgi.R_DrawString(cgs.media.objectiveFont, line.c_str(), x/size+30, y/size, -1, scale);
+            y += 16*size;
         }
-
-        iNumObjectives++;
-        iNumLines[i]     = 0;
-        pszLocalizedText = cgi.LV_ConvertString(cg.Objectives[i].text);
-
-        for (pszLine = strchr(pszLocalizedText, '\n'); pszLine; pszLine = strchr(pszLine + 1, '\n')) {
-            iNumLines[i]++;
-        }
-
-        iTotalNumLines += iNumLines[i];
-    }
-
-    fX        = 25.0;
-    fY        = fObjectivesTop + 5;
-    fWidth    = (float)(iTotalNumLines * 12 + fObjectivesTop + iNumObjectives * 25 + 32) - fY;
-    vColor[2] = 0.2f;
-    vColor[1] = 0.2f;
-    vColor[0] = 0.2f;
-    vColor[3] = cg.ObjectivesCurrentAlpha * 0.75;
-    cgi.R_SetColor(vColor);
-    cgi.R_DrawStretchPic(
-        fX,
-        fY,
-        450.0 * cgs.uiHiResScale[0],
-        fWidth * cgs.uiHiResScale[1],
-        0.0,
-        0.0,
-        1.0,
-        1.0,
-        cgs.media.objectivesBackShader
-    );
-
-    fX        = 30.0;
-    fY        = fObjectivesTop + 10;
-    vColor[0] = 1.0;
-    vColor[1] = 1.0;
-    vColor[2] = 1.0;
-    vColor[3] = cg.ObjectivesCurrentAlpha;
-    cgi.R_SetColor(vColor);
-    cgi.R_DrawString(
-        cgs.media.objectiveFont,
-        cgi.LV_ConvertString("Mission Objectives:"),
-        fX,
-        fY / cgs.uiHiResScale[1],
-        -1,
-        cgs.uiHiResScale
-    );
-    fY = fY + 5.0;
-
-    cgi.R_DrawString(
-        cgs.media.objectiveFont,
-        "_______________________________________________________",
-        fX,
-        fY / cgs.uiHiResScale[1],
-        -1,
-        cgs.uiHiResScale
-    );
-    fHeight = fObjectivesTop + 35 * cgs.uiHiResScale[1];
-
-    for (i = 0; i < MAX_OBJECTIVES; ++i) {
-        qhandle_t hBoxShader;
-
-        if ((cg.Objectives[i].flags == OBJ_FLAG_NONE) || (cg.Objectives[i].flags & OBJ_FLAG_HIDDEN)) {
-            continue;
-        }
-
-        if ((cg.Objectives[i].flags & OBJ_FLAG_CURRENT) != 0) {
-            vColor[0]  = 1.0;
-            vColor[1]  = 1.0;
-            vColor[2]  = 1.0;
-            vColor[3]  = cg.ObjectivesCurrentAlpha;
-            hBoxShader = cgs.media.uncheckedBoxShader;
-        } else if ((cg.Objectives[i].flags & OBJ_FLAG_COMPLETED) != 0) {
-            vColor[0]  = 0.75;
-            vColor[1]  = 0.75;
-            vColor[2]  = 0.75;
-            vColor[3]  = cg.ObjectivesCurrentAlpha;
-            hBoxShader = cgs.media.checkedBoxShader;
-        } else {
-            vColor[0]  = 1.0;
-            vColor[1]  = 1.0;
-            vColor[2]  = 1.0;
-            vColor[3]  = cg.ObjectivesCurrentAlpha;
-            hBoxShader = cgs.media.uncheckedBoxShader;
-        }
-        if (i == iCurrentObjective && !(cg.Objectives[i].flags & OBJ_FLAG_COMPLETED)) {
-            vColor[0] = 1.0;
-            vColor[1] = 1.0;
-            vColor[2] = 0.0;
-            vColor[3] = cg.ObjectivesCurrentAlpha;
-        }
-
-        cgi.R_SetColor(vColor);
-        fX = 55.0;
-        fY = fHeight;
-        cgi.R_DrawString(
-            cgs.media.objectiveFont,
-            cgi.LV_ConvertString(cg.Objectives[i].text),
-            55.0,
-            fY / cgs.uiHiResScale[1],
-            -1,
-            cgs.uiHiResScale
-        );
-
-        fX        = 30.0;
-        fY        = fHeight;
-        vColor[0] = 1.0;
-        vColor[1] = 1.0;
-        vColor[2] = 1.0;
-        vColor[3] = cg.ObjectivesCurrentAlpha;
-        cgi.R_SetColor(vColor);
-        cgi.R_DrawStretchPic(
-            fX * cgs.uiHiResScale[0],
-            fY,
-            16.0 * cgs.uiHiResScale[0],
-            16.0 * cgs.uiHiResScale[1],
-            0.0,
-            0.0,
-            1.0,
-            1.0,
-            hBoxShader
-        );
-
-        fHeight += iNumLines[i] * 12 + 25 * cgs.uiHiResScale[1];
+        y += 12*size;
     }
 }
 

@@ -1134,11 +1134,7 @@ getScreenWidth
 */
 static float getScreenWidth()
 {
-    if (uid.bHighResScaling) {
-        return maxWidthRes;
-    } else {
-        return uid.vidWidth;
-    }
+    return uid.vidWidth / uid.scaleRes[0];
 }
 
 /*
@@ -1201,15 +1197,14 @@ getDefaultGMBoxRectangle
 */
 static UIRect2D getDefaultGMBoxRectangle(void)
 {
-    UIRect2D dmRect = getDefaultDMBoxRectangle();
-    float    height = uid.vidHeight * ui_compass_scale->value * 0.25f;
-    float    y      = dmRect.size.height + dmRect.pos.y;
-
-    if (height < y) {
-        height = y;
-    }
-
-    return UIRect2D(20.0f, height, (getScreenWidth() - 20) * uid.scaleRes[0], 128.0f * uid.scaleRes[1]);
+    const float size = uid.scaleRes[1] * Com_Clamp(.5f, 2, Cvar_VariableValue("ac_hud_scale"));
+    const float safe = Com_Clamp(.8f, 1, Cvar_VariableValue("ac_hud_safe"));
+    const float width = fminf((float)uid.vidWidth, uid.vidHeight * (16.f/9.f)) * safe;
+    const float left = (uid.vidWidth - width) * .5f;
+    const float compass = 128 * fminf(uid.vidWidth/640.f, uid.vidHeight/480.f) * ui_compass_scale->value
+        * Com_Clamp(.5f, 2, Cvar_VariableValue("ac_hud_scale"));
+    return UIRect2D(left + 20*size, fmaxf(compass, 120*size) + uid.vidHeight*(1-safe)*.5f,
+        width - 40*size, 128*size);
 }
 
 /*
@@ -1219,12 +1214,11 @@ getDefaultDMBoxRectangle
 */
 static UIRect2D getDefaultDMBoxRectangle(void)
 {
-    float width;
-    float screenWidth = getScreenWidth();
-
-    width = screenWidth * uid.scaleRes[0] * ui_compass_scale->value * 0.2f;
-
-    return UIRect2D(width, 0, (screenWidth - (width + 192.0f)) * uid.scaleRes[0], 120.0f * uid.scaleRes[1]);
+    const float size = uid.scaleRes[1] * Com_Clamp(.5f, 2, Cvar_VariableValue("ac_hud_scale"));
+    const float safe = Com_Clamp(.8f, 1, Cvar_VariableValue("ac_hud_safe"));
+    const float width = fminf((float)uid.vidWidth, uid.vidHeight * (16.f/9.f)) * safe;
+    return UIRect2D((uid.vidWidth-width)*.5f + 180*size, uid.vidHeight*(1-safe)*.5f,
+        fmaxf(100*size, width - 380*size), 120*size);
 }
 
 /*
@@ -1234,7 +1228,12 @@ UI_GetObjectivesTop
 */
 float UI_GetObjectivesTop(void)
 {
-    return getDefaultGMBoxRectangle().pos.y;
+    float bottom = getDefaultGMBoxRectangle().pos.y;
+    if (hud_compass && hud_compass->GetContainerWidget()) {
+        UIRect2D frame = hud_compass->GetContainerWidget()->getFrame();
+        bottom = fmaxf(bottom, frame.pos.y + frame.size.height);
+    }
+    return bottom;
 }
 
 /*
@@ -1244,12 +1243,8 @@ UI_GetObjectivesTop
 */
 void UI_GetHighResolutionScale(vec2_t scale)
 {
-    if (uid.bHighResScaling) {
-        scale[0] = uid.scaleRes[0];
-        scale[1] = uid.scaleRes[1];
-    } else {
-        scale[0] = scale[1] = 1.0;
-    }
+    float factor = Com_Clamp(.5f, 2.0f, Cvar_VariableValue("ac_hud_scale"));
+    scale[0] = scale[1] = uid.scaleRes[1] * factor;
 }
 
 /*
@@ -1820,6 +1815,17 @@ Updates the UI.
 */
 void UI_Update(void)
 {
+    bool layoutChanged = false;
+    const char *layoutCvars[] = {"ac_ui_auto", "ac_menu_scale", "ac_hud_scale", "ac_hud_safe", "ui_compass_scale"};
+    for (const char *name : layoutCvars) {
+        cvar_t *var = Cvar_FindVar(name);
+        if (var && var->modified) {
+            var->modified = qfalse;
+            layoutChanged = true;
+        }
+    }
+    if (layoutChanged) UI_ResolutionChange();
+
     Menu    *currentMenu;
     UIRect2D frame;
 
@@ -2568,6 +2574,9 @@ void UI_PopMenu(qboolean restore_cvars)
     }
 
     if (menuManager.CurrentMenu()) {
+        // These preferences apply immediately, including when Escape closes
+        // the page. Legacy WCR dialogs retain their own cancel behavior.
+        if (menuManager.CurrentMenu()->m_name == "ac_scaling") restore_cvars = qfalse;
         menuManager.PopMenu(restore_cvars);
     }
 
@@ -3567,6 +3576,31 @@ void UI_LoadMenu(const char *name)
 UI_LoadMenu_f
 ====================
 */
+static void UI_CampaignOptions_f(void)
+{
+    if (!menuManager.FindMenu("ac_scaling")) UI_LoadMenu("ac_scaling");
+    UI_PushMenu("ac_scaling");
+}
+
+static void UI_CampaignReport_f(void)
+{
+    const char *name = Cmd_Argc() > 1 ? Cmd_Argv(1) : "hud_compass";
+    Menu *menu = menuManager.FindMenu(name);
+    Com_Printf("AC_UI drawable=%dx%d base=%.4f menu=%.4f hud=%.4f safe=%.4f\n",
+        uid.vidWidth, uid.vidHeight, uid.scaleRes[1], Cvar_VariableValue("ac_menu_scale"),
+        Cvar_VariableValue("ac_hud_scale"), Cvar_VariableValue("ac_hud_safe"));
+    if (!menu) { Com_Printf("AC_UI missing %s\n", name); return; }
+    UIWidget *root = menu->GetContainerWidget();
+    UIRect2D f = root->getFrame();
+    Com_Printf("AC_UI_ROOT %s %.3f %.3f %.3f %.3f\n", name, f.pos.x, f.pos.y, f.size.width, f.size.height);
+    for (UIWidget *child = root->getFirstChild(); child; child = root->getNextChild(child)) {
+        UIRect2D c = child->getFrame();
+        Com_Printf("AC_UI_CHILD %s %.3f %.3f %.3f %.3f scale=%.4f,%.4f\n",
+            child->getName(), c.pos.x, c.pos.y, c.size.width, c.size.height,
+            child->getVirtualScale()[0], child->getVirtualScale()[1]);
+    }
+}
+
 void UI_LoadMenu_f(void)
 {
     UI_LoadMenu(Cmd_Argv(1));
@@ -3881,30 +3915,23 @@ void UI_ResolutionChange(void)
     UIRect2D frame;
 
     if (com_target_game->integer >= TG_MOHTA) {
-        ui_compass_scale = Cvar_Get("ui_compass_scale", "0.75", CVAR_ARCHIVE | CVAR_LATCH);
+        ui_compass_scale = Cvar_Get("ui_compass_scale", "0.75", CVAR_ARCHIVE);
     } else {
         // Older version doesn't have an adjustable compass, so assume 0.5 by default
-        ui_compass_scale = Cvar_Get("ui_compass_scale", "0.55", CVAR_ARCHIVE | CVAR_LATCH);
+        ui_compass_scale = Cvar_Get("ui_compass_scale", "0.55", CVAR_ARCHIVE);
     }
 
+    Cvar_Get("ac_ui_auto", "1", CVAR_ARCHIVE);
+    Cvar_Get("ac_menu_scale", "1", CVAR_ARCHIVE);
+    Cvar_Get("ac_hud_scale", "1", CVAR_ARCHIVE);
+    Cvar_Get("ac_hud_safe", "1", CVAR_ARCHIVE);
     CL_FillUIImports();
     CL_FillUIDef();
 
-    // Added in OPM
-    //  Scaling for high resolutions
-    if (uid.vidWidth > maxWidthRes && uid.vidHeight > maxHeightRes) {
-        const float vidRatio = (float)uid.vidWidth / (float)uid.vidHeight;
-
-        uid.scaleRes[0] = (float)uid.vidWidth / (maxHeightRes * vidRatio);
-        uid.scaleRes[1] = (float)uid.vidHeight / maxHeightRes;
-        //uid.scaleRes[0] = (float)uid.vidWidth / maxWidthRes;
-        //uid.scaleRes[1] = (float)uid.vidHeight / maxHeightRes;
-        uid.bHighResScaling = qtrue;
-    } else {
-        uid.scaleRes[0]     = 1;
-        uid.scaleRes[1]     = 1;
-        uid.bHighResScaling = qfalse;
-    }
+    const float base = Cvar_VariableValue("ac_ui_auto") != 0
+        ? fminf(uid.vidWidth / 1280.0f, uid.vidHeight / 960.0f) : 1.0f;
+    uid.scaleRes[0] = uid.scaleRes[1] = fmaxf(.25f, base);
+    uid.bHighResScaling = qtrue;
 
     if (!uie.ResolutionChange) {
         return;
@@ -5315,6 +5342,8 @@ void CL_InitializeUI(void)
     Cvar_Set("game_version", va("v%s", com_target_shortversion->string));
 
     // Add all commands
+    Cmd_AddCommand("ac_ui_options", UI_CampaignOptions_f);
+    Cmd_AddCommand("ac_ui_report", UI_CampaignReport_f);
     Cmd_AddCommand("pushmenu", UI_PushMenu_f);
     Cmd_AddCommand("pushmenu_sp", UI_PushMenuSP_f);
     Cmd_AddCommand("pushmenu_dm", UI_PushMenuMP_f);

@@ -21,6 +21,8 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
 #include "cl_ui.h"
+#include <string>
+#include <vector>
 #include "../qcommon/localization.h"
 
 #include "../server/server.h"
@@ -814,8 +816,6 @@ void View3D::DrawSubtitleOverlay(void)
 {
     cvar_t *subAlpha;
     int     i;
-    float   minX, maxX;
-    int     line;
 
     subAlpha = Cvar_Get("subAlpha", "0.5", 0);
 
@@ -849,117 +849,42 @@ void View3D::DrawSubtitleOverlay(void)
         }
     }
 
-    minX = m_screenframe.size.height - m_font->getHeight(getHighResScale()) * 10;
-    maxX = ((m_frame.pos.x + m_frame.size.width) - (m_frame.pos.x + m_frame.size.width) * 0.2f) / getHighResScale()[0];
-    line = 0;
-
-    for (i = 0; i < MAX_SUBTITLES; i++) {
-        if (fadeTime[i] <= 0) {
-            continue;
-        }
-
-        if (m_font->getWidth(subs[i]->string, sizeof(oldStrings[i])) > maxX) {
-            char  buf[2048];
-            char *c;
-            char *end;
-            char *start;
-            float total;
-            float width;
-            int   blockcount;
-
-            c = subs[i]->string;
-
-            total  = 0;
-            end    = NULL;
-            start  = buf;
-            buf[0] = 0;
-
-            while (*c) {
-                blockcount = m_font->DBCSGetWordBlockCount(c, -1);
-                if (!blockcount) {
-                    break;
-                }
-
-                width = m_font->getWidth(c, blockcount);
-
-                if (total + width > maxX) {
-                    m_font->setColor(UColor(0, 0, 0, alpha[i] * subAlpha->value));
-                    m_font->Print(
-                        18,
-                        (m_font->getHeight(getHighResScale()) * line + minX + 1.f) / getHighResScale()[1],
-                        buf,
-                        -1,
-                        getHighResScale()
-                    );
-
-                    m_font->setColor(UColor(1, 1, 1, alpha[i] * subAlpha->value));
-                    m_font->Print(
-                        20,
-                        (m_font->getHeight(getHighResScale()) * line + minX) / getHighResScale()[1],
-                        buf,
-                        -1,
-                        getHighResScale()
-                    );
-
-                    line++;
-
-                    total = 0;
-                    start = buf;
-                }
-
-                end = start + blockcount + 1;
-                if (end > buf + MAX_STRING_CHARS) {
-                    Com_DPrintf("ERROR - word longer than possible line\n");
-                    break;
-                }
-
-                memcpy(start, c, blockcount);
-                start += blockcount;
-                total += width;
-                *start = 0;
-
-                c += blockcount;
+    vec2_t scale;
+    UI_GetHighResolutionScale(scale);
+    const float safe = Com_Clamp(.8f, 1.f, Cvar_VariableValue("ac_hud_safe"));
+    const float insetX = fmaxf(uid.vidWidth * (1-safe) * .5f,
+        (uid.vidWidth - uid.vidHeight * (16.f/9.f)) * .5f) + 20*scale[0];
+    const float width = (uid.vidWidth - 2*insetX) / scale[0];
+    struct SubtitleLine { std::string text; float opacity; };
+    std::vector<SubtitleLine> lines;
+    for (i = 0; i < MAX_SUBTITLES; ++i) {
+        if (fadeTime[i] <= 0 || !subs[i]->string[0]) continue;
+        std::string text;
+        for (const char *p = subs[i]->string; *p; ++p) {
+            if (*p == '\n') { lines.push_back({text, alpha[i]}); text.clear(); continue; }
+            text += *p;
+            if (m_font->getWidth(text.c_str(), -1) > width && text.size() > 1) {
+                size_t split = text.find_last_of(' ');
+                if (split == std::string::npos || split == 0) split = text.size()-1;
+                lines.push_back({text.substr(0, split), alpha[i]});
+                text = text.substr(split + (text[split] == ' ' ? 1 : 0));
             }
-
-            m_font->setColor(UColor(0, 0, 0, alpha[i] * subAlpha->value));
-            m_font->Print(
-                18,
-                (m_font->getHeight(getHighResScale()) * line + minX + 1.f) / getHighResScale()[1],
-                buf,
-                -1,
-                getHighResScale()
-            );
-
-            m_font->setColor(UColor(1, 1, 1, alpha[i] * subAlpha->value));
-            m_font->Print(
-                20,
-                (m_font->getHeight(getHighResScale()) * line + minX) / getHighResScale()[1],
-                buf,
-                -1,
-                getHighResScale()
-            );
-            line++;
-        } else {
-            m_font->setColor(UColor(0, 0, 0, alpha[i] * subAlpha->value));
-            m_font->Print(
-                18,
-                (m_font->getHeight(getHighResScale()) * line + minX + 1.f) / getHighResScale()[1],
-                subs[i]->string,
-                -1,
-                getHighResScale()
-            );
-
-            m_font->setColor(UColor(1, 1, 1, alpha[i] * subAlpha->value));
-            m_font->Print(
-                20,
-                (m_font->getHeight(getHighResScale()) * line + minX) / getHighResScale()[1],
-                subs[i]->string,
-                -1,
-                getHighResScale()
-            );
-
-            line++;
         }
+        if (!text.empty()) lines.push_back({text, alpha[i]});
+    }
+    if (lines.empty()) return;
+    const float lineHeight = m_font->getHeight() + 2;
+    // Fit unusually long simultaneous dialogue inside the lower half instead
+    // of clipping it below the screen. Ordinary dialogue retains user size.
+    scale[0] = scale[1] = fminf(scale[0], uid.vidHeight * .45f / (lineHeight*lines.size()));
+    float y = uid.vidHeight * (1-(1-safe)*.5f) - 85*scale[1] - lineHeight*lines.size()*scale[1];
+    for (const auto& row : lines) {
+        const float x = (uid.vidWidth - m_font->getWidth(row.text.c_str(), -1)*scale[0])*.5f;
+        m_font->setColor(UColor(0, 0, 0, row.opacity * subAlpha->value));
+        m_font->Print((x+scale[0])/scale[0], (y+scale[1])/scale[1], row.text.c_str(), -1, scale);
+        m_font->setColor(UColor(1, 1, 1, row.opacity));
+        m_font->Print(x/scale[0], y/scale[1], row.text.c_str(), -1, scale);
+        y += lineHeight*scale[1];
     }
 }
 

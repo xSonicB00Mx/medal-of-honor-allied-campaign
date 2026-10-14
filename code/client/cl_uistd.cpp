@@ -1250,7 +1250,7 @@ void UIFakkLabel::DrawStatCompass(float frac)
     vTexCoords[2][1] = 1.0;
 
     vVerts[2][0] = vCenter[0] + fCosVal * vCenter[1] - vCompassDir[0] * vCenter[0];
-    vVerts[2][1] = vCenter[1] * fSinVal + vCenter[0] - vCompassDir[1] * vCenter[1];
+    vVerts[2][1] = vCenter[0] * fSinVal + vCenter[1] - vCompassDir[1] * vCenter[1];
 
     re.DrawTrianglePic(vVerts, vTexCoords, m_statbar_material->GetMaterial());
 }
