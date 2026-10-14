@@ -1,0 +1,11 @@
+{
+  "candidate": "CP00-r4",
+  "package": "artifacts-local/CP00-r4-drops-local.zip",
+  "files": 399,
+  "bytes": 30370224,
+  "sha256": "cf141feffa5366e2b99cd3d5e5e889763f30173cbaadf87006c556fe79623c9d",
+  "crc_passed": true,
+  "checked_references": 386,
+  "hash_mismatches": 0,
+  "scope": "Local drop-series and pickup evidence, including rejected first hard-mode attempt. Existing full runtime backup remains separate; no game assets or saves uploaded."
+}

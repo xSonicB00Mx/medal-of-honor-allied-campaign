@@ -39,3 +39,5 @@ Metadaten: `r4-foot-combat-v2-BT.json`, `r4-foot-matrix-mp40-BT.json`, `r4-foot-
 Lokale Bilder, Logs, Konfigurationen und Saves werden als eigenes Beweispaket gesichert; nur eigene Werkzeuge und Metadaten gehen nach GitHub. Einzelheiten der Archivprüfung stehen in `CP00-r4-bt-foot-package.json`. Alte Pakete werden nicht umgeschrieben. Geprüfte Savequellen und Beweisdateien werden vor Sicherung erneut gehasht.
 
 Die zuvor fehlende BT-Kampfreferenz ist damit für diese vier Waffen und diesen kontrollierten Kontext vorhanden. Offen bleiben systematische Drops, weitere Modelle/statische Leichen/Posen/Wandfälle, natürliche Übergänge, Live-Kampfframetimes und weitere Menü-/Warnungsprüfungen. **Keine vollständige CP0-Abnahme, kein Merge, kein CP0a.**
+
+Nachtrag: Die anschließend geprüften Dropserien und ihre Grenzen stehen im [Drop-Folgebericht](CP00-r4-DROP-REPORT.md).

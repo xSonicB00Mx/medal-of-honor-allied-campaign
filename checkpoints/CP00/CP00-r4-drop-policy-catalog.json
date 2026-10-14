@@ -1,0 +1,211 @@
+{
+  "candidate": "CP00-r4",
+  "scope": "Static assignment inventory of selected effective resources; branch labels are textual context, not proof all assignments execute. Dynamic series are separate.",
+  "resources": [
+    {
+      "game": "AA",
+      "resource": "global/ai.scr",
+      "provider": "main/Restoration_AA_Pak1-Main.pk3",
+      "entry": "global/ai.scr",
+      "sha256": "c52141ad30c2d5a8150c7f4e0d9710a90c68d1eeb53ea008914e713226f8c8ec",
+      "assignments": []
+    },
+    {
+      "game": "AA",
+      "resource": "global/loadout.scr",
+      "provider": "main/Restoration_AA_Pak1-Main.pk3",
+      "entry": "global/loadout.scr",
+      "sha256": "b7cf3ef9b210a1b08cba3616354e4039d45ee6592767c52350c72bae93bf84d0",
+      "assignments": []
+    },
+    {
+      "game": "AA",
+      "resource": "maps/m2l1.scr",
+      "provider": "main/Restoration_AA_Pak1-Main.pk3",
+      "entry": "maps/m2l1.scr",
+      "sha256": "4162b8ce0495cc64af8b0acedbe8461c920b970a31ece12d4b282ecb3fd1c121",
+      "assignments": []
+    },
+    {
+      "game": "SH",
+      "resource": "global/ai.scr",
+      "provider": "mainta/Restoration_SH_Pak1-Main.pk3",
+      "entry": "global/ai.scr",
+      "sha256": "786ca1d2111ffe936eac7f2a481d93992acb66b749d03000219f56bc880a9dbc",
+      "assignments": []
+    },
+    {
+      "game": "SH",
+      "resource": "global/loadout.scr",
+      "provider": "mainta/Restoration_SH_Pak1-Main.pk3",
+      "entry": "global/loadout.scr",
+      "sha256": "807b0e402615e9e5238b72d6130212b2514927d1a71d0c240e773bb60fa01ba7",
+      "assignments": []
+    },
+    {
+      "game": "SH",
+      "resource": "maps/m2l1.scr",
+      "provider": "main/Restoration_AA_Pak1-Main.pk3",
+      "entry": "maps/m2l1.scr",
+      "sha256": "4162b8ce0495cc64af8b0acedbe8461c920b970a31ece12d4b282ecb3fd1c121",
+      "assignments": []
+    },
+    {
+      "game": "SH",
+      "resource": "maps/t1l2.scr",
+      "provider": "mainta/Restoration_SH_Pak1-Main.pk3",
+      "entry": "maps/t1l2.scr",
+      "sha256": "66acad9100c2b21bc010d129a45d50cf5e4ee99f05ba28624a7cd9fe982e3621",
+      "assignments": []
+    },
+    {
+      "game": "BT",
+      "resource": "global/ai.scr",
+      "provider": "maintt/Restoration_BT_Pak1-Main.pk3",
+      "entry": "global/ai.scr",
+      "sha256": "e8888160a25f5080b73725b07cdf571d6e5f73543d0481f9614854d7456201e8",
+      "assignments": []
+    },
+    {
+      "game": "BT",
+      "resource": "global/loadout.scr",
+      "provider": "maintt/Restoration_BT_Pak1-Main.pk3",
+      "entry": "global/loadout.scr",
+      "sha256": "06ad4d8b9bb56568bbb047bb4f4c810ba24c8a251d64fcc7a6c245872811363f",
+      "assignments": [
+        {
+          "conditional_scope": "maps/e1l1.scr",
+          "field": "nodrophealth",
+          "value": 0
+        },
+        {
+          "conditional_scope": "maps/e1l1.scr",
+          "field": "nodropweapons",
+          "value": 0
+        },
+        {
+          "conditional_scope": "maps/e1l2.scr",
+          "field": "nodrophealth",
+          "value": 0
+        },
+        {
+          "conditional_scope": "maps/e1l2.scr",
+          "field": "nodropweapons",
+          "value": 0
+        },
+        {
+          "conditional_scope": "maps/e1l3.scr",
+          "field": "nodrophealth",
+          "value": 0
+        },
+        {
+          "conditional_scope": "maps/e1l3.scr",
+          "field": "nodropweapons",
+          "value": 0
+        },
+        {
+          "conditional_scope": "maps/e1l4.scr",
+          "field": "nodrophealth",
+          "value": 0
+        },
+        {
+          "conditional_scope": "maps/e1l4.scr",
+          "field": "nodropweapons",
+          "value": 0
+        },
+        {
+          "conditional_scope": "maps/e2l1.scr",
+          "field": "nodrophealth",
+          "value": 0
+        },
+        {
+          "conditional_scope": "maps/e2l1.scr",
+          "field": "nodropweapons",
+          "value": 0
+        },
+        {
+          "conditional_scope": "maps/e2l2.scr",
+          "field": "nodrophealth",
+          "value": 1
+        },
+        {
+          "conditional_scope": "maps/e2l2.scr",
+          "field": "nodropweapons",
+          "value": 1
+        },
+        {
+          "conditional_scope": "maps/e2l3.scr",
+          "field": "nodrophealth",
+          "value": 0
+        },
+        {
+          "conditional_scope": "maps/e2l3.scr",
+          "field": "nodropweapons",
+          "value": 0
+        },
+        {
+          "conditional_scope": "maps/e3l1.scr",
+          "field": "nodrophealth",
+          "value": 0
+        },
+        {
+          "conditional_scope": "maps/e3l1.scr",
+          "field": "nodropweapons",
+          "value": 0
+        },
+        {
+          "conditional_scope": "maps/e3l2.scr",
+          "field": "nodrophealth",
+          "value": 0
+        },
+        {
+          "conditional_scope": "maps/e3l2.scr",
+          "field": "nodropweapons",
+          "value": 0
+        },
+        {
+          "conditional_scope": "maps/e3l3.scr",
+          "field": "nodrophealth",
+          "value": 0
+        },
+        {
+          "conditional_scope": "maps/e3l3.scr",
+          "field": "nodropweapons",
+          "value": 0
+        },
+        {
+          "conditional_scope": "maps/e3l4.scr",
+          "field": "nodrophealth",
+          "value": 0
+        },
+        {
+          "conditional_scope": "maps/e3l4.scr",
+          "field": "nodropweapons",
+          "value": 0
+        }
+      ]
+    },
+    {
+      "game": "BT",
+      "resource": "maps/m2l1.scr",
+      "provider": "main/Restoration_AA_Pak1-Main.pk3",
+      "entry": "maps/m2l1.scr",
+      "sha256": "4162b8ce0495cc64af8b0acedbe8461c920b970a31ece12d4b282ecb3fd1c121",
+      "assignments": []
+    },
+    {
+      "game": "BT",
+      "resource": "maps/e2l2.scr",
+      "provider": "maintt/Restoration_BT_Pak1-Main.pk3",
+      "entry": "maps/e2l2.scr",
+      "sha256": "fb4771fc83f5a88ec925ed61e6aed6eb7b7bc4917e98bcc79c03f37eee6f443c",
+      "assignments": [
+        {
+          "conditional_scope": "file scope",
+          "field": "nodropweapons",
+          "value": 1
+        }
+      ]
+    }
+  ]
+}

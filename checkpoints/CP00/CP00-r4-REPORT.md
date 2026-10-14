@@ -92,3 +92,7 @@ Optionspersistenz, Client-Timedemos und erste kontrollierte Kampf-/Leichenrefere
 ## BT-Kampfreferenz nach korrigierter Szenenwahl
 
 Der [BT-Folgebericht](CP00-r4-BT-FOOT-REPORT.md) dokumentiert den geprüften e2l2-Fußstart mit Bewegung/Probeschuss sowie gültige kontrollierte Colt45-/MP40-/Kar98-/BAR-Leichenreferenzen. Die vorherigen Fahrzeugversuche bleiben ungültig. Allgemeine Drops und vollständige CP0-Abnahme bleiben offen; kein BT-Finaltest durchgeführt.
+
+## Drop-Ausgangsreferenzen
+
+Vier kontrollierte Serien mit 36 Kills sowie eine echte Gesundheitsaufnahme nach Save/Load sind im [Drop-Folgebericht](CP00-r4-DROP-REPORT.md) belegt. Die Unterschiede zwischen AA/SH Mittel, BT-e2l2-Missionssperren und AA Schwer bleiben unverändert. Der zusätzliche BT-Drop-Patch ist weiterhin nicht integriert. Keine vollständige CP0-Abnahme.
