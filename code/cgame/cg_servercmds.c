@@ -326,6 +326,7 @@ static void CG_ServerCommand(qboolean modelOnly)
     }
 
     if (!strcmp(cmd, "ac_wound")) { CG_ACWoundsEvent(); return; }
+    if (!strcmp(cmd, "ac_wound_remove")) { CG_ACWoundsRemove(); return; }
     if (!strcmp(cmd, "ac_hit")) { CG_ACBloodEvent(); return; }
 
     if (!strcmp(cmd, "print") || !strcmp(cmd, "hudprint")) {

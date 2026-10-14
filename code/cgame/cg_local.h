@@ -42,6 +42,7 @@ extern "C" {
 
     void CG_ACImpactMark(qhandle_t,const vec3_t,const vec3_t,float,float,int);
     void CG_ACWoundsEvent(void);
+    void CG_ACWoundsRemove(void);
     void CG_ACWoundsReset(void);
     void CG_ACWoundsDraw(refEntity_t *model,int usage);
     void CG_ACBloodEvent(void);

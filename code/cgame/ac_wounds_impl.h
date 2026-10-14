@@ -22,6 +22,16 @@ bool ACValidWound(const ac_wound_t& w) {
 int ACHex(char c){if(c>='0' && c<='9')return c-'0';if(c>='a' && c<='f')return c-'a'+10;return -1;}
 }
 extern "C" void CG_ACWoundsReset(void) {memset(acWounds,0,sizeof(acWounds));acWoundCursor=0;acPacketOffset=acPacketSize=0;}
+extern "C" void CG_ACWoundsRemove(void) {
+    if(cgi.Argc()!=3)return;
+    int entity=atoi(cgi.Argv(1)),usage=atoi(cgi.Argv(2)),removed=0;
+    if(entity<0 || entity>=MAX_GENTITIES || usage<=0)return;
+    for(auto& w:acWounds)if(w.active && w.data.entity==entity && (w.rebind || w.data.usage==usage)) {
+        w.active=false;++removed;
+    }
+    if(removed && cgi.Cvar_Get("ac_fx_debug","0",0)->integer)
+        cgi.Printf("AC_WOUND_OWNER_REMOVED entity=%d usage=%d count=%d\n",entity,usage,removed);
+}
 extern "C" void CG_ACWoundsEvent(void) {
     if(cgi.Argc()!=6)return;
     unsigned id=strtoul(cgi.Argv(1),nullptr,10);int branch=atoi(cgi.Argv(2));unsigned offset=strtoul(cgi.Argv(3),nullptr,10),size=strtoul(cgi.Argv(4),nullptr,10);

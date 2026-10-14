@@ -34,6 +34,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 #include "player.h"
 #include "Entities.h"
 #include "health.h"
+#include "../tiki/tiki_shared.h"
 
 #include "navigation_recast_load.h"
 
@@ -1817,6 +1818,17 @@ gentity_t *Level::AllocEdict(Entity *entity)
 void Level::FreeEdict(gentity_t *ed)
 {
     gclient_t *client;
+
+    // A missing snapshot can also mean outside the PVS, so only an actual
+    // server deletion retires wound records. Teardown resets/restores them
+    // separately and must not fill the reliable-command queue.
+    if (!DisableListenerNotify && !LoadingSavegame && ed->inuse && ed->tiki
+        && g_gametype->integer == GT_SINGLE_PLAYER) {
+        bool body = ed->tiki->a->bIsCharacter;
+        if (ed->entity) for (const char *name : acCorpseModels)
+            if (!Q_stricmp(ed->entity->model.c_str(), name)) { body = true; break; }
+        if (body) gi.SendServerCommand(-1, "ac_wound_remove %d %d", ed->s.number, ed->s.usageIndex);
+    }
 
     // clear the model so it decreases the user count
     // and free memory if the model is not used anywhere

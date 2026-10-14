@@ -3,7 +3,7 @@ import argparse, hashlib, json, re, shutil, subprocess
 from pathlib import Path
 from PIL import Image
 
-ap=argparse.ArgumentParser();ap.add_argument('--map',default='m2l1');ap.add_argument('--run-id',required=True)
+ap=argparse.ArgumentParser();ap.add_argument('--map',default='m2l1');ap.add_argument('--model',default='models/human/german_wehrmact_soldier.tik');ap.add_argument('--run-id',required=True)
 ap.add_argument('--game',choices=['AA','SH','BT'],default='AA');ap.add_argument('--wall',action='store_true')
 ap.add_argument('--static',action='store_true');ap.add_argument('--mist',type=int,default=1);a=ap.parse_args()
 r=Path(__file__).resolve().parents[1];rt=r/'runtime-local'/'CP05a-r1';p=r/'profiles-local/CP05a-r1'/a.run_id
@@ -15,6 +15,7 @@ if src:
  for ext in ['.sav','.ssv','.tga']:shutil.copy2((r/src).with_suffix(ext),h/('save/omconfig/reference'+ext))
  start='loadgame reference'
 fixture=(r/('tools/cp03_wall_fixture.scr' if a.wall else 'tools/cp00_baseline_fixture.scr')).read_text()
+fixture=fixture.replace('models/human/german_wehrmact_soldier.tik',a.model)
 if not a.static:fixture=fixture.replace('level.cp00_subject ai_off','level.cp00_subject.enableEnemy = 0\n    level.cp00_subject ai_on')
 fixture=fixture.replace('    level.cp00_subject thread deathwatch','    level.cp00_subject.health = 10000\n    level.cp00_subject thread deathwatch')
 (h/'probe/base.scr').write_text(fixture)
@@ -28,7 +29,7 @@ result=subprocess.run(cmd+['+exec','probe.cfg'],cwd=rt,timeout=90)
 log=(h/'qconsole.log').read_text(encoding='latin1');images=[]
 for image in sorted((h/'screenshots').glob('*.tga')):
  out=image.with_suffix('.png');Image.open(image).save(out);images.append(out.relative_to(r).as_posix())
-report=dict(run=a.run_id,candidate='CP05a-r1',map=a.map,game=a.game,reacting=not a.static,wall=a.wall,mist=a.mist,completed='AC_FEEDBACK_DONE' in log,exit=result.returncode,images=images,
+report=dict(run=a.run_id,candidate='CP05a-r1',map=a.map,model=a.model,game=a.game,reacting=not a.static,wall=a.wall,mist=a.mist,completed='AC_FEEDBACK_DONE' in log,exit=result.returncode,images=images,
  binaries={name:hashlib.sha256((rt/name).read_bytes()).hexdigest() for name in ['openmohaa.exe','game.dll','cgame.dll']},
  events=re.findall(r'AC_(?:HIT|DROP|MARK|REAR|RECEIVE)[^\r\n]*',log),errors=[l for l in log.splitlines() if any(x in l for x in ['Script Error','Unknown command','Invalid event','compile error'])])
 out=r/'checkpoints/CP05a';out.mkdir(exist_ok=True);(out/(a.run_id+'.json')).write_text(json.dumps(report,indent=2))

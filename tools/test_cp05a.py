@@ -30,7 +30,7 @@ commands=['wait 1000',start,'wait 3000','finishloadingscreen','wait 2500','set d
 if not a.model:commands+=['echo AC_PHASE_KILL','+attack','wait 80','-attack','wait 1700','screenshot']
 commands+=['echo AC_PHASE_CORPSE','script player exec probe/aim.scr','wait 600','screenshot']
 for gun,ammo in [('colt45','pistol'),('mp40','smg'),('kar98','rifle'),('bar','mg')]:
- commands += [f'echo AC_GROUP_{gun}',f'script player give models/weapons/{gun}.tik',f'script player use models/weapons/{gun}.tik',f'script player ammo {ammo} 100','wait 1800','script player exec probe/aim.scr','wait 300','+attack','wait 80','-attack','wait 150','screenshot','wait 700']
+ commands += [f'echo AC_GROUP_{gun}',f'script player give models/weapons/{gun}.tik',f'script player use models/weapons/{gun}.tik',f'script player ammo {ammo} 100','wait 1800','script player exec probe/aim.scr','wait 300','+attack','wait 240' if a.existing and gun=='mp40' else 'wait 80','-attack','wait 150','screenshot','wait 700']
 commands+=['script player exec probe/snapshot.scr','savegame corpse','wait 500','loadgame corpse','wait 3000','finishloadingscreen','wait 700','script player exec probe/aim.scr','wait 500','screenshot','echo AC_PHASE_RELOAD','+attack','wait 80','-attack','wait 500','screenshot','echo AC_PHASE_DISABLED','set ac_corpse_effects 0','wait 300','+attack','wait 80','-attack','wait 700','script player exec probe/snapshot.scr','set ac_corpse_effects 1','script player exec probe/ground.scr','wait 300','screenshot']
 if a.lifetime:commands+=['wait 12000','screenshot','wait 14000','screenshot','wait 6000','screenshot']
 if a.negative:
@@ -56,7 +56,7 @@ if a.negative:
     }
 end
 """)
- commands+=['echo AC_PHASE_OCCLUDED','script player exec probe/occluded.scr','wait 700','+attack','wait 180','-attack','wait 800','screenshot','echo AC_PHASE_REMOVED','script player exec probe/remove.scr','wait 500']
+ commands+=['echo AC_PHASE_OCCLUDED','script player exec probe/occluded.scr','wait 700','+attack','wait 180','-attack','wait 800','screenshot','echo AC_PHASE_REMOVED','script player exec probe/remove.scr','wait 500','savegame removed','wait 500','loadgame removed','wait 3000','finishloadingscreen','wait 700','savegame removed-again','wait 500']
 commands+=['ac_ui_options','wait 500','screenshot','set ac_corpse_effects 0','writeconfig omconfig.cfg','echo AC_TEST_DONE','quit'];(h/'test.cfg').write_text('\n'.join(commands)+'\n')
 cmd=[str(rt/'openmohaa.exe')]
 for k,v in dict(com_target_game=n,fs_basepath=rt,fs_homepath=p,fs_steampath=rt,fs_gogpath=rt,fs_microsoftstorepath=rt,net_enabled=0,logfile=2,developer=1,cheats=1,ui_console=0,r_fullscreen=0,r_mode=-1,r_customwidth=1280,r_customheight=960,com_maxfps=60,com_maxfpsUnfocused=60,cl_playintro=0,ac_fx_debug=2,ac_world_blood=1,ac_body_wounds=1,ac_blood_mist=a.mist,ac_corpse_effects=1).items():cmd+=['+set',k,str(v)]
