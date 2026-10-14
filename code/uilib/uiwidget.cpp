@@ -474,6 +474,15 @@ Event EV_Layout_VidMode
     "Set container's vidmode to change to when it's active"
 );
 
+Event EV_Layout_LoadingBackground
+(
+    "loadingbackground",
+    EV_DEFAULT,
+    "sffff",
+    "shader left top right bottom",
+    "Fit a loading image crop on wide screens; source canvas is 640x480 padded to 1024x512"
+);
+
 CLASS_DECLARATION(USignal, UIWidget, NULL) {
     {&EV_Widget_Hide,               &UIWidget::Hide                    },
     {&EV_Widget_Activate,           &UIWidget::Activate                },
@@ -2488,6 +2497,7 @@ void UIWidget::SetDontLocalize()
 CLASS_DECLARATION(UIWidget, UIWidgetContainer, NULL) {
     {&EV_Layout_BGFill,     &UIWidgetContainer::SetBGFill    },
     {&EV_Layout_WidescreenBackground, &UIWidgetContainer::SetWidescreenBackground},
+    {&EV_Layout_LoadingBackground, &UIWidgetContainer::SetLoadingBackground},
     {&EV_Layout_Fullscreen, &UIWidgetContainer::SetFullscreen},
     {&EV_Layout_VidMode,    &UIWidgetContainer::SetVidMode   },
     {NULL,                  NULL                             }
@@ -2497,6 +2507,10 @@ UIWidgetContainer::UIWidgetContainer()
 {
     m_bgfill        = UColor(0, 0, 0, 0);
     m_widescreenBackground = NULL;
+    m_loadingBackground = NULL;
+    m_loadingCrop[0] = m_loadingCrop[1] = 0;
+    m_loadingCrop[2] = 640;
+    m_loadingCrop[3] = 480;
     m_fullscreen    = false;
     m_vidmode       = -1;
     m_currentwidnum = 0;
@@ -2569,7 +2583,42 @@ void UIWidgetContainer::Draw(void)
         uii.Rend_SetColor(NULL);
     }
 
+    if (m_loadingBackground) {
+        float x = m_frame.pos.x, y = m_frame.pos.y;
+        float width = m_frame.size.width, height = m_frame.size.height;
+        float left = 0, top = 0, right = 640, bottom = 480;
+        if (uid.vidWidth * 3 > uid.vidHeight * 4) {
+            left = m_loadingCrop[0];
+            top = m_loadingCrop[1];
+            right = m_loadingCrop[2];
+            bottom = m_loadingCrop[3];
+            const float scale = fminf(uid.vidWidth / (right - left), uid.vidHeight / (bottom - top));
+            width = (right - left) * scale;
+            height = (bottom - top) * scale;
+            x = (uid.vidWidth - width) * .5f;
+            y = (uid.vidHeight - height) * .5f;
+        }
+        // Only the picture changes geometry; progress widgets retain their layout.
+        const float color[4] = {1, 1, 1, m_local_alpha};
+        uii.Rend_SetColor(color);
+        uii.Rend_DrawPicStretched(x, y, width, height,
+            left / 1024, top / 512, right / 1024, bottom / 512,
+            m_loadingBackground->GetMaterial());
+        uii.Rend_SetColor(NULL);
+    }
+
     set2D();
+}
+
+void UIWidgetContainer::SetLoadingBackground(Event *ev)
+{
+    m_loadingBackground = NULL;
+    for (int i = 0; i < 4; ++i) m_loadingCrop[i] = ev->GetFloat(i + 2);
+    // Ordered comparisons also reject NaN and infinities before division.
+    if (!(m_loadingCrop[0] >= 0 && m_loadingCrop[1] >= 0
+        && m_loadingCrop[2] <= 640 && m_loadingCrop[3] <= 480
+        && m_loadingCrop[2] > m_loadingCrop[0] && m_loadingCrop[3] > m_loadingCrop[1])) return;
+    m_loadingBackground = uWinMan.RegisterShader(ev->GetString(1));
 }
 
 void UIWidgetContainer::SetWidescreenBackground(Event *ev)

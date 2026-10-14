@@ -369,6 +369,8 @@ class UIWidgetContainer : public UIWidget
 {
     UColor   m_bgfill;
     UIReggedMaterial *m_widescreenBackground;
+    UIReggedMaterial *m_loadingBackground;
+    float m_loadingCrop[4];
     qboolean m_fullscreen;
     int      m_vidmode;
     int      m_currentwidnum;
@@ -389,6 +391,7 @@ public:
     void      Realign(void) override;
     void      SetBGFill(Event *ev);
     void      SetWidescreenBackground(Event *ev);
+    void      SetLoadingBackground(Event *ev);
     void      SetFullscreen(Event *ev);
     void      SetVidMode(Event *ev);
     int       getVidMode(void);

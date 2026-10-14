@@ -15,6 +15,7 @@ ap.add_argument('--height', type=int, default=1080)
 ap.add_argument('--menus', nargs='+', default=['main', 'briefing1a'])
 ap.add_argument('--without-art', action='store_true')
 ap.add_argument('--installed', action='store_true', help='Test the installed runtime and its own packages')
+ap.add_argument('--overlay', type=Path, help='Additional local package directory containing main/mainta/maintt')
 args = ap.parse_args()
 root = Path(__file__).resolve().parents[1]
 assert re.fullmatch('[a-zA-Z0-9-]+', args.run_id)
@@ -38,6 +39,9 @@ for folder in ['main', 'mainta', 'maintt']:
     package = work/'packages'/folder/'zzzzzz_AC_Widescreen.pk3'
     if package.exists() and not args.without_art and not args.installed:
         shutil.copy2(package, profile/folder/package.name)
+    if args.overlay:
+        for extra in (args.overlay/folder).glob('*.pk3'):
+            shutil.copy2(extra, profile/folder/extra.name)
 number, folder = {'AA':(0,'main'), 'SH':(1,'mainta'), 'BT':(2,'maintt')}[args.game]
 home = profile/folder
 commands = ['wait 2000']

@@ -13,6 +13,7 @@ from inventory_cp00 import sha, save
 ap = argparse.ArgumentParser(description=__doc__)
 ap.add_argument('--batch', required=True)
 ap.add_argument('--mp1', required=True, type=Path)
+ap.add_argument('--loading-zoom', action='store_true', help='Install only the existing SH/BT artwork zoom packages')
 args = ap.parse_args()
 assert args.batch.replace('-', '').isalnum()
 root = Path(__file__).resolve().parents[1]
@@ -24,7 +25,7 @@ source = subprocess.check_output(['git','rev-parse','HEAD'],cwd=root,text=True).
 assert not subprocess.check_output(['git','diff','HEAD','--','code'],cwd=root,text=True), 'Commit engine changes first'
 old = json.loads((runtime/'build-manifest.json').read_text())
 approved = json.loads((work/'approved.json').read_text())
-packages = json.loads((work/'packages/package-report.json').read_text())
+packages = json.loads((work/('loading-zoom/packages/package-report.json' if args.loading_zoom else 'packages/package-report.json')).read_text())
 profile = root/'profiles-local/CP08-r1/user'
 def profile_hashes():
     return {p.relative_to(profile).as_posix():sha(p) for p in profile.rglob('*') if p.is_file()}
@@ -67,13 +68,23 @@ for name,file in updates.items():
     shutil.copy2(file,runtime/name)
     assert sha(runtime/name) == sha(file)
 owned = {r['path'] for r in old['owned_files']} | set(updates)
+widescreen = old.get('widescreen', {}) if args.loading_zoom else dict(
+    batch=args.batch,approved_artworks=sorted(approved),
+    completion='PARTIAL_GEMINI_QUOTA_BLOCKED',center='Original textures and widgets unchanged',
+    provider='Google Gemini / Nano Banana',breakthrough_loading_changed=False,
+    spearhead_letterboxed_loading_changed=False)
+if not args.loading_zoom and old.get('widescreen', {}).get('loading_zoom'):
+    widescreen.update({key:old['widescreen'][key] for key in
+        ['loading_zoom','breakthrough_loading_changed','spearhead_letterboxed_loading_changed']})
+if args.loading_zoom:
+    widescreen = {**widescreen, 'breakthrough_loading_changed':True,
+        'spearhead_letterboxed_loading_changed':True,
+        'loading_zoom':dict(batch=args.batch, maps={p['game']:len(p['maps']) for p in packages},
+            generation=False, fit='Proportional cropped artwork, centered; full original frame on 4:3')}
 manifest = {**old,'source_commit':source,'engine_source_commit':source,
     'game_dll_source_commit':old.get('game_dll_source_commit',old['engine_source_commit']),
     'owned_files':[dict(path=n,sha256=sha(runtime/n)) for n in sorted(owned)],
-    'widescreen':dict(batch=args.batch,approved_artworks=sorted(approved),
-        completion='PARTIAL_GEMINI_QUOTA_BLOCKED',center='Original textures and widgets unchanged',
-        provider='Google Gemini / Nano Banana',breakthrough_loading_changed=False,
-        spearhead_letterboxed_loading_changed=False),
+    'widescreen':widescreen,
     'personal_acceptance':False,'merged':False}
 save(runtime/'build-manifest.json',manifest)
 assert profile_hashes() == before, 'User profile must remain untouched'
@@ -88,5 +99,6 @@ with zipfile.ZipFile(artifact) as z:
     assert z.testzip() is None
 save(work/(args.batch+'-delivery.json'),dict(source_commit=source,integrity=integrity,
     package=artifact.relative_to(root).as_posix(),sha256=sha(artifact),upload_allowed=False,
-    approved_artworks=sorted(approved),completion='PARTIAL_GEMINI_QUOTA_BLOCKED'))
+    approved_artworks=sorted(approved),
+    completion='LOADING_ZOOM_COMPLETE_OTHER_ART_PARTIAL' if args.loading_zoom else 'PARTIAL_GEMINI_QUOTA_BLOCKED'))
 print(json.dumps(integrity),flush=True)
