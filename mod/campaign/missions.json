@@ -21,7 +21,7 @@
         "textures/mohmenu/levelbriefing/m1l1_1.tga"
       ],
       "location_name": "Arzew, Algeria",
-      "location_precision": "region",
+      "location_precision": "regional anchor; not an exact in-game objective",
       "protagonist": "Mike Powell",
       "briefing": "briefing/briefing1",
       "start_state": "original_loadout_at_operation_entry",
@@ -39,7 +39,17 @@
       "content_fingerprint": "a1fd29c088740c742daa7e7b76a506fb39a8d7d926e62dd5ea39fdd385d45dd8",
       "completion_variant": "native-transition-or-credits",
       "optional_entry_points": [],
-      "notes": []
+      "notes": [],
+      "latitude": 35.85048,
+      "longitude": -0.318,
+      "location_source": {
+        "provider": "GeoNames",
+        "id": "2506385",
+        "url": "https://www.geonames.org/2506385",
+        "license": "CC BY 4.0",
+        "anchor_name": "Arzew"
+      },
+      "map_region": 1
     },
     {
       "id": "aa_trondheim",
@@ -60,7 +70,7 @@
         "textures/mohmenu/levelbriefing/m2l1_1.tga"
       ],
       "location_name": "Trondheim, Norway",
-      "location_precision": "region",
+      "location_precision": "regional anchor; not an exact in-game objective",
       "protagonist": "Mike Powell",
       "briefing": "briefing/briefing2",
       "start_state": "original_loadout_at_operation_entry",
@@ -80,7 +90,17 @@
       "content_fingerprint": "a1fd29c088740c742daa7e7b76a506fb39a8d7d926e62dd5ea39fdd385d45dd8",
       "completion_variant": "native-transition-or-credits",
       "optional_entry_points": [],
-      "notes": []
+      "notes": [],
+      "latitude": 63.43049,
+      "longitude": 10.39506,
+      "location_source": {
+        "provider": "GeoNames",
+        "id": "3133880",
+        "url": "https://www.geonames.org/3133880",
+        "license": "CC BY 4.0",
+        "anchor_name": "Trondheim"
+      },
+      "map_region": 4
     },
     {
       "id": "bt_kasserine",
@@ -99,7 +119,7 @@
         "textures/gametext/e1l1_ScreenText2.tga"
       ],
       "location_name": "Kasserine Pass, Tunisia",
-      "location_precision": "region",
+      "location_precision": "regional anchor; not an exact in-game objective",
       "protagonist": "John Baker",
       "briefing": "briefing/briefinge1",
       "start_state": "original_loadout_at_operation_entry",
@@ -119,7 +139,17 @@
       "content_fingerprint": "e3cba53377fc8c42372c9bc9e28797564004a5b52ceaaac62a64ca1f1a567779",
       "completion_variant": "native-transition-or-credits",
       "optional_entry_points": [],
-      "notes": []
+      "notes": [],
+      "latitude": 35.16758,
+      "longitude": 8.83651,
+      "location_source": {
+        "provider": "GeoNames",
+        "id": "2473457",
+        "url": "https://www.geonames.org/2473457",
+        "license": "CC BY 4.0",
+        "anchor_name": "Kasserine"
+      },
+      "map_region": 1
     },
     {
       "id": "bt_bizerte",
@@ -138,7 +168,7 @@
         "textures/gametext/e1l3_ScreenText2.tga"
       ],
       "location_name": "Bizerte, Tunisia",
-      "location_precision": "region",
+      "location_precision": "regional anchor; not an exact in-game objective",
       "protagonist": "John Baker",
       "briefing": null,
       "start_state": "original_loadout_at_operation_entry",
@@ -158,7 +188,17 @@
       "content_fingerprint": "e3cba53377fc8c42372c9bc9e28797564004a5b52ceaaac62a64ca1f1a567779",
       "completion_variant": "native-transition-or-credits",
       "optional_entry_points": [],
-      "notes": []
+      "notes": [],
+      "latitude": 37.27442,
+      "longitude": 9.87391,
+      "location_source": {
+        "provider": "GeoNames",
+        "id": "2472706",
+        "url": "https://www.geonames.org/2472706",
+        "license": "CC BY 4.0",
+        "anchor_name": "Bizerte"
+      },
+      "map_region": 1
     },
     {
       "id": "bt_sicily",
@@ -178,7 +218,7 @@
         "textures/gametext/e2l1_ScreenText2.tga"
       ],
       "location_name": "Sicily, Italy",
-      "location_precision": "region",
+      "location_precision": "regional anchor; not an exact in-game objective",
       "protagonist": "John Baker",
       "briefing": "briefing/briefinge2",
       "start_state": "original_loadout_at_operation_entry",
@@ -198,7 +238,17 @@
       "content_fingerprint": "e3cba53377fc8c42372c9bc9e28797564004a5b52ceaaac62a64ca1f1a567779",
       "completion_variant": "native-transition-or-credits",
       "optional_entry_points": [],
-      "notes": []
+      "notes": [],
+      "latitude": 37.75,
+      "longitude": 14.25,
+      "location_source": {
+        "provider": "GeoNames",
+        "id": "2523119",
+        "url": "https://www.geonames.org/2523119",
+        "license": "CC BY 4.0",
+        "anchor_name": "Sicilia"
+      },
+      "map_region": 2
     },
     {
       "id": "bt_cassino",
@@ -217,7 +267,7 @@
         "textures/gametext/e3l1_ScreenText2.tga"
       ],
       "location_name": "Monte Cassino, Italy",
-      "location_precision": "region",
+      "location_precision": "regional anchor; not an exact in-game objective",
       "protagonist": "John Baker",
       "briefing": "briefing/briefinge3",
       "start_state": "original_loadout_at_operation_entry",
@@ -237,7 +287,17 @@
       "content_fingerprint": "e3cba53377fc8c42372c9bc9e28797564004a5b52ceaaac62a64ca1f1a567779",
       "completion_variant": "native-transition-or-credits",
       "optional_entry_points": [],
-      "notes": []
+      "notes": [],
+      "latitude": 41.48581,
+      "longitude": 13.82835,
+      "location_source": {
+        "provider": "GeoNames",
+        "id": "3179781",
+        "url": "https://www.geonames.org/3179781",
+        "license": "CC BY 4.0",
+        "anchor_name": "Cassino"
+      },
+      "map_region": 2
     },
     {
       "id": "bt_anzio",
@@ -255,7 +315,7 @@
         "textures/gametext/e3l3_ScreenText2.tga"
       ],
       "location_name": "Anzio, Italy",
-      "location_precision": "region",
+      "location_precision": "regional anchor; not an exact in-game objective",
       "protagonist": "John Baker",
       "briefing": null,
       "start_state": "original_loadout_at_operation_entry",
@@ -275,7 +335,17 @@
       "content_fingerprint": "e3cba53377fc8c42372c9bc9e28797564004a5b52ceaaac62a64ca1f1a567779",
       "completion_variant": "native-transition-or-credits",
       "optional_entry_points": [],
-      "notes": []
+      "notes": [],
+      "latitude": 41.45263,
+      "longitude": 12.62157,
+      "location_source": {
+        "provider": "GeoNames",
+        "id": "3183005",
+        "url": "https://www.geonames.org/3183005",
+        "license": "CC BY 4.0",
+        "anchor_name": "Anzio"
+      },
+      "map_region": 2
     },
     {
       "id": "sh_normandy",
@@ -295,7 +365,7 @@
         "textures/gametext/t1l1_ScreenText2.tga"
       ],
       "location_name": "Normandy, France",
-      "location_precision": "region",
+      "location_precision": "regional anchor; not an exact in-game objective",
       "protagonist": "Jack Barnes",
       "briefing": "briefing/briefingt1",
       "start_state": "original_loadout_at_operation_entry",
@@ -315,7 +385,17 @@
       "content_fingerprint": "ffcf323250e3b7e36c72c15f8430f4af580a190a84b7e1312a51d1ddc855fa65",
       "completion_variant": "native-transition-or-credits",
       "optional_entry_points": [],
-      "notes": []
+      "notes": [],
+      "latitude": 49.18585,
+      "longitude": -0.35912,
+      "location_source": {
+        "provider": "GeoNames",
+        "id": "3029241",
+        "url": "https://www.geonames.org/3029241",
+        "license": "CC BY 4.0",
+        "anchor_name": "Caen"
+      },
+      "map_region": 3
     },
     {
       "id": "aa_normandy",
@@ -336,7 +416,7 @@
         "textures/mohmenu/levelbriefing/m3l2_1.tga"
       ],
       "location_name": "Normandy, France",
-      "location_precision": "region",
+      "location_precision": "regional anchor; not an exact in-game objective",
       "protagonist": "Mike Powell",
       "briefing": "briefing/briefing3",
       "start_state": "original_loadout_at_operation_entry",
@@ -356,7 +436,17 @@
       "content_fingerprint": "a1fd29c088740c742daa7e7b76a506fb39a8d7d926e62dd5ea39fdd385d45dd8",
       "completion_variant": "native-transition-or-credits",
       "optional_entry_points": [],
-      "notes": []
+      "notes": [],
+      "latitude": 49.18585,
+      "longitude": -0.35912,
+      "location_source": {
+        "provider": "GeoNames",
+        "id": "3029241",
+        "url": "https://www.geonames.org/3029241",
+        "license": "CC BY 4.0",
+        "anchor_name": "Caen"
+      },
+      "map_region": 3
     },
     {
       "id": "aa_resistance",
@@ -377,7 +467,7 @@
         "textures/mohmenu/levelbriefing/m4l3_1.tga"
       ],
       "location_name": "Normandy, France",
-      "location_precision": "region",
+      "location_precision": "regional anchor; not an exact in-game objective",
       "protagonist": "Mike Powell",
       "briefing": "briefing/briefing4",
       "start_state": "original_loadout_at_operation_entry",
@@ -399,7 +489,17 @@
       "optional_entry_points": [],
       "notes": [
         "Installed briefing dates conflict: m4l1/m4l3 June 22, m4l2 June 12. Preserve native chain inside June 12-22 interval; no other operation falls inside it."
-      ]
+      ],
+      "latitude": 49.18585,
+      "longitude": -0.35912,
+      "location_source": {
+        "provider": "GeoNames",
+        "id": "3029241",
+        "url": "https://www.geonames.org/3029241",
+        "license": "CC BY 4.0",
+        "anchor_name": "Caen"
+      },
+      "map_region": 3
     },
     {
       "id": "aa_brittany",
@@ -420,7 +520,7 @@
         "textures/mohmenu/levelbriefing/m5l1a_1.tga"
       ],
       "location_name": "Brittany, France",
-      "location_precision": "region",
+      "location_precision": "regional anchor; not an exact in-game objective",
       "protagonist": "Mike Powell",
       "briefing": "briefing/briefing5",
       "start_state": "original_loadout_at_operation_entry",
@@ -443,7 +543,17 @@
         "void",
         "medic_start"
       ],
-      "notes": []
+      "notes": [],
+      "latitude": 48.39029,
+      "longitude": -4.48628,
+      "location_source": {
+        "provider": "GeoNames",
+        "id": "3030300",
+        "url": "https://www.geonames.org/3030300",
+        "license": "CC BY 4.0",
+        "anchor_name": "Brest"
+      },
+      "map_region": 3
     },
     {
       "id": "bt_battaglia",
@@ -461,7 +571,7 @@
         "textures/gametext/e3l4_ScreenText2.tga"
       ],
       "location_name": "Monte Battaglia, Italy",
-      "location_precision": "region",
+      "location_precision": "regional anchor; not an exact in-game objective",
       "protagonist": "John Baker",
       "briefing": null,
       "start_state": "original_loadout_at_operation_entry",
@@ -481,7 +591,17 @@
       "content_fingerprint": "e3cba53377fc8c42372c9bc9e28797564004a5b52ceaaac62a64ca1f1a567779",
       "completion_variant": "WCR-escape-outro-credits",
       "optional_entry_points": [],
-      "notes": []
+      "notes": [],
+      "latitude": 44.21667,
+      "longitude": 11.58333,
+      "location_source": {
+        "provider": "GeoNames",
+        "id": "3182279",
+        "url": "https://www.geonames.org/3182279",
+        "license": "CC BY 4.0",
+        "anchor_name": "Monte Battaglia"
+      },
+      "map_region": 2
     },
     {
       "id": "sh_ardennes",
@@ -502,7 +622,7 @@
         "textures/gametext/t2l1_ScreenText2.tga"
       ],
       "location_name": "Ardennes, Belgium",
-      "location_precision": "region",
+      "location_precision": "regional anchor; not an exact in-game objective",
       "protagonist": "Jack Barnes",
       "briefing": "briefing/briefingt2",
       "start_state": "original_loadout_at_operation_entry",
@@ -522,7 +642,17 @@
       "content_fingerprint": "ffcf323250e3b7e36c72c15f8430f4af580a190a84b7e1312a51d1ddc855fa65",
       "completion_variant": "native-transition-or-credits",
       "optional_entry_points": [],
-      "notes": []
+      "notes": [],
+      "latitude": 50.00347,
+      "longitude": 5.71844,
+      "location_source": {
+        "provider": "GeoNames",
+        "id": "2802583",
+        "url": "https://www.geonames.org/2802583",
+        "license": "CC BY 4.0",
+        "anchor_name": "Bastogne"
+      },
+      "map_region": 3
     },
     {
       "id": "aa_schmerzen",
@@ -548,7 +678,7 @@
         "textures/mohmenu/levelbriefing/m6l1a_1.tga"
       ],
       "location_name": "Siegfried Line, Germany",
-      "location_precision": "region",
+      "location_precision": "fictional fort; broad Siegfried Line region anchored near Trier",
       "protagonist": "Mike Powell",
       "briefing": "briefing/briefing6",
       "start_state": "original_loadout_at_operation_entry",
@@ -568,7 +698,17 @@
       "content_fingerprint": "a1fd29c088740c742daa7e7b76a506fb39a8d7d926e62dd5ea39fdd385d45dd8",
       "completion_variant": "native-transition-or-credits",
       "optional_entry_points": [],
-      "notes": []
+      "notes": [],
+      "latitude": 49.75565,
+      "longitude": 6.63935,
+      "location_source": {
+        "provider": "GeoNames",
+        "id": "2821164",
+        "url": "https://www.geonames.org/2821164",
+        "license": "CC BY 4.0",
+        "anchor_name": "Trier"
+      },
+      "map_region": 3
     },
     {
       "id": "sh_berlin",
@@ -588,7 +728,7 @@
         "https://www.nam.ac.uk/explore/april-1945"
       ],
       "location_name": "Berlin, Germany",
-      "location_precision": "region",
+      "location_precision": "regional anchor; not an exact in-game objective",
       "protagonist": "Jack Barnes",
       "briefing": "briefing/briefingt3",
       "start_state": "original_loadout_at_operation_entry",
@@ -610,7 +750,17 @@
       "optional_entry_points": [],
       "notes": [
         "The game title cards specify Berlin and 0430 hours but no calendar date. April-May 1945 is historical context, not a verified exact game date."
-      ]
+      ],
+      "latitude": 52.52437,
+      "longitude": 13.41053,
+      "location_source": {
+        "provider": "GeoNames",
+        "id": "2950159",
+        "url": "https://www.geonames.org/2950159",
+        "license": "CC BY 4.0",
+        "anchor_name": "Berlin"
+      },
+      "map_region": 5
     }
   ],
   "optional": [
@@ -629,5 +779,66 @@
   "ordering_notes": [
     "June 6 overlap: airborne Normandy before Omaha Beach; preserve both native chains.",
     "No invented precise date for Berlin or the conflicting Normandy briefings."
-  ]
+  ],
+  "map": {
+    "projection": "Spherical Mercator; WGS84 longitude/latitude; uniform scale, north up",
+    "political_borders": false,
+    "front_lines": false,
+    "regions": [
+      {
+        "name": "Overview",
+        "bounds": [
+          -20,
+          35,
+          30,
+          67
+        ]
+      },
+      {
+        "name": "North Africa",
+        "bounds": [
+          -4,
+          14,
+          32,
+          39
+        ]
+      },
+      {
+        "name": "Italy & Sicily",
+        "bounds": [
+          9,
+          18,
+          35.5,
+          46
+        ]
+      },
+      {
+        "name": "Western Europe",
+        "bounds": [
+          -7,
+          10,
+          46,
+          53
+        ]
+      },
+      {
+        "name": "Norway",
+        "bounds": [
+          3,
+          18,
+          60,
+          66.5
+        ]
+      },
+      {
+        "name": "Berlin",
+        "bounds": [
+          10,
+          17,
+          50.5,
+          54.5
+        ]
+      }
+    ]
+  }
 }

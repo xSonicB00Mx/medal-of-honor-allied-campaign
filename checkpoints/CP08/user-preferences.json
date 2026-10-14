@@ -1,0 +1,22 @@
+{
+  "copied": [
+    {
+      "source": "profiles-local\\CP05a-r3\\user\\AA\\main\\configs\\omconfig.cfg",
+      "destination": "profiles-local\\CP08-r1\\user\\main\\configs\\omconfig.cfg",
+      "sha256": "4059354d544c3fe1e4fa56251bde0f11618dcbdbade728b64b92db05a27a54bb"
+    },
+    {
+      "source": "profiles-local\\CP05a-r3\\user\\SH\\mainta\\configs\\omconfig.cfg",
+      "destination": "profiles-local\\CP08-r1\\user\\mainta\\configs\\omconfig.cfg",
+      "sha256": "450c9b4a800e13660a80aca1dd41712424f59491b62808d1d055a6a2af1049f6"
+    },
+    {
+      "source": "profiles-local\\CP05a-r3\\user\\BT\\maintt\\configs\\omconfig.cfg",
+      "destination": "profiles-local\\CP08-r1\\user\\maintt\\configs\\omconfig.cfg",
+      "sha256": "d6029b68f25d4d16c93bac37cef5c0669a65a559f552fcc971e5661732636d2c"
+    }
+  ],
+  "shared_from": "profiles-local\\CP05a-r3\\user\\AA\\main\\configs\\omconfig.cfg",
+  "old_saves_unchanged": true,
+  "new_campaign_progress": "fresh; no test unlocks copied"
+}

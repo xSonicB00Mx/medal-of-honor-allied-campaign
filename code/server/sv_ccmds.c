@@ -2604,6 +2604,7 @@ void SV_SaveGame(const char *gamename, qboolean autosave)
 	}
 
 	Com_Printf("Saving to %s", name);
+    if(!AC_CampaignCanSave(name)) return;
 	if (autosave) {
 		Com_Printf(" (autosave)...\n");
 	} else {

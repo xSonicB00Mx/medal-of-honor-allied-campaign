@@ -1,10 +1,10 @@
 ## Fortsetzung bis CP8
 
-CP6 und CP7 sind als technische Kandidaten implementiert. CP6-CI bestanden; alle 54 Karten starten mit Save-Ausgabe. CP7: 15 synthetische Abschlussgrenzen mit korrektem Fortschritt, getrennte Wiederholungen, Save-Metadaten und Wiederherstellung. Natuerliche Vollabnahme bleibt offen; Basisdiagnosen siehe CP7-Bericht. CP8-Karte in Arbeit.
+CP6 bis CP8 sind als technische Kandidaten implementiert. CP6-/CP7-CI bestanden; alle 54 Karten starten mit Save-Ausgabe. CP7: 15 synthetische Abschlussgrenzen mit korrektem Fortschritt, getrennte Wiederholungen, Save-Metadaten und Wiederherstellung. CP8: geografische Einsatzkarte mit 15 Operationen, vier Zustaenden und sechs Ansichten; native Menuepruefungen in Full HD, 4K, 4:3 und Ultrawide bestanden. Continue Campaign und FOV 90 ueber Programmneustart und SH-zu-AA-Wechsel bestaetigt. [Start](CP08-r1-START.md), [Nachweise und Grenzen](checkpoints/CP08/REPORT.md). Natuerliche Vollabnahme bleibt offen.
 
 # Status
 
-Aktueller Auftrag: autonom bis einschliesslich CP8. CP6 Missionslader IN_ARBEIT auf Basis CP05a-r3; danach CP7 chronologische Progression und CP8 Einsatzkarte. Noch keine dieser Funktionen als fertig oder abgenommen ausgewiesen.
+Aktueller Auftrag: autonom bis einschliesslich CP8. Missionslader, chronologische Progression und Einsatzkarte sind implementiert und technisch geprueft. Persoenliche Abnahme, vollstaendiger natuerlicher Kampagnendurchlauf und Merge werden nicht unterstellt. Die folgenden Eintraege dokumentieren vorherige Lieferstaende.
 
 Stand 14.10.2026 nach Menuefeedback: **CP05a-r3 benennt das gemeinsame Zusatzmenue in Allied Campaign Options um und liefert ein mittiges 16:9-Layout ohne ueberlappende Bedienelemente.** [Startdateien](CP05a-r3-START.md), [Pruefbericht](checkpoints/CP05a/r3/REPORT.md). Getrennte Bereiche fuer Display/HUD und Effekte; die Seite bleibt beim Verstellen ihrer Regler stabil. 56 Nutzerdateien aus r2 uebernommen. Quelle `5a9b6aa7e9877d4fb3dd328838d9ab4940deb5ce` remote verifiziert. Keine persoenliche Abnahme oder Merge unterstellt.
 

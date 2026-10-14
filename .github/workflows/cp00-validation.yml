@@ -14,7 +14,9 @@ jobs:
         with:
           python-version: '3.13'
       - name: Validate metadata and excluded products
-        run: python tools/validate_cp00.py
+        run: |
+          python tools/validate_cp00.py
+          python tools/validate_campaign.py
       - name: Prepare pinned parser tools
         shell: pwsh
         run: |

@@ -1,0 +1,51 @@
+{
+  "engine_sha256": "c84d33c99171ea15c071d5960d10b44a5eead68bb1a9d2ba4ebdc47930067b39",
+  "cases": [
+    {
+      "phase": "new-campaign",
+      "passed": true,
+      "events": [
+        "[2026-10-14 13:16:04 UTC+1.000] AC_PROGRESS_COMMIT completed=0 resume=0 slot=-",
+        "[2026-10-14 13:16:04 UTC+1.000] AC_CONTEXT_RESTART 0 -> 0 briefing/briefing1 child=12648",
+        "[2026-10-14 13:16:07 UTC+1.000] AC_MISSION_ENTRY aa_torch briefing/briefing1",
+        "[2026-10-14 13:16:07 UTC+1.000] D:\\Medal of Honor - Allied Campaign\\allied-campaign-workspace\\runtime-local\\CP08-r1\\main\\zzzzzz_AC_resume_probe.pk3 (1 files)",
+        "[2026-10-14 13:16:07 UTC+1.000] D:\\Medal of Honor - Allied Campaign\\allied-campaign-workspace\\runtime-local\\CP08-r1\\main\\zzzzz_AC_Campaign.pk3 (10 files)",
+        "[2026-10-14 13:16:07 UTC+1.000] D:\\Medal of Honor - Allied Campaign\\allied-campaign-workspace\\runtime-local\\CP08-r1\\main\\zzzz_AC_Wounds.pk3 (3 files)",
+        "[2026-10-14 13:16:07 UTC+1.000] D:\\Medal of Honor - Allied Campaign\\allied-campaign-workspace\\runtime-local\\CP08-r1\\main\\zzzz_AC_UI.pk3 (2 files)",
+        "[2026-10-14 13:16:07 UTC+1.000] D:\\Medal of Honor - Allied Campaign\\allied-campaign-workspace\\runtime-local\\CP08-r1\\main\\zzzz_AC_MP1.pk3 (18 files)",
+        "[2026-10-14 13:16:07 UTC+1.000] AC_PROGRESS_COMMIT completed=0 resume=0 slot=briefing_briefing10000",
+        "[2026-10-14 13:16:12 UTC+1.000] \"cg_fov\" is:\"90\" default:\"80\"",
+        "[2026-10-14 13:16:12 UTC+1.000] AC_PROGRESS valid=1 completed=0 resume=0 slot=briefing_briefing10000 operation=0 replay=0",
+        "[2026-10-14 13:16:12 UTC+1.000] AC_MISSION_ENTRY aa_torch m1l1",
+        "[2026-10-14 13:16:13 UTC+1.000] D:\\Medal of Honor - Allied Campaign\\allied-campaign-workspace\\runtime-local\\CP08-r1\\main\\zzzzzz_AC_resume_probe.pk3 (1 files)",
+        "[2026-10-14 13:16:13 UTC+1.000] D:\\Medal of Honor - Allied Campaign\\allied-campaign-workspace\\runtime-local\\CP08-r1\\main\\zzzzz_AC_Campaign.pk3 (10 files)",
+        "[2026-10-14 13:16:13 UTC+1.000] D:\\Medal of Honor - Allied Campaign\\allied-campaign-workspace\\runtime-local\\CP08-r1\\main\\zzzz_AC_Wounds.pk3 (3 files)",
+        "[2026-10-14 13:16:13 UTC+1.000] D:\\Medal of Honor - Allied Campaign\\allied-campaign-workspace\\runtime-local\\CP08-r1\\main\\zzzz_AC_UI.pk3 (2 files)",
+        "[2026-10-14 13:16:13 UTC+1.000] D:\\Medal of Honor - Allied Campaign\\allied-campaign-workspace\\runtime-local\\CP08-r1\\main\\zzzz_AC_MP1.pk3 (18 files)",
+        "[2026-10-14 13:16:14 UTC+1.000] AC_PROGRESS_COMMIT completed=0 resume=0 slot=m1l10000",
+        "[2026-10-14 13:16:17 UTC+1.000] \"cg_fov\" is:\"90\" default:\"80\"",
+        "[2026-10-14 13:16:17 UTC+1.000] AC_PROGRESS valid=1 completed=0 resume=0 slot=m1l10000 operation=0 replay=0",
+        "[2026-10-14 13:16:17 UTC+1.000] AC_NATIVE_STOP"
+      ],
+      "stop": "Isolated briefing completion appends loading-screen dismissal, diagnostics and native quit; no gameplay completion claimed"
+    },
+    {
+      "phase": "continue-from-other-context",
+      "passed": true,
+      "events": [
+        "[2026-10-14 13:16:22 UTC+1.000] AC_CONTEXT_RESTART 1 -> 0 m1l10000 child=11216",
+        "[2026-10-14 13:16:24 UTC+1.000] AC_SAVE_ACCEPT context=0 map=m1l1",
+        "[2026-10-14 13:16:26 UTC+1.000] D:\\Medal of Honor - Allied Campaign\\allied-campaign-workspace\\runtime-local\\CP08-r1\\main\\zzzzzz_AC_resume_probe.pk3 (1 files)",
+        "[2026-10-14 13:16:26 UTC+1.000] D:\\Medal of Honor - Allied Campaign\\allied-campaign-workspace\\runtime-local\\CP08-r1\\main\\zzzzz_AC_Campaign.pk3 (10 files)",
+        "[2026-10-14 13:16:26 UTC+1.000] D:\\Medal of Honor - Allied Campaign\\allied-campaign-workspace\\runtime-local\\CP08-r1\\main\\zzzz_AC_Wounds.pk3 (3 files)",
+        "[2026-10-14 13:16:26 UTC+1.000] D:\\Medal of Honor - Allied Campaign\\allied-campaign-workspace\\runtime-local\\CP08-r1\\main\\zzzz_AC_UI.pk3 (2 files)",
+        "[2026-10-14 13:16:26 UTC+1.000] D:\\Medal of Honor - Allied Campaign\\allied-campaign-workspace\\runtime-local\\CP08-r1\\main\\zzzz_AC_MP1.pk3 (18 files)",
+        "[2026-10-14 13:16:30 UTC+1.000] \"cg_fov\" is:\"90\" default:\"80\"",
+        "[2026-10-14 13:16:30 UTC+1.000] AC_PROGRESS valid=1 completed=0 resume=0 slot=m1l10000 operation=0 replay=0",
+        "[2026-10-14 13:16:30 UTC+1.000] AC_NATIVE_STOP"
+      ],
+      "stop": "Isolated briefing completion appends loading-screen dismissal, diagnostics and native quit; no gameplay completion claimed"
+    }
+  ],
+  "state": "ACPROG1 0 0 m1l10000\n"
+}

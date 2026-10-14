@@ -45,4 +45,3 @@ result=dict(operation=o['id'],case=a.case,expected_completed=expected,actual_com
 assert result['pass_state'] and (proc.returncode==0 or stopped) and not result['errors']
 if a.case=='success':assert any('AC_MISSION_COMPLETE' in x for x in evidence)
 if a.case=='replay':assert any('AC_REPLAY_COMPLETE' in x for x in evidence)
-

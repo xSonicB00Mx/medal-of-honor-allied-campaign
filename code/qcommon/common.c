@@ -1887,6 +1887,10 @@ void Com_Init( char *commandLine ) {
 	Cmd_AddCommand("ac_context", AC_Context_f);
 	Cmd_AddCommand("ac_load", AC_Context_f);
 	Cvar_Get("ac_campaign_mode", "0", CVAR_INIT);
+	Cvar_Get("ac_blood_mist", "1", CVAR_ARCHIVE);
+	Cvar_Get("ac_world_blood", "1", CVAR_ARCHIVE);
+	Cvar_Get("ac_body_wounds", "1", CVAR_ARCHIVE);
+	Cvar_Get("ac_corpse_effects", "1", CVAR_ARCHIVE);
 	Cvar_Get("ac_operation", "-1", CVAR_INIT);
 	Cvar_Get("ac_replay", "0", CVAR_INIT);
 	Cvar_Get("ac_expected_map", "", CVAR_INIT);

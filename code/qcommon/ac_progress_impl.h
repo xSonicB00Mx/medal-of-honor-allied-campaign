@@ -74,7 +74,7 @@ int AC_MissionState(int index)
     AC_LoadProgress();
     if(index<0||index>=AC_MISSION_COUNT||!ac_progressValid) return 0;
     if(ac_progress.completed&(1u<<index)) return 2;
-    if(!index || (ac_progress.completed&(1u<<(index-1)))) return 3;
+    if(!index || (ac_progress.completed&(1u<<(index-1)))) return ac_progress.resume==index && strcmp(ac_progress.slot,"-")?1:3;
     return 0;
 }
 
@@ -95,7 +95,7 @@ static void AC_Mission_f(void)
     op=atoi(Cmd_Argv(1));
     if(op<0||op>=AC_MISSION_COUNT||!AC_MissionState(op)) {Com_Printf("AC_MISSION_LOCKED\n");return;}
     replay=(ac_progress.completed&(1u<<op))!=0;
-    if(!replay) {next=ac_progress;next.resume=op;strcpy(next.slot,"-");if(!AC_StoreProgress(&next)) return;}
+    if(!replay) {next=ac_progress;next.resume=op;if(!AC_StoreProgress(&next)) return;}
     Cvar_Set("ac_operation",va("%d",op));
     Cvar_Set("ac_replay",replay?"1":"0");
     Cvar_Set("ac_expected_map",ac_missions[op].entry);
@@ -161,6 +161,17 @@ void AC_CampaignSaved(const char *slot, const char *map)
     int op=Cvar_VariableIntegerValue("ac_operation"); acProgress_t next;
     if(!Cvar_VariableIntegerValue("ac_campaign_mode")||Cvar_VariableIntegerValue("ac_replay")||!AC_MapInMission(op,map)||!AC_SafeSlot(slot)) return;
     AC_LoadProgress();next=ac_progress;next.resume=op;Q_strncpyz(next.slot,slot,sizeof(next.slot));AC_StoreProgress(&next);
+}
+
+qboolean AC_CampaignCanSave(const char *slot)
+{
+    AC_LoadProgress();
+    if(!Cvar_VariableIntegerValue("ac_campaign_mode") || ac_progress.resume>=AC_MISSION_COUNT) return qtrue;
+    if(!strcmp(slot,ac_progress.slot) && ac_missions[ac_progress.resume].game==com_target_game->integer
+        && (Cvar_VariableIntegerValue("ac_replay") || Cvar_VariableIntegerValue("ac_operation")!=ac_progress.resume)) {
+        Com_Printf("AC_SAVE_PROTECTED main campaign resume point; choose another save name\n");return qfalse;
+    }
+    return qtrue;
 }
 
 void AC_CampaignRestore(int op, int replay, const char *map)

@@ -1,9 +1,9 @@
 """Generate the engine table from the single campaign manifest."""
-import json
+import json,sys
 from pathlib import Path
 r=Path(__file__).resolve().parents[1];data=json.loads((r/'mod/campaign/missions.json').read_text());ops=data['operations']
 assert len({o['id'] for o in ops})==len(ops)
-inventory=json.loads((r/'generated-local/CP06/inventory/maps.json').read_text())
+inventory={g:[x for x in json.loads((r/'checkpoints/CP06/map-starts.json').read_text())['results'] if x['game']==g] for g in ['AA','SH','BT']}
 for g,rows in inventory.items():
     expected={x['map'] for x in rows};actual=[m for o in ops+data['optional'] if o['source_game']==g for m in o['map_chain']]
     assert len(actual)==len(set(actual)) and set(actual)==expected,(g,expected-set(actual))
@@ -18,5 +18,7 @@ for o in ops:
     vals=[o['id'],o['display_name'],date,o['location_name'],o['protagonist'],o['entry_map'],o['map_chain'][0],o['map_chain'][-1],o['completion_event']['native_next'],'|'.join(['']+o['map_chain']+o['optional_entry_points']+[''])]
     lines.append('    {'+str(['AA','SH','BT'].index(o['source_game']))+', '+', '.join(json.dumps(v) for v in vals)+'},')
 lines+=['};','#define AC_MISSION_COUNT 15','#endif']
-(r/'code/qcommon/ac_missions.h').write_text('\n'.join(lines)+'\n')
+generated='\n'.join(lines)+'\n'
+if '--check' in sys.argv:assert (r/'code/qcommon/ac_missions.h').read_text()==generated,'Campaign header differs from manifest'
+else:(r/'code/qcommon/ac_missions.h').write_text(generated)
 print('Validated 15 operations, 53 main sections, 1 optional section; generated engine table.')

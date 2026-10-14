@@ -1268,6 +1268,7 @@ int AC_MissionState(int index);
 void AC_CampaignMapCommand(const char *map);
 qboolean AC_CampaignTransition(const char *current, const char *nextMap);
 void AC_CampaignSaved(const char *slot, const char *map);
+qboolean AC_CampaignCanSave(const char *slot);
 void AC_CampaignRestore(int operation, int replay, const char *map);
 // for writing the config files
 

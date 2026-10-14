@@ -9,7 +9,7 @@ static void AC_WriteSharedConfiguration(void)
     Key_WriteBindings(f);
     for(i=0;i<ARRAY_LEN(names);i++) {
         const char *value=Cvar_VariableString(names[i]);
-        if(strpbrk(value,"\"\n\r")) continue;
+        if(!*value || strpbrk(value,"\"\n\r")) continue;
         FS_Printf(f,"seta %s \"%s\"\n",names[i],value);
     }
     FS_FCloseFile(f);
@@ -62,6 +62,7 @@ static void AC_Context_f(void)
         }
         for (i=0; i<ARRAY_LEN(sharedNames); i++) {
             const char *value = Cvar_VariableString(sharedNames[i]);
+            if(!*value) continue;
             if (strchr(value, '\"') || strchr(value, '\n') || strchr(value, '\r')) return;
             Com_sprintf(part, sizeof(part), " +set %s \"%s\"", sharedNames[i], value);
             Q_strcat(args, sizeof(args), part);
