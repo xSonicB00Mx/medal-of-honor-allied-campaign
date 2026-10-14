@@ -617,6 +617,8 @@ void View3D::CenterPrint(void)
         return;
     }
 
+    vec2_t textScale;
+    UI_GetHighResolutionScale(textScale);
     p = Sys_LV_CL_ConvertString(m_printstring);
     if (m_printfadetime > 3250) {
         alpha = 1.f - (m_printfadetime - 3250.f) / 750.f * m_printalpha;
@@ -639,14 +641,14 @@ void View3D::CenterPrint(void)
             m_iFontAlignmentHorizontal,
             m_iFontAlignmentVertical,
             p,
-            getVirtualScale()
+            textScale
         );
 
         m_font->setColor(UColor(1, 1, 1, alpha));
 
         frame = getClientFrame();
 
-        m_font->PrintJustified(frame, m_iFontAlignmentHorizontal, m_iFontAlignmentVertical, p, getVirtualScale());
+        m_font->PrintJustified(frame, m_iFontAlignmentHorizontal, m_iFontAlignmentVertical, p, textScale);
 
         m_font->setColor(UBlack);
     } else if ((mat = m_print_mat->GetMaterial())) {
@@ -654,8 +656,8 @@ void View3D::CenterPrint(void)
 
         re.SetColor(col);
 
-        w = re.GetShaderWidth(mat);
-        h = re.GetShaderHeight(mat);
+        w = re.GetShaderWidth(mat) * textScale[0];
+        h = re.GetShaderHeight(mat) * textScale[1];
         x = (m_frame.pos.x + m_frame.size.width - w) * 0.5f;
         y = (m_frame.pos.y + m_frame.size.height - h) * 0.5f;
 
@@ -686,6 +688,8 @@ void View3D::LocationPrint(void)
     horiz = FONT_JUSTHORZ_LEFT;
     vert  = FONT_JUSTVERT_TOP;
 
+    vec2_t textScale;
+    UI_GetHighResolutionScale(textScale);
     p = Sys_LV_CL_ConvertString(m_printstring);
     if (m_printfadetime > 3250) {
         alpha = 1.f - (m_printfadetime - 3250.f) / 750.f * m_printalpha;
@@ -698,7 +702,7 @@ void View3D::LocationPrint(void)
     alpha = Q_clamp_float(alpha, 0, 1);
 
     x = m_x_coord / 640.f * m_screenframe.size.width;
-    y = (480 - m_font->getHeight(getHighResScale()) - m_y_coord) / 480.f * m_screenframe.size.height;
+    y = (480 - m_font->getHeight(textScale) - m_y_coord) / 480.f * m_screenframe.size.height;
 
     if (m_x_coord == -1) {
         horiz = FONT_JUSTHORZ_CENTER;
@@ -717,7 +721,7 @@ void View3D::LocationPrint(void)
         horiz,
         vert,
         p,
-        getVirtualScale()
+        textScale
     );
 
     m_font->setColor(UColor(1, 1, 1, alpha));
@@ -728,7 +732,7 @@ void View3D::LocationPrint(void)
         horiz,
         vert,
         p,
-        getVirtualScale()
+        textScale
     );
 
     m_font->setColor(UBlack);

@@ -323,8 +323,8 @@ static void CG_DrawPauseIcon()
             return;
         }
     }
-    w = cgi.R_GetShaderWidth(handle);
-    h = cgi.R_GetShaderHeight(handle);
+    w = cgi.R_GetShaderWidth(handle) * cgs.uiHiResScale[0];
+    h = cgi.R_GetShaderHeight(handle) * cgs.uiHiResScale[1];
     if (cg.snap && cg.snap->ps.blend[3] > 0) {
         y = cgs.glconfig.vidHeight * 0.45f - h / 2.f;
     } else {
@@ -333,7 +333,7 @@ static void CG_DrawPauseIcon()
     x = (cgs.glconfig.vidWidth - w) / 2.f;
 
     cgi.R_SetColor(colorWhite);
-    cgi.R_DrawStretchPic(x, y, w * cgs.uiHiResScale[0], h * cgs.uiHiResScale[1], 0, 0, 1, 1, handle);
+    cgi.R_DrawStretchPic(x, y, w, h, 0, 0, 1, 1, handle);
 }
 
 static void CG_DrawServerLag()
