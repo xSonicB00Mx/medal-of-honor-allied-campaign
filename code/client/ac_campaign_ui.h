@@ -74,7 +74,6 @@ static void AC_ShowOperations(void)
     AC_UIItem(f,"open_key","Available",164,450,128,22,NULL,AC_StateColor(1));
     AC_UIItem(f,"done_key","Complete",304,450,128,22,NULL,AC_StateColor(2));
     AC_UIItem(f,"next_key","Next",444,450,140,22,NULL,AC_StateColor(3));
-    AC_UIItem(f,"map_credit","Natural Earth / GeoNames (CC BY 4.0) | North up",24,476,560,20,NULL,"0.68 0.71 0.61 1");
     AC_UIItem(f,"back","Original Menu",24,508,140,26,"popmenu 0; pushmenu main");
     AC_UIItem(f,"continue","Continue Campaign",176,508,192,26,"ac_continue");
     AC_UIItem(f,"options","Allied Campaign Options",380,508,260,26,"ac_ui_options");
