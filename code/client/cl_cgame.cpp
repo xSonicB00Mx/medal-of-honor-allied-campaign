@@ -813,6 +813,8 @@ void CL_InitCGameDLL( clientGameImport_t *cgi, clientGameExport_t **cge ) {
 	cgi->Tag_NameForNum				= TIKI_Tag_NumToName;
 
 	cgi->AC_DeformPatch = TIKI_ACDeformPatch;
+	cgi->AC_CacheCollision = TIKI_ACCacheCollision;
+	cgi->AC_CollideSegment = TIKI_ACCollideSegment;
 	cgi->ForceUpdatePose			= re.ForceUpdatePose;
 	cgi->TIKI_Orientation			= re.TIKI_Orientation;
 	cgi->TIKI_IsOnGround			= re.TIKI_IsOnGround;

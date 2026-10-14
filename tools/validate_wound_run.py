@@ -17,7 +17,7 @@ def validate(path, expected_exit=False):
         assert float(f['radius'])==(3.5 if int(f['group'])>=3 or int(f['branch']) else 1.8)
         assert 0<=float(f['rotation'])<360 and f['flip'] in ('0,0','0,1','1,0','1,1')
     assert expected and data['received'] and data['drawn']
-    for line in data['received']+data['drawn']:
+    for line in data['received']+data['drawn']+data.get('states',[]):
         f=fields(line); e=expected[(f['id'],f['branch'])]
         for key in ('rotation','flip','triangles'): assert f[key]==e[key], (path,key,f,e)
         if 'seed' in f: assert f['seed']==e['seed']
@@ -25,7 +25,8 @@ def validate(path, expected_exit=False):
     loads=[int(count) for action,count in archive if action=='load']; assert loads and loads[-1]>0
     saves=[int(count) for action,count in archive if action=='save']; assert saves[-1]==loads[-1]
     after=log.rsplit('AC_WOUND_ARCHIVE load',1)[1]
-    restored={(fields(x)['id'],fields(x)['branch']) for x in re.findall(r'AC_WOUND_DRAW[^\r\n]+',after)}
+    record='AC_WOUND_STATE' if data.get('states') else 'AC_WOUND_DRAW'
+    restored={(fields(x)['id'],fields(x)['branch']) for x in re.findall(record+r'[^\r\n]+',after)}
     assert len(restored)==loads[-1], (path,restored,loads)
     assert 'AC_WOUND_REMOVED' not in log
     if expected_exit:

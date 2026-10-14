@@ -52,6 +52,7 @@ static int             bullet_tracers_count;
 static int             bullet_tracer_bullets_count;
 static int             wall_impact_count;
 static int             flesh_impact_count;
+static bool            flesh_impact_ac[MAX_IMPACTS];
 static bullet_tracer_t bullet_tracers[MAX_BULLET_TRACERS];
 static vec3_t          bullet_tracer_bullets[MAX_BULLET_TRACE_BULLETS];
 static vec3_t          wall_impact_pos[MAX_IMPACTS];
@@ -963,7 +964,7 @@ void CG_AddBulletImpacts()
             for (i = 0; i < flesh_impact_count; ++i)
                 sfxManager.MakeEffect_Normal(
                     flesh_impact_large[i] ? SFX_BHIT_HUMAN_UNIFORM_HARD : SFX_BHIT_HUMAN_UNIFORM_LITE,
-                    flesh_impact_pos[i], flesh_impact_norm[i]);
+                    flesh_impact_pos[i], flesh_impact_norm[i], flesh_impact_ac[i]);
         } else if (flesh_impact_count > 1) {
             fImpSndDistRA  = 9999.0;
             fImpSndDistLA  = 9999.0;
@@ -989,7 +990,7 @@ void CG_AddBulletImpacts()
                 sfxManager.MakeEffect_Normal(
                     flesh_impact_large[iImpSndIndexRA] ? SFX_BHIT_HUMAN_UNIFORM_HARD : SFX_BHIT_HUMAN_UNIFORM_LITE,
                     flesh_impact_pos[iImpSndIndexRA],
-                    flesh_impact_norm[iImpSndIndexRA]
+                    flesh_impact_norm[iImpSndIndexRA], flesh_impact_ac[iImpSndIndexRA]
                 );
             }
 
@@ -997,7 +998,7 @@ void CG_AddBulletImpacts()
                 sfxManager.MakeEffect_Normal(
                     flesh_impact_large[iImpSndIndexLA] ? SFX_BHIT_HUMAN_UNIFORM_HARD : SFX_BHIT_HUMAN_UNIFORM_LITE,
                     flesh_impact_pos[iImpSndIndexLA],
-                    flesh_impact_norm[iImpSndIndexLA]
+                    flesh_impact_norm[iImpSndIndexLA], flesh_impact_ac[iImpSndIndexLA]
                 );
             }
         } else {
@@ -1005,7 +1006,7 @@ void CG_AddBulletImpacts()
                 sfxManager.MakeEffect_Normal(
                     flesh_impact_large[i] ? SFX_BHIT_HUMAN_UNIFORM_HARD : SFX_BHIT_HUMAN_UNIFORM_LITE,
                     flesh_impact_pos[i],
-                    flesh_impact_norm[i]
+                    flesh_impact_norm[i], flesh_impact_ac[i]
                 );
             }
         }
@@ -1356,6 +1357,14 @@ void CG_ParseCGMessage_ver_15()
                 CG_MakeBulletTracer(vTmp, vStart, vEndArray, iCount, iLarge, iInfo, qtrue, alpha);
             }
             break;
+        case CGM_AC_FLESH:
+            vStart[0]=cgi.MSG_ReadCoord();vStart[1]=cgi.MSG_ReadCoord();vStart[2]=cgi.MSG_ReadCoord();
+            cgi.MSG_ReadDir(vEnd);iLarge=cgi.MSG_ReadBits(1);
+            if(flesh_impact_count<MAX_IMPACTS) {
+                VectorCopy(vStart,flesh_impact_pos[flesh_impact_count]);VectorNegate(vEnd,flesh_impact_norm[flesh_impact_count]);
+                flesh_impact_large[flesh_impact_count]=iLarge;flesh_impact_ac[flesh_impact_count]=true;++flesh_impact_count;
+            }
+            break;
         case CGM_BULLET_6:
         case CGM_BULLET_7:
         case CGM_BULLET_8:
@@ -1392,7 +1401,8 @@ void CG_ParseCGMessage_ver_15()
                     // negative
                     VectorNegate(vEnd, vEnd);
                     VectorCopy(vStart, flesh_impact_pos[flesh_impact_count]);
-                    VectorCopy(vEnd, flesh_impact_norm[flesh_impact_count]);
+                    VectorCopy(vEnd, flesh_impact_norm[flesh_impact_count], flesh_impact_ac[flesh_impact_count]);
+                    flesh_impact_ac[flesh_impact_count] = false;
                     flesh_impact_large[flesh_impact_count] = iLarge;
                     flesh_impact_count++;
                 }
@@ -1402,7 +1412,8 @@ void CG_ParseCGMessage_ver_15()
                     // negative
                     VectorNegate(vEnd, vEnd);
                     VectorCopy(vStart, flesh_impact_pos[flesh_impact_count]);
-                    VectorCopy(vEnd, flesh_impact_norm[flesh_impact_count]);
+                    VectorCopy(vEnd, flesh_impact_norm[flesh_impact_count], flesh_impact_ac[flesh_impact_count]);
+                    flesh_impact_ac[flesh_impact_count] = false;
                     flesh_impact_large[flesh_impact_count] = iLarge;
                     flesh_impact_count++;
                 }
@@ -1779,6 +1790,14 @@ void CG_ParseCGMessage_ver_6()
                 CG_MakeBulletTracer(vTmp, vStart, vEndArray, iCount, iLarge, iInfo, qtrue);
             }
             break;
+        case CGM_AC_FLESH:
+            vStart[0]=cgi.MSG_ReadCoord();vStart[1]=cgi.MSG_ReadCoord();vStart[2]=cgi.MSG_ReadCoord();
+            cgi.MSG_ReadDir(vEnd);iLarge=cgi.MSG_ReadBits(1);
+            if(flesh_impact_count<MAX_IMPACTS) {
+                VectorCopy(vStart,flesh_impact_pos[flesh_impact_count]);VectorNegate(vEnd,flesh_impact_norm[flesh_impact_count]);
+                flesh_impact_large[flesh_impact_count]=iLarge;flesh_impact_ac[flesh_impact_count]=true;++flesh_impact_count;
+            }
+            break;
         case CGM6_BULLET_6:
         case CGM6_BULLET_7:
         case CGM6_BULLET_8:
@@ -1805,7 +1824,8 @@ void CG_ParseCGMessage_ver_6()
                     // negative
                     VectorNegate(vEnd, vEnd);
                     VectorCopy(vStart, flesh_impact_pos[flesh_impact_count]);
-                    VectorCopy(vEnd, flesh_impact_norm[flesh_impact_count]);
+                    VectorCopy(vEnd, flesh_impact_norm[flesh_impact_count], flesh_impact_ac[flesh_impact_count]);
+                    flesh_impact_ac[flesh_impact_count] = false;
                     flesh_impact_large[flesh_impact_count] = iLarge;
                     flesh_impact_count++;
                 }
@@ -1815,7 +1835,8 @@ void CG_ParseCGMessage_ver_6()
                     // negative
                     VectorNegate(vEnd, vEnd);
                     VectorCopy(vStart, flesh_impact_pos[flesh_impact_count]);
-                    VectorCopy(vEnd, flesh_impact_norm[flesh_impact_count]);
+                    VectorCopy(vEnd, flesh_impact_norm[flesh_impact_count], flesh_impact_ac[flesh_impact_count]);
+                    flesh_impact_ac[flesh_impact_count] = false;
                     flesh_impact_large[flesh_impact_count] = iLarge;
                     flesh_impact_count++;
                 }

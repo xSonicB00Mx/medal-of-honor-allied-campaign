@@ -1,5 +1,6 @@
 // Included once by tiki_surface.cpp. Server-time skinned triangles, not hitbox decals.
 #include "../qcommon/ac_effects.h"
+#include "../qcommon/ac_interval.h"
 #include "../skeletor/skeletor.h"
 #include <vector>
 #include <algorithm>
@@ -9,7 +10,7 @@ namespace {
 struct ACVertex { vec3_t p; };
 bool ACBodySurface(const char *name) {
     char lower[MAX_QPATH]; Q_strncpyz(lower,name,sizeof(lower)); Q_strlwr(lower);
-    const char *excluded[] = {"helmet","weapon","rifle","pistol","pack","gear","canteen","pouch","eye","teeth"};
+    const char *excluded[] = {"helmet","weapon","rifle","pistol","pack","gear","canteen","pouch","eye","teeth","loadout","clips","holster","gasmask","ammo","belt","hat.","cull_"};
     for (const char *word : excluded) if (strstr(lower,word)) return false;
     return true;
 }
@@ -62,7 +63,8 @@ void TIKI_ACSurfaceTrace(dtiki_t *tiki,const ac_pose_t *pose,const vec3_t start,
     for(int m=0;m<tiki->numMeshes;++m) {
         auto *mesh=TIKI_GetSkel(tiki->mesh[m]);if(!mesh)continue;auto *surface=mesh->pSurfaces;
         for(int s=0;s<mesh->numSurfaces && surface;++s,++globalSurface,surface=surface->pNext) {
-            if(globalSurface>=tiki->num_surfaces || globalSurface>=32 || (pose->surfaces && (pose->surfaces[globalSurface]&MDL_SURFACE_NODRAW)) || !ACBodySurface(surface->name))continue;
+            if(globalSurface>=tiki->num_surfaces || globalSurface>=32 || (pose->surfaces && (pose->surfaces[globalSurface]&MDL_SURFACE_NODRAW))
+                || !ACBodySurface(surface->name) || !ACBodySurface(mesh->name) || !ACBodySurface(tiki->surfaces[globalSurface].shader[0]))continue;
             if(!ACSkin(tiki,pose,mesh,surface,m,vertices))continue;
             for(int t=0;t<surface->numTriangles;++t) {
                 const auto *idx=surface->pTriangles+t*3;
@@ -78,12 +80,9 @@ void TIKI_ACSurfaceTrace(dtiki_t *tiki,const ac_pose_t *pose,const vec3_t start,
         for(size_t i=0;i<contacts.size() && i<8;++i) Com_Printf(" %.2f:%.2f",contacts[i].distance,DotProduct(contacts[i].normal,direction));
         Com_Printf("\n");
     }
-    for(const auto& point:contacts) {
-        float facing=DotProduct(point.normal,direction);
-        if(!hit->entryValid) {
-            if(facing < -0.12f){hit->entry=point;hit->entryValid=1;}
-        } else if(point.distance-hit->entry.distance>0.25f && point.distance-hit->entry.distance<80.f && facing>0.12f) {
-            hit->exit=point;hit->exitValid=1;break;
-        }
-    }
+    std::vector<ACIntervalContact> intervals;for(const auto& point:contacts)intervals.push_back({point.distance,DotProduct(point.normal,direction)});
+    int entry=-1,exit=-1;ACSelectInterval(intervals.data(),(int)intervals.size(),entry,exit);
+    if(entry>=0){hit->entry=contacts[entry];hit->entryValid=1;}
+    if(exit>=0){hit->exit=contacts[exit];hit->exitValid=1;}
+    if(Cvar_VariableIntegerValue("ac_fx_debug"))Com_Printf("AC_INTERVAL entry=%d exit=%d thickness=%.3f\n",entry,exit,exit>=0?contacts[exit].distance-contacts[entry].distance:0.f);
 }

@@ -66,3 +66,4 @@ const char *TIKI_Surface_NumToName(dtiki_t *pmdl, int num)
 #include "ac_surface_impl.h"
 
 #include "ac_patch_impl.h"
+#include "ac_collision_impl.h"

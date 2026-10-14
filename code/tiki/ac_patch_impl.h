@@ -49,7 +49,7 @@ void TIKI_ACBuildPatch(dtiki_t *tiki,const ac_pose_t *pose,const ac_surface_poin
     for(size_t q=0;q<queue.size();++q) {
         int t=queue[q];const auto& poly=clipped[t];
         for(size_t j=1;j+1<poly.size();++j) {
-            if(patch->count==AC_PATCH_MAX){patch->count=0;return;}
+            if(patch->count==AC_PATCH_MAX){if(Cvar_VariableIntegerValue("ac_fx_debug"))Com_Printf("AC_PATCH_BUDGET exceeded=%d\n",AC_PATCH_MAX);patch->count=0;return;}
             auto& tri=patch->triangle[patch->count++];tri.mesh=point->mesh;tri.surface=point->surface;tri.triangle=t;
             const ACClipVertex *p[3]={&poly[0],&poly[j],&poly[j+1]};
             for(int k=0;k<3;++k){for(int b=0;b<3;++b)tri.vertex[k].bary[b]=p[k]->b[b];ACVisualUV(p[k]->x,p[k]->y,radius,flipU,flipV,tri.vertex[k].uv);}

@@ -2,10 +2,10 @@
 import argparse,hashlib,json,re,shutil,subprocess
 from pathlib import Path
 from PIL import Image
-ap=argparse.ArgumentParser();ap.add_argument('game',choices=['AA','SH','BT']);ap.add_argument('--width',type=int,default=1920);ap.add_argument('--height',type=int,default=1080);ap.add_argument('--run-id',required=True);ap.add_argument('--fullscreen',default=0,type=int);args=ap.parse_args()
-r=Path(__file__).resolve().parents[1];rt=r/'runtime-local/CP01-r1'
+ap=argparse.ArgumentParser();ap.add_argument('game',choices=['AA','SH','BT']);ap.add_argument('--width',type=int,default=1920);ap.add_argument('--height',type=int,default=1080);ap.add_argument('--run-id',required=True);ap.add_argument('--fullscreen',default=0,type=int);ap.add_argument('--checkpoint',default='CP01');args=ap.parse_args()
+r=Path(__file__).resolve().parents[1];rt=r/'runtime-local'/(args.checkpoint+'-r1')
 assert re.fullmatch('[A-Za-z0-9-]+',args.run_id)
-profile=r/'profiles-local/CP01-r1'/args.run_id;assert not profile.exists()
+profile=r/'profiles-local'/(args.checkpoint+'-r1')/args.run_id;assert not profile.exists()
 num,folder,source={'AA':(0,'main',None),'SH':(1,'mainta','profiles-local/CP00-r4/SH/mainta/save/omconfig/t1l20005.sav'),'BT':(2,'maintt','profiles-local/CP00-r4/r4-bt-foot-e2l2/maintt/save/omconfig/cp00_foot_ready.sav')}[args.game]
 home=profile/folder;home.mkdir(parents=True);start='map m2l1'
 if source:
@@ -27,7 +27,7 @@ for f in sorted((home/'screenshots').glob('*.tga')):
 errors=[l for l in log.splitlines() if any(t in l for t in ['Unknown command','Failed to find resource','Invalid event','compile error','Script Error'])]
 geometry=[l.split('] ',1)[-1] for l in log.splitlines() if re.search(r'] (AC_UI|AC_PHASE)',l)]
 result=dict(engine_sha256=hashlib.sha256((rt/'openmohaa.exe').read_bytes()).hexdigest(),cgame_sha256=hashlib.sha256((rt/'cgame.dll').read_bytes()).hexdigest(),game=args.game,requested=[args.width,args.height],fullscreen=bool(args.fullscreen),exit_code=p.returncode,completed='AC_UI_TEST_DONE' in log,errors=errors,geometry=geometry,images=images,scope='Actual rendered window/framebuffer and transformed widget geometry; no physical-monitor or OS-DPI-switch claim.')
-out=r/'checkpoints/CP01'/f'{args.run_id}.json';out.write_text(json.dumps(result,indent=2)+'\n',encoding='utf-8')
+out=r/'checkpoints'/args.checkpoint/f'{args.run_id}.json';out.write_text(json.dumps(result,indent=2)+'\n',encoding='utf-8')
 print(json.dumps(dict(game=args.game,completed=result['completed'],errors=errors,images=[i['size'] for i in images],geometry=geometry[:12])),flush=True)
 assert p.returncode==0 and result['completed'] and not errors
 assert len(images)==6 and all(i['size']==[args.width,args.height] or i['size']==(args.width,args.height) for i in images)

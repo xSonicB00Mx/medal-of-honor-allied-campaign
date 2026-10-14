@@ -19,7 +19,7 @@ typedef struct {
     vec3_t origin, angles;
     const byte *surfaces;
 } ac_pose_t;
-#define AC_PATCH_MAX 32
+#define AC_PATCH_MAX 64
 typedef struct { float bary[3], uv[2]; } ac_patch_vertex_t;
 typedef struct {
     int mesh, surface, triangle;
@@ -44,6 +44,9 @@ void TIKI_ACBuildPatch(struct dtiki_s *tiki,const ac_pose_t *pose,const ac_surfa
     float radius,float rotation,int flipU,int flipV,ac_patch_t *patch);
 void TIKI_ACDeformPatch(struct dtiki_s *tiki,const ac_pose_t *pose,const ac_patch_triangle_t *triangles,
     int count,vec3_t *vertices);
+void TIKI_ACCacheCollision(struct dtiki_s *tiki,const ac_pose_t *pose,int frame);
+// -1: no bounded cache available; 0: clear segment; 1: actual mesh intersection.
+int TIKI_ACCollideSegment(int entity,int frame,const vec3_t start,const vec3_t end,float *fraction);
 #ifdef __cplusplus
 }
 #endif

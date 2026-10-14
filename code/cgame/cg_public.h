@@ -447,6 +447,8 @@ functions exported to the main executable
         stopWatch_t  *stopWatch;
 
         void (*AC_DeformPatch)(struct dtiki_s *,const ac_pose_t *,const ac_patch_triangle_t *,int,vec3_t *);
+        void (*AC_CacheCollision)(struct dtiki_s *,const ac_pose_t *,int);
+        int (*AC_CollideSegment)(int,int,const vec3_t,const vec3_t,float *);
     } clientGameImport_t;
 
     /*

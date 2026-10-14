@@ -3,7 +3,9 @@
 // Private visual stream: never call the engine/gameplay RNG.
 inline unsigned ACVisualRandom(unsigned& s){s^=s<<13;s^=s>>17;s^=s<<5;return s;}
 inline unsigned ACVisualOrientation(unsigned seed,int branch,float& rotation,int& flipU,int& flipV) {
-    unsigned initial=seed^(branch?0x85ebca6bu:0xc2b2ae35u),rng=initial?initial:1;
+    unsigned initial=seed^(branch?0x85ebca6bu:0xc2b2ae35u);
+    initial^=initial>>16;initial*=0x7feb352du;initial^=initial>>15;initial*=0x846ca68bu;initial^=initial>>16;
+    unsigned rng=initial?initial:1;
     rotation=(ACVisualRandom(rng)&0xffffff)*(360.f/16777216.f);
     flipU=ACVisualRandom(rng)&1;flipV=ACVisualRandom(rng)&1;return initial;
 }

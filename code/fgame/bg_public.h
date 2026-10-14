@@ -821,6 +821,8 @@ movement on the server game.
         CGM6_VOICE_CHAT,
     };
 
+    // Private local-SP visual message; outside both legacy CGM enum ranges.
+    #define CGM_AC_FLESH 63
     int BG_MapCGMToProtocol(int protocol, int messageNumber);
 
 #ifdef __cplusplus

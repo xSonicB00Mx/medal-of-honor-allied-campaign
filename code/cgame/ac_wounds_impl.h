@@ -6,7 +6,7 @@ struct ACStoredWound {ac_wound_t data;bool active,rebind;};
 ACStoredWound acWounds[64]={};unsigned acWoundCursor=0;
 byte acPacket[sizeof(ac_wound_t)]={};unsigned acPacketId=0,acPacketOffset=0,acPacketSize=0;int acPacketBranch=0;
 bool ACValidWound(const ac_wound_t& w) {
-    if(w.version!=1 || w.entity<0 || w.entity>=MAX_GENTITIES || w.usage<=0 || w.group<1 || w.group>4 || w.branch<0 || w.branch>1
+    if((w.version!=1 && w.version!=2) || w.entity<0 || w.entity>=MAX_GENTITIES || w.usage<=0 || w.group<1 || w.group>4 || w.branch<0 || w.branch>1
         || w.flipU<0 || w.flipU>1 || w.flipV<0 || w.flipV>1 || !std::isfinite(w.rotation) || w.rotation<0 || w.rotation>=360
         || !memchr(w.model,0,sizeof(w.model)) || !w.model[0] || w.patch.count<1 || w.patch.count>AC_PATCH_MAX)return false;
     for(int i=0;i<w.patch.count;++i) {
@@ -26,14 +26,14 @@ extern "C" void CG_ACWoundsEvent(void) {
     if(cgi.Argc()!=6)return;
     unsigned id=strtoul(cgi.Argv(1),nullptr,10);int branch=atoi(cgi.Argv(2));unsigned offset=strtoul(cgi.Argv(3),nullptr,10),size=strtoul(cgi.Argv(4),nullptr,10);
     const char *hex=cgi.Argv(5);size_t length=strlen(hex);
-    if(size>sizeof(ac_wound_t) || size<offsetof(ac_wound_t,patch)+sizeof(int) || length>640 || length%2 || offset>size || length/2>size-offset)return;
+    if(size>sizeof(ac_wound_t) || size<offsetof(ac_wound_t,patch)+sizeof(int) || length>896 || length%2 || offset>size || length/2>size-offset)return;
     if(offset==0){memset(acPacket,0,sizeof(acPacket));acPacketOffset=0;acPacketId=id;acPacketBranch=branch;acPacketSize=size;}
     if(id!=acPacketId || branch!=acPacketBranch || offset!=acPacketOffset || size!=acPacketSize)return;
     for(size_t i=0;i<length;i+=2){int a=ACHex(hex[i]),b=ACHex(hex[i+1]);if(a<0 || b<0){acPacketSize=0;return;}acPacket[offset+i/2]=(a<<4)|b;}
     acPacketOffset+=length/2;if(acPacketOffset!=size)return;
     ac_wound_t w={};memcpy(&w,acPacket,size);acPacketSize=0;
     if(!ACValidWound(w) || w.event!=id || w.branch!=branch || size!=offsetof(ac_wound_t,patch)+offsetof(ac_patch_t,triangle)+w.patch.count*sizeof(ac_patch_triangle_t))return;
-    int same=0;for(auto& old:acWounds)if(old.active && old.data.entity==w.entity && old.data.usage==w.usage){if(old.data.event==w.event && old.data.branch==w.branch)return;++same;}
+    int same=0;for(auto& old:acWounds)if(old.active && old.data.entity==w.entity && old.data.usage==w.usage){if(old.data.event==w.event && old.data.seed==w.seed && old.data.branch==w.branch)return;++same;}
     // Max 16 wounds per actor; FIFO ring gives a hard 64-wound scene budget.
     if(same>=16)for(unsigned i=0;i<64;++i){auto& old=acWounds[(acWoundCursor+i)%64];if(old.active && old.data.entity==w.entity){old.active=false;break;}}
     auto& slot=acWounds[acWoundCursor++%64];slot.data=w;slot.active=true;slot.rebind=false;
@@ -52,12 +52,17 @@ extern "C" void CG_ACWoundsDraw(refEntity_t *model,int usage) {
     vec3_t distance;VectorSubtract(model->origin,cg.refdef.vieworg,distance);float range=VectorLength(distance);
     if(range>=512 || CG_FrustumCullSphere(model->origin,128))return;
     static int frame=-1,actors=0,lastDump=-1000;static bool dump=false;if(frame!=cg.time){frame=cg.time;actors=0;dump=(cg.time-lastDump>=1000 || cg.time<lastDump);if(dump)lastDump=cg.time;}if(actors>=8)return;
-    ac_patch_triangle_t triangles[512];int materials[512],count=0;
+    ac_patch_triangle_t triangles[512];int materials[512],count=0;bool submitted[64]={};
     for(const auto& w:acWounds)if(w.active && w.data.entity==model->entityNumber) {
+        if(count+w.data.patch.count>512)continue; // Never draw a partially cut wound at the frame budget.
+        submitted[&w-acWounds]=true;
         for(int i=0;i<w.data.patch.count && count<512;++i){triangles[count]=w.data.patch.triangle[i];materials[count++]=(w.data.branch || w.data.group>=3)?1:0;}
     }
     if(!count)return;
-    if(dump && cgi.Cvar_Get("ac_fx_debug","0",0)->integer>1)for(const auto& w:acWounds)if(w.active && w.data.entity==model->entityNumber)cgi.Printf("AC_WOUND_DRAW time=%d id=%u branch=%d seed=%u rotation=%.6f flip=%d,%d triangles=%d range=%.1f\n",cg.time,w.data.event,w.data.branch,w.data.seed,w.data.rotation,w.data.flipU,w.data.flipV,w.data.patch.count,range);
+    if(dump && cgi.Cvar_Get("ac_fx_debug","0",0)->integer>1)for(const auto& w:acWounds)if(w.active && w.data.entity==model->entityNumber) {
+        cgi.Printf("AC_WOUND_STATE time=%d id=%u branch=%d seed=%u rotation=%.6f flip=%d,%d triangles=%d range=%.1f submitted=%d\n",cg.time,w.data.event,w.data.branch,w.data.seed,w.data.rotation,w.data.flipU,w.data.flipV,w.data.patch.count,range,submitted[&w-acWounds]);
+        if(submitted[&w-acWounds])cgi.Printf("AC_WOUND_DRAW time=%d id=%u branch=%d seed=%u rotation=%.6f flip=%d,%d triangles=%d range=%.1f\n",cg.time,w.data.event,w.data.branch,w.data.seed,w.data.rotation,w.data.flipU,w.data.flipV,w.data.patch.count,range);
+    }
     ++actors;model->acFullDetail=qtrue;
     ac_pose_t pose={};pose.entityNumber=model->entityNumber;pose.frames=model->frameInfo;pose.boneTags=model->bone_tag;pose.boneQuats=model->bone_quat;
     pose.actionWeight=model->actionWeight;pose.scale=model->scale;pose.surfaces=model->surfaces;VectorCopy(model->origin,pose.origin);MatrixToEulerAngles(model->axis,pose.angles);
@@ -74,10 +79,10 @@ extern "C" void CG_ACWoundsDraw(refEntity_t *model,int usage) {
 }
 void CG_ACWoundsArchive(MemArchiver& archive) {
     if(archive.IsReading()){CG_ACWoundsReset();if(archive.FinishedReading())return;}
-    int magic=0x41435731,count=0;archive.ArchiveInteger(&magic);if(magic!=0x41435731)cgi.Error(ERR_DROP,"Unsupported AC wound save schema");
+    int magic=0x41435732,count=0;archive.ArchiveInteger(&magic);if(magic!=0x41435731 && magic!=0x41435732)cgi.Error(ERR_DROP,"Unsupported AC wound save schema");
     if(archive.IsWriting())for(const auto& w:acWounds)if(w.active)++count;
     archive.ArchiveInteger(&count);if(count<0 || count>64)cgi.Error(ERR_DROP,"Invalid AC wound save count");
     if(archive.IsWriting()){for(auto& w:acWounds)if(w.active)archive.ArchiveRaw(&w.data,sizeof(w.data));}
-    else for(int i=0;i<count;++i){auto& w=acWounds[i];archive.ArchiveRaw(&w.data,sizeof(w.data));if(!ACValidWound(w.data))cgi.Error(ERR_DROP,"Invalid AC wound save geometry");w.active=true;w.rebind=true;acWoundCursor=i+1;}
+    else for(int i=0;i<count;++i){auto& w=acWounds[i];size_t size=magic==0x41435731?offsetof(ac_wound_t,patch)+offsetof(ac_patch_t,triangle)+32*sizeof(ac_patch_triangle_t):sizeof(w.data);archive.ArchiveRaw(&w.data,size);if(!ACValidWound(w.data))cgi.Error(ERR_DROP,"Invalid AC wound save geometry");w.active=true;w.rebind=true;acWoundCursor=i+1;}
     if(cgi.Cvar_Get("ac_fx_debug","0",0)->integer)cgi.Printf("AC_WOUND_ARCHIVE %s count=%d\n",archive.IsWriting()?"save":"load",count);
 }

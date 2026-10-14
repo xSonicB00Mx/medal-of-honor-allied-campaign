@@ -2338,6 +2338,8 @@ float BulletAttack(
                 }
 
                 if (ent && ent != world && ent != owner) {
+                    const bool acMistContact = g_gametype->integer==GT_SINGLE_PLAYER && ent->takedamage
+                        && ent->IsSubclassOfActor() && ent->health>0 && weap && ACWeaponGroup(weap->model.c_str());
                     if (ent->takedamage) {
                         if (g_gametype->integer == GT_SINGLE_PLAYER && !iNumHit) {
                             BulletAttack_Stat(owner, ent, &trace, weap);
@@ -2380,12 +2382,12 @@ float BulletAttack(
                             gi.MSG_EndCGM();
                         } else if (trace.location >= 0 && ent->IsSubclassOfSentient()) {
                             gi.SetBroadcastVisible(vTmpEnd, NULL);
-                            gi.MSG_StartCGM(BG_MapCGMToProtocol(g_protocol, CGM_BULLET_8));
+                            gi.MSG_StartCGM(acMistContact ? CGM_AC_FLESH : BG_MapCGMToProtocol(g_protocol, CGM_BULLET_8));
                             gi.MSG_WriteCoord(vTmpEnd[0]);
                             gi.MSG_WriteCoord(vTmpEnd[1]);
                             gi.MSG_WriteCoord(vTmpEnd[2]);
                             gi.MSG_WriteDir(trace.plane.normal);
-                            gi.MSG_WriteBits(bulletlarge, bulletbits);
+                            gi.MSG_WriteBits(acMistContact ? !!bulletlarge : bulletlarge, acMistContact ? 1 : bulletbits);
                             gi.MSG_EndCGM();
                         } else if (ent->edict->r.contents & CONTENTS_SOLID) {
                             gi.SetBroadcastVisible(vTmpEnd, NULL);

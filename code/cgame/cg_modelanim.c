@@ -1520,6 +1520,7 @@ void CG_ModelAnim(centity_t *cent, qboolean bDoShaderTime)
 
         // Wounds use this frame's full, blended pose.
         CG_ACWoundsDraw(&model,s1->usageIndex);
+        CG_ACBloodBody(&model);
         // add to refresh list
         cgi.R_AddRefEntityToScene(&model, s1->parent);
     }
