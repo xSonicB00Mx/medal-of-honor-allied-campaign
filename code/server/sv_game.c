@@ -1876,6 +1876,7 @@ void SV_InitGameProgs( void ) {
 	import.Tag_NameForNum				= PF_Tag_NumToName;
 	import.TIKI_OrientationInternal		= PF_TIKI_OrientationInternal;
 	import.TIKI_TransformInternal		= PF_TIKI_TransformInternal;
+    import.AC_SurfaceTrace = TIKI_ACSurfaceTrace;
 	import.TIKI_IsOnGroundInternal		= PF_TIKI_IsOnGroundInternal;
 	import.TIKI_SetPoseInternal			= PF_SetPoseInternal;
 

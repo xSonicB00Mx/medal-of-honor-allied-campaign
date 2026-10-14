@@ -40,6 +40,11 @@ class MemArchiver;
 extern "C" {
 #endif
 
+    void CG_ACImpactMark(qhandle_t,const vec3_t,const vec3_t,float,float);
+    void CG_ACBloodEvent(void);
+    void CG_ACBloodFrame(void);
+    void CG_ACBloodReset(void);
+
     typedef struct {
         int   anim;
         int   frame;

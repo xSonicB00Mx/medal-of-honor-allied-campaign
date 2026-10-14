@@ -1093,7 +1093,7 @@ float DecodeFrameValue(skanChannelHdr *channelFrames, int desiredFrameNum)
     return foundFrame->pChannelData[0];
 }
 
-int skeletor_c::GetMorphWeightFrame(int *data)
+int skeletor_c::GetMorphWeightFrame(int *data, bool procedural)
 {
     int   numTargets;
     int   animChannelNum;
@@ -1145,6 +1145,9 @@ int skeletor_c::GetMorphWeightFrame(int *data)
             }
         }
     }
+
+    // Visual server traces must not advance blinking or its random stream.
+    if (!procedural) return numTargets;
 
     if (m_headBoneIndex >= 0 && !VectorCompareEpsilon(m_eyeTargetPos, vec3_origin, EPSILON)) {
         SkelVec3        lookPos    = m_eyeTargetPos;

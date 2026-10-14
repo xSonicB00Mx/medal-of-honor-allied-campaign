@@ -310,10 +310,10 @@ int R_MarkFragments( int numPoints, const vec3_t *points, const vec3_t projectio
 	}
 	// add near and far clipping planes for projection
 	VectorCopy(projectionDir, normals[numPoints]);
-	dists[numPoints] = DotProduct(normals[numPoints], points[0]) - 32;
+	dists[numPoints] = DotProduct(normals[numPoints], points[0]) - (fRadiusSquared < 0 ? 0.5f : 32);
 	VectorCopy(projectionDir, normals[numPoints+1]);
 	VectorInverse(normals[numPoints+1]);
-	dists[numPoints+1] = DotProduct(normals[numPoints+1], points[0]) - 20;
+	dists[numPoints+1] = DotProduct(normals[numPoints+1], points[0]) - (fRadiusSquared < 0 ? 0.5f : 20);
 	numPlanes = numPoints + 2;
 
 	numsurfaces = 0;

@@ -26,6 +26,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 #pragma once
 
 #include "bg_public.h"
+#include "../qcommon/ac_effects.h"
 
 // Version 11 is >= 0.05 and <= 1.00
 // Version 12 is >= 1.10
@@ -503,6 +504,7 @@ typedef struct gameImport_s {
 
     cvar_t *fsDebug;
 
+    void (*AC_SurfaceTrace)(struct dtiki_s *, const ac_pose_t *, const vec3_t, const vec3_t, ac_surface_hit_t *);
 } game_import_t;
 
 typedef struct gameExport_s {

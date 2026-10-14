@@ -39,6 +39,8 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 #include "debuglines.h"
 #include "smokegrenade.h"
 
+#include "ac_hit_impl.h"
+
 constexpr unsigned long MAX_TRAVEL_DIST = 16216;
 
 static void FlashPlayers(Vector org, float r, float g, float b, float a, float rad, float time, int type);
@@ -2346,6 +2348,7 @@ float BulletAttack(
                         // Get the original value of the victims health or water
 
                         original_value = ent->health;
+                        ACVisualHit(ent, weap, trace.endpos, vDir);
 
                         ent->Damage(
                             world,

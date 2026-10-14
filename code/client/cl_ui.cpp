@@ -3577,6 +3577,7 @@ static void UI_CampaignOptions_f(void)
 {
     if (!menuManager.FindMenu("ac_scaling")) UI_LoadMenu("ac_scaling");
     Cvar_Get("ac_blood_mist", "1", CVAR_ARCHIVE);
+    Cvar_Get("ac_world_blood", "1", CVAR_ARCHIVE);
     UI_PushMenu("ac_scaling");
 }
 

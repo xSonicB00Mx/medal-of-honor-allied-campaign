@@ -1,0 +1,33 @@
+{
+  "schema": 1,
+  "source_archive": "x_data.ras",
+  "source_sha256": "dcdf91e3d1097f0869a48abe8834504e02a8b53ca25234a630cd637200be7bbf",
+  "reader": "tools/ras_reader/PROVENANCE.md",
+  "members": [
+    {
+      "path": "data/database/decals/bitmaps/Blood.jpg",
+      "sha256": "90f04400f627dea0e0b51896e23953b0cca465e082b09aab6c2fdaac128382fa"
+    },
+    {
+      "path": "data/database/decals/bitmaps/Blood_alpha.jpg",
+      "sha256": "09575f703a65226857b4f0910f91c5719ffa6048fb37a8e40d2b557ba090ad46"
+    }
+  ],
+  "size": [
+    64,
+    64
+  ],
+  "alpha_extrema": [
+    0,
+    250
+  ],
+  "conversion": "Original RGB JPEG plus separate grayscale alpha, unscaled RGBA TGA. No recoloring.",
+  "usage": "Small world stains and falling sprites; behavior implemented independently, not a port of the binary RPS simulation.",
+  "package_sha256": "31fb203555db5208ff6ba2f5ae70f2300ca01caa3f6490c0e5331d174f5be0db",
+  "redistribution": "Local only; no MP1 assets in Git",
+  "budgets": {
+    "drops": 256,
+    "drop_lifetime_ms": 2200,
+    "world_marks": "existing cg_marks_max budget"
+  }
+}

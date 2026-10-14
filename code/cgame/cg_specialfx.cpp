@@ -1213,3 +1213,5 @@ specialeffect_t *ClientSpecialEffectsManager::GetTestEffectPointer()
 {
     return &m_effects[SFX_TEST_EFFECT];
 }
+
+#include "ac_blood_impl.h"

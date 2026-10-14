@@ -62,3 +62,5 @@ const char *TIKI_Surface_NumToName(dtiki_t *pmdl, int num)
     assert(pmdl->surfaces[num].name[0]);
     return pmdl->surfaces[num].name;
 }
+
+#include "ac_surface_impl.h"

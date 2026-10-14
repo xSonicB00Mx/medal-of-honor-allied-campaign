@@ -1,0 +1,352 @@
+{
+  "version": 3,
+  "unknown": "no new blood; preserve existing WCR effects",
+  "special": {
+    "shotgun": "excluded",
+    "melee": "excluded",
+    "explosions": "excluded"
+  },
+  "large_profile": {
+    "material": "ac/wound_large",
+    "radius": 3.5
+  },
+  "weapons": [
+    {
+      "weapon_id": "models/weapons/colt45.tik",
+      "group": "pistol",
+      "code": 1,
+      "entry_wound_material": "ac/wound_small",
+      "exit_wound_material": "ac/wound_large",
+      "allow_exit_wound": true,
+      "allow_exit_spray": true
+    },
+    {
+      "weapon_id": "models/weapons/p38.tik",
+      "group": "pistol",
+      "code": 1,
+      "entry_wound_material": "ac/wound_small",
+      "exit_wound_material": "ac/wound_large",
+      "allow_exit_wound": true,
+      "allow_exit_spray": true
+    },
+    {
+      "weapon_id": "models/weapons/silencedpistol.tik",
+      "group": "pistol",
+      "code": 1,
+      "entry_wound_material": "ac/wound_small",
+      "exit_wound_material": "ac/wound_large",
+      "allow_exit_wound": true,
+      "allow_exit_spray": true
+    },
+    {
+      "weapon_id": "models/weapons/nagant_revolver.tik",
+      "group": "pistol",
+      "code": 1,
+      "entry_wound_material": "ac/wound_small",
+      "exit_wound_material": "ac/wound_large",
+      "allow_exit_wound": true,
+      "allow_exit_spray": true
+    },
+    {
+      "weapon_id": "models/weapons/webley_revolver.tik",
+      "group": "pistol",
+      "code": 1,
+      "entry_wound_material": "ac/wound_small",
+      "exit_wound_material": "ac/wound_large",
+      "allow_exit_wound": true,
+      "allow_exit_spray": true
+    },
+    {
+      "weapon_id": "models/weapons/it_w_beretta.tik",
+      "group": "pistol",
+      "code": 1,
+      "entry_wound_material": "ac/wound_small",
+      "exit_wound_material": "ac/wound_large",
+      "allow_exit_wound": true,
+      "allow_exit_spray": true
+    },
+    {
+      "weapon_id": "models/weapons/mp40.tik",
+      "group": "smg",
+      "code": 2,
+      "entry_wound_material": "ac/wound_small",
+      "exit_wound_material": "ac/wound_large",
+      "allow_exit_wound": true,
+      "allow_exit_spray": true
+    },
+    {
+      "weapon_id": "models/weapons/thompsonsmg.tik",
+      "group": "smg",
+      "code": 2,
+      "entry_wound_material": "ac/wound_small",
+      "exit_wound_material": "ac/wound_large",
+      "allow_exit_wound": true,
+      "allow_exit_spray": true
+    },
+    {
+      "weapon_id": "models/weapons/sten.tik",
+      "group": "smg",
+      "code": 2,
+      "entry_wound_material": "ac/wound_small",
+      "exit_wound_material": "ac/wound_large",
+      "allow_exit_wound": true,
+      "allow_exit_spray": true
+    },
+    {
+      "weapon_id": "models/weapons/ppsh_smg.tik",
+      "group": "smg",
+      "code": 2,
+      "entry_wound_material": "ac/wound_small",
+      "exit_wound_material": "ac/wound_large",
+      "allow_exit_wound": true,
+      "allow_exit_spray": true
+    },
+    {
+      "weapon_id": "models/weapons/it_w_moschetto.tik",
+      "group": "smg",
+      "code": 2,
+      "entry_wound_material": "ac/wound_small",
+      "exit_wound_material": "ac/wound_large",
+      "allow_exit_wound": true,
+      "allow_exit_spray": true
+    },
+    {
+      "weapon_id": "models/weapons/kar98.tik",
+      "group": "rifle",
+      "code": 3,
+      "entry_wound_material": "ac/wound_large",
+      "exit_wound_material": "ac/wound_large",
+      "allow_exit_wound": true,
+      "allow_exit_spray": true
+    },
+    {
+      "weapon_id": "models/weapons/kar98sniper.tik",
+      "group": "rifle",
+      "code": 3,
+      "entry_wound_material": "ac/wound_large",
+      "exit_wound_material": "ac/wound_large",
+      "allow_exit_wound": true,
+      "allow_exit_spray": true
+    },
+    {
+      "weapon_id": "models/weapons/m1_garand.tik",
+      "group": "rifle",
+      "code": 3,
+      "entry_wound_material": "ac/wound_large",
+      "exit_wound_material": "ac/wound_large",
+      "allow_exit_wound": true,
+      "allow_exit_spray": true
+    },
+    {
+      "weapon_id": "models/weapons/springfield.tik",
+      "group": "rifle",
+      "code": 3,
+      "entry_wound_material": "ac/wound_large",
+      "exit_wound_material": "ac/wound_large",
+      "allow_exit_wound": true,
+      "allow_exit_spray": true
+    },
+    {
+      "weapon_id": "models/weapons/mosin_nagant_rifle.tik",
+      "group": "rifle",
+      "code": 3,
+      "entry_wound_material": "ac/wound_large",
+      "exit_wound_material": "ac/wound_large",
+      "allow_exit_wound": true,
+      "allow_exit_spray": true
+    },
+    {
+      "weapon_id": "models/weapons/svt_rifle.tik",
+      "group": "rifle",
+      "code": 3,
+      "entry_wound_material": "ac/wound_large",
+      "exit_wound_material": "ac/wound_large",
+      "allow_exit_wound": true,
+      "allow_exit_spray": true
+    },
+    {
+      "weapon_id": "models/weapons/enfield.tik",
+      "group": "rifle",
+      "code": 3,
+      "entry_wound_material": "ac/wound_large",
+      "exit_wound_material": "ac/wound_large",
+      "allow_exit_wound": true,
+      "allow_exit_spray": true
+    },
+    {
+      "weapon_id": "models/weapons/g43.tik",
+      "group": "rifle",
+      "code": 3,
+      "entry_wound_material": "ac/wound_large",
+      "exit_wound_material": "ac/wound_large",
+      "allow_exit_wound": true,
+      "allow_exit_spray": true
+    },
+    {
+      "weapon_id": "models/weapons/delisle.tik",
+      "group": "rifle",
+      "code": 3,
+      "entry_wound_material": "ac/wound_large",
+      "exit_wound_material": "ac/wound_large",
+      "allow_exit_wound": true,
+      "allow_exit_spray": true
+    },
+    {
+      "weapon_id": "models/weapons/it_w_carcano.tik",
+      "group": "rifle",
+      "code": 3,
+      "entry_wound_material": "ac/wound_large",
+      "exit_wound_material": "ac/wound_large",
+      "allow_exit_wound": true,
+      "allow_exit_spray": true
+    },
+    {
+      "weapon_id": "models/weapons/it_w_carcano_lite.tik",
+      "group": "rifle",
+      "code": 3,
+      "entry_wound_material": "ac/wound_large",
+      "exit_wound_material": "ac/wound_large",
+      "allow_exit_wound": true,
+      "allow_exit_spray": true
+    },
+    {
+      "weapon_id": "models/weapons/uk_w_l42a1.tik",
+      "group": "rifle",
+      "code": 3,
+      "entry_wound_material": "ac/wound_large",
+      "exit_wound_material": "ac/wound_large",
+      "allow_exit_wound": true,
+      "allow_exit_spray": true
+    },
+    {
+      "weapon_id": "models/weapons/kar98_lite.tik",
+      "group": "rifle",
+      "code": 3,
+      "entry_wound_material": "ac/wound_large",
+      "exit_wound_material": "ac/wound_large",
+      "allow_exit_wound": true,
+      "allow_exit_spray": true
+    },
+    {
+      "weapon_id": "models/weapons/m1_garand_lite.tik",
+      "group": "rifle",
+      "code": 3,
+      "entry_wound_material": "ac/wound_large",
+      "exit_wound_material": "ac/wound_large",
+      "allow_exit_wound": true,
+      "allow_exit_spray": true
+    },
+    {
+      "weapon_id": "models/weapons/enfield_lite.tik",
+      "group": "rifle",
+      "code": 3,
+      "entry_wound_material": "ac/wound_large",
+      "exit_wound_material": "ac/wound_large",
+      "allow_exit_wound": true,
+      "allow_exit_spray": true
+    },
+    {
+      "weapon_id": "models/weapons/mosin_nagant_rifle_lite.tik",
+      "group": "rifle",
+      "code": 3,
+      "entry_wound_material": "ac/wound_large",
+      "exit_wound_material": "ac/wound_large",
+      "allow_exit_wound": true,
+      "allow_exit_spray": true
+    },
+    {
+      "weapon_id": "models/weapons/kar98_mortar.tik",
+      "group": "rifle",
+      "code": 3,
+      "entry_wound_material": "ac/wound_large",
+      "exit_wound_material": "ac/wound_large",
+      "allow_exit_wound": true,
+      "allow_exit_spray": true
+    },
+    {
+      "weapon_id": "models/weapons/bar.tik",
+      "group": "mg",
+      "code": 4,
+      "entry_wound_material": "ac/wound_large",
+      "exit_wound_material": "ac/wound_large",
+      "allow_exit_wound": true,
+      "allow_exit_spray": true
+    },
+    {
+      "weapon_id": "models/weapons/mp44.tik",
+      "group": "mg",
+      "code": 4,
+      "entry_wound_material": "ac/wound_large",
+      "exit_wound_material": "ac/wound_large",
+      "allow_exit_wound": true,
+      "allow_exit_spray": true
+    },
+    {
+      "weapon_id": "models/weapons/fg42.tik",
+      "group": "mg",
+      "code": 4,
+      "entry_wound_material": "ac/wound_large",
+      "exit_wound_material": "ac/wound_large",
+      "allow_exit_wound": true,
+      "allow_exit_spray": true
+    },
+    {
+      "weapon_id": "models/weapons/mg42carryable.tik",
+      "group": "mg",
+      "code": 4,
+      "entry_wound_material": "ac/wound_large",
+      "exit_wound_material": "ac/wound_large",
+      "allow_exit_wound": true,
+      "allow_exit_spray": true
+    },
+    {
+      "weapon_id": "models/weapons/mg42portable_placed.tik",
+      "group": "mg",
+      "code": 4,
+      "entry_wound_material": "ac/wound_large",
+      "exit_wound_material": "ac/wound_large",
+      "allow_exit_wound": true,
+      "allow_exit_spray": true
+    },
+    {
+      "weapon_id": "models/weapons/it_w_breda.tik",
+      "group": "mg",
+      "code": 4,
+      "entry_wound_material": "ac/wound_large",
+      "exit_wound_material": "ac/wound_large",
+      "allow_exit_wound": true,
+      "allow_exit_spray": true
+    },
+    {
+      "weapon_id": "models/weapons/uk_w_vickers.tik",
+      "group": "mg",
+      "code": 4,
+      "entry_wound_material": "ac/wound_large",
+      "exit_wound_material": "ac/wound_large",
+      "allow_exit_wound": true,
+      "allow_exit_spray": true
+    },
+    {
+      "weapon_id": "models/statweapons/mg42_gun.tik",
+      "group": "mg",
+      "code": 4,
+      "entry_wound_material": "ac/wound_large",
+      "exit_wound_material": "ac/wound_large",
+      "allow_exit_wound": true,
+      "allow_exit_spray": true
+    },
+    {
+      "weapon_id": "models/statweapons/mg42_gun_fake.tik",
+      "group": "mg",
+      "code": 4,
+      "entry_wound_material": "ac/wound_large",
+      "exit_wound_material": "ac/wound_large",
+      "allow_exit_wound": true,
+      "allow_exit_spray": true
+    }
+  ],
+  "small_profile": {
+    "material": "ac/wound_small",
+    "radius": 1.8
+  }
+}

@@ -93,6 +93,8 @@ typedef struct cg_treadmarkinfo_s {
     int          leafnum;
 } cg_treadmarkinfo_t;
 
+static qboolean cg_acPreciseMark = qfalse;
+
 int CG_GetMarkFragments(
     int             numVerts,
     const vec3_t   *pVerts,
@@ -128,6 +130,8 @@ int CG_GetMarkFragments(
         pFragmentBuffer,
         fRadiusSquared
     );
+
+    if (fRadiusSquared < 0) return iNewFragments; // world-only precise blood projection
 
     if (iNewFragments > MAX_MARK_FRAGMENTS) {
         return iNewFragments;
@@ -690,7 +694,9 @@ void CG_ImpactMark(
     // get the fragments
     VectorScale(dir, -32, projection);
 
+    if (cg_acPreciseMark) { fRadiusSquared = -fabsf(fRadiusSquared); VectorScale(dir,-0.5f,projection); }
     numFragments = CG_GetMarkFragments(4, originalPoints, projection, markPoints, markFragments, fRadiusSquared);
+    if(cg_acPreciseMark) { fRadiusSquared = fabsf(fRadiusSquared); if(cgi.Cvar_Get("ac_fx_debug","0",0)->integer>1) cgi.Printf("AC_MARK_FRAGMENTS %d\n",numFragments); }
 
     if (dolighting) {
         vec3_t vLight;
@@ -1250,6 +1256,7 @@ void CG_MakeTreadMarkDecal(treadMark_t *pTread, qboolean bStartSegment, qboolean
     info.colors[0] = info.colors[1] = info.colors[2] = info.colors[3] = -1;
 
     numFragments = CG_GetMarkFragments(4, originalPoints, projection, markPoints, markFragments, fRadiusSquared);
+    if(cg_acPreciseMark) { fRadiusSquared = fabsf(fRadiusSquared); if(cgi.Cvar_Get("ac_fx_debug","0",0)->integer>1) cgi.Printf("AC_MARK_FRAGMENTS %d\n",numFragments); }
     VectorAdd(vStartCenter, vEndCenter, origin);
     VectorScale(origin, 0.5, origin);
     info.leafnum = cgi.CM_PointLeafnum(origin);
@@ -2071,4 +2078,12 @@ int CG_PermanentUpdateTreadMark(
     VectorMA(pTread->vEndPos, -pTread->fWidth, vRight, pTread->vEndVerts[1]);
 
     return 0;
+}
+
+// A negative squared-radius argument is the renderer's precise projection mode:
+// include small terrain fragments, and clip to 0.5 units around first contact.
+void CG_ACImpactMark(qhandle_t shader,const vec3_t pos,const vec3_t normal,float rotation,float radius) {
+    cg_acPreciseMark=qtrue;
+    CG_ImpactMarkSimple(shader,pos,normal,rotation,radius,1,1,1,0.85f,qtrue,qfalse,qtrue,qfalse);
+    cg_acPreciseMark=qfalse;
 }

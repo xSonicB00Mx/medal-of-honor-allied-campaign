@@ -197,19 +197,6 @@ borderstyle INDENT_BORDER
 }
 
 resource
-Label
-{
-name "hint"
-title "Changes apply immediately and are saved."
-rect 30 386 580 26
-fgcolor 0.91 0.86 0.7 1
-bgcolor 0.12 0.14 0.12 1
-borderstyle NONE
-font facfont-20
-
-}
-
-resource
 Button
 {
 name "back"
@@ -254,6 +241,27 @@ name "mist"
 title ""
 rect 438 349 30 26
 linkcvar ac_blood_mist
+checked_shader textures/menu/checkbox_checked
+unchecked_shader textures/menu/checkbox_unchecked
+}
+
+resource
+Label
+{
+name "worldLabel"
+title "Blood drops and stains"
+rect 30 380 300 26
+font facfont-20
+fgcolor 0.91 0.86 0.7 1
+borderstyle NONE
+}
+resource
+CheckBox
+{
+name "worldBlood"
+title ""
+rect 438 380 30 26
+linkcvar ac_world_blood
 checked_shader textures/menu/checkbox_checked
 unchecked_shader textures/menu/checkbox_unchecked
 }

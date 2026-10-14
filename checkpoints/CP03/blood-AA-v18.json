@@ -1,0 +1,60 @@
+{
+  "game": "AA",
+  "exit": 0,
+  "completed": true,
+  "engine_sha256": "224720598fcc9e0ade66d72428bd54b6e7fdaa59180a7967292e87908c14d61c",
+  "cgame_sha256": "117c280ba32d294be86fc7edccd75bad6d5835d3c8521a06b350cebf512e8ac0",
+  "images": [
+    "profiles-local/CP03-r1/blood-AA-v18/main/screenshots/shot0000.png",
+    "profiles-local/CP03-r1/blood-AA-v18/main/screenshots/shot0001.png",
+    "profiles-local/CP03-r1/blood-AA-v18/main/screenshots/shot0002.png"
+  ],
+  "geometry_events": [
+    "AC_HIT id=1 time=7100 entity=202 generation=3.250 weapon=models/weapons/colt45.tik group=1 seed=3869685147 entry=1 exit=1 surface=0/1/491",
+    "AC_HIT id=2 time=8000 entity=202 generation=3.250 weapon=models/weapons/colt45.tik group=1 seed=4070107876 entry=1 exit=1 surface=0/1/6"
+  ],
+  "mark_events": [
+    "AC_MARK_FRAGMENTS 1",
+    "AC_MARK drop -6516.898 -3822.376 478.314",
+    "AC_MARK_FRAGMENTS 1",
+    "AC_MARK drop -6501.509 -3836.382 480.172",
+    "AC_MARK_FRAGMENTS 2",
+    "AC_MARK drop -6505.626 -3824.079 478.641",
+    "AC_MARK_FRAGMENTS 1",
+    "AC_MARK drop -6439.588 -3787.215 474.894",
+    "AC_MARK_FRAGMENTS 2",
+    "AC_MARK drop -6442.543 -3791.174 475.341",
+    "AC_MARK_FRAGMENTS 1",
+    "AC_MARK drop -6512.536 -3822.936 478.428",
+    "AC_MARK_FRAGMENTS 1",
+    "AC_MARK drop -6437.230 -3797.677 476.184",
+    "AC_MARK_FRAGMENTS 1",
+    "AC_MARK drop -6441.656 -3800.511 476.479",
+    "AC_MARK_FRAGMENTS 1",
+    "AC_MARK drop -6515.823 -3814.499 477.373",
+    "AC_MARK_FRAGMENTS 2",
+    "AC_MARK drop -6521.188 -3831.665 479.391",
+    "AC_MARK_FRAGMENTS 1",
+    "AC_MARK drop -6432.778 -3792.836 475.647",
+    "AC_MARK_FRAGMENTS 2",
+    "AC_MARK drop -6438.880 -3789.541 475.183",
+    "AC_MARK_FRAGMENTS 1",
+    "AC_MARK drop -6436.482 -3803.310 476.873",
+    "AC_MARK_FRAGMENTS 1",
+    "AC_MARK drop -6435.937 -3791.511 475.453",
+    "AC_MARK_FRAGMENTS 1",
+    "AC_MARK drop -6433.624 -3801.422 476.676",
+    "AC_MARK_FRAGMENTS 1",
+    "AC_MARK drop -6432.349 -3804.183 477.023",
+    "AC_MARK_FRAGMENTS 1",
+    "AC_MARK drop -6429.602 -3791.431 475.511",
+    "AC_MARK_FRAGMENTS 1",
+    "AC_MARK drop -6427.406 -3788.409 475.169"
+  ],
+  "mist_events": [
+    "AC_MIST time=7553 effect=30 enabled=1 pos=-6480.000,-3811.562,549.750",
+    "AC_MIST time=8466 effect=30 enabled=1 pos=-6478.438,-3812.312,548.312"
+  ],
+  "errors": [],
+  "saved_off": true
+}

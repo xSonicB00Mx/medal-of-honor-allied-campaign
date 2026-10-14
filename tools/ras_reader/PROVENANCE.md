@@ -1,0 +1,1 @@
+RAS reader from https://github.com/Tatsh/dade, MIT license. Pinned commit 7ec5af866752cd2c6ec3c8f88ec593b561e77321. Local adaptation: blocks.py imports .lz instead of dade.common.lz. Original copyright preserved. No game assets included.
