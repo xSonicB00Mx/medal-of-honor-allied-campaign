@@ -70,6 +70,8 @@ def main():
     source=args.source.read_bytes();assert sha(source)==PATCH_SHA,'Unrecognized patch; no output activated'
     assert args.output.resolve().is_relative_to(Path(__file__).resolve().parents[1]/'generated-local'),'Output must be local generated data'
     rows=[];products={};diffs={}
+    pinned=json.loads((Path(__file__).resolve().parents[1]/'checkpoints/CP00a/CP00a-r1-import.json').read_text(encoding='utf-8'))
+    expected={row['resource']:row for row in pinned['files']}
     with zipfile.ZipFile(args.source) as patch,zipfile.ZipFile(args.baseline/'maintt/pak1.pk3') as base,zipfile.ZipFile(args.baseline/'maintt/Restoration_BT_Pak1-Main.pk3') as wcr:
         assert patch.testzip() is None
         names=[n for n in patch.namelist() if not n.endswith('/')]
@@ -77,6 +79,7 @@ def main():
         for n in names:
             assert not Path(n).is_absolute() and '..' not in Path(n).parts and '\\' not in n
             b,p,w=base.read(n),patch.read(n),wcr.read(n)
+            assert sha(b)==expected[n]['base_sha256'] and sha(w)==expected[n]['wcr_sha256'], 'Baseline differs from audited WCR'
             merged,decisions=merge(n,text(b),text(p),text(w));data=merged.encode('latin1')
             rows.append(dict(resource=n,base_sha256=sha(b),patch_sha256=sha(p),wcr_sha256=sha(w),merged_sha256=sha(data),decisions=decisions))
             if merged!=text(w):products[n]=data

@@ -1,0 +1,988 @@
+{
+  "baseline_warnings": [
+    "^~^~^ Script Error : invalid waittill prespawn for 'Level'",
+    "^~^~^ Script Error : invalid waittill prespawn for 'Level'",
+    "^~^~^ Script Error : invalid waittill prespawn for 'Level'",
+    "^~^~^ Script Error : invalid waittill prespawn for 'Level'",
+    "^~^~^ Script Error : invalid waittill prespawn for 'Level'"
+  ],
+  "candidate": "CP00a-r1",
+  "game": "BT",
+  "map": "e2l2",
+  "requested_skill": 2,
+  "observed_skill": [
+    "2",
+    "2.000000",
+    "2.000000"
+  ],
+  "completed": true,
+  "exit_code": 0,
+  "host_timeout": false,
+  "scope": "Six rifle then three MP40 spawned targets; natural player shots. Mission/actor drop controls and health counter never assigned. Save/load after fifth target. Only player ammo replenished for the diagnostic firing sequence.",
+  "steps": [
+    {
+      "step": 1,
+      "enemy_gun": "kar98",
+      "phases": {
+        "before": {
+          "stats": {
+            "ui_NumShotsFired": "0",
+            "ui_NumHits": "0",
+            "ui_NumEnemysKilled": "0",
+            "ui_NumComplete": "0"
+          },
+          "items": [],
+          "deaths": [
+            "0"
+          ]
+        },
+        "dead": {
+          "stats": {
+            "ui_NumShotsFired": "13",
+            "ui_NumHits": "3",
+            "ui_NumEnemysKilled": "1",
+            "ui_NumComplete": "0"
+          },
+          "items": [
+            {
+              "id": 407,
+              "kind": "Weapon",
+              "model": "models/weapons/kar98.tik",
+              "origin": "( 6154.268 -5822.216 2483.655 )"
+            }
+          ],
+          "deaths": [
+            "1"
+          ]
+        },
+        "corpse": {
+          "stats": {
+            "ui_NumShotsFired": "15",
+            "ui_NumHits": "3",
+            "ui_NumEnemysKilled": "1",
+            "ui_NumComplete": "0"
+          },
+          "items": [
+            {
+              "id": 407,
+              "kind": "Weapon",
+              "model": "models/weapons/kar98.tik",
+              "origin": "( 6154.268 -5822.216 2483.655 )"
+            }
+          ],
+          "deaths": [
+            "1"
+          ]
+        }
+      },
+      "new_after_death": [
+        [
+          407,
+          "models/weapons/kar98.tik"
+        ]
+      ],
+      "new_after_corpse_fire": []
+    },
+    {
+      "step": 2,
+      "enemy_gun": "kar98",
+      "phases": {
+        "before": {
+          "stats": {
+            "ui_NumShotsFired": "15",
+            "ui_NumHits": "3",
+            "ui_NumEnemysKilled": "1",
+            "ui_NumComplete": "0"
+          },
+          "items": [
+            {
+              "id": 407,
+              "kind": "Weapon",
+              "model": "models/weapons/kar98.tik",
+              "origin": "( 6154.268 -5822.216 2483.655 )"
+            }
+          ],
+          "deaths": [
+            "0"
+          ]
+        },
+        "dead": {
+          "stats": {
+            "ui_NumShotsFired": "27",
+            "ui_NumHits": "6",
+            "ui_NumEnemysKilled": "2",
+            "ui_NumComplete": "0"
+          },
+          "items": [
+            {
+              "id": 407,
+              "kind": "Weapon",
+              "model": "models/weapons/kar98.tik",
+              "origin": "( 6154.268 -5822.216 2483.655 )"
+            },
+            {
+              "id": 415,
+              "kind": "Weapon",
+              "model": "models/weapons/kar98.tik",
+              "origin": "( 6144.827 -5819.407 2484.312 )"
+            }
+          ],
+          "deaths": [
+            "1"
+          ]
+        },
+        "corpse": {
+          "stats": {
+            "ui_NumShotsFired": "29",
+            "ui_NumHits": "6",
+            "ui_NumEnemysKilled": "2",
+            "ui_NumComplete": "0"
+          },
+          "items": [
+            {
+              "id": 415,
+              "kind": "Weapon",
+              "model": "models/weapons/kar98.tik",
+              "origin": "( 6144.827 -5819.407 2484.312 )"
+            }
+          ],
+          "deaths": [
+            "1"
+          ]
+        }
+      },
+      "new_after_death": [
+        [
+          415,
+          "models/weapons/kar98.tik"
+        ]
+      ],
+      "new_after_corpse_fire": []
+    },
+    {
+      "step": 3,
+      "enemy_gun": "kar98",
+      "phases": {
+        "before": {
+          "stats": {
+            "ui_NumShotsFired": "29",
+            "ui_NumHits": "6",
+            "ui_NumEnemysKilled": "2",
+            "ui_NumComplete": "0"
+          },
+          "items": [
+            {
+              "id": 415,
+              "kind": "Weapon",
+              "model": "models/weapons/kar98.tik",
+              "origin": "( 6144.827 -5819.407 2484.312 )"
+            }
+          ],
+          "deaths": [
+            "0"
+          ]
+        },
+        "dead": {
+          "stats": {
+            "ui_NumShotsFired": "41",
+            "ui_NumHits": "10",
+            "ui_NumEnemysKilled": "3",
+            "ui_NumComplete": "0"
+          },
+          "items": [
+            {
+              "id": 414,
+              "kind": "Weapon",
+              "model": "models/weapons/kar98.tik",
+              "origin": "( 6158.271 -5809.317 2483.651 )"
+            },
+            {
+              "id": 415,
+              "kind": "Weapon",
+              "model": "models/weapons/kar98.tik",
+              "origin": "( 6144.827 -5819.407 2484.312 )"
+            }
+          ],
+          "deaths": [
+            "1"
+          ]
+        },
+        "corpse": {
+          "stats": {
+            "ui_NumShotsFired": "43",
+            "ui_NumHits": "10",
+            "ui_NumEnemysKilled": "3",
+            "ui_NumComplete": "0"
+          },
+          "items": [
+            {
+              "id": 414,
+              "kind": "Weapon",
+              "model": "models/weapons/kar98.tik",
+              "origin": "( 6158.271 -5809.317 2483.651 )"
+            }
+          ],
+          "deaths": [
+            "1"
+          ]
+        }
+      },
+      "new_after_death": [
+        [
+          414,
+          "models/weapons/kar98.tik"
+        ]
+      ],
+      "new_after_corpse_fire": []
+    },
+    {
+      "step": 4,
+      "enemy_gun": "kar98",
+      "phases": {
+        "before": {
+          "stats": {
+            "ui_NumShotsFired": "43",
+            "ui_NumHits": "10",
+            "ui_NumEnemysKilled": "3",
+            "ui_NumComplete": "0"
+          },
+          "items": [
+            {
+              "id": 414,
+              "kind": "Weapon",
+              "model": "models/weapons/kar98.tik",
+              "origin": "( 6158.271 -5809.317 2483.651 )"
+            }
+          ],
+          "deaths": [
+            "0"
+          ]
+        },
+        "dead": {
+          "stats": {
+            "ui_NumShotsFired": "55",
+            "ui_NumHits": "13",
+            "ui_NumEnemysKilled": "4",
+            "ui_NumComplete": "0"
+          },
+          "items": [
+            {
+              "id": 414,
+              "kind": "Weapon",
+              "model": "models/weapons/kar98.tik",
+              "origin": "( 6158.271 -5809.317 2483.651 )"
+            },
+            {
+              "id": 421,
+              "kind": "Weapon",
+              "model": "models/weapons/kar98.tik",
+              "origin": "( 6199.766 -5820.793 2480.779 )"
+            }
+          ],
+          "deaths": [
+            "1"
+          ]
+        },
+        "corpse": {
+          "stats": {
+            "ui_NumShotsFired": "57",
+            "ui_NumHits": "13",
+            "ui_NumEnemysKilled": "4",
+            "ui_NumComplete": "0"
+          },
+          "items": [
+            {
+              "id": 421,
+              "kind": "Weapon",
+              "model": "models/weapons/kar98.tik",
+              "origin": "( 6199.766 -5820.793 2480.779 )"
+            }
+          ],
+          "deaths": [
+            "1"
+          ]
+        }
+      },
+      "new_after_death": [
+        [
+          421,
+          "models/weapons/kar98.tik"
+        ]
+      ],
+      "new_after_corpse_fire": []
+    },
+    {
+      "step": 5,
+      "enemy_gun": "kar98",
+      "phases": {
+        "before": {
+          "stats": {
+            "ui_NumShotsFired": "57",
+            "ui_NumHits": "13",
+            "ui_NumEnemysKilled": "4",
+            "ui_NumComplete": "0"
+          },
+          "items": [
+            {
+              "id": 421,
+              "kind": "Weapon",
+              "model": "models/weapons/kar98.tik",
+              "origin": "( 6199.766 -5820.793 2480.779 )"
+            }
+          ],
+          "deaths": [
+            "0"
+          ]
+        },
+        "dead": {
+          "stats": {
+            "ui_NumShotsFired": "69",
+            "ui_NumHits": "16",
+            "ui_NumEnemysKilled": "5",
+            "ui_NumComplete": "0"
+          },
+          "items": [
+            {
+              "id": 414,
+              "kind": "Weapon",
+              "model": "models/weapons/kar98.tik",
+              "origin": "( 6195.238 -5809.755 2481.283 )"
+            },
+            {
+              "id": 421,
+              "kind": "Weapon",
+              "model": "models/weapons/kar98.tik",
+              "origin": "( 6199.766 -5820.793 2480.779 )"
+            }
+          ],
+          "deaths": [
+            "1"
+          ]
+        },
+        "corpse": {
+          "stats": {
+            "ui_NumShotsFired": "71",
+            "ui_NumHits": "16",
+            "ui_NumEnemysKilled": "5",
+            "ui_NumComplete": "0"
+          },
+          "items": [
+            {
+              "id": 414,
+              "kind": "Weapon",
+              "model": "models/weapons/kar98.tik",
+              "origin": "( 6195.238 -5809.755 2481.283 )"
+            }
+          ],
+          "deaths": [
+            "1"
+          ]
+        }
+      },
+      "new_after_death": [
+        [
+          414,
+          "models/weapons/kar98.tik"
+        ]
+      ],
+      "new_after_corpse_fire": []
+    },
+    {
+      "step": 6,
+      "enemy_gun": "kar98",
+      "phases": {
+        "before": {
+          "stats": {
+            "ui_NumShotsFired": "71",
+            "ui_NumHits": "16",
+            "ui_NumEnemysKilled": "5",
+            "ui_NumComplete": "0"
+          },
+          "items": [
+            {
+              "id": 414,
+              "kind": "Weapon",
+              "model": "models/weapons/kar98.tik",
+              "origin": "( 6195.238 -5809.755 2481.283 )"
+            }
+          ],
+          "deaths": [
+            "0"
+          ]
+        },
+        "dead": {
+          "stats": {
+            "ui_NumShotsFired": "83",
+            "ui_NumHits": "19",
+            "ui_NumEnemysKilled": "6",
+            "ui_NumComplete": "0"
+          },
+          "items": [
+            {
+              "id": 415,
+              "kind": "Weapon",
+              "model": "models/weapons/kar98.tik",
+              "origin": "( 6212.410 -5821.865 2479.951 )"
+            }
+          ],
+          "deaths": [
+            "1"
+          ]
+        },
+        "corpse": {
+          "stats": {
+            "ui_NumShotsFired": "85",
+            "ui_NumHits": "19",
+            "ui_NumEnemysKilled": "6",
+            "ui_NumComplete": "0"
+          },
+          "items": [
+            {
+              "id": 415,
+              "kind": "Weapon",
+              "model": "models/weapons/kar98.tik",
+              "origin": "( 6212.410 -5821.865 2479.951 )"
+            }
+          ],
+          "deaths": [
+            "1"
+          ]
+        }
+      },
+      "new_after_death": [
+        [
+          415,
+          "models/weapons/kar98.tik"
+        ]
+      ],
+      "new_after_corpse_fire": []
+    },
+    {
+      "step": 7,
+      "enemy_gun": "mp40",
+      "phases": {
+        "before": {
+          "stats": {
+            "ui_NumShotsFired": "85",
+            "ui_NumHits": "19",
+            "ui_NumEnemysKilled": "6",
+            "ui_NumComplete": "0"
+          },
+          "items": [
+            {
+              "id": 415,
+              "kind": "Weapon",
+              "model": "models/weapons/kar98.tik",
+              "origin": "( 6212.410 -5821.865 2479.951 )"
+            }
+          ],
+          "deaths": [
+            "0"
+          ]
+        },
+        "dead": {
+          "stats": {
+            "ui_NumShotsFired": "97",
+            "ui_NumHits": "22",
+            "ui_NumEnemysKilled": "7",
+            "ui_NumComplete": "0"
+          },
+          "items": [
+            {
+              "id": 414,
+              "kind": "Weapon",
+              "model": "models/weapons/mp40.tik",
+              "origin": "( 6221.760 -5808.856 2479.608 )"
+            },
+            {
+              "id": 415,
+              "kind": "Weapon",
+              "model": "models/weapons/kar98.tik",
+              "origin": "( 6212.410 -5821.865 2479.951 )"
+            }
+          ],
+          "deaths": [
+            "1"
+          ]
+        },
+        "corpse": {
+          "stats": {
+            "ui_NumShotsFired": "99",
+            "ui_NumHits": "22",
+            "ui_NumEnemysKilled": "7",
+            "ui_NumComplete": "0"
+          },
+          "items": [
+            {
+              "id": 414,
+              "kind": "Weapon",
+              "model": "models/weapons/mp40.tik",
+              "origin": "( 6221.760 -5808.856 2479.608 )"
+            }
+          ],
+          "deaths": [
+            "1"
+          ]
+        }
+      },
+      "new_after_death": [
+        [
+          414,
+          "models/weapons/mp40.tik"
+        ]
+      ],
+      "new_after_corpse_fire": []
+    },
+    {
+      "step": 8,
+      "enemy_gun": "mp40",
+      "phases": {
+        "before": {
+          "stats": {
+            "ui_NumShotsFired": "99",
+            "ui_NumHits": "22",
+            "ui_NumEnemysKilled": "7",
+            "ui_NumComplete": "0"
+          },
+          "items": [
+            {
+              "id": 414,
+              "kind": "Weapon",
+              "model": "models/weapons/mp40.tik",
+              "origin": "( 6221.760 -5808.856 2479.608 )"
+            }
+          ],
+          "deaths": [
+            "0"
+          ]
+        },
+        "dead": {
+          "stats": {
+            "ui_NumShotsFired": "111",
+            "ui_NumHits": "25",
+            "ui_NumEnemysKilled": "8",
+            "ui_NumComplete": "0"
+          },
+          "items": [
+            {
+              "id": 414,
+              "kind": "Weapon",
+              "model": "models/weapons/mp40.tik",
+              "origin": "( 6221.760 -5808.856 2479.608 )"
+            },
+            {
+              "id": 415,
+              "kind": "Weapon",
+              "model": "models/weapons/mp40.tik",
+              "origin": "( 6219.565 -5805.030 2479.823 )"
+            }
+          ],
+          "deaths": [
+            "1"
+          ]
+        },
+        "corpse": {
+          "stats": {
+            "ui_NumShotsFired": "113",
+            "ui_NumHits": "25",
+            "ui_NumEnemysKilled": "8",
+            "ui_NumComplete": "0"
+          },
+          "items": [
+            {
+              "id": 415,
+              "kind": "Weapon",
+              "model": "models/weapons/mp40.tik",
+              "origin": "( 6219.565 -5805.030 2479.823 )"
+            }
+          ],
+          "deaths": [
+            "1"
+          ]
+        }
+      },
+      "new_after_death": [
+        [
+          415,
+          "models/weapons/mp40.tik"
+        ]
+      ],
+      "new_after_corpse_fire": []
+    },
+    {
+      "step": 9,
+      "enemy_gun": "mp40",
+      "phases": {
+        "before": {
+          "stats": {
+            "ui_NumShotsFired": "113",
+            "ui_NumHits": "25",
+            "ui_NumEnemysKilled": "8",
+            "ui_NumComplete": "0"
+          },
+          "items": [
+            {
+              "id": 415,
+              "kind": "Weapon",
+              "model": "models/weapons/mp40.tik",
+              "origin": "( 6219.565 -5805.030 2479.823 )"
+            }
+          ],
+          "deaths": [
+            "0"
+          ]
+        },
+        "dead": {
+          "stats": {
+            "ui_NumShotsFired": "125",
+            "ui_NumHits": "28",
+            "ui_NumEnemysKilled": "9",
+            "ui_NumComplete": "0"
+          },
+          "items": [
+            {
+              "id": 414,
+              "kind": "Weapon",
+              "model": "models/weapons/mp40.tik",
+              "origin": "( 6208.224 -5807.952 2480.490 )"
+            },
+            {
+              "id": 415,
+              "kind": "Weapon",
+              "model": "models/weapons/mp40.tik",
+              "origin": "( 6219.565 -5805.030 2479.823 )"
+            }
+          ],
+          "deaths": [
+            "1"
+          ]
+        },
+        "corpse": {
+          "stats": {
+            "ui_NumShotsFired": "127",
+            "ui_NumHits": "28",
+            "ui_NumEnemysKilled": "9",
+            "ui_NumComplete": "0"
+          },
+          "items": [
+            {
+              "id": 414,
+              "kind": "Weapon",
+              "model": "models/weapons/mp40.tik",
+              "origin": "( 6208.224 -5807.952 2480.490 )"
+            }
+          ],
+          "deaths": [
+            "1"
+          ]
+        }
+      },
+      "new_after_death": [
+        [
+          414,
+          "models/weapons/mp40.tik"
+        ]
+      ],
+      "new_after_corpse_fire": []
+    }
+  ],
+  "errors": [],
+  "reference_save": [],
+  "visual_check": "PENDING",
+  "engine_sha256": "5f1eee385de3b26750b45b7aa1e98566801b716566b97af11fa5586cb5c21c91",
+  "wcr_package_fingerprint": "3b6b38b5b04ba320a526196946c44394c4519e4197dc8d3d05788e186501cfcc",
+  "evidence": [
+    {
+      "path": "profiles-local/CP00a-r1/cp00a-hard-BT/maintt/configs/omconfig.cfg",
+      "sha256": "c05e4c46aba72a25df02b0eecfe9002da332a5780f16d6a68e0bed6658c03918"
+    },
+    {
+      "path": "profiles-local/CP00a-r1/cp00a-hard-BT/maintt/cp00/aim.scr",
+      "sha256": "3e5353c8f5bf890bc103b9b746ee8d56a09aa9bcfbc8d4b239e9386f047ba716"
+    },
+    {
+      "path": "profiles-local/CP00a-r1/cp00a-hard-BT/maintt/cp00/base.scr",
+      "sha256": "66cdb0077300f00392118d0b0541ecb29b75ab5903089a78c9d4e06b110cfb3c"
+    },
+    {
+      "path": "profiles-local/CP00a-r1/cp00a-hard-BT/maintt/cp00/fire1.cfg",
+      "sha256": "2e47434760246185357016d2fdec35d14eb1460d2d0e036d60537a36a19fcc7b"
+    },
+    {
+      "path": "profiles-local/CP00a-r1/cp00a-hard-BT/maintt/cp00/fire2.cfg",
+      "sha256": "a6965b2b18e26e8710a1f8d3fbe59e318f435924ceef545ded771df8be8b655d"
+    },
+    {
+      "path": "profiles-local/CP00a-r1/cp00a-hard-BT/maintt/cp00/fire3.cfg",
+      "sha256": "3f6933cff3c3075f2b3363e89cb5db0c84fe30ec6f11568b95d297d4c29064ec"
+    },
+    {
+      "path": "profiles-local/CP00a-r1/cp00a-hard-BT/maintt/cp00/fire4.cfg",
+      "sha256": "5699050025da81cf3a791068c83bae273de76ac9e3ae6a4c370d48f55d83773f"
+    },
+    {
+      "path": "profiles-local/CP00a-r1/cp00a-hard-BT/maintt/cp00/fire5.cfg",
+      "sha256": "d72e63baaa69d5dc941b6d34e925f83be57c05228c7f75cf32bd984f0f0a34c7"
+    },
+    {
+      "path": "profiles-local/CP00a-r1/cp00a-hard-BT/maintt/cp00/fire6.cfg",
+      "sha256": "95f25ba0b7fe0faa829ab15d7518ffdf1eba33333c3d283c7b02ac01b3918665"
+    },
+    {
+      "path": "profiles-local/CP00a-r1/cp00a-hard-BT/maintt/cp00/fire7.cfg",
+      "sha256": "b672f4e35a31028e4420b3fcbab2b2622d01fb1b7bfef663c0d459748f12e1cf"
+    },
+    {
+      "path": "profiles-local/CP00a-r1/cp00a-hard-BT/maintt/cp00/fire8.cfg",
+      "sha256": "ad8b6ae8e64f7a3aca8c9b0c3c40612162cd9782c5c41c1aba63b4a2ae204473"
+    },
+    {
+      "path": "profiles-local/CP00a-r1/cp00a-hard-BT/maintt/cp00/fire9.cfg",
+      "sha256": "7a2ffa1514a8a2f37774a453cf7daab85e56a239a45477deee28ea7ddd5935da"
+    },
+    {
+      "path": "profiles-local/CP00a-r1/cp00a-hard-BT/maintt/cp00/remove.scr",
+      "sha256": "cf163c22ca16126dbe378c52f8dd1b4142ccda37de728089932e22d06c98021a"
+    },
+    {
+      "path": "profiles-local/CP00a-r1/cp00a-hard-BT/maintt/cp00/spawn1.scr",
+      "sha256": "8212d89d493b120bc90d7e7cda0b2968d8d17164abe05660dc9b0f7ee42a4083"
+    },
+    {
+      "path": "profiles-local/CP00a-r1/cp00a-hard-BT/maintt/cp00/spawn2.scr",
+      "sha256": "6ea183d15e4bf821649f7ecf50c94084ea2905aa4b50e129cfab5968d6ab9723"
+    },
+    {
+      "path": "profiles-local/CP00a-r1/cp00a-hard-BT/maintt/cp00/spawn3.scr",
+      "sha256": "8a0253386e239df6adf7667b792cdac6d6d0ad1dedc4cc66a8d2f8b8caa6d4b3"
+    },
+    {
+      "path": "profiles-local/CP00a-r1/cp00a-hard-BT/maintt/cp00/spawn4.scr",
+      "sha256": "41fdbc5f0b6db8be4ee84cde66ba204656f1b409db728e714e78fcbab116d653"
+    },
+    {
+      "path": "profiles-local/CP00a-r1/cp00a-hard-BT/maintt/cp00/spawn5.scr",
+      "sha256": "83241f2aa23618920b6510e70883dc9e6f802d0681cd6c1dbab44d770598606b"
+    },
+    {
+      "path": "profiles-local/CP00a-r1/cp00a-hard-BT/maintt/cp00/spawn6.scr",
+      "sha256": "e916c1ca428a544a89a8ff3632ee4f43d3ea1727eaad5a08bf01337cf1a043b0"
+    },
+    {
+      "path": "profiles-local/CP00a-r1/cp00a-hard-BT/maintt/cp00/spawn7.scr",
+      "sha256": "ab6db48997b1518c5b639d69d1d8af406413d3cfa4acf6af8cf1d467c0f1c577"
+    },
+    {
+      "path": "profiles-local/CP00a-r1/cp00a-hard-BT/maintt/cp00/spawn8.scr",
+      "sha256": "79bc480913090f1b2fdce0b010a8ea364001010b39c067716429ff56558b232b"
+    },
+    {
+      "path": "profiles-local/CP00a-r1/cp00a-hard-BT/maintt/cp00/spawn9.scr",
+      "sha256": "bad7f26a2c89dd0373402eb3268960cd08316ed4faeb4dc06bebd2d84ecf0cfa"
+    },
+    {
+      "path": "profiles-local/CP00a-r1/cp00a-hard-BT/maintt/cp00/step1.cfg",
+      "sha256": "dde164e3b27f87d30b8f3a58ae8d2062755635e2142d09b7e60c43c8bf92bb67"
+    },
+    {
+      "path": "profiles-local/CP00a-r1/cp00a-hard-BT/maintt/cp00/step1_before.scr",
+      "sha256": "59d18b2e55bc67ba8371cdc92c28a7c748663c14e7934b9c42bc88eec8f62786"
+    },
+    {
+      "path": "profiles-local/CP00a-r1/cp00a-hard-BT/maintt/cp00/step1_corpse.scr",
+      "sha256": "b814d5c76c2b4646024e9c1e5db00550edbd2234ad6018fc9f6c8bc92a8abbbb"
+    },
+    {
+      "path": "profiles-local/CP00a-r1/cp00a-hard-BT/maintt/cp00/step1_dead.scr",
+      "sha256": "36c22ffb7e6fa10afacf70d9bfca564a8168054755d9ca7606f43e8c313225b3"
+    },
+    {
+      "path": "profiles-local/CP00a-r1/cp00a-hard-BT/maintt/cp00/step2.cfg",
+      "sha256": "33beffe54453b674ef8c5ced9be14454d6d5cd01fe14736ca278322d47b45f1a"
+    },
+    {
+      "path": "profiles-local/CP00a-r1/cp00a-hard-BT/maintt/cp00/step2_before.scr",
+      "sha256": "52eef64d508fe2c9a5237d1a4a53cea80ce86f9f6b7717404e0fc5e24322f230"
+    },
+    {
+      "path": "profiles-local/CP00a-r1/cp00a-hard-BT/maintt/cp00/step2_corpse.scr",
+      "sha256": "e7b24fdf2d015bcf985ee68f78b391b233d5a0f20ef348d229673c38ff4d82d6"
+    },
+    {
+      "path": "profiles-local/CP00a-r1/cp00a-hard-BT/maintt/cp00/step2_dead.scr",
+      "sha256": "2aec191edd223017c8556fa1523564e16915ad0ba7db9d5fb0094da999a17e4d"
+    },
+    {
+      "path": "profiles-local/CP00a-r1/cp00a-hard-BT/maintt/cp00/step3.cfg",
+      "sha256": "4a88cfb0fe8234153a74adbf6c60f398cd5671ce0eab08cf18d9055529f00f8d"
+    },
+    {
+      "path": "profiles-local/CP00a-r1/cp00a-hard-BT/maintt/cp00/step3_before.scr",
+      "sha256": "6a375e667049fae4cb8f8c03bd23c1abfa04ade6b3576d470b19e2a7fcb51199"
+    },
+    {
+      "path": "profiles-local/CP00a-r1/cp00a-hard-BT/maintt/cp00/step3_corpse.scr",
+      "sha256": "9637741ac30332b6f533460ebcfba139ad7557e998b26c1e116bea15fafcc534"
+    },
+    {
+      "path": "profiles-local/CP00a-r1/cp00a-hard-BT/maintt/cp00/step3_dead.scr",
+      "sha256": "16586904da88530b37535f3498c0593f4dda29b0a8c694f5072fc3f6d8886847"
+    },
+    {
+      "path": "profiles-local/CP00a-r1/cp00a-hard-BT/maintt/cp00/step4.cfg",
+      "sha256": "9577feb2a906e0f21ce66f6f4aa354350582f2731ab2cc83e62fc59ec9594c83"
+    },
+    {
+      "path": "profiles-local/CP00a-r1/cp00a-hard-BT/maintt/cp00/step4_before.scr",
+      "sha256": "f6545c3895ddbac0b160e752d5a10d82fba0977b5be94be25a96ed1000f84f3c"
+    },
+    {
+      "path": "profiles-local/CP00a-r1/cp00a-hard-BT/maintt/cp00/step4_corpse.scr",
+      "sha256": "b5c3d0e05bde741bce8d90452dff45f34011e130a36be19f11bcea696d4c3cdd"
+    },
+    {
+      "path": "profiles-local/CP00a-r1/cp00a-hard-BT/maintt/cp00/step4_dead.scr",
+      "sha256": "21a754436aa29d93422c6477eb2f0af10830f92d8ae0abd1cd9a0c8507f19d1c"
+    },
+    {
+      "path": "profiles-local/CP00a-r1/cp00a-hard-BT/maintt/cp00/step5.cfg",
+      "sha256": "14b0146208fe85b269a24765714300e7230669cbf82ad1958ba5ce4d92947efd"
+    },
+    {
+      "path": "profiles-local/CP00a-r1/cp00a-hard-BT/maintt/cp00/step5_before.scr",
+      "sha256": "3fa361aa82b3ece8bb85d82db89baef645751dcd42082082757ff2603585a1cb"
+    },
+    {
+      "path": "profiles-local/CP00a-r1/cp00a-hard-BT/maintt/cp00/step5_corpse.scr",
+      "sha256": "5006737c49df085c2414491a7a43f0d28788488d48d22d95a6337b3c3842e501"
+    },
+    {
+      "path": "profiles-local/CP00a-r1/cp00a-hard-BT/maintt/cp00/step5_dead.scr",
+      "sha256": "bc8da4f2e43e78b69913f4d1fbd988e0171adf3ea32bb2b60e152c08414efbcb"
+    },
+    {
+      "path": "profiles-local/CP00a-r1/cp00a-hard-BT/maintt/cp00/step6.cfg",
+      "sha256": "506e4b8ce6a37e7810b274363dfe364b3ffaa30ca52fc9d54ec15b5019fc592c"
+    },
+    {
+      "path": "profiles-local/CP00a-r1/cp00a-hard-BT/maintt/cp00/step6_before.scr",
+      "sha256": "eaed1a707e944390468d09fc1b5d900356002b1ea1dc0408dc0cebcfd7b5cab3"
+    },
+    {
+      "path": "profiles-local/CP00a-r1/cp00a-hard-BT/maintt/cp00/step6_corpse.scr",
+      "sha256": "74344c0f758c807809fad2272f1bcbb17404fbfa29cc0b8cb5de49bd6a4af654"
+    },
+    {
+      "path": "profiles-local/CP00a-r1/cp00a-hard-BT/maintt/cp00/step6_dead.scr",
+      "sha256": "1a876d1e843babd930bb0d1d72e5755655b5630ab3e1a51043ec127aca687f0e"
+    },
+    {
+      "path": "profiles-local/CP00a-r1/cp00a-hard-BT/maintt/cp00/step7.cfg",
+      "sha256": "02cb8a847207359f920bfdedeaca2e1cf4d716978378b7d71552cd6859200c51"
+    },
+    {
+      "path": "profiles-local/CP00a-r1/cp00a-hard-BT/maintt/cp00/step7_before.scr",
+      "sha256": "ef713dbfa59dc47f5011f1dbe788b7e09eae737fac73981400f66aa948d20061"
+    },
+    {
+      "path": "profiles-local/CP00a-r1/cp00a-hard-BT/maintt/cp00/step7_corpse.scr",
+      "sha256": "1f8646b7f868a37d33da77aef8fc32053cf5333c19b5802185f125f943bd3e80"
+    },
+    {
+      "path": "profiles-local/CP00a-r1/cp00a-hard-BT/maintt/cp00/step7_dead.scr",
+      "sha256": "1de9646acce9358e5fe5c92680f4306e611d8bce89bcd7f8bd8fe849b985acbd"
+    },
+    {
+      "path": "profiles-local/CP00a-r1/cp00a-hard-BT/maintt/cp00/step8.cfg",
+      "sha256": "a5d67e8408727738a3c8ca61b4671f518a511b312e0e5e3150cec3fb8c115e7a"
+    },
+    {
+      "path": "profiles-local/CP00a-r1/cp00a-hard-BT/maintt/cp00/step8_before.scr",
+      "sha256": "14a07e3f04c86a22dd1e50fbf871c8135c9e20a0c901941c05eefcd6e58d0d6a"
+    },
+    {
+      "path": "profiles-local/CP00a-r1/cp00a-hard-BT/maintt/cp00/step8_corpse.scr",
+      "sha256": "9f218f3a62a80681b973c31d2ac8ab969c41fa8c9bb907a12b78cbfc1385653d"
+    },
+    {
+      "path": "profiles-local/CP00a-r1/cp00a-hard-BT/maintt/cp00/step8_dead.scr",
+      "sha256": "d592151063790a470808815fb25dd980afee531963b62cfb9a1d3e7923c731f5"
+    },
+    {
+      "path": "profiles-local/CP00a-r1/cp00a-hard-BT/maintt/cp00/step9.cfg",
+      "sha256": "26945f7716a57c38a8000fd2db2e506630b0fe6ef1afb18616cacdecce67cbc1"
+    },
+    {
+      "path": "profiles-local/CP00a-r1/cp00a-hard-BT/maintt/cp00/step9_before.scr",
+      "sha256": "90a772bce8000193ed9ef72b1d79c2007423a6c728584a73dc5dbc74f41149fd"
+    },
+    {
+      "path": "profiles-local/CP00a-r1/cp00a-hard-BT/maintt/cp00/step9_corpse.scr",
+      "sha256": "c356e7da98d9c3e5a10501dea5a0dce56da468b27fd594ba2a225d742c334eb5"
+    },
+    {
+      "path": "profiles-local/CP00a-r1/cp00a-hard-BT/maintt/cp00/step9_dead.scr",
+      "sha256": "f9cf2164e997691f5085e5733d4bc0acd30a5ccbf4a93e7f30b587f1ba0dc519"
+    },
+    {
+      "path": "profiles-local/CP00a-r1/cp00a-hard-BT/maintt/qconsole.log",
+      "sha256": "6c519714c4ee93e99bf51ae1bd2969ee04776331b661837c68639ce7127fd41b"
+    },
+    {
+      "path": "profiles-local/CP00a-r1/cp00a-hard-BT/maintt/save/omconfig/cp00_after_five.sav",
+      "sha256": "190b0e21eb6a147ecdd52c53e051d4a2dfb4ff4fd884d4c2225b7cac64ded831"
+    },
+    {
+      "path": "profiles-local/CP00a-r1/cp00a-hard-BT/maintt/save/omconfig/cp00_after_five.ssv",
+      "sha256": "ac0b7ed9837abc0c7e922cb261ddd15a926627f2f913ff45fd22c1bfe2170064"
+    },
+    {
+      "path": "profiles-local/CP00a-r1/cp00a-hard-BT/maintt/save/omconfig/cp00_after_five.tga",
+      "sha256": "0fc1cd56a020ebac1fbbb2d9c7d38db4c6c61ef3b75b7fab2e2d068723897945"
+    },
+    {
+      "path": "profiles-local/CP00a-r1/cp00a-hard-BT/maintt/save/omconfig/cp00_after_series.sav",
+      "sha256": "a22a6716842ee1b672b8fa465699380c4b3b84da906549187441c1c1adc9b104"
+    },
+    {
+      "path": "profiles-local/CP00a-r1/cp00a-hard-BT/maintt/save/omconfig/cp00_after_series.ssv",
+      "sha256": "00c362c3211e7c3b62e597b43c822452a7ec461534844f8d5b19e1b46a186a63"
+    },
+    {
+      "path": "profiles-local/CP00a-r1/cp00a-hard-BT/maintt/save/omconfig/cp00_after_series.tga",
+      "sha256": "49dd8c419abcb1bef2acf0728df279177a633847431938ccdc71be64de8e7e58"
+    },
+    {
+      "path": "profiles-local/CP00a-r1/cp00a-hard-BT/maintt/save/omconfig/e2l20000.sav",
+      "sha256": "1d6ff51396688f89e9f61c96c9964071b7ab3b02520a49f71c5249751dc7baa7"
+    },
+    {
+      "path": "profiles-local/CP00a-r1/cp00a-hard-BT/maintt/save/omconfig/e2l20000.ssv",
+      "sha256": "5a2de7b1750e52d75c8ffae391d7f282cd388d2bdddc62b6dc1a761367e7c1fa"
+    },
+    {
+      "path": "profiles-local/CP00a-r1/cp00a-hard-BT/maintt/save/omconfig/e2l20000.tga",
+      "sha256": "185342da242f8968b82ba6fc8b635a410c871f3beadaa4b3901cae7951d45ccc"
+    },
+    {
+      "path": "profiles-local/CP00a-r1/cp00a-hard-BT/maintt/screenshots/shot0000.tga",
+      "sha256": "516ec012407d3d5fa0f6b608c0c48dd533293a5f3d6549e0865dcbe44dd4d410"
+    },
+    {
+      "path": "profiles-local/CP00a-r1/cp00a-hard-BT/maintt/screenshots/shot0001.tga",
+      "sha256": "d44a80ec59a2efa463279b3f43e68a76dcb449e47c23b3ed8e5a973fee09a80a"
+    },
+    {
+      "path": "profiles-local/CP00a-r1/cp00a-hard-BT/maintt/screenshots/shot0002.tga",
+      "sha256": "45a02c8b378e89345a0fd902149781c43c9c4a75229b0c46efdb91931721b13b"
+    },
+    {
+      "path": "profiles-local/CP00a-r1/cp00a-hard-BT/maintt/series.cfg",
+      "sha256": "f130f09d657fd94c8d66e1f3f15e4734b7e026229ad71a901cb69d263adecb5c"
+    },
+    {
+      "path": "profiles-local/CP00a-r1/cp00a-hard-BT/qkey",
+      "sha256": "78fa7a4ba631e01d3867494a91715eb18522f367b29572f1678336281fdac3d1"
+    }
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "source_unchanged": true,
+  "deterministic_idempotent": true,
+  "missing_source_preserves_product": true,
+  "package_sha256": "3638dca7306fe570278fe9ae4497acbe57bb398a7ffc8967d750fff36a699da8",
+  "network_operations": 0
+}

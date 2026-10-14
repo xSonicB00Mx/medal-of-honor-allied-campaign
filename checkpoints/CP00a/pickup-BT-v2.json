@@ -1,0 +1,106 @@
+{
+  "candidate": "CP00a-r1",
+  "game": "BT",
+  "completed": true,
+  "exit_code": 0,
+  "health_before": [
+    "730.000"
+  ],
+  "health_after": [
+    "750.000",
+    "750.000"
+  ],
+  "item_removed": true,
+  "records": [
+    "CP00_PICKUP_BEFORE_HEALTH 730.000",
+    "CP00_PICKUP_BEFORE_ORIGIN ( 6141.024 -5600.959 2504.996 )",
+    "CP00_PICKUP_ITEM models/items/item_25_healthbox.tik origin=( 6244.769 -5725.548 2479.765 )",
+    "CP00_PICKUP_AFTER_HEALTH 750.000",
+    "CP00_PICKUP_AFTER_ORIGIN ( 6318.482 -5812.305 2471.618 )",
+    "CP00_PICKUP_ITEM_REMOVED",
+    "CP00_PICKUP_AFTER_HEALTH 750.000",
+    "CP00_PICKUP_AFTER_ORIGIN ( 6318.482 -5812.305 2471.618 )",
+    "CP00_PICKUP_ITEM_REMOVED",
+    "CP00_PICKUP_DONE"
+  ],
+  "errors": [],
+  "scope": "Normal walking toward the health item dropped in the preceding series. Player takes 20 diagnostic damage and has inventory cleared and is given an MP40 with its normal starting ammunition; normal walking collects original items, no direct item-use callback. Save/load between death and pickup.",
+  "reference_save": [
+    {
+      "path": "profiles-local/CP00a-r1/cp00a-middle-v2-BT/maintt/save/omconfig/cp00_after_series.sav",
+      "sha256": "acf782d3db6bbb84850d6c2a8894a6ef08da33e4cb2a4b7622c8d9e9d6089aed"
+    },
+    {
+      "path": "profiles-local/CP00a-r1/cp00a-middle-v2-BT/maintt/save/omconfig/cp00_after_series.ssv",
+      "sha256": "cdd51ff31598831f2d32e031ad0765835e9fa2c1255e839153485f0e7e723c2d"
+    },
+    {
+      "path": "profiles-local/CP00a-r1/cp00a-middle-v2-BT/maintt/save/omconfig/cp00_after_series.tga",
+      "sha256": "069f23f64e9134dd9ac8fe331c1e4648cb23a1f3edadd20ffd6684513062ad14"
+    }
+  ],
+  "series_report_sha256": "94e80f4799453221ad127d29bc85d2cd2d648a721b0844ea56d0246f30bccd41",
+  "visual_check": "PENDING",
+  "evidence": [
+    {
+      "path": "profiles-local/CP00a-r1/pickup-BT-v2/maintt/configs/omconfig.cfg",
+      "sha256": "f1cc1f8cf9519c61b40abfa0c272fd7bd927a4a90c8ebd2954272c1557dba8df"
+    },
+    {
+      "path": "profiles-local/CP00a-r1/pickup-BT-v2/maintt/cp00/after.scr",
+      "sha256": "26257e678755fb9be186a235be4a93221d3cac145a1dd573e738ba0f7dd9f77e"
+    },
+    {
+      "path": "profiles-local/CP00a-r1/pickup-BT-v2/maintt/cp00/before.scr",
+      "sha256": "5870606c7eb9b5294afdb6bec460bcb9a77550081f76ed7f9c85b4c5bc0584eb"
+    },
+    {
+      "path": "profiles-local/CP00a-r1/pickup-BT-v2/maintt/cp00/walk.cfg",
+      "sha256": "698984ef7535dea1142dbb2dc0c2b86cbd3ab313b2b8e1103a32b7be3a31b316"
+    },
+    {
+      "path": "profiles-local/CP00a-r1/pickup-BT-v2/maintt/pickup.cfg",
+      "sha256": "cb34598f8a68b5c6bd50f508da4cda9f9ad69ed49de10cce77d03a6489f90edb"
+    },
+    {
+      "path": "profiles-local/CP00a-r1/pickup-BT-v2/maintt/qconsole.log",
+      "sha256": "9c3774c6e11e7c9afed3eedf9e5ccc7b6a29b6dc589e57b3806a9767628629fd"
+    },
+    {
+      "path": "profiles-local/CP00a-r1/pickup-BT-v2/maintt/save/omconfig/cp00_after_pickup.sav",
+      "sha256": "f6d6dfd2a186b002dcba0a582b602a8d56f41619ba049af7ceb376dc3ec0ebd4"
+    },
+    {
+      "path": "profiles-local/CP00a-r1/pickup-BT-v2/maintt/save/omconfig/cp00_after_pickup.ssv",
+      "sha256": "138b2e21986fa50dcbe25f718957965ab3a9cd4e209dfec8335c4a4951cbd021"
+    },
+    {
+      "path": "profiles-local/CP00a-r1/pickup-BT-v2/maintt/save/omconfig/cp00_after_pickup.tga",
+      "sha256": "853d6b3b6bca765e0ad5cb4dfbe35c9fa9ce5e2461e1a71511ed102b6618f192"
+    },
+    {
+      "path": "profiles-local/CP00a-r1/pickup-BT-v2/maintt/save/omconfig/cp00_reference.sav",
+      "sha256": "acf782d3db6bbb84850d6c2a8894a6ef08da33e4cb2a4b7622c8d9e9d6089aed"
+    },
+    {
+      "path": "profiles-local/CP00a-r1/pickup-BT-v2/maintt/save/omconfig/cp00_reference.ssv",
+      "sha256": "cdd51ff31598831f2d32e031ad0765835e9fa2c1255e839153485f0e7e723c2d"
+    },
+    {
+      "path": "profiles-local/CP00a-r1/pickup-BT-v2/maintt/save/omconfig/cp00_reference.tga",
+      "sha256": "069f23f64e9134dd9ac8fe331c1e4648cb23a1f3edadd20ffd6684513062ad14"
+    },
+    {
+      "path": "profiles-local/CP00a-r1/pickup-BT-v2/maintt/screenshots/shot0000.tga",
+      "sha256": "59c86338de26f34b4e68063f459c22a8172589d1ec4c3cce309fe5e73f1b89de"
+    },
+    {
+      "path": "profiles-local/CP00a-r1/pickup-BT-v2/maintt/screenshots/shot0001.tga",
+      "sha256": "e9f0a9889e663d4726b40dca6af3e9f6f880538f7468d84dbc937b77f76e8471"
+    },
+    {
+      "path": "profiles-local/CP00a-r1/pickup-BT-v2/qkey",
+      "sha256": "a493e397550f1fdf4a4df2358eea59b868fdc6f13a33b77988c50c8c7a82add9"
+    }
+  ]
+}
