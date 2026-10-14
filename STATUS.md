@@ -1,3 +1,7 @@
+## Aktuell: 16:9-Bilder, Teilpaket
+
+Zwoelf Gemini-/Nano-Banana-Erweiterungen sind im CP08-r1-Startstand eingebaut: drei Hauptmenues, AA-Briefing-/Missionsraum, AA-Optionshauptmenue und sechs AA-Ladebilder. Originalzentren und Bedienelemente bleiben erhalten. 36 weitere ausgewaehlte Hintergruende sind offen; Gemini meldete ein Kontingentlimit bis 15.10.2026, 00:32 Uhr. Kein vollstaendiger Abschluss des Bildauftrags. [Umfang, Nachweise und Fortsetzung](checkpoints/CP08/widescreen-art.md).
+
 ## Aktuelle Korrektur: MG-Ruckler
 
 Der Kartenhinweis ist entfernt. Lokale Wundreferenzen verhindern den bei MG-Dauerfeuer reproduzierten Nachrichtenstau. Drei MG-Nachtests halten 50-ms-Snapshots; Save/Load und 36 AA-/SH-/BT-Durchschussvergleiche bestanden. [Bericht und Grenzen](checkpoints/CP08/mg-feedback.md).

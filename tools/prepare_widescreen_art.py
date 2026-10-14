@@ -109,6 +109,9 @@ def main():
                 asset_id = game + '-' + Path(name).stem
                 unique[sha] = asset_id
                 image.save(args.output / (asset_id + '.png'))
+                guide = Image.new('RGB', (1536, 864), 'white')
+                guide.paste(image.resize((1152, 864), Image.Resampling.LANCZOS), (192, 0))
+                guide.save(args.output / (asset_id + '-guide.png'))
             # SH film frames are assessed separately; preserve their intentional black border.
             band = list(image.crop((0, 0, 640, 50)).get_flattened_data())
             black_top = sum(max(p) <= 8 for p in band) / len(band)

@@ -14,23 +14,29 @@ ap.add_argument('--width', type=int, default=1920)
 ap.add_argument('--height', type=int, default=1080)
 ap.add_argument('--menus', nargs='+', default=['main', 'briefing1a'])
 ap.add_argument('--without-art', action='store_true')
+ap.add_argument('--installed', action='store_true', help='Test the installed runtime and its own packages')
 args = ap.parse_args()
 root = Path(__file__).resolve().parents[1]
 assert re.fullmatch('[a-zA-Z0-9-]+', args.run_id)
 runtime = root/'runtime-local/CP08-r1'
 work = root/'generated-local/widescreen'
 binary = work/'bin'
-binary.mkdir(exist_ok=True)
-for dll in runtime.glob('*.dll'):
-    shutil.copy2(dll, binary/dll.name)
-shutil.copy2(root/'build-local/cp00-r3/RelWithDebInfo/openmohaa.exe', binary/'openmohaa.exe')
+if args.without_art:
+    assert not list(runtime.glob('*/zzzzzz_AC_Widescreen.pk3')), 'Reference requires a runtime without the artwork package'
+if args.installed:
+    binary = runtime
+else:
+    binary.mkdir(exist_ok=True)
+    for dll in runtime.glob('*.dll'):
+        shutil.copy2(dll, binary/dll.name)
+    shutil.copy2(root/'build-local/cp00-r3/RelWithDebInfo/openmohaa.exe', binary/'openmohaa.exe')
 profile = root/'profiles-local/widescreen'/args.run_id
 assert not profile.exists()
 profile.mkdir(parents=True)
 for folder in ['main', 'mainta', 'maintt']:
     (profile/folder).mkdir()
     package = work/'packages'/folder/'zzzzzz_AC_Widescreen.pk3'
-    if package.exists() and not args.without_art:
+    if package.exists() and not args.without_art and not args.installed:
         shutil.copy2(package, profile/folder/package.name)
 number, folder = {'AA':(0,'main'), 'SH':(1,'mainta'), 'BT':(2,'maintt')}[args.game]
 home = profile/folder
