@@ -1,3 +1,7 @@
+## Aktuell: Single-Player und Jeep-MG
+
+Multiplayer ist in AA, SH und BT nicht mehr anwaehlbar; alternative Menue-, Verbindungs- und Kartenaufrufe werden abgewiesen. Das echte m1l3a-Jeep-MG erzeugt jetzt die freigegebenen Bluteffekte. Native Tests bestanden, in CP08-r1 installiert, 80 Nutzerdateien unveraendert. [Bericht](checkpoints/CP08/singleplayer-jeep.md). Gemini-Bildarbeit wird mit 3.8 Flash / High und einem neuen Chat pro Bild fortgesetzt; Multiplayer-Bilder sind ausgeschlossen.
+
 ## Aktuell: SH-/BT-Ladebilder vergroessert
 
 Alle neun SH- und elf BT-Kampagnenladebilder werden auf Breitbild proportional vergroessert und zentriert. Motive, Fotorand und Ladeanzeige bleiben erhalten; in 4:3 bleibt der urspruengliche Ausschnitt. In CP08-r1 installiert, elf isolierte native Prueflaeufe bestanden. Keine neuen KI-Bilder erforderlich. [Nachweise](checkpoints/CP08/loading-zoom.md). Die 36 weiteren Gemini-Hintergruende des vorherigen Auftrags bleiben offen.

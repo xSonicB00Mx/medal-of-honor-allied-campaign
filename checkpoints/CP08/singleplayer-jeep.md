@@ -12,3 +12,9 @@ Multiplayer main-menu widgets are disabled, including keyboard activation. Menu 
 - This is a controlled actual-turret test, not a complete natural Jeep mission playthrough. It does not establish that every emitted wound is displayed, or test corpse shots after the target leaves the ray. Personal acceptance and merge remain open.
 
 Gemini generation continues serially, using a fresh chat for each image with 3.8 Flash / High. Approved artwork remains local and retains the original central game image and UI bindings. SH/BT loading zoom from the preceding delivery remains intact.
+
+## Installed delivery
+
+Source `0f9632ab7d720f66ddb5ac5f786f02fd0d1d84e8` is freshly verified on the private branch. CI run 38653992534 passed. The engine, game DLL and client-game DLL were installed together in CP08-r1. Original inputs (9,072), runtime base files (9,000), MP1 inputs (8) and all 80 active user-profile files remained hash-identical. The installed main menu, campaign map and video options passed a separate native smoke test.
+
+Rollback copies are in `generated-local/widescreen/backups/singleplayer-jeep-r1` and subsequent artwork batches. Keep using `Start-CP08-r1.cmd`. Machine-readable evidence is in [singleplayer-jeep-verification.json](singleplayer-jeep-verification.json). Generated graphics, complete local test logs and screenshot archives remain excluded from Git.
