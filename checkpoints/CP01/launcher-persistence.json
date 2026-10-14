@@ -1,0 +1,38 @@
+{
+  "passed": true,
+  "contexts": [
+    {
+      "game": "AA",
+      "observed": {
+        "ac_ui_auto": "1",
+        "ac_menu_scale": "0.85",
+        "ac_hud_scale": "1.25",
+        "ac_hud_safe": "0.9"
+      },
+      "exit_code": 0
+    },
+    {
+      "game": "SH",
+      "observed": {
+        "ac_ui_auto": "1",
+        "ac_menu_scale": "0.85",
+        "ac_hud_scale": "1.25",
+        "ac_hud_safe": "0.9"
+      },
+      "exit_code": 0
+    },
+    {
+      "game": "BT",
+      "observed": {
+        "ac_ui_auto": "1",
+        "ac_menu_scale": "0.85",
+        "ac_hud_scale": "1.25",
+        "ac_hud_safe": "0.9"
+      },
+      "exit_code": 0
+    }
+  ],
+  "final_UI": "defaults",
+  "final_FOV": 90,
+  "scope": "Real root CMD launchers; AA write, SH/BT context inheritance, isolated new user profiles only."
+}

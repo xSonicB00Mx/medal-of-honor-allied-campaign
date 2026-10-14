@@ -68,3 +68,5 @@ out
 /code/parser/generated
 
 /Start-CP01*.cmd
+
+!checkpoints/**/build-manifest.json

@@ -1,0 +1,26 @@
+{
+  "native_inputs": [
+    "BT: HUD slider mouse click changed 1 to 1.413235",
+    "BT: automatic scaling checkbox changed canvas size",
+    "BT: corrected menu slider changed 1 to 0.842500",
+    "BT: Back hit testing and options entry reached expected pages"
+  ],
+  "discovered_and_fixed": [
+    "UISlider MouseExited canceled own menu resize",
+    "popmenu 1 restored opening cvars; page now keeps instant settings"
+  ],
+  "visual_review": [
+    "AA 1280x960 four wrapped German objectives",
+    "SH 3840x2160 German objectives and multiline subtitle",
+    "BT 3440x1440 objectives/subtitles, binocular and sniper mask, save thumbnail",
+    "BT final 5120x1440 binocular black coverage and centered notification"
+  ],
+  "invalid_fixture": "text-BT-wide-v1 deliberately used wrong status=1 (hidden objectives); corrected to status=2 in v2 and final delivery tests",
+  "later_capture_failure": "FrameArrived timed out: timed out waiting on channel, repeated after one refresh/activation recovery",
+  "unverified": [
+    "OS DPI changes 100/150/200 percent",
+    "native window dragging and Alt-Tab",
+    "every individual WCR option perceptual effect"
+  ],
+  "personal_acceptance": false
+}

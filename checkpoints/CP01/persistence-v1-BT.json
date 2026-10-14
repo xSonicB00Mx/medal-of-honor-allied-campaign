@@ -1,0 +1,149 @@
+{
+  "candidate": "CP01-r1",
+  "game": "BT",
+  "engine_source_commit": "af7bb7c6e706fcc64e5933a22457333274f3de22",
+  "engine_sha256": "eef089438d26e90c354ab3d0055ff017a11fd4efb292f88e8483500eb4f3f848",
+  "wcr_package_fingerprint": "3b6b38b5b04ba320a526196946c44394c4519e4197dc8d3d05788e186501cfcc",
+  "checks": [
+    {
+      "option": "s_volume",
+      "requested": "0.55",
+      "after_restart": "0.55",
+      "original": "0.9",
+      "restored_after_restart": "0.9",
+      "passed": true
+    },
+    {
+      "option": "s_musicvolume",
+      "requested": "0.35",
+      "after_restart": "0.35",
+      "original": "0.9",
+      "restored_after_restart": "0.9",
+      "passed": true
+    },
+    {
+      "option": "sensitivity",
+      "requested": "4.25",
+      "after_restart": "4.25",
+      "original": "5",
+      "restored_after_restart": "5",
+      "passed": true
+    },
+    {
+      "option": "m_pitch",
+      "requested": "-0.022",
+      "after_restart": "-0.022",
+      "original": "0.022",
+      "restored_after_restart": "0.022",
+      "passed": true
+    },
+    {
+      "option": "g_subtitle",
+      "requested": "0",
+      "after_restart": "0",
+      "original": "1",
+      "restored_after_restart": "1",
+      "passed": true
+    },
+    {
+      "option": "ui_crosshair",
+      "requested": "0",
+      "after_restart": "0",
+      "original": "1",
+      "restored_after_restart": "1",
+      "passed": true
+    },
+    {
+      "option": "cg_shadows",
+      "requested": "0",
+      "after_restart": "0",
+      "original": "1",
+      "restored_after_restart": "1",
+      "passed": true
+    },
+    {
+      "option": "r_picmip",
+      "requested": "1",
+      "after_restart": "1",
+      "original": "0",
+      "restored_after_restart": "0",
+      "passed": true
+    },
+    {
+      "option": "r_gamma",
+      "requested": "1.15",
+      "after_restart": "1.15",
+      "original": "1.3",
+      "restored_after_restart": "1.3",
+      "passed": true
+    },
+    {
+      "option": "ac_ui_auto",
+      "requested": "0",
+      "after_restart": "0",
+      "original": "1",
+      "restored_after_restart": "1",
+      "passed": true
+    },
+    {
+      "option": "ac_menu_scale",
+      "requested": "0.85",
+      "after_restart": "0.85",
+      "original": "1",
+      "restored_after_restart": "1",
+      "passed": true
+    },
+    {
+      "option": "ac_hud_scale",
+      "requested": "1.25",
+      "after_restart": "1.25",
+      "original": "1",
+      "restored_after_restart": "1",
+      "passed": true
+    },
+    {
+      "option": "ac_hud_safe",
+      "requested": "0.9",
+      "after_restart": "0.9",
+      "original": "1",
+      "restored_after_restart": "1",
+      "passed": true
+    },
+    {
+      "option": "cg_fov",
+      "requested": "90",
+      "after_restart": "90",
+      "original": "90",
+      "restored_after_restart": "90",
+      "passed": true
+    }
+  ],
+  "user_config_unchanged": true,
+  "scope": "Cvar persistence and restoration across three processes; no UI-click or perceptual audio/input test.",
+  "evidence": [
+    {
+      "path": "generated-local/CP01-r1/persistence-v1-BT/change-config.cfg",
+      "sha256": "2bffe0ce5901b40328c6d74199ed742ee6f8f5d0519dd227301b168a8a537191"
+    },
+    {
+      "path": "generated-local/CP01-r1/persistence-v1-BT/change.log",
+      "sha256": "c0dfdf1ffe97a898338f55bc2eaaf486451e2c8946d3aee900dcea27c94946f6"
+    },
+    {
+      "path": "generated-local/CP01-r1/persistence-v1-BT/restart-config.cfg",
+      "sha256": "056edb0414013c78efef62673af1b10fa01b85a577a43a7690f20a22c4c69b5c"
+    },
+    {
+      "path": "generated-local/CP01-r1/persistence-v1-BT/restart.log",
+      "sha256": "4a92e433c96e136775fbb8fa1616f6db725556f9d8023a36f3df92e2f8f5a89b"
+    },
+    {
+      "path": "generated-local/CP01-r1/persistence-v1-BT/restore-restart-config.cfg",
+      "sha256": "056edb0414013c78efef62673af1b10fa01b85a577a43a7690f20a22c4c69b5c"
+    },
+    {
+      "path": "generated-local/CP01-r1/persistence-v1-BT/restore-restart.log",
+      "sha256": "72c2bcffb7f7dc779031211ba626e5c93f780a8a76663429cc6805d398cfe9a5"
+    }
+  ]
+}
