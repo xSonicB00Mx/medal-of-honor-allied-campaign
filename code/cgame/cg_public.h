@@ -26,6 +26,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 #pragma once
 
 #include "../renderercommon/tr_types.h"
+#include "../qcommon/ac_effects.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -445,6 +446,7 @@ functions exported to the main executable
         clientAnim_t *anim;
         stopWatch_t  *stopWatch;
 
+        void (*AC_DeformPatch)(struct dtiki_s *,const ac_pose_t *,const ac_patch_triangle_t *,int,vec3_t *);
     } clientGameImport_t;
 
     /*

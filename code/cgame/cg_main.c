@@ -130,6 +130,7 @@ void CG_RegisterCvars(void)
     cgi.Cvar_Get("g_subtitle", "0", CVAR_ARCHIVE);
     cgi.Cvar_Get("ac_blood_mist", "1", CVAR_ARCHIVE);
     cgi.Cvar_Get("ac_world_blood", "1", CVAR_ARCHIVE);
+    cgi.Cvar_Get("ac_body_wounds", "1", CVAR_ARCHIVE);
     cg_viewsize                   = cgi.Cvar_Get("viewsize", "100", CVAR_ARCHIVE);
     cg_addMarks                   = cgi.Cvar_Get("cg_marks_add", "1", CVAR_ARCHIVE);
     cg_maxMarks                   = cgi.Cvar_Get("cg_marks_max", "256", CVAR_ARCHIVE | CVAR_LATCH);
@@ -662,6 +663,7 @@ void CG_GameStateReceived(void)
 
     CG_InitMarks();
     CG_ACBloodReset();
+    CG_ACWoundsReset();
 
     CG_RegisterSounds();
 
@@ -694,6 +696,7 @@ void CG_ServerRestarted(void)
     // get rid of left over decals from the last game
     CG_InitMarks();
     CG_ACBloodReset();
+    CG_ACWoundsReset();
     // clear all the swipes
     CG_ClearSwipes();
     // Reset tempmodels

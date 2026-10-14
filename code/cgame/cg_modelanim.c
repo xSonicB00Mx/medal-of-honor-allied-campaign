@@ -1518,6 +1518,8 @@ void CG_ModelAnim(centity_t *cent, qboolean bDoShaderTime)
             AngleVectors(s1->angles, model.axis[0], model.axis[1], model.axis[2]);
         }
 
+        // Wounds use this frame's full, blended pose.
+        CG_ACWoundsDraw(&model,s1->usageIndex);
         // add to refresh list
         cgi.R_AddRefEntityToScene(&model, s1->parent);
     }

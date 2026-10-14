@@ -504,6 +504,7 @@ typedef struct gameImport_s {
 
     cvar_t *fsDebug;
 
+    void (*AC_BuildPatch)(struct dtiki_s *,const ac_pose_t *,const ac_surface_point_t *,float,float,int,int,ac_patch_t *);
     void (*AC_SurfaceTrace)(struct dtiki_s *, const ac_pose_t *, const vec3_t, const vec3_t, ac_surface_hit_t *);
 } game_import_t;
 

@@ -1,0 +1,90 @@
+{
+  "game": "AA",
+  "exit": 0,
+  "completed": true,
+  "engine_sha256": "f87ed6acac563a4e8512d9e68d56f726fe003badce4c446b96724f766049bdd9",
+  "cgame_sha256": "0d7abf7bf540d78a2bd502615292d353b27a4cbe9d27696a40e45a5c89a5485f",
+  "images": [
+    "profiles-local/CP04-r1/wound-AA-v4/main/screenshots/shot0000.png",
+    "profiles-local/CP04-r1/wound-AA-v4/main/screenshots/shot0001.png",
+    "profiles-local/CP04-r1/wound-AA-v4/main/screenshots/shot0002.png"
+  ],
+  "geometry_events": [
+    "AC_HIT id=1 time=7100 entity=202 generation=3.250 weapon=models/weapons/colt45.tik group=1 seed=3869685147 entry=1 exit=1 surface=0/1/21",
+    "AC_HIT id=2 time=8000 entity=202 generation=3.250 weapon=models/weapons/colt45.tik group=1 seed=4070107876 entry=1 exit=1 surface=0/1/490"
+  ],
+  "mark_events": [
+    "AC_MARK drop -6442.569 -3786.011 474.717",
+    "AC_MARK drop -6445.188 -3789.778 475.144",
+    "AC_MARK drop -6440.075 -3796.137 475.967",
+    "AC_MARK drop -6444.383 -3798.900 476.255",
+    "AC_MARK drop -6435.521 -3791.425 475.447",
+    "AC_MARK drop -6441.799 -3788.226 474.993",
+    "AC_MARK drop -6518.729 -3814.420 477.332",
+    "AC_MARK drop -6524.856 -3811.142 476.870",
+    "AC_MARK drop -6524.408 -3821.049 478.073",
+    "AC_MARK drop -6436.723 -3799.043 476.355",
+    "AC_MARK drop -6508.168 -3821.103 478.254",
+    "AC_MARK drop -6513.017 -3824.518 478.614",
+    "AC_MARK drop -6436.351 -3787.122 474.918",
+    "AC_MARK drop -6510.199 -3812.149 477.150",
+    "AC_MARK drop -6434.261 -3797.107 476.147",
+    "AC_MARK drop -6432.565 -3799.874 476.500",
+    "AC_MARK drop -6513.484 -3814.425 477.389",
+    "AC_MARK drop -6516.340 -3816.330 477.589",
+    "AC_MARK drop -6429.742 -3786.970 474.970",
+    "AC_MARK drop -6427.443 -3783.953 474.630",
+    "AC_MARK drop -6509.833 -3818.562 477.929"
+  ],
+  "mist_events": [
+    "AC_MIST time=7555 effect=30 enabled=1 pos=-6481.500,-3810.188,546.625",
+    "AC_MIST time=8463 effect=30 enabled=1 pos=-6479.812,-3809.375,550.062"
+  ],
+  "errors": [],
+  "saved_off": true,
+  "rendered_mark_fragments": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    2,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    2,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    2,
+    1
+  ],
+  "wounds": [
+    "AC_WOUND id=1 branch=0 entity=202 usage=511 group=1 radius=1.80 seed=605297582 rotation=113.268311 flip=1,0 triangles=10",
+    "AC_WOUND id=2 branch=0 entity=202 usage=511 group=1 radius=1.80 seed=808076497 rotation=263.373383 flip=0,1 triangles=10"
+  ],
+  "received": [
+    "AC_WOUND_RECEIVED id=1 branch=0 triangles=10 rotation=113.268311 flip=1,0",
+    "AC_WOUND_RECEIVED id=2 branch=0 triangles=10 rotation=263.373383 flip=0,1"
+  ],
+  "drawn": [
+    "AC_WOUND_DRAW time=7838 id=1 branch=0 seed=605297582 rotation=113.268311 flip=1,0 triangles=10 range=179.2",
+    "AC_WOUND_DRAW time=8849 id=1 branch=0 seed=605297582 rotation=113.268311 flip=1,0 triangles=10 range=179.2",
+    "AC_WOUND_DRAW time=8849 id=2 branch=0 seed=808076497 rotation=263.373383 flip=0,1 triangles=10 range=179.2",
+    "AC_WOUND_DRAW time=9856 id=1 branch=0 seed=605297582 rotation=113.268311 flip=1,0 triangles=10 range=179.2",
+    "AC_WOUND_DRAW time=9856 id=2 branch=0 seed=808076497 rotation=263.373383 flip=0,1 triangles=10 range=179.2",
+    "AC_WOUND_DRAW time=10862 id=1 branch=0 seed=605297582 rotation=113.268311 flip=1,0 triangles=10 range=175.8",
+    "AC_WOUND_DRAW time=10862 id=2 branch=0 seed=808076497 rotation=263.373383 flip=0,1 triangles=10 range=175.8"
+  ],
+  "archive": [
+    "AC_WOUND_ARCHIVE save count=0",
+    "AC_WOUND_ARCHIVE save count=2",
+    "AC_WOUND_ARCHIVE load count=2"
+  ]
+}

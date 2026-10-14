@@ -215,7 +215,7 @@ Button
 {
 name "reset"
 title "Defaults"
-rect 210 422 200 32
+rect 210 448 200 28
 fgcolor 0.91 0.86 0.7 1
 bgcolor 0.12 0.14 0.12 1
 borderstyle NONE
@@ -266,4 +266,24 @@ checked_shader textures/menu/checkbox_checked
 unchecked_shader textures/menu/checkbox_unchecked
 }
 
+resource
+Label
+{
+name "bodyLabel"
+title "Body wounds"
+rect 30 411 300 26
+font facfont-20
+fgcolor 0.91 0.86 0.7 1
+borderstyle NONE
+}
+resource
+CheckBox
+{
+name "bodyWounds"
+title ""
+rect 438 411 30 26
+linkcvar ac_body_wounds
+checked_shader textures/menu/checkbox_checked
+unchecked_shader textures/menu/checkbox_unchecked
+}
 end.

@@ -889,7 +889,7 @@ void R_AddSkelSurfaces(trRefEntity_t *ent)
             }
 
             if (mesh == lod_mesh->integer) {
-                if (skelmodel->pLOD) {
+                if (skelmodel->pLOD && !backEnd.currentEntity->e.acFullDetail) {
                     break;
                 }
             }

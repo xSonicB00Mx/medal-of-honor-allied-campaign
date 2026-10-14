@@ -153,6 +153,7 @@ typedef struct {
 	int         bonestart;
 	int         morphstart;
 	qboolean    hasMorph;
+    qboolean    acFullDetail; // bounded close-range wound geometry; never networked
 } refEntity_t;
 
 

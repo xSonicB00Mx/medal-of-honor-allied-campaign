@@ -1,4 +1,6 @@
 #include "ac_weapon_policy.h"
+#include <cstddef>
+#include "ac_wound_send.h"
 // Called exactly once before damage for each confirmed, live human bullet contact.
 // Geometry and the isolated hash stream never consume gameplay randomness.
 static void ACVisualHit(Entity *target,Weapon *weapon,const Vector& point,const Vector& direction) {
@@ -23,6 +25,7 @@ static void ACVisualHit(Entity *target,Weapon *weapon,const Vector& point,const 
         gi.Printf("AC_CONTEXT id=%u context=%d usage=%d model=%s alive=1 pose=%u ray=%.5f,%.5f,%.5f\n",event,gi.Cvar_Get("com_target_game","0",0)->integer,e->s.usageIndex,target->model.c_str(),poseHash,direction.x,direction.y,direction.z);
     }
     if(!geometry.entryValid)return;
+    ACSendWound(target,pose,geometry.entry,event,seed,group,0);
     const auto& a=geometry.entry;const auto& b=geometry.exit;
     gi.SendServerCommand(-1,"ac_hit %u %u %d %d %d %.3f %.3f %.3f %.5f %.5f %.5f %.3f %.3f %.3f %.5f %.5f %.5f %d",
         event,seed,e->s.number,group,geometry.exitValid,a.position[0],a.position[1],a.position[2],a.normal[0],a.normal[1],a.normal[2],

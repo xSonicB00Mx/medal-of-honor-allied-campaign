@@ -24,3 +24,10 @@ jobs:
       - name: Build pinned source without game assets
         shell: pwsh
         run: ./tools/build-cp00.ps1 -CMake (Get-Command cmake).Source -FlexBison "$env:RUNNER_TEMP/parser"
+      - name: Validate shared weapon policy and visual transforms
+        shell: pwsh
+        run: |
+          python tools/generate_weapon_policy.py --check
+          cmake -S tests/ac_visual -B build-local/ac-visual-tests -A x64
+          cmake --build build-local/ac-visual-tests --config Release
+          ctest --test-dir build-local/ac-visual-tests -C Release --output-on-failure

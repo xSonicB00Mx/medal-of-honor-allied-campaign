@@ -1,0 +1,6 @@
+cmake_minimum_required(VERSION 3.20)
+project(ac_visual_tests LANGUAGES CXX)
+add_executable(ac_visual_tests orientation.cpp)
+target_compile_features(ac_visual_tests PRIVATE cxx_std_17)
+enable_testing()
+add_test(NAME orientation COMMAND ac_visual_tests)

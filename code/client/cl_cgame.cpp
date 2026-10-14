@@ -23,6 +23,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 #include "client.h"
 #include "cl_ui.h"
+#include "../tiki/tiki_surface.h"
 #include "cl_uiradar.h"
 #include "../corepp/tiki.h"
 #include "../qcommon/localization.h"
@@ -583,9 +584,12 @@ CL_RestoreSavedCgameState
 ====================
 */
 void CL_RestoreSavedCgameState() {
-	if (cls.savedCgameState) {
-		cge->CG_LoadStateToBuffer(cls.savedCgameState, cls.savedCgameStateSize, cl.snap.serverTime);
-	}
+    if (cls.savedCgameState) {
+        void *state=cls.savedCgameState;size_t size=cls.savedCgameStateSize;
+        cls.savedCgameState=NULL;cls.savedCgameStateSize=0;
+        cge->CG_LoadStateToBuffer(state,size,cl.snap.serverTime);
+        Z_Free(state);
+    }
 }
 
 /*
@@ -808,6 +812,7 @@ void CL_InitCGameDLL( clientGameImport_t *cgi, clientGameExport_t **cge ) {
 	cgi->Tag_NumForName				= TIKI_Tag_NameToNum;
 	cgi->Tag_NameForNum				= TIKI_Tag_NumToName;
 
+	cgi->AC_DeformPatch = TIKI_ACDeformPatch;
 	cgi->ForceUpdatePose			= re.ForceUpdatePose;
 	cgi->TIKI_Orientation			= re.TIKI_Orientation;
 	cgi->TIKI_IsOnGround			= re.TIKI_IsOnGround;
