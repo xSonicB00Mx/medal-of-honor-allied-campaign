@@ -1536,6 +1536,7 @@ void Com_GameRestart_f(void)
 
 void Com_WriteConfiguration(void);
 void Com_InitTargetGameWithType(target_game_e target_game, qboolean bIsDemo);
+#include "ac_progress_impl.h"
 #include "ac_context_impl.h"
 
 #ifndef STANDALONE
@@ -1863,6 +1864,7 @@ void Com_Init( char *commandLine ) {
 
 	Cbuf_AddText( "exec localized.cfg\n" );
 	Cbuf_AddText( "exec autoexec.cfg\n" );
+	if(Cvar_VariableIntegerValue("ac_campaign_mode")) Cbuf_AddText("exec ac_shared.cfg\n");
 	Cbuf_Execute( 0 );
 	Com_StartupVariable( NULL );
 	Cvar_Set( "config", configname );
@@ -1885,6 +1887,13 @@ void Com_Init( char *commandLine ) {
 	Cmd_AddCommand("ac_context", AC_Context_f);
 	Cmd_AddCommand("ac_load", AC_Context_f);
 	Cvar_Get("ac_campaign_mode", "0", CVAR_INIT);
+	Cvar_Get("ac_operation", "-1", CVAR_INIT);
+	Cvar_Get("ac_replay", "0", CVAR_INIT);
+	Cvar_Get("ac_expected_map", "", CVAR_INIT);
+	Cvar_Get("ac_native_transition", "", CVAR_ROM);
+	Cmd_AddCommand("ac_mission", AC_Mission_f);
+	Cmd_AddCommand("ac_continue", AC_Continue_f);
+	Cmd_AddCommand("ac_progress_report", AC_ProgressReport_f);
 
 	// override anything from the config files with command line args
 	Com_StartupVariable( NULL );
@@ -2143,6 +2152,7 @@ void Com_WriteConfiguration( void ) {
 	cvar_modifiedFlags &= ~CVAR_ARCHIVE;
 
 	Com_WriteConfigToFile( config->string );
+	AC_WriteSharedConfiguration();
 
 	// not needed for dedicated
 #ifndef DEDICATED

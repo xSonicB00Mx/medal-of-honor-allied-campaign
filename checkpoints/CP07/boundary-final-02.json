@@ -1,0 +1,43 @@
+{
+  "operation": "bt_kasserine",
+  "case": "success",
+  "expected_completed": 7,
+  "actual_completed": 7,
+  "pass_state": true,
+  "exit": 0,
+  "test_stopped_after_event": false,
+  "events": [
+    "[2026-10-14 12:43:02 UTC+1.000] AC_MISSION_ENTRY bt_kasserine e1l2",
+    "[2026-10-14 12:43:03 UTC+1.000] ^~^~^ Script Error : ModifyDrive used improperly... (used before the level is spawned)",
+    "[2026-10-14 12:43:04 UTC+1.000] D:\\Medal of Honor - Allied Campaign\\allied-campaign-workspace\\runtime-local\\CP07-r1\\maintt\\zzzzz_AC_Campaign.pk3 (3 files)",
+    "[2026-10-14 12:43:04 UTC+1.000] D:\\Medal of Honor - Allied Campaign\\allied-campaign-workspace\\runtime-local\\CP07-r1\\maintt\\zzzz_AC_UI.pk3 (2 files)",
+    "[2026-10-14 12:43:04 UTC+1.000] D:\\Medal of Honor - Allied Campaign\\allied-campaign-workspace\\runtime-local\\CP07-r1\\maintt\\zzzz_AC_BT_Drops.pk3 (6 files)",
+    "[2026-10-14 12:43:04 UTC+1.000] D:\\Medal of Honor - Allied Campaign\\allied-campaign-workspace\\runtime-local\\CP07-r1\\main\\zzzzz_AC_Campaign.pk3 (3 files)",
+    "[2026-10-14 12:43:04 UTC+1.000] D:\\Medal of Honor - Allied Campaign\\allied-campaign-workspace\\runtime-local\\CP07-r1\\main\\zzzz_AC_Wounds.pk3 (3 files)",
+    "[2026-10-14 12:43:04 UTC+1.000] D:\\Medal of Honor - Allied Campaign\\allied-campaign-workspace\\runtime-local\\CP07-r1\\main\\zzzz_AC_UI.pk3 (2 files)",
+    "[2026-10-14 12:43:04 UTC+1.000] D:\\Medal of Honor - Allied Campaign\\allied-campaign-workspace\\runtime-local\\CP07-r1\\main\\zzzz_AC_MP1.pk3 (18 files)",
+    "[2026-10-14 12:43:06 UTC+1.000] AC_PROGRESS_COMMIT completed=3 resume=2 slot=e1l20000",
+    "[2026-10-14 12:43:09 UTC+1.000] AC_PROGRESS valid=1 completed=3 resume=2 slot=e1l20000 operation=2 replay=0",
+    "[2026-10-14 12:43:17 UTC+1.000] AC_PROGRESS valid=1 completed=3 resume=2 slot=e1l20000 operation=2 replay=0",
+    "[2026-10-14 12:43:17 UTC+1.000] AC_BOUNDARY_DONE",
+    "[2026-10-14 12:43:17 UTC+1.000] AC_PROGRESS_COMMIT completed=7 resume=3 slot=-",
+    "[2026-10-14 12:43:17 UTC+1.000] AC_MISSION_COMPLETE bt_kasserine",
+    "[2026-10-14 12:43:17 UTC+1.000] AC_CONTEXT_RESTART 2 -> 2 e1l3 child=31256",
+    "[2026-10-14 12:43:20 UTC+1.000] AC_MISSION_ENTRY bt_bizerte e1l3",
+    "[2026-10-14 12:43:22 UTC+1.000] D:\\Medal of Honor - Allied Campaign\\allied-campaign-workspace\\runtime-local\\CP07-r1\\maintt\\zzzzz_AC_Campaign.pk3 (3 files)",
+    "[2026-10-14 12:43:22 UTC+1.000] D:\\Medal of Honor - Allied Campaign\\allied-campaign-workspace\\runtime-local\\CP07-r1\\maintt\\zzzz_AC_UI.pk3 (2 files)",
+    "[2026-10-14 12:43:22 UTC+1.000] D:\\Medal of Honor - Allied Campaign\\allied-campaign-workspace\\runtime-local\\CP07-r1\\maintt\\zzzz_AC_BT_Drops.pk3 (6 files)",
+    "[2026-10-14 12:43:22 UTC+1.000] D:\\Medal of Honor - Allied Campaign\\allied-campaign-workspace\\runtime-local\\CP07-r1\\main\\zzzzz_AC_Campaign.pk3 (3 files)",
+    "[2026-10-14 12:43:22 UTC+1.000] D:\\Medal of Honor - Allied Campaign\\allied-campaign-workspace\\runtime-local\\CP07-r1\\main\\zzzz_AC_Wounds.pk3 (3 files)",
+    "[2026-10-14 12:43:22 UTC+1.000] D:\\Medal of Honor - Allied Campaign\\allied-campaign-workspace\\runtime-local\\CP07-r1\\main\\zzzz_AC_UI.pk3 (2 files)",
+    "[2026-10-14 12:43:22 UTC+1.000] D:\\Medal of Honor - Allied Campaign\\allied-campaign-workspace\\runtime-local\\CP07-r1\\main\\zzzz_AC_MP1.pk3 (18 files)",
+    "[2026-10-14 12:43:24 UTC+1.000] AC_PROGRESS_COMMIT completed=7 resume=3 slot=e1l30000",
+    "[2026-10-14 12:43:26 UTC+1.000] AC_PROGRESS valid=1 completed=7 resume=3 slot=e1l30000 operation=3 replay=0",
+    "[2026-10-14 12:43:26 UTC+1.000] AC_CHILD_READY"
+  ],
+  "errors": [
+    "[2026-10-14 12:43:03 UTC+1.000] ^~^~^ Script Error : ModifyDrive used improperly... (used before the level is spawned)"
+  ],
+  "scope": "Seeded test profile and synthetic native intermission/negative case; not natural mission completion",
+  "engine_sha256": "7c0188b286b0a3ed290d75b971049f6ccb2a91cb21bb4803570c5fbb191cb00b"
+}

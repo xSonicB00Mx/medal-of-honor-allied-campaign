@@ -1,0 +1,633 @@
+{
+  "schema": 1,
+  "operations": [
+    {
+      "id": "aa_torch",
+      "source_game": "AA",
+      "operation_id": "aa_torch",
+      "map_chain": [
+        "m1l1",
+        "m1l2a",
+        "m1l2b",
+        "m1l3a",
+        "m1l3b",
+        "m1l3c"
+      ],
+      "display_name": "Operation Torch",
+      "game_date_start": "1942-11-07",
+      "game_date_end": "1942-11-07",
+      "date_precision": "day",
+      "date_source": [
+        "textures/mohmenu/levelbriefing/m1l1_1.tga"
+      ],
+      "location_name": "Arzew, Algeria",
+      "location_precision": "region",
+      "protagonist": "Mike Powell",
+      "briefing": "briefing/briefing1",
+      "start_state": "original_loadout_at_operation_entry",
+      "entry_map": "briefing/briefing1",
+      "prerequisites": [],
+      "continuity_group": "aa_torch",
+      "completion_event": {
+        "last_map": "m1l3c",
+        "native_next": "briefing/briefing2"
+      },
+      "next_id": "aa_trondheim",
+      "replay_policy": "preserve_main_resume_and_unlocks_return_to_map",
+      "gameplay_patch_profile": "WCR-native-drops",
+      "content_profile": "CP00-r4-AA",
+      "content_fingerprint": "a1fd29c088740c742daa7e7b76a506fb39a8d7d926e62dd5ea39fdd385d45dd8",
+      "completion_variant": "native-transition-or-credits",
+      "optional_entry_points": [],
+      "notes": []
+    },
+    {
+      "id": "aa_trondheim",
+      "source_game": "AA",
+      "operation_id": "aa_trondheim",
+      "map_chain": [
+        "m2l1",
+        "m2l2a",
+        "m2l2b",
+        "m2l2c",
+        "m2l3"
+      ],
+      "display_name": "Scuttling the U-529",
+      "game_date_start": "1943-02-12",
+      "game_date_end": "1943-02-12",
+      "date_precision": "day",
+      "date_source": [
+        "textures/mohmenu/levelbriefing/m2l1_1.tga"
+      ],
+      "location_name": "Trondheim, Norway",
+      "location_precision": "region",
+      "protagonist": "Mike Powell",
+      "briefing": "briefing/briefing2",
+      "start_state": "original_loadout_at_operation_entry",
+      "entry_map": "briefing/briefing2",
+      "prerequisites": [
+        "aa_torch"
+      ],
+      "continuity_group": "aa_trondheim",
+      "completion_event": {
+        "last_map": "m2l3",
+        "native_next": "briefing/briefing3"
+      },
+      "next_id": "bt_kasserine",
+      "replay_policy": "preserve_main_resume_and_unlocks_return_to_map",
+      "gameplay_patch_profile": "WCR-native-drops",
+      "content_profile": "CP00-r4-AA",
+      "content_fingerprint": "a1fd29c088740c742daa7e7b76a506fb39a8d7d926e62dd5ea39fdd385d45dd8",
+      "completion_variant": "native-transition-or-credits",
+      "optional_entry_points": [],
+      "notes": []
+    },
+    {
+      "id": "bt_kasserine",
+      "source_game": "BT",
+      "operation_id": "bt_kasserine",
+      "map_chain": [
+        "e1l1",
+        "e1l2"
+      ],
+      "display_name": "Kasserine Pass",
+      "game_date_start": "1943-02-20",
+      "game_date_end": "1943-02-20",
+      "date_precision": "day",
+      "date_source": [
+        "textures/gametext/e1l1_ScreenText1.tga",
+        "textures/gametext/e1l1_ScreenText2.tga"
+      ],
+      "location_name": "Kasserine Pass, Tunisia",
+      "location_precision": "region",
+      "protagonist": "John Baker",
+      "briefing": "briefing/briefinge1",
+      "start_state": "original_loadout_at_operation_entry",
+      "entry_map": "briefing/briefinge1",
+      "prerequisites": [
+        "aa_trondheim"
+      ],
+      "continuity_group": "bt_kasserine",
+      "completion_event": {
+        "last_map": "e1l2",
+        "native_next": "e1l3"
+      },
+      "next_id": "bt_bizerte",
+      "replay_policy": "preserve_main_resume_and_unlocks_return_to_map",
+      "gameplay_patch_profile": "CP00a-BT-v1",
+      "content_profile": "CP00-r4-BT",
+      "content_fingerprint": "e3cba53377fc8c42372c9bc9e28797564004a5b52ceaaac62a64ca1f1a567779",
+      "completion_variant": "native-transition-or-credits",
+      "optional_entry_points": [],
+      "notes": []
+    },
+    {
+      "id": "bt_bizerte",
+      "source_game": "BT",
+      "operation_id": "bt_bizerte",
+      "map_chain": [
+        "e1l3",
+        "e1l4"
+      ],
+      "display_name": "Bizerte",
+      "game_date_start": "1943-04-20",
+      "game_date_end": "1943-04-20",
+      "date_precision": "day",
+      "date_source": [
+        "textures/gametext/e1l3_ScreenText1.tga",
+        "textures/gametext/e1l3_ScreenText2.tga"
+      ],
+      "location_name": "Bizerte, Tunisia",
+      "location_precision": "region",
+      "protagonist": "John Baker",
+      "briefing": null,
+      "start_state": "original_loadout_at_operation_entry",
+      "entry_map": "e1l3",
+      "prerequisites": [
+        "bt_kasserine"
+      ],
+      "continuity_group": "bt_bizerte",
+      "completion_event": {
+        "last_map": "e1l4",
+        "native_next": "briefing/briefinge2"
+      },
+      "next_id": "bt_sicily",
+      "replay_policy": "preserve_main_resume_and_unlocks_return_to_map",
+      "gameplay_patch_profile": "CP00a-BT-v1",
+      "content_profile": "CP00-r4-BT",
+      "content_fingerprint": "e3cba53377fc8c42372c9bc9e28797564004a5b52ceaaac62a64ca1f1a567779",
+      "completion_variant": "native-transition-or-credits",
+      "optional_entry_points": [],
+      "notes": []
+    },
+    {
+      "id": "bt_sicily",
+      "source_game": "BT",
+      "operation_id": "bt_sicily",
+      "map_chain": [
+        "e2l1",
+        "e2l2",
+        "e2l3"
+      ],
+      "display_name": "Operation Husky",
+      "game_date_start": "1943-07-10",
+      "game_date_end": "1943-07-10",
+      "date_precision": "day",
+      "date_source": [
+        "textures/gametext/e2l1_ScreenText1.tga",
+        "textures/gametext/e2l1_ScreenText2.tga"
+      ],
+      "location_name": "Sicily, Italy",
+      "location_precision": "region",
+      "protagonist": "John Baker",
+      "briefing": "briefing/briefinge2",
+      "start_state": "original_loadout_at_operation_entry",
+      "entry_map": "briefing/briefinge2",
+      "prerequisites": [
+        "bt_bizerte"
+      ],
+      "continuity_group": "bt_sicily",
+      "completion_event": {
+        "last_map": "e2l3",
+        "native_next": "briefing/briefinge3"
+      },
+      "next_id": "bt_cassino",
+      "replay_policy": "preserve_main_resume_and_unlocks_return_to_map",
+      "gameplay_patch_profile": "CP00a-BT-v1",
+      "content_profile": "CP00-r4-BT",
+      "content_fingerprint": "e3cba53377fc8c42372c9bc9e28797564004a5b52ceaaac62a64ca1f1a567779",
+      "completion_variant": "native-transition-or-credits",
+      "optional_entry_points": [],
+      "notes": []
+    },
+    {
+      "id": "bt_cassino",
+      "source_game": "BT",
+      "operation_id": "bt_cassino",
+      "map_chain": [
+        "e3l1",
+        "e3l2"
+      ],
+      "display_name": "Monte Cassino",
+      "game_date_start": "1944-01-12",
+      "game_date_end": "1944-01-12",
+      "date_precision": "day",
+      "date_source": [
+        "textures/gametext/e3l1_ScreenText1.tga",
+        "textures/gametext/e3l1_ScreenText2.tga"
+      ],
+      "location_name": "Monte Cassino, Italy",
+      "location_precision": "region",
+      "protagonist": "John Baker",
+      "briefing": "briefing/briefinge3",
+      "start_state": "original_loadout_at_operation_entry",
+      "entry_map": "briefing/briefinge3",
+      "prerequisites": [
+        "bt_sicily"
+      ],
+      "continuity_group": "bt_cassino",
+      "completion_event": {
+        "last_map": "e3l2",
+        "native_next": "e3l3"
+      },
+      "next_id": "bt_anzio",
+      "replay_policy": "preserve_main_resume_and_unlocks_return_to_map",
+      "gameplay_patch_profile": "CP00a-BT-v1",
+      "content_profile": "CP00-r4-BT",
+      "content_fingerprint": "e3cba53377fc8c42372c9bc9e28797564004a5b52ceaaac62a64ca1f1a567779",
+      "completion_variant": "native-transition-or-credits",
+      "optional_entry_points": [],
+      "notes": []
+    },
+    {
+      "id": "bt_anzio",
+      "source_game": "BT",
+      "operation_id": "bt_anzio",
+      "map_chain": [
+        "e3l3"
+      ],
+      "display_name": "Anzio",
+      "game_date_start": "1944-01-22",
+      "game_date_end": "1944-01-22",
+      "date_precision": "day",
+      "date_source": [
+        "textures/gametext/e3l3_ScreenText1.tga",
+        "textures/gametext/e3l3_ScreenText2.tga"
+      ],
+      "location_name": "Anzio, Italy",
+      "location_precision": "region",
+      "protagonist": "John Baker",
+      "briefing": null,
+      "start_state": "original_loadout_at_operation_entry",
+      "entry_map": "e3l3",
+      "prerequisites": [
+        "bt_cassino"
+      ],
+      "continuity_group": "bt_anzio",
+      "completion_event": {
+        "last_map": "e3l3",
+        "native_next": "e3l4"
+      },
+      "next_id": "sh_normandy",
+      "replay_policy": "preserve_main_resume_and_unlocks_return_to_map",
+      "gameplay_patch_profile": "CP00a-BT-v1",
+      "content_profile": "CP00-r4-BT",
+      "content_fingerprint": "e3cba53377fc8c42372c9bc9e28797564004a5b52ceaaac62a64ca1f1a567779",
+      "completion_variant": "native-transition-or-credits",
+      "optional_entry_points": [],
+      "notes": []
+    },
+    {
+      "id": "sh_normandy",
+      "source_game": "SH",
+      "operation_id": "sh_normandy",
+      "map_chain": [
+        "t1l1",
+        "t1l2",
+        "t1l3"
+      ],
+      "display_name": "Normandy Airborne",
+      "game_date_start": "1944-06-06",
+      "game_date_end": "1944-06-06",
+      "date_precision": "day",
+      "date_source": [
+        "textures/gametext/t1l1_ScreenText1.tga",
+        "textures/gametext/t1l1_ScreenText2.tga"
+      ],
+      "location_name": "Normandy, France",
+      "location_precision": "region",
+      "protagonist": "Jack Barnes",
+      "briefing": "briefing/briefingt1",
+      "start_state": "original_loadout_at_operation_entry",
+      "entry_map": "briefing/briefingt1",
+      "prerequisites": [
+        "bt_anzio"
+      ],
+      "continuity_group": "sh_normandy",
+      "completion_event": {
+        "last_map": "t1l3",
+        "native_next": "briefing/briefingt2"
+      },
+      "next_id": "aa_normandy",
+      "replay_policy": "preserve_main_resume_and_unlocks_return_to_map",
+      "gameplay_patch_profile": "WCR-native-drops",
+      "content_profile": "CP00-r4-SH",
+      "content_fingerprint": "ffcf323250e3b7e36c72c15f8430f4af580a190a84b7e1312a51d1ddc855fa65",
+      "completion_variant": "native-transition-or-credits",
+      "optional_entry_points": [],
+      "notes": []
+    },
+    {
+      "id": "aa_normandy",
+      "source_game": "AA",
+      "operation_id": "aa_normandy",
+      "map_chain": [
+        "m3l1a",
+        "m3l1b",
+        "m3l2",
+        "m3l3"
+      ],
+      "display_name": "Omaha Beach and the Bocage",
+      "game_date_start": "1944-06-06",
+      "game_date_end": "1944-06-07",
+      "date_precision": "range",
+      "date_source": [
+        "textures/gametext/june6.tga",
+        "textures/mohmenu/levelbriefing/m3l2_1.tga"
+      ],
+      "location_name": "Normandy, France",
+      "location_precision": "region",
+      "protagonist": "Mike Powell",
+      "briefing": "briefing/briefing3",
+      "start_state": "original_loadout_at_operation_entry",
+      "entry_map": "briefing/briefing3",
+      "prerequisites": [
+        "sh_normandy"
+      ],
+      "continuity_group": "aa_normandy",
+      "completion_event": {
+        "last_map": "m3l3",
+        "native_next": "briefing/briefing4"
+      },
+      "next_id": "aa_resistance",
+      "replay_policy": "preserve_main_resume_and_unlocks_return_to_map",
+      "gameplay_patch_profile": "WCR-native-drops",
+      "content_profile": "CP00-r4-AA",
+      "content_fingerprint": "a1fd29c088740c742daa7e7b76a506fb39a8d7d926e62dd5ea39fdd385d45dd8",
+      "completion_variant": "native-transition-or-credits",
+      "optional_entry_points": [],
+      "notes": []
+    },
+    {
+      "id": "aa_resistance",
+      "source_game": "AA",
+      "operation_id": "aa_resistance",
+      "map_chain": [
+        "m4l1",
+        "m4l2",
+        "m4l3"
+      ],
+      "display_name": "Behind Enemy Lines",
+      "game_date_start": "1944-06-12",
+      "game_date_end": "1944-06-22",
+      "date_precision": "range",
+      "date_source": [
+        "textures/mohmenu/levelbriefing/m4l1_1.tga",
+        "textures/mohmenu/levelbriefing/m4l2_1.tga",
+        "textures/mohmenu/levelbriefing/m4l3_1.tga"
+      ],
+      "location_name": "Normandy, France",
+      "location_precision": "region",
+      "protagonist": "Mike Powell",
+      "briefing": "briefing/briefing4",
+      "start_state": "original_loadout_at_operation_entry",
+      "entry_map": "briefing/briefing4",
+      "prerequisites": [
+        "aa_normandy"
+      ],
+      "continuity_group": "aa_resistance",
+      "completion_event": {
+        "last_map": "m4l3",
+        "native_next": "briefing/briefing5"
+      },
+      "next_id": "aa_brittany",
+      "replay_policy": "preserve_main_resume_and_unlocks_return_to_map",
+      "gameplay_patch_profile": "WCR-native-drops",
+      "content_profile": "CP00-r4-AA",
+      "content_fingerprint": "a1fd29c088740c742daa7e7b76a506fb39a8d7d926e62dd5ea39fdd385d45dd8",
+      "completion_variant": "native-transition-or-credits",
+      "optional_entry_points": [],
+      "notes": [
+        "Installed briefing dates conflict: m4l1/m4l3 June 22, m4l2 June 12. Preserve native chain inside June 12-22 interval; no other operation falls inside it."
+      ]
+    },
+    {
+      "id": "aa_brittany",
+      "source_game": "AA",
+      "operation_id": "aa_brittany",
+      "map_chain": [
+        "m5l1a",
+        "m5l1b",
+        "m5l2a",
+        "m5l2b",
+        "m5l3"
+      ],
+      "display_name": "The Day of the Tiger",
+      "game_date_start": "1944-08-20",
+      "game_date_end": "1944-08-20",
+      "date_precision": "day",
+      "date_source": [
+        "textures/mohmenu/levelbriefing/m5l1a_1.tga"
+      ],
+      "location_name": "Brittany, France",
+      "location_precision": "region",
+      "protagonist": "Mike Powell",
+      "briefing": "briefing/briefing5",
+      "start_state": "original_loadout_at_operation_entry",
+      "entry_map": "briefing/briefing5",
+      "prerequisites": [
+        "aa_resistance"
+      ],
+      "continuity_group": "aa_brittany",
+      "completion_event": {
+        "last_map": "m5l3",
+        "native_next": "briefing/briefing6"
+      },
+      "next_id": "bt_battaglia",
+      "replay_policy": "preserve_main_resume_and_unlocks_return_to_map",
+      "gameplay_patch_profile": "WCR-native-drops",
+      "content_profile": "CP00-r4-AA",
+      "content_fingerprint": "a1fd29c088740c742daa7e7b76a506fb39a8d7d926e62dd5ea39fdd385d45dd8",
+      "completion_variant": "native-transition-or-credits",
+      "optional_entry_points": [
+        "void",
+        "medic_start"
+      ],
+      "notes": []
+    },
+    {
+      "id": "bt_battaglia",
+      "source_game": "BT",
+      "operation_id": "bt_battaglia",
+      "map_chain": [
+        "e3l4"
+      ],
+      "display_name": "Monte Battaglia",
+      "game_date_start": "1944-09-28",
+      "game_date_end": "1944-09-28",
+      "date_precision": "day",
+      "date_source": [
+        "textures/gametext/e3l4_ScreenText1.tga",
+        "textures/gametext/e3l4_ScreenText2.tga"
+      ],
+      "location_name": "Monte Battaglia, Italy",
+      "location_precision": "region",
+      "protagonist": "John Baker",
+      "briefing": null,
+      "start_state": "original_loadout_at_operation_entry",
+      "entry_map": "e3l4",
+      "prerequisites": [
+        "aa_brittany"
+      ],
+      "continuity_group": "bt_battaglia",
+      "completion_event": {
+        "last_map": "e3l4",
+        "native_next": "ac_campaign_end"
+      },
+      "next_id": "sh_ardennes",
+      "replay_policy": "preserve_main_resume_and_unlocks_return_to_map",
+      "gameplay_patch_profile": "CP00a-BT-v1",
+      "content_profile": "CP00-r4-BT",
+      "content_fingerprint": "e3cba53377fc8c42372c9bc9e28797564004a5b52ceaaac62a64ca1f1a567779",
+      "completion_variant": "WCR-escape-outro-credits",
+      "optional_entry_points": [],
+      "notes": []
+    },
+    {
+      "id": "sh_ardennes",
+      "source_game": "SH",
+      "operation_id": "sh_ardennes",
+      "map_chain": [
+        "t2l1",
+        "t2l2",
+        "t2l3",
+        "t2l4"
+      ],
+      "display_name": "The Ardennes",
+      "game_date_start": "1944-12-24",
+      "game_date_end": "1944-12-25",
+      "date_precision": "range",
+      "date_source": [
+        "textures/gametext/t2l1_ScreenText1.tga",
+        "textures/gametext/t2l1_ScreenText2.tga"
+      ],
+      "location_name": "Ardennes, Belgium",
+      "location_precision": "region",
+      "protagonist": "Jack Barnes",
+      "briefing": "briefing/briefingt2",
+      "start_state": "original_loadout_at_operation_entry",
+      "entry_map": "briefing/briefingt2",
+      "prerequisites": [
+        "bt_battaglia"
+      ],
+      "continuity_group": "sh_ardennes",
+      "completion_event": {
+        "last_map": "t2l4",
+        "native_next": "briefing/briefingt3"
+      },
+      "next_id": "aa_schmerzen",
+      "replay_policy": "preserve_main_resume_and_unlocks_return_to_map",
+      "gameplay_patch_profile": "WCR-native-drops",
+      "content_profile": "CP00-r4-SH",
+      "content_fingerprint": "ffcf323250e3b7e36c72c15f8430f4af580a190a84b7e1312a51d1ddc855fa65",
+      "completion_variant": "native-transition-or-credits",
+      "optional_entry_points": [],
+      "notes": []
+    },
+    {
+      "id": "aa_schmerzen",
+      "source_game": "AA",
+      "operation_id": "aa_schmerzen",
+      "map_chain": [
+        "m6l1a",
+        "m6l1b",
+        "m6l1c",
+        "m6l2a",
+        "m6l2b",
+        "m6l3a",
+        "m6l3b",
+        "m6l3d",
+        "m6l3c",
+        "m6l3e"
+      ],
+      "display_name": "Return to Schmerzen",
+      "game_date_start": "1945-01-18",
+      "game_date_end": "1945-01-18",
+      "date_precision": "day",
+      "date_source": [
+        "textures/mohmenu/levelbriefing/m6l1a_1.tga"
+      ],
+      "location_name": "Siegfried Line, Germany",
+      "location_precision": "region",
+      "protagonist": "Mike Powell",
+      "briefing": "briefing/briefing6",
+      "start_state": "original_loadout_at_operation_entry",
+      "entry_map": "briefing/briefing6",
+      "prerequisites": [
+        "sh_ardennes"
+      ],
+      "continuity_group": "aa_schmerzen",
+      "completion_event": {
+        "last_map": "m6l3e",
+        "native_next": "ac_campaign_end"
+      },
+      "next_id": "sh_berlin",
+      "replay_policy": "preserve_main_resume_and_unlocks_return_to_map",
+      "gameplay_patch_profile": "WCR-native-drops",
+      "content_profile": "CP00-r4-AA",
+      "content_fingerprint": "a1fd29c088740c742daa7e7b76a506fb39a8d7d926e62dd5ea39fdd385d45dd8",
+      "completion_variant": "native-transition-or-credits",
+      "optional_entry_points": [],
+      "notes": []
+    },
+    {
+      "id": "sh_berlin",
+      "source_game": "SH",
+      "operation_id": "sh_berlin",
+      "map_chain": [
+        "t3l1",
+        "t3l2"
+      ],
+      "display_name": "Berlin",
+      "game_date_start": "1945-04",
+      "game_date_end": "1945-05",
+      "date_precision": "historical_context_range",
+      "date_source": [
+        "textures/gametext/t3l1_ScreenText1.tga",
+        "textures/gametext/t3l1_ScreenText2.tga",
+        "https://www.nam.ac.uk/explore/april-1945"
+      ],
+      "location_name": "Berlin, Germany",
+      "location_precision": "region",
+      "protagonist": "Jack Barnes",
+      "briefing": "briefing/briefingt3",
+      "start_state": "original_loadout_at_operation_entry",
+      "entry_map": "briefing/briefingt3",
+      "prerequisites": [
+        "aa_schmerzen"
+      ],
+      "continuity_group": "sh_berlin",
+      "completion_event": {
+        "last_map": "t3l2",
+        "native_next": "briefing/briefingd1"
+      },
+      "next_id": null,
+      "replay_policy": "preserve_main_resume_and_unlocks_return_to_map",
+      "gameplay_patch_profile": "WCR-native-drops",
+      "content_profile": "CP00-r4-SH",
+      "content_fingerprint": "ffcf323250e3b7e36c72c15f8430f4af580a190a84b7e1312a51d1ddc855fa65",
+      "completion_variant": "native-transition-or-credits",
+      "optional_entry_points": [],
+      "notes": [
+        "The game title cards specify Berlin and 0430 hours but no calendar date. April-May 1945 is historical context, not a verified exact game date."
+      ]
+    }
+  ],
+  "optional": [
+    {
+      "id": "aa_farmhouse",
+      "source_game": "AA",
+      "map_chain": [
+        "m4l0"
+      ],
+      "display_name": "Farmhouse (optional)",
+      "date_precision": "unknown",
+      "location_precision": "unknown",
+      "reason": "Present in installed content but not referenced by mandatory mission transitions; kept outside main progression."
+    }
+  ],
+  "ordering_notes": [
+    "June 6 overlap: airborne Normandy before Omaha Beach; preserve both native chains.",
+    "No invented precise date for Berlin or the conflicting Normandy briefings."
+  ]
+}

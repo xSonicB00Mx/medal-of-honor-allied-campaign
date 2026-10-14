@@ -1,0 +1,12 @@
+{
+  "operation": "aa_torch",
+  "case": "success",
+  "expected_completed": 1,
+  "actual_completed": 1,
+  "pass_state": true,
+  "exit": 0,
+  "events": [],
+  "errors": [],
+  "scope": "Seeded test profile and synthetic native intermission/negative case; not natural mission completion",
+  "engine_sha256": "b1e92684d00112a39e9d3aba860c3c5173c5da3e8a8fb407a404f9f8f159bccb"
+}

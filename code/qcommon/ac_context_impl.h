@@ -1,4 +1,21 @@
 /* Allied Campaign: explicit, single-player content-context lifecycle. */
+static void AC_WriteSharedConfiguration(void)
+{
+#ifndef DEDICATED
+    static const char *names[]={"ac_ui_auto","ac_menu_scale","ac_hud_scale","ac_hud_safe","ac_blood_mist","ac_world_blood","ac_body_wounds","ac_corpse_effects","cg_fov","s_volume","s_musicvolume","sensitivity","skill","r_mode","r_customwidth","r_customheight","r_fullscreen","cl_playintro"};
+    fileHandle_t f;int i;
+    if(!Cvar_VariableIntegerValue("ac_campaign_mode")) return;
+    f=FS_BaseDir_FOpenFileWrite_HomeConfig("main/ac_shared.cfg");if(!f) return;
+    Key_WriteBindings(f);
+    for(i=0;i<ARRAY_LEN(names);i++) {
+        const char *value=Cvar_VariableString(names[i]);
+        if(strpbrk(value,"\"\n\r")) continue;
+        FS_Printf(f,"seta %s \"%s\"\n",names[i],value);
+    }
+    FS_FCloseFile(f);
+#endif
+}
+
 static void AC_Context_f(void)
 {
     char targetText[8], map[MAX_QPATH];
@@ -8,9 +25,10 @@ static void AC_Context_f(void)
         "ac_blood_mist", "ac_world_blood", "ac_body_wounds", "ac_corpse_effects",
         "cg_fov", "s_volume", "s_musicvolume", "sensitivity", "skill",
         "r_mode", "r_customwidth", "r_customheight", "r_fullscreen",
-        "cl_playintro", "developer", "logfile", "com_maxfps", "com_maxfpsUnfocused", "ac_campaign_mode"
+        "cl_playintro", "developer", "logfile", "com_maxfps", "com_maxfpsUnfocused", "ac_campaign_mode",
+        "ac_operation", "ac_replay", "ac_expected_map"
     };
-    
+
     if (Cmd_Argc() != 3 || strlen(Cmd_Argv(1)) != 1 || Cmd_Argv(1)[0] < '0' || Cmd_Argv(1)[0] > '2') {
         Com_Printf("AC_CONTEXT_REJECT usage: ac_context <0|1|2> <map|menu>\n");
         return;
@@ -23,7 +41,7 @@ static void AC_Context_f(void)
     Q_strncpyz(map, Cmd_Argv(2), sizeof(map));
     if (strlen(Cmd_Argv(2)) >= sizeof(map) || !map[0]) return;
     for (i=0; map[i]; i++) {
-        if (!((map[i]>='a' && map[i]<='z') || (map[i]>='0' && map[i]<='9') || map[i]=='_')) {
+        if (!((map[i]>='a' && map[i]<='z') || (map[i]>='A' && map[i]<='Z') || (map[i]>='0' && map[i]<='9') || map[i]=='_' || map[i]=='/' || map[i]=='-')) {
             Com_Printf("AC_CONTEXT_REJECT invalid map\n"); return;
         }
     }

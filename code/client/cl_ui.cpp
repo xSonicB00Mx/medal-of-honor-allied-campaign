@@ -3583,13 +3583,11 @@ static void UI_CampaignOptions_f(void)
     UI_PushMenu("ac_scaling");
 }
 
+#include "ac_campaign_ui.h"
+
 static void UI_AlliedCampaign_f(void)
 {
-    const char *pages[] = {"ac_campaign_aa1", "ac_campaign_aa2", "ac_campaign_sh", "ac_campaign_bt"};
-    int page = Cmd_Argc() > 1 ? atoi(Cmd_Argv(1)) : 0;
-    if (page < 0 || page >= 4) return;
-    if (!menuManager.FindMenu(pages[page])) UI_LoadMenu(pages[page]);
-    UI_PushMenu(pages[page]);
+    AC_ShowOperations();
 }
 
 static void UI_AlliedSaves_f(void)

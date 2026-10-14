@@ -1,3 +1,7 @@
+## Fortsetzung bis CP8
+
+CP6 und CP7 sind als technische Kandidaten implementiert. CP6-CI bestanden; alle 54 Karten starten mit Save-Ausgabe. CP7: 15 synthetische Abschlussgrenzen mit korrektem Fortschritt, getrennte Wiederholungen, Save-Metadaten und Wiederherstellung. Natuerliche Vollabnahme bleibt offen; Basisdiagnosen siehe CP7-Bericht. CP8-Karte in Arbeit.
+
 # Status
 
 Aktueller Auftrag: autonom bis einschliesslich CP8. CP6 Missionslader IN_ARBEIT auf Basis CP05a-r3; danach CP7 chronologische Progression und CP8 Einsatzkarte. Noch keine dieser Funktionen als fertig oder abgenommen ausgewiesen.

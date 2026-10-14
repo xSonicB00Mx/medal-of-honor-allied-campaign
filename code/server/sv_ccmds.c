@@ -265,6 +265,7 @@ static void SV_Map_f( void ) {
 	*/
 
 	// start up the map
+	AC_CampaignMapCommand(map);
 	SV_SpawnServer( mapname, qfalse, qfalse, qfalse );
 
 	if( g_gametype->integer == GT_SINGLE_PLAYER ) {
@@ -289,6 +290,7 @@ static void SV_GameMap_f( void ) {
 	}
 
 	map = Cmd_Argv( 1 );
+	if (AC_CampaignTransition(svs.mapName, map)) return;
 	Com_DPrintf( "SV_GameMap(%s)\n", map );
 
 	Q_strncpyz( svs.gameName, "current", sizeof( svs.gameName ) );
@@ -2470,6 +2472,7 @@ void SV_Loadgame_f(void)
 	}
 
 	if (ge->LevelArchiveValid(archive_name) && SV_ArchiveServerFile(qtrue, qfalse)) {
+		AC_CampaignRestore(!strcmp(ac_loadedMap,svs.mapName)?ac_loadedOperation:-1,ac_loadedReplay,svs.mapName);
 		SV_SpawnServer(svs.mapName, qtrue, qfalse, qfalse);
 		svs.soundsNeedLoad = qtrue;
 	} else if (bStartedGame) {
@@ -2614,6 +2617,9 @@ void SV_SaveGame(const char *gamename, qboolean autosave)
 			Z_Free(cls.savedCgameState);
 			cls.savedCgameState = 0;
 		}
+		Q_strncpyz(svs.gameName, "current", sizeof(svs.gameName));
+		Com_Printf("Save failed; campaign resume point unchanged.\n");
+		return;
 	}
 
 	if (SV_ArchiveServerFile(qfalse, autosave)) AC_WriteSaveMetadata(name);

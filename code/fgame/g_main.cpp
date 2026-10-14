@@ -2000,6 +2000,13 @@ void G_ExitLevel(void)
 
         gi.SendConsoleCommand(command);
     } else {
+        // Only a genuine successful native intermission authorizes campaign progression.
+        // A map/gamemap console command does not set this one-use proof.
+        Player *campaignPlayer = (Player *)g_entities[0].entity;
+        if (campaignPlayer && !campaignPlayer->IsDead() && !level.died_already
+            && level.intermissiontype != TRANS_MISSION_FAILED && level.intermissiontime > 0) {
+            gi.cvar_set("ac_native_transition", va("%s|%s",level.mapname.c_str(),level.nextmap.c_str()));
+        }
         Com_sprintf(command, sizeof(command), "gamemap \"%s\"\n", level.nextmap.c_str());
         gi.SendConsoleCommand(command);
     }

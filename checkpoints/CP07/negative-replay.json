@@ -1,0 +1,23 @@
+{
+  "operation": "aa_torch",
+  "case": "replay",
+  "expected_completed": 1,
+  "actual_completed": 1,
+  "pass_state": true,
+  "exit": 1,
+  "test_stopped_after_event": true,
+  "events": [
+    "[2026-10-14 12:48:28 UTC+1.000] AC_MISSION_ENTRY aa_torch m1l3c",
+    "[2026-10-14 12:48:29 UTC+1.000] D:\\Medal of Honor - Allied Campaign\\allied-campaign-workspace\\runtime-local\\CP07-r1\\main\\zzzzz_AC_Campaign.pk3 (3 files)",
+    "[2026-10-14 12:48:29 UTC+1.000] D:\\Medal of Honor - Allied Campaign\\allied-campaign-workspace\\runtime-local\\CP07-r1\\main\\zzzz_AC_Wounds.pk3 (3 files)",
+    "[2026-10-14 12:48:29 UTC+1.000] D:\\Medal of Honor - Allied Campaign\\allied-campaign-workspace\\runtime-local\\CP07-r1\\main\\zzzz_AC_UI.pk3 (2 files)",
+    "[2026-10-14 12:48:29 UTC+1.000] D:\\Medal of Honor - Allied Campaign\\allied-campaign-workspace\\runtime-local\\CP07-r1\\main\\zzzz_AC_MP1.pk3 (18 files)",
+    "[2026-10-14 12:48:33 UTC+1.000] AC_PROGRESS valid=1 completed=1 resume=1 slot=- operation=0 replay=1",
+    "[2026-10-14 12:48:41 UTC+1.000] AC_PROGRESS valid=1 completed=1 resume=1 slot=- operation=0 replay=1",
+    "[2026-10-14 12:48:41 UTC+1.000] AC_BOUNDARY_DONE",
+    "[2026-10-14 12:48:41 UTC+1.000] AC_REPLAY_COMPLETE aa_torch"
+  ],
+  "errors": [],
+  "scope": "Seeded test profile and synthetic native intermission/negative case; not natural mission completion",
+  "engine_sha256": "a44be3dcf26497acf1851b6c8729ed6e9298dfad97facdace7aae5936223628d"
+}

@@ -1,0 +1,17 @@
+{
+  "operation": "aa_torch",
+  "case": "success",
+  "expected_completed": 1,
+  "actual_completed": 0,
+  "pass_state": false,
+  "exit": 0,
+  "events": [
+    "[2026-10-14 12:34:47 UTC+1.000] AC_MISSION_ENTRY aa_torch m1l3c",
+    "[2026-10-14 12:34:49 UTC+1.000] AC_PROGRESS_COMMIT completed=0 resume=0 slot=m1l3c0000",
+    "[2026-10-14 12:34:52 UTC+1.000] AC_PROGRESS valid=1 completed=0 resume=0 slot=m1l3c0000 operation=0 replay=0",
+    "[2026-10-14 12:35:00 UTC+1.000] AC_PROGRESS valid=1 completed=0 resume=0 slot=m1l3c0000 operation=0 replay=0"
+  ],
+  "errors": [],
+  "scope": "Seeded test profile and synthetic native intermission/negative case; not natural mission completion",
+  "engine_sha256": "b1e92684d00112a39e9d3aba860c3c5173c5da3e8a8fb407a404f9f8f159bccb"
+}

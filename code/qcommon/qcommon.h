@@ -1264,6 +1264,11 @@ void Key_KeynameCompletion( void(*callback)(const char *s) );
 // for keyname autocompletion
 
 void Key_WriteBindings( fileHandle_t f );
+int AC_MissionState(int index);
+void AC_CampaignMapCommand(const char *map);
+qboolean AC_CampaignTransition(const char *current, const char *nextMap);
+void AC_CampaignSaved(const char *slot, const char *map);
+void AC_CampaignRestore(int operation, int replay, const char *map);
 // for writing the config files
 
 void S_ClearSoundBuffer( void );
