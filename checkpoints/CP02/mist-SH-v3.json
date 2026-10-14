@@ -1,0 +1,36 @@
+{
+  "game": "SH",
+  "exit": 0,
+  "completed": true,
+  "engine_sha256": "4a7f7512e9508ab88b6284e9997e9c00384be683f70c53a8083996eb3e2bd86c",
+  "cgame_sha256": "1143ec6f5749be5d8dd03139e4403c9fa2b3ddcc93703679de149f26d0a8a9d1",
+  "images": [
+    "profiles-local/CP02-r1/mist-SH-v3/mainta/screenshots/shot0000.png",
+    "profiles-local/CP02-r1/mist-SH-v3/mainta/screenshots/shot0001.png",
+    "profiles-local/CP02-r1/mist-SH-v3/mainta/screenshots/shot0002.png",
+    "profiles-local/CP02-r1/mist-SH-v3/mainta/screenshots/shot0003.png",
+    "profiles-local/CP02-r1/mist-SH-v3/mainta/screenshots/shot0004.png",
+    "profiles-local/CP02-r1/mist-SH-v3/mainta/screenshots/shot0005.png",
+    "profiles-local/CP02-r1/mist-SH-v3/mainta/screenshots/shot0006.png",
+    "profiles-local/CP02-r1/mist-SH-v3/mainta/screenshots/shot0007.png",
+    "profiles-local/CP02-r1/mist-SH-v3/mainta/screenshots/shot0008.png"
+  ],
+  "mist_events": [
+    "AC_MIST time=852057 effect=30 enabled=0 pos=2317.250,3091.688,236.000",
+    "AC_MIST time=852952 effect=30 enabled=0 pos=2318.750,3094.812,241.625",
+    "AC_MIST time=856153 effect=30 enabled=0 pos=2315.688,3092.812,239.562",
+    "AC_MIST time=857065 effect=30 enabled=0 pos=2317.375,3087.750,241.312",
+    "AC_MIST time=860217 effect=31 enabled=0 pos=2315.625,3093.062,239.312",
+    "AC_MIST time=864312 effect=31 enabled=0 pos=2315.000,3092.438,239.312",
+    "AC_MIST time=865207 effect=31 enabled=0 pos=2317.125,3093.625,240.125",
+    "AC_MIST time=868406 effect=30 enabled=1 pos=2318.000,3095.000,240.375",
+    "AC_MIST time=869304 effect=30 enabled=1 pos=2319.125,3096.250,241.500",
+    "AC_MIST time=872505 effect=30 enabled=1 pos=2318.312,3093.812,241.625",
+    "AC_MIST time=873403 effect=30 enabled=1 pos=2317.750,3093.625,241.062",
+    "AC_MIST time=876618 effect=31 enabled=1 pos=2316.062,3093.375,239.375",
+    "AC_MIST time=880667 effect=31 enabled=1 pos=2316.688,3093.375,239.875",
+    "AC_MIST time=881556 effect=31 enabled=1 pos=2315.562,3093.250,239.125"
+  ],
+  "errors": [],
+  "saved_off": true
+}

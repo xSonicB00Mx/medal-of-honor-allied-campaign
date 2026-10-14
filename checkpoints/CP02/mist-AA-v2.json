@@ -1,0 +1,26 @@
+{
+  "game": "AA",
+  "exit": 0,
+  "completed": true,
+  "engine_sha256": "4a7f7512e9508ab88b6284e9997e9c00384be683f70c53a8083996eb3e2bd86c",
+  "cgame_sha256": "1143ec6f5749be5d8dd03139e4403c9fa2b3ddcc93703679de149f26d0a8a9d1",
+  "images": [
+    "profiles-local/CP02-r1/mist-AA-v2/main/screenshots/shot0000.png",
+    "profiles-local/CP02-r1/mist-AA-v2/main/screenshots/shot0001.png",
+    "profiles-local/CP02-r1/mist-AA-v2/main/screenshots/shot0002.png",
+    "profiles-local/CP02-r1/mist-AA-v2/main/screenshots/shot0003.png",
+    "profiles-local/CP02-r1/mist-AA-v2/main/screenshots/shot0004.png",
+    "profiles-local/CP02-r1/mist-AA-v2/main/screenshots/shot0005.png",
+    "profiles-local/CP02-r1/mist-AA-v2/main/screenshots/shot0006.png",
+    "profiles-local/CP02-r1/mist-AA-v2/main/screenshots/shot0007.png",
+    "profiles-local/CP02-r1/mist-AA-v2/main/screenshots/shot0008.png"
+  ],
+  "mist_events": [
+    "AC_MIST time=6556 effect=30 enabled=0 pos=-6481.750,-3811.250,553.938",
+    "AC_MIST time=13105 effect=31 enabled=0 pos=-6480.188,-3811.125,550.000",
+    "AC_MIST time=15259 effect=30 enabled=1 pos=-6478.625,-3809.312,547.375",
+    "AC_MIST time=21806 effect=31 enabled=1 pos=-6478.688,-3810.062,548.562"
+  ],
+  "errors": [],
+  "saved_off": true
+}

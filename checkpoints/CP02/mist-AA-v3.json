@@ -1,0 +1,36 @@
+{
+  "game": "AA",
+  "exit": 0,
+  "completed": true,
+  "engine_sha256": "4a7f7512e9508ab88b6284e9997e9c00384be683f70c53a8083996eb3e2bd86c",
+  "cgame_sha256": "1143ec6f5749be5d8dd03139e4403c9fa2b3ddcc93703679de149f26d0a8a9d1",
+  "images": [
+    "profiles-local/CP02-r1/mist-AA-v3/main/screenshots/shot0000.png",
+    "profiles-local/CP02-r1/mist-AA-v3/main/screenshots/shot0001.png",
+    "profiles-local/CP02-r1/mist-AA-v3/main/screenshots/shot0002.png",
+    "profiles-local/CP02-r1/mist-AA-v3/main/screenshots/shot0003.png",
+    "profiles-local/CP02-r1/mist-AA-v3/main/screenshots/shot0004.png",
+    "profiles-local/CP02-r1/mist-AA-v3/main/screenshots/shot0005.png",
+    "profiles-local/CP02-r1/mist-AA-v3/main/screenshots/shot0006.png",
+    "profiles-local/CP02-r1/mist-AA-v3/main/screenshots/shot0007.png",
+    "profiles-local/CP02-r1/mist-AA-v3/main/screenshots/shot0008.png"
+  ],
+  "mist_events": [
+    "AC_MIST time=7553 effect=30 enabled=0 pos=-6480.062,-3808.688,548.000",
+    "AC_MIST time=8465 effect=30 enabled=0 pos=-6481.062,-3809.625,552.312",
+    "AC_MIST time=11667 effect=30 enabled=0 pos=-6480.188,-3811.500,550.000",
+    "AC_MIST time=12556 effect=30 enabled=0 pos=-6479.750,-3807.938,547.562",
+    "AC_MIST time=15711 effect=31 enabled=0 pos=-6479.562,-3811.062,549.250",
+    "AC_MIST time=19808 effect=31 enabled=0 pos=-6479.812,-3810.438,549.688",
+    "AC_MIST time=20706 effect=31 enabled=0 pos=-6478.938,-3809.438,549.062",
+    "AC_MIST time=23906 effect=30 enabled=1 pos=-6480.625,-3810.188,550.938",
+    "AC_MIST time=24820 effect=30 enabled=1 pos=-6477.562,-3809.250,547.000",
+    "AC_MIST time=28022 effect=30 enabled=1 pos=-6479.688,-3807.500,551.188",
+    "AC_MIST time=28911 effect=30 enabled=1 pos=-6477.938,-3808.438,548.500",
+    "AC_MIST time=32067 effect=31 enabled=1 pos=-6480.500,-3810.812,550.562",
+    "AC_MIST time=36160 effect=31 enabled=1 pos=-6478.875,-3811.125,548.625",
+    "AC_MIST time=37056 effect=31 enabled=1 pos=-6480.188,-3810.938,550.062"
+  ],
+  "errors": [],
+  "saved_off": true
+}
