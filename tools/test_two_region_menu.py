@@ -13,7 +13,7 @@ cmd=[str(rt/'openmohaa.exe')]
 for k,v in dict(com_target_game=a.game,fs_basepath=rt,fs_homepath=p,fs_steampath=rt,fs_gogpath=rt,fs_microsoftstorepath=rt,net_enabled=0,logfile=2,developer=0,r_fullscreen=0,r_mode=-1,r_customwidth=a.width,r_customheight=a.height,cl_playintro=0,com_maxfps=60,com_maxfpsUnfocused=60,ac_campaign_mode=1).items():cmd+=['+set',k,str(v)]
 proc=subprocess.run(cmd+['+exec','probe.cfg'],cwd=rt,timeout=50);log=(h/'qconsole.log').read_text(encoding='latin1');ui=(h/'ui/ac_campaign_operations.urc').read_text()
 assert proc.returncode==0 and 'AC_TWO_REGIONS_DONE' in log
-for word in ['LOCKED','AVAILABLE','NEXT','map_credit','region_2']:assert word not in ui
+for word in ['LOCKED','AVAILABLE','NEXT','map_credit','region_2','Approximate mission area']:assert word not in ui
 ops=json.loads((r/'mod/campaign/missions.json').read_text())['operations']
 for i,o in enumerate(ops):
  if i>a.completed:assert o['display_name'] not in ui,(i,o['display_name'])

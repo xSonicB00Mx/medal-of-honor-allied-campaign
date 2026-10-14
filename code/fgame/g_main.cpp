@@ -1341,10 +1341,10 @@ qboolean LevelArchiveValid(Archiver& arc)
     arc.ArchiveInteger(&version);
     arc.ArchiveInteger(&savegame_version);
 
-    if (version < GAME_API_VERSION) {
+    if (version < GAME_SAVE_API_VERSION) {
         gi.Printf("Savegame from an older version (%d) of MOHAA.\n", version);
         return qfalse;
-    } else if (version > GAME_API_VERSION) {
+    } else if (version > GAME_SAVE_API_VERSION) {
         gi.Printf("Savegame from version %d of MOHAA.\n", version);
         return qfalse;
     }
@@ -1401,7 +1401,7 @@ qboolean G_ArchiveLevel(
             arc.Create(filename);
 
             // write out the version number
-            temp = GAME_API_VERSION;
+            temp = GAME_SAVE_API_VERSION;
             arc.ArchiveInteger(&temp);
             temp = SAVEGAME_VERSION;
             arc.ArchiveInteger(&temp);

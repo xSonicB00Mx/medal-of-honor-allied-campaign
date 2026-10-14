@@ -33,6 +33,10 @@ extern "C" void CG_ACWoundsRemove(void) {
         cgi.Printf("AC_WOUND_OWNER_REMOVED entity=%d usage=%d count=%d\n",entity,usage,removed);
 }
 extern "C" void CG_ACWoundsEvent(void) {
+    ac_wound_t w={};
+    if(!strcmp(cgi.Argv(0),"ac_wound_local")) {
+        if(cgi.Argc()!=2 || !cgi.AC_TakeLocalWound(strtoull(cgi.Argv(1),nullptr,10),&w) || !ACValidWound(w))return;
+    } else {
     if(cgi.Argc()!=6)return;
     unsigned id=strtoul(cgi.Argv(1),nullptr,10);int branch=atoi(cgi.Argv(2));unsigned offset=strtoul(cgi.Argv(3),nullptr,10),size=strtoul(cgi.Argv(4),nullptr,10);
     const char *hex=cgi.Argv(5);size_t length=strlen(hex);
@@ -41,8 +45,9 @@ extern "C" void CG_ACWoundsEvent(void) {
     if(id!=acPacketId || branch!=acPacketBranch || offset!=acPacketOffset || size!=acPacketSize)return;
     for(size_t i=0;i<length;i+=2){int a=ACHex(hex[i]),b=ACHex(hex[i+1]);if(a<0 || b<0){acPacketSize=0;return;}acPacket[offset+i/2]=(a<<4)|b;}
     acPacketOffset+=length/2;if(acPacketOffset!=size)return;
-    ac_wound_t w={};memcpy(&w,acPacket,size);acPacketSize=0;
+    memcpy(&w,acPacket,size);acPacketSize=0;
     if(!ACValidWound(w) || w.event!=id || w.branch!=branch || size!=offsetof(ac_wound_t,patch)+offsetof(ac_patch_t,triangle)+w.patch.count*sizeof(ac_patch_triangle_t))return;
+    }
     int same=0;for(auto& old:acWounds)if(old.active && old.data.entity==w.entity && old.data.usage==w.usage){if(old.data.event==w.event && old.data.seed==w.seed && old.data.branch==w.branch)return;++same;}
     // Max 16 wounds per actor; FIFO ring gives a hard 64-wound scene budget.
     if(same>=16)for(unsigned i=0;i<64;++i){auto& old=acWounds[(acWoundCursor+i)%64];if(old.active && old.data.entity==w.entity){old.active=false;break;}}

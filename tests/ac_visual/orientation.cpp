@@ -1,10 +1,18 @@
 #include "../../code/qcommon/ac_visual_random.h"
 #include "../../code/qcommon/ac_interval.h"
+#include "../../code/qcommon/ac_local_records.h"
 #include <cstdio>
 #include <cstdlib>
 #include <initializer_list>
 static void require(bool valid,const char *why){if(!valid){std::fprintf(stderr,"FAIL: %s\n",why);std::exit(1);}}
 int main() {
+    ACLocalRecords<int,4> records;int record=0;
+    auto first=records.Store(42);require(records.Take(first,record) && record==42,"local record preserved");
+    require(!records.Take(first,record),"local token consumed once");
+    auto stale=records.Store(43);records.Clear();auto fresh=records.Store(44);
+    require(!records.Take(stale,record) && records.Take(fresh,record) && record==44,"reset rejects stale level token");
+    auto evicted=records.Store(45);for(int i=0;i<4;++i)records.Store(i);
+    require(!records.Take(evicted,record) && !records.Take(0,record),"bounded eviction cannot alias a later hit");
     int entry,exit;
     const ACIntervalContact closed[]={{10,-1},{20,1}};ACSelectInterval(closed,2,entry,exit);require(entry==0 && exit==1,"ordinary through shot");
     const ACIntervalContact arm[]={{10,-1},{13,1},{20,-1},{40,1}};ACSelectInterval(arm,4,entry,exit);require(entry==0 && exit==1,"arm does not borrow torso exit");

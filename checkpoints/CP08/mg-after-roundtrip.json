@@ -1,0 +1,84 @@
+{
+  "archive": [
+    [
+      "load",
+      "33"
+    ],
+    [
+      "save",
+      "41"
+    ],
+    [
+      "load",
+      "41"
+    ]
+  ],
+  "run": "mg-after-roundtrip",
+  "fx": 1,
+  "exit": 0,
+  "stages": {
+    "idle": {
+      "snapshots": 60,
+      "max_snapshot_gap_ms": 50,
+      "max_pending_commands": 0,
+      "max_snapshot_bytes": 207,
+      "frames": 187,
+      "mean_ms": 1.93,
+      "p95_ms": 2,
+      "max_ms": 4,
+      "over_33ms": 0,
+      "over_100ms": 0
+    },
+    "firing": {
+      "snapshots": 120,
+      "max_snapshot_gap_ms": 50,
+      "max_pending_commands": 5,
+      "max_snapshot_bytes": 567,
+      "frames": 375,
+      "mean_ms": 3.62,
+      "p95_ms": 5,
+      "max_ms": 5,
+      "over_33ms": 0,
+      "over_100ms": 0
+    },
+    "dying": {
+      "snapshots": 130,
+      "max_snapshot_gap_ms": 50,
+      "max_pending_commands": 8,
+      "max_snapshot_bytes": 795,
+      "frames": 406,
+      "mean_ms": 3.02,
+      "p95_ms": 4,
+      "max_ms": 6,
+      "over_33ms": 0,
+      "over_100ms": 0
+    }
+  },
+  "errors": [],
+  "error_count": 0,
+  "events": [
+    "[2026-10-14 22:48:03 UTC+1.000] AC_MG_MOUNTED",
+    "[2026-10-14 22:48:04 UTC+1.000] AC_MG_READY gun=( -6672.410 2087.903 480.125 ) angles=( -0.000 109.600 0.000 ) player=( -6650.941 2027.611 432.125 ) target=( -6712.664 2200.953 434.125 )",
+    "[2026-10-14 22:48:08 UTC+1.000] AC_MG_SHOT health=99955.000 gunangles=( 354.412 109.600 0.000 ) view=( -0.000 109.600 0.000 )",
+    "[2026-10-14 22:48:09 UTC+1.000] AC_MG_SHOT health=99055.000 gunangles=( 354.505 109.600 0.000 ) view=( -0.000 109.600 0.000 )",
+    "[2026-10-14 22:48:11 UTC+1.000] AC_MG_SHOT health=98155.000 gunangles=( 354.505 109.600 0.000 ) view=( -0.000 109.600 0.000 )",
+    "[2026-10-14 22:48:12 UTC+1.000] AC_MG_SHOT health=97255.000 gunangles=( 354.505 109.600 0.000 ) view=( -0.000 109.600 0.000 )",
+    "[2026-10-14 22:48:13 UTC+1.000] AC_MG_SHOT health=96355.000 gunangles=( 354.505 109.600 0.000 ) view=( -0.000 109.600 0.000 )",
+    "[2026-10-14 22:48:14 UTC+1.000] AC_MG_SHOT health=95455.000 gunangles=( 354.505 109.600 0.000 ) view=( -0.000 109.600 0.000 )",
+    "[2026-10-14 22:48:14 UTC+1.000] AC_MG_DEATH 1",
+    "[2026-10-14 22:48:15 UTC+1.000] AC_MG_DEATH 2",
+    "[2026-10-14 22:48:15 UTC+1.000] AC_MG_SHOT health=0.000 gunangles=( 355.993 109.600 0.000 ) view=( -0.000 109.600 0.000 )",
+    "[2026-10-14 22:48:17 UTC+1.000] AC_MG_DEATH 3",
+    "[2026-10-14 22:48:17 UTC+1.000] AC_MG_SHOT health=0.000 gunangles=( 355.665 109.600 0.000 ) view=( -0.000 109.600 0.000 )",
+    "[2026-10-14 22:48:18 UTC+1.000] AC_MG_DEATH 4",
+    "[2026-10-14 22:48:18 UTC+1.000] AC_MG_SHOT health=0.000 gunangles=( 355.859 109.600 0.000 ) view=( -0.000 109.600 0.000 )",
+    "[2026-10-14 22:48:19 UTC+1.000] AC_MG_DEATH 5",
+    "[2026-10-14 22:48:19 UTC+1.000] AC_MG_SHOT health=0.000 gunangles=( 356.051 109.600 0.000 ) view=( -0.000 109.600 0.000 )",
+    "[2026-10-14 22:48:25 UTC+1.000] AC_MG_DONE"
+  ],
+  "binaries": {
+    "openmohaa.exe": "62016329ff76c55c0f10aa9390129e4163fa84ef57578df5872dc350a5eb4182",
+    "game.dll": "304065dc386b4d62169a1ca370adcb8cf1b4d35a4d8bd8f95a82020935ea941e",
+    "cgame.dll": "d2bbb077fbc5a2b2a54c4a8a0fb42ec1476f8e8ab2ac46e14abce33ceeae7ed7"
+  }
+}

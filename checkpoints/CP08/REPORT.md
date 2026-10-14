@@ -1,5 +1,7 @@
 # CP08-r1 – gemeinsame Einsatzkarte
 
+Neueste Korrektur: [MG-Ruckler und entfernter Kartenhinweis](mg-feedback.md).
+
 Aktueller Stand: [Zwei Regionen, unsichtbare gesperrte Einsaetze und Sterbeanimationstreffer](feedback-two-regions.md). Der folgende Bericht dokumentiert den urspruenglichen CP8-Kandidaten; sein sechs-Ansichten-/vier-Zustaende-Layout wurde durch das neue Feedback ersetzt.
 
 Technischer Kandidat auf CP7 mit einer geografisch belegten Uebersicht und fuenf regionalen Ausschnitten. Alle 15 Einsaetze, ihre Daten, Orte, Originalspiele und Protagonisten kommen aus dem gemeinsamen Manifest. Drei Normandy-Einsaetze teilen einen Ortsanker und bleiben ueber Marker und regionale Liste einzeln erreichbar. Previous/Next bietet einen zusaetzlichen vollstaendigen Auswahlweg.

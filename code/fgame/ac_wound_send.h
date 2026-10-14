@@ -12,6 +12,10 @@ static void ACSendWound(Entity *target,const ac_pose_t& pose,const ac_surface_po
     if(gi.Cvar_Get("ac_fx_debug","0",0)->integer)
         gi.Printf("AC_WOUND id=%u branch=%d entity=%d usage=%d group=%d radius=%.2f seed=%u rotation=%.6f flip=%d,%d triangles=%d\n",event,branch,w.entity,w.usage,group,radius,w.seed,w.rotation,w.flipU,w.flipV,w.patch.count);
     if(!w.patch.count)return;
+    // Send a tiny ordered reference instead of fragmenting SP snapshots with
+    // two full patches per MG hit. Geometry, precision and saves are unchanged.
+    const auto local=gi.AC_StoreLocalWound(&w);
+    if(local) {gi.SendServerCommand(-1,"ac_wound_local %llu",local);return;}
     const unsigned size=offsetof(ac_wound_t,patch)+offsetof(ac_patch_t,triangle)+w.patch.count*sizeof(ac_patch_triangle_t);
     const byte *bytes=(const byte*)&w;const char digits[]="0123456789abcdef";
     for(unsigned offset=0;offset<size;offset+=448) {

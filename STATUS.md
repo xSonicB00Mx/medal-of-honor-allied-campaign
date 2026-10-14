@@ -1,3 +1,7 @@
+## Aktuelle Korrektur: MG-Ruckler
+
+Der Kartenhinweis ist entfernt. Lokale Wundreferenzen verhindern den bei MG-Dauerfeuer reproduzierten Nachrichtenstau. Drei MG-Nachtests halten 50-ms-Snapshots; Save/Load und 36 AA-/SH-/BT-Durchschussvergleiche bestanden. [Bericht und Grenzen](checkpoints/CP08/mg-feedback.md).
+
 ## Aktuelles Feedback: CP08-r1
 
 Hauptmenue-Karte ersetzt die alte Missionsauswahl; nur zwei Regionen und ausschliesslich freigeschaltete Einsaetze. Blut/Wunden waehrend der Sterbeanimation mit durchdringenden Kugeln. 72 gepaarte Schadensvergleiche in sechs nativen Laeufen bestanden. [Aenderungen, Nachweise und Grenzen](checkpoints/CP08/feedback-two-regions.md). Die folgenden sechs-Ansichten-/vier-Zustaende-Angaben beschreiben historische Staende.

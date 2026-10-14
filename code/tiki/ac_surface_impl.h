@@ -6,8 +6,17 @@
 #include <vector>
 #include <algorithm>
 #include <cmath>
+#include <chrono>
 
 namespace {
+struct ACProfileScope {
+    const char *name; bool enabled; std::chrono::steady_clock::time_point start;
+    ACProfileScope(const char *n):name(n),enabled(Cvar_VariableIntegerValue("ac_perf")>1) {
+        if(enabled)start=std::chrono::steady_clock::now();
+    }
+    ~ACProfileScope() {if(enabled)Com_Printf("AC_PERF_GEOMETRY %s us=%lld\n",name,
+        (long long)std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::steady_clock::now()-start).count());}
+};
 struct ACVertex { vec3_t p; };
 bool ACSupportedBody(dtiki_t *tiki) {
     if(!tiki)return false;
@@ -64,6 +73,7 @@ bool ACRayTriangle(const vec3_t start,const vec3_t dir,const vec3_t a,const vec3
 }
 }
 void TIKI_ACSurfaceTrace(dtiki_t *tiki,const ac_pose_t *pose,const vec3_t start,const vec3_t direction,ac_surface_hit_t *hit) {
+    ACProfileScope profile("trace");
     memset(hit,0,sizeof(*hit));if(!ACSupportedBody(tiki) || !pose)return;
     TIKI_SetPoseInternal(TIKI_GetSkeletor(tiki,pose->entityNumber),pose->frames,pose->boneTags,pose->boneQuats,pose->actionWeight);
     std::vector<ac_surface_point_t> contacts;std::vector<ACVertex> vertices;int globalSurface=0;

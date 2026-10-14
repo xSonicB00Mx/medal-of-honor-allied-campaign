@@ -31,7 +31,9 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 // Version 11 is >= 0.05 and <= 1.00
 // Version 12 is >= 1.10
 // Version 15 is >= 2.0
-#define GAME_API_VERSION 15
+#define GAME_API_VERSION 16
+// The local visual transport changes DLL imports, not archived level data.
+#define GAME_SAVE_API_VERSION 15
 
 // entity->svFlags
 // the server does not know how to interpret most of the values
@@ -506,6 +508,7 @@ typedef struct gameImport_s {
 
     void (*AC_BuildPatch)(struct dtiki_s *,const ac_pose_t *,const ac_surface_point_t *,float,float,int,int,ac_patch_t *);
     void (*AC_SurfaceTrace)(struct dtiki_s *, const ac_pose_t *, const vec3_t, const vec3_t, ac_surface_hit_t *);
+    unsigned long long (*AC_StoreLocalWound)(const ac_wound_t *);
 } game_import_t;
 
 typedef struct gameExport_s {

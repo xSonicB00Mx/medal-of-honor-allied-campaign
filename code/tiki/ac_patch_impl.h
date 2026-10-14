@@ -26,6 +26,7 @@ skelSurfaceGame_t *ACGetSurface(dtiki_t *tiki,int meshIndex,int surfaceIndex,ske
 }
 void TIKI_ACBuildPatch(dtiki_t *tiki,const ac_pose_t *pose,const ac_surface_point_t *point,
     float radius,float rotation,int flipU,int flipV,ac_patch_t *patch) {
+    ACProfileScope profile("build");
     memset(patch,0,sizeof(*patch));if(!tiki || !pose || !point || radius<=0 || radius>8)return;
     skelHeaderGame_t *mesh;auto *surf=ACGetSurface(tiki,point->mesh,point->surface,&mesh);
     if(!surf || point->triangle<0 || point->triangle>=surf->numTriangles)return;
@@ -63,6 +64,7 @@ void TIKI_ACBuildPatch(dtiki_t *tiki,const ac_pose_t *pose,const ac_surface_poin
     }
 }
 void TIKI_ACDeformPatch(dtiki_t *tiki,const ac_pose_t *pose,const ac_patch_triangle_t *triangles,int count,vec3_t *out) {
+    ACProfileScope profile("deform");
     if(!tiki || !pose || count<0 || count>512)return;
     TIKI_SetPoseInternal(TIKI_GetSkeletor(tiki,pose->entityNumber),pose->frames,pose->boneTags,pose->boneQuats,pose->actionWeight);
     int lastMesh=-1,lastSurf=-1;skelHeaderGame_t *mesh=nullptr;skelSurfaceGame_t *surf=nullptr;std::vector<ACVertex> vertices;

@@ -1266,6 +1266,8 @@ void SV_SendClientSnapshot( client_t *client ) {
 		MSG_Clear (&msg);
 	}
 
+	if (Cvar_VariableIntegerValue("ac_perf"))
+		Com_Printf("AC_PERF_SNAPSHOT time=%d gap=%d bytes=%d pending=%d\n",svs.time,svs.time-client->lastSnapshotTime,msg.cursize,client->reliableSequence-client->reliableAcknowledge);
 	SV_SendMessageToClient( &msg, client );
 }
 

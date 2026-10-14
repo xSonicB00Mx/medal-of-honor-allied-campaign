@@ -66,7 +66,6 @@ static void AC_ShowOperations(void)
         AC_UIItem(f,"date",strstr(m.date,"unspecified")?"1945 / exact date unspecified":m.date,608,146,328,24,NULL);
         AC_UIItem(f,"place",m.place,608,176,328,24,NULL);
         AC_UIItem(f,"hero",va("%s / %s",m.game==0?"Allied Assault":m.game==1?"Spearhead":"Breakthrough",m.hero),608,206,328,24,NULL);
-        AC_UIItem(f,"precision","Approximate mission area",608,236,328,20,NULL,"0.68 0.71 0.61 1");
         AC_UIItem(f,"status",AC_StateName(state),608,268,144,30,NULL,AC_StateColor(state));
         AC_UIItem(f,"start",state==2?"Replay Mission":"Start Mission",764,268,172,30,va("ac_mission %d",selected),AC_StateColor(state));
     } else AC_UIItem(f,"empty","No operations unlocked in this region",608,146,328,30,NULL);
