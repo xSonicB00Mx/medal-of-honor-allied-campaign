@@ -1,0 +1,107 @@
+{
+  "complete": true,
+  "cases": [
+    {
+      "case": "ALL",
+      "marks": [
+        "AC_MARK drop -6432.030 -3800.424 476.572",
+        "AC_MARK drop -6434.488 -3798.156 476.272",
+        "AC_MARK drop -6435.187 -3795.111 475.896",
+        "AC_MARK drop -6434.562 -3792.422 475.578",
+        "AC_MARK drop -6427.650 -3789.002 475.238",
+        "AC_MARK drop -6433.049 -3798.367 476.313",
+        "AC_MARK drop -6528.866 -3817.541 477.601",
+        "AC_MARK drop -6500.492 -3818.195 477.985",
+        "AC_MARK drop -6506.046 -3812.288 477.211",
+        "AC_MARK drop -6500.903 -3825.644 478.881",
+        "AC_MARK drop -6504.789 -3819.531 478.100",
+        "AC_MARK drop -6536.468 -3813.414 477.020"
+      ],
+      "wounds": [
+        "AC_WOUND id=1 branch=0 entity=202 usage=511 group=1 radius=1.80 seed=694969802 rotation=173.776932 flip=1,0 triangles=10",
+        "AC_WOUND id=1 branch=1 entity=202 usage=511 group=1 radius=3.50 seed=3672055713 rotation=111.476639 flip=0,1 triangles=16"
+      ],
+      "clouds": [
+        "AC_MIST time=9953 effect=30 enabled=1 pos=-6478.062,-3808.312,548.688 authorized=1"
+      ]
+    },
+    {
+      "case": "WORLD",
+      "marks": [
+        "AC_MARK drop -6446.347 -3804.560 476.918",
+        "AC_MARK drop -6450.731 -3802.577 476.631",
+        "AC_MARK drop -6448.574 -3796.575 475.929",
+        "AC_MARK drop -6450.183 -3788.498 474.935",
+        "AC_MARK drop -6530.253 -3820.754 477.974",
+        "AC_MARK drop -6525.730 -3825.519 478.599",
+        "AC_MARK drop -6445.720 -3795.210 475.795",
+        "AC_MARK drop -6513.165 -3821.062 478.195",
+        "AC_MARK drop -6443.203 -3788.220 474.977",
+        "AC_MARK drop -6528.557 -3814.420 477.227",
+        "AC_MARK drop -6532.789 -3816.893 477.480",
+        "AC_MARK drop -6531.789 -3811.586 476.850"
+      ],
+      "wounds": [],
+      "clouds": [
+        "AC_MIST time=17218 effect=30 enabled=0 pos=-6479.562,-3809.875,549.562 authorized=1"
+      ]
+    },
+    {
+      "case": "BODY",
+      "marks": [],
+      "wounds": [
+        "AC_WOUND id=3 branch=0 entity=202 usage=511 group=1 radius=1.80 seed=1707231064 rotation=4.791670 flip=1,1 triangles=12",
+        "AC_WOUND id=3 branch=1 entity=202 usage=511 group=1 radius=3.50 seed=2415165030 rotation=66.715721 flip=0,1 triangles=20"
+      ],
+      "clouds": [
+        "AC_MIST time=24510 effect=30 enabled=0 pos=-6479.125,-3811.188,548.875 authorized=1"
+      ]
+    },
+    {
+      "case": "MIST",
+      "marks": [],
+      "wounds": [],
+      "clouds": [
+        "AC_MIST time=31759 effect=30 enabled=1 pos=-6480.000,-3811.062,549.750 authorized=1"
+      ]
+    },
+    {
+      "case": "NONE",
+      "marks": [],
+      "wounds": [],
+      "clouds": [
+        "AC_MIST time=39057 effect=30 enabled=0 pos=-6480.562,-3810.438,550.750 authorized=1"
+      ]
+    },
+    {
+      "case": "SHOTGUN",
+      "marks": [],
+      "wounds": [],
+      "clouds": [
+        "AC_MIST time=46355 effect=30 enabled=0 pos=-6477.312,-3809.625,547.688 authorized=0",
+        "AC_MIST time=46355 effect=30 enabled=0 pos=-6479.250,-3812.125,548.938 authorized=0",
+        "AC_MIST time=46355 effect=30 enabled=0 pos=-6481.812,-3806.438,549.000 authorized=0",
+        "AC_MIST time=46355 effect=30 enabled=0 pos=-6479.625,-3808.812,547.750 authorized=0",
+        "AC_MIST time=46355 effect=30 enabled=0 pos=-6481.688,-3811.938,546.750 authorized=0",
+        "AC_MIST time=46355 effect=30 enabled=0 pos=-6478.062,-3807.625,549.062 authorized=0",
+        "AC_MIST time=46355 effect=30 enabled=0 pos=-6481.375,-3814.438,547.125 authorized=0",
+        "AC_MIST time=46355 effect=30 enabled=0 pos=-6479.312,-3811.062,549.062 authorized=0",
+        "AC_MIST time=46355 effect=30 enabled=0 pos=-6478.938,-3811.312,548.688 authorized=0"
+      ]
+    }
+  ],
+  "persisted_after_process_restart": true,
+  "images": [
+    "profiles-local/CP05a-r1/options/main/screenshots/shot0000.png",
+    "profiles-local/CP05a-r1/options/main/screenshots/shot0001.png",
+    "profiles-local/CP05a-r1/options/main/screenshots/shot0002.png",
+    "profiles-local/CP05a-r1/options/main/screenshots/shot0003.png",
+    "profiles-local/CP05a-r1/options/main/screenshots/shot0004.png",
+    "profiles-local/CP05a-r1/options/main/screenshots/shot0005.png"
+  ],
+  "binaries": {
+    "openmohaa.exe": "7f4de9225dc4c7ed8c8b78d5077a41fb25c8fc91e284e29af5af948af9240b65",
+    "cgame.dll": "5e0889854c75db8c40f9c0ce4dcb7f41b77d36440ccd45328e0ef51fd754582e",
+    "game.dll": "913b32476bcc530e605d05e376ed05de15d9b3e98687bfee09b56c12c82cacd0"
+  }
+}
