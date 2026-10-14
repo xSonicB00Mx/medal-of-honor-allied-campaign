@@ -1,4 +1,4 @@
-menu "ac_scaling" 640 480 NONE 0
+menu "ac_scaling" 960 540 NONE 0
 
 virtualres 1
 
@@ -14,10 +14,11 @@ resource
 Label
 {
 name "heading"
-title "ALLIED CAMPAIGN | Display"
-rect 30 24 580 35
+dontlocalize
+title "Allied Campaign Options"
+rect 40 24 880 40
 fgcolor 0.91 0.86 0.7 1
-bgcolor 0.12 0.14 0.12 1
+bgcolor 0.055 0.065 0.06 1
 borderstyle NONE
 font facfont-20
 
@@ -27,10 +28,11 @@ resource
 Label
 {
 name "intro"
-title "Adjust menus and HUD to your screen."
-rect 30 62 580 25
+dontlocalize
+title "Display, HUD and visual effects"
+rect 40 70 880 28
 fgcolor 0.91 0.86 0.7 1
-bgcolor 0.12 0.14 0.12 1
+bgcolor 0.055 0.065 0.06 1
 borderstyle NONE
 font facfont-20
 
@@ -40,10 +42,11 @@ resource
 Label
 {
 name "autoLabel"
+dontlocalize
 title "Automatic scaling"
-rect 30 117 300 26
+rect 40 150 340 30
 fgcolor 0.91 0.86 0.7 1
-bgcolor 0.12 0.14 0.12 1
+bgcolor 0.055 0.065 0.06 1
 borderstyle NONE
 font facfont-20
 
@@ -53,8 +56,9 @@ resource
 CheckBox
 {
 name "auto"
+dontlocalize
 title ""
-rect 438 117 30 26
+rect 420 150 30 30
 fgcolor 0.91 0.86 0.7 1
 bgcolor 0.12 0.14 0.12 1
 borderstyle NONE
@@ -68,10 +72,11 @@ resource
 Label
 {
 name "menuLabel"
+dontlocalize
 title "Menu and font size"
-rect 30 156 300 26
+rect 40 210 400 30
 fgcolor 0.91 0.86 0.7 1
-bgcolor 0.12 0.14 0.12 1
+bgcolor 0.055 0.065 0.06 1
 borderstyle NONE
 font facfont-20
 
@@ -81,8 +86,9 @@ resource
 Slider
 {
 name "menuSlider"
+dontlocalize
 title ""
-rect 315 174 210 20
+rect 40 250 300 24
 fgcolor 0.91 0.86 0.7 1
 bgcolor 0.12 0.14 0.12 1
 borderstyle NONE
@@ -98,8 +104,9 @@ resource
 Field
 {
 name "menuValue"
+dontlocalize
 title ""
-rect 533 169 94 26
+rect 364 246 96 32
 fgcolor 0.91 0.86 0.7 1
 bgcolor 0.12 0.14 0.12 1
 borderstyle NONE
@@ -112,10 +119,11 @@ resource
 Label
 {
 name "hudLabel"
+dontlocalize
 title "HUD size"
-rect 30 226 300 26
+rect 40 298 400 30
 fgcolor 0.91 0.86 0.7 1
-bgcolor 0.12 0.14 0.12 1
+bgcolor 0.055 0.065 0.06 1
 borderstyle NONE
 font facfont-20
 
@@ -125,8 +133,9 @@ resource
 Slider
 {
 name "hudSlider"
+dontlocalize
 title ""
-rect 315 244 210 20
+rect 40 338 300 24
 fgcolor 0.91 0.86 0.7 1
 bgcolor 0.12 0.14 0.12 1
 borderstyle NONE
@@ -142,8 +151,9 @@ resource
 Field
 {
 name "hudValue"
+dontlocalize
 title ""
-rect 533 239 94 26
+rect 364 334 96 32
 fgcolor 0.91 0.86 0.7 1
 bgcolor 0.12 0.14 0.12 1
 borderstyle NONE
@@ -156,10 +166,11 @@ resource
 Label
 {
 name "safeLabel"
+dontlocalize
 title "HUD safe area"
-rect 30 296 300 26
+rect 40 386 400 30
 fgcolor 0.91 0.86 0.7 1
-bgcolor 0.12 0.14 0.12 1
+bgcolor 0.055 0.065 0.06 1
 borderstyle NONE
 font facfont-20
 
@@ -169,8 +180,9 @@ resource
 Slider
 {
 name "safeSlider"
+dontlocalize
 title ""
-rect 315 314 210 20
+rect 40 426 300 24
 fgcolor 0.91 0.86 0.7 1
 bgcolor 0.12 0.14 0.12 1
 borderstyle NONE
@@ -186,8 +198,9 @@ resource
 Field
 {
 name "safeValue"
+dontlocalize
 title ""
-rect 533 309 94 26
+rect 364 422 96 32
 fgcolor 0.91 0.86 0.7 1
 bgcolor 0.12 0.14 0.12 1
 borderstyle NONE
@@ -200,8 +213,9 @@ resource
 Button
 {
 name "back"
+dontlocalize
 title "Back"
-rect 30 448 150 28
+rect 40 486 180 32
 fgcolor 0.91 0.86 0.7 1
 bgcolor 0.12 0.14 0.12 1
 borderstyle NONE
@@ -214,8 +228,9 @@ resource
 Button
 {
 name "reset"
+dontlocalize
 title "Defaults"
-rect 210 448 200 28
+rect 700 486 220 32
 fgcolor 0.91 0.86 0.7 1
 bgcolor 0.12 0.14 0.12 1
 borderstyle NONE
@@ -228,18 +243,21 @@ resource
 Label
 {
 name "mistLabel"
+dontlocalize
 title "Red hit mist"
-rect 30 349 300 26
+rect 520 150 330 30
 font facfont-20
 fgcolor 0.91 0.86 0.7 1
+bgcolor 0.055 0.065 0.06 1
 borderstyle NONE
 }
 resource
 CheckBox
 {
 name "mist"
+dontlocalize
 title ""
-rect 438 349 30 26
+rect 880 150 30 30
 linkcvar ac_blood_mist
 checked_shader textures/menu/checkbox_checked
 unchecked_shader textures/menu/checkbox_unchecked
@@ -249,18 +267,21 @@ resource
 Label
 {
 name "worldLabel"
+dontlocalize
 title "Blood drops and stains"
-rect 30 380 300 26
+rect 520 218 330 30
 font facfont-20
 fgcolor 0.91 0.86 0.7 1
+bgcolor 0.055 0.065 0.06 1
 borderstyle NONE
 }
 resource
 CheckBox
 {
 name "worldBlood"
+dontlocalize
 title ""
-rect 438 380 30 26
+rect 880 218 30 30
 linkcvar ac_world_blood
 checked_shader textures/menu/checkbox_checked
 unchecked_shader textures/menu/checkbox_unchecked
@@ -270,18 +291,21 @@ resource
 Label
 {
 name "bodyLabel"
+dontlocalize
 title "Body wounds"
-rect 30 411 300 26
+rect 520 286 330 30
 font facfont-20
 fgcolor 0.91 0.86 0.7 1
+bgcolor 0.055 0.065 0.06 1
 borderstyle NONE
 }
 resource
 CheckBox
 {
 name "bodyWounds"
+dontlocalize
 title ""
-rect 278 411 30 26
+rect 880 286 30 30
 linkcvar ac_body_wounds
 checked_shader textures/menu/checkbox_checked
 unchecked_shader textures/menu/checkbox_unchecked
@@ -290,20 +314,47 @@ resource
 Label
 {
 name "corpseLabel"
+dontlocalize
 title "Corpse hit effects"
-rect 330 411 240 26
+rect 520 354 330 30
 font facfont-20
 fgcolor 0.91 0.86 0.7 1
+bgcolor 0.055 0.065 0.06 1
 borderstyle NONE
 }
 resource
 CheckBox
 {
 name "corpseEffects"
+dontlocalize
 title ""
-rect 588 411 30 26
+rect 880 354 30 30
 linkcvar ac_corpse_effects
 checked_shader textures/menu/checkbox_checked
 unchecked_shader textures/menu/checkbox_unchecked
+}
+resource
+Label
+{
+name "displaySection"
+dontlocalize
+title "DISPLAY & HUD"
+rect 40 108 420 28
+font facfont-20
+fgcolor 0.75 0.72 0.55 1
+bgcolor 0.055 0.065 0.06 1
+borderstyle NONE
+}
+resource
+Label
+{
+name "effectsSection"
+dontlocalize
+title "VISUAL EFFECTS"
+rect 520 108 400 28
+font facfont-20
+fgcolor 0.75 0.72 0.55 1
+bgcolor 0.055 0.065 0.06 1
+borderstyle NONE
 }
 end.

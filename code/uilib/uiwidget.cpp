@@ -2423,6 +2423,15 @@ bool UIWidget::IsCampaignHUD() const
 
 void UIWidget::SetVirtualScale(vec2_t out)
 {
+    // The shared campaign settings page has its own 16:9 canvas. Keep its
+    // controls stable while changing the scaling of the legacy menus/HUD.
+    // Descendants use the same scale for drawing, clipping and hit testing.
+    for (const UIWidget *p = this; p; p = p->m_parent) {
+        if (p->m_name == "ac_scaling") {
+            out[0] = out[1] = fminf(uid.vidWidth / 960.0f, uid.vidHeight / 540.0f);
+            return;
+        }
+    }
     const bool automatic = CampaignUIValue("ac_ui_auto", 1, 0, 1) != 0;
     const float fit = fminf(uid.vidWidth / 640.0f, uid.vidHeight / 480.0f);
     const float base = automatic ? fit : fminf(1.0f, fit);

@@ -21,9 +21,10 @@ def main():
   button='''resource
 Button
 {
-name "ac_scaling"
-title "HUD / Font Size"
-rect 404 438 224 32
+name "ac_options_entry"
+dontlocalize
+title "Allied Campaign Options"
+rect 292 438 336 32
 font facfont-20
 fgcolor 1 0.9 0.65 1
 bgcolor 0.08 0.1 0.08 0.95
