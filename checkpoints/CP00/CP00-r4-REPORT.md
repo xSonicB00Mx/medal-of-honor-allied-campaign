@@ -88,3 +88,7 @@ Weitere offene CP0-Punkte: zusätzliche Übergänge, Kampf-/Leichen-/Drop-Refere
 ## Weitere technische Teilprüfung (14.10.2026)
 
 Optionspersistenz, Client-Timedemos und erste kontrollierte Kampf-/Leichenreferenzen sind im [separaten Referenzbericht](CP00-r4-BASELINE-REPORT.md) dokumentiert. 27/27 Optionsprüfungen bestanden. AA/SH liefern gültige Pistolentodesreferenzen, AA zusätzlich Waffenstatistiken; BT-Kampfreferenz und vollständige CP0-Matrix bleiben offen. Sämtliche verworfenen Aufbauten und Grenzen sind ausdrücklich ausgewiesen. Keine Engine- oder Inhaltsänderung.
+
+## BT-Kampfreferenz nach korrigierter Szenenwahl
+
+Der [BT-Folgebericht](CP00-r4-BT-FOOT-REPORT.md) dokumentiert den geprüften e2l2-Fußstart mit Bewegung/Probeschuss sowie gültige kontrollierte Colt45-/MP40-/Kar98-/BAR-Leichenreferenzen. Die vorherigen Fahrzeugversuche bleiben ungültig. Allgemeine Drops und vollständige CP0-Abnahme bleiben offen; kein BT-Finaltest durchgeführt.

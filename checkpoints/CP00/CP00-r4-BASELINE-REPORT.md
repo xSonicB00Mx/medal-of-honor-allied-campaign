@@ -45,7 +45,9 @@ Zusätzliche AA-Waffenläufe protokollieren die echten Spielerstatistiken. Die Z
 
 Diese drei Läufe warten abschließend 3 Sekunden. Keine erneute Tötung, kein zusätzlicher Trefferzähler und kein abgeschlossenes Ziel durch die weiteren Schüsse beobachtet. **MP40-/Kar98-Leichen sind auf den Bildern stark von der Schneefläche verdeckt**; daher keine gültige vollständige Posenreferenz. BAR-Leiche sichtbar. Kein Nachweis aller Waffen, Posen, Wände, statischen Leichen oder Dropvarianten.
 
-## BT: Referenz weiter offen
+## Frühere BT-Aufbauten und Nutzerkorrektur
+
+Nachfolgend gelang eine gültige Referenz im e2l2-Fußabschnitt für Colt45, MP40, Kar98 und BAR; siehe [BT-Folgebericht](CP00-r4-BT-FOOT-REPORT.md). Die folgenden Fehlversuche bleiben als historische Befunde erhalten.
 
 **Korrektur nach Nutzerhinweis:** Die gewählten BT-Einstiege beginnen im fahrenden Fahrzeug ohne verfügbare Spielerwaffe. Der Kampfaufbau wurde zu früh gestartet; damit fehlte bereits die Voraussetzung für einen kontrollierten Schusstest. Das ist ein Fehler bei der Testauswahl, kein nachgewiesener Waffen- oder Kampffehler von BT. Die Versuche auf e1l3/e2l3 liefern folglich keinen gültigen lebend→tot-Vergleich: Das Testziel war bereits vor den vorgesehenen Spielerschüssen tot; die neueren Statistikproben zählen null Schüsse. Änderungen an Zielplatzierung und Gegnerpriorität konnten die fehlende Spielerkontrolle nicht beheben und waren dafür ungeeignet. Begleitende Start-/Spawn-/Array-/NULL-Skriptfehler sind dokumentiert, aber ohne gleichwertigen Vergleich zur Originalengine weder als neue Regression noch als unbedenklich eingeordnet.
 
@@ -63,4 +65,4 @@ Quellbefunde: `Sentient::DropInventoryItems` berücksichtigt Schwierigkeit, Miss
 
 396 referenzierte lokale Dateien einschließlich kopierter Savequellen wurden nach den Versuchen erneut per SHA-256 geprüft, ohne Abweichung. Lokales Beweispaket und Git-Sicherung werden getrennt geführt. Die vollständigen Eingaben und Runtime wurden in dieser Teilrunde nicht neu inventarisiert; deren vorhandene r4-Integritätsprüfung bleibt ein früherer Nachweis.
 
-Offen bleiben weitere natürliche Übergänge, eine gültige BT-Kampfreferenz, systematische Dropserien, zusätzliche Waffen-/Posen-/statische Leichen-/Wandfälle, Live-Kampfframetimes, Menübedienung jenseits der bereits geprüften Save/FOV-Wege sowie die Ursachen der Skriptwarnungen. SH-Flak und AA-MG42 bleiben nutzerbestätigt. BT-Finale bleibt ausdrücklich ausgelassen. **Keine vollständige CP0-Freigabe, kein Merge, kein Beginn von CP0a.**
+Offen bleiben weitere natürliche Übergänge, systematische Dropserien, zusätzliche Waffen-/Posen-/statische Leichen-/Wandfälle, Live-Kampfframetimes, Menübedienung jenseits der bereits geprüften Save/FOV-Wege sowie die Ursachen der Skriptwarnungen. SH-Flak und AA-MG42 bleiben nutzerbestätigt. BT-Finale bleibt ausdrücklich ausgelassen. **Keine vollständige CP0-Freigabe, kein Merge, kein Beginn von CP0a.**

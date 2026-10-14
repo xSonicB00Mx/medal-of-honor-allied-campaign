@@ -1,0 +1,135 @@
+{
+  "candidate": "CP00-r4",
+  "game": "BT",
+  "map": "e2l2",
+  "completed": true,
+  "exit_code": 0,
+  "host_timeout": false,
+  "stages": {
+    "before": {
+      "origin": [
+        6296.0,
+        -5600.0,
+        2470.0
+      ],
+      "weapon": [
+        "models/weapons/it_w_carcano.tik"
+      ],
+      "no_vehicle": true,
+      "no_turret": true,
+      "brief_over": true,
+      "stats": {
+        "ui_NumShotsFired": "0",
+        "ui_NumHits": "0",
+        "ui_NumEnemysKilled": "0"
+      }
+    },
+    "moved": {
+      "origin": [
+        6140.761,
+        -5600.98,
+        2505.142
+      ],
+      "weapon": [
+        "models/weapons/it_w_carcano.tik"
+      ],
+      "no_vehicle": true,
+      "no_turret": true,
+      "brief_over": true,
+      "stats": {
+        "ui_NumShotsFired": "0",
+        "ui_NumHits": "0",
+        "ui_NumEnemysKilled": "0"
+      }
+    },
+    "fired": {
+      "origin": [
+        6140.761,
+        -5600.98,
+        2505.142
+      ],
+      "weapon": [
+        "models/weapons/it_w_carcano.tik"
+      ],
+      "no_vehicle": true,
+      "no_turret": true,
+      "brief_over": true,
+      "stats": {
+        "ui_NumShotsFired": "1",
+        "ui_NumHits": "0",
+        "ui_NumEnemysKilled": "0"
+      }
+    }
+  },
+  "visual_check": "Reviewed all three screenshots: standing on terrain, Carcano visible, changed position, ammo 6/48 to 5/48. No vehicle or mounted turret.",
+  "scope": "Unmodified map briefing, normal strafe and attack input; no spawned actor, teleports or forced control unlock.",
+  "engine_sha256": "5f1eee385de3b26750b45b7aa1e98566801b716566b97af11fa5586cb5c21c91",
+  "evidence": [
+    {
+      "path": "profiles-local/CP00-r4/r4-bt-foot-e2l2/maintt/configs/omconfig.cfg",
+      "sha256": "523ad5753b05590ca143b24941af6558b52b6e2c3abda53162f7c8b736ffda4b"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-bt-foot-e2l2/maintt/cp00/before.scr",
+      "sha256": "e63295606e097b92e4db8e156afe0bb1de154c2ddb0562e3f0306bcc4fe5ee54"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-bt-foot-e2l2/maintt/cp00/fired.scr",
+      "sha256": "7be5452322b3b27c7c8ea126e1f00cd165b1ffcb3e9dd02d4613dde1d2d3eae5"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-bt-foot-e2l2/maintt/cp00/moved.scr",
+      "sha256": "22ef3d8133dd1582dc607875eb775cda02c54ca2f305d1fd85ce990d7836e363"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-bt-foot-e2l2/maintt/foot.cfg",
+      "sha256": "9383f79625ee8bbf316946d002df42c9cb10ce415646a73c2dc1c773ac7f05b7"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-bt-foot-e2l2/maintt/qconsole.log",
+      "sha256": "9863c981aa3415cb099efcc461e3658584367458121fbbf40067073ba8786aaf"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-bt-foot-e2l2/maintt/save/omconfig/cp00_foot_ready.sav",
+      "sha256": "629d84718232a5fd1ce5476780baa9af18a51511cfe5867b6454f8aac0c4a70b"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-bt-foot-e2l2/maintt/save/omconfig/cp00_foot_ready.ssv",
+      "sha256": "0c42260d6ea85a7a435e3edee4a163e8327165dca51b9cda63ebd938c4afa315"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-bt-foot-e2l2/maintt/save/omconfig/cp00_foot_ready.tga",
+      "sha256": "3fef42dc39dd25196a88649cc3f4872b90926412360879bedcdea6614a98b46c"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-bt-foot-e2l2/maintt/save/omconfig/e2l20000.sav",
+      "sha256": "ef0dd92636421e269508f26982760ca3a904b8517493e66f0160acf9a3bc7816"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-bt-foot-e2l2/maintt/save/omconfig/e2l20000.ssv",
+      "sha256": "122284a41081ccc4a22c29821bda9f25f023f74f01cdf942dcabc2dfeb47f558"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-bt-foot-e2l2/maintt/save/omconfig/e2l20000.tga",
+      "sha256": "185342da242f8968b82ba6fc8b635a410c871f3beadaa4b3901cae7951d45ccc"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-bt-foot-e2l2/maintt/screenshots/shot0000.tga",
+      "sha256": "efda4828d4455c6298d2f582df34be8df66d29862ef7f2df4bd065886f96d58f"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-bt-foot-e2l2/maintt/screenshots/shot0001.tga",
+      "sha256": "6f3094709c944883b9aecbcce45d43b66a9a2c86efd6ed43d2945fd1bb032b76"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-bt-foot-e2l2/maintt/screenshots/shot0002.tga",
+      "sha256": "f4789fbcced3485c424f80984d30f17e10a37155e044956a46a1ad99ffb645f5"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-bt-foot-e2l2/qkey",
+      "sha256": "b5aec021857c464ef0f027ef053d766ce4ac90af27c322510a0f8b2374d1ca91"
+    }
+  ],
+  "movement_distance": 159.1699333574022,
+  "foot_controls_verified": true
+}

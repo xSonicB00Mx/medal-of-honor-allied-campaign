@@ -11,6 +11,7 @@ ap = argparse.ArgumentParser()
 ap.add_argument('game', choices=['AA','SH','BT'])
 ap.add_argument('--run-id', required=True)
 ap.add_argument('--reference-save', type=Path)
+ap.add_argument('--readiness-report', type=Path, help='BT requires a reviewed foot-control probe and its exact saved position')
 ap.add_argument('--weapon', choices=['colt45','mp40','kar98','bar'], default='colt45')
 ap.add_argument('--linger-seconds', type=int, default=20)
 args = ap.parse_args()
@@ -18,7 +19,28 @@ assert re.fullmatch(r'[A-Za-z0-9-]+', args.run_id)
 assert 1 <= args.linger_seconds <= 30
 repo = Path(__file__).resolve().parents[1]
 rt = repo/'runtime-local/CP00-r4'
-folder,mapname = {'AA':('main','m2l1'),'SH':('mainta','t1l2'),'BT':('maintt','e2l3')}[args.game]
+folder,mapname = {'AA':('main','m2l1'),'SH':('mainta','t1l2'),'BT':('maintt',None)}[args.game]
+readiness = None
+if args.game == 'BT':
+    assert args.readiness_report and args.reference_save, 'BT requires verified foot controls and the matching save'
+    report_path = (repo/args.readiness_report).resolve()
+    assert report_path.is_relative_to(repo/'checkpoints/CP00')
+    ready = json.loads(report_path.read_text(encoding='utf-8'))
+    assert ready['game']=='BT' and ready['candidate']=='CP00-r4'
+    assert ready['completed'] and ready['exit_code']==0 and ready.get('foot_controls_verified') is True
+    stages=ready['stages']
+    assert all(stages[k]['no_vehicle'] and stages[k]['no_turret'] and stages[k]['weapon'] and stages[k]['brief_over'] for k in ('before','moved','fired'))
+    assert sum((a-b)**2 for a,b in zip(stages['before']['origin'],stages['moved']['origin'])) > 100
+    assert int(stages['fired']['stats']['ui_NumShotsFired']) > int(stages['moved']['stats']['ui_NumShotsFired'])
+    assert ready['engine_sha256']==sha(rt/'openmohaa.exe')
+    source=(repo/args.reference_save).resolve()
+    assert source.is_relative_to(repo/'profiles-local/CP00-r4')
+    for extension in ('.sav','.ssv','.tga'):
+        original=source.with_suffix(extension)
+        entry=next(e for e in ready['evidence'] if e['path']==original.relative_to(repo).as_posix())
+        assert sha(original)==entry['sha256'], 'Reference differs from verified foot probe'
+    mapname=ready['map']
+    readiness=dict(path=report_path.relative_to(repo).as_posix(),sha256=sha(report_path))
 profile = repo/f'profiles-local/CP00-r4/{args.run_id}-{args.game}'
 assert not profile.exists()
 home=profile/folder
@@ -48,7 +70,7 @@ commands=['wait 1000',start_command,'wait 3000','finishloadingscreen','wait 3000
           'wait 2500','screenshot','savegame cp00_before_combat','wait 500',
           *(['+attack','wait 120','-attack','wait 500'] * 7),'wait 3500',
           'script player exec cp00/after_shots.scr','wait 500','screenshot',
-          'script player exec cp00/aim_corpse.scr','+reload','wait 100','-reload','wait 2500',
+          'script player exec cp00/aim_corpse.scr','reload','wait 100','wait 2500',
           *(['+attack','wait 120','-attack','wait 500'] * 3),
           'script player exec cp00/after_corpse_shots.scr','wait 500','screenshot',
           f'wait {args.linger_seconds*1000}','script player exec cp00/after_delay.scr',
@@ -65,6 +87,10 @@ for command in commands:
                      f'echo CP00_STATS_END_{stage}']
     expanded.append(command)
 commands=expanded
+split=commands.index('wait 2500')+1
+# The fixture only arms this continuation after a live target is ready.
+(home/'cp00/combat.cfg').write_text('\n'.join(commands[split:])+'\n',encoding='ascii')
+commands=['set cp00_next "echo CP00_FIXTURE_ABORTED; quit"',*commands[:split],'vstr cp00_next']
 (home/'baseline.cfg').write_text('\n'.join(commands)+'\n',encoding='ascii')
 settings=dict(com_target_game=str(['AA','SH','BT'].index(args.game)),fs_basepath=str(rt),fs_homepath=str(profile),
               fs_steampath=str(rt),fs_gogpath=str(rt),fs_microsoftstorepath=str(rt),net_enabled='0',logfile='2',
@@ -85,8 +111,8 @@ for match in re.finditer(r'CP00_STATS_BEGIN_(\w+)\r?\n(.*?)CP00_STATS_END_\1',lo
     stats[match.group(1)] = dict(re.findall(r'"(ui_\w+)" is:\s*"([^"^]*)',match.group(2)))
 result=dict(candidate='CP00-r4',game=args.game,map=mapname,scope='Controlled spawned actor: AI off while alive for repeatable aim, AI on at genuine death to process corpse. Normal player attack input before/after death; not natural mission progression.',
             exit_code=proc.returncode,completed='CP00_BASELINE_DONE' in log,fixture_ready='CP00_FIXTURE_READY' in log,
-            script_errors=errors,records=records,visual_check='PENDING',
-            reference_save=reference,
+            script_errors=errors,command_warnings=[line.split('] ',1)[-1] for line in log.splitlines() if 'Unknown command' in line],records=records,visual_check='PENDING',
+            reference_save=reference,readiness_report=readiness,
             weapon=f'models/weapons/{args.weapon}.tik',linger_seconds=args.linger_seconds,
             death_counts=death_counts,valid_death_sequence=death_counts==['0','1','1','1'],statistics=stats,
             engine_sha256=sha(rt/'openmohaa.exe'),
@@ -97,3 +123,11 @@ save(repo/f'checkpoints/CP00/{args.run_id}-{args.game}.json',result)
 print(args.game,'fixture_ready',result['fixture_ready'],'errors',errors,flush=True)
 assert proc.returncode==0 and result['completed'] and result['fixture_ready']
 assert result['valid_death_sequence'], 'Invalid controlled death sequence'
+
+assert not result['script_errors'], 'Script errors require review'
+assert not result['command_warnings'], 'Unknown commands require review'
+a,b,c=(stats[k] for k in ('alive','after_shots','after_corpse_shots'))
+assert int(b['ui_NumShotsFired']) > int(a['ui_NumShotsFired'])
+assert int(b['ui_NumEnemysKilled']) == int(a['ui_NumEnemysKilled'])+1
+assert int(c['ui_NumShotsFired']) > int(b['ui_NumShotsFired'])
+assert all(c[k]==b[k] for k in ('ui_NumHits','ui_NumEnemysKilled','ui_NumComplete'))
