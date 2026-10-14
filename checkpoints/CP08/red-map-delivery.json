@@ -1,0 +1,9 @@
+{
+  "source_commit": "a3be11c034ae7cf775efcdf732b48b1737cec3d1",
+  "engine_sha256": "c2bc8c02856a024f3cf9b78fd732d185b038ae2eb0dd71958efc09509315d054",
+  "package": "artifacts-local/CP08-r1-red-map-update.zip",
+  "sha256": "f4a834bc2737e82f7f06edce0db8f0107c645896c00fd2c57a243b90c3e2ae0b",
+  "crc_verified": true,
+  "other_owned_files_unchanged": true,
+  "visual_review": "All six native Full HD screenshots inspected; locked markers, mission list and status red; user profile unchanged"
+}
