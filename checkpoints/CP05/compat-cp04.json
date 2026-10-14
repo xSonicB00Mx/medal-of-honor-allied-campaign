@@ -1,0 +1,48 @@
+{
+  "complete": true,
+  "old_wounds_preserved": 2,
+  "new_wounds_restored": 2,
+  "historical_exits_created": false,
+  "old_transforms": [
+    [
+      "1",
+      "0",
+      "605297582",
+      "113.268311",
+      "1,0"
+    ],
+    [
+      "2",
+      "0",
+      "808076497",
+      "263.373383",
+      "0,1"
+    ]
+  ],
+  "new_transforms": [
+    [
+      "1",
+      "0",
+      "3514194125",
+      "204.316742",
+      "1,0"
+    ],
+    [
+      "1",
+      "1",
+      "4275987139",
+      "97.621765",
+      "0,1"
+    ]
+  ],
+  "images": [
+    "profiles-local/CP05-r1/compat-cp04/main/screenshots/shot0000.png",
+    "profiles-local/CP05-r1/compat-cp04/main/screenshots/shot0001.png",
+    "profiles-local/CP05-r1/compat-cp04/main/screenshots/shot0002.png"
+  ],
+  "binaries": {
+    "openmohaa.exe": "14f474c93658bd948cfc8c197472b45b930231d764c35fc439253b83c9564a45",
+    "cgame.dll": "078f3453982ae98f8628fc5b327439ce010a7d0dbb91e59cdef8181bf4828452",
+    "game.dll": "0903db38db81a2ddc9752ed82ed759b722bcfc178f575d6d0959f7c5a43b1b05"
+  }
+}
