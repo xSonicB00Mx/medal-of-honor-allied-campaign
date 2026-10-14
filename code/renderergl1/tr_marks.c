@@ -626,6 +626,11 @@ int R_MarkFragments( int numPoints, const vec3_t *points, const vec3_t projectio
 		AddPointToBounds( points[i], mins, maxs );
 		VectorAdd( points[i], projection, temp );
 		AddPointToBounds( temp, mins, maxs );
+		// Curved-road collision meshes can sit slightly above their draw mesh.
+		if (fRadiusSquared < 0) {
+			VectorMA(points[i], 2.f, projectionDir, temp);
+			AddPointToBounds(temp, mins, maxs);
+		}
 		// make sure we get all the leafs (also the one(s) in front of the hit surface)
 		VectorMA( points[i], -20, projectionDir, temp );
 		AddPointToBounds( temp, mins, maxs );
@@ -690,17 +695,21 @@ int R_MarkFragments( int numPoints, const vec3_t *points, const vec3_t projectio
         }
     }
     if(fRadiusSquared<0) {
-        // AA curved draw surfaces may stand above their coarse collision proxy.
-        // Snap only to the nearest actual surface, at most 16 units toward the
-        // incident side; never search down to a lower floor through the hit one.
-        vec3_t center;int u,n,m;float best=9999;VectorClear(center);for(u=0;u<numPoints;++u)VectorMA(center,1.f/numPoints,points[u],center);
+        // Reconcile the collision proxy with the nearest actual draw surface.
+        // AA curves can stand above the proxy; BT curved roads can lie just
+        // below it. Allow at most 2 units behind the hit for a curve only,
+        // never a deeper floor or a flat surface behind a wall. Keep the thin
+        // clipping slab instead of projecting through all nearby layers.
+        vec3_t center;int u,n,m,bestSurface=-1;float best=9999;VectorClear(center);for(u=0;u<numPoints;++u)VectorMA(center,1.f/numPoints,points[u],center);
         for(u=0;u<numsurfaces;++u) {
             if(*surfaces[u]==SF_GRID) { srfGridMesh_t *grid=(srfGridMesh_t*)surfaces[u];
-                for(m=0;m<grid->height-1;++m)for(n=0;n<grid->width-1;++n){drawVert_t *v=grid->verts+m*grid->width+n;float d=AC_MarkTriangleDistance(center,projectionDir,v[0].xyz,v[grid->width].xyz,v[1].xyz);if(fabsf(d)<fabsf(best))best=d;d=AC_MarkTriangleDistance(center,projectionDir,v[1].xyz,v[grid->width].xyz,v[grid->width+1].xyz);if(fabsf(d)<fabsf(best))best=d;}
-            } else if(*surfaces[u]==SF_FACE) { srfSurfaceFace_t *face=(srfSurfaceFace_t*)surfaces[u];int *ix=(int*)((byte*)face+face->ofsIndices);for(m=0;m<face->numIndices;m+=3){float d=AC_MarkTriangleDistance(center,projectionDir,face->points[ix[m]],face->points[ix[m+1]],face->points[ix[m+2]]);if(fabsf(d)<fabsf(best))best=d;}
+                for(m=0;m<grid->height-1;++m)for(n=0;n<grid->width-1;++n){drawVert_t *v=grid->verts+m*grid->width+n;float d=AC_MarkTriangleDistance(center,projectionDir,v[0].xyz,v[grid->width].xyz,v[1].xyz);if(fabsf(d)<fabsf(best)){best=d;bestSurface=u;}d=AC_MarkTriangleDistance(center,projectionDir,v[1].xyz,v[grid->width].xyz,v[grid->width+1].xyz);if(fabsf(d)<fabsf(best)){best=d;bestSurface=u;}}
+            } else if(*surfaces[u]==SF_FACE) { srfSurfaceFace_t *face=(srfSurfaceFace_t*)surfaces[u];int *ix=(int*)((byte*)face+face->ofsIndices);for(m=0;m<face->numIndices;m+=3){float d=AC_MarkTriangleDistance(center,projectionDir,face->points[ix[m]],face->points[ix[m+1]],face->points[ix[m+2]]);if(fabsf(d)<fabsf(best)){best=d;bestSurface=u;}}
             }
         }
-        if(best<0 && best>=-16) {dists[numPoints]+=best;dists[numPoints+1]-=best;}
+        if((best<0 && best>=-16) || (best>0 && best<=2 && bestSurface>=0 && *surfaces[bestSurface]==SF_GRID)) {
+            dists[numPoints]+=best;dists[numPoints+1]-=best;
+        }
         if(ri.Cvar_Get("ac_fx_debug","0",0)->integer>2) ri.Printf(PRINT_ALL,"AC_NEAREST %f\n",best);
     }
     if (!numsurfaces) return returnedFragments;

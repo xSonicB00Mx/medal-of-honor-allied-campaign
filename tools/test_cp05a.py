@@ -2,8 +2,8 @@
 import argparse,hashlib,json,re,shutil,subprocess
 from pathlib import Path
 from PIL import Image
-ap=argparse.ArgumentParser();ap.add_argument('game',choices=['AA','SH','BT']);ap.add_argument('--run-id',required=True);ap.add_argument('--map',default='m2l1');ap.add_argument('--model');ap.add_argument('--existing',action='store_true');ap.add_argument('--negative',action='store_true');ap.add_argument('--mist',type=int,default=1);ap.add_argument('--lifetime',action='store_true');a=ap.parse_args()
-r=Path(__file__).resolve().parents[1];rt=r/'runtime-local/CP05a-r1';p=r/'profiles-local/CP05a-r1'/a.run_id
+ap=argparse.ArgumentParser();ap.add_argument('--runtime',default='CP05a-r1',choices=['CP05a-r1','CP05a-r2']);ap.add_argument('game',choices=['AA','SH','BT']);ap.add_argument('--run-id',required=True);ap.add_argument('--map',default='m2l1');ap.add_argument('--model');ap.add_argument('--existing',action='store_true');ap.add_argument('--negative',action='store_true');ap.add_argument('--mist',type=int,default=1);ap.add_argument('--lifetime',action='store_true');a=ap.parse_args()
+r=Path(__file__).resolve().parents[1];rt=r/'runtime-local'/a.runtime;p=r/'profiles-local'/a.runtime/a.run_id
 assert re.fullmatch('[A-Za-z0-9-]+',a.run_id) and not p.exists()
 n,f,src={'AA':(0,'main',None),'SH':(1,'mainta','profiles-local/CP00-r4/SH/mainta/save/omconfig/t1l20005.sav'),'BT':(2,'maintt','profiles-local/CP00-r4/r4-bt-foot-e2l2/maintt/save/omconfig/cp00_foot_ready.sav')}[a.game]
 h=p/f;(h/'probe').mkdir(parents=True);start='map '+a.map
@@ -65,6 +65,9 @@ log=(h/'qconsole.log').read_text(encoding='latin1');images=[]
 for im in sorted((h/'screenshots').glob('*.tga')):
  out=im.with_suffix('.png');Image.open(im).save(out);images.append(out.relative_to(r).as_posix())
 result=dict(game=a.game,map=a.map,model=a.model,completed='AC_TEST_DONE' in log,exit=proc.returncode,binaries={x:hashlib.sha256((rt/x).read_bytes()).hexdigest() for x in ['openmohaa.exe','game.dll','cgame.dll']},images=images,events=re.findall(r'AC_(?:HIT|CORPSE|CONTEXT|MARK|WOUND|PHASE|GROUP)[^\r\n]*',log),deaths=re.findall(r'CP00_DEATH_EVENT[^\r\n]*',log),errors=[l for l in log.splitlines() if any(x in l for x in ['Script Error','Unknown command','Invalid event','compile error'])])
-(r/'checkpoints/CP05a'/f'{a.run_id}.json').write_text(json.dumps(result,indent=2))
+out=r/'checkpoints/CP05a'
+if a.runtime=='CP05a-r2':out=out/'r2'
+out.mkdir(exist_ok=True)
+(out/f'{a.run_id}.json').write_text(json.dumps(result,indent=2))
 print(json.dumps({**result,'images':len(images),'events':len(result['events'])}),flush=True)
 assert result['completed'] and proc.returncode==0 and not result['errors']
