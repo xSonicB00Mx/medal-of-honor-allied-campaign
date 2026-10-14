@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "status": "NUR_INVENTARISIERT_NICHT_AKTIV",
+  "status": "CP00a-r1_INTEGRIERT_TESTS_LAUFEN",
   "source": "https://community.pcgamingwiki.com/files/file/2604-medal-of-honor-allied-assault-breakthrough-ammo-and-health-drops/",
   "packages": [
     {
@@ -62,5 +62,6 @@
   ],
   "transport_zip": "No outer ZIP found. Provided PK3 is itself a ZIP container.",
   "author": null,
-  "version": null
+  "version": null,
+  "integration_manifest": "checkpoints/CP00a/CP00a-r1-import.json"
 }

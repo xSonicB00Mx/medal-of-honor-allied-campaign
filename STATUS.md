@@ -1,5 +1,10 @@
 # Status
 
+## Freigabe fuer den autonomen Lauf am 14.10.2026
+
+Der Nutzer beauftragt ausdruecklich die eigenstaendige Arbeit bis einschliesslich CP1 ohne Zwischenstopps. CP00-r4 bleibt unveraenderte Referenz; bisher offene CP0-Referenzfaelle bleiben offen, statt als bestanden umgedeutet zu werden. CP00a-r1 ist getrennt bereitgestellt, Drop-Laufzeittests laufen. Danach folgt CP1 auf eigenem Branch. Keine persoenliche Nutzerabnahme behauptet. Der folgende historische CP0-Status dokumentiert den Ausgangspunkt; seine Stopps sind durch die neue Freigabe ersetzt.
+
+
 - Aktiver Checkpoint: **CP0 – TEILKANDIDAT CP00-r4 ZUM SPIELTEST, NICHT VOLLSTÄNDIG ABGENOMMEN**. Kein Merge, kein CP0a.
 - Aktueller Kandidat: **CP00-r4**, getrennte Runtime und AA-/SH-/BT-Profile auf der vom Nutzer ausdrücklich gewünschten neuen lokalen WCR-Fassung. r2 und r3 bleiben erhalten; r1 bleibt wegen der damaligen Bereitstellungsfehler zurückgezogen.
 - Nutzerbestätigung vom 13.10.2026 „hat geklappt. fahre fort“ gilt für die r2-Speicher-/Vorschaubild-/FOV-Korrektur. Spätere Antwort bestätigt bewusst aktualisierte Originaldateien und beauftragt die neue Fassung als künftige Basis. Keine vollständige CP0-/r4-Abnahme oder Mergefreigabe.

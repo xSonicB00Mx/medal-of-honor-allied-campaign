@@ -1,0 +1,361 @@
+{
+  "schema": 1,
+  "revision": 1,
+  "patch_sha256": "d4122611afec4bb317eef1026f256cd0e1aa87fc85268218ceb19df71fb225fd",
+  "output_sha256": "3638dca7306fe570278fe9ae4497acbe57bb398a7ffc8967d750fff36a699da8",
+  "files": [
+    {
+      "resource": "global/giveall.scr",
+      "base_sha256": "bab139c16916e1865b98e1fcf217bdf27b495ddcfd0c965fbb6daa58fcaa90d6",
+      "patch_sha256": "0d29b82f436cbbc311be85a4bdd7e09f27165830f78bc359834d219ad5891ce5",
+      "wcr_sha256": "0893fe07913f66a5fe84b0c04f2b63f3716a5a661747fc9fc0f2666eee0865cb",
+      "merged_sha256": "85ff7d3a81b7831f58190dbfd57ecc66d81c7db1abdec77593944f20e283454a",
+      "decisions": [
+        {
+          "rule": "patch_ammo_limit",
+          "ammo": "pistol",
+          "value": 400
+        },
+        {
+          "rule": "patch_ammo_limit",
+          "ammo": "rifle",
+          "value": 400
+        },
+        {
+          "rule": "patch_ammo_limit",
+          "ammo": "smg",
+          "value": 600
+        },
+        {
+          "rule": "patch_ammo_limit",
+          "ammo": "mg",
+          "value": 900
+        },
+        {
+          "rule": "patch_ammo_limit",
+          "ammo": "shotgun",
+          "value": 80
+        }
+      ]
+    },
+    {
+      "resource": "global/givenewweapons.scr",
+      "base_sha256": "a4f852f2ff5bc83e0175aec33556a8d2aac9ae7e11d8ab2ae455f50d36391ac2",
+      "patch_sha256": "498b4a4bb2cde082782952c3cf6257c9f4622a1f191da3a93b45ca4ae525d1fb",
+      "wcr_sha256": "3d182bd00f7490b81446e1862e3a5453e704d232802f7bb3671e83f3806cbb3f",
+      "merged_sha256": "1c1782012a343e8e240651cbb5090c1de539d9806d81e047e7f3d54506038245",
+      "decisions": [
+        {
+          "rule": "patch_ammo_limit",
+          "ammo": "pistol",
+          "value": 400
+        },
+        {
+          "rule": "patch_ammo_limit",
+          "ammo": "rifle",
+          "value": 400
+        },
+        {
+          "rule": "patch_ammo_limit",
+          "ammo": "smg",
+          "value": 600
+        },
+        {
+          "rule": "patch_ammo_limit",
+          "ammo": "mg",
+          "value": 900
+        },
+        {
+          "rule": "patch_ammo_limit",
+          "ammo": "shotgun",
+          "value": 80
+        }
+      ]
+    },
+    {
+      "resource": "global/loadout.scr",
+      "base_sha256": "a39337bcc4865f7b4510a314e61ea8609d22ba03ea99b4c3160a7fa2e2e52f57",
+      "patch_sha256": "87c17417ebccf80adf93068eb24b95494ca5928339e5679fa5372d187a4910d7",
+      "wcr_sha256": "06ad4d8b9bb56568bbb047bb4f4c810ba24c8a251d64fcc7a6c245872811363f",
+      "merged_sha256": "664fb49bfbbcfb9c732cf49d9c2aed6440596b61b779661c8c693d4db91585da",
+      "decisions": [
+        {
+          "map": "e3l4",
+          "rule": "patch_loadout_ammo",
+          "ammo": "pistol",
+          "value": 120
+        },
+        {
+          "map": "e3l4",
+          "rule": "patch_loadout_ammo",
+          "ammo": "mg",
+          "value": 300
+        },
+        {
+          "map": "e3l4",
+          "rule": "patch_loadout_ammo",
+          "ammo": "rifle",
+          "value": 100
+        },
+        {
+          "map": "e3l4",
+          "rule": "patch_loadout_ammo",
+          "ammo": "shotgun",
+          "value": 80
+        },
+        {
+          "map": "e3l3",
+          "rule": "patch_loadout_ammo",
+          "ammo": "pistol",
+          "value": 200
+        },
+        {
+          "map": "e3l3",
+          "rule": "patch_loadout_ammo",
+          "ammo": "mg",
+          "value": 200
+        },
+        {
+          "map": "e3l2",
+          "rule": "patch_loadout_ammo",
+          "ammo": "pistol",
+          "value": 200
+        },
+        {
+          "map": "e3l2",
+          "rule": "patch_loadout_ammo",
+          "ammo": "smg",
+          "value": 200
+        },
+        {
+          "map": "e3l1",
+          "rule": "patch_loadout_ammo",
+          "ammo": "pistol",
+          "value": 120
+        },
+        {
+          "map": "e3l1",
+          "rule": "patch_loadout_ammo",
+          "ammo": "smg",
+          "value": 50
+        },
+        {
+          "map": "e3l1",
+          "rule": "patch_loadout_ammo",
+          "ammo": "rifle",
+          "value": 20
+        },
+        {
+          "map": "e2l3",
+          "rule": "patch_loadout_ammo",
+          "ammo": "pistol",
+          "value": 50
+        },
+        {
+          "map": "e2l2",
+          "rule": "patch_loadout_ammo",
+          "ammo": "rifle",
+          "value": 100
+        },
+        {
+          "map": "e2l2",
+          "rule": "patch_loadout_ammo",
+          "ammo": "pistol",
+          "value": 50
+        },
+        {
+          "map": "e2l1",
+          "rule": "patch_loadout_ammo",
+          "ammo": "rifle",
+          "value": 200
+        },
+        {
+          "map": "e2l1",
+          "rule": "patch_loadout_ammo",
+          "ammo": "pistol",
+          "value": 200
+        },
+        {
+          "map": "e1l4",
+          "rule": "patch_loadout_ammo",
+          "ammo": "pistol",
+          "value": 30
+        },
+        {
+          "map": "e1l4",
+          "rule": "patch_loadout_ammo",
+          "ammo": "shotgun",
+          "value": 80
+        },
+        {
+          "map": "e1l3",
+          "rule": "patch_loadout_ammo",
+          "ammo": "rifle",
+          "value": 200
+        },
+        {
+          "map": "e1l3",
+          "rule": "patch_loadout_ammo",
+          "ammo": "smg",
+          "value": 200
+        },
+        {
+          "map": "e1l2",
+          "rule": "patch_loadout_ammo",
+          "ammo": "rifle",
+          "value": 100
+        },
+        {
+          "map": "e1l2",
+          "rule": "patch_loadout_ammo",
+          "ammo": "pistol",
+          "value": 100
+        },
+        {
+          "map": "e1l2",
+          "rule": "patch_loadout_ammo",
+          "ammo": "smg",
+          "value": 200
+        },
+        {
+          "map": "e1l1",
+          "rule": "patch_loadout_ammo",
+          "ammo": "pistol",
+          "value": 100
+        },
+        {
+          "map": "e1l1",
+          "rule": "patch_loadout_ammo",
+          "ammo": "smg",
+          "value": 200
+        },
+        {
+          "map": "e1l1",
+          "rule": "patch_loadout_ammo",
+          "ammo": "rifle",
+          "value": 100
+        },
+        {
+          "rule": "retain_WCR_weapons_and_story_state_enable_drops",
+          "save": "Old in-level saves require mission restart; no replay/migration of deaths."
+        }
+      ]
+    },
+    {
+      "resource": "maps/e1l3.scr",
+      "base_sha256": "133a478aea59311eab93e5494465d910974ffa310905376b3831bedd0150c366",
+      "patch_sha256": "7e159001b46b589e0ff0ccffc37e4513b522a1f5a03ef041e2bb431dc3d79332",
+      "wcr_sha256": "c5a10394de806fd5d388b517e95277f7586469bb03c377e12f1db526311d91f4",
+      "merged_sha256": "2efdc818065da41bd19ba1999fec58c0978ee97b64eebac8f2aa8199697c0c14",
+      "decisions": [
+        {
+          "rule": "enable_nodrophealth",
+          "changed_assignments": 0
+        }
+      ]
+    },
+    {
+      "resource": "maps/e1l4.scr",
+      "base_sha256": "c30eb47a37d9ce88f8080a7272c0fae1c2c94b9d96ef84c8b129f336fcdb7303",
+      "patch_sha256": "6864b8a2f66aa46c0c403939de578576a113d9ddc14b6be9d48bfb42a3f412fc",
+      "wcr_sha256": "cc0e1248f65bd609e0f76fb1fa05e276deff893ee418882835302f99a5a7d6b6",
+      "merged_sha256": "db3c2aa73334ba180423101d44f62ee8703d23f8f6efb2c4f458d30eacf883ff",
+      "decisions": [
+        {
+          "rule": "patch_pistol_ammo",
+          "values": [
+            64,
+            200
+          ]
+        },
+        {
+          "rule": "exclude_unrelated_old_medal_names_preserve_WCR"
+        }
+      ]
+    },
+    {
+      "resource": "maps/e2l1.scr",
+      "base_sha256": "a5eac63629c59b968d80710ed2a8c070f17115d1032a5f743228e0cc1a618c9f",
+      "patch_sha256": "be3082a812d3cd461a736e85ae3a3c65ff40eb6e1e93d41e5b4b469da9a2d7fe",
+      "wcr_sha256": "698ccfc5b0810518677aa6925947455b2284e26c1c31680a97b4725d3b34c68e",
+      "merged_sha256": "cba090c71f370f1c96eb1c92c4addb1587e643db2895d6c5ce834d8f7b014aaf",
+      "decisions": [
+        {
+          "rule": "enable_nodrophealth",
+          "changed_assignments": 1
+        }
+      ]
+    },
+    {
+      "resource": "maps/e2l2.scr",
+      "base_sha256": "0ed1c15ce1981576c02cb34f95e4f421c37aa20225fa328c4cb0f990cac3a419",
+      "patch_sha256": "298c4b14922304365873964c5264e360f8c11b69883e195240a834be95ca6633",
+      "wcr_sha256": "fb4771fc83f5a88ec925ed61e6aed6eb7b7bc4917e98bcc79c03f37eee6f443c",
+      "merged_sha256": "943e034756ba638075b42c1b5cb48da0aae795451ac2908c0fcc9fda12f68da4",
+      "decisions": [
+        {
+          "rule": "enable_nodropweapons",
+          "changed_assignments": 1
+        }
+      ]
+    },
+    {
+      "resource": "maps/e3l1.scr",
+      "base_sha256": "621b0e82917969bbf29b22ac342ff2786eaf98441317099acbf5f40ee30d02bc",
+      "patch_sha256": "2ed33bcd47847f1951cbfacc302b4f3bf8b31545a4f4971c1ef7e84aeae6574a",
+      "wcr_sha256": "ba6877968eab349e820152f5c8b2c001d3bc55429df8880757686e6261d2aae7",
+      "merged_sha256": "a3237491f581f053c0168ff7eecd302b9b9f077f271e5b65aa689360f27087a1",
+      "decisions": [
+        {
+          "rule": "enable_nodrophealth",
+          "changed_assignments": 0
+        },
+        {
+          "rule": "enable_nodropweapons",
+          "changed_assignments": 0
+        }
+      ]
+    },
+    {
+      "resource": "maps/e3l2.scr",
+      "base_sha256": "1dcbdf62b7d4edbd2734d9c1e60e650de25e86a2a802dfee9dc235ffa666f25d",
+      "patch_sha256": "ee0a08616953941b24cca0139239e4cc0f168267b671089320e63eb2cb43af7b",
+      "wcr_sha256": "adda6119f6128a9569c04a7e625b737fd668fa50187d9ad0c07d0292490c4635",
+      "merged_sha256": "cb466c42c65078f2a6407709a77f104ba71bf5a081a7345f4c6d4083539d1d13",
+      "decisions": [
+        {
+          "rule": "patch_only_changes_comments_no_behavior"
+        }
+      ]
+    },
+    {
+      "resource": "maps/e3l4.scr",
+      "base_sha256": "bee61c3420f308936c4902ec691e6fb582c0a3d08590c19aae6f07e9637337f4",
+      "patch_sha256": "0b55290126582c869a7e289f76b9a4bea07c9b8dcdb40d99e99d4e9cc3cc0c88",
+      "wcr_sha256": "c7d05bdb2bc228f25367e39545dd3a99ceec83d1b55892241a9363ff60fc2bca",
+      "merged_sha256": "13d9cecf2829de364c98bf82cbe4f347a1c8e130b3e01b83fe779f53f28920b8",
+      "decisions": [
+        {
+          "rule": "enable_nodrophealth",
+          "changed_assignments": 0
+        },
+        {
+          "rule": "enable_nodropweapons",
+          "changed_assignments": 0
+        },
+        {
+          "rule": "exclude_unrelated_old_medal_names_preserve_WCR"
+        }
+      ]
+    }
+  ],
+  "active_resources": [
+    "global/giveall.scr",
+    "global/givenewweapons.scr",
+    "global/loadout.scr",
+    "maps/e1l4.scr",
+    "maps/e2l1.scr",
+    "maps/e2l2.scr"
+  ],
+  "old_save_policy": "Restart mission; original saves not modified. No retroactive drops."
+}

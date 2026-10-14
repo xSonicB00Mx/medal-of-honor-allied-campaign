@@ -1,4 +1,5 @@
 # Medal of Honor: Allied Campaign
+> Arbeitsfreigabe 14.10.2026: Der Nutzer beauftragt die eigenständige Fortsetzung bis einschließlich CP1 ohne Zwischenfreigaben. Die Stopps nach CP0 und CP0a sind für diesen Lauf aufgehoben. Fachliche Anforderungen und ehrliche Testgrenzen bleiben bestehen; persönliche Spielabnahmen werden nicht erfunden. Der ausdrücklich abgewählte BT-Finaltest bleibt ausgelassen.
 ## Verbindlicher Arbeitsauftrag für Codex
 
 Stand des Plans: 13. Oktober 2026 · Revision 8. Vollständig aktualisierte Anleitung; ersetzt Revision 1 bis 7, nicht nur ein Ergänzungsblatt. Dieses Dokument beschreibt den Sollzustand und die Umsetzung; es behauptet nicht, dass die lokale Installation bereits untersucht oder die Mod bereits gebaut wurde.

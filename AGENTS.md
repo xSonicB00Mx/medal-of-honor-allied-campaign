@@ -1,7 +1,7 @@
 # Medal of Honor: Allied Campaign
 
 Kommunikation auf Deutsch. Vor Arbeit PLAN.md, STATUS.md und CP-Berichte lesen.
-Aktuell ausschließlich CP0; nach Übergabe stoppen. Kein CP0a ohne ausdrückliche Freigabe.
+Nutzerfreigabe vom 14.10.2026: eigenständig bis einschließlich CP1 implementieren, prüfen und liefern; keine Zwischenstopps/erneuten „mach weiter“-Freigaben für CP0/CP0a. Technische Testergebnisse nicht als persönliche Nutzer-Spielabnahme ausgeben. Nach CP1 stoppen; keine CP2-Funktionen.
 Der Nutzer verwaltet GitHub nicht selbst. Übernimm Routine-Git-/GitHub-Arbeit und technische Merges nach konkreter Chatfreigabe; verlange nur unvermeidbare Anmeldung, Sicherheitsbestätigung und inhaltliche Abnahme.
 Ziel: privates xSonicB00Mx/medal-of-honor-allied-campaign, Konto im Chat bestätigt.
 War Chest Restored ist Teil der übernommenen Inhaltsbasis. Nicht entfernen, nicht neu herunterladen oder still aktualisieren; neue Features gezielt zusammenführen und bestehende Inhalte erhalten.
