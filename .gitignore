@@ -70,3 +70,5 @@ out
 /Start-CP01*.cmd
 
 !checkpoints/**/build-manifest.json
+
+/Start-CP02*.cmd

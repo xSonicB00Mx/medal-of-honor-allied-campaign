@@ -474,6 +474,10 @@ void ClientSpecialEffectsManager::ExecuteEffect(
     tmpEntity.renderfx      = 0;
     tmpEntity.shaderRGBA[3] = -1;
 
+    if (iStartCommand == 0 && (iEffect == SFX_BHIT_HUMAN_UNIFORM_LITE || iEffect == SFX_BHIT_HUMAN_UNIFORM_HARD)
+        && cgi.Cvar_Get("ac_fx_debug", "0", 0)->integer)
+        cgi.Printf("AC_MIST time=%d effect=%d enabled=%d pos=%.3f,%.3f,%.3f\n", cg.time, iEffect,
+            cgi.Cvar_Get("ac_blood_mist", "1", CVAR_ARCHIVE)->integer, vPos.x, vPos.y, vPos.z);
     pEffect       = &this->m_effects[iEffect];
     iCommandCount = pEffect->m_iCommandCount;
     if (pEffect->m_iCommandCount) {
@@ -521,7 +525,20 @@ void ClientSpecialEffectsManager::ExecuteEffect(
                 pCommand->emitter->cgd.createTime = cg.time;
                 commandManager.SetSpawnthing(pCommand->emitter);
 
+                // Tint only this invocation of the existing human-uniform emitter.
+                // Restore the shared template immediately; delays use the same path.
+                const bool redMist = (iEffect == SFX_BHIT_HUMAN_UNIFORM_LITE
+                    || iEffect == SFX_BHIT_HUMAN_UNIFORM_HARD)
+                    && cgi.Cvar_Get("ac_blood_mist", "1", CVAR_ARCHIVE)->integer;
+                float originalColor[3];
+                for (int channel = 0; channel < 3; ++channel) {
+                    originalColor[channel] = pCommand->emitter->cgd.color[channel];
+                    if (redMist) pCommand->emitter->cgd.color[channel] *=
+                        channel == 0 ? 0.65f : 0.035f;
+                }
                 (commandManager.*pCommand->endfcn)();
+                for (int channel = 0; channel < 3; ++channel)
+                    pCommand->emitter->cgd.color[channel] = originalColor[channel];
             }
         }
 

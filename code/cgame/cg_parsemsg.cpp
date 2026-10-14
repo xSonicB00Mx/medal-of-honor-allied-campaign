@@ -958,7 +958,13 @@ void CG_AddBulletImpacts()
     wall_impact_count = 0;
 
     if (flesh_impact_count) {
-        if (flesh_impact_count > 1) {
+        if (cgi.Cvar_Get("ac_blood_mist", "1", CVAR_ARCHIVE)->integer) {
+            // The legacy sound-distance shortcut drops simultaneous visual hits.
+            for (i = 0; i < flesh_impact_count; ++i)
+                sfxManager.MakeEffect_Normal(
+                    flesh_impact_large[i] ? SFX_BHIT_HUMAN_UNIFORM_HARD : SFX_BHIT_HUMAN_UNIFORM_LITE,
+                    flesh_impact_pos[i], flesh_impact_norm[i]);
+        } else if (flesh_impact_count > 1) {
             fImpSndDistRA  = 9999.0;
             fImpSndDistLA  = 9999.0;
             iImpSndIndexRA = 0;

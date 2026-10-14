@@ -128,6 +128,7 @@ void CG_RegisterCvars(void)
     cvar_t *temp;
 
     cgi.Cvar_Get("g_subtitle", "0", CVAR_ARCHIVE);
+    cgi.Cvar_Get("ac_blood_mist", "1", CVAR_ARCHIVE);
     cg_viewsize                   = cgi.Cvar_Get("viewsize", "100", CVAR_ARCHIVE);
     cg_addMarks                   = cgi.Cvar_Get("cg_marks_add", "1", CVAR_ARCHIVE);
     cg_maxMarks                   = cgi.Cvar_Get("cg_marks_max", "256", CVAR_ARCHIVE | CVAR_LATCH);
