@@ -21,7 +21,7 @@ fixture=fixture.replace('    level.cp00_subject thread deathwatch','    level.cp
 (h/'probe/base.scr').write_text(fixture)
 (h/'probe/aim.scr').write_text('main:\n    $player give models/weapons/colt45.tik\n    $player use models/weapons/colt45.tik\n    $player.viewangles = vector_toangles ((level.cp00_subject.origin + ( 0 0 50 )) - ($player.origin + ( 0 0 64 )))\nend\n')
 (h/'probe/ground.scr').write_text('main:\n    $player.viewangles = vector_toangles ((level.cp00_subject.origin + ( 0 0 2 )) - ($player.origin + ( 0 0 64 )))\nend\n')
-commands=['wait 1000',start,'wait 3000','finishloadingscreen','wait 2000','set ui_console 0','set developer 1','script player exec probe/base.scr','wait 1200','script player exec probe/aim.scr','script player ammo pistol 100','wait 2000','screenshot','+attack','wait 50','-attack','screenshot','wait 100','screenshot','wait 150','screenshot','wait 300','screenshot','script player exec probe/ground.scr','wait 300','screenshot','wait 1000','screenshot','wait 12000','screenshot','wait 14000','screenshot','wait 7000','screenshot','echo AC_FEEDBACK_DONE','quit']
+commands=['wait 1000',start,'wait 3000','finishloadingscreen','wait 2000','set ui_console 0','set developer 1','script player exec probe/base.scr','wait 1200','script player exec probe/aim.scr','script player ammo pistol 100','wait 2000','screenshot','+attack','wait 180','-attack','screenshot','wait 100','screenshot','wait 150','screenshot','wait 300','screenshot','script player exec probe/ground.scr','wait 300','screenshot','wait 1000','screenshot','wait 12000','screenshot','wait 14000','screenshot','wait 7000','screenshot','echo AC_FEEDBACK_DONE','quit']
 (h/'probe.cfg').write_text('\n'.join(commands)+'\n')
 cmd=[str(rt/'openmohaa.exe')]
 for k,v in dict(com_target_game=n,fs_basepath=rt,fs_homepath=p,fs_steampath=rt,fs_gogpath=rt,fs_microsoftstorepath=rt,net_enabled=0,logfile=2,developer=1,cheats=1,ui_console=0,r_fullscreen=0,r_mode=-1,r_customwidth=1920,r_customheight=1080,com_maxfps=60,com_maxfpsUnfocused=60,cl_playintro=0,ac_fx_debug=2,ac_world_blood=1,ac_body_wounds=1,ac_blood_mist=a.mist).items():cmd+=['+set',k,str(v)]
@@ -37,3 +37,4 @@ if a.runtime=='CP05a-r2':out=out/'r2'
 out.mkdir(exist_ok=True);(out/(a.run_id+'.json')).write_text(json.dumps(report,indent=2))
 print(json.dumps({**report,'images':len(images),'events':len(report['events'])}),flush=True)
 assert report['completed'] and result.returncode==0 and not report['errors']
+assert any(e.startswith('AC_HIT ') for e in report['events']), 'No confirmed fixture hit; not a valid surface regression'
