@@ -1,0 +1,295 @@
+{
+  "source": "a705e69819905e260f36abf4c07129efdbfebfb9",
+  "remote_verified": true,
+  "artworks": 45,
+  "presentation": "Full supplied image, no original-center composite",
+  "user_images": [
+    "AA-loading_m4l1",
+    "AA-loading_m4l2",
+    "AA-loading_m5l2"
+  ],
+  "user_texture_pixel_check": true,
+  "build": "RelWithDebInfo passed",
+  "validators": [
+    "CP00 passed",
+    "campaign passed"
+  ],
+  "ci": {
+    "run": 38699187290,
+    "status": "in_progress_at_delivery"
+  },
+  "delivery": {
+    "source_commit": "a705e69819905e260f36abf4c07129efdbfebfb9",
+    "integrity": {
+      "original_files_unchanged": 9072,
+      "runtime_base_files_unchanged": 9000,
+      "mp1_files_unchanged": 8,
+      "user_profile_files_unchanged": 80,
+      "rollback_copy": "generated-local/widescreen/backups/widescreen-fullframe-r1"
+    },
+    "package": "artifacts-local/CP08-r1-widescreen-fullframe-r1-update.zip",
+    "sha256": "a458c4e59e1ce34b909aa9a264e1c79bb810a5cf972a5b94327f958c3790542a",
+    "upload_allowed": false,
+    "approved_artworks": [
+      "AA-advancedoptions",
+      "AA-audio options",
+      "AA-briefing_room",
+      "AA-controls",
+      "AA-loading_m1l1",
+      "AA-loading_m1l2a",
+      "AA-loading_m1l2b",
+      "AA-loading_m1l3a",
+      "AA-loading_m2l1",
+      "AA-loading_m2l2a",
+      "AA-loading_m2l3",
+      "AA-loading_m3l1a",
+      "AA-loading_m3l2",
+      "AA-loading_m3l3",
+      "AA-loading_m4l1",
+      "AA-loading_m4l2",
+      "AA-loading_m4l3",
+      "AA-loading_m5l1",
+      "AA-loading_m5l2",
+      "AA-loading_m5l3",
+      "AA-loading_m6l1a",
+      "AA-loading_m6l1c",
+      "AA-loading_m6l2a",
+      "AA-loading_m6l2b",
+      "AA-loading_m6l3",
+      "AA-loadsave",
+      "AA-main",
+      "AA-missionbriefingback",
+      "AA-options_main",
+      "AA-statsscreen_failed",
+      "AA-statsscreen_game",
+      "AA-statsscreen_success",
+      "AA-video options",
+      "AA-war_records",
+      "BT-briefing_room",
+      "BT-briefing_room_nobuttons",
+      "BT-controls",
+      "BT-main",
+      "BT-options_main",
+      "SH-briefing_room",
+      "SH-main",
+      "SH-medals",
+      "SH-options_main",
+      "SH-video options",
+      "SH-war_records"
+    ],
+    "completion": "COMPLETE"
+  },
+  "tests": [
+    {
+      "game": "AA",
+      "dimensions": [
+        1024,
+        768
+      ],
+      "menus": [
+        "m5l2a",
+        "video_options"
+      ],
+      "exit_code": 0,
+      "completed": true,
+      "errors": [],
+      "images": [
+        "profiles-local/widescreen/fullframe-43-r1/main/screenshots/shot0000.png",
+        "profiles-local/widescreen/fullframe-43-r1/main/screenshots/shot0001.png"
+      ],
+      "geometry": [
+        "[2026-10-15 09:28:38 UTC+1.000] AC_UI_ROOT m5l2a 0.000 0.000 1024.000 768.000",
+        "[2026-10-15 09:28:39 UTC+1.000] AC_UI_ROOT video_options 0.000 0.000 1024.000 768.000"
+      ],
+      "run": "fullframe-43-r1"
+    },
+    {
+      "game": "AA",
+      "dimensions": [
+        1920,
+        1080
+      ],
+      "menus": [
+        "m4l1",
+        "m4l2",
+        "m5l2a",
+        "main",
+        "options_main",
+        "video_options",
+        "briefing1a"
+      ],
+      "exit_code": 0,
+      "completed": true,
+      "errors": [],
+      "images": [
+        "profiles-local/widescreen/fullframe-aa-r2/main/screenshots/shot0000.png",
+        "profiles-local/widescreen/fullframe-aa-r2/main/screenshots/shot0001.png",
+        "profiles-local/widescreen/fullframe-aa-r2/main/screenshots/shot0002.png",
+        "profiles-local/widescreen/fullframe-aa-r2/main/screenshots/shot0003.png",
+        "profiles-local/widescreen/fullframe-aa-r2/main/screenshots/shot0004.png",
+        "profiles-local/widescreen/fullframe-aa-r2/main/screenshots/shot0005.png",
+        "profiles-local/widescreen/fullframe-aa-r2/main/screenshots/shot0006.png"
+      ],
+      "geometry": [
+        "[2026-10-15 09:28:24 UTC+1.000] AC_UI_ROOT m4l1 240.000 0.000 1440.000 1080.000",
+        "[2026-10-15 09:28:25 UTC+1.000] AC_UI_ROOT m4l2 240.000 0.000 1440.000 1080.000",
+        "[2026-10-15 09:28:27 UTC+1.000] AC_UI_ROOT m5l2a 240.000 0.000 1440.000 1080.000",
+        "[2026-10-15 09:28:28 UTC+1.000] AC_UI_ROOT main 240.000 0.000 1440.000 1080.000",
+        "[2026-10-15 09:28:29 UTC+1.000] AC_UI_ROOT options_main 240.000 0.000 1440.000 1080.000",
+        "[2026-10-15 09:28:31 UTC+1.000] AC_UI_ROOT video_options 240.000 0.000 1440.000 1080.000",
+        "[2026-10-15 09:28:32 UTC+1.000] AC_UI_ROOT briefing1a 240.000 0.000 1440.000 1080.000"
+      ],
+      "run": "fullframe-aa-r2"
+    },
+    {
+      "game": "BT",
+      "dimensions": [
+        1920,
+        1080
+      ],
+      "menus": [
+        "main",
+        "options_main",
+        "controls",
+        "briefingroom"
+      ],
+      "exit_code": 0,
+      "completed": true,
+      "errors": [],
+      "images": [
+        "profiles-local/widescreen/fullframe-bt-r1/maintt/screenshots/shot0000.png",
+        "profiles-local/widescreen/fullframe-bt-r1/maintt/screenshots/shot0001.png",
+        "profiles-local/widescreen/fullframe-bt-r1/maintt/screenshots/shot0002.png",
+        "profiles-local/widescreen/fullframe-bt-r1/maintt/screenshots/shot0003.png"
+      ],
+      "geometry": [
+        "[2026-10-15 09:27:16 UTC+1.000] AC_UI_ROOT main 240.000 0.000 1440.000 1080.000",
+        "[2026-10-15 09:27:17 UTC+1.000] AC_UI_ROOT options_main 240.000 0.000 1440.000 1080.000",
+        "[2026-10-15 09:27:19 UTC+1.000] AC_UI_ROOT controls 240.000 0.000 1440.000 1080.000",
+        "[2026-10-15 09:27:20 UTC+1.000] AC_UI_ROOT briefingroom 240.000 0.000 1440.000 1080.000"
+      ],
+      "run": "fullframe-bt-r1"
+    },
+    {
+      "game": "AA",
+      "dimensions": [
+        1920,
+        1080
+      ],
+      "menus": [
+        "m4l1",
+        "m4l2",
+        "m5l2a",
+        "video_options"
+      ],
+      "exit_code": 0,
+      "completed": true,
+      "errors": [],
+      "images": [
+        "profiles-local/widescreen/fullframe-installed-r1/main/screenshots/shot0000.png",
+        "profiles-local/widescreen/fullframe-installed-r1/main/screenshots/shot0001.png",
+        "profiles-local/widescreen/fullframe-installed-r1/main/screenshots/shot0002.png",
+        "profiles-local/widescreen/fullframe-installed-r1/main/screenshots/shot0003.png"
+      ],
+      "geometry": [
+        "[2026-10-15 09:30:51 UTC+1.000] AC_UI_ROOT m4l1 240.000 0.000 1440.000 1080.000",
+        "[2026-10-15 09:30:53 UTC+1.000] AC_UI_ROOT m4l2 240.000 0.000 1440.000 1080.000",
+        "[2026-10-15 09:30:54 UTC+1.000] AC_UI_ROOT m5l2a 240.000 0.000 1440.000 1080.000",
+        "[2026-10-15 09:30:56 UTC+1.000] AC_UI_ROOT video_options 240.000 0.000 1440.000 1080.000"
+      ],
+      "run": "fullframe-installed-r1"
+    },
+    {
+      "game": "SH",
+      "dimensions": [
+        1920,
+        1080
+      ],
+      "menus": [
+        "main",
+        "options_main",
+        "video_options",
+        "briefingroom"
+      ],
+      "exit_code": 0,
+      "completed": true,
+      "errors": [],
+      "images": [
+        "profiles-local/widescreen/fullframe-sh-r1/mainta/screenshots/shot0000.png",
+        "profiles-local/widescreen/fullframe-sh-r1/mainta/screenshots/shot0001.png",
+        "profiles-local/widescreen/fullframe-sh-r1/mainta/screenshots/shot0002.png",
+        "profiles-local/widescreen/fullframe-sh-r1/mainta/screenshots/shot0003.png"
+      ],
+      "geometry": [
+        "[2026-10-15 09:27:07 UTC+1.000] AC_UI_ROOT main 240.000 0.000 1440.000 1080.000",
+        "[2026-10-15 09:27:08 UTC+1.000] AC_UI_ROOT options_main 240.000 0.000 1440.000 1080.000",
+        "[2026-10-15 09:27:09 UTC+1.000] AC_UI_ROOT video_options 240.000 0.000 1440.000 1080.000",
+        "[2026-10-15 09:27:11 UTC+1.000] AC_UI_ROOT briefingroom 240.000 0.000 1440.000 1080.000"
+      ],
+      "run": "fullframe-sh-r1"
+    },
+    {
+      "game": "AA",
+      "dimensions": [
+        2560,
+        1080
+      ],
+      "menus": [
+        "m4l1"
+      ],
+      "exit_code": 0,
+      "completed": true,
+      "errors": [],
+      "images": [
+        "profiles-local/widescreen/fullframe-ultrawide-r1/main/screenshots/shot0000.png"
+      ],
+      "geometry": [
+        "[2026-10-15 09:28:43 UTC+1.000] AC_UI_ROOT m4l1 560.000 0.000 1440.000 1080.000"
+      ],
+      "run": "fullframe-ultrawide-r1"
+    }
+  ],
+  "diagnostics": [
+    {
+      "game": "AA",
+      "dimensions": [
+        1920,
+        1080
+      ],
+      "menus": [
+        "m4l1",
+        "m4l2",
+        "m5l2",
+        "main",
+        "options_main",
+        "video_options",
+        "briefing1a"
+      ],
+      "exit_code": 0,
+      "completed": true,
+      "errors": [
+        "[2026-10-15 09:26:54 UTC+1.000] Couldn't find menu m5l2"
+      ],
+      "images": [
+        "profiles-local/widescreen/fullframe-aa-r1/main/screenshots/shot0000.png",
+        "profiles-local/widescreen/fullframe-aa-r1/main/screenshots/shot0001.png",
+        "profiles-local/widescreen/fullframe-aa-r1/main/screenshots/shot0002.png",
+        "profiles-local/widescreen/fullframe-aa-r1/main/screenshots/shot0003.png",
+        "profiles-local/widescreen/fullframe-aa-r1/main/screenshots/shot0004.png",
+        "profiles-local/widescreen/fullframe-aa-r1/main/screenshots/shot0005.png",
+        "profiles-local/widescreen/fullframe-aa-r1/main/screenshots/shot0006.png"
+      ],
+      "geometry": [
+        "[2026-10-15 09:26:53 UTC+1.000] AC_UI_ROOT m4l1 240.000 0.000 1440.000 1080.000",
+        "[2026-10-15 09:26:54 UTC+1.000] AC_UI_ROOT m4l2 240.000 0.000 1440.000 1080.000",
+        "[2026-10-15 09:26:57 UTC+1.000] AC_UI_ROOT main 240.000 0.000 1440.000 1080.000",
+        "[2026-10-15 09:26:58 UTC+1.000] AC_UI_ROOT options_main 240.000 0.000 1440.000 1080.000",
+        "[2026-10-15 09:27:00 UTC+1.000] AC_UI_ROOT video_options 240.000 0.000 1440.000 1080.000",
+        "[2026-10-15 09:27:01 UTC+1.000] AC_UI_ROOT briefing1a 240.000 0.000 1440.000 1080.000"
+      ],
+      "run": "fullframe-aa-r1"
+    }
+  ],
+  "personal_acceptance": false,
+  "merged": false
+}
