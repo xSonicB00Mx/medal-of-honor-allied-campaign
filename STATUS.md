@@ -1,3 +1,7 @@
+## Aktuell: Hochaufloesende optische Overlays
+
+Sechs Texturen fuer Zielfernrohre, Fernglas, Kamera und Gasmaske installiert. Geometrische Masken mit originalen Zielmarkierungen rekonstruiert, Gasmaskenrahmen per Imagegen erneuert; Kamera verwendet jetzt ihre eigene Maske. [Bericht, Prompt und Testgrenzen](checkpoints/CP08/overlay-upscale.md).
+
 ## Aktuell: Hochaufloesende Stoppuhr und Zuendschnur
 
 Nachkorrektur timers-r2 installiert: Metallkante entfernt und Seilmaterial am Anschluss vereinheitlicht; beide Varianten im UHD-HUD geprueft.
