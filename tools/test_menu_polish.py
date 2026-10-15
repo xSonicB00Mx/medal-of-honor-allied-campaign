@@ -1,0 +1,37 @@
+"""Native menu/hover/cursor captures in disposable profiles."""
+from pathlib import Path
+import argparse,json,re,shutil,subprocess
+from PIL import Image
+ap=argparse.ArgumentParser();ap.add_argument('run');ap.add_argument('--baseline',action='store_true');ap.add_argument('--installed',action='store_true');ap.add_argument('--game',choices=['AA','SH','BT'],default='AA');ap.add_argument('--width',type=int,default=1920);ap.add_argument('--height',type=int,default=1080);a=ap.parse_args()
+assert re.fullmatch('[a-zA-Z0-9-]+',a.run)
+r=Path(__file__).resolve().parents[1];rt=r/'runtime-local/CP08-r1';p=r/'profiles-local/menu-polish'/a.run
+num=['AA','SH','BT'].index(a.game);folder=['main','mainta','maintt'][num];home=p/folder;home.mkdir(parents=True,exist_ok=False)
+runner=rt
+if not a.baseline and not a.installed:
+ runner=p/'runner';runner.mkdir()
+ for f in [*rt.glob('*.dll'),r/'build-local/cp00-r3/RelWithDebInfo/openmohaa.exe']:shutil.copy2(f,runner/f.name)
+ shutil.copy2(r/'generated-local/menu-polish/packages'/folder/'zzzzzzzzz_AC_MenuPolish.pk3',home)
+cmds=['wait 1500','devmap '+['m2l1','t1l2','e2l2'][num],'wait 6500','finishloadingscreen','wait 5000','set developer 0','pushmenu main','wait 1500'];labels=[]
+def shot(name,commands):
+ cmds.extend([*commands,'wait 800','screenshot silent']);labels.append(name)
+shot('main',[])
+shot('back-hover',['widgetcommand backtogame mouse_entered 0 0 0'])
+shot('quit-hover',['widgetcommand backtogame mouse_exited 0 0 0','widgetcommand Default mouse_entered 0 0 0'])
+shot('options',['popmenu 0','wait 500','ac_ui_options'])
+shot('controls',['popmenu 0','wait 500','loadmenu controls','pushmenu controls'])
+shot('mission-list',['popmenu 0','wait 500','ac_level_list'])
+shot('hud',['popmenu 0'])
+cmds+=['echo AC_MENU_POLISH_DONE','quit'];(home/'capture.cfg').write_text('\n'.join(cmds)+'\n')
+settings=dict(com_target_game=num,fs_basepath=rt,fs_homepath=p,fs_steampath=rt,fs_gogpath=rt,fs_microsoftstorepath=rt,net_enabled=0,logfile=2,developer=1,cheats=1,ui_console=0,r_fullscreen=0,r_mode=-1,r_customwidth=a.width,r_customheight=a.height,com_maxfps=60,com_maxfpsUnfocused=60,cl_playintro=0,ac_campaign_mode=1,ac_operation=-1,ac_hud_scale=1.66)
+cmd=[str(runner/'openmohaa.exe')]
+for k,v in settings.items():cmd+=['+set',k,str(v)]
+result=subprocess.run(cmd+['+exec','capture.cfg'],cwd=rt,timeout=160)
+log=(home/'qconsole.log').read_text(encoding='latin1');assert result.returncode==0 and 'AC_MENU_POLISH_DONE' in log
+errors=[l for l in log.splitlines() if any(t in l for t in ['Unknown command','Invalid event','Script Error',"Couldn't load font",'Error parsing font'])];assert not errors,errors
+images=[]
+for i,f in enumerate(sorted((home/'screenshots').glob('*.tga'))):
+ im=Image.open(f);assert im.size==(a.width,a.height)
+ dest=r/'artifacts-local'/f'MenuPolish-{a.run}-{labels[i]}.png';im.save(dest);images.append(dest.relative_to(r).as_posix())
+assert len(images)==len(labels)
+(r/'generated-local/menu-polish'/f'{a.run}-test.json').write_text(json.dumps(dict(game=a.game,images=images,errors=errors,baseline=a.baseline,installed=a.installed),indent=2))
+print('PASS',a.run)

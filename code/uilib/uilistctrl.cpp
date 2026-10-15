@@ -574,7 +574,7 @@ void UIListCtrl::setHeaderFont(const char *name)
     }
 
     if (name) {
-        m_headerfont = new UIFont(name);
+        m_headerfont = new UIFont(menuFontName(name).c_str());
     } else {
         m_headerfont = NULL;
     }

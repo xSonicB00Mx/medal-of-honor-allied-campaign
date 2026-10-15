@@ -1696,13 +1696,29 @@ UIWidget *UIWidget::FindResponder(const UIPoint2D& pos)
     return this;
 }
 
+str UIWidget::menuFontName(const char *name)
+{
+    // Keep gameplay HUD fonts at their existing size. Child controls inherit
+    // their owning menu's context, including binding-table rows and headers.
+    UIWidget *root = this;
+    while (root->getParent() && root->getParent() != &uWinMan)
+        root = root->getParent();
+    if (!name || !root->getName()[0] || !strnicmp(root->getName(), "hud", 3)
+        || !stricmp(root->getName(), "view3d")) return name ? name : "verdana-12";
+    if (!strnicmp(name, "facfont-", 8) || !strnicmp(name, "verdana-", 8)
+        || !strnicmp(name, "ac-courier-", 11) || !strnicmp(name, "courier-", 8)
+        || !strnicmp(name, "handle-", 7) || !strnicmp(name, "delima-", 7))
+        return str("ac-menu-") + name;
+    return name;
+}
+
 void UIWidget::setFont(const char *name)
 {
     if (m_font) {
         delete m_font;
     }
 
-    m_font = new UIFont(name);
+    m_font = new UIFont(menuFontName(name).c_str());
 }
 
 void UIWidget::setFontHorizontalAlignment(fonthorzjustify_t alignment)

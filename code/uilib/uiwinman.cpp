@@ -265,7 +265,11 @@ void UIWindowManager::UpdateViews(void)
             VectorSet4(col, 1, 1, 1, 1);
             uii.Rend_SetColor(col);
 
-            uii.Rend_DrawPicStretched(uid.mouseX, uid.mouseY, 0, 0, 0, 0, 1, 1, m_cursor->GetMaterial());
+            // Logical 24px pointer at 480p; explicit dimensions decouple the
+            // display size from the HD texture and from menu/HUD scale sliders.
+            const float cursorSize = 24.0f * uid.vidHeight / 480.0f;
+            uii.Rend_DrawPicStretched(uid.mouseX, uid.mouseY, cursorSize, cursorSize,
+                0, 0, 1, 1, m_cursor->GetMaterial());
         }
 
         m_font->setColor(UWhite);

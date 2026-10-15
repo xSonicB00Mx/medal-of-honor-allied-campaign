@@ -283,6 +283,7 @@ public:
     bool               IsDying(void);
     class UIWidget    *FindResponder(const UIPoint2D& pos);
     void               setFont(const char *name);
+    str                menuFontName(const char *name);
     void               setFontHorizontalAlignment(fonthorzjustify_t alignment);
     void               setFontVerticalAlignment(fontvertjustify_t alignment);
     void               setShow(bool visible);
