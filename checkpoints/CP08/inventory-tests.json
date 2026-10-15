@@ -112,8 +112,8 @@
     },
     {
       "game": "BT",
-      "run": "candidate-bt-r1",
-      "installed": false,
+      "run": "installed-bt-r1",
+      "installed": true,
       "width": 3840,
       "height": 2160,
       "hud_scale": 1.66,
@@ -133,13 +133,22 @@
         ]
       ],
       "outputs": [
-        "artifacts-local/HUD-Inventory-BT-candidate-bt-r1-00.png",
-        "artifacts-local/HUD-Inventory-BT-candidate-bt-r1-01.png",
-        "artifacts-local/HUD-Inventory-BT-candidate-bt-r1-02.png"
+        "artifacts-local/HUD-Inventory-BT-installed-bt-r1-00.png",
+        "artifacts-local/HUD-Inventory-BT-installed-bt-r1-01.png",
+        "artifacts-local/HUD-Inventory-BT-installed-bt-r1-02.png"
       ],
       "exit_code": 0
     }
   ],
   "personal_acceptance": false,
-  "merged": false
+  "merged": false,
+  "fixture_correction": "BT uses chargesN inventory entries, not SH democharge.scr. Intermediate debug-marker assertions failed; installed-bt-r1 completed and was visually verified.",
+  "deployment": {
+    "original_files_unchanged": 9072,
+    "runtime_base_files_unchanged": 9000,
+    "mp1_files_unchanged": 8,
+    "user_profile_files_unchanged": 80,
+    "rollback_copy": "generated-local/widescreen/backups/inventory-r1"
+  },
+  "source_commit": "68cb7331773d4f8c7082a3cea13849eaa048cb8a"
 }
