@@ -1,0 +1,16 @@
+{
+  "run": "reset-r2",
+  "installed": false,
+  "cancel_preserved": true,
+  "confirmation_required": true,
+  "confirmed_reset": true,
+  "restart_persisted": true,
+  "saves_unchanged": true,
+  "previous_progress_backed_up": true,
+  "images": [
+    "profiles-local/operations-reset/reset-r2/main/screenshots/shot0000.png",
+    "profiles-local/operations-reset/reset-r2/main/screenshots/shot0001.png",
+    "profiles-local/operations-reset/reset-r2/main/screenshots/shot0002.png",
+    "profiles-local/operations-reset/reset-r2/main/screenshots/shot0003.png"
+  ]
+}
