@@ -1,3 +1,7 @@
+## Aktuell: Hochaufloesende Waffengruppen
+
+Sechs Waffengruppen mit je drei Zustaenden als 512x256-Metallreliefs installiert: vorhanden silbern, ausgeruestet bronze, nicht vorhanden dunkel. Originale Anordnung und Auswahlpuls erhalten. [Bericht und Prompts](checkpoints/CP08/weapon-group-upscale.md).
+
 ## Aktuell: Hochaufloesende optische Overlays
 
 Sechs Texturen fuer Zielfernrohre, Fernglas, Kamera und Gasmaske installiert. Geometrische Masken mit originalen Zielmarkierungen rekonstruiert, Gasmaskenrahmen per Imagegen erneuert; Kamera verwendet jetzt ihre eigene Maske. [Bericht, Prompt und Testgrenzen](checkpoints/CP08/overlay-upscale.md).
