@@ -1,3 +1,7 @@
+## Aktuell: Hochaufloesende Lebensanzeige
+
+Vier abgestimmte Ebenen mit 128x512 Pixeln installiert. AA/SH/BT bei UHD und HUD 1.66 mit verschiedenen Gesundheitsstaenden und Aenderungsblitz geprueft; Spielstaende unveraendert. [Bericht, Prompts und Testgrenzen](checkpoints/CP08/health-upscale.md).
+
 ## Aktuell: Hochaufloesende Inventarsymbole
 
 Nachkorrektur inventory-r3: Handbuch jetzt mit deutscher Beschriftung und originalnahem Layout; siehe [Bericht](checkpoints/CP08/inventory-manual-r3.md).

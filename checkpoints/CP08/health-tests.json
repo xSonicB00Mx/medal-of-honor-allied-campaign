@@ -1,0 +1,119 @@
+{
+  "tests": [
+    {
+      "game": "AA",
+      "run": "aa-r1",
+      "installed": false,
+      "width": 3840,
+      "height": 2160,
+      "hud_scale": 1.66,
+      "labels": [
+        "100 transition",
+        "100 settled",
+        "75 transition",
+        "75 settled",
+        "50 transition",
+        "50 settled",
+        "25 transition",
+        "25 settled",
+        "1 transition",
+        "1 settled",
+        "100 transition",
+        "100 settled"
+      ],
+      "outputs": [
+        "artifacts-local/HUD-Health-AA-aa-r1-00.png",
+        "artifacts-local/HUD-Health-AA-aa-r1-01.png",
+        "artifacts-local/HUD-Health-AA-aa-r1-02.png",
+        "artifacts-local/HUD-Health-AA-aa-r1-03.png",
+        "artifacts-local/HUD-Health-AA-aa-r1-04.png",
+        "artifacts-local/HUD-Health-AA-aa-r1-05.png",
+        "artifacts-local/HUD-Health-AA-aa-r1-06.png",
+        "artifacts-local/HUD-Health-AA-aa-r1-07.png",
+        "artifacts-local/HUD-Health-AA-aa-r1-08.png",
+        "artifacts-local/HUD-Health-AA-aa-r1-09.png",
+        "artifacts-local/HUD-Health-AA-aa-r1-10.png",
+        "artifacts-local/HUD-Health-AA-aa-r1-11.png"
+      ],
+      "exit_code": 0
+    },
+    {
+      "game": "SH",
+      "run": "sh-r1",
+      "installed": false,
+      "width": 3840,
+      "height": 2160,
+      "hud_scale": 1.66,
+      "labels": [
+        "100 transition",
+        "100 settled",
+        "75 transition",
+        "75 settled",
+        "50 transition",
+        "50 settled",
+        "25 transition",
+        "25 settled",
+        "1 transition",
+        "1 settled",
+        "100 transition",
+        "100 settled"
+      ],
+      "outputs": [
+        "artifacts-local/HUD-Health-SH-sh-r1-00.png",
+        "artifacts-local/HUD-Health-SH-sh-r1-01.png",
+        "artifacts-local/HUD-Health-SH-sh-r1-02.png",
+        "artifacts-local/HUD-Health-SH-sh-r1-03.png",
+        "artifacts-local/HUD-Health-SH-sh-r1-04.png",
+        "artifacts-local/HUD-Health-SH-sh-r1-05.png",
+        "artifacts-local/HUD-Health-SH-sh-r1-06.png",
+        "artifacts-local/HUD-Health-SH-sh-r1-07.png",
+        "artifacts-local/HUD-Health-SH-sh-r1-08.png",
+        "artifacts-local/HUD-Health-SH-sh-r1-09.png",
+        "artifacts-local/HUD-Health-SH-sh-r1-10.png",
+        "artifacts-local/HUD-Health-SH-sh-r1-11.png"
+      ],
+      "exit_code": 0
+    },
+    {
+      "game": "BT",
+      "run": "bt-installed-r1",
+      "installed": true,
+      "width": 3840,
+      "height": 2160,
+      "hud_scale": 1.66,
+      "labels": [
+        "100 transition",
+        "100 settled",
+        "75 transition",
+        "75 settled",
+        "50 transition",
+        "50 settled",
+        "25 transition",
+        "25 settled",
+        "1 transition",
+        "1 settled",
+        "100 transition",
+        "100 settled"
+      ],
+      "outputs": [
+        "artifacts-local/HUD-Health-BT-bt-installed-r1-00.png",
+        "artifacts-local/HUD-Health-BT-bt-installed-r1-01.png",
+        "artifacts-local/HUD-Health-BT-bt-installed-r1-02.png",
+        "artifacts-local/HUD-Health-BT-bt-installed-r1-03.png",
+        "artifacts-local/HUD-Health-BT-bt-installed-r1-04.png",
+        "artifacts-local/HUD-Health-BT-bt-installed-r1-05.png",
+        "artifacts-local/HUD-Health-BT-bt-installed-r1-06.png",
+        "artifacts-local/HUD-Health-BT-bt-installed-r1-07.png",
+        "artifacts-local/HUD-Health-BT-bt-installed-r1-08.png",
+        "artifacts-local/HUD-Health-BT-bt-installed-r1-09.png",
+        "artifacts-local/HUD-Health-BT-bt-installed-r1-10.png",
+        "artifacts-local/HUD-Health-BT-bt-installed-r1-11.png"
+      ],
+      "exit_code": 0
+    }
+  ],
+  "user_profile_files_unchanged": 80,
+  "installation": "health-r1",
+  "source_commit": "009fc2b3",
+  "installed_package_hashes_verified": true
+}
