@@ -10,7 +10,7 @@ from PIL import Image
 a=argparse.ArgumentParser();a.add_argument('run');a.add_argument('--case',choices=['combat','empty','abort','death','restart','inspect','campaign'],default='combat')
 a.add_argument('--operation',type=int,default=1);a.add_argument('--difficulty',type=int,default=1)
 a.add_argument('--baseline-diagnostics',type=Path);a.add_argument('--direct',action='store_true');a.add_argument('--scores',type=Path);a.add_argument('--corrupt',action='store_true');a.add_argument('--backup',type=Path)
-a.add_argument('--width',type=int,default=1920);a.add_argument('--height',type=int,default=1080);a.add_argument('--installed',action='store_true');args=a.parse_args()
+a.add_argument('--width',type=int,default=1920);a.add_argument('--height',type=int,default=1080);a.add_argument('--installed',action='store_true');a.add_argument('--font-packages',type=Path);args=a.parse_args()
 R=Path(__file__).resolve().parents[1];rt=R/'runtime-local/CP08-r1';p=R/'profiles-local/highscore'/args.run
 assert not p.exists();p.mkdir(parents=True)
 ops=json.loads((R/'mod/campaign/missions.json').read_text())['operations'];o=ops[args.operation]
@@ -28,6 +28,7 @@ if args.backup:shutil.copy2(args.backup,p/'ac_scores.dat.bak')
 before=(p/'ac_scores.dat').read_bytes() if (p/'ac_scores.dat').exists() else None
 for f in ['main','mainta','maintt']:
  h=p/f;(h/'probe').mkdir(parents=True);(h/'save/omconfig').mkdir(parents=True)
+ if args.font_packages:shutil.copy2(args.font_packages/f/'zzzzzzz_AC_Courier.pk3',h)
  (h/'save/omconfig/keep.sav').write_bytes(b'CAMPAIGN SAVE SENTINEL')
  shutil.copy2(R/'tools/highscore_fixture.scr',h/'probe/combat.scr')
  (h/'probe/complete.scr').write_text(f'main:\n $player nodamage\n bsptransition {o["map_chain"][1] if len(o["map_chain"])>1 else o["completion_event"]["native_next"]}\nend\n')

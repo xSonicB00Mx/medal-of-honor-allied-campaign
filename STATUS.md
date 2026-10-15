@@ -1,6 +1,6 @@
 ## Aktuell: Courier New fuer Menues und HUD
 
-Hochaufloesende Courier-New-Bold-Schrift mit bisherigen Zeichenbreiten, Originalfarben und kleinem Schlagschatten. AA/SH/BT in Full HD sowie AA in 4K und 4:3 geprueft. [Umfang und Nachweise](checkpoints/CP08/courier-fonts.md).
+Courier New Bold jetzt mit natuerlichen Zeichenbreiten, Originalfarben und kleinem Schlagschatten. Engstellen in HUD, Steuerung, Zahlenfeldern und Mission List angepasst; native Menuepruefungen in AA/SH/BT sowie 4:3. [Umfang und Nachweise](checkpoints/CP08/courier-fonts.md).
 
 ## Aktuell: Mission List Highscore-Modus
 

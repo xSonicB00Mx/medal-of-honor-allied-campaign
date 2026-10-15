@@ -1,0 +1,103 @@
+[
+  {
+    "run": "natural-aa-r4",
+    "game": "AA",
+    "completed": true,
+    "exit_code": 0,
+    "errors": [],
+    "images": [
+      "profiles-local/courier/natural-aa-r4/main/screenshots/shot0000.png",
+      "profiles-local/courier/natural-aa-r4/main/screenshots/shot0001.png",
+      "profiles-local/courier/natural-aa-r4/main/screenshots/shot0002.png",
+      "profiles-local/courier/natural-aa-r4/main/screenshots/shot0003.png",
+      "profiles-local/courier/natural-aa-r4/main/screenshots/shot0004.png",
+      "profiles-local/courier/natural-aa-r4/main/screenshots/shot0005.png",
+      "profiles-local/courier/natural-aa-r4/main/screenshots/shot0006.png",
+      "profiles-local/courier/natural-aa-r4/main/screenshots/shot0007.png",
+      "profiles-local/courier/natural-aa-r4/main/screenshots/shot0008.png",
+      "profiles-local/courier/natural-aa-r4/main/screenshots/shot0009.png",
+      "profiles-local/courier/natural-aa-r4/main/screenshots/shot0010.png",
+      "profiles-local/courier/natural-aa-r4/main/screenshots/shot0011.png"
+    ],
+    "original": false,
+    "engine_sha256": "4c32892b6d51c2cd41a74e22da21d69c3322446397e9eb3370b730dfbcf2409b",
+    "passed": true,
+    "controls_visible": true
+  },
+  {
+    "run": "natural-sh-r2",
+    "game": "SH",
+    "completed": true,
+    "exit_code": 0,
+    "errors": [],
+    "images": [
+      "profiles-local/courier/natural-sh-r2/mainta/screenshots/shot0000.png",
+      "profiles-local/courier/natural-sh-r2/mainta/screenshots/shot0001.png",
+      "profiles-local/courier/natural-sh-r2/mainta/screenshots/shot0002.png",
+      "profiles-local/courier/natural-sh-r2/mainta/screenshots/shot0003.png",
+      "profiles-local/courier/natural-sh-r2/mainta/screenshots/shot0004.png"
+    ],
+    "original": false,
+    "engine_sha256": "4c32892b6d51c2cd41a74e22da21d69c3322446397e9eb3370b730dfbcf2409b",
+    "passed": true,
+    "controls_visible": true
+  },
+  {
+    "run": "natural-bt-r2",
+    "game": "BT",
+    "completed": true,
+    "exit_code": 0,
+    "errors": [],
+    "images": [
+      "profiles-local/courier/natural-bt-r2/maintt/screenshots/shot0000.png",
+      "profiles-local/courier/natural-bt-r2/maintt/screenshots/shot0001.png",
+      "profiles-local/courier/natural-bt-r2/maintt/screenshots/shot0002.png",
+      "profiles-local/courier/natural-bt-r2/maintt/screenshots/shot0003.png",
+      "profiles-local/courier/natural-bt-r2/maintt/screenshots/shot0004.png"
+    ],
+    "original": false,
+    "engine_sha256": "4c32892b6d51c2cd41a74e22da21d69c3322446397e9eb3370b730dfbcf2409b",
+    "passed": true,
+    "controls_visible": true
+  },
+  {
+    "run": "natural-aa-43-r1",
+    "game": "AA",
+    "completed": true,
+    "exit_code": 0,
+    "errors": [],
+    "images": [
+      "profiles-local/courier/natural-aa-43-r1/main/screenshots/shot0000.png",
+      "profiles-local/courier/natural-aa-43-r1/main/screenshots/shot0001.png",
+      "profiles-local/courier/natural-aa-43-r1/main/screenshots/shot0002.png",
+      "profiles-local/courier/natural-aa-43-r1/main/screenshots/shot0003.png",
+      "profiles-local/courier/natural-aa-43-r1/main/screenshots/shot0004.png",
+      "profiles-local/courier/natural-aa-43-r1/main/screenshots/shot0005.png",
+      "profiles-local/courier/natural-aa-43-r1/main/screenshots/shot0006.png",
+      "profiles-local/courier/natural-aa-43-r1/main/screenshots/shot0007.png",
+      "profiles-local/courier/natural-aa-43-r1/main/screenshots/shot0008.png",
+      "profiles-local/courier/natural-aa-43-r1/main/screenshots/shot0009.png",
+      "profiles-local/courier/natural-aa-43-r1/main/screenshots/shot0010.png",
+      "profiles-local/courier/natural-aa-43-r1/main/screenshots/shot0011.png"
+    ],
+    "original": false,
+    "engine_sha256": "adab0a4f249ee65f8ba76835cc1f24497cbd6984185fa5cc3dd0fc7c063bcb1b",
+    "passed": true,
+    "controls_visible": true
+  },
+  {
+    "run": "courier-natural-r1",
+    "case": "empty",
+    "done": true,
+    "unexpected_errors": [],
+    "images": [
+      "profiles-local/highscore/courier-natural-r1/main/screenshots/shot0000.png",
+      "profiles-local/highscore/courier-natural-r1/main/screenshots/shot0001.png",
+      "profiles-local/highscore/courier-natural-r1/main/screenshots/shot0002.png"
+    ],
+    "binaries": {
+      "openmohaa.exe": "4c32892b6d51c2cd41a74e22da21d69c3322446397e9eb3370b730dfbcf2409b",
+      "game.dll": "da267f5202f09950beff2a3c302883348e1c02b62c21e49875203bb4bbab1346"
+    }
+  }
+]

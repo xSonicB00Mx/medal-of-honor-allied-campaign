@@ -16,9 +16,11 @@ ap.add_argument('--mp1', required=True, type=Path)
 ap.add_argument('--loading-zoom', action='store_true', help='Install only the existing SH/BT artwork zoom packages')
 ap.add_argument('--with-game-binaries', action='store_true', help='Install tested game and cgame DLLs alongside the engine')
 ap.add_argument('--font-packages', type=Path, help='Install a reviewed local font package report instead of widescreen packages')
+ap.add_argument('--with-engine', action='store_true', help='Also install the tested engine with font layout changes')
 args = ap.parse_args()
 assert not (args.font_packages and args.loading_zoom)
 assert not (args.font_packages and args.with_game_binaries)
+assert not args.with_engine or args.font_packages
 assert args.batch.replace('-', '').isalnum()
 root = Path(__file__).resolve().parents[1]
 work = root/'generated-local/widescreen'
@@ -56,7 +58,7 @@ for row in mp:
 integrity['mp1_files_unchanged'] = len(mp)
 for row in old['owned_files']:
     assert sha(runtime/row['path']) == row['sha256'], ('Runtime drift',row['path'])
-updates = {} if args.font_packages else {'openmohaa.exe':root/'build-local/cp00-r3/RelWithDebInfo/openmohaa.exe'}
+updates = {} if args.font_packages and not args.with_engine else {'openmohaa.exe':root/'build-local/cp00-r3/RelWithDebInfo/openmohaa.exe'}
 if args.with_game_binaries:
     for name in ['game.dll','cgame.dll']:
         updates[name] = root/'build-local/cp00-r3/RelWithDebInfo'/name
@@ -95,14 +97,14 @@ if args.loading_zoom:
         'spearhead_letterboxed_loading_changed':True,
         'loading_zoom':dict(batch=args.batch, maps={p['game']:len(p['maps']) for p in packages},
             generation=False, fit='Proportional cropped artwork, centered; full original frame on 4:3')}
-manifest = {**old,'source_commit':source,'engine_source_commit':old['engine_source_commit'] if args.font_packages else source,
+manifest = {**old,'source_commit':source,'engine_source_commit':old['engine_source_commit'] if args.font_packages and not args.with_engine else source,
     'game_dll_source_commit':source if args.with_game_binaries else old.get('game_dll_source_commit',old['engine_source_commit']),
     'owned_files':[dict(path=n,sha256=sha(runtime/n)) for n in sorted(owned)],
     'widescreen':widescreen,
     'personal_acceptance':False,'merged':False}
 if args.font_packages:
     manifest['fonts'] = dict(batch=args.batch, family='Courier New Bold',
-                            metrics='Original per-campaign metrics unchanged',
+                            metrics='Natural Courier New Bold advances; proportionate menu sizes',
                             shadow='Black 70%, 0.6 source pixels down/right',
                             packages=packages, upload_allowed=False)
 save(runtime/'build-manifest.json',manifest)

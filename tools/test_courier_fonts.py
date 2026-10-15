@@ -14,6 +14,8 @@ ap.add_argument('--game', choices=['AA', 'SH', 'BT'], default='AA')
 ap.add_argument('--width', type=int, default=1920)
 ap.add_argument('--height', type=int, default=1080)
 ap.add_argument('--original', action='store_true')
+ap.add_argument('--built', action='store_true')
+ap.add_argument('--extended', action='store_true')
 args = ap.parse_args()
 root = Path(__file__).resolve().parents[1]
 runtime = root/'runtime-local/CP08-r1'
@@ -23,6 +25,12 @@ number, folder, game_map = {'AA':(0,'main','m2l1'), 'SH':(1,'mainta','t1l2'),
                            'BT':(2,'maintt','e2l2')}[args.game]
 home = profile/folder
 home.mkdir(parents=True)
+binary = runtime
+if args.built:
+    binary = profile/'bin'
+    binary.mkdir()
+    for dll in runtime.glob('*.dll'):shutil.copy2(dll,binary/dll.name)
+    shutil.copy2(root/'build-local/cp00-r3/RelWithDebInfo/openmohaa.exe',binary/'openmohaa.exe')
 if not args.original:
     for f in ['main', 'mainta', 'maintt']:
         (profile/f).mkdir(exist_ok=True)
@@ -47,6 +55,12 @@ commands = ['wait 1000', f'devmap {game_map}', 'wait 5000', 'finishloadingscreen
             'ac_ui_report ac_scaling', 'popmenu 0', 'wait 300', 'loadmenu controls', 'pushmenu controls',
             'wait 700', 'ac_ui_report controls', 'screenshot silent', 'popmenu 0', 'ac_level_list 0 0 1',
             'wait 700', 'screenshot silent', 'imagelist', 'echo AC_FONT_TEST_DONE', 'quit']
+if args.extended:
+    commands = commands[:-3]
+    for command in ['ac_level_list 1', 'ac_level_list 2', 'ac_level_list 3', 'ac_level_list 4',
+                    'ac_campaign -1 0', 'ac_campaign -1 1', 'ac_briefing']:
+        commands += [command, 'wait 600', 'screenshot silent']
+    commands += ['imagelist', 'echo AC_FONT_TEST_DONE', 'quit']
 (home/'font_probe.cfg').write_text('\n'.join(commands)+'\n')
 settings = dict(com_target_game=number, fs_basepath=runtime, fs_homepath=profile,
                 fs_steampath=runtime, fs_gogpath=runtime, fs_microsoftstorepath=runtime,
@@ -54,7 +68,7 @@ settings = dict(com_target_game=number, fs_basepath=runtime, fs_homepath=profile
                 r_fullscreen=0, r_mode=-1, r_customwidth=args.width,
                 r_customheight=args.height, com_maxfps=60, com_maxfpsUnfocused=60,
                 cl_playintro=0, ac_campaign_mode=1, ac_operation=-1)
-cmd = [str(runtime/'openmohaa.exe')]
+cmd = [str(binary/'openmohaa.exe')]
 for k,v in settings.items():
     cmd += ['+set', k, str(v)]
 process = subprocess.run(cmd+['+exec','font_probe.cfg'], cwd=runtime, timeout=100)
@@ -69,9 +83,9 @@ errors = [line for line in log.splitlines() if any(s in line for s in
           ['Script Error','Unknown command','Invalid event','compile error',"Couldn't load font"])]
 result = dict(run=args.run, game=args.game, completed='AC_FONT_TEST_DONE' in log,
               exit_code=process.returncode, errors=errors, images=images,
-              original=args.original, engine_sha256=hashlib.sha256((runtime/'openmohaa.exe').read_bytes()).hexdigest())
+              original=args.original, engine_sha256=hashlib.sha256((binary/'openmohaa.exe').read_bytes()).hexdigest())
 result['font_images'] = [line for line in log.splitlines() if 'gfx/fonts/' in line]
-result['passed'] = result['completed'] and process.returncode == 0 and not errors and len(images)==5
+result['passed'] = result['completed'] and process.returncode == 0 and not errors and len(images)==(12 if args.extended else 5)
 result['controls_visible'] = 'AC_UI_CURRENT controls' in log
 result['passed'] = result['passed'] and result['controls_visible']
 (root/'generated-local/courier'/f'{args.run}.json').write_text(json.dumps(result,indent=2)+'\n')

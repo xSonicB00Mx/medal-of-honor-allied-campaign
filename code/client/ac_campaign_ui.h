@@ -22,9 +22,19 @@ static const char *AC_StateColor(int state)
 {return state==2?"0.57 0.80 0.61 1":"1 0.82 0.32 1";}
 static const char *AC_StateName(int state)
 {return state==2?"COMPLETE":"CURRENT";}
-static void AC_UIItem(fileHandle_t f,const char *name,const char *title,int x,int y,int w,int h,const char *command,const char *color="0.95 0.89 0.7 1")
+static void AC_UIItem(fileHandle_t f,const char *name,const char *title,int x,int y,int w,int h,const char *command,const char *color="0.95 0.89 0.7 1",int maxFontHeight=17)
 {
-    FS_Printf(f,"resource\n%s\n{\nname \"%s\"\ndontlocalize\ntitle \"%s\"\nrect %d %d %d %d\nfont facfont-20\nfgcolor %s\nbgcolor 0.075 0.095 0.075 0.96\nborderstyle NONE\n",command?"Button":"Label",name,title,x,y,w,h,color);
+    // Choose a uniformly smaller font where needed, never stretch glyph axes.
+    char fontName[32]="facfont-20";
+    for(int size=maxFontHeight;size>=10;--size) {
+        char candidate[32];Com_sprintf(candidate,sizeof(candidate),"ac-courier-%d",size);
+        UIFont font(candidate);
+        const int width=font.getWidth(title,-1);
+        if(width>0 && width<=w-(w<=48?2:12) && font.getHeight()<=h-2) {
+            Q_strncpyz(fontName,candidate,sizeof(fontName));break;
+        }
+    }
+    FS_Printf(f,"resource\n%s\n{\nname \"%s\"\ndontlocalize\ntitle \"%s\"\nrect %d %d %d %d\nfont %s\nfgcolor %s\nbgcolor 0.075 0.095 0.075 0.96\nborderstyle NONE\n",command?"Button":"Label",name,title,x,y,w,h,fontName,color);
     if(command) FS_Printf(f,"stuffcommand \"%s\"\n",command);
     FS_Printf(f,"}\n");
 }
@@ -224,7 +234,7 @@ static void AC_LevelList_f(void)
     AC_UIItem(f,"heading","MISSION LIST",24,16,740,34,NULL,"1 0.85 0.4 1");
     AC_UIItem(f,"description","Highscore runs: complete the level in one attempt. No saving or loading.",24,58,912,28,NULL);
     const char *columns[]={"Easy best","Medium best","Hard best","Last run"};
-    for(int c=0;c<4;c++)AC_UIItem(f,va("column_%d",c),columns[c],500+c*108,90,c==3?112:104,24,NULL);
+    for(int c=0;c<4;c++)AC_UIItem(f,va("column_%d",c),columns[c],500+c*108,90,c==3?112:104,24,NULL,"0.95 0.89 0.7 1",12);
     for(int row=0;row<rows && page*rows+row<count;row++) {
         int index=page*rows+row;const acLevel_t &level=ac_levels[index];
         const acMission_t &op=ac_missions[level.operation];
@@ -233,14 +243,14 @@ static void AC_LevelList_f(void)
         Com_sprintf(title,sizeof(title),"%s %s / %s",selected==index?">":" ",op.game==0?"AA":op.game==1?"SH":"BT",AC_LevelCompleted(index)?level.title:"LOCKED");
         Com_sprintf(command,sizeof(command),"ac_level_list %d %d -1",page,index);
         AC_UIItem(f,item,title,24,120+row*25,464,24,AC_LevelCompleted(index)?command:NULL,
-            !AC_LevelCompleted(index)?"1 0.25 0.2 1":selected==index?"1 0.85 0.4 1":"0.85 0.9 0.8 1");
+            !AC_LevelCompleted(index)?"1 0.25 0.2 1":selected==index?"1 0.85 0.4 1":"0.85 0.9 0.8 1",12);
         acScoreRecord_t record;AC_GetScoreRecord(index,&record);
         for(int c=0;c<4;c++) {
             Com_sprintf(item,sizeof(item),"score_%d_%d",index,c);
             if(c<3)Com_sprintf(title,sizeof(title),record.played[c]?"%d":"--",record.best[c]);
             else if(record.hasLast)Com_sprintf(title,sizeof(title),"%d (%s)",record.last,record.lastSkill==0?"E":record.lastSkill==1?"M":"H");
             else Q_strncpyz(title,"--",sizeof(title));
-            AC_UIItem(f,item,title,500+c*108,120+row*25,c==3?112:104,24,NULL);
+            AC_UIItem(f,item,title,500+c*108,120+row*25,c==3?112:104,24,NULL,"0.95 0.89 0.7 1",12);
         }
 
     }

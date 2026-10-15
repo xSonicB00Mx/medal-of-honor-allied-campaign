@@ -1,17 +1,19 @@
-"""Rasterize local Courier New outlines into the existing RitualFont UV layout.
+"""Rasterize local Courier New with natural proportions and matching metrics.
 
-Only local font textures and filtering shaders are packaged. Original metrics, symbol fonts,
-colors and text bindings remain untouched. No font file or artwork is committed.
+Package local textures, metrics and filtering shaders. Symbol fonts, colors and
+text bindings remain untouched. No font file or artwork is committed.
 """
 import argparse
 import hashlib
 import io
 import json
+import math
 import re
 import zipfile
 from pathlib import Path
 
 from PIL import Image, ImageDraw, ImageFont
+from singleplayer_ui import multiplayer_ui
 
 
 def digest(data):
@@ -19,18 +21,27 @@ def digest(data):
 
 
 def atlas(body, font_path, scale):
-    height = float(re.search(r'\bheight\s+(\S+)', body)[1])
-    aspect = float(re.search(r'\baspect\s+(\S+)', body)[1])
+    """Keep Courier's true advance and aspect; pack fresh cells and metrics."""
+    source_height = float(re.search(r'\bheight\s+(\S+)', body)[1])
     indices = list(map(int, re.search(r'indirections\s*\{([^}]+)', body)[1].split()))
-    locations = [tuple(map(float, m.split())) for m in re.findall(
-        r'\{\s*([\d.]+\s+[\d.]+\s+[\d.]+\s+[\d.]+)\s*\}', body)]
-    assert len(indices) == len(locations) == 256
-    image = Image.new('RGBA', (256*scale, round(256/aspect)*scale))
-    # Preserve the source's baseline grid. A cap height of 65% leaves space for
-    # accents, descenders and a small shadow inside each original glyph cell.
+    assert len(indices) == 256
     probe = ImageFont.truetype(str(font_path), 256)
     cap = probe.getbbox('H', anchor='ls')
-    font = ImageFont.truetype(str(font_path), round(height*scale*.65*256/(cap[3]-cap[1])))
+    font = ImageFont.truetype(str(font_path), round(source_height*scale*.65*256/(cap[3]-cap[1])))
+    assert font.getname() == ('Courier New', 'Bold')
+    w = math.ceil(font.getlength('M'))
+    h = round(source_height*scale)
+    gap = scale
+    columns = (256*scale)//(w+gap)
+    rows = math.ceil((max(indices)+1)/columns)
+    texture_height = 1 << math.ceil(math.log2(rows*(h+gap)))
+    image = Image.new('RGBA', (256*scale, texture_height))
+    aspect = image.width/image.height
+    locations = []
+    for index in range(256):
+        slot = index if index<=max(indices) else 0
+        locations.append(((slot%columns)*(w+gap)/scale,
+                          (slot//columns)*(h+gap)/scale, w/scale, h/scale))
     rendered = set()
     for byte, index in enumerate(indices):
         if index < 0 or index in rendered:
@@ -42,29 +53,24 @@ def atlas(body, font_path, scale):
             continue
         if char.isspace() or byte < 32:
             continue
-        x, y, width, cell_height = locations[index]
-        w, h = round(width*scale), round(cell_height*scale)
-        if w <= 0 or h <= 0:
-            continue
-        # Render vector outlines at atlas resolution, then horizontally fit the
-        # advance to the original cell. Punctuation retains its natural spacing.
-        advance = max(1, round(font.getlength(char)))
-        mask = Image.new('L', (advance+2*scale, h))
-        ImageDraw.Draw(mask).text((scale, round(h*.79)), char, font=font,
+        mask = Image.new('L', (w, h))
+        ImageDraw.Draw(mask).text((0, round(h*.79)), char, font=font,
                                   fill=255, anchor='ls', stroke_width=0)
         shadow_offset = max(1, round(scale*.6))
-        inset = max(1, round(scale*.25))
-        target_width = max(1, w-shadow_offset-2*inset)
-        mask = mask.resize((target_width, h), Image.Resampling.LANCZOS)
         cell = Image.new('RGBA', (w, h))
         shadow = Image.new('RGBA', mask.size, (0, 0, 0, 0))
         shadow.putalpha(mask.point(lambda a: round(a*.7)))
-        cell.alpha_composite(shadow, (inset+shadow_offset, shadow_offset))
+        cell.alpha_composite(shadow, (shadow_offset, shadow_offset))
         ink = Image.new('RGBA', mask.size, (255, 255, 255, 0))
         ink.putalpha(mask)
-        cell.alpha_composite(ink, (inset, 0))
+        cell.alpha_composite(ink)
+        x, y, _, _ = locations[index]
         image.alpha_composite(cell, (round(x*scale), round(y*scale)))
-    return image, len(rendered)
+    metrics = (f'RitFont\nheight {h/scale:.8f}\naspect {aspect:.8f}\nindirections {{\n'
+               + ' '.join(map(str,indices)) + '\n}\nlocations {\n'
+               + '\n'.join('{ '+' '.join(f'{v:.8f}' for v in row)+' }' for row in locations)
+               + '\n}\n').encode('ascii')
+    return image, metrics, len(rendered), w/scale
 
 
 def main():
@@ -77,7 +83,7 @@ def main():
     assert 4 <= args.scale <= 16
     report = []
     for game, folder in [('AA', 'main'), ('SH', 'mainta'), ('BT', 'maintt')]:
-        effective = {}
+        effective, menus = {}, {}
         for directory in (['main'] if game == 'AA' else ['main', folder]):
             for package in sorted((args.runtime/directory).glob('*.pk3'), key=lambda p:p.name.lower()):
                 if package.name == 'zzzzzzz_AC_Courier.pk3':
@@ -86,23 +92,71 @@ def main():
                     for name in z.namelist():
                         if name.lower().startswith('fonts/') and name.lower().endswith('.ritualfont'):
                             effective[name.lower()] = z.read(name)
+                        if name.lower().startswith('ui/') and name.lower().endswith('.urc') and not multiplayer_ui(name.lower()):
+                            menus[name.lower()] = z.read(name)
+        # Custom menu sizes allow uniform size changes where wider text needs room.
+        template = effective['fonts/facfont-20.ritualfont']
+        for height in range(10, 18):
+            effective[f'fonts/ac-courier-{height}.ritualfont'] = re.sub(
+                rb'\bheight\s+\S+', f'height {height}'.encode(), template, count=1)
         files, fonts, shaders = {}, [], []
         for name, data in sorted(effective.items()):
             stem = Path(name).stem
             if stem.startswith('marlett'):
                 continue  # UI arrows/checkmarks are symbols, not Latin letters.
-            image, count = atlas(data.decode('latin1'), args.font, args.scale)
+            image, metrics, count, advance = atlas(data.decode('latin1'), args.font, args.scale)
             buffer = io.BytesIO()
             image.save(buffer, format='TGA')
             files[f'gfx/fonts/{stem}.tga'] = buffer.getvalue()
+            files[name] = metrics
             # High-resolution glyphs need mip filtering when reduced to small
             # HUD text; the old no-mipmap shaders undersample thin strokes.
             shaders.append(f'gfx/fonts/{stem}\n{{\n nopicmip\n {{\n'
                            f' clampmap gfx/fonts/{stem}.tga\n'
                            ' blendFunc GL_SRC_ALPHA GL_ONE_MINUS_SRC_ALPHA\n'
                            ' rgbGen global\n alphaGen global\n }\n}\n')
-            fonts.append(dict(name=stem, metrics_sha256=digest(data), size=image.size, glyphs=count))
+            fonts.append(dict(name=stem, source_metrics_sha256=digest(data), metrics_sha256=digest(metrics), size=image.size, glyphs=count, advance=advance))
         files['scripts/zzzz_ac_courier.shader'] = ''.join(shaders).encode('ascii')
+        layout_changes = []
+        for name, data in menus.items():
+            body = data.decode('latin1').replace('\r', '')
+            ammo = name.startswith('ui/hud_ammo_')
+            def change(match):
+                block = match[0]
+                font_size = None
+                if match[1].lower() == 'field':
+                    font_size = 10  # Full numeric values including six decimals.
+                if name == 'ui/controls.urc':
+                    if re.search(r'(?mi)^name\s+"?bindlist', block): font_size = 10
+                    if 'title "Sensitivity:"' in block: font_size = 10
+                if ammo:
+                    rect = re.search(r'(?m)^rect\s+([\d.-]+)\s+([\d.-]+)\s+([\d.-]+)\s+([\d.-]+)',block)
+                    if rect:
+                        x,y,w,h = map(float,rect.groups())
+                        if re.search(r'(?mi)^name\s+"?weaponname',block):
+                            w += 100
+                        else:
+                            x += 100
+                        block = block[:rect.start()]+f'rect {x:g} {y:g} {w:g} {h:g}'+block[rect.end():]
+                    if re.search(r'(?mi)^name\s+"?(?:ammocount|clipcount)',block): font_size = 14
+                    if re.search(r'(?mi)^name\s+"?ammoseperator',block): font_size = 10
+                if font_size:
+                    block = re.sub(r'(?mi)^font\s+[^\n]+\n?', '', block)
+                    block = block[:-1]+f'font ac-courier-{font_size}\n'+'}'
+                    if match[1].lower() == 'fakkbindlist':
+                        # Filename constructs child labels/buttons immediately.
+                        block = block.replace(f'font ac-courier-{font_size}\n', '')
+                        block = block.replace('filename ', f'font ac-courier-{font_size}\nfilename ', 1)
+                return block
+            modified = re.sub(r'(?is)resource\s+(\w+)\s*\{[^{}]*\}',change,body)
+            if ammo:
+                modified = re.sub(r'(?m)^(menu\s+"[^"]+"\s+)([\d.]+)',
+                                  lambda m:m[1]+f'{float(m[2])+100:g}',modified,count=1)
+            if modified != body:
+                bindings = lambda s:re.findall(r'(?m)^\s*(?:linkcvar|stuffcommand|playerstat|itemstat|maxplayerstat|addpopup|checked_command|unchecked_command)\b[^\n]*',s)
+                assert bindings(modified)==bindings(body),name
+                files[name] = modified.encode('latin1')
+                layout_changes.append(dict(menu=name,source_sha256=digest(data)))
         output = args.output/folder/'zzzzzzz_AC_Courier.pk3'
         output.parent.mkdir(parents=True, exist_ok=True)
         with zipfile.ZipFile(output, 'w', zipfile.ZIP_DEFLATED) as z:
@@ -112,8 +166,8 @@ def main():
                 z.writestr(info, data)
         report.append(dict(game=game, package=str(output), sha256=digest(output.read_bytes()),
                            font_sha256=digest(args.font.read_bytes()), fonts=fonts,
-                           metrics_changed=False, colors='existing global tint; black 70% shadow',
-                           raster_scale=args.scale))
+                           metrics_changed=True, proportions='Natural Courier New Bold; no glyph resizing', colors='existing global tint; black 70% shadow',
+                           raster_scale=args.scale, layout_changes=layout_changes))
     (args.output/'package-report.json').write_text(json.dumps(report, indent=2)+'\n')
     print(json.dumps([dict(game=r['game'], fonts=len(r['fonts'])) for r in report]))
 

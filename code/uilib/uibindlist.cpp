@@ -317,6 +317,11 @@ void UIFakkBindList::CreateBindWidgets(void)
     m_presskey_wid->setShow(false);
 
     // Finished creation
+    // Children must use the font selected by the enclosing layout, too.
+    for (i = 1; i <= m_widgetlist.NumObjects(); i++)
+        m_widgetlist.ObjectAt(i)->setFont(m_font->getName());
+    for (i = 1; i <= m_miscwidgets.NumObjects(); i++)
+        m_miscwidgets.ObjectAt(i)->setFont(m_font->getName());
     m_created = true;
 }
 
