@@ -21,6 +21,8 @@ sentinels = []
 for folder in ['main', 'mainta', 'maintt']:
     home = p/folder
     (home/'save').mkdir(parents=True)
+    if not a.installed:
+        shutil.copy2(r/'generated-local/widescreen/packages'/folder/'zzzzzz_AC_Widescreen.pk3', home/'zzzzzz_AC_Widescreen.pk3')
     f = home/'save/keep_test.sav'
     f.write_bytes(b'ISOLATED SAVE PRESERVATION SENTINEL')
     sentinels.append(f)

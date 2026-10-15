@@ -30,15 +30,7 @@ static void AC_ShowOperations(void)
     FS_Printf(f,"menu \"%s\" 960 540 NONE 0\nvirtualres 1\nfullscreen 1\nbgfill 0 0 0 1\nbgcolor 0.055 0.07 0.055 1\nborderstyle NONE\n",menuName);
     FS_Printf(f,"resource\nLabel\n{\nname canvas\nrect 0 0 960 540\nbgcolor 0.055 0.07 0.055 1\nborderstyle NONE\n}\n");
     AC_UIItem(f,"heading","ALLIED CAMPAIGN / OPERATIONS",24,16,640,34,NULL);
-    int visible[AC_MISSION_COUNT],count=0,index=0;
-    for(int i=0;i<AC_MISSION_COUNT;i++)if(AC_MissionState(i)) {
-        if(i==selected)index=count;visible[count++]=i;
-    }
-    if(count>1) {
-        int previous=visible[(index+count-1)%count],next=visible[(index+1)%count];
-        AC_UIItem(f,"previous","Previous",724,20,100,28,va("ac_campaign %d %d",previous,ac_mapMarkers[0][previous].region));
-        AC_UIItem(f,"next","Next",836,20,100,28,va("ac_campaign %d %d",next,ac_mapMarkers[0][next].region));
-    }
+    AC_UIItem(f,"reset_progress","Reset Progress",756,20,180,28,"ac_reset_progress","1 0.58 0.45 1");
     for(int r=0;r<2;r++)
         AC_UIItem(f,va("region_%d",r),ac_mapRegions[r].name,24+r*462,62,450,30,va("ac_campaign -1 %d",r),r==region?"1 0.82 0.32 1":"0.85 0.85 0.72 1");
     FS_Printf(f,"resource\nLabel\n{\nname map_surface\nrect 24 110 560 330\nfgcolor 1 1 1 1\nbgcolor 0 0 0 0\nborderstyle NONE\nshader ac_map_%d\n}\n",region);
@@ -75,7 +67,6 @@ static void AC_ShowOperations(void)
     }
     AC_UIItem(f,"current_key","Current operation",24,450,270,24,NULL,AC_StateColor(1));
     AC_UIItem(f,"done_key","Completed",310,450,274,24,NULL,AC_StateColor(2));
-    AC_UIItem(f,"reset_progress","Reset Progress",24,478,180,26,"ac_reset_progress","1 0.58 0.45 1");
     AC_UIItem(f,"back","Main Menu",24,508,140,26,"popmenu 0; pushmenu main");
     AC_UIItem(f,"continue","Continue Campaign",176,508,192,26,"ac_continue");
     AC_UIItem(f,"options","Allied Campaign Options",380,508,260,26,"ac_ui_options");

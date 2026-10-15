@@ -1,3 +1,7 @@
+## Aktuell: Operations-Schriftzug und Kopfzeile
+
+Reset Progress oben rechts; Previous/Next entfernt. Transparenter OPERATIONS-Schriftzug mit dem eingebauten Bildgenerator im Stil der Originalschilder erstellt. [Prompt und Bericht](checkpoints/CP08/operations-sign.md).
+
 ## Aktuell: Operations und Reset Progress
 
 Hauptmenue-Schild zeigt Operations. Reset Progress in der Einsatzkarte verlangt eine separate Bestaetigung und behaelt Saves/Optionen. Isolierte Tests pruefen Abbrechen, Reset und Neustart; aktiver Nutzerfortschritt bleibt unberuehrt. [Bericht](checkpoints/CP08/operations-reset.md).

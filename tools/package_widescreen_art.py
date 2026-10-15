@@ -61,6 +61,21 @@ def main():
                 return z.read(entry)
 
         modifications, textures, shaders, includes = {}, {}, [], {}
+        # Generated lettering only: preserve its alpha over the existing sign.
+        sign = Path(__file__).resolve().parents[1]/'generated-local/operations-sign/operations.png'
+        with Image.open(sign) as image:
+            assert image.mode == 'RGBA' and image.getchannel('A').getextrema()[0] == 0
+            # Ignore near-invisible generator specks when measuring the glyphs.
+            bounds = image.getchannel('A').point(lambda v: 255 if v > 32 else 0).getbbox()
+            assert bounds
+            bounds = (max(0,bounds[0]-8), max(0,bounds[1]-8), min(image.width,bounds[2]+8), min(image.height,bounds[3]+8))
+            lettering = ImageOps.contain(image.crop(bounds), (216, 24), Image.Resampling.LANCZOS)
+            canvas = Image.new('RGBA', (256,64))
+            canvas.alpha_composite(lettering, ((256-lettering.width)//2, 35-lettering.height//2))
+            buffer = io.BytesIO(); canvas.save(buffer, format='TGA')
+        texname = 'textures/ac/widescreen/operations_sign'
+        textures[texname+'.tga'] = buffer.getvalue()
+        shaders.append(f'{texname}\n{{\n nomipmaps\n nopicmip\n {{\n clampmap {texname}.tga\n rgbGen global\n alphaGen global\n blendFunc GL_SRC_ALPHA GL_ONE_MINUS_SRC_ALPHA\n }}\n}}\n')
         for row in inventory['assets']:
             asset = row['asset_id']
             if row['game'] != game or asset not in approved or multiplayer_ui(row['ui']):
