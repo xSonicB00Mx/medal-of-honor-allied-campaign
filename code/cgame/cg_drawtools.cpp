@@ -552,6 +552,9 @@ void CG_DrawZoomOverlay()
     }
 
     switch (zoomType) {
+    case 2:
+        CG_DrawOverlayMiddle(cgs.media.cameraOverlayShader, fAlpha);
+        break;
     case 1:
         CG_DrawOverlayTopBottom(cgs.media.kar98TopOverlayShader, cgs.media.kar98BottomOverlayShader, fAlpha);
         break;

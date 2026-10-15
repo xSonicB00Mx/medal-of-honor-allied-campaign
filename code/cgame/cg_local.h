@@ -373,6 +373,7 @@ extern "C" {
         qhandle_t     pausedShader;
         qhandle_t     levelExitShader;
         qhandle_t     zoomOverlayShader;
+        qhandle_t     cameraOverlayShader;
         qhandle_t     kar98TopOverlayShader;
         qhandle_t     kar98BottomOverlayShader;
         qhandle_t     binocularsOverlayShader;
