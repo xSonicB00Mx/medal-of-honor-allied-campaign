@@ -18,7 +18,7 @@ ap.add_argument('--with-game-binaries', action='store_true', help='Install teste
 ap.add_argument('--font-packages', type=Path, help='Install a reviewed local font package report instead of widescreen packages')
 ap.add_argument('--with-engine', action='store_true', help='Also install the tested engine with font layout changes')
 ap.add_argument('--hud-packages', type=Path, help='Install reviewed HUD artwork only')
-ap.add_argument('--hud-component', choices=['compass','ammo','inventory','health'], default='compass', help='HUD manifest section to update')
+ap.add_argument('--hud-component', choices=['compass','ammo','inventory','health','timers'], default='compass', help='HUD manifest section to update')
 args = ap.parse_args()
 assert not args.hud_packages or not (args.font_packages or args.loading_zoom or args.with_game_binaries or args.with_engine)
 asset_packages = args.font_packages or args.hud_packages
