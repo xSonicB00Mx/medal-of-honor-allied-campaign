@@ -10,6 +10,8 @@ Built-in Imagegen edit prompt: correct the previous face into only a transparent
 
 tools/test_compass_art.py captures isolated native UHD/HUD 1.66 views at yaw 0/90/180/270 and pitched diagonal views in AA, plus opposite headings in SH/BT. This checks actual compositing and common pivots, not just each layer's bounds. The original revision is documented below for history; its face registration is superseded.
 
+Revision 2 installed from source 6e164137 as batch compass-r2. AA six views, SH two views and installed BT two views visually inspected: common center, stable circular housing and unobscured housing texture between the rotating markings. Evidence: compass-r2-tests.json. Deployment preserved all 80 active-profile files, 9072 original files, 9000 runtime-base files and eight MP1 inputs. Rollback: generated-local/widescreen/backups/compass-r2. Screenshots: artifacts-local/CP08-Compass-Corrected-UHD.zip. No merge or personal acceptance claimed.
+
 ## Original revision
 
 Five separate compass sprites restored with the built-in Imagegen tool: compassback, compassface, compassneedle, compassobjarrow and compassobjball. Sources are the effective local AA HUD textures shared by the add-ons. Generated masters are retained under generated-local/hud-upscale/compass/generated. Package preparation aligns each alpha silhouette to its original source bounds at 8x resolution: four 1024-square textures and one 128-square target dot. Near-invisible generated alpha speckles are excluded from bounds measurement. The disk keeps its original asymmetric silhouette and all existing runtime pivots.
