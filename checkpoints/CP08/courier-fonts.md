@@ -14,4 +14,6 @@ Early captures did not show the controls screen because the test pushed it durin
 
 ## Rebuild
 
+Installed source a2bd2320c506bfee2ec60d02930965f03f1540d0 into the existing CP08-r1 starter as three font-only packages. Deployment verified 9072 original files, 9000 runtime base files, 8 MP1 inputs and all 80 active user-profile files unchanged. Engine/game binaries and existing artwork packages were not replaced. The installed native courier-installed-r1 result-screen/list/lockout smoke test passed without diagnostics and its screenshot was visually reviewed. Rollback metadata: generated-local/widescreen/backups/courier-r1. Private source push verified; no merge or personal acceptance claimed.
+
 Run tools/package_courier_fonts.py with --runtime runtime-local/CP08-r1, --font pointing to the local courbd.ttf, and --output generated-local/courier/packages. Inspect isolated captures using tools/test_courier_fonts.py. Deployment uses tools/deploy_widescreen_art.py --font-packages generated-local/courier/packages/package-report.json with a fresh batch name and the existing MP1 input path. It verifies protected inputs and active user-profile hashes, backs up the prior manifest and records newly introduced package paths for rollback. Font-only deployment does not replace engine/game binaries or widescreen artwork.
