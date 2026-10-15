@@ -1,3 +1,7 @@
+## Aktuell: Hochaufloesender Kompass
+
+Fuenf Kompassebenen mit Imagegen restauriert, auf Originalpositionen ausgerichtet und fuer UHD/HUD 1.66 vorbereitet. [Bericht](checkpoints/CP08/compass-upscale.md). Multiplayer-Grafiken ausgenommen.
+
 ## Aktuell: Courier New fuer Menues und HUD
 
 Courier New Bold jetzt mit natuerlichen Zeichenbreiten, Originalfarben und kleinem Schlagschatten. Engstellen in HUD, Steuerung, Zahlenfeldern und Mission List angepasst; native Menuepruefungen in AA/SH/BT sowie 4:3. [Umfang und Nachweise](checkpoints/CP08/courier-fonts.md).
