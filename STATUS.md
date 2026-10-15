@@ -1,3 +1,7 @@
+## Aktuell: Hochaufloesende Munitionsanzeige
+
+19 Munitions- und Spezialanzeigen aus 18 transparenten Imagegen-Vorlagen vorbereitet. Originalgroessen und Patronenabstaende bleiben durch angepasste Texturkachelung erhalten. [Bericht und Testgrenzen](checkpoints/CP08/ammo-upscale.md).
+
 ## Aktuell: Hochaufloesender Kompass
 
 Fuenf Kompassebenen mit Imagegen restauriert, auf Originalpositionen ausgerichtet und fuer UHD/HUD 1.66 vorbereitet. [Bericht](checkpoints/CP08/compass-upscale.md). Multiplayer-Grafiken ausgenommen.
