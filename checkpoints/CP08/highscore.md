@@ -6,6 +6,8 @@ At the user's request, the results screen now uses the existing approved Gemini 
 
 RelWithDebInfo build and isolated native Full-HD completion test sunset-r1 passed with no diagnostics; the rendered result was visually inspected. The existing harness now checks the requested asset reference. Local evidence: generated-local/highscore-sunset-r1.json and profiles-local/highscore/sunset-r1/main/screenshots/shot0001.png.
 
+Installed source 467208a00c47b518a6be4dbdc66463a44b54b1a9 to CP08-r1 with deployed binary hashes verified. All 9072 original files, 9000 runtime base files, 8 MP1 inputs and 80 active profile files remained unchanged. Rollback: generated-local/widescreen/backups/highscore-sunset-r1. Screenshot: artifacts-local/CP08-Level-Complete-Sunset.zip. Private source push verified; no merge claimed.
+
 ## Completion photo aspect correction (2026-10-15)
 
 The approved Gemini AA-statsscreen_game artwork was already selected, but widescreenbackground expanded every menu frame by one third. On the new 960x540 results canvas this produced a 2560x1080 stretched image on a 1920x1080 display, clipping its paper wings. Background width now derives from height times 16/9 and is centered within the frame. Legacy 640x480 menus retain the same geometry; widecanvas displays the complete artwork at its intended proportions. No texture or scoring changes.
