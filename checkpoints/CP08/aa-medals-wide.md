@@ -7,3 +7,4 @@ Das explizite `widecanvas`-Attribut teilt dieselbe proportionale Skalierung zwis
 Lokaler RelWithDebInfo-Build bestanden. Native Tests `medals-wide-r1` (1920x1080, Ansicht und Reset-Dialog) sowie `medals-43-r1` (1280x960) bestanden ohne Ressourcenfehler. Alle neun Medaillen wurden ausschliesslich in separaten Testprofilen eingeblendet. Der echte Nutzerfortschritt wurde nicht veraendert, kein Reset ausgefuehrt. Die 16:9-Aufnahmen wurden visuell geprueft.
 
 Dies ist eine Layoutanpassung mit vorhandenen Assets, keine neue KI-Generierung. Screenshots und Originalressourcen bleiben lokal. Persoenliche Abnahme und Merge bleiben offen.
+Installiert in CP08-r1 mit Engine 01dc7803. Installierter Nachtest medals-installed-r1 fuer beide Menues bestanden. 9072 Originaldateien, 9000 Runtime-Basisdateien, acht MP1-Dateien und alle 80 Nutzerdateien unveraendert; Rollback unter generated-local/widescreen/backups/aa-medals-wide-r1 vorhanden.
