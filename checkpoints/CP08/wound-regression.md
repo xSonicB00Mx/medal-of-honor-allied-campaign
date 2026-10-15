@@ -19,3 +19,5 @@ Native isolated-profile regression fires real pistol shots at torso and several 
 Personal acceptance and merge are not claimed. No exhaustive test of every head variant, animation or view distance is claimed.
 
 AA and SH retained all eight wounds across both quicksaves and quickload; BT retained all ten after a genuine death event. All generated patches had 1-64 triangles, no script errors. Evidence: wound-regression-tests.json. Visual screenshots show head/torso wounds after saving and loading, and torso wounds on the saved BT corpse.
+
+Installed batch wound-fixes-r1, source c339c94d. All 62 owned runtime hashes verified; installed engine/game/cgame match the tested binaries. Original 9072 files, 9000 runtime-base files, eight MP1 input files and all 111 current personal-profile files remained unchanged. Rollback copy: generated-local/widescreen/backups/wound-fixes-r1.
