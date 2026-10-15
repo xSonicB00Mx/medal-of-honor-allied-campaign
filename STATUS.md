@@ -1,3 +1,7 @@
+## Aktuell: Hochaufloesende Inventarsymbole
+
+15 Gegenstandsmotive und 32 Zaehlervarianten mit 512x512 Pixeln vorbereitet. Originalpositionen, Transparenz und Inventarlogik bleiben erhalten. Zwei Ausweise und drei Uniformen bleiben wegen Ablehnungen des Bilddienstes im Original. [Umfang, Prompts und Tests](checkpoints/CP08/inventory-upscale.md).
+
 ## Aktuell: Hochaufloesende Munitionsanzeige
 
 19 Munitions- und Spezialanzeigen aus 18 transparenten Imagegen-Vorlagen vorbereitet. Originalgroessen und Patronenabstaende bleiben durch angepasste Texturkachelung erhalten. [Bericht und Testgrenzen](checkpoints/CP08/ammo-upscale.md).

@@ -1,6 +1,6 @@
 # CP08-r1 – gemeinsame Einsatzkarte
 
-Neueste Darstellungsaenderungen: [Munitionsanzeige](ammo-upscale.md), [Kompass](compass-upscale.md) und [Courier New fuer Menues und HUD](courier-fonts.md).
+Neueste Darstellungsaenderungen: [Inventarsymbole](inventory-upscale.md), [Munitionsanzeige](ammo-upscale.md), [Kompass](compass-upscale.md) und [Courier New fuer Menues und HUD](courier-fonts.md).
 
 Neueste Erweiterung: [Mission List Highscore-Modus](highscore.md).
 
