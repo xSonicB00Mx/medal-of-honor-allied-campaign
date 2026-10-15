@@ -13,3 +13,4 @@ TEXT was replaced with each quoted label listed above. Reference: generated-loca
 ## Validation
 
 Local RelWithDebInfo engine build passed. Native menu-signs-aa-r1, menu-signs-sh-r1 and menu-signs-bt-r1 each captured seven Full HD frames without resource/script errors. All eighteen hover-sign views were visually inspected in a contact sheet, with full-frame checks for long text and Quit. Back to Game retains its original visibility conditions; its new asset is packaged without changing its action. No player profile or campaign progress was used for these isolated previews. Personal acceptance and merge remain open.
+Installed in CP08-r1 with engine f8bcb1b3. The installed AA main-menu sign smoke test passed. All 80 active player-profile files, 9072 original inputs, 9000 runtime-base files and eight MP1 inputs remain hash-identical. Rollback: generated-local/widescreen/backups/menu-lettering-r1. Screenshot and alpha-asset ZIPs are in artifacts-local.
