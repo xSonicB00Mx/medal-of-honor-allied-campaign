@@ -1,3 +1,7 @@
+## Aktuell: AA-Medaillen in 16:9
+
+Medaillenkasten und Reset-Dialog auf 960x540 angepasst, Medaillen proportional erhalten. Native Full-HD- und 4:3-Tests bestanden. [Bericht](checkpoints/CP08/aa-medals-wide.md).
+
 ## Aktuell: Restbilder fuer Single-Player
 
 46 vollstaendige Hintergruende fertig; AA-Hilfeseite mit Gemini 3.8 Flash / High ergaenzt. Drei vorhandene breite SH-Abschlussgemaelde werden mit unveraenderten Einblendzeiten bildfuellend dargestellt. Native Sichtpruefungen bestanden. Multiplayer- und Kalibrierungsbilder bleiben ausgenommen. [Bericht](checkpoints/CP08/remaining-art.md).

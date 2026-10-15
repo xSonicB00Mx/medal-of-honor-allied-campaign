@@ -102,6 +102,29 @@ def main():
                 # Exact source body remains once the one added directive is removed.
                 assert modified.replace(f'widescreenbackground "{texname}"\n', '', 1) == body
                 modifications[target] = (texname, modified.encode('latin1'))
+        if game == 'AA':
+            for ui in ['ui/medals.urc', 'ui/medals_reset.urc']:
+                body = read(ui).decode('latin1').replace('\r', '')
+                modified = re.sub(r'(?m)^(menu "[^"]+") 640 480', r'\1 960 540', body)
+                modified = modified.replace('virtualres 1', 'virtualres 1\nwidecanvas', 1)
+                def widen(match):
+                    block = match.group(0)
+                    rect = re.search(r'(?m)^rect ([\d.]+) ([\d.]+) ([\d.]+) ([\d.]+)', block)
+                    if not rect:
+                        return block
+                    x, y, w, h = map(float, rect.groups())
+                    # Widen the case/backdrop and dialog masks, not medal icons.
+                    stretch = bool(re.search(r'shader "(?:black|medalcaseback)"|name "cancel_', block))
+                    nw = w * (1.5 if stretch else 1.125)
+                    nx = x * 1.5 if stretch else (x + w/2) * 1.5 - nw/2
+                    # Confirmation controls must stay aligned with their panel.
+                    if re.search(r'name "(?:yes|no)"', block):
+                        nx = 480 + (x - 320) * 1.125
+                    return block[:rect.start()] + f'rect {nx:g} {y*1.125:g} {nw:g} {h*1.125:g}' + block[rect.end():]
+                modified = re.sub(r'(?is)resource\s+\w+\s*\{[^{}]*\}', widen, modified)
+                bindings = lambda s: re.findall(r'(?m)^(?:enabledcvar|hovercommand|stuffcommand|linkcvar).*$', s)
+                assert bindings(body) == bindings(modified)
+                modifications[ui] = ('', modified.encode('latin1'))
         if game == 'SH':
             # The success slideshow already contains wide paintings. Preserve
             # every timed photo and fade; replace only the two painting widgets.

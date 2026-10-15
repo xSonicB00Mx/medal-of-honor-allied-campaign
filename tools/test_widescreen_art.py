@@ -16,6 +16,7 @@ ap.add_argument('--menu-wait', type=int, default=1200, help='Milliseconds before
 ap.add_argument('--menus', nargs='+', default=['main', 'briefing1a'])
 ap.add_argument('--without-art', action='store_true')
 ap.add_argument('--installed', action='store_true', help='Test the installed runtime and its own packages')
+ap.add_argument('--all-medals', action='store_true', help='Show earned medals in this isolated test profile only')
 ap.add_argument('--overlay', type=Path, help='Additional local package directory containing main/mainta/maintt')
 args = ap.parse_args()
 root = Path(__file__).resolve().parents[1]
@@ -46,6 +47,10 @@ for folder in ['main', 'mainta', 'maintt']:
 number, folder = {'AA':(0,'main'), 'SH':(1,'mainta'), 'BT':(2,'maintt')}[args.game]
 home = profile/folder
 commands = ['wait 2000']
+if args.all_medals:
+    commands += [f'set g_medal{i} 1' for i in range(6)]
+    commands += [f'set g_eogmedal{i} 1' for i in range(3)]
+    commands += ['set ui_medalsign armycommendation_sign', 'set ui_medaldesc armycommendation_desc']
 for menu in args.menus:
     assert re.fullmatch('[a-zA-Z0-9_-]+', menu)
     # The operations map is created dynamically by its console command.
