@@ -364,6 +364,55 @@
       "images": [],
       "scope": "Isolated seeded profile; synthetic native completion, not a natural playthrough.",
       "engine_sha256": "72ff1161e78a45a3357329579711ba616b9e87b9dc30a4f5cba68aa332a65e05"
+    },
+    {
+      "run": "installed-menu",
+      "case": "menu",
+      "operation": "aa_torch",
+      "done": true,
+      "events": [
+        "[2026-10-15 12:23:09 UTC+1.000] AC_PROGRESS valid=1 completed=0 resume=0 slot=keep operation=-1 replay=0",
+        "[2026-10-15 12:23:09 UTC+1.000] AC_LEVEL_PROGRESS 7 0 skill=1",
+        "[2026-10-15 12:23:11 UTC+1.000] AC_UI_CURRENT ac_level_list",
+        "[2026-10-15 12:23:11 UTC+1.000] AC_UI drawable=1920x1080 base=1.1250 menu=1.0000 hud=1.0000 safe=1.0000",
+        "[2026-10-15 12:23:11 UTC+1.000] AC_UI_ROOT ac_level_list 0.000 0.000 1920.000 1080.000",
+        "[2026-10-15 12:23:11 UTC+1.000] AC_TEST_DONE"
+      ],
+      "state_before": "ACPROG1 0 0 keep\n",
+      "state_after": "ACPROG1 0 0 keep\n",
+      "images": [
+        "profiles-local/level-replay/installed-menu/main/screenshots/shot0000.png",
+        "profiles-local/level-replay/installed-menu/main/screenshots/shot0001.png",
+        "profiles-local/level-replay/installed-menu/main/screenshots/shot0002.png"
+      ],
+      "scope": "Isolated seeded profile; synthetic native completion, not a natural playthrough.",
+      "engine_sha256": "1dc4e8b6345bba72e2517c0a6cb182d2721daca70f0dfbc59b4ae84ba0eea3d3",
+      "passed": true
+    },
+    {
+      "run": "installed-bt",
+      "case": "replay",
+      "operation": "bt_kasserine",
+      "done": true,
+      "events": [
+        "[2026-10-15 12:23:16 UTC+1.000] AC_LEVEL_REPLAY e1l1 difficulty=2",
+        "[2026-10-15 12:23:16 UTC+1.000] AC_CONTEXT_RESTART 0 -> 2 e1l1 child=2176",
+        "[2026-10-15 12:23:19 UTC+1.000] AC_MISSION_ENTRY bt_kasserine e1l1",
+        "[2026-10-15 12:23:27 UTC+1.000] AC_PROGRESS valid=1 completed=7 resume=3 slot=keep operation=2 replay=2",
+        "[2026-10-15 12:23:27 UTC+1.000] AC_LEVEL_PROGRESS 8191 0 skill=2",
+        "[2026-10-15 12:23:27 UTC+1.000] Saving to otherAC_SAVE_PROTECTED campaign save; choose another save name",
+        "[2026-10-15 12:23:28 UTC+1.000] AC_SAVE_ACCEPT context=2 map=e1l1",
+        "[2026-10-15 12:23:31 UTC+1.000] AC_PROGRESS valid=1 completed=7 resume=3 slot=keep operation=2 replay=2",
+        "[2026-10-15 12:23:31 UTC+1.000] AC_LEVEL_PROGRESS 8191 0 skill=2.000000",
+        "[2026-10-15 12:23:38 UTC+1.000] AC_LEVEL_REPLAY_COMPLETE e1l1",
+        "[2026-10-15 12:23:38 UTC+1.000] AC_REPLAY_RETURN_MAIN skill=0"
+      ],
+      "state_before": "ACPROG1 7 3 keep\n",
+      "state_after": "ACPROG1 7 3 keep\n",
+      "images": [],
+      "scope": "Isolated seeded profile; synthetic native completion, not a natural playthrough.",
+      "engine_sha256": "1dc4e8b6345bba72e2517c0a6cb182d2721daca70f0dfbc59b4ae84ba0eea3d3",
+      "passed": true
     }
   ],
   "reset": {
@@ -523,5 +572,67 @@
       "widget": "bigmap",
       "command": "ac_level_list"
     }
-  ]
+  ],
+  "installation": {
+    "source_commit": "ca01a239cdc7760d3fd3853f671c940bea9da0ba",
+    "integrity": {
+      "original_files_unchanged": 9072,
+      "runtime_base_files_unchanged": 9000,
+      "mp1_files_unchanged": 8,
+      "user_profile_files_unchanged": 80,
+      "rollback_copy": "generated-local/widescreen/backups/level-replay-r1"
+    },
+    "package": "artifacts-local/CP08-r1-level-replay-r1-update.zip",
+    "sha256": "849aceafc37e96fbe96c64cef31ac8f9f75b61a8453d416a4f5824f862da3ef5",
+    "upload_allowed": false,
+    "approved_artworks": [
+      "AA-advancedoptions",
+      "AA-audio options",
+      "AA-briefing_room",
+      "AA-controls",
+      "AA-demohelp",
+      "AA-loading_m1l1",
+      "AA-loading_m1l2a",
+      "AA-loading_m1l2b",
+      "AA-loading_m1l3a",
+      "AA-loading_m2l1",
+      "AA-loading_m2l2a",
+      "AA-loading_m2l3",
+      "AA-loading_m3l1a",
+      "AA-loading_m3l2",
+      "AA-loading_m3l3",
+      "AA-loading_m4l1",
+      "AA-loading_m4l2",
+      "AA-loading_m4l3",
+      "AA-loading_m5l1",
+      "AA-loading_m5l2",
+      "AA-loading_m5l3",
+      "AA-loading_m6l1a",
+      "AA-loading_m6l1c",
+      "AA-loading_m6l2a",
+      "AA-loading_m6l2b",
+      "AA-loading_m6l3",
+      "AA-loadsave",
+      "AA-main",
+      "AA-missionbriefingback",
+      "AA-options_main",
+      "AA-statsscreen_failed",
+      "AA-statsscreen_game",
+      "AA-statsscreen_success",
+      "AA-video options",
+      "AA-war_records",
+      "BT-briefing_room",
+      "BT-briefing_room_nobuttons",
+      "BT-controls",
+      "BT-main",
+      "BT-options_main",
+      "SH-briefing_room",
+      "SH-main",
+      "SH-medals",
+      "SH-options_main",
+      "SH-video options",
+      "SH-war_records"
+    ],
+    "completion": "COMPLETE"
+  }
 }
