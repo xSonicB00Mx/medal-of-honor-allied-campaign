@@ -19,3 +19,5 @@ Exact source/target bounds and generated-master SHA256 values are recorded in ge
 ## Verification
 
 Isolated native screenshots at 3840x2160 and ac_hud_scale=1.66; AA m2l1, SH t1l3 and BT e3l1 (after a 30-second intro wait). Add-on capture commands turn the view between screenshots. Inspect compass overlap, direction change and transparent edges. This is visual smoke coverage, not exhaustive mission/objective/damage-state acceptance. Package deployment uses --hud-packages and preserves engine, fonts, existing artwork and active player profile, with rollback metadata.
+
+Installed source 4bf9f1aed064eb67a068567fa4bf231079e06b9c, batch compass-r1. Deployment verified 9072 original files, 9000 runtime-base files, eight MP1 files and all 80 active-profile files unchanged. Rollback: generated-local/widescreen/backups/compass-r1. Installed no-overlay UHD capture: compass-installed-r1. Source push verified; no merge or personal acceptance claimed.
