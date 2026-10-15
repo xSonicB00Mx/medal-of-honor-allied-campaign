@@ -1,3 +1,7 @@
+## Aktuell: Richtungszeichen, Sonderanzeige und Missionszielfenster
+
+Roter Richtungsmarker, offene/erledigte Zielrahmen und dezenter Zielfenster-Hintergrund hochaufloesend installiert. SH/BT-Flak-Farbmaske passt pixelgenau zum erneuerten Symbol. Native UHD-Pruefung in AA/SH/BT; separate Testprofile, alle 80 persoenlichen Profildateien unveraendert. Multiplayer-Symbole ausgenommen. [Bericht, Prompts und Testgrenzen](checkpoints/CP08/special-hud-upscale.md).
+
 ## Aktuell: Dynamische Fadenkreuze
 
 Vier getrennte Linien mit Mittelpunkt und dunkler Kontur installiert. Die Oeffnung folgt der echten Waffenstreuung bei Bewegung, Dauerfeuer und Erholung, mit korrekter FOV-/Aufloesungsprojektion. Sie markiert den 95%-Bereich der gaussfoermigen Kugelstreuung; HUD-Groesse beeinflusst nur Strich/Punkt. AA/SH/BT, Full HD/UHD, Optiken und Save/Load geprueft; 80 persoenliche Profildateien unveraendert. [Formel, Nachweise und Grenzen](checkpoints/CP08/dynamic-crosshair.md).
