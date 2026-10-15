@@ -1,0 +1,67 @@
+{
+  "source_commit": "a26b8aea",
+  "runs": [
+    {
+      "game": "AA",
+      "images": [
+        "artifacts-local/MenuPolish-font-only-aa-ac_scaling-1.png",
+        "artifacts-local/MenuPolish-font-only-aa-ac_scaling-0.65.png",
+        "artifacts-local/MenuPolish-font-only-aa-ac_scaling-1.5.png",
+        "artifacts-local/MenuPolish-font-only-aa-ac_scaling-1.png",
+        "artifacts-local/MenuPolish-font-only-aa-controls-1.png",
+        "artifacts-local/MenuPolish-font-only-aa-controls-0.65.png",
+        "artifacts-local/MenuPolish-font-only-aa-controls-1.5.png",
+        "artifacts-local/MenuPolish-font-only-aa-controls-1.png",
+        "artifacts-local/MenuPolish-font-only-aa-hud-1.png",
+        "artifacts-local/MenuPolish-font-only-aa-hud-0.65.png"
+      ],
+      "errors": [],
+      "baseline": false,
+      "installed": false,
+      "run": "font-only-aa",
+      "geometry_checks": "Equal root and child rectangles at 100%, 65%, 150%, 100% for options and controls"
+    },
+    {
+      "game": "SH",
+      "images": [
+        "artifacts-local/MenuPolish-font-only-sh-ac_scaling-1.png",
+        "artifacts-local/MenuPolish-font-only-sh-ac_scaling-0.65.png",
+        "artifacts-local/MenuPolish-font-only-sh-ac_scaling-1.5.png",
+        "artifacts-local/MenuPolish-font-only-sh-ac_scaling-1.png",
+        "artifacts-local/MenuPolish-font-only-sh-controls-1.png",
+        "artifacts-local/MenuPolish-font-only-sh-controls-0.65.png",
+        "artifacts-local/MenuPolish-font-only-sh-controls-1.5.png",
+        "artifacts-local/MenuPolish-font-only-sh-controls-1.png",
+        "artifacts-local/MenuPolish-font-only-sh-hud-1.png",
+        "artifacts-local/MenuPolish-font-only-sh-hud-0.65.png"
+      ],
+      "errors": [],
+      "baseline": false,
+      "installed": false,
+      "run": "font-only-sh",
+      "geometry_checks": "Equal root and child rectangles at 100%, 65%, 150%, 100% for options and controls"
+    },
+    {
+      "game": "BT",
+      "images": [
+        "artifacts-local/MenuPolish-font-only-bt-ac_scaling-1.png",
+        "artifacts-local/MenuPolish-font-only-bt-ac_scaling-0.65.png",
+        "artifacts-local/MenuPolish-font-only-bt-ac_scaling-1.5.png",
+        "artifacts-local/MenuPolish-font-only-bt-ac_scaling-1.png",
+        "artifacts-local/MenuPolish-font-only-bt-controls-1.png",
+        "artifacts-local/MenuPolish-font-only-bt-controls-0.65.png",
+        "artifacts-local/MenuPolish-font-only-bt-controls-1.5.png",
+        "artifacts-local/MenuPolish-font-only-bt-controls-1.png",
+        "artifacts-local/MenuPolish-font-only-bt-hud-1.png",
+        "artifacts-local/MenuPolish-font-only-bt-hud-0.65.png"
+      ],
+      "errors": [],
+      "baseline": false,
+      "installed": false,
+      "run": "font-only-bt",
+      "geometry_checks": "Equal root and child rectangles at 100%, 65%, 150%, 100% for options and controls"
+    }
+  ],
+  "full_size_metrics_exact": true,
+  "personal_acceptance": false
+}

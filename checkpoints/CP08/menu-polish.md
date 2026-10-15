@@ -4,6 +4,8 @@ The latest request supersedes the fixed 66% reduction below. Menu aliases now re
 
 Widget layout and virtual scales no longer consume ac_menu_scale; changing it does not trigger a resolution/layout rebuild. The option is named Menu font size. HUD fonts, picture lettering, cursor and hover assets are unaffected. Native tests cycle 100%, 65%, 150%, 100% in campaign options and legacy controls, assert identical root/child rectangles and capture the gameplay HUD. Personal profiles are not used for testing.
 
+Native AA/BT 1920x1080 and SH 3840x2160 passed; options and controls screenshots visually reviewed. Exact original Courier metrics verified for every menu alias. Installed batch menu-font-only-r1, engine source a26b8aea; all 62 owned runtime hashes match and the installed engine matches the tested binary. Deployment preserved 9072 original, 9000 runtime-base, eight Max Payne and 95 personal-profile files. Evidence: menu-font-only-tests.json.
+
 ## Previous menu polish delivery
 
 # Smaller menu type, working hover labels and HD cursor
