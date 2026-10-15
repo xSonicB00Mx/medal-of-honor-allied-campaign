@@ -24,6 +24,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 // Some tools used to drawing 2d stuff
 
 #include "cg_local.h"
+#include "../fgame/ac_crosshair.h"
 #include <string>
 #include <vector>
 
@@ -1258,6 +1259,50 @@ void CG_DrawSpectatorView()
     }
 }
 
+// Draw in framebuffer pixels so thin HUD geometry stays sharp at any resolution.
+// Only stroke dimensions follow HUD size; the angular opening follows projection.
+static void CG_DrawDynamicCrosshair(bool friendly)
+{
+    const float slope = AC_DecodeSpread95(cg.snap->ps.stats[STAT_AC_SPREAD]);
+    const bool ballistic = (cg.snap->ps.stats[STAT_AC_SPREAD] & 65535) != 0;
+    const float unit = fmaxf(1.0f, cgs.glconfig.vidHeight / 1080.0f
+        * Com_Clamp(.5f, 2.5f, cgi.Cvar_Get("ac_hud_scale", "1", CVAR_ARCHIVE)->value));
+    const float thick = fmaxf(1.0f, floorf(unit + .5f));
+    const float outline = fmaxf(1.0f, floorf(unit * .5f + .5f));
+    const float length = 6.0f * unit;
+    const float dot = fmaxf(2.0f, floorf(1.5f * unit + .5f));
+    const float cx = cg.refdef.x + cg.refdef.width * .5f;
+    const float cy = cg.refdef.y + cg.refdef.height * .5f;
+    const float rx = ballistic ? AC_SpreadPixels(slope, cg.refdef.width, cg.refdef.fov_x) : 4 * unit;
+    const float ry = ballistic ? AC_SpreadPixels(slope, cg.refdef.height, cg.refdef.fov_y) : 4 * unit;
+    vec4_t ink = {0, 0, 0, .85f};
+    vec4_t color = {1, 1, 1, 1};
+    if (friendly) { color[0] = .25f; color[2] = .25f; }
+    auto stroke = [&](float x, float y, float w, float h) {
+        cgi.R_SetColor(ink); cgi.R_DrawBox(x-outline, y-outline, w+2*outline, h+2*outline);
+        cgi.R_SetColor(color); cgi.R_DrawBox(x, y, w, h);
+    };
+    // For effectively zero spread, retain only the point instead of overstating
+    // accuracy with an arbitrary minimum opening or joining the four arms.
+    if (rx > dot*.5f + 2*outline && ry > dot*.5f + 2*outline) {
+        stroke(cx-rx-length, cy-thick*.5f, length, thick);
+        stroke(cx+rx, cy-thick*.5f, length, thick);
+        stroke(cx-thick*.5f, cy-ry-length, thick, length);
+        stroke(cx-thick*.5f, cy+ry, thick, length);
+    }
+    stroke(cx-dot*.5f, cy-dot*.5f, dot, dot);
+    cgi.R_SetColor(NULL);
+    if (cgi.Cvar_Get("ac_crosshair_debug", "0", 0)->integer) {
+        static int lastReport = -1000;
+        if (cg.time < lastReport || cg.time-lastReport >= 100) {
+            cgi.Printf("AC_CROSSHAIR time=%d code=%u slope=%.7f radius=%.3f,%.3f fov=%.3f,%.3f viewport=%d,%d friendly=%d\n",
+                cg.time, (unsigned)(cg.snap->ps.stats[STAT_AC_SPREAD]&65535), slope, rx, ry,
+                cg.refdef.fov_x, cg.refdef.fov_y, cg.refdef.width, cg.refdef.height, friendly);
+            lastReport = cg.time;
+        }
+    }
+}
+
 void CG_DrawCrosshair()
 {
     centity_t *friendEnt;
@@ -1270,6 +1315,7 @@ void CG_DrawCrosshair()
     float      width, height;
 
     shader = (qhandle_t)0;
+    bool friendly = false;
 
     if (!cg_hud->integer || !ui_crosshair->integer) {
         return;
@@ -1317,6 +1363,7 @@ void CG_DrawCrosshair()
             if (((myFlags & EF_ALLIES) && (friendEnt->currentState.eFlags & EF_ALLIES))
                 || ((myFlags & EF_AXIS) && (friendEnt->currentState.eFlags & EF_AXIS))) {
                 // friend
+                friendly = true;
                 if (cg.snap->ps.stats[STAT_CROSSHAIR]) {
                     shader = cgi.R_RegisterShaderNoMip(cg_crosshair_friend->string);
                     if (!shader) {
@@ -1341,6 +1388,12 @@ void CG_DrawCrosshair()
         if (cg.snap->ps.stats[STAT_CROSSHAIR]) {
             shader = cgi.R_RegisterShaderNoMip(cg_crosshair->string);
         }
+    }
+
+    if (shader && cgs.gametype == GT_SINGLE_PLAYER
+        && cgi.Cvar_Get("ac_dynamic_crosshair", "1", CVAR_ARCHIVE)->integer) {
+        if (cg.snap->ps.stats[STAT_HEALTH] > 0) CG_DrawDynamicCrosshair(friendly);
+        return;
     }
 
     if (shader) {

@@ -553,6 +553,7 @@ movement on the server game.
         STAT_INFOCLIENT_HEALTH,
         STAT_DAMAGEDIR,
         STAT_SECONDARY_AMMO, // added in 2.0
+        STAT_AC_SPREAD, // SP-only 95% angular spread, unsigned 16-bit; unused legacy slot 31
         STAT_LAST_STAT
     } playerstat_t;
 

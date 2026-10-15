@@ -456,6 +456,8 @@ public:
     Listener  *GetScriptOwner(void) override;
     float      GetBulletRange(firemode_t mode);
     float      GetSpreadFactor(firemode_t mode);
+    Vector     GetPlayerBulletSpread(firemode_t mode, float fireMultiplier);
+    int        GetCrosshairSpread();
     float      GetChargeFraction(void) const;
     float      GetCurrentFireSpreadMult(firemode_t mode) const;
     float      GetCurrentFireSpreadMultTime(firemode_t mode) const;

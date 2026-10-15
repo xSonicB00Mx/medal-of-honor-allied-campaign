@@ -20,7 +20,9 @@ ap.add_argument('--with-engine', action='store_true', help='Also install the tes
 ap.add_argument('--hud-packages', type=Path, help='Install reviewed HUD artwork only')
 ap.add_argument('--hud-component', choices=['compass','ammo','inventory','health','timers','overlays','weapons'], default='compass', help='HUD manifest section to update')
 ap.add_argument('--with-cgame', action='store_true', help='Install tested client-game DLL with HUD artwork')
+ap.add_argument('--logic-only', action='store_true', help='Install tested game/cgame DLLs, preserving engine and artwork')
 args = ap.parse_args()
+assert not args.logic_only or not any([args.hud_packages,args.font_packages,args.loading_zoom,args.with_engine,args.with_cgame,args.with_game_binaries])
 assert not args.hud_packages or not (args.font_packages or args.loading_zoom or args.with_game_binaries or args.with_engine)
 asset_packages = args.font_packages or args.hud_packages
 assert not (args.font_packages and args.loading_zoom)
@@ -44,7 +46,7 @@ completion = 'COMPLETE' if not remaining else {
     'BLOCKED_BY_PROVIDER': 'PARTIAL_PROVIDER_BLOCKED',
     'BLOCKED_BY_PROVIDER_AND_QUALITY': 'PARTIAL_PROVIDER_AND_QUALITY_BLOCKED',
 }.get(progress['status'], 'PARTIAL_IN_PROGRESS')
-packages = json.loads((asset_packages if asset_packages else work/('loading-zoom/packages/package-report.json' if args.loading_zoom else 'packages/package-report.json')).read_text())
+packages = [] if args.logic_only else json.loads((asset_packages if asset_packages else work/('loading-zoom/packages/package-report.json' if args.loading_zoom else 'packages/package-report.json')).read_text())
 profile = root/'profiles-local/CP08-r1/user'
 def profile_hashes():
     return {p.relative_to(profile).as_posix():sha(p) for p in profile.rglob('*') if p.is_file()}
@@ -64,8 +66,8 @@ for row in mp:
 integrity['mp1_files_unchanged'] = len(mp)
 for row in old['owned_files']:
     assert sha(runtime/row['path']) == row['sha256'], ('Runtime drift',row['path'])
-updates = {} if asset_packages and not args.with_engine else {'openmohaa.exe':root/'build-local/cp00-r3/RelWithDebInfo/openmohaa.exe'}
-if args.with_game_binaries:
+updates = {} if args.logic_only or (asset_packages and not args.with_engine) else {'openmohaa.exe':root/'build-local/cp00-r3/RelWithDebInfo/openmohaa.exe'}
+if args.with_game_binaries or args.logic_only:
     for name in ['game.dll','cgame.dll']:
         updates[name] = root/'build-local/cp00-r3/RelWithDebInfo'/name
 if args.with_cgame:
@@ -92,7 +94,7 @@ for name,file in updates.items():
     shutil.copy2(file,runtime/name)
     assert sha(runtime/name) == sha(file)
 owned = {r['path'] for r in old['owned_files']} | set(updates)
-widescreen = old.get('widescreen', {}) if args.loading_zoom or asset_packages else dict(
+widescreen = old.get('widescreen', {}) if args.logic_only or args.loading_zoom or asset_packages else dict(
     batch=args.batch,approved_artworks=sorted(approved),
     completion=completion,center='Full supplied artwork; original background tiles removed; controls preserved; MP entry disabled',
     provider='Google Gemini / Nano Banana and user-supplied artwork',breakthrough_loading_changed=False,
@@ -105,8 +107,8 @@ if args.loading_zoom:
         'spearhead_letterboxed_loading_changed':True,
         'loading_zoom':dict(batch=args.batch, maps={p['game']:len(p['maps']) for p in packages},
             generation=False, fit='Proportional cropped artwork, centered; full original frame on 4:3')}
-manifest = {**old,'source_commit':source,'engine_source_commit':old['engine_source_commit'] if asset_packages and not args.with_engine else source,
-    'game_dll_source_commit':source if args.with_game_binaries else old.get('game_dll_source_commit',old['engine_source_commit']),
+manifest = {**old,'source_commit':source,'engine_source_commit':old['engine_source_commit'] if args.logic_only or (asset_packages and not args.with_engine) else source,
+    'game_dll_source_commit':source if args.with_game_binaries or args.logic_only else old.get('game_dll_source_commit',old['engine_source_commit']),
     'owned_files':[dict(path=n,sha256=sha(runtime/n)) for n in sorted(owned)],
     'widescreen':widescreen,
     'personal_acceptance':False,'merged':False}
@@ -117,7 +119,7 @@ if args.font_packages:
                             packages=packages, upload_allowed=False)
 if args.hud_packages:
     manifest[args.hud_component] = dict(batch=args.batch, packages=packages, provider='Analytic optical masks and Built-in Imagegen gas mask' if args.hud_component == 'overlays' else 'Built-in Imagegen', upload_allowed=False)
-if args.with_cgame:
+if args.with_cgame or args.with_game_binaries or args.logic_only:
     manifest['cgame_source_commit'] = source
 save(runtime/'build-manifest.json',manifest)
 assert profile_hashes() == before, 'User profile must remain untouched'

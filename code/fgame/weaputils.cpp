@@ -2210,6 +2210,12 @@ float BulletAttack(
         bool acCorpseSeen[MAX_GENTITIES]={};
 
         vTraceEnd = start + (dir * range) + (right * grandom() * spread.x) + (up * grandom() * spread.y);
+        if (owner && owner->client && gi.Cvar_Get("ac_crosshair_debug", "0", 0)->integer) {
+            const Vector offset = vTraceEnd - start - dir * range;
+            gi.Printf("AC_SPREAD_SAMPLE range=%.4f sigma=%.5f,%.5f offset=%.5f,%.5f\n",
+                range, spread.x, spread.y, offset * right, offset * up);
+        }
+
 
         vDir = vTraceEnd - start;
 
