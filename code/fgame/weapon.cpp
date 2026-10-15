@@ -4194,8 +4194,10 @@ int Weapon::GetCrosshairSpread()
     Vector spread;
     if (owner && owner->client) {
         // Save restoration can query stats before the level clock is restored.
-        // Never turn that temporary negative elapsed time into HUD-only bloom.
-        const float elapsed = fmaxf(0.0f, level.time - m_fFireSpreadMultTime[mode]);
+        // Keep the archived HUD value until the clock is valid, rather than
+        // resurrecting the stored (not yet decayed) multiplier for one frame.
+        const float elapsed = level.time - m_fFireSpreadMultTime[mode];
+        if (elapsed < 0.0f && m_fFireSpreadMultAmount[mode] != 0.0f) return -1;
         const float mult = AC_SpreadBeforeShot(m_fFireSpreadMult[mode], m_fFireSpreadMultAmount[mode],
             m_fFireSpreadMultFalloff[mode], elapsed, m_fFireSpreadMultTimeCap[mode]);
         spread = GetPlayerBulletSpread(mode, mult);

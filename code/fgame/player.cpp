@@ -7647,11 +7647,12 @@ void Player::UpdateStats(void)
          && (activeweap && !activeweap->IsSubclassOfInventoryItem() && activeweap->GetUseCrosshair()))
         || m_pTurret || (m_pVehicle && m_pVehicle->IsSubclassOfVehicleTank());
 
-    client->ps.stats[STAT_AC_SPREAD] = 0;
+    int crosshairSpread = 0;
     if (g_gametype->integer == GT_SINGLE_PLAYER && !IsDead()) {
         Weapon *aimWeapon = m_pTurret ? static_cast<Weapon *>(m_pTurret.Pointer()) : (m_pVehicle ? NULL : activeweap);
-        if (aimWeapon) client->ps.stats[STAT_AC_SPREAD] = aimWeapon->GetCrosshairSpread();
+        if (aimWeapon) crosshairSpread = aimWeapon->GetCrosshairSpread();
     }
+    if (crosshairSpread >= 0) client->ps.stats[STAT_AC_SPREAD] = crosshairSpread;
 
     client->ps.stats[STAT_COMPASSNORTH] = ANGLE2SHORT(world->m_fNorth);
 
