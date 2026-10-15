@@ -72,7 +72,7 @@ public:
     void              showCursor(bool show);
     virtual void      CharEvent(int ch) override;
     virtual qboolean  KeyEvent(int key, unsigned int time) override;
-    void              CreateMenus(void);
+    void              CreateMenus(bool preserveExisting = false);
     UIReggedMaterial *RegisterShader(const str& name);
     UIReggedMaterial *RefreshShader(const str& name);
     void              CleanupShadersFromList(void);

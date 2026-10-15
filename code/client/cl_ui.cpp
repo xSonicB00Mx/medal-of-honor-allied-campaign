@@ -3413,13 +3413,18 @@ UI_LoadMenu
 void UI_LoadMenu(const char *name)
 {
     char buffer[256];
+    char menuName[MAX_QPATH];
+    Q_strncpyz(menuName, COM_SkipPath(name), sizeof(menuName));
+    COM_StripExtension(menuName, menuName, sizeof(menuName));
+    if (menuManager.FindMenu(menuName)) return;
 
     Com_sprintf(buffer, sizeof(buffer), "ui/%s", name);
     COM_StripExtension(buffer, buffer, sizeof(buffer));
     Q_strcat(buffer, 256, ".urc");
 
     new UILayout(buffer);
-    uWinMan.CreateMenus();
+    // Lazy loading must not delete Menu objects still referenced by HUD caches.
+    uWinMan.CreateMenus(true);
     UI_FocusMenuIfExists();
 }
 

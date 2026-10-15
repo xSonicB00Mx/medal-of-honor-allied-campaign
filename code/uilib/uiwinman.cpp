@@ -602,17 +602,18 @@ qboolean UIWindowManager::KeyEvent(int key, unsigned int time)
     return true;
 }
 
-void UIWindowManager::CreateMenus(void)
+void UIWindowManager::CreateMenus(bool preserveExisting)
 {
     int i;
     int n;
 
-    menuManager.DeleteAllMenus();
+    if (!preserveExisting) menuManager.DeleteAllMenus();
 
     n = uWinMan.m_children.NumObjects();
     for (i = 1; i <= n; i++) {
         UIWidget *w = uWinMan.m_children.ObjectAt(i);
         if (w->isSubclassOf(UIWidgetContainer)) {
+            if (preserveExisting && menuManager.FindMenu(w->getName())) continue;
             UIWidgetContainer *wid = (UIWidgetContainer *)w;
             Menu              *m   = new Menu(w->getName());
 

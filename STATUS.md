@@ -1,3 +1,7 @@
+## Aktuell: Menueschrift, Hover-Buttons und HD-Cursor
+
+Menueschrift auf exakt 66 Prozent reduziert; getrennte Font-Aliase erhalten die HUD-Schriftgroessen. Quit und Back to Game zeigen beim echten Maus-Hover wieder transparente goldene Schrift. Neuer HD-Bronzecursor skaliert proportional zur Bildschirm-/Fensterhoehe, auch im SDL-Hardwarepfad. [Bericht und Testgrenzen](checkpoints/CP08/menu-polish.md).
+
 ## Aktuell: Richtungszeichen, Sonderanzeige und Missionszielfenster
 
 Roter Richtungsmarker, offene/erledigte Zielrahmen und dezenter Zielfenster-Hintergrund hochaufloesend installiert. SH/BT-Flak-Farbmaske passt pixelgenau zum erneuerten Symbol. Native UHD-Pruefung in AA/SH/BT; separate Testprofile, alle 80 persoenlichen Profildateien unveraendert. Multiplayer-Symbole ausgenommen. [Bericht, Prompts und Testgrenzen](checkpoints/CP08/special-hud-upscale.md).

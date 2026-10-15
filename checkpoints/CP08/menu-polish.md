@@ -12,4 +12,10 @@ Software cursor size is 24 logical pixels at 480p (54 at 1080p, 108 at 2160p), i
 
 RelWithDebInfo engine build passed. Isolated AA Full HD captures cover the settings menu, control binding table, Mission List and gameplay HUD. Actual native mouse hover verified both main-menu buttons and the final correctly sized hardware cursor. Earlier baseline/aa-r1 scripted hover captures did not establish hover acceptance (actual mouse state superseded the synthetic event); the final native observations are the evidence. An initial oversized hardware cursor exposed the separate SDL path and was corrected before delivery.
 
+Spearhead sh-uhd-r1 passed at 3840x2160, with the options screenshot visually checked. Exact metric checks cover all 18 AA and 19 SH/BT text fonts, including every glyph's advance and atlas rectangle. All package CRCs passed. Breakthrough's initial direct e2l2 start emitted map-script prespawn errors; the test harness now copies the previously validated on-foot save into its isolated profile instead. No player save is used.
+
+Breakthrough then exposed a real lazy-menu-loading use-after-free: a local crash dump identified UI_Update calling Menu::ForceHide through the cached hud_ammo pointer after UI_LoadMenu called CreateMenus, which deleted every Menu. Lazy loading now preserves existing Menu objects and skips already loaded layouts; full initialization retains the original rebuild behavior. The exact failing sequence passes with the fix (bt-r4), including returning to the gameplay HUD. Validators for protected inputs/metadata and campaign structure pass.
+
+Initial batch menu-polish-r1 from 0d25e551 was superseded by the lazy-menu correction. Installation verified 9072 original files, 9000 runtime-base files, eight Max Payne input files and the current 95 personal-profile files unchanged. All 62 owned runtime hashes match. Existing font/HUD packages and game/cgame DLLs are preserved; the engine and three new menu packages are installed.
+
 Local masters, packages and screenshots are ignored; no original artwork/font or profile data is committed. Personal acceptance and merge remain open.

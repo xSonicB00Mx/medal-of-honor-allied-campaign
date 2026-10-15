@@ -11,7 +11,13 @@ if not a.baseline and not a.installed:
  runner=p/'runner';runner.mkdir()
  for f in [*rt.glob('*.dll'),r/'build-local/cp00-r3/RelWithDebInfo/openmohaa.exe']:shutil.copy2(f,runner/f.name)
  shutil.copy2(r/'generated-local/menu-polish/packages'/folder/'zzzzzzzzz_AC_MenuPolish.pk3',home)
-cmds=['wait 1500','devmap '+['m2l1','t1l2','e2l2'][num],'wait 6500','finishloadingscreen','wait 5000','set developer 0','pushmenu main','wait 1500'];labels=[]
+start='devmap m2l1'
+if num:
+ source=r/(['','profiles-local/CP00-r4/SH/mainta/save/omconfig/t1l20005.sav','profiles-local/CP00-r4/r4-bt-foot-e2l2/maintt/save/omconfig/cp00_foot_ready.sav'][num])
+ (home/'save/omconfig').mkdir(parents=True)
+ for ext in ['.sav','.ssv','.tga']:shutil.copy2(source.with_suffix(ext),home/('save/omconfig/reference'+ext))
+ start='loadgame reference'
+cmds=['wait 1500',start,'wait 6500','finishloadingscreen','wait 5000','god','set developer 0','pushmenu main','wait 1500'];labels=[]
 def shot(name,commands):
  cmds.extend([*commands,'wait 800','screenshot silent']);labels.append(name)
 shot('main',[])
@@ -22,11 +28,11 @@ shot('controls',['popmenu 0','wait 500','loadmenu controls','pushmenu controls']
 shot('mission-list',['popmenu 0','wait 500','ac_level_list'])
 shot('hud',['popmenu 0'])
 cmds+=['echo AC_MENU_POLISH_DONE','quit'];(home/'capture.cfg').write_text('\n'.join(cmds)+'\n')
-settings=dict(com_target_game=num,fs_basepath=rt,fs_homepath=p,fs_steampath=rt,fs_gogpath=rt,fs_microsoftstorepath=rt,net_enabled=0,logfile=2,developer=1,cheats=1,ui_console=0,r_fullscreen=0,r_mode=-1,r_customwidth=a.width,r_customheight=a.height,com_maxfps=60,com_maxfpsUnfocused=60,cl_playintro=0,ac_campaign_mode=1,ac_operation=-1,ac_hud_scale=1.66)
+settings=dict(com_target_game=num,fs_basepath=rt,fs_homepath=p,fs_steampath=rt,fs_gogpath=rt,fs_microsoftstorepath=rt,net_enabled=0,logfile=2,developer=1,cheats=1,ui_console=0,r_fullscreen=0,r_mode=-1,r_customwidth=a.width,r_customheight=a.height,com_maxfps=60,com_maxfpsUnfocused=60,cl_playintro=0,ac_campaign_mode=(0 if num else 1),ac_operation=-1,ac_hud_scale=1.66)
 cmd=[str(runner/'openmohaa.exe')]
 for k,v in settings.items():cmd+=['+set',k,str(v)]
 result=subprocess.run(cmd+['+exec','capture.cfg'],cwd=rt,timeout=160)
-log=(home/'qconsole.log').read_text(encoding='latin1');assert result.returncode==0 and 'AC_MENU_POLISH_DONE' in log
+log=(home/'qconsole.log').read_text(encoding='latin1');assert result.returncode==0 and 'AC_MENU_POLISH_DONE' in log, (result.returncode, log[-1500:])
 errors=[l for l in log.splitlines() if any(t in l for t in ['Unknown command','Invalid event','Script Error',"Couldn't load font",'Error parsing font'])];assert not errors,errors
 images=[]
 for i,f in enumerate(sorted((home/'screenshots').glob('*.tga'))):
