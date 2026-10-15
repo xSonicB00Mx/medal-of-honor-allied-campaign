@@ -1,5 +1,17 @@
 # Compass artwork restoration
 
+## Correction after visual feedback
+
+The first restoration was visually wrong: compassface's original alpha contains mostly markings and a faint texture, while the generated master included a complete opaque brass disk and another rim. Fitting that disk to the sparse original alpha bounds (91x106) made it oval; rotation exposed the unrelated underlying housing. The previous two-view smoke check missed this defect.
+
+Revision 2 uses a separate transparent rose/lettering overlay with no disk, rim, ticks or second center rivet. It is uniformly scaled by 0.61 and registered by its actual rose intersection (625,630) to the native canvas pivot (512,512). The housing uses a circular 864x864 placement centered on the same pivot. Needle, objective arc/beads, damage effects, native rotation logic and HUD rectangles remain unchanged.
+
+Built-in Imagegen edit prompt: correct the previous face into only a transparent eight-point charcoal engraved rose with narrow aged-brass edge highlights and labels N, NE, E, SE, S, SW, W, NW; delete the whole brass disk, outer rings/ticks and central rivet; genuine transparency between all elements and within letters; equal cardinal rays, shorter diagonal rays, symmetric placement, orthographic view, no perspective/oval distortion, no shadow or background. Inputs: previous generated face as edit target and original face as reference. Selected master: generated-local/hud-upscale/compass/generated/compassface-r2.png. Prepared artwork and packages remain in the paths below.
+
+tools/test_compass_art.py captures isolated native UHD/HUD 1.66 views at yaw 0/90/180/270 and pitched diagonal views in AA, plus opposite headings in SH/BT. This checks actual compositing and common pivots, not just each layer's bounds. The original revision is documented below for history; its face registration is superseded.
+
+## Original revision
+
 Five separate compass sprites restored with the built-in Imagegen tool: compassback, compassface, compassneedle, compassobjarrow and compassobjball. Sources are the effective local AA HUD textures shared by the add-ons. Generated masters are retained under generated-local/hud-upscale/compass/generated. Package preparation aligns each alpha silhouette to its original source bounds at 8x resolution: four 1024-square textures and one 128-square target dot. Near-invisible generated alpha speckles are excluded from bounds measurement. The disk keeps its original asymmetric silhouette and all existing runtime pivots.
 
 No HUD layout, rotation logic, mission-direction stats, damage timing or gameplay code changes. Original compasspain and compasspainblank shader effects remain. The unused compass.tga sheet and multiplayer radar graphics are not replaced. Existing alpha shader semantics are preserved; high-resolution textures allow mip filtering. Each campaign receives the same five assets in a separate local zzzzzzzz_AC_Compass.pk3. Original packages are untouched.

@@ -4,7 +4,7 @@
 
 ## Aktuell: Hochaufloesender Kompass
 
-Fuenf Kompassebenen mit Imagegen restauriert, auf Originalpositionen ausgerichtet und fuer UHD/HUD 1.66 vorbereitet. [Bericht](checkpoints/CP08/compass-upscale.md). Multiplayer-Grafiken ausgenommen.
+Kompass nach Nutzerfeedback korrigiert: transparente Rose statt zweiter geschlossener Scheibe, einheitliche Proportionen und gemeinsamer Mittelpunkt mit dem runden Gehaeuse. Mehrere Blickrichtungen bei UHD/HUD 1.66 geprueft. [Bericht](checkpoints/CP08/compass-upscale.md). Multiplayer-Grafiken ausgenommen.
 
 ## Aktuell: Courier New fuer Menues und HUD
 
