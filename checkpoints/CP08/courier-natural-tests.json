@@ -99,5 +99,24 @@
       "openmohaa.exe": "4c32892b6d51c2cd41a74e22da21d69c3322446397e9eb3370b730dfbcf2409b",
       "game.dll": "da267f5202f09950beff2a3c302883348e1c02b62c21e49875203bb4bbab1346"
     }
+  },
+  {
+    "run": "natural-installed-r1",
+    "game": "AA",
+    "completed": true,
+    "exit_code": 0,
+    "errors": [],
+    "images": [
+      "profiles-local/courier/natural-installed-r1/main/screenshots/shot0000.png",
+      "profiles-local/courier/natural-installed-r1/main/screenshots/shot0001.png",
+      "profiles-local/courier/natural-installed-r1/main/screenshots/shot0002.png",
+      "profiles-local/courier/natural-installed-r1/main/screenshots/shot0003.png",
+      "profiles-local/courier/natural-installed-r1/main/screenshots/shot0004.png"
+    ],
+    "original": true,
+    "engine_sha256": "4c32892b6d51c2cd41a74e22da21d69c3322446397e9eb3370b730dfbcf2409b",
+    "passed": true,
+    "controls_visible": true,
+    "mode": "Installed runtime without font overlays"
   }
 ]
