@@ -273,8 +273,21 @@ void UILabel::Draw(void)
         }
 
         if (m_bLinkCvarToShader) {
-            const bool operationsSign = m_cvarname == "ui_signshader" && !strcmp(string, "newgame_sign");
-            if (operationsSign) string = "textures/ac/widescreen/operations_sign";
+            if (m_cvarname == "ui_signshader") {
+                static const char *signs[][2] = {
+                    {"newgame_sign", "operations"}, {"textures/mohmenu/new_game_sign", "operations"},
+                    {"options_sign", "options"}, {"warrecords_sign", "war_records"},
+                    {"briefingroom_sign", "briefing_room"}, {"textures/mohmenu/briefing_room_sign", "briefing_room"},
+                    {"maplist_sign", "map_list"}, {"textures/mohmenu/map_list_sign", "map_list"},
+                    {"credits_sign", "credits"}, {"textures/mohmenu/credits_sign", "credits"},
+                    {"textures/mohmenu/load_save_sign", "load_save"}
+                };
+                for (unsigned i=0; i<sizeof(signs)/sizeof(signs[0]); ++i)
+                    if (!strcmp(string, signs[i][0])) {
+                        string = va("textures/ac/widescreen/%s_sign", signs[i][1]);
+                        break;
+                    }
+            }
             if (str::icmp(m_sCurrentShaderName, string)) {
                 m_sCurrentShaderName = string;
 

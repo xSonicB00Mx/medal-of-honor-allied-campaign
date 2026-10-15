@@ -79,6 +79,24 @@ def main():
         # UV shear accounts for the 256x64 texture displayed in a 172x56 widget:
         # 0.14 * 56 / 172 = 0.0456 screen slope, centered on the existing label.
         shaders.append(f'{texname}\n{{\n nomipmaps\n nopicmip\n {{\n clampmap {texname}.tga\n tcMod transform 1 -0.14 0 1 0 0.07\n rgbGen global\n alphaGen global\n blendFunc GL_SRC_ALPHA GL_ONE_MINUS_SRC_ALPHA\n }}\n}}\n')
+        for name in ['options','war_records','briefing_room','map_list','credits','load_save','quit','back_to_game']:
+            button = name in ['quit','back_to_game']
+            source = Path(__file__).resolve().parents[1]/'generated-local/menu-lettering'/f'{name}.png'
+            with Image.open(source) as image:
+                assert image.mode == 'RGBA' and image.getchannel('A').getextrema()[0] == 0
+                bounds = image.getchannel('A').point(lambda v: 255 if v > 32 else 0).getbbox()
+                assert bounds
+                bounds = (max(0,bounds[0]-8),max(0,bounds[1]-8),min(image.width,bounds[2]+8),min(image.height,bounds[3]+8))
+                size = (216,40) if name == 'quit' else (232,28) if button else (216,24)
+                lettering = ImageOps.contain(image.crop(bounds),size,Image.Resampling.LANCZOS)
+                canvas = Image.new('RGBA',(256,64))
+                canvas.alpha_composite(lettering,((256-lettering.width)//2,(32 if button else 35)-lettering.height//2))
+                buffer=io.BytesIO();canvas.save(buffer,format='TGA')
+            texture = f'textures/ac/widescreen/{name}_'+('button' if button else 'sign')
+            textures[texture+'.tga'] = buffer.getvalue()
+            transform = '' if button else ' tcMod transform 1 -0.14 0 1 0 0.07\n'
+            for suffix,color in ([('', 'global'),('_h','const ( 1 0.82 0.35 )')] if button else [('', 'global')]):
+                shaders.append(f'{texture}{suffix}\n{{\n nomipmaps\n nopicmip\n {{\n clampmap {texture}.tga\n{transform} rgbGen {color}\n alphaGen global\n blendFunc GL_SRC_ALPHA GL_ONE_MINUS_SRC_ALPHA\n }}\n}}\n')
         for row in inventory['assets']:
             asset = row['asset_id']
             if row['game'] != game or asset not in approved or multiplayer_ui(row['ui']):
@@ -120,6 +138,21 @@ def main():
                 # Exact source body remains once the one added directive is removed.
                 assert modified.replace(f'widescreenbackground "{texname}"\n', '', 1) == body
                 modifications[target] = (texname, modified.encode('latin1'))
+        # Restyle only main-menu Quit/Back controls; commands and geometry stay.
+        tex, main = modifications['ui/main.urc']
+        main = main.decode('latin1')
+        def restyle_button(match):
+            block = match.group(0)
+            for old,new in [('quit','quit'),('backtogame','back_to_game')]:
+                if f'shader "textures/mohmenu/{old}"' in block:
+                    block = block.replace(f'"textures/mohmenu/{old}"',f'"textures/ac/widescreen/{new}_button"')
+                    block = block.replace(f'"textures/mohmenu/{old}_h"',f'"textures/ac/widescreen/{new}_button_h"')
+                    block = re.sub(r'(?m)^bgcolor[^\n]*','bgcolor 0.08 0.19 0.12 0.95',block)
+                    block = re.sub(r'(?m)^borderstyle[^\n]*','borderstyle RAISED',block)
+            return block
+        styled = re.sub(r'(?is)resource\s+Button\s*\{[^{}]*\}',restyle_button,main)
+        assert re.findall(r'(?m)^stuffcommand.*$',main) == re.findall(r'(?m)^stuffcommand.*$',styled)
+        modifications['ui/main.urc'] = (tex,styled.encode('latin1'))
         if game == 'AA':
             for ui in ['ui/medals.urc', 'ui/medals_reset.urc']:
                 body = read(ui).decode('latin1').replace('\r', '')

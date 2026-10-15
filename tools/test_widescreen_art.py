@@ -18,6 +18,7 @@ ap.add_argument('--without-art', action='store_true')
 ap.add_argument('--installed', action='store_true', help='Test the installed runtime and its own packages')
 ap.add_argument('--all-medals', action='store_true', help='Show earned medals in this isolated test profile only')
 ap.add_argument('--operations-sign', action='store_true', help='Preview the Operations hover sign without mouse input')
+ap.add_argument('--menu-signs', action='store_true', help='Capture every single-player main-menu hover sign')
 ap.add_argument('--overlay', type=Path, help='Additional local package directory containing main/mainta/maintt')
 args = ap.parse_args()
 root = Path(__file__).resolve().parents[1]
@@ -60,6 +61,13 @@ for menu in args.menus:
     command = 'ac_campaign' if menu == 'ac_campaign_operations' else f'pushmenu {menu}'
     commands += [command, f'wait {args.menu_wait}', f'ac_ui_report {menu}', 'screenshot', 'wait 200']
 commands += ['echo AC_WIDESCREEN_TEST_DONE', 'quit']
+signs = []
+if args.menu_signs:
+    signs = ['newgame_sign','options_sign','warrecords_sign','briefingroom_sign','maplist_sign','credits_sign'] if args.game == 'AA' else ['textures/mohmenu/new_game_sign','options_sign','textures/mohmenu/load_save_sign','textures/mohmenu/briefing_room_sign','textures/mohmenu/map_list_sign','textures/mohmenu/credits_sign']
+    commands = commands[:-2]
+    for sign in signs:
+        commands += [f'set ui_signshader {sign}','wait 500','screenshot','wait 200']
+    commands += ['echo AC_WIDESCREEN_TEST_DONE','quit']
 (home/'wide-test.cfg').write_text('\n'.join(commands)+'\n', encoding='ascii')
 settings = dict(com_target_game=number, fs_basepath=runtime, fs_homepath=profile,
     fs_steampath=runtime, fs_gogpath=runtime, fs_microsoftstorepath=runtime,
@@ -92,4 +100,4 @@ result = dict(game=args.game, dimensions=[args.width,args.height], menus=args.me
 (work/(args.run_id+'.json')).write_text(json.dumps(result,indent=2)+'\n',encoding='utf-8')
 print(json.dumps(result))
 assert process.returncode == 0 and result['completed'] and not errors
-assert len(images) == len(args.menus)
+assert len(images) == len(args.menus) + len(signs)

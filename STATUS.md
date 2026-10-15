@@ -1,3 +1,7 @@
+## Aktuell: Einheitliche Hauptmenue-Schriftzuege
+
+Acht weitere transparente Beschriftungen im freigegebenen Operations-Stil erzeugt und fuer AA/SH/BT eingebaut. Native Bildtests bestanden; Operations-Ausrichtung erhalten. [Bericht und Prompts](checkpoints/CP08/menu-lettering.md).
+
 ## Aktuell: Operations-Schriftzug und Kopfzeile
 
 Reset Progress oben rechts; Previous/Next entfernt. Transparenter OPERATIONS-Schriftzug mit dem eingebauten Bildgenerator im Stil der Originalschilder erstellt. [Prompt und Bericht](checkpoints/CP08/operations-sign.md).
