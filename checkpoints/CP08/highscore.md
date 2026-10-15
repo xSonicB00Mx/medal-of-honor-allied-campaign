@@ -1,5 +1,11 @@
 # Mission List highscore runs
 
+## Helmet sunset artwork (2026-10-15)
+
+At the user's request, the results screen now uses the existing approved Gemini 16:9 helmet-and-sunset artwork, textures/ac/widescreen/aa-statsscreen_failed, instead of the soldiers group photo. The asset's historical filename does not change the successful-run behavior. The full image retains the corrected proportional rendering; score rules and controls are unchanged. The source artwork and packages are reused without edits.
+
+RelWithDebInfo build and isolated native Full-HD completion test sunset-r1 passed with no diagnostics; the rendered result was visually inspected. The existing harness now checks the requested asset reference. Local evidence: generated-local/highscore-sunset-r1.json and profiles-local/highscore/sunset-r1/main/screenshots/shot0001.png.
+
 ## Completion photo aspect correction (2026-10-15)
 
 The approved Gemini AA-statsscreen_game artwork was already selected, but widescreenbackground expanded every menu frame by one third. On the new 960x540 results canvas this produced a 2560x1080 stretched image on a 1920x1080 display, clipping its paper wings. Background width now derives from height times 16/9 and is centered within the frame. Legacy 640x480 menus retain the same geometry; widecanvas displays the complete artwork at its intended proportions. No texture or scoring changes.
@@ -21,7 +27,7 @@ This supersedes the save/load and completion behavior in level-replay.md. Normal
 
 ## Run and record lifecycle
 
-Selecting an unlocked level and difficulty starts a fresh in-memory attempt. The common engine owns the counters; the native game module reports actual combat events through its import API. Successful native intermission must identify the selected map and its known successor. Results are committed once, then the player sees a breakdown using the existing Gemini soldiers group photo. A first completion establishes a record, including a zero score. A tied score does not trigger NEW HIGH SCORE.
+Selecting an unlocked level and difficulty starts a fresh in-memory attempt. The common engine owns the counters; the native game module reports actual combat events through its import API. Successful native intermission must identify the selected map and its known successor. Results are committed once, then the player sees a breakdown using the existing Gemini helmet sunset artwork. A first completion establishes a record, including a zero score. A tied score does not trigger NEW HIGH SCORE.
 
 Death, failure, restart, disconnect and leaving an unfinished run do not update records. Successful runs update exactly one difficulty's best and the level's difficulty-independent last score, with its difficulty displayed as E/M/H. Other levels and difficulties are preserved. Campaign progress is never updated by this mode.
 

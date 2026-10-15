@@ -80,7 +80,7 @@ for f in ['main','mainta','maintt']:assert (p/f/'save/omconfig/keep.sav').read_b
 if args.case in ['combat','empty']:
  assert 'AC_SCORE_COMPLETE' in text and 'AC_SCORE_SAVE_LOAD_BLOCKED' in text
  assert not any(p.glob('*/save/omconfig/forbidden.sav'))
- ui=(p/folder/'ui/ac_score_results.urc').read_text();assert 'FINAL SCORE' in ui and 'aa-statsscreen_game' in ui
+ ui=(p/folder/'ui/ac_score_results.urc').read_text();assert 'FINAL SCORE' in ui and 'aa-statsscreen_failed' in ui
  if args.corrupt and not args.backup:assert after==before and 'SCORE NOT SAVED' in ui
  else:assert after is not None
 if args.case=='combat':

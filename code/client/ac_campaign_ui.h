@@ -67,7 +67,7 @@ static void AC_ScoreResults_f(void)
     const acScoreResult_t *r=AC_GetScoreResult();if(!r->valid)return;
     const acScoreStats_t &s=r->stats;
     fileHandle_t f=FS_FOpenFileWrite_HomeData("ui/ac_score_results.urc");if(!f)return;
-    FS_Printf(f,"menu \"ac_score_results\" 960 540 NONE 0\nvirtualres 1\nwidecanvas\nfullscreen 1\nbgfill 0 0 0 1\nwidescreenbackground \"textures/ac/widescreen/aa-statsscreen_game\"\n");
+    FS_Printf(f,"menu \"ac_score_results\" 960 540 NONE 0\nvirtualres 1\nwidecanvas\nfullscreen 1\nbgfill 0 0 0 1\nwidescreenbackground \"textures/ac/widescreen/aa-statsscreen_failed\"\n");
     AC_UIItem(f,"heading","LEVEL COMPLETE",24,20,912,38,NULL,"1 0.85 0.4 1");
     AC_UIItem(f,"level",va("%s / %s",ac_levels[r->level].title,r->skill==0?"Easy":r->skill==1?"Medium":"Hard"),24,66,912,30,NULL);
     AC_UIItem(f,"record",!r->saved?"SCORE NOT SAVED - RECORD FILE ERROR":r->newBest?"NEW HIGH SCORE!":"RUN COMPLETED",480,112,456,38,NULL,r->saved && r->newBest?"1 0.85 0.25 1":"0.95 0.89 0.7 1");

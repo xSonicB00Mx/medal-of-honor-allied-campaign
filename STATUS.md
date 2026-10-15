@@ -1,8 +1,8 @@
 ## Aktuell: Mission List Highscore-Modus
 
-Level-Complete-Hintergrund korrigiert: vorhandenes Gemini-16:9-Foto proportional statt erneut horizontal verbreitert. Native Abschlusspruefung in Full HD und 4:3 bestanden; siehe denselben Bericht.
+Level-Complete-Hintergrund auf Nutzerwunsch durch das vorhandene Gemini-16:9-Bild mit Helm und Sonnenuntergang ersetzt. Proportionale Darstellung bleibt erhalten; siehe denselben Bericht.
 
-Getrennte Rekorde fuer Easy/Medium/Hard, letzter Levelscore, native Kampfwertung und Abschlussstatistik mit Soldatenfoto. Speichern/Laden waehrend eines Laufs gesperrt. [Regeln und Nachweise](checkpoints/CP08/highscore.md).
+Getrennte Rekorde fuer Easy/Medium/Hard, letzter Levelscore, native Kampfwertung und Abschlussstatistik. Speichern/Laden waehrend eines Laufs gesperrt. [Regeln und Nachweise](checkpoints/CP08/highscore.md).
 
 ## Aktuell: Gesperrte Levels und Briefing-Auswahl
 
