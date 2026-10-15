@@ -1,5 +1,7 @@
 ## Aktuell: Hochaufloesende Inventarsymbole
 
+Nachkorrektur inventory-r2 installiert: Drahtschneider mit korrekten Schneiden und Tiger-II-Handbuch mit Panzerzeichnung. UHD/HUD 1.66 visuell geprueft; Spielstaende und Einstellungen unveraendert.
+
 15 Gegenstandsmotive und 32 Zaehlervarianten mit 512x512 Pixeln installiert; AA/SH/BT bei UHD und HUD 1.66 geprueft. Originalpositionen, Transparenz und Inventarlogik bleiben erhalten. Zwei Ausweise und drei Uniformen bleiben wegen Ablehnungen des Bilddienstes im Original. [Umfang, Prompts und Tests](checkpoints/CP08/inventory-upscale.md).
 
 ## Aktuell: Hochaufloesende Munitionsanzeige
