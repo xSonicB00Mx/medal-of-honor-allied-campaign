@@ -6,6 +6,8 @@ The approved Gemini AA-statsscreen_game artwork was already selected, but widesc
 
 Engine build and isolated native completion tests passed at 1920x1080 and 1024x768, including result storage and save/load locks, with no script diagnostics. Both result screenshots were visually checked against the approved source; the complete paper wings and natural photo proportions are restored. Reports: generated-local/highscore-background-wide-r1.json and highscore-background-43-r1.json. Active user data was not used in these tests.
 
+Installed source b2f7536f1a770cb2b3fc597e3e5270aa543bb0e7 in CP08-r1; installed native smoke test background-installed-r1 passed with no diagnostics. Deployment verified 9072 original files, 9000 runtime base files, 8 MP1 inputs and all 80 active user-profile files unchanged. Rollback: generated-local/widescreen/backups/highscore-background-r1. Screenshot delivery: artifacts-local/CP08-Level-Complete-16x9.zip. Source push freshly verified; no merge or user acceptance claimed.
+
 This supersedes the save/load and completion behavior in level-replay.md. Normal campaign play and the briefing catalogue retain their existing behavior.
 
 ## Scoring, version 1
