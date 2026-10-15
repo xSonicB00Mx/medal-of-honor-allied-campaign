@@ -1,6 +1,6 @@
 ## Aktuell: Mission List Highscore-Modus
 
-Level-Complete-Hintergrund auf Nutzerwunsch durch das vorhandene Gemini-16:9-Bild mit Helm und Sonnenuntergang ersetzt. Proportionale Darstellung bleibt erhalten; siehe denselben Bericht.
+Level-Complete zeigt das vorhandene Gemini-16:9-Bild mit Helm und Sonnenuntergang; der Statistikblock steht auf Nutzerwunsch links. Proportionale Darstellung bleibt erhalten; siehe denselben Bericht.
 
 Getrennte Rekorde fuer Easy/Medium/Hard, letzter Levelscore, native Kampfwertung und Abschlussstatistik. Speichern/Laden waehrend eines Laufs gesperrt. [Regeln und Nachweise](checkpoints/CP08/highscore.md).
 

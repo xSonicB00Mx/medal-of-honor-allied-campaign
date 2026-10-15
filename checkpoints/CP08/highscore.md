@@ -1,5 +1,11 @@
 # Mission List highscore runs
 
+## Statistics on the left (2026-10-15)
+
+Moved all nine result rows, including record status, final score and previous best, from x=480 to x=24 on the 960x540 canvas at the user's request. Their widths and vertical spacing are unchanged. The helmet on the right is now unobstructed by the statistics. Heading, level title, footer and navigation retain their positions.
+
+Engine build and isolated native Full-HD completion test left-r1 passed without diagnostics. The screenshot was visually checked for placement, legibility and unobstructed helmet artwork. Evidence: generated-local/highscore-left-r1.json; screenshot delivery: artifacts-local/CP08-Level-Complete-Left.zip.
+
 ## Helmet sunset artwork (2026-10-15)
 
 At the user's request, the results screen now uses the existing approved Gemini 16:9 helmet-and-sunset artwork, textures/ac/widescreen/aa-statsscreen_failed, instead of the soldiers group photo. The asset's historical filename does not change the successful-run behavior. The full image retains the corrected proportional rendering; score rules and controls are unchanged. The source artwork and packages are reused without edits.
