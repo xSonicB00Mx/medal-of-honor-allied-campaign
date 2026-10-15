@@ -27,3 +27,7 @@ The firing path and HUD now share the original interpolation and pre-shot decay 
 AA `aa-r2` at 3840x2160 passed: Thompson standing 47.276 px, firing up to 106.346 px within the sampled firing phase (112.706 immediately after the final shot), moving 78.581 px, recovered 47.276 px. HUD 1 and 1.66 retain the same radius. FOV 90 yields 39.669 px versus 47.276 at FOV 80. KAR98 remains 8.392 px before/after firing. The FOV setting is the game's 4:3-reference setting; the actual 16:9 horizontal projections are approximately 96.418 and 106.260 degrees.
 
 Initial SH fixtures are not movement acceptance: `sh-r1` starts on a boat and `sh-r2` is still in an intro cinematic. Final expansion probes use copies of previously validated on-foot saves, also exercising loading saves from before this change. Personal acceptance and merge remain open.
+
+Those old expansion fixtures require `ac_campaign_mode 0` at process startup (they predate campaign sidecar metadata) and `developer 1` before loading to preserve test-script access. Rejected/no-script runs are not accepted evidence. Normal AA tests use campaign mode 1. User profiles are never used by the fixture.
+
+The SH save/load probe exposed a one-frame visual spike while restored weapon timestamps preceded restoration of the level clock. `GetCrosshairSpread` now clamps negative elapsed time to zero only for the HUD query. The firing path is unchanged. The native verifier additionally rejects a radius spike anywhere in the load phase.

@@ -18,6 +18,7 @@ for run in sys.argv[1:]:
     assert abs(radius('rifle')-radius('rifle-recovered'))<.01
     assert all(row[1]==0 for row in states['projectile'])
     assert abs(radius('save')-radius('loaded'))<.01
+    assert max(row[3] for row in states['loaded'])<=radius('save')*1.2
     assert not states['hidden'] and not states['legacy']
     # A transition frame can retain the old crosshair while zoom begins.
     assert len(states['scope'])<=2

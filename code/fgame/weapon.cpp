@@ -4193,8 +4193,11 @@ int Weapon::GetCrosshairSpread()
     if (firetype[mode] != FT_BULLET && firetype[mode] != FT_FAKEBULLET) return 0;
     Vector spread;
     if (owner && owner->client) {
+        // Save restoration can query stats before the level clock is restored.
+        // Never turn that temporary negative elapsed time into HUD-only bloom.
+        const float elapsed = fmaxf(0.0f, level.time - m_fFireSpreadMultTime[mode]);
         const float mult = AC_SpreadBeforeShot(m_fFireSpreadMult[mode], m_fFireSpreadMultAmount[mode],
-            m_fFireSpreadMultFalloff[mode], level.time - m_fFireSpreadMultTime[mode], m_fFireSpreadMultTimeCap[mode]);
+            m_fFireSpreadMultFalloff[mode], elapsed, m_fFireSpreadMultTimeCap[mode]);
         spread = GetPlayerBulletSpread(mode, mult);
     } else {
         // Ownerless vehicle turrets use this same fallback in Weapon::Shoot.
