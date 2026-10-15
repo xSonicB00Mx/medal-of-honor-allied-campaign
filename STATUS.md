@@ -1,3 +1,7 @@
+## Aktuell: Hochaufloesende Stoppuhr und Zuendschnur
+
+Fuenf Grafikebenen installiert, Zeigermittelpunkte und Schnuranschluss ausgerichtet. AA/SH/BT bei UHD/HUD 1.66 geprueft; Funken-/Rauchanimation und Countdown-Logik erhalten. [Bericht und Prompts](checkpoints/CP08/timer-upscale.md).
+
 ## Aktuell: Hochaufloesende Lebensanzeige
 
 Vier abgestimmte Ebenen mit 128x512 Pixeln installiert. AA/SH/BT bei UHD und HUD 1.66 mit verschiedenen Gesundheitsstaenden und Aenderungsblitz geprueft; Spielstaende unveraendert. [Bericht, Prompts und Testgrenzen](checkpoints/CP08/health-upscale.md).

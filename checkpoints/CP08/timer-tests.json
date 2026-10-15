@@ -1,0 +1,101 @@
+{
+  "tests": [
+    {
+      "game": "AA",
+      "run": "aa-r1",
+      "installed": false,
+      "width": 3840,
+      "height": 2160,
+      "hud_scale": 1.66,
+      "labels": [
+        "watch approximately 45s",
+        "watch approximately 30s",
+        "watch approximately 15s",
+        "watch near zero",
+        "watch expired"
+      ],
+      "outputs": [
+        "artifacts-local/HUD-Timers-AA-aa-r1-00.png",
+        "artifacts-local/HUD-Timers-AA-aa-r1-01.png",
+        "artifacts-local/HUD-Timers-AA-aa-r1-02.png",
+        "artifacts-local/HUD-Timers-AA-aa-r1-03.png",
+        "artifacts-local/HUD-Timers-AA-aa-r1-04.png"
+      ],
+      "exit_code": 0
+    },
+    {
+      "game": "SH",
+      "run": "sh-r2",
+      "installed": false,
+      "width": 3840,
+      "height": 2160,
+      "hud_scale": 1.66,
+      "labels": [
+        "watch approximately 45s",
+        "watch approximately 30s",
+        "watch approximately 15s",
+        "watch near zero",
+        "watch expired",
+        "lit fuse long",
+        "lit fuse half",
+        "lit fuse expired",
+        "wet fuse with target",
+        "wet fuse fixed length",
+        "wet fuse expired"
+      ],
+      "outputs": [
+        "artifacts-local/HUD-Timers-SH-sh-r2-00.png",
+        "artifacts-local/HUD-Timers-SH-sh-r2-01.png",
+        "artifacts-local/HUD-Timers-SH-sh-r2-02.png",
+        "artifacts-local/HUD-Timers-SH-sh-r2-03.png",
+        "artifacts-local/HUD-Timers-SH-sh-r2-04.png",
+        "artifacts-local/HUD-Timers-SH-sh-r2-05.png",
+        "artifacts-local/HUD-Timers-SH-sh-r2-06.png",
+        "artifacts-local/HUD-Timers-SH-sh-r2-07.png",
+        "artifacts-local/HUD-Timers-SH-sh-r2-08.png",
+        "artifacts-local/HUD-Timers-SH-sh-r2-09.png",
+        "artifacts-local/HUD-Timers-SH-sh-r2-10.png"
+      ],
+      "exit_code": 0
+    },
+    {
+      "game": "BT",
+      "run": "bt-installed-r1",
+      "installed": true,
+      "width": 3840,
+      "height": 2160,
+      "hud_scale": 1.66,
+      "labels": [
+        "watch approximately 45s",
+        "watch approximately 30s",
+        "watch approximately 15s",
+        "watch near zero",
+        "watch expired",
+        "lit fuse long",
+        "lit fuse half",
+        "lit fuse expired",
+        "wet fuse with target",
+        "wet fuse fixed length",
+        "wet fuse expired"
+      ],
+      "outputs": [
+        "artifacts-local/HUD-Timers-BT-bt-installed-r1-00.png",
+        "artifacts-local/HUD-Timers-BT-bt-installed-r1-01.png",
+        "artifacts-local/HUD-Timers-BT-bt-installed-r1-02.png",
+        "artifacts-local/HUD-Timers-BT-bt-installed-r1-03.png",
+        "artifacts-local/HUD-Timers-BT-bt-installed-r1-04.png",
+        "artifacts-local/HUD-Timers-BT-bt-installed-r1-05.png",
+        "artifacts-local/HUD-Timers-BT-bt-installed-r1-06.png",
+        "artifacts-local/HUD-Timers-BT-bt-installed-r1-07.png",
+        "artifacts-local/HUD-Timers-BT-bt-installed-r1-08.png",
+        "artifacts-local/HUD-Timers-BT-bt-installed-r1-09.png",
+        "artifacts-local/HUD-Timers-BT-bt-installed-r1-10.png"
+      ],
+      "exit_code": 0
+    }
+  ],
+  "user_profile_files_unchanged": 80,
+  "installation": "timers-r1",
+  "source_commit": "16a94a06",
+  "installed_package_hashes_verified": true
+}
