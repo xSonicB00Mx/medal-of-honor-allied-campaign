@@ -20,14 +20,14 @@ ap.add_argument('--with-engine', action='store_true', help='Also install the tes
 ap.add_argument('--hud-packages', type=Path, help='Install reviewed HUD artwork only')
 ap.add_argument('--hud-component', choices=['compass','ammo','inventory','health','timers','overlays','weapons','special','menu-polish'], default='compass', help='HUD manifest section to update')
 ap.add_argument('--with-cgame', action='store_true', help='Install tested client-game DLL with HUD artwork')
-ap.add_argument('--logic-only', action='store_true', help='Install tested game/cgame DLLs, preserving engine and artwork')
+ap.add_argument('--logic-only', action='store_true', help='Install tested game/cgame DLLs, preserving artwork (optionally update engine)')
 args = ap.parse_args()
-assert not args.logic_only or not any([args.hud_packages,args.font_packages,args.loading_zoom,args.with_engine,args.with_cgame,args.with_game_binaries])
+assert not args.logic_only or not any([args.hud_packages,args.font_packages,args.loading_zoom,args.with_cgame,args.with_game_binaries])
 assert not args.hud_packages or not (args.font_packages or args.loading_zoom or args.with_game_binaries)
 asset_packages = args.font_packages or args.hud_packages
 assert not (args.font_packages and args.loading_zoom)
 assert not (args.font_packages and args.with_game_binaries)
-assert not args.with_engine or args.font_packages or (args.hud_packages and args.hud_component == 'menu-polish')
+assert not args.with_engine or args.logic_only or args.font_packages or (args.hud_packages and args.hud_component == 'menu-polish')
 assert not args.with_cgame or args.hud_packages
 assert args.batch.replace('-', '').isalnum()
 root = Path(__file__).resolve().parents[1]
@@ -66,7 +66,7 @@ for row in mp:
 integrity['mp1_files_unchanged'] = len(mp)
 for row in old['owned_files']:
     assert sha(runtime/row['path']) == row['sha256'], ('Runtime drift',row['path'])
-updates = {} if args.logic_only or (asset_packages and not args.with_engine) else {'openmohaa.exe':root/'build-local/cp00-r3/RelWithDebInfo/openmohaa.exe'}
+updates = {} if (args.logic_only and not args.with_engine) or (asset_packages and not args.with_engine) else {'openmohaa.exe':root/'build-local/cp00-r3/RelWithDebInfo/openmohaa.exe'}
 if args.with_game_binaries or args.logic_only:
     for name in ['game.dll','cgame.dll']:
         updates[name] = root/'build-local/cp00-r3/RelWithDebInfo'/name
@@ -107,7 +107,7 @@ if args.loading_zoom:
         'spearhead_letterboxed_loading_changed':True,
         'loading_zoom':dict(batch=args.batch, maps={p['game']:len(p['maps']) for p in packages},
             generation=False, fit='Proportional cropped artwork, centered; full original frame on 4:3')}
-manifest = {**old,'source_commit':source,'engine_source_commit':old['engine_source_commit'] if args.logic_only or (asset_packages and not args.with_engine) else source,
+manifest = {**old,'source_commit':source,'engine_source_commit':old['engine_source_commit'] if (args.logic_only and not args.with_engine) or (asset_packages and not args.with_engine) else source,
     'game_dll_source_commit':source if args.with_game_binaries or args.logic_only else old.get('game_dll_source_commit',old['engine_source_commit']),
     'owned_files':[dict(path=n,sha256=sha(runtime/n)) for n in sorted(owned)],
     'widescreen':widescreen,

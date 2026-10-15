@@ -1,3 +1,7 @@
+## Aktuell: Kopfwunden und Quicksave
+
+Feine Kopfmeshes erhalten bei Budgetueberschreitung einen kleineren vollstaendigen Wundpatch. Speichern registriert lebende Actor-Modelle nicht erneut; Wunden behalten ihre Instanzzuordnung. Full-detail-Flag im tatsaechlichen LOD-Pfad korrigiert. Feste Speichergrenzen bleiben bestehen. [Ursachen und Nachweise](checkpoints/CP08/wound-regression.md).
+
 ## Aktuell: Menu font size skaliert ausschliesslich Schrift
 
 100 Prozent Courier New Bold als Basis wiederhergestellt. Menu font size veraendert nur Text, nicht Menueflaechen oder Mausziele. HUD separat; bisherige kampagnenuebergreifende Einstellung bleibt erhalten. Siehe [Bericht](checkpoints/CP08/menu-polish.md).

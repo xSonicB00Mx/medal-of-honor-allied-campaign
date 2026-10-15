@@ -2086,8 +2086,9 @@ inline void Actor::Archive(Archiver& arc)
     arc.ArchiveBool(&m_bEnemySwitch);
     arc.ArchiveInteger(&m_iNationality);
 
-    // set the model
-    setModel();
+    // Saving must not re-register the live model: that changes usageIndex
+    // and invalidates attached client effects. Reconstruct only when loading.
+    if (arc.Loading()) setModel();
 }
 
 /*

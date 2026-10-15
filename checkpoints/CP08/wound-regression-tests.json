@@ -1,0 +1,106 @@
+{
+  "baseline": {
+    "patch_budget_overflows": 2,
+    "zero_entry_patches": 2,
+    "wounds_drawn_after_quicksave": false
+  },
+  "corrected": [
+    {
+      "game": "AA",
+      "death": false,
+      "exit": 0,
+      "preserved": true,
+      "patches": [
+        10,
+        18,
+        48,
+        3,
+        32,
+        22,
+        32,
+        26
+      ],
+      "adapted": [
+        "AC_PATCH_FIT radius=0.7594 requested=1.8000 triangles=48 attempts=4"
+      ],
+      "archive": [
+        "AC_WOUND_ARCHIVE save count=0",
+        "AC_WOUND_ARCHIVE save count=8",
+        "AC_WOUND_ARCHIVE save count=8",
+        "AC_WOUND_ARCHIVE load count=8"
+      ],
+      "errors": [],
+      "binaries": {
+        "openmohaa.exe": "6eafad33588f919bb5ac905391180db58f0c868123209bf783ca7c07666b49f2",
+        "game.dll": "13fed6518431648c7f7a6bab694850f00f63447a9d533bb5a69235c43635855b",
+        "cgame.dll": "dd4a69fc89085ff6a5e73757a4590a7b6c83e0d5c107b15b925eb9c6df3b77b9"
+      }
+    },
+    {
+      "game": "SH",
+      "death": false,
+      "exit": 0,
+      "preserved": true,
+      "patches": [
+        10,
+        12,
+        59,
+        16,
+        14,
+        28,
+        20,
+        23
+      ],
+      "adapted": [
+        "AC_PATCH_FIT radius=1.3500 requested=1.8000 triangles=59 attempts=2"
+      ],
+      "archive": [
+        "AC_WOUND_ARCHIVE save count=8",
+        "AC_WOUND_ARCHIVE save count=8",
+        "AC_WOUND_ARCHIVE load count=8"
+      ],
+      "errors": [],
+      "binaries": {
+        "openmohaa.exe": "6eafad33588f919bb5ac905391180db58f0c868123209bf783ca7c07666b49f2",
+        "game.dll": "13fed6518431648c7f7a6bab694850f00f63447a9d533bb5a69235c43635855b",
+        "cgame.dll": "dd4a69fc89085ff6a5e73757a4590a7b6c83e0d5c107b15b925eb9c6df3b77b9"
+      }
+    },
+    {
+      "game": "BT",
+      "death": true,
+      "exit": 0,
+      "preserved": true,
+      "patches": [
+        8,
+        18,
+        44,
+        31,
+        30,
+        25,
+        24,
+        26,
+        6,
+        20
+      ],
+      "adapted": [],
+      "archive": [
+        "AC_WOUND_ARCHIVE save count=10",
+        "AC_WOUND_ARCHIVE save count=10",
+        "AC_WOUND_ARCHIVE load count=10"
+      ],
+      "errors": [],
+      "binaries": {
+        "openmohaa.exe": "6eafad33588f919bb5ac905391180db58f0c868123209bf783ca7c07666b49f2",
+        "game.dll": "13fed6518431648c7f7a6bab694850f00f63447a9d533bb5a69235c43635855b",
+        "cgame.dll": "dd4a69fc89085ff6a5e73757a4590a7b6c83e0d5c107b15b925eb9c6df3b77b9"
+      }
+    }
+  ],
+  "visual_review": [
+    "AA head/torso after save and load",
+    "SH head/torso after save",
+    "BT corpse after save"
+  ],
+  "personal_acceptance": false
+}

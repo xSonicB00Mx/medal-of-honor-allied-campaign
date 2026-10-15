@@ -24,9 +24,9 @@ skelSurfaceGame_t *ACGetSurface(dtiki_t *tiki,int meshIndex,int surfaceIndex,ske
     *meshOut=mesh;return s;
 }
 }
-void TIKI_ACBuildPatch(dtiki_t *tiki,const ac_pose_t *pose,const ac_surface_point_t *point,
-    float radius,float rotation,int flipU,int flipV,ac_patch_t *patch) {
-    ACProfileScope profile("build");
+static void ACBuildPatchAtRadius(dtiki_t *tiki,const ac_pose_t *pose,const ac_surface_point_t *point,
+    float radius,float rotation,int flipU,int flipV,ac_patch_t *patch,bool& overflow) {
+    overflow=false;
     memset(patch,0,sizeof(*patch));if(!tiki || !pose || !point || radius<=0 || radius>8)return;
     skelHeaderGame_t *mesh;auto *surf=ACGetSurface(tiki,point->mesh,point->surface,&mesh);
     if(!surf || point->triangle<0 || point->triangle>=surf->numTriangles)return;
@@ -50,7 +50,7 @@ void TIKI_ACBuildPatch(dtiki_t *tiki,const ac_pose_t *pose,const ac_surface_poin
     for(size_t q=0;q<queue.size();++q) {
         int t=queue[q];const auto& poly=clipped[t];
         for(size_t j=1;j+1<poly.size();++j) {
-            if(patch->count==AC_PATCH_MAX){if(Cvar_VariableIntegerValue("ac_fx_debug"))Com_Printf("AC_PATCH_BUDGET exceeded=%d\n",AC_PATCH_MAX);patch->count=0;return;}
+            if(patch->count==AC_PATCH_MAX){overflow=true;patch->count=0;return;}
             auto& tri=patch->triangle[patch->count++];tri.mesh=point->mesh;tri.surface=point->surface;tri.triangle=t;
             const ACClipVertex *p[3]={&poly[0],&poly[j],&poly[j+1]};
             for(int k=0;k<3;++k){for(int b=0;b<3;++b)tri.vertex[k].bary[b]=p[k]->b[b];ACVisualUV(p[k]->x,p[k]->y,radius,flipU,flipV,tri.vertex[k].uv);}
@@ -62,6 +62,25 @@ void TIKI_ACBuildPatch(dtiki_t *tiki,const ac_pose_t *pose,const ac_surface_poin
             if(shared>=2){seen[n]=true;queue.push_back(n);}
         }
     }
+}
+void TIKI_ACBuildPatch(dtiki_t *tiki,const ac_pose_t *pose,const ac_surface_point_t *point,
+    float radius,float rotation,int flipU,int flipV,ac_patch_t *patch) {
+    ACProfileScope profile("build");
+    const float requested=radius;
+    // Dense facial meshes can exceed the fixed budget even for a small wound.
+    // Reclip a smaller complete patch at the same exact impact; never discard
+    // a valid head hit merely because its local topology is more detailed.
+    for(int attempt=0;attempt<9;++attempt) {
+        bool overflow=false;
+        ACBuildPatchAtRadius(tiki,pose,point,radius,rotation,flipU,flipV,patch,overflow);
+        if(!overflow) {
+            if(attempt && Cvar_VariableIntegerValue("ac_fx_debug"))
+                Com_Printf("AC_PATCH_FIT radius=%.4f requested=%.4f triangles=%d attempts=%d\n",radius,requested,patch->count,attempt+1);
+            return;
+        }
+        radius*=.75f;
+    }
+    if(Cvar_VariableIntegerValue("ac_fx_debug"))Com_Printf("AC_PATCH_BUDGET unresolved=%d\n",AC_PATCH_MAX);
 }
 void TIKI_ACDeformPatch(dtiki_t *tiki,const ac_pose_t *pose,const ac_patch_triangle_t *triangles,int count,vec3_t *out) {
     ACProfileScope profile("deform");

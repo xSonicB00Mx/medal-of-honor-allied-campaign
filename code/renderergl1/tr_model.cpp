@@ -890,7 +890,7 @@ void R_AddSkelSurfaces(trRefEntity_t *ent)
             }
 
             if (mesh == lod_mesh->integer) {
-                if (skelmodel->pLOD && !backEnd.currentEntity->e.acFullDetail) {
+                if (skelmodel->pLOD) {
                     break;
                 }
             }
@@ -1082,9 +1082,9 @@ void RB_SkelMesh(skelSurfaceGame_t *sf)
     assert(bFound);
 
     //
-    // Process LOD
+    // Process LOD. Attached barycentric wounds use the full-detail triangles.
     //
-    if (skelmodel->pLOD) {
+    if (skelmodel->pLOD && !backEnd.currentEntity->e.acFullDetail) {
         float lod_val;
         int   renderfx;
 
