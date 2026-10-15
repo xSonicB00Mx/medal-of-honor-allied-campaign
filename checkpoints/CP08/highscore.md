@@ -6,6 +6,8 @@ Moved all nine result rows, including record status, final score and previous be
 
 Engine build and isolated native Full-HD completion test left-r1 passed without diagnostics. The screenshot was visually checked for placement, legibility and unobstructed helmet artwork. Evidence: generated-local/highscore-left-r1.json; screenshot delivery: artifacts-local/CP08-Level-Complete-Left.zip.
 
+Installed source efecfb13731a848afaa43e83ab9dea46ef36bfa7 in CP08-r1 with matching binary hashes. Deployment verified all 9072 original files, 9000 runtime base files, 8 MP1 inputs and 80 active profile files unchanged. Rollback: generated-local/widescreen/backups/highscore-left-r1. Private source push verified; no merge claimed.
+
 ## Helmet sunset artwork (2026-10-15)
 
 At the user's request, the results screen now uses the existing approved Gemini 16:9 helmet-and-sunset artwork, textures/ac/widescreen/aa-statsscreen_failed, instead of the soldiers group photo. The asset's historical filename does not change the successful-run behavior. The full image retains the corrected proportional rendering; score rules and controls are unchanged. The source artwork and packages are reused without edits.
