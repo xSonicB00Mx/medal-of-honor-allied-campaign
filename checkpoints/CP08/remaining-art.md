@@ -16,3 +16,8 @@ Die drei Spearhead-Abschlussbilder enthalten bereits breite Gemaelde innerhalb s
 Generierungsnachweis: https://gemini.google.com/app/06fafad2d0580cab
 
 Generierte Bilder, native Screenshots und Profile verbleiben ausschliesslich lokal. Die persoenliche optische Abnahme durch den Nutzer und ein Merge sind nicht erfolgt.
+
+## Installation
+
+In CP08-r1 installiert (Engine 30874a91). Installierte AA-Hilfe/Hauptmenue und SH-Abschlussbild erneut erfolgreich geprueft. Ein erster Testaufruf verwendete den nicht vorhandenen Menue-Namen videooptions; mit dem echten Hauptmenue wiederholt und bestanden. 9072 Originaldateien, 9000 Basisdateien, acht MP1-Dateien und alle 80 aktiven Nutzerdateien hash-identisch. Rollback und Update-ZIP lokal gesichert. Details: shared-options-art-delivery.json.
+

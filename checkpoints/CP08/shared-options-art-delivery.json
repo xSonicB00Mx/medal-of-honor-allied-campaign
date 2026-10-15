@@ -1,0 +1,22 @@
+{
+  "source_commit": "30874a916913174b1ccc67c06959c38d7a362dd7",
+  "integrity": {
+    "original_files_unchanged": 9072,
+    "runtime_base_files_unchanged": 9000,
+    "mp1_files_unchanged": 8,
+    "user_profile_files_unchanged": 80,
+    "rollback_copy": "generated-local/widescreen/backups/shared-preferences-art-final"
+  },
+  "installed_tests": [
+    "shared-art-installed-aa-r2",
+    "shared-art-installed-sh"
+  ],
+  "native_art_tests": [
+    "remaining-demo-r1",
+    "remaining-slides-r1"
+  ],
+  "shared_options_test": "shared-r1",
+  "approved_backgrounds": 46,
+  "original_wide_endings": 3,
+  "note": "Initial smoke invocation used nonexistent videooptions menu; corrected to real main menu and passed. Personal acceptance and merge remain open."
+}
