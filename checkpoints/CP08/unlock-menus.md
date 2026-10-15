@@ -1,0 +1,9 @@
+# Locked levels and briefing catalogue
+
+Mission List now always lists all 53 campaign sections across five fixed pages. Incomplete sections use red LOCKED labels instead of their names and have no button command. Their difficulty/start controls cannot be opened, and ac_level_replay retains its independent completion guard. Completed levels retain their actual names and the existing difficulty/replay behavior.
+
+Briefing Room now opens a catalogue. The first briefing is available from the initial operation; further briefings appear when their operations unlock. Earlier briefings remain selectable. Shared BT videos appear once, giving 12 distinct original briefings at full campaign completion. ac_briefing_replay validates the requested operation against regular campaign progress before launching the existing playback path. Main-menu routes are unchanged and now reach this menu.
+
+Level and briefing row strings use separate local buffers: multiple simultaneous va() results could otherwise overwrite a row's command with its widget name. Native tests verify the actual serialized commands as well as the visible rows.
+
+Validation: RelWithDebInfo build and campaign validator passed. Isolated fresh, partial, mid-campaign and complete profiles verify disabled red rows, hidden future briefing entries, deduplicated 1/6/12 briefing catalogues, exact action commands, and unchanged progress files. Additional native checks reject locked level and briefing commands, select an older AA briefing while the current operation is SH Normandy, and return without changing progress. Full-HD and 4:3 previews passed and were visually checked. Evidence: unlock-menus-tests.json and local level-replay-unlock-*.json reports. No user profile was used in tests; no new natural campaign playthrough is claimed.

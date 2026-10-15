@@ -38,11 +38,11 @@ if args.case=='menu':
  commands+=['ac_progress_report','pushmenu main','set ui_signshader maplist_sign','wait 600','screenshot silent','ac_level_list','wait 600','screenshot silent','ac_level_list 0 0 2','wait 600','ac_ui_report ac_level_list','screenshot silent','echo AC_TEST_DONE','quit']
  if args.complete:commands=commands[:-2]+['ac_level_list 4 52 0','wait 600','screenshot silent','echo AC_TEST_DONE','quit']
 elif args.case=='inspect':
- commands+=['ac_progress_report','ac_level_list','wait 600','screenshot silent','echo AC_TEST_DONE','quit']
+ commands+=['ac_progress_report','ac_level_list','wait 600','screenshot silent','ac_level_list 4 52 2','wait 600','screenshot silent','ac_briefing','wait 600','ac_ui_report ac_briefing_room','screenshot silent','echo AC_TEST_DONE','quit']
 elif args.case=='locked':
- commands+=['ac_level_replay 0 1','ac_level_list','wait 500','screenshot silent','ac_progress_report','echo AC_TEST_DONE','quit']
+ commands+=['ac_level_replay 0 1','ac_briefing_replay 14','ac_level_list','wait 500','screenshot silent','ac_progress_report','echo AC_TEST_DONE','quit']
 elif args.case=='briefing':
- commands+=['ac_briefing'];stop='AC_REPLAY_RETURN_MAIN';force_stop=True
+ commands+=[f'ac_briefing_replay {op}'];stop='AC_REPLAY_RETURN_MAIN';force_stop=True
  for folder in folders:
   (p/folder/'ac_context_ready.cfg').write_text('wait 4500\nfinishloadingscreen\nac_progress_report\n+attack\nwait 500\n-attack\n')
 elif args.case in ['replay','save']:
@@ -87,9 +87,10 @@ assert not any('Script Error' in x or 'Unknown command' in x or 'command not ava
 assert sentinels=={n:hashlib.sha256((p/n).read_bytes()).hexdigest() for n in sentinels}
 if args.case!='progress':assert after==state
 if args.case=='menu':
- ui=(p/'main/ui/ac_level_list.urc').read_text();assert ('name "level_52"' in ui and '53 completed levels' in ui) if args.complete else (all(f'name "level_{i}"' in ui for i in range(3)) and 'name "level_3"' not in ui)
+ ui=(p/'main/ui/ac_level_list.urc').read_text();assert ('name "level_52"' in ui and '53 / 53 levels unlocked' in ui) if args.complete else (all(f'name "level_{i}"' in ui for i in range(3)) and 'name "level_3"' in ui and 'AA / LOCKED' in ui and 'ac_level_list 0 3 -1' not in ui)
  assert ('ac_level_replay 52 0' if args.complete else 'ac_level_replay 0 2') in ui
-if args.case=='locked':assert any('AC_LEVEL_LOCKED' in e for e in events)
+ if not args.complete:assert 'stuffcommand "ac_level_list 0 0 -1"' in ui
+if args.case=='locked':assert all(any(marker in e for e in events) for marker in ['AC_LEVEL_LOCKED','AC_BRIEFING_LOCKED'])
 if args.case in ['replay','save']:
  assert any(f'skill={args.difficulty}' in e and 'AC_LEVEL_PROGRESS' in e for e in events)
  assert any('AC_SAVE_PROTECTED campaign save' in e for e in events)

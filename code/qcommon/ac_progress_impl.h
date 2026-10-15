@@ -182,7 +182,10 @@ static void AC_Briefing_f(void)
     int op;
     AC_LoadProgress();
     if(!ac_progressValid || !Cvar_VariableIntegerValue("ac_campaign_mode")) return;
-    AC_EndReplay();op=ac_progress.resume<AC_MISSION_COUNT?ac_progress.resume:AC_MISSION_COUNT-1;
+    if(Cmd_Argc()!=2 || !*Cmd_Argv(1) || strspn(Cmd_Argv(1),"0123456789")!=strlen(Cmd_Argv(1))) return;
+    op=atoi(Cmd_Argv(1));
+    if(!AC_MissionState(op)) {Com_Printf("AC_BRIEFING_LOCKED\n");return;}
+    AC_EndReplay();
     Cvar_Set("ac_operation",va("%d",op));Cvar_Set("ac_replay","3");
     Cvar_Set("ac_expected_map",ac_missions[op].briefing);
     Cbuf_AddText(va("ac_context %d %s\n",ac_missions[op].game,ac_missions[op].game?"briefing":ac_missions[op].briefing));

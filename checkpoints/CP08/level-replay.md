@@ -1,5 +1,7 @@
 # Briefing Room and single-level replay
 
+Latest menu behavior supersedes the original list/filter below: [Locked levels and briefing catalogue](unlock-menus.md).
+
 Main-menu Briefing Room now uses the regular campaign resume operation, independent of the last replay. AA uses its six original narrated briefing scenes with saving disabled and their outgoing spmap intercepted. SH/BT use the native cinematic player directly, returning through its end/skip callback to the main menu. Their original PlayMovie script path has a malformed command/continuation problem; the new replay route does not depend on it. The 15 operations map to 12 distinct briefings: six AA slideshows, three SH videos, three BT chapter videos. Bizerte shares the first BT chapter; Anzio and Monte Battaglia share the third. After campaign completion the final SH briefing remains available.
 
 Mission List contains the 53 main playable sections, with original BSP level names; repeated SH region names have part numbers. Optional/helper maps are excluded. Only completed levels appear, eleven per page. Selecting a row requires an explicit Easy/Medium/Hard choice before Start Replay becomes available. The 960x540 canvas is proportional at 16:9 and 4:3. The main-menu alpha sign now says MISSION LIST in the accepted lettering style.

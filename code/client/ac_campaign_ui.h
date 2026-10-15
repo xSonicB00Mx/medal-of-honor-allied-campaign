@@ -138,26 +138,29 @@ static void AC_LevelList_f(void)
     int page=Cmd_Argc()>1?atoi(Cmd_Argv(1)):0;
     int selected=Cmd_Argc()>2?atoi(Cmd_Argv(2)):-1;
     int difficulty=Cmd_Argc()>3?atoi(Cmd_Argv(3)):-1;
-    int levels[AC_LEVEL_COUNT],count=0;
+    int count=AC_LEVEL_COUNT,unlocked=0;
     const int rows=11;
     const char *name="ac_level_list";
-    for(int i=0;i<AC_LEVEL_COUNT;i++)if(AC_LevelCompleted(i))levels[count++]=i;
+    for(int i=0;i<AC_LEVEL_COUNT;i++)if(AC_LevelCompleted(i))unlocked++;
     int pages=count?(count+rows-1)/rows:1;
     if(page<0)page=0;if(page>=pages)page=pages-1;
     if(!AC_LevelCompleted(selected))selected=-1;
     fileHandle_t f=FS_FOpenFileWrite_HomeData("ui/ac_level_list.urc");if(!f)return;
     FS_Printf(f,"menu \"%s\" 960 540 NONE 0\nvirtualres 1\nfullscreen 1\nbgfill 0.055 0.07 0.055 1\nborderstyle NONE\n",name);
     FS_Printf(f,"widecanvas\n");
-    AC_UIItem(f,"heading","MISSION LIST / COMPLETED LEVELS",24,16,740,34,NULL,"1 0.85 0.4 1");
+    AC_UIItem(f,"heading","MISSION LIST",24,16,740,34,NULL,"1 0.85 0.4 1");
     AC_UIItem(f,"description","Replay one completed level. Your campaign progress is preserved.",24,58,912,28,NULL);
-    if(!count)AC_UIItem(f,"empty","Complete a level in Operations to unlock it here.",24,110,912,32,NULL);
     for(int row=0;row<rows && page*rows+row<count;row++) {
-        int index=levels[page*rows+row];const acLevel_t &level=ac_levels[index];
+        int index=page*rows+row;const acLevel_t &level=ac_levels[index];
         const acMission_t &op=ac_missions[level.operation];
-        AC_UIItem(f,va("level_%d",index),va("%s %s / %s",selected==index?">":" ",op.game==0?"AA":op.game==1?"SH":"BT",level.title),
-            24,104+row*27,912,25,va("ac_level_list %d %d -1",page,index),selected==index?"1 0.85 0.4 1":"0.85 0.9 0.8 1");
+        char item[32],title[256],command[64];
+        Com_sprintf(item,sizeof(item),"level_%d",index);
+        Com_sprintf(title,sizeof(title),"%s %s / %s",selected==index?">":" ",op.game==0?"AA":op.game==1?"SH":"BT",AC_LevelCompleted(index)?level.title:"LOCKED");
+        Com_sprintf(command,sizeof(command),"ac_level_list %d %d -1",page,index);
+        AC_UIItem(f,item,title,24,104+row*27,912,25,AC_LevelCompleted(index)?command:NULL,
+            !AC_LevelCompleted(index)?"1 0.25 0.2 1":selected==index?"1 0.85 0.4 1":"0.85 0.9 0.8 1");
     }
-    AC_UIItem(f,"page",va("Page %d / %d   |   %d completed levels",page+1,pages,count),24,409,536,26,NULL);
+    AC_UIItem(f,"page",va("Page %d / %d   |   %d / %d levels unlocked",page+1,pages,unlocked,count),24,409,536,26,NULL);
     if(page>0)AC_UIItem(f,"previous","Previous",696,409,112,26,va("ac_level_list %d",page-1));
     if(page+1<pages)AC_UIItem(f,"next","Next",824,409,112,26,va("ac_level_list %d",page+1));
     if(selected>=0) {
@@ -177,6 +180,45 @@ static void AC_LevelList_f(void)
         delete root->m_layout;delete root;delete old;
     }
     new UILayout("ui/ac_level_list.urc");
+    UIWidgetContainer *root=(UIWidgetContainer *)uWinMan.FindWidget(name);
+    if(root) {
+        Menu *menu=new Menu(name);menu->setFullscreen(root->isFullscreen());
+        menu->setVidMode(root->getVidMode());menu->AddMenuItem(root);UI_ForceMenu(name);UI_CloseConsole();
+    }
+}
+
+static void AC_BriefingMenu_f(void)
+{
+    const char *name="ac_briefing_room";
+    fileHandle_t f=FS_FOpenFileWrite_HomeData("ui/ac_briefing_room.urc");if(!f)return;
+    FS_Printf(f,"menu \"%s\" 960 540 NONE 0\nvirtualres 1\nwidecanvas\nfullscreen 1\nbgfill 0.055 0.07 0.055 1\nborderstyle NONE\n",name);
+    AC_UIItem(f,"heading","BRIEFING ROOM",24,16,912,34,NULL,"1 0.85 0.4 1");
+    AC_UIItem(f,"description","Select a briefing. More unlock as you advance through Operations.",24,58,912,28,NULL);
+    int row=0;
+    for(int i=0;i<AC_MISSION_COUNT;i++) {
+        if(!AC_MissionState(i))continue;
+        bool duplicate=false;
+        for(int j=0;j<i;j++)if(AC_MissionState(j) && !strcmp(ac_missions[i].briefing,ac_missions[j].briefing))duplicate=true;
+        if(duplicate)continue;
+        const acMission_t &op=ac_missions[i];
+        char item[32],title[256],command[64];
+        Com_sprintf(item,sizeof(item),"briefing_%d",i);
+        Com_sprintf(title,sizeof(title),"%s / %s",op.game==0?"AA":op.game==1?"SH":"BT",op.title);
+        Com_sprintf(command,sizeof(command),"ac_briefing_replay %d",i);
+        AC_UIItem(f,item,title,24,104+row*30,912,28,command);row++;
+    }
+    if(!row)AC_UIItem(f,"empty","No briefings available.",24,104,912,28,NULL);
+    AC_UIItem(f,"back","Main Menu",24,504,180,28,"popmenu 0; pushmenu main");
+    AC_UIItem(f,"count",va("%d briefings unlocked",row),252,504,684,28,NULL);
+    FS_Printf(f,"end.\n");FS_FCloseFile(f);
+    menuManager.Unlock(NULL);menuManager.ClearMenus(true);
+    Menu *old=menuManager.FindMenu(name);
+    if(old) {
+        UIWidgetContainer *root=(UIWidgetContainer *)old->GetContainerWidget();menuManager.DeleteMenu(old);
+        while(root->getFirstChild())delete root->getFirstChild();
+        delete root->m_layout;delete root;delete old;
+    }
+    new UILayout("ui/ac_briefing_room.urc");
     UIWidgetContainer *root=(UIWidgetContainer *)uWinMan.FindWidget(name);
     if(root) {
         Menu *menu=new Menu(name);menu->setFullscreen(root->isFullscreen());

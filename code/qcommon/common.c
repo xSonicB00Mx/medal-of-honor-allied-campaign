@@ -1902,7 +1902,7 @@ void Com_Init( char *commandLine ) {
 	Cmd_AddCommand("ac_mission", AC_Mission_f);
 	Cmd_AddCommand("ac_continue", AC_Continue_f);
 	Cmd_AddCommand("ac_level_replay", AC_LevelReplay_f);
-	Cmd_AddCommand("ac_briefing", AC_Briefing_f);
+	Cmd_AddCommand("ac_briefing_replay", AC_Briefing_f);
 	Cmd_AddCommand("ac_return_main", AC_ReturnMain_f);
 	Cmd_AddCommand("ac_progress_report", AC_ProgressReport_f);
 

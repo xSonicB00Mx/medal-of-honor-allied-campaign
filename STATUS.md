@@ -1,3 +1,7 @@
+## Aktuell: Gesperrte Levels und Briefing-Auswahl
+
+Alle Levelplaetze bleiben sichtbar; nicht abgeschlossene Levels sind rot als LOCKED gesperrt. Briefing Room bietet die wachsende Auswahl freigeschalteter Originalbriefings. [Bericht](checkpoints/CP08/unlock-menus.md).
+
 ## Aktuell: Briefing Room und einzelne Level wiederholen
 
 Briefing Room folgt dem regulaeren Fortschritt. Mission List zeigt abgeschlossene Einzel-Levels mit Schwierigkeit je Start; Replay endet im Hauptmenue und schuetzt Kampagnenfortschritt/Saves. Native Tests und Grenzen: [Bericht](checkpoints/CP08/level-replay.md).

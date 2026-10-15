@@ -5217,6 +5217,7 @@ void CL_InitializeUI(void)
     Cmd_AddCommand("ac_campaign", UI_AlliedCampaign_f);
     Cmd_AddCommand("ac_level_list", AC_LevelList_f);
     Cmd_AddCommand("ac_briefing_play", AC_BriefingPlay_f);
+    Cmd_AddCommand("ac_briefing", AC_BriefingMenu_f);
     Cmd_AddCommand("ac_reset_progress", AC_ResetProgressMenu_f);
     Cmd_AddCommand("ac_saves", UI_AlliedSaves_f);
     Cmd_AddCommand("ac_ui_report", UI_CampaignReport_f);
