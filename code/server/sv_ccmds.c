@@ -271,7 +271,7 @@ static void SV_Map_f( void ) {
 	*/
 
 	// start up the map
-	AC_CampaignMapCommand(map);
+	if (AC_CampaignMapCommand(map)) return;
 	SV_SpawnServer( mapname, qfalse, qfalse, qfalse );
 
 	if( g_gametype->integer == GT_SINGLE_PLAYER ) {
@@ -1975,9 +1975,10 @@ void SV_AddOperatorCommands(void) {
 	// Added in 2.30
     Cmd_AddCommand("reloadmap", SV_ReloadMap_f);
 
-	// Changed in 2.0
-	//  Set medium mode regardless of if the developer mode is set
-	SV_MediumMode_f();
+	// Campaign preferences survive a content-context restart.
+	if (Cvar_VariableIntegerValue("ac_campaign_mode") && Cvar_VariableIntegerValue("skill")==0) SV_EasyMode_f();
+	else if (Cvar_VariableIntegerValue("ac_campaign_mode") && Cvar_VariableIntegerValue("skill")==2) SV_HardMode_f();
+	else SV_MediumMode_f();
 }
 
 /*

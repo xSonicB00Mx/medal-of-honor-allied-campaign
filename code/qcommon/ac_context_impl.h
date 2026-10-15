@@ -7,6 +7,10 @@ static void AC_WriteSharedConfiguration(void)
     f=FS_BaseDir_FOpenFileWrite_HomeConfig("main/ac_preferences.cfg");if(!f) return;
     Key_WriteBindings(f);
     Cvar_WriteCampaignPreferences(f);
+    // A one-level difficulty selection must not become the campaign preference.
+    if(Cvar_VariableIntegerValue("ac_replay")==2) {
+        FS_Printf(f,"seta skill %d\nseta g_skill %d\n",Cvar_VariableIntegerValue("ac_campaign_skill"),Cvar_VariableIntegerValue("ac_campaign_g_skill"));
+    }
     Cmd_WriteAliases(f);
     FS_FCloseFile(f);
 #endif
@@ -18,7 +22,8 @@ static void AC_Context_f(void)
     int target, i;
     static const char *sharedNames[] = {
         "developer", "logfile", "ac_campaign_mode",
-        "ac_operation", "ac_replay", "ac_expected_map"
+        "ac_operation", "ac_replay", "ac_expected_map", "ac_level_skill",
+        "ac_campaign_skill", "ac_campaign_g_skill"
     };
 
     if (Cmd_Argc() != 3 || strlen(Cmd_Argv(1)) != 1 || Cmd_Argv(1)[0] < '0' || Cmd_Argv(1)[0] > '2') {
@@ -66,9 +71,16 @@ static void AC_Context_f(void)
             FS_FCloseFile(controls);
         }
         Q_strcat(args, sizeof(args), " +exec ac_controls.cfg");
+        if(Cvar_VariableIntegerValue("ac_replay")==2) {
+            int difficulty=Cvar_VariableIntegerValue("ac_level_skill");
+            if(difficulty<0 || difficulty>2) return;
+            Com_sprintf(part,sizeof(part)," +difficulty%s +set g_skill %d",difficulty==0?"Easy":difficulty==1?"Medium":"Hard",difficulty);
+            Q_strcat(args,sizeof(args),part);
+        }
         Com_sprintf(part, sizeof(part), " +set ac_context_start %s", map);
         Q_strcat(args, sizeof(args), part);
         if (!strcmp(map, "saves")) Q_strcat(args, sizeof(args), " +ac_saves");
+        else if (!strcmp(map, "briefing")) Q_strcat(args, sizeof(args), " +ac_briefing_play");
         else if (strcmp(map, "menu")) {
             Com_sprintf(part, sizeof(part), " +%s %s", !strcmp(Cmd_Argv(0), "ac_load") ? "loadgame" : "map", map);
             Q_strcat(args, sizeof(args), part);

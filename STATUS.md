@@ -1,3 +1,7 @@
+## Aktuell: Briefing Room und einzelne Level wiederholen
+
+Briefing Room folgt dem regulaeren Fortschritt. Mission List zeigt abgeschlossene Einzel-Levels mit Schwierigkeit je Start; Replay endet im Hauptmenue und schuetzt Kampagnenfortschritt/Saves. Native Tests und Grenzen: [Bericht](checkpoints/CP08/level-replay.md).
+
 ## Aktuell: Einheitliche Hauptmenue-Schriftzuege
 
 Acht weitere transparente Beschriftungen im freigegebenen Operations-Stil erzeugt und fuer AA/SH/BT eingebaut. Native Bildtests bestanden; Operations-Ausrichtung erhalten. [Bericht und Prompts](checkpoints/CP08/menu-lettering.md).

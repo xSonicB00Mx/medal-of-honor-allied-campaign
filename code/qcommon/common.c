@@ -1894,10 +1894,16 @@ void Com_Init( char *commandLine ) {
 	Cvar_Get("ac_corpse_effects", "1", CVAR_ARCHIVE);
 	Cvar_Get("ac_operation", "-1", CVAR_INIT);
 	Cvar_Get("ac_replay", "0", CVAR_INIT);
+	Cvar_Get("ac_level_skill", "1", CVAR_INIT);
+	Cvar_Get("ac_campaign_skill", *Cvar_VariableString("skill")?Cvar_VariableString("skill"):"1", CVAR_INIT);
+	Cvar_Get("ac_campaign_g_skill", *Cvar_VariableString("g_skill")?Cvar_VariableString("g_skill"):"1", CVAR_INIT);
 	Cvar_Get("ac_expected_map", "", CVAR_INIT);
 	Cvar_Get("ac_native_transition", "", CVAR_ROM);
 	Cmd_AddCommand("ac_mission", AC_Mission_f);
 	Cmd_AddCommand("ac_continue", AC_Continue_f);
+	Cmd_AddCommand("ac_level_replay", AC_LevelReplay_f);
+	Cmd_AddCommand("ac_briefing", AC_Briefing_f);
+	Cmd_AddCommand("ac_return_main", AC_ReturnMain_f);
 	Cmd_AddCommand("ac_progress_report", AC_ProgressReport_f);
 
 	// override anything from the config files with command line args

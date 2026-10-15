@@ -49,8 +49,9 @@ for folder in ['main','mainta','maintt']:
  def route(match):
   block=match.group(0)
   if 'name "ac_campaign_entry"' in block:return ''
-  if 'name "new game old"' in block or 'name "bigmap"' in block or 'name "briefing"' in block:
-   block=re.sub(r'stuffcommand "[^"]*"','stuffcommand "ac_campaign"',block)
+  for widget,command in [('new game old','ac_campaign'),('briefing','ac_briefing'),('bigmap','ac_level_list')]:
+   if f'name "{widget}"' in block:
+    block=re.sub(r'stuffcommand "[^"]*"',f'stuffcommand "{command}"',block)
   return block
  main=re.sub(r'resource\s+Button\s*\{[^}]*\}',route,main)
  assert 'name "new game old"' in main and 'stuffcommand "ac_campaign"' in main

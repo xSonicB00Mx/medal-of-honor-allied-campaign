@@ -51,7 +51,7 @@ assert (p/'ac_progress.dat').read_text() == 'ACPROG1 7 3 keep_test\n'
 assert 'completed=7 resume=3 slot=keep_test' in log
 log = run('confirm', ['ac_campaign','ac_reset_progress','wait 300','ac_reset_progress confirm','wait 700','ac_progress_report','screenshot silent'])
 assert 'AC_PROGRESS_RESET saves and preferences preserved' in log
-assert (p/'ac_progress.dat').read_text().strip() == 'ACPROG1 0 0 -'
+assert (p/'ac_progress.dat').read_text().strip() == 'ACPROG2 0 0 - 0 0'
 assert (p/'ac_progress.dat.bak').read_text().strip() == 'ACPROG1 7 3 keep_test'
 assert 'name "mission_0"' in (p/'main/ui/ac_campaign_operations.urc').read_text()
 assert 'name "mission_1"' not in (p/'main/ui/ac_campaign_operations.urc').read_text()

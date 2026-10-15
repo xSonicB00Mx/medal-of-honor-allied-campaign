@@ -49,7 +49,16 @@
         "license": "CC BY 4.0",
         "anchor_name": "Arzew"
       },
-      "map_region": 0
+      "map_region": 0,
+      "briefing_replay": "briefing/briefing1",
+      "level_titles": {
+        "m1l1": "Rangers Lead the Way",
+        "m1l2a": "The Rescue Mission",
+        "m1l2b": "Sabotage the Motorpool",
+        "m1l3a": "Lighting the Torch - Desert Road",
+        "m1l3b": "Grounding the Airfield",
+        "m1l3c": "Lighting The Torch - Lighthouse"
+      }
     },
     {
       "id": "aa_trondheim",
@@ -100,7 +109,15 @@
         "license": "CC BY 4.0",
         "anchor_name": "Trondheim"
       },
-      "map_region": 1
+      "map_region": 1,
+      "briefing_replay": "briefing/briefing2",
+      "level_titles": {
+        "m2l1": "Secret Documents of the Kriegsmarine",
+        "m2l2a": "Scuttling the U-529 - Naxos Prototype",
+        "m2l2b": "Scuttling the U-529 - Inside the U-529",
+        "m2l2c": "Scuttling the U-529 - Cover Blown",
+        "m2l3": "Escape from Trondheim"
+      }
     },
     {
       "id": "bt_kasserine",
@@ -149,7 +166,12 @@
         "license": "CC BY 4.0",
         "anchor_name": "Kasserine"
       },
-      "map_region": 0
+      "map_region": 0,
+      "briefing_replay": "briefing/briefinge1",
+      "level_titles": {
+        "e1l1": "Tunisia - Battle of Kasserine Pass I",
+        "e1l2": "Tunisia - Battle of Kasserine Pass II"
+      }
     },
     {
       "id": "bt_bizerte",
@@ -198,7 +220,12 @@
         "license": "CC BY 4.0",
         "anchor_name": "Bizerte"
       },
-      "map_region": 0
+      "map_region": 0,
+      "briefing_replay": "briefing/briefinge1",
+      "level_titles": {
+        "e1l3": "Tunisia - Bizerte Canal",
+        "e1l4": "Tunisia - Bizerte Harbor"
+      }
     },
     {
       "id": "bt_sicily",
@@ -248,7 +275,13 @@
         "license": "CC BY 4.0",
         "anchor_name": "Sicilia"
       },
-      "map_region": 0
+      "map_region": 0,
+      "briefing_replay": "briefing/briefinge2",
+      "level_titles": {
+        "e2l1": "Sicily - Glider Landing",
+        "e2l2": "Sicily - The Airfield at Caltagirone",
+        "e2l3": "Sicily - Gela"
+      }
     },
     {
       "id": "bt_cassino",
@@ -297,7 +330,12 @@
         "license": "CC BY 4.0",
         "anchor_name": "Cassino"
       },
-      "map_region": 0
+      "map_region": 0,
+      "briefing_replay": "briefing/briefinge3",
+      "level_titles": {
+        "e3l1": "Italy - Monte Cassino I",
+        "e3l2": "Italy - Monte Cassino II"
+      }
     },
     {
       "id": "bt_anzio",
@@ -345,7 +383,11 @@
         "license": "CC BY 4.0",
         "anchor_name": "Anzio"
       },
-      "map_region": 0
+      "map_region": 0,
+      "briefing_replay": "briefing/briefinge3",
+      "level_titles": {
+        "e3l3": "Italy - Anzio"
+      }
     },
     {
       "id": "sh_normandy",
@@ -395,7 +437,13 @@
         "license": "CC BY 4.0",
         "anchor_name": "Caen"
       },
-      "map_region": 1
+      "map_region": 1,
+      "briefing_replay": "briefing/briefingt1",
+      "level_titles": {
+        "t1l1": "Normandy - Part 1",
+        "t1l2": "Normandy - Part 2",
+        "t1l3": "Normandy - Part 3"
+      }
     },
     {
       "id": "aa_normandy",
@@ -446,7 +494,14 @@
         "license": "CC BY 4.0",
         "anchor_name": "Caen"
       },
-      "map_region": 1
+      "map_region": 1,
+      "briefing_replay": "briefing/briefing3",
+      "level_titles": {
+        "m3l1a": "Omaha Beach - The Landing",
+        "m3l1b": "Omaha Beach - Inside the Bunker",
+        "m3l2": "Battle in the Bocage",
+        "m3l3": "The Nebelwerfer Hunt"
+      }
     },
     {
       "id": "aa_resistance",
@@ -499,7 +554,13 @@
         "license": "CC BY 4.0",
         "anchor_name": "Caen"
       },
-      "map_region": 1
+      "map_region": 1,
+      "briefing_replay": "briefing/briefing4",
+      "level_titles": {
+        "m4l1": "Rendezvous with the Resistance",
+        "m4l2": "Diverting the Enemy",
+        "m4l3": "The Command Post"
+      }
     },
     {
       "id": "aa_brittany",
@@ -553,7 +614,15 @@
         "license": "CC BY 4.0",
         "anchor_name": "Brest"
       },
-      "map_region": 1
+      "map_region": 1,
+      "briefing_replay": "briefing/briefing5",
+      "level_titles": {
+        "m5l1a": "Sniper's Last Stand - Outskirts",
+        "m5l1b": "Sniper's Last Stand - City Hall",
+        "m5l2a": "The Hunt for the King Tiger - Destroyed Village",
+        "m5l2b": "The Hunt for the King Tiger - Country Road",
+        "m5l3": "The Bridge"
+      }
     },
     {
       "id": "bt_battaglia",
@@ -601,7 +670,11 @@
         "license": "CC BY 4.0",
         "anchor_name": "Monte Battaglia"
       },
-      "map_region": 0
+      "map_region": 0,
+      "briefing_replay": "briefing/briefinge3",
+      "level_titles": {
+        "e3l4": "Italy - Monte Battaglia"
+      }
     },
     {
       "id": "sh_ardennes",
@@ -652,7 +725,14 @@
         "license": "CC BY 4.0",
         "anchor_name": "Bastogne"
       },
-      "map_region": 1
+      "map_region": 1,
+      "briefing_replay": "briefing/briefingt2",
+      "level_titles": {
+        "t2l1": "Bastogne - Part 1",
+        "t2l2": "Bastogne - Part 2",
+        "t2l3": "Bastogne - Part 3",
+        "t2l4": "Bastogne - Part 4"
+      }
     },
     {
       "id": "aa_schmerzen",
@@ -708,7 +788,20 @@
         "license": "CC BY 4.0",
         "anchor_name": "Trier"
       },
-      "map_region": 1
+      "map_region": 1,
+      "briefing_replay": "briefing/briefing6",
+      "level_titles": {
+        "m6l1a": "The Siegfried Forest - Flak Guns",
+        "m6l1b": "The Siegfried Forest - Bunker Hill",
+        "m6l1c": "Die Sturmgewehr",
+        "m6l2a": "The Communications Blackout",
+        "m6l2b": "The Schmerzen Express",
+        "m6l3a": "Storming Fort Schmerzen",
+        "m6l3b": "Storming Fort Schmerzen - Inner Facility",
+        "m6l3d": "Storming Fort Schmerzen - Chemical Plant",
+        "m6l3c": "Storming Fort Schmerzen - Final Run",
+        "m6l3e": "Storming Fort Schmerzen - Conclusion"
+      }
     },
     {
       "id": "sh_berlin",
@@ -760,7 +853,12 @@
         "license": "CC BY 4.0",
         "anchor_name": "Berlin"
       },
-      "map_region": 1
+      "map_region": 1,
+      "briefing_replay": "briefing/briefingt3",
+      "level_titles": {
+        "t3l1": "Berlin - Part 1",
+        "t3l2": "Berlin - Part 2"
+      }
     }
   ],
   "optional": [

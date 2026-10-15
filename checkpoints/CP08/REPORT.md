@@ -1,6 +1,8 @@
 # CP08-r1 – gemeinsame Einsatzkarte
 
-Neueste Korrektur: [MG-Ruckler und entfernter Kartenhinweis](mg-feedback.md).
+Neueste Erweiterung: [Briefing Room und einzelne Level wiederholen](level-replay.md).
+
+Fruehere Korrektur: [MG-Ruckler und entfernter Kartenhinweis](mg-feedback.md).
 
 Aktueller Stand: [Zwei Regionen, unsichtbare gesperrte Einsaetze und Sterbeanimationstreffer](feedback-two-regions.md). Der folgende Bericht dokumentiert den urspruenglichen CP8-Kandidaten; sein sechs-Ansichten-/vier-Zustaende-Layout wurde durch das neue Feedback ersetzt.
 

@@ -117,3 +117,69 @@ static void AC_ResetProgressMenu_f(void)
     }
     UI_PushMenu(name);
 }
+
+static void AC_BriefingPlay_f(void)
+{
+    int op=Cvar_VariableIntegerValue("ac_operation");
+    if(!Cvar_VariableIntegerValue("ac_campaign_mode") || Cvar_VariableIntegerValue("ac_replay")!=3
+        || op<0 || op>=AC_MISSION_COUNT || ac_missions[op].game!=com_target_game->integer || !ac_missions[op].game) return;
+    const char *file=strrchr(ac_missions[op].briefing,'/');if(!file)return;
+    if(FS_ReadFile(va("video/%s.roq",file+1),NULL)<0) {
+        Com_Printf("AC_BRIEFING_ERROR missing video\n");Cbuf_AddText("ac_return_main\n");return;
+    }
+    menuManager.Unlock(NULL);menuManager.ClearMenus(true);UI_CloseConsole();
+    Cvar_Set("nextmap","ac_return_main");
+    Cbuf_AddText(va("cinematic %s.roq\n",file+1));
+    Com_Printf("AC_BRIEFING_VIDEO %s.roq\n",file+1);
+}
+
+static void AC_LevelList_f(void)
+{
+    int page=Cmd_Argc()>1?atoi(Cmd_Argv(1)):0;
+    int selected=Cmd_Argc()>2?atoi(Cmd_Argv(2)):-1;
+    int difficulty=Cmd_Argc()>3?atoi(Cmd_Argv(3)):-1;
+    int levels[AC_LEVEL_COUNT],count=0;
+    const int rows=11;
+    const char *name="ac_level_list";
+    for(int i=0;i<AC_LEVEL_COUNT;i++)if(AC_LevelCompleted(i))levels[count++]=i;
+    int pages=count?(count+rows-1)/rows:1;
+    if(page<0)page=0;if(page>=pages)page=pages-1;
+    if(!AC_LevelCompleted(selected))selected=-1;
+    fileHandle_t f=FS_FOpenFileWrite_HomeData("ui/ac_level_list.urc");if(!f)return;
+    FS_Printf(f,"menu \"%s\" 960 540 NONE 0\nvirtualres 1\nfullscreen 1\nbgfill 0.055 0.07 0.055 1\nborderstyle NONE\n",name);
+    FS_Printf(f,"widecanvas\n");
+    AC_UIItem(f,"heading","MISSION LIST / COMPLETED LEVELS",24,16,740,34,NULL,"1 0.85 0.4 1");
+    AC_UIItem(f,"description","Replay one completed level. Your campaign progress is preserved.",24,58,912,28,NULL);
+    if(!count)AC_UIItem(f,"empty","Complete a level in Operations to unlock it here.",24,110,912,32,NULL);
+    for(int row=0;row<rows && page*rows+row<count;row++) {
+        int index=levels[page*rows+row];const acLevel_t &level=ac_levels[index];
+        const acMission_t &op=ac_missions[level.operation];
+        AC_UIItem(f,va("level_%d",index),va("%s %s / %s",selected==index?">":" ",op.game==0?"AA":op.game==1?"SH":"BT",level.title),
+            24,104+row*27,912,25,va("ac_level_list %d %d -1",page,index),selected==index?"1 0.85 0.4 1":"0.85 0.9 0.8 1");
+    }
+    AC_UIItem(f,"page",va("Page %d / %d   |   %d completed levels",page+1,pages,count),24,409,536,26,NULL);
+    if(page>0)AC_UIItem(f,"previous","Previous",696,409,112,26,va("ac_level_list %d",page-1));
+    if(page+1<pages)AC_UIItem(f,"next","Next",824,409,112,26,va("ac_level_list %d",page+1));
+    if(selected>=0) {
+        AC_UIItem(f,"choose","Choose difficulty:",24,451,216,30,NULL);
+        for(int i=0;i<3;i++)AC_UIItem(f,va("difficulty_%d",i),i==0?"Easy":i==1?"Medium":"Hard",252+i*148,451,132,30,
+            va("ac_level_list %d %d %d",page,selected,i),difficulty==i?"1 0.85 0.4 1":"0.85 0.9 0.8 1");
+        if(difficulty>=0 && difficulty<=2)AC_UIItem(f,"play","Start Replay",712,451,224,30,va("ac_level_replay %d %d",selected,difficulty),"1 0.85 0.4 1");
+    }
+    AC_UIItem(f,"back","Main Menu",24,504,180,28,"popmenu 0; pushmenu main");
+    AC_UIItem(f,"return_hint","Level completion returns to the main menu.",252,504,684,28,NULL);
+    FS_Printf(f,"end.\n");FS_FCloseFile(f);
+    menuManager.Unlock(NULL);menuManager.ClearMenus(true);
+    Menu *old=menuManager.FindMenu(name);
+    if(old) {
+        UIWidgetContainer *root=(UIWidgetContainer *)old->GetContainerWidget();menuManager.DeleteMenu(old);
+        while(root->getFirstChild())delete root->getFirstChild();
+        delete root->m_layout;delete root;delete old;
+    }
+    new UILayout("ui/ac_level_list.urc");
+    UIWidgetContainer *root=(UIWidgetContainer *)uWinMan.FindWidget(name);
+    if(root) {
+        Menu *menu=new Menu(name);menu->setFullscreen(root->isFullscreen());
+        menu->setVidMode(root->getVidMode());menu->AddMenuItem(root);UI_ForceMenu(name);UI_CloseConsole();
+    }
+}

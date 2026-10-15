@@ -1,0 +1,527 @@
+{
+  "cases": [
+    {
+      "run": "menu-final",
+      "case": "menu",
+      "operation": "aa_torch",
+      "done": true,
+      "events": [
+        "[2026-10-15 12:15:56 UTC+1.000] AC_PROGRESS valid=1 completed=0 resume=0 slot=keep operation=-1 replay=0",
+        "[2026-10-15 12:15:56 UTC+1.000] AC_LEVEL_PROGRESS 7 0 skill=1",
+        "[2026-10-15 12:15:58 UTC+1.000] AC_UI_CURRENT ac_level_list",
+        "[2026-10-15 12:15:58 UTC+1.000] AC_UI drawable=1920x1080 base=1.1250 menu=1.0000 hud=1.0000 safe=1.0000",
+        "[2026-10-15 12:15:58 UTC+1.000] AC_UI_ROOT ac_level_list 0.000 0.000 1920.000 1080.000",
+        "[2026-10-15 12:15:58 UTC+1.000] AC_TEST_DONE"
+      ],
+      "state_before": "ACPROG1 0 0 keep\n",
+      "state_after": "ACPROG1 0 0 keep\n",
+      "images": [
+        "profiles-local/level-replay/menu-final/main/screenshots/shot0000.png",
+        "profiles-local/level-replay/menu-final/main/screenshots/shot0001.png",
+        "profiles-local/level-replay/menu-final/main/screenshots/shot0002.png"
+      ],
+      "scope": "Isolated seeded profile; synthetic native completion, not a natural playthrough.",
+      "engine_sha256": "1dc4e8b6345bba72e2517c0a6cb182d2721daca70f0dfbc59b4ae84ba0eea3d3",
+      "passed": true
+    },
+    {
+      "run": "menu-all",
+      "case": "menu",
+      "operation": "aa_torch",
+      "done": true,
+      "events": [
+        "[2026-10-15 12:16:03 UTC+1.000] AC_PROGRESS valid=1 completed=32767 resume=15 slot=- operation=-1 replay=0",
+        "[2026-10-15 12:16:03 UTC+1.000] AC_LEVEL_PROGRESS 4294967295 2097151 skill=1",
+        "[2026-10-15 12:16:04 UTC+1.000] AC_UI_CURRENT ac_level_list",
+        "[2026-10-15 12:16:04 UTC+1.000] AC_UI drawable=1920x1080 base=1.1250 menu=1.0000 hud=1.0000 safe=1.0000",
+        "[2026-10-15 12:16:04 UTC+1.000] AC_UI_ROOT ac_level_list 0.000 0.000 1920.000 1080.000",
+        "[2026-10-15 12:16:05 UTC+1.000] AC_TEST_DONE"
+      ],
+      "state_before": "ACPROG1 32767 15 -\n",
+      "state_after": "ACPROG1 32767 15 -\n",
+      "images": [
+        "profiles-local/level-replay/menu-all/main/screenshots/shot0000.png",
+        "profiles-local/level-replay/menu-all/main/screenshots/shot0001.png",
+        "profiles-local/level-replay/menu-all/main/screenshots/shot0002.png",
+        "profiles-local/level-replay/menu-all/main/screenshots/shot0003.png"
+      ],
+      "scope": "Isolated seeded profile; synthetic native completion, not a natural playthrough.",
+      "engine_sha256": "1dc4e8b6345bba72e2517c0a6cb182d2721daca70f0dfbc59b4ae84ba0eea3d3",
+      "passed": true
+    },
+    {
+      "run": "menu-43",
+      "case": "menu",
+      "operation": "aa_torch",
+      "done": true,
+      "events": [
+        "[2026-10-15 12:16:10 UTC+1.000] AC_PROGRESS valid=1 completed=32767 resume=15 slot=- operation=-1 replay=0",
+        "[2026-10-15 12:16:10 UTC+1.000] AC_LEVEL_PROGRESS 4294967295 2097151 skill=1",
+        "[2026-10-15 12:16:11 UTC+1.000] AC_UI_CURRENT ac_level_list",
+        "[2026-10-15 12:16:11 UTC+1.000] AC_UI drawable=1024x768 base=0.8000 menu=1.0000 hud=1.0000 safe=1.0000",
+        "[2026-10-15 12:16:11 UTC+1.000] AC_UI_ROOT ac_level_list 0.000 96.000 1024.000 576.000",
+        "[2026-10-15 12:16:12 UTC+1.000] AC_TEST_DONE"
+      ],
+      "state_before": "ACPROG1 32767 15 -\n",
+      "state_after": "ACPROG1 32767 15 -\n",
+      "images": [
+        "profiles-local/level-replay/menu-43/main/screenshots/shot0000.png",
+        "profiles-local/level-replay/menu-43/main/screenshots/shot0001.png",
+        "profiles-local/level-replay/menu-43/main/screenshots/shot0002.png",
+        "profiles-local/level-replay/menu-43/main/screenshots/shot0003.png"
+      ],
+      "scope": "Isolated seeded profile; synthetic native completion, not a natural playthrough.",
+      "engine_sha256": "1dc4e8b6345bba72e2517c0a6cb182d2721daca70f0dfbc59b4ae84ba0eea3d3",
+      "passed": true
+    },
+    {
+      "run": "locked-final",
+      "case": "locked",
+      "operation": "aa_torch",
+      "done": true,
+      "events": [
+        "[2026-10-15 12:16:16 UTC+1.000] AC_LEVEL_LOCKED",
+        "[2026-10-15 12:16:17 UTC+1.000] AC_PROGRESS valid=1 completed=0 resume=0 slot=keep operation=-1 replay=0",
+        "[2026-10-15 12:16:17 UTC+1.000] AC_LEVEL_PROGRESS 0 0 skill=1",
+        "[2026-10-15 12:16:17 UTC+1.000] AC_TEST_DONE"
+      ],
+      "state_before": "ACPROG1 0 0 keep\n",
+      "state_after": "ACPROG1 0 0 keep\n",
+      "images": [
+        "profiles-local/level-replay/locked-final/main/screenshots/shot0000.png"
+      ],
+      "scope": "Isolated seeded profile; synthetic native completion, not a natural playthrough.",
+      "engine_sha256": "1dc4e8b6345bba72e2517c0a6cb182d2721daca70f0dfbc59b4ae84ba0eea3d3",
+      "passed": true
+    },
+    {
+      "run": "replay-aa-final",
+      "case": "replay",
+      "operation": "aa_torch",
+      "done": true,
+      "events": [
+        "[2026-10-15 12:16:21 UTC+1.000] AC_LEVEL_REPLAY m1l1 difficulty=0",
+        "[2026-10-15 12:16:21 UTC+1.000] AC_CONTEXT_RESTART 0 -> 0 m1l1 child=8332",
+        "[2026-10-15 12:16:22 UTC+1.000] AC_MISSION_ENTRY aa_torch m1l1",
+        "[2026-10-15 12:16:28 UTC+1.000] AC_PROGRESS valid=1 completed=1 resume=1 slot=keep operation=0 replay=2",
+        "[2026-10-15 12:16:28 UTC+1.000] AC_LEVEL_PROGRESS 63 0 skill=0",
+        "[2026-10-15 12:16:28 UTC+1.000] Saving to otherAC_SAVE_PROTECTED campaign save; choose another save name",
+        "[2026-10-15 12:16:29 UTC+1.000] AC_SAVE_ACCEPT context=0 map=m1l1",
+        "[2026-10-15 12:16:32 UTC+1.000] AC_PROGRESS valid=1 completed=1 resume=1 slot=keep operation=0 replay=2",
+        "[2026-10-15 12:16:32 UTC+1.000] AC_LEVEL_PROGRESS 63 0 skill=0.000000",
+        "[2026-10-15 12:16:39 UTC+1.000] AC_LEVEL_REPLAY_COMPLETE m1l1",
+        "[2026-10-15 12:16:39 UTC+1.000] AC_REPLAY_RETURN_MAIN skill=2"
+      ],
+      "state_before": "ACPROG1 1 1 keep\n",
+      "state_after": "ACPROG1 1 1 keep\n",
+      "images": [],
+      "scope": "Isolated seeded profile; synthetic native completion, not a natural playthrough.",
+      "engine_sha256": "1dc4e8b6345bba72e2517c0a6cb182d2721daca70f0dfbc59b4ae84ba0eea3d3",
+      "passed": true
+    },
+    {
+      "run": "replay-sh-final",
+      "case": "replay",
+      "operation": "sh_normandy",
+      "done": true,
+      "events": [
+        "[2026-10-15 12:16:45 UTC+1.000] AC_LEVEL_REPLAY t1l1 difficulty=1",
+        "[2026-10-15 12:16:45 UTC+1.000] AC_CONTEXT_RESTART 0 -> 1 t1l1 child=29300",
+        "[2026-10-15 12:16:47 UTC+1.000] AC_MISSION_ENTRY sh_normandy t1l1",
+        "[2026-10-15 12:16:54 UTC+1.000] AC_PROGRESS valid=1 completed=255 resume=8 slot=keep operation=7 replay=2",
+        "[2026-10-15 12:16:54 UTC+1.000] AC_LEVEL_PROGRESS 16777215 0 skill=1",
+        "[2026-10-15 12:16:54 UTC+1.000] Saving to otherAC_SAVE_PROTECTED campaign save; choose another save name",
+        "[2026-10-15 12:16:55 UTC+1.000] AC_SAVE_ACCEPT context=1 map=t1l1",
+        "[2026-10-15 12:16:57 UTC+1.000] AC_PROGRESS valid=1 completed=255 resume=8 slot=keep operation=7 replay=2",
+        "[2026-10-15 12:16:57 UTC+1.000] AC_LEVEL_PROGRESS 16777215 0 skill=1.000000",
+        "[2026-10-15 12:17:04 UTC+1.000] AC_LEVEL_REPLAY_COMPLETE t1l1",
+        "[2026-10-15 12:17:04 UTC+1.000] AC_REPLAY_RETURN_MAIN skill=2"
+      ],
+      "state_before": "ACPROG1 255 8 keep\n",
+      "state_after": "ACPROG1 255 8 keep\n",
+      "images": [],
+      "scope": "Isolated seeded profile; synthetic native completion, not a natural playthrough.",
+      "engine_sha256": "1dc4e8b6345bba72e2517c0a6cb182d2721daca70f0dfbc59b4ae84ba0eea3d3",
+      "passed": true
+    },
+    {
+      "run": "replay-bt-r1",
+      "case": "replay",
+      "operation": "bt_kasserine",
+      "done": true,
+      "events": [
+        "[2026-10-15 12:06:57 UTC+1.000] AC_LEVEL_REPLAY e1l1 difficulty=0",
+        "[2026-10-15 12:06:57 UTC+1.000] AC_CONTEXT_RESTART 0 -> 2 e1l1 child=27628",
+        "[2026-10-15 12:07:00 UTC+1.000] AC_MISSION_ENTRY bt_kasserine e1l1",
+        "[2026-10-15 12:07:08 UTC+1.000] AC_PROGRESS valid=1 completed=7 resume=3 slot=keep operation=2 replay=2",
+        "[2026-10-15 12:07:08 UTC+1.000] AC_LEVEL_PROGRESS 8191 0 skill=0",
+        "[2026-10-15 12:07:08 UTC+1.000] Saving to otherAC_SAVE_PROTECTED campaign save; choose another save name",
+        "[2026-10-15 12:07:09 UTC+1.000] AC_SAVE_ACCEPT context=2 map=e1l1",
+        "[2026-10-15 12:07:12 UTC+1.000] AC_PROGRESS valid=1 completed=7 resume=3 slot=keep operation=2 replay=2",
+        "[2026-10-15 12:07:12 UTC+1.000] AC_LEVEL_PROGRESS 8191 0 skill=0.000000",
+        "[2026-10-15 12:07:19 UTC+1.000] AC_LEVEL_REPLAY_COMPLETE e1l1",
+        "[2026-10-15 12:07:19 UTC+1.000] AC_REPLAY_RETURN_MAIN skill=1"
+      ],
+      "state_before": "ACPROG1 7 3 keep\n",
+      "state_after": "ACPROG1 7 3 keep\n",
+      "images": [],
+      "scope": "Isolated seeded profile; synthetic native completion, not a natural playthrough.",
+      "engine_sha256": "187e50f225bb8bff936db46621f6756017d7957f4679f373b341fe3e8376d953"
+    },
+    {
+      "run": "save-final",
+      "case": "save",
+      "operation": "aa_torch",
+      "done": true,
+      "events": [
+        "[2026-10-15 12:17:11 UTC+1.000] AC_LEVEL_REPLAY m1l1 difficulty=2",
+        "[2026-10-15 12:17:11 UTC+1.000] AC_CONTEXT_RESTART 0 -> 0 m1l1 child=3232",
+        "[2026-10-15 12:17:13 UTC+1.000] AC_MISSION_ENTRY aa_torch m1l1",
+        "[2026-10-15 12:17:19 UTC+1.000] AC_PROGRESS valid=1 completed=1 resume=1 slot=keep operation=0 replay=2",
+        "[2026-10-15 12:17:19 UTC+1.000] AC_LEVEL_PROGRESS 63 0 skill=2",
+        "[2026-10-15 12:17:19 UTC+1.000] Saving to otherAC_SAVE_PROTECTED campaign save; choose another save name",
+        "[2026-10-15 12:17:20 UTC+1.000] AC_SAVE_ACCEPT context=0 map=m1l1",
+        "[2026-10-15 12:17:22 UTC+1.000] AC_PROGRESS valid=1 completed=1 resume=1 slot=keep operation=0 replay=2",
+        "[2026-10-15 12:17:22 UTC+1.000] AC_LEVEL_PROGRESS 63 0 skill=2.000000",
+        "[2026-10-15 12:17:22 UTC+1.000] AC_TEST_DONE"
+      ],
+      "state_before": "ACPROG1 1 1 keep\n",
+      "state_after": "ACPROG1 1 1 keep\n",
+      "images": [],
+      "scope": "Isolated seeded profile; synthetic native completion, not a natural playthrough.",
+      "engine_sha256": "1dc4e8b6345bba72e2517c0a6cb182d2721daca70f0dfbc59b4ae84ba0eea3d3",
+      "passed": true
+    },
+    {
+      "run": "progress-aa-final",
+      "case": "progress",
+      "operation": "aa_torch",
+      "done": true,
+      "events": [
+        "[2026-10-15 12:18:35 UTC+1.000] AC_MISSION_ENTRY aa_torch m1l1",
+        "[2026-10-15 12:18:37 UTC+1.000] AC_PROGRESS_COMMIT completed=0 resume=0 slot=m1l10000",
+        "[2026-10-15 12:18:48 UTC+1.000] AC_PROGRESS_COMMIT completed=0 resume=0 slot=m1l10000",
+        "[2026-10-15 12:18:48 UTC+1.000] AC_LEVEL_COMPLETE m1l1"
+      ],
+      "state_before": "ACPROG1 0 0 keep\n",
+      "state_after": "ACPROG2 0 0 m1l2a0000 1 0\n",
+      "images": [],
+      "scope": "Isolated seeded profile; synthetic native completion, not a natural playthrough.",
+      "engine_sha256": "1dc4e8b6345bba72e2517c0a6cb182d2721daca70f0dfbc59b4ae84ba0eea3d3",
+      "passed": true
+    },
+    {
+      "run": "progress-high",
+      "case": "progress",
+      "operation": "aa_schmerzen",
+      "done": true,
+      "events": [
+        "[2026-10-15 12:17:27 UTC+1.000] AC_MISSION_ENTRY aa_schmerzen m6l1a",
+        "[2026-10-15 12:17:28 UTC+1.000] AC_PROGRESS_COMMIT completed=8191 resume=13 slot=m6l1a0000",
+        "[2026-10-15 12:17:40 UTC+1.000] AC_PROGRESS_COMMIT completed=8191 resume=13 slot=m6l1a0000",
+        "[2026-10-15 12:17:40 UTC+1.000] AC_LEVEL_COMPLETE m6l1a"
+      ],
+      "state_before": "ACPROG1 8191 13 keep\n",
+      "state_after": "ACPROG2 8191 13 m6l1b0000 4294967295 1023\n",
+      "images": [],
+      "scope": "Isolated seeded profile; synthetic native completion, not a natural playthrough.",
+      "engine_sha256": "1dc4e8b6345bba72e2517c0a6cb182d2721daca70f0dfbc59b4ae84ba0eea3d3",
+      "passed": true
+    },
+    {
+      "run": "storage-v2",
+      "case": "inspect",
+      "operation": "aa_torch",
+      "done": true,
+      "events": [
+        "[2026-10-15 12:18:54 UTC+1.000] AC_PROGRESS valid=1 completed=8191 resume=13 slot=m6l1b0000 operation=-1 replay=0",
+        "[2026-10-15 12:18:54 UTC+1.000] AC_LEVEL_PROGRESS 4294967295 1023 skill=1",
+        "[2026-10-15 12:18:54 UTC+1.000] AC_TEST_DONE"
+      ],
+      "state_before": "ACPROG2 8191 13 m6l1b0000 4294967295 1023\n",
+      "state_after": "ACPROG2 8191 13 m6l1b0000 4294967295 1023\n",
+      "images": [
+        "profiles-local/level-replay/storage-v2/main/screenshots/shot0000.png"
+      ],
+      "scope": "Isolated seeded profile; synthetic native completion, not a natural playthrough.",
+      "engine_sha256": "1dc4e8b6345bba72e2517c0a6cb182d2721daca70f0dfbc59b4ae84ba0eea3d3",
+      "passed": true
+    },
+    {
+      "run": "storage-corrupt",
+      "case": "inspect",
+      "operation": "aa_torch",
+      "done": true,
+      "events": [
+        "[2026-10-15 12:19:00 UTC+1.000] AC_PROGRESS_RECOVERED backup",
+        "[2026-10-15 12:19:00 UTC+1.000] AC_PROGRESS valid=1 completed=1 resume=1 slot=- operation=-1 replay=0",
+        "[2026-10-15 12:19:00 UTC+1.000] AC_LEVEL_PROGRESS 63 0 skill=1",
+        "[2026-10-15 12:19:00 UTC+1.000] AC_TEST_DONE"
+      ],
+      "state_before": "ACPROG2 0 0 - 0\n",
+      "state_after": "ACPROG2 0 0 - 0\n",
+      "images": [
+        "profiles-local/level-replay/storage-corrupt/main/screenshots/shot0000.png"
+      ],
+      "scope": "Isolated seeded profile; synthetic native completion, not a natural playthrough.",
+      "engine_sha256": "1dc4e8b6345bba72e2517c0a6cb182d2721daca70f0dfbc59b4ae84ba0eea3d3",
+      "passed": true
+    },
+    {
+      "run": "storage-invalid",
+      "case": "inspect",
+      "operation": "aa_torch",
+      "done": true,
+      "events": [
+        "[2026-10-15 12:19:06 UTC+1.000] AC_PROGRESS_ERROR corrupt progress; preserved for recovery",
+        "[2026-10-15 12:19:06 UTC+1.000] AC_PROGRESS valid=0 completed=0 resume=0 slot=- operation=-1 replay=0",
+        "[2026-10-15 12:19:06 UTC+1.000] AC_LEVEL_PROGRESS 0 4294967295 skill=1",
+        "[2026-10-15 12:19:06 UTC+1.000] AC_TEST_DONE"
+      ],
+      "state_before": "ACPROG2 0 0 - 0 4294967295\n",
+      "state_after": "ACPROG2 0 0 - 0 4294967295\n",
+      "images": [
+        "profiles-local/level-replay/storage-invalid/main/screenshots/shot0000.png"
+      ],
+      "scope": "Isolated seeded profile; synthetic native completion, not a natural playthrough.",
+      "engine_sha256": "1dc4e8b6345bba72e2517c0a6cb182d2721daca70f0dfbc59b4ae84ba0eea3d3",
+      "passed": true
+    },
+    {
+      "run": "storage-empty",
+      "case": "inspect",
+      "operation": "aa_torch",
+      "done": true,
+      "events": [
+        "[2026-10-15 12:19:12 UTC+1.000] AC_PROGRESS valid=1 completed=0 resume=0 slot=- operation=-1 replay=0",
+        "[2026-10-15 12:19:12 UTC+1.000] AC_LEVEL_PROGRESS 0 0 skill=1",
+        "[2026-10-15 12:19:13 UTC+1.000] AC_TEST_DONE"
+      ],
+      "state_before": "ACPROG2 0 0 - 0 0\n",
+      "state_after": "ACPROG2 0 0 - 0 0\n",
+      "images": [
+        "profiles-local/level-replay/storage-empty/main/screenshots/shot0000.png"
+      ],
+      "scope": "Isolated seeded profile; synthetic native completion, not a natural playthrough.",
+      "engine_sha256": "1dc4e8b6345bba72e2517c0a6cb182d2721daca70f0dfbc59b4ae84ba0eea3d3",
+      "passed": true
+    },
+    {
+      "run": "briefing-aa-r1",
+      "case": "briefing",
+      "operation": "aa_torch",
+      "done": true,
+      "events": [
+        "[2026-10-15 12:04:58 UTC+1.000] AC_BRIEFING_REPLAY aa_torch briefing/briefing1",
+        "[2026-10-15 12:04:58 UTC+1.000] AC_CONTEXT_RESTART 0 -> 0 briefing/briefing1 child=12332",
+        "[2026-10-15 12:05:01 UTC+1.000] AC_BRIEFING_STARTED briefing/briefing1",
+        "[2026-10-15 12:05:01 UTC+1.000] Saving to briefing_briefing10000AC_SAVE_PROTECTED briefing replay",
+        "[2026-10-15 12:05:05 UTC+1.000] AC_PROGRESS valid=1 completed=0 resume=0 slot=keep operation=0 replay=3",
+        "[2026-10-15 12:05:05 UTC+1.000] AC_LEVEL_PROGRESS 0 0 skill=1",
+        "[2026-10-15 12:05:06 UTC+1.000] AC_BRIEFING_COMPLETE",
+        "[2026-10-15 12:05:06 UTC+1.000] AC_REPLAY_RETURN_MAIN skill=1"
+      ],
+      "state_before": "ACPROG1 0 0 keep\n",
+      "state_after": "ACPROG1 0 0 keep\n",
+      "images": [],
+      "scope": "Isolated seeded profile; synthetic native completion, not a natural playthrough.",
+      "engine_sha256": "187e50f225bb8bff936db46621f6756017d7957f4679f373b341fe3e8376d953"
+    },
+    {
+      "run": "briefing-sh-r2",
+      "case": "briefing",
+      "operation": "sh_normandy",
+      "done": true,
+      "events": [
+        "[2026-10-15 12:09:37 UTC+1.000] AC_BRIEFING_REPLAY sh_normandy briefing/briefingt1",
+        "[2026-10-15 12:09:37 UTC+1.000] AC_CONTEXT_RESTART 0 -> 1 briefing child=11528",
+        "[2026-10-15 12:09:39 UTC+1.000] AC_BRIEFING_VIDEO briefingt1.roq",
+        "[2026-10-15 12:09:44 UTC+1.000] AC_PROGRESS valid=1 completed=127 resume=7 slot=keep operation=7 replay=3",
+        "[2026-10-15 12:09:44 UTC+1.000] AC_LEVEL_PROGRESS 2097151 0 skill=1",
+        "[2026-10-15 12:11:17 UTC+1.000] AC_REPLAY_RETURN_MAIN skill=1"
+      ],
+      "state_before": "ACPROG1 127 7 keep\n",
+      "state_after": "ACPROG1 127 7 keep\n",
+      "images": [],
+      "scope": "Isolated seeded profile; synthetic native completion, not a natural playthrough.",
+      "engine_sha256": "7a6c1b4474d29774741fc41f4d1d60d4be5f81274a6a44d3fd5113932b10c096"
+    },
+    {
+      "run": "briefing-bt-r2",
+      "case": "briefing",
+      "operation": "bt_bizerte",
+      "done": true,
+      "events": [
+        "[2026-10-15 12:12:58 UTC+1.000] AC_BRIEFING_REPLAY bt_bizerte briefing/briefinge1",
+        "[2026-10-15 12:12:58 UTC+1.000] AC_CONTEXT_RESTART 0 -> 2 briefing child=13960",
+        "[2026-10-15 12:13:01 UTC+1.000] AC_BRIEFING_VIDEO briefinge1.roq",
+        "[2026-10-15 12:13:05 UTC+1.000] AC_PROGRESS valid=1 completed=7 resume=3 slot=keep operation=3 replay=3",
+        "[2026-10-15 12:13:05 UTC+1.000] AC_LEVEL_PROGRESS 8191 0 skill=1",
+        "[2026-10-15 12:13:54 UTC+1.000] AC_REPLAY_RETURN_MAIN skill=1"
+      ],
+      "state_before": "ACPROG1 7 3 keep\n",
+      "state_after": "ACPROG1 7 3 keep\n",
+      "images": [],
+      "scope": "Isolated seeded profile; synthetic native completion, not a natural playthrough.",
+      "engine_sha256": "72ff1161e78a45a3357329579711ba616b9e87b9dc30a4f5cba68aa332a65e05"
+    }
+  ],
+  "reset": {
+    "run": "levels-r1",
+    "installed": false,
+    "cancel_preserved": true,
+    "confirmation_required": true,
+    "confirmed_reset": true,
+    "restart_persisted": true,
+    "saves_unchanged": true,
+    "previous_progress_backed_up": true,
+    "images": [
+      "profiles-local/operations-reset/levels-r1/main/screenshots/shot0000.png",
+      "profiles-local/operations-reset/levels-r1/main/screenshots/shot0001.png",
+      "profiles-local/operations-reset/levels-r1/main/screenshots/shot0002.png",
+      "profiles-local/operations-reset/levels-r1/main/screenshots/shot0003.png"
+    ]
+  },
+  "briefing_resources": [
+    {
+      "operation": "aa_torch",
+      "briefing": "briefing/briefing1",
+      "kind": "narrated slideshow"
+    },
+    {
+      "operation": "aa_trondheim",
+      "briefing": "briefing/briefing2",
+      "kind": "narrated slideshow"
+    },
+    {
+      "operation": "aa_normandy",
+      "briefing": "briefing/briefing3",
+      "kind": "narrated slideshow"
+    },
+    {
+      "operation": "aa_resistance",
+      "briefing": "briefing/briefing4",
+      "kind": "narrated slideshow"
+    },
+    {
+      "operation": "aa_brittany",
+      "briefing": "briefing/briefing5",
+      "kind": "narrated slideshow"
+    },
+    {
+      "operation": "aa_schmerzen",
+      "briefing": "briefing/briefing6",
+      "kind": "narrated slideshow"
+    },
+    {
+      "operation": "sh_normandy",
+      "briefing": "briefing/briefingt1",
+      "kind": "video",
+      "video": "video/briefingt1.roq",
+      "duration_seconds": 92.77
+    },
+    {
+      "operation": "sh_ardennes",
+      "briefing": "briefing/briefingt2",
+      "kind": "video",
+      "video": "video/briefingt2.roq",
+      "duration_seconds": 63.27
+    },
+    {
+      "operation": "sh_berlin",
+      "briefing": "briefing/briefingt3",
+      "kind": "video",
+      "video": "video/briefingt3.roq",
+      "duration_seconds": 54.1
+    },
+    {
+      "operation": "bt_kasserine",
+      "briefing": "briefing/briefinge1",
+      "kind": "video",
+      "video": "video/briefinge1.roq",
+      "duration_seconds": 48.9
+    },
+    {
+      "operation": "bt_bizerte",
+      "briefing": "briefing/briefinge1",
+      "kind": "video",
+      "video": "video/briefinge1.roq",
+      "duration_seconds": 48.9
+    },
+    {
+      "operation": "bt_sicily",
+      "briefing": "briefing/briefinge2",
+      "kind": "video",
+      "video": "video/briefinge2.roq",
+      "duration_seconds": 52.53
+    },
+    {
+      "operation": "bt_cassino",
+      "briefing": "briefing/briefinge3",
+      "kind": "video",
+      "video": "video/briefinge3.roq",
+      "duration_seconds": 79.5
+    },
+    {
+      "operation": "bt_anzio",
+      "briefing": "briefing/briefinge3",
+      "kind": "video",
+      "video": "video/briefinge3.roq",
+      "duration_seconds": 79.5
+    },
+    {
+      "operation": "bt_battaglia",
+      "briefing": "briefing/briefinge3",
+      "kind": "video",
+      "video": "video/briefinge3.roq",
+      "duration_seconds": 79.5
+    }
+  ],
+  "main_menu_routes": [
+    {
+      "game": "main",
+      "widget": "new game old",
+      "command": "ac_campaign"
+    },
+    {
+      "game": "main",
+      "widget": "briefing",
+      "command": "ac_briefing"
+    },
+    {
+      "game": "main",
+      "widget": "bigmap",
+      "command": "ac_level_list"
+    },
+    {
+      "game": "mainta",
+      "widget": "new game old",
+      "command": "ac_campaign"
+    },
+    {
+      "game": "mainta",
+      "widget": "briefing",
+      "command": "ac_briefing"
+    },
+    {
+      "game": "mainta",
+      "widget": "bigmap",
+      "command": "ac_level_list"
+    },
+    {
+      "game": "maintt",
+      "widget": "new game old",
+      "command": "ac_campaign"
+    },
+    {
+      "game": "maintt",
+      "widget": "briefing",
+      "command": "ac_briefing"
+    },
+    {
+      "game": "maintt",
+      "widget": "bigmap",
+      "command": "ac_level_list"
+    }
+  ]
+}

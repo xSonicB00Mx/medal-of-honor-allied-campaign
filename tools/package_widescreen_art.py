@@ -81,7 +81,7 @@ def main():
         shaders.append(f'{texname}\n{{\n nomipmaps\n nopicmip\n {{\n clampmap {texname}.tga\n tcMod transform 1 -0.14 0 1 0 0.07\n rgbGen global\n alphaGen global\n blendFunc GL_SRC_ALPHA GL_ONE_MINUS_SRC_ALPHA\n }}\n}}\n')
         for name in ['options','war_records','briefing_room','map_list','credits','load_save','quit','back_to_game']:
             button = name in ['quit','back_to_game']
-            source = Path(__file__).resolve().parents[1]/'generated-local/menu-lettering'/f'{name}.png'
+            source = Path(__file__).resolve().parents[1]/'generated-local/menu-lettering'/f'{"mission_list" if name=="map_list" else name}.png'
             with Image.open(source) as image:
                 assert image.mode == 'RGBA' and image.getchannel('A').getextrema()[0] == 0
                 bounds = image.getchannel('A').point(lambda v: 255 if v > 32 else 0).getbbox()
@@ -152,6 +152,13 @@ def main():
             return block
         styled = re.sub(r'(?is)resource\s+Button\s*\{[^{}]*\}',restyle_button,main)
         assert re.findall(r'(?m)^stuffcommand.*$',main) == re.findall(r'(?m)^stuffcommand.*$',styled)
+        def route_campaign(match):
+            block=match.group(0)
+            for widget,command in [('new game old','ac_campaign'),('briefing','ac_briefing'),('bigmap','ac_level_list')]:
+                if f'name "{widget}"' in block:
+                    block=re.sub(r'stuffcommand "[^"]*"',f'stuffcommand "{command}"',block)
+            return block
+        styled=re.sub(r'(?is)resource\s+Button\s*\{[^{}]*\}',route_campaign,styled)
         modifications['ui/main.urc'] = (tex,styled.encode('latin1'))
         if game == 'AA':
             for ui in ['ui/medals.urc', 'ui/medals_reset.urc']:
