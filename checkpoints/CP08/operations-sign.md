@@ -11,3 +11,4 @@ Create a game UI lettering asset. Reference images show the exact lettering styl
 ## Validation
 
 RelWithDebInfo engine build passed. Native menu rendering and isolated reset/cancel/restart tests are run with generated packages, leaving the active user profile untouched. Screenshots remain local. Personal visual acceptance and merge remain open.
+Installed in CP08-r1 with source 2ee64bfe; installed isolated test sign-installed-r1 passed. All 80 active user-profile files, 9072 original inputs, 9000 runtime-base files and eight MP1 inputs were verified unchanged. Rollback: generated-local/widescreen/backups/operations-sign-r1. The generated alpha lettering and the final header placement were visually inspected in native Full HD captures.
