@@ -1,3 +1,7 @@
+## Aktuell: Zusammenhaengende Kopfwundprojektion
+
+Kopfwunden folgen steilen Gesichtsflächen und ueberbruecken UV-Naehte. Kopf-Dreiecke liegen buendig auf der Haut statt einzeln angehoben zu werden; eigenes begrenztes Geometriebudget. Koerperprojektion unveraendert. [Bericht](checkpoints/CP08/head-wound-projection.md).
+
 ## Aktuell: Kopfwunden und Quicksave
 
 Feine Kopfmeshes erhalten bei Budgetueberschreitung einen kleineren vollstaendigen Wundpatch. Speichern registriert lebende Actor-Modelle nicht erneut; Wunden behalten ihre Instanzzuordnung. Full-detail-Flag im tatsaechlichen LOD-Pfad korrigiert. Feste Speichergrenzen bleiben bestehen. [Ursachen und Nachweise](checkpoints/CP08/wound-regression.md).

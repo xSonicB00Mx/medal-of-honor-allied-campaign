@@ -6,7 +6,7 @@ struct ACStoredWound {ac_wound_t data;bool active,rebind;};
 ACStoredWound acWounds[64]={};unsigned acWoundCursor=0;
 byte acPacket[sizeof(ac_wound_t)]={};unsigned acPacketId=0,acPacketOffset=0,acPacketSize=0;int acPacketBranch=0;
 bool ACValidWound(const ac_wound_t& w) {
-    if((w.version!=1 && w.version!=2) || w.entity<0 || w.entity>=MAX_GENTITIES || w.usage<=0 || w.group<1 || w.group>4 || w.branch<0 || w.branch>1
+    if((w.version!=1 && w.version!=2 && w.version!=3) || w.entity<0 || w.entity>=MAX_GENTITIES || w.usage<=0 || w.group<1 || w.group>4 || w.branch<0 || w.branch>1
         || w.flipU<0 || w.flipU>1 || w.flipV<0 || w.flipV>1 || !std::isfinite(w.rotation) || w.rotation<0 || w.rotation>=360
         || !memchr(w.model,0,sizeof(w.model)) || !w.model[0] || w.patch.count<1 || w.patch.count>AC_PATCH_MAX)return false;
     for(int i=0;i<w.patch.count;++i) {
@@ -96,10 +96,10 @@ extern "C" void CG_ACWoundsDraw(refEntity_t *model,int usage) {
 }
 void CG_ACWoundsArchive(MemArchiver& archive) {
     if(archive.IsReading()){CG_ACWoundsReset();if(archive.FinishedReading())return;}
-    int magic=0x41435732,count=0;archive.ArchiveInteger(&magic);if(magic!=0x41435731 && magic!=0x41435732)cgi.Error(ERR_DROP,"Unsupported AC wound save schema");
+    int magic=0x41435733,count=0;archive.ArchiveInteger(&magic);if(magic!=0x41435731 && magic!=0x41435732 && magic!=0x41435733)cgi.Error(ERR_DROP,"Unsupported AC wound save schema");
     if(archive.IsWriting())for(const auto& w:acWounds)if(w.active)++count;
     archive.ArchiveInteger(&count);if(count<0 || count>64)cgi.Error(ERR_DROP,"Invalid AC wound save count");
     if(archive.IsWriting()){for(auto& w:acWounds)if(w.active)archive.ArchiveRaw(&w.data,sizeof(w.data));}
-    else for(int i=0;i<count;++i){auto& w=acWounds[i];size_t size=magic==0x41435731?offsetof(ac_wound_t,patch)+offsetof(ac_patch_t,triangle)+32*sizeof(ac_patch_triangle_t):sizeof(w.data);archive.ArchiveRaw(&w.data,size);if(!ACValidWound(w.data))cgi.Error(ERR_DROP,"Invalid AC wound save geometry");w.active=true;w.rebind=true;acWoundCursor=i+1;}
+    else for(int i=0;i<count;++i){auto& w=acWounds[i];size_t size=magic==0x41435733?sizeof(w.data):offsetof(ac_wound_t,patch)+offsetof(ac_patch_t,triangle)+(magic==0x41435731?32:64)*sizeof(ac_patch_triangle_t);archive.ArchiveRaw(&w.data,size);if(!ACValidWound(w.data))cgi.Error(ERR_DROP,"Invalid AC wound save geometry");w.active=true;w.rebind=true;acWoundCursor=i+1;}
     if(cgi.Cvar_Get("ac_fx_debug","0",0)->integer)cgi.Printf("AC_WOUND_ARCHIVE %s count=%d\n",archive.IsWriting()?"save":"load",count);
 }

@@ -1,0 +1,107 @@
+{
+  "final_runs": [
+    {
+      "game": "AA",
+      "death": false,
+      "exit": 0,
+      "preserved": true,
+      "patches": [
+        135,
+        89
+      ],
+      "head_projection": [
+        "AC_HEAD_PATCH radius=1.800 triangles=135",
+        "AC_HEAD_PATCH radius=3.500 triangles=89"
+      ],
+      "adapted": [],
+      "archive": [
+        "AC_WOUND_ARCHIVE save count=0",
+        "AC_WOUND_ARCHIVE save count=2",
+        "AC_WOUND_ARCHIVE save count=2",
+        "AC_WOUND_ARCHIVE load count=2"
+      ],
+      "errors": [],
+      "binaries": {
+        "openmohaa.exe": "c0edf3af1c38f70cb0dff7759edad3cb8cd6d218c8e08343b9b68991738dd347",
+        "game.dll": "f82de93f3f25bc1e499146e32aac999b61d890631cd18660205a90951dc151ef",
+        "cgame.dll": "857f1a30188e1ce1a83063d9e9e6baa36a90511dfb537278ec66b687927d434f"
+      }
+    },
+    {
+      "game": "BT",
+      "death": false,
+      "exit": 0,
+      "preserved": true,
+      "patches": [
+        186,
+        50
+      ],
+      "head_projection": [
+        "AC_HEAD_PATCH radius=1.800 triangles=186",
+        "AC_HEAD_PATCH radius=3.500 triangles=50"
+      ],
+      "adapted": [],
+      "archive": [
+        "AC_WOUND_ARCHIVE save count=2",
+        "AC_WOUND_ARCHIVE save count=2",
+        "AC_WOUND_ARCHIVE load count=2"
+      ],
+      "errors": [],
+      "binaries": {
+        "openmohaa.exe": "c0edf3af1c38f70cb0dff7759edad3cb8cd6d218c8e08343b9b68991738dd347",
+        "game.dll": "f82de93f3f25bc1e499146e32aac999b61d890631cd18660205a90951dc151ef",
+        "cgame.dll": "857f1a30188e1ce1a83063d9e9e6baa36a90511dfb537278ec66b687927d434f"
+      }
+    }
+  ],
+  "archive_compatibility": [
+    {
+      "run": "head-legacy-v2-r2",
+      "load_counts": [
+        "8",
+        "8"
+      ],
+      "exit": 0
+    },
+    {
+      "run": "head-nose-v3-r2",
+      "load_counts": [
+        "2",
+        "2"
+      ],
+      "exit": 0
+    }
+  ],
+  "earlier_spearhead": {
+    "game": "SH",
+    "death": false,
+    "exit": 0,
+    "preserved": true,
+    "patches": [
+      42,
+      48
+    ],
+    "head_projection": [
+      "AC_HEAD_PATCH radius=1.800 triangles=42",
+      "AC_HEAD_PATCH radius=3.500 triangles=48"
+    ],
+    "adapted": [],
+    "archive": [
+      "AC_WOUND_ARCHIVE save count=2",
+      "AC_WOUND_ARCHIVE save count=2",
+      "AC_WOUND_ARCHIVE load count=2"
+    ],
+    "errors": [],
+    "binaries": {
+      "openmohaa.exe": "23a5101f3574f3a498ef0070d2af9443321cfcf8ee85cd2d8a368e2d0800b239",
+      "game.dll": "f82de93f3f25bc1e499146e32aac999b61d890631cd18660205a90951dc151ef",
+      "cgame.dll": "857f1a30188e1ce1a83063d9e9e6baa36a90511dfb537278ec66b687927d434f"
+    }
+  },
+  "visual_review": [
+    "AA cheek front and turned",
+    "BT mouth corner",
+    "same AA nose wound before/after removing facet offset"
+  ],
+  "personal_acceptance": false
+}

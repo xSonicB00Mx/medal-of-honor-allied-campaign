@@ -19,7 +19,8 @@ typedef struct {
     vec3_t origin, angles;
     const byte *surfaces;
 } ac_pose_t;
-#define AC_PATCH_MAX 64
+#define AC_BODY_PATCH_MAX 64
+#define AC_PATCH_MAX 256
 typedef struct { float bary[3], uv[2]; } ac_patch_vertex_t;
 typedef struct {
     int mesh, surface, triangle;

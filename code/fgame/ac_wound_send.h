@@ -3,7 +3,7 @@
 static void ACSendWound(Entity *target,const ac_pose_t& pose,const ac_surface_point_t& point,
     unsigned event,unsigned seed,int group,int branch) {
     if(!gi.Cvar_Get("ac_body_wounds","1",CVAR_ARCHIVE)->integer)return;
-    ac_wound_t w={};w.version=2;w.event=event;
+    ac_wound_t w={};w.version=3;w.event=event;
     w.seed=ACVisualOrientation(seed,branch,w.rotation,w.flipU,w.flipV);
     w.entity=target->edict->s.number;w.usage=target->edict->s.usageIndex;w.group=group;w.branch=branch;
     Q_strncpyz(w.model,gi.getConfigstring(CS_MODELS+target->edict->s.modelindex),sizeof(w.model));
