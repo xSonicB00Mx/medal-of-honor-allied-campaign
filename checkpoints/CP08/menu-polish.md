@@ -18,4 +18,6 @@ Breakthrough then exposed a real lazy-menu-loading use-after-free: a local crash
 
 Initial batch menu-polish-r1 from 0d25e551 was superseded by the lazy-menu correction. Installation verified 9072 original files, 9000 runtime-base files, eight Max Payne input files and the current 95 personal-profile files unchanged. All 62 owned runtime hashes match. Existing font/HUD packages and game/cgame DLLs are preserved; the engine and three new menu packages are installed.
 
+Final installed batch: menu-polish-r2, source cf4993de. Installed engine hash equals the passing bt-r4 candidate. Installed AA aa-installed-final also passes; all 62 runtime hashes match and deployment again preserved 95 profile files. Rollback: generated-local/widescreen/backups/menu-polish-r2. Delivery: artifacts-local/CP08-r1-menu-polish-r2-update.zip. Screenshot bundle (nine menu captures, two actual-mouse hover captures and the cursor sprite): artifacts-local/CP08-MenuPolish-Screenshots.zip. Evidence: menu-polish-tests.json. No exhaustive display/DPI/localization matrix is claimed.
+
 Local masters, packages and screenshots are ignored; no original artwork/font or profile data is committed. Personal acceptance and merge remain open.
