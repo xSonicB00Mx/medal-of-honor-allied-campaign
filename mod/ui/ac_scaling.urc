@@ -73,7 +73,7 @@ Label
 {
 name "menuLabel"
 dontlocalize
-title "Menu and font size"
+title "Menu font size"
 rect 40 210 400 30
 fgcolor 0.91 0.86 0.7 1
 bgcolor 0.055 0.065 0.06 1

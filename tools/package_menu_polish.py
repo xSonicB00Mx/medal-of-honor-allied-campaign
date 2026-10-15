@@ -1,4 +1,4 @@
-"""Menu-only 66% font metrics and local HD cursor; no changes to HUD fonts."""
+"""Menu-only full-size font metrics and local HD cursor; no changes to HUD fonts."""
 from pathlib import Path
 import io, json, re, hashlib, zipfile
 from PIL import Image, ImageChops
@@ -16,11 +16,8 @@ for game,folder in [('AA','main'),('SH','mainta'),('BT','maintt')]:
             stem=Path(name).stem
             if not stem.startswith(('facfont-','verdana-','ac-courier-','courier-','handle-','delima-')):continue
             body=z.read(name).decode('ascii')
-            body=re.sub(r'\bheight\s+(\S+)',lambda m:f'height {float(m[1])*.66:.10f}',body)
-            start=body.index('locations')
-            body=body[:start]+re.sub(r'[-+]?\d+(?:\.\d+)?',lambda m:f'{float(m[0])*.66:.10f}',body[start:])
             files[f'fonts/ac-menu-{stem}.ritualfont']=body.encode('ascii')
-            shaders.append(f'gfx/fonts/ac-menu-{stem}\n{{\n nopicmip\n {{\n clampmap gfx/fonts/{stem}.tga\n tcMod scale {1/.66:.12f} {1/.66:.12f}\n blendFunc blend\n rgbGen global\n alphaGen global\n }}\n}}')
+            shaders.append(f'gfx/fonts/ac-menu-{stem}\n{{\n nopicmip\n {{\n clampmap gfx/fonts/{stem}.tga\n blendFunc blend\n rgbGen global\n alphaGen global\n }}\n}}')
             fonts.append(stem)
     shaders.append('gfx/2d/mouse_cursor\n{\n nopicmip\n {\n clampmap gfx/2d/mouse_cursor.tga\n blendFunc blend\n rgbGen global\n alphaGen global\n }\n}')
     # Give hover states their own real RGBA images, so deferred/implicit
@@ -32,10 +29,16 @@ for game,folder in [('AA','main'),('SH','mainta'),('BT','maintt')]:
             hover=ImageChops.multiply(original,Image.new('RGBA',original.size,(255,209,89,255)))
             b=io.BytesIO();hover.save(b,format='TGA');files[base+'_h.tga']=b.getvalue()
             shaders.append(f'{base}_h\n{{\n nopicmip\n {{\n clampmap {base}_h.tga\n blendFunc blend\n rgbGen global\n alphaGen global\n }}\n}}')
+    # Preserve all previously fitted controls from the effective options layout.
+    for package in sorted((root/'runtime-local/CP08-r1'/folder).glob('*.pk3')):
+        if package.name == 'zzzzzzzzz_AC_MenuPolish.pk3': continue
+        with zipfile.ZipFile(package) as z:
+            if 'ui/ac_scaling.urc' in z.namelist():
+                files['ui/ac_scaling.urc']=z.read('ui/ac_scaling.urc').replace(b'Menu and font size',b'Menu font size')
     files['scripts/zzzz_ac_menu_polish.shader']='\n'.join(shaders).encode('ascii')
     p=work/'packages'/folder/'zzzzzzzzz_AC_MenuPolish.pk3';p.parent.mkdir(parents=True,exist_ok=True)
     with zipfile.ZipFile(p,'w',zipfile.ZIP_DEFLATED) as z:
         for n,data in files.items():z.writestr(n,data)
-    reports.append(dict(game=game,package=p.relative_to(root).as_posix(),sha256=hashlib.sha256(p.read_bytes()).hexdigest(),menu_font_scale=.66,fonts=fonts,cursor_size=[256,256]))
+    reports.append(dict(game=game,package=p.relative_to(root).as_posix(),sha256=hashlib.sha256(p.read_bytes()).hexdigest(),menu_font_scale=1.0,fonts=fonts,cursor_size=[256,256]))
 (work/'packages/package-report.json').write_text(json.dumps(reports,indent=2)+'\n')
 print('Menu-only font aliases and HD cursor packaged.')

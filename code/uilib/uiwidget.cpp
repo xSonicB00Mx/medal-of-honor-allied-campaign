@@ -2495,7 +2495,7 @@ void UIWidget::SetVirtualScale(vec2_t out)
         out[0] = out[1] = base * legacy * CampaignUIValue("ac_hud_scale", 1, .5f, 2);
     } else {
         // Full-size menus cannot grow beyond their visible 640x480 canvas.
-        out[0] = out[1] = fminf(fit, base * CampaignUIValue("ac_menu_scale", 1, .65f, 1.5f));
+        out[0] = out[1] = base;
     }
 }
 
@@ -2506,7 +2506,7 @@ void UIWidget::SetLayoutScale(vec2_t out)
     } else {
         const float factor = IsCampaignHUD()
             ? CampaignUIValue("ac_hud_scale", 1, .5f, 2)
-            : CampaignUIValue("ac_menu_scale", 1, .65f, 1.5f);
+            : 1.0f;
         out[0] = out[1] = uid.scaleRes[1] * factor;
     }
 }

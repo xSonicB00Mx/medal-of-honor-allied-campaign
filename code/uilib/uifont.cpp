@@ -303,6 +303,17 @@ void UIFont::setFont(const char *fontname)
     name      = fontname;
 }
 
+// Menu aliases share the full-size Courier atlas. Scale glyphs and their
+// measured extents, never the widget frame, clipping area or mouse targets.
+float UIFont::MenuScale() const
+{
+    if (Q_stricmpn(name.c_str(), "ac-menu-", 8)) return 1.0f;
+    cvar_t *var = uii.Cvar_Find("ac_menu_scale");
+    const float value = var ? var->value : 1.0f;
+    if (!(value >= .65f)) return .65f;
+    return value > 1.5f ? 1.5f : value;
+}
+
 void UIFont::Print(float x, float y, const char *text, size_t maxlen, const float *virtualScreen)
 {
     CheckRefreshFont();
@@ -313,7 +324,12 @@ void UIFont::Print(float x, float y, const char *text, size_t maxlen, const floa
 
     uii.Rend_SetColor(color);
     // Round to integer to avoid blurry text
-    uii.Rend_DrawString(m_font, text, (int)x, (int)y, maxlen, virtualScreen);
+    const float factor = MenuScale();
+    const float scale[2] = {
+        factor * (virtualScreen ? virtualScreen[0] : 1.0f),
+        factor * (virtualScreen ? virtualScreen[1] : 1.0f)
+    };
+    uii.Rend_DrawString(m_font, text, (int)x / factor, (int)y / factor, maxlen, scale);
 }
 
 void UIFont::PrintJustified(
@@ -531,7 +547,7 @@ int UIFont::getMaxWidthIndex(const char *text, int maxlen)
         return 0;
     }
 
-    return UI_FontStringMaxWidth(m_font, text, maxlen);
+    return UI_FontStringMaxWidth(m_font, text, maxlen == -1 ? -1 : (int)(maxlen / MenuScale()));
 }
 
 int UIFont::getWidth(const char *text, int maxlen)
@@ -542,7 +558,7 @@ int UIFont::getWidth(const char *text, int maxlen)
         return 0;
     }
 
-    return UI_FontStringWidth(m_font, text, maxlen);
+    return UI_FontStringWidth(m_font, text, maxlen) * MenuScale();
 }
 
 int UIFont::getCharWidth(unsigned short ch)
@@ -579,7 +595,7 @@ int UIFont::getCharWidth(unsigned short ch)
         index = 0;
     }
 
-    return m_font->sgl[index]->locations[indirected].size[0] * 256.0 * widthMul;
+    return m_font->sgl[index]->locations[indirected].size[0] * 256.0 * widthMul * MenuScale();
 }
 
 int UIFont::getHeight(const char *text, int maxlen, const float *virtualScale)
@@ -614,13 +630,13 @@ int UIFont::getHeight(const float *virtualScale)
 
     if (virtualScale) {
         if (m_font) {
-            return (m_font->sgl[0]->height * virtualScale[0]);
+            return (m_font->sgl[0]->height * virtualScale[1] * MenuScale());
         } else {
             return (16.0 * virtualScale[1]);
         }
     } else {
         if (m_font) {
-            return m_font->sgl[0]->height;
+            return m_font->sgl[0]->height * MenuScale();
         } else {
             return 16;
         }

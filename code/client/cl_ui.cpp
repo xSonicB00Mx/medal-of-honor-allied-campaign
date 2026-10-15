@@ -1816,7 +1816,7 @@ Updates the UI.
 void UI_Update(void)
 {
     bool layoutChanged = false;
-    const char *layoutCvars[] = {"ac_ui_auto", "ac_menu_scale", "ac_hud_scale", "ac_hud_safe", "ui_compass_scale"};
+    const char *layoutCvars[] = {"ac_ui_auto", "ac_hud_scale", "ac_hud_safe", "ui_compass_scale"};
     for (const char *name : layoutCvars) {
         cvar_t *var = Cvar_FindVar(name);
         if (var && var->modified) {

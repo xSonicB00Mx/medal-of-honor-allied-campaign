@@ -85,6 +85,7 @@ public:
     int  DBCSGetWordBlockCount(const char *text, int maxlen);
 
 private:
+    float MenuScale() const;
     void CheckRefreshFont();
 };
 

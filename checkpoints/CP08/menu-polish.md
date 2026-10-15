@@ -1,3 +1,11 @@
+## Font-only scaling update
+
+The latest request supersedes the fixed 66% reduction below. Menu aliases now retain the full Courier New Bold metrics and atlas coordinates. UIFont applies ac_menu_scale to glyph rendering, measurement, justification and field width limits, keeping the text origin anchored. The existing slider offers 65-100%; 1.0 is the unchanged default and now means full size. Existing saved values remain valid and shared across campaigns. Manual values up to 150% retain the prior engine limit and may exceed tightly fitted labels.
+
+Widget layout and virtual scales no longer consume ac_menu_scale; changing it does not trigger a resolution/layout rebuild. The option is named Menu font size. HUD fonts, picture lettering, cursor and hover assets are unaffected. Native tests cycle 100%, 65%, 150%, 100% in campaign options and legacy controls, assert identical root/child rectangles and capture the gameplay HUD. Personal profiles are not used for testing.
+
+## Previous menu polish delivery
+
 # Smaller menu type, working hover labels and HD cursor
 
 Menu text uses separate ac-menu font aliases at exactly 0.66 of the existing Courier New Bold metrics. The same HD glyph atlases are sampled through reciprocal UV scaling; proportions, colors and shadows remain intact. Widget context selects the alias for menus and their child controls/column headers. HUD containers retain the original fonts. Generated-menu fit calculations still use the original sizes, preventing an auto-fit step from enlarging the reduced text again. Lettering baked into pictures is unchanged.

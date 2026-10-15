@@ -1,3 +1,7 @@
+## Aktuell: Menu font size skaliert ausschliesslich Schrift
+
+100 Prozent Courier New Bold als Basis wiederhergestellt. Menu font size veraendert nur Text, nicht Menueflaechen oder Mausziele. HUD separat; bisherige kampagnenuebergreifende Einstellung bleibt erhalten. Siehe [Bericht](checkpoints/CP08/menu-polish.md).
+
 ## Aktuell: Menueschrift, Hover-Buttons und HD-Cursor
 
 Menueschrift auf exakt 66 Prozent reduziert; getrennte Font-Aliase erhalten die HUD-Schriftgroessen. Quit und Back to Game zeigen beim echten Maus-Hover wieder transparente goldene Schrift. Neuer HD-Bronzecursor skaliert proportional zur Bildschirm-/Fensterhoehe, auch im SDL-Hardwarepfad. [Bericht und Testgrenzen](checkpoints/CP08/menu-polish.md).

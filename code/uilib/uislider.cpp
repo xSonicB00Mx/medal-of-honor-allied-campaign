@@ -235,9 +235,7 @@ void UISlider::AutoDecrement(Event *ev)
 
 void UISlider::MouseExited(Event *ev)
 {
-    // Changing menu size moves this slider away from the pointer. Keep the
-    // selected value instead of treating the resulting mouse exit as cancel.
-    if (m_thumb_depressed && m_cvarname != "ac_menu_scale") {
+    if (m_thumb_depressed) {
         m_value = m_oldvalue;
         UpdateData();
     }
