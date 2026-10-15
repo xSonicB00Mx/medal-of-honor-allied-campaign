@@ -1,5 +1,11 @@
 # Mission List highscore runs
 
+## Completion photo aspect correction (2026-10-15)
+
+The approved Gemini AA-statsscreen_game artwork was already selected, but widescreenbackground expanded every menu frame by one third. On the new 960x540 results canvas this produced a 2560x1080 stretched image on a 1920x1080 display, clipping its paper wings. Background width now derives from height times 16/9 and is centered within the frame. Legacy 640x480 menus retain the same geometry; widecanvas displays the complete artwork at its intended proportions. No texture or scoring changes.
+
+Engine build and isolated native completion tests passed at 1920x1080 and 1024x768, including result storage and save/load locks, with no script diagnostics. Both result screenshots were visually checked against the approved source; the complete paper wings and natural photo proportions are restored. Reports: generated-local/highscore-background-wide-r1.json and highscore-background-43-r1.json. Active user data was not used in these tests.
+
 This supersedes the save/load and completion behavior in level-replay.md. Normal campaign play and the briefing catalogue retain their existing behavior.
 
 ## Scoring, version 1

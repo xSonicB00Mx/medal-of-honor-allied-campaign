@@ -2593,12 +2593,15 @@ void UIWidgetContainer::Draw(void)
     // Scissoring crops narrower displays; ultrawide retains a centered 16:9 image.
     if (m_widescreenBackground
         && m_frame.size.width > 0 && m_frame.size.height > 0) {
-        const float wing = m_frame.size.width / 6.0f;
+        // Derive the artwork width from its height, not the menu width:
+        // legacy menus use 4:3 frames, while widecanvas already uses 16:9.
+        const float width = m_frame.size.height * (16.0f / 9.0f);
+        const float x = m_frame.pos.x + (m_frame.size.width - width) * 0.5f;
         const float color[4] = {1, 1, 1, m_local_alpha};
         uii.Rend_SetColor(color);
         const uihandle_t material = m_widescreenBackground->GetMaterial();
-        uii.Rend_DrawPicStretched(m_frame.pos.x - wing, m_frame.pos.y,
-            m_frame.size.width + 2 * wing, m_frame.size.height, 0, 0, 1, 1, material);
+        uii.Rend_DrawPicStretched(x, m_frame.pos.y,
+            width, m_frame.size.height, 0, 0, 1, 1, material);
         uii.Rend_SetColor(NULL);
     }
 
