@@ -1,0 +1,247 @@
+{
+  "formula_cases": 12,
+  "formula_passed": true,
+  "native": [
+    {
+      "run": "combat-aa-r4",
+      "case": "combat",
+      "operation": 1,
+      "difficulty": 1,
+      "passed": true,
+      "records_changed": true,
+      "images": [
+        "profiles-local/highscore/combat-aa-r4/main/screenshots/shot0000.png",
+        "profiles-local/highscore/combat-aa-r4/main/screenshots/shot0001.png",
+        "profiles-local/highscore/combat-aa-r4/main/screenshots/shot0002.png"
+      ],
+      "binaries": {
+        "openmohaa.exe": "bf9ee9796ebfbdc102481b2ba32bdc33168707e7976cbc0887b5b3e9d9c11bed",
+        "game.dll": "da267f5202f09950beff2a3c302883348e1c02b62c21e49875203bb4bbab1346"
+      }
+    },
+    {
+      "run": "lower-medium",
+      "case": "empty",
+      "operation": 1,
+      "difficulty": 1,
+      "passed": true,
+      "records_changed": true,
+      "images": [
+        "profiles-local/highscore/lower-medium/main/screenshots/shot0000.png",
+        "profiles-local/highscore/lower-medium/main/screenshots/shot0001.png",
+        "profiles-local/highscore/lower-medium/main/screenshots/shot0002.png"
+      ],
+      "binaries": {
+        "openmohaa.exe": "bf9ee9796ebfbdc102481b2ba32bdc33168707e7976cbc0887b5b3e9d9c11bed",
+        "game.dll": "da267f5202f09950beff2a3c302883348e1c02b62c21e49875203bb4bbab1346"
+      }
+    },
+    {
+      "run": "easy",
+      "case": "empty",
+      "operation": 1,
+      "difficulty": 0,
+      "passed": true,
+      "records_changed": true,
+      "images": [
+        "profiles-local/highscore/easy/main/screenshots/shot0000.png",
+        "profiles-local/highscore/easy/main/screenshots/shot0001.png",
+        "profiles-local/highscore/easy/main/screenshots/shot0002.png"
+      ],
+      "binaries": {
+        "openmohaa.exe": "bf9ee9796ebfbdc102481b2ba32bdc33168707e7976cbc0887b5b3e9d9c11bed",
+        "game.dll": "da267f5202f09950beff2a3c302883348e1c02b62c21e49875203bb4bbab1346"
+      }
+    },
+    {
+      "run": "hard",
+      "case": "empty",
+      "operation": 1,
+      "difficulty": 2,
+      "passed": true,
+      "records_changed": true,
+      "images": [
+        "profiles-local/highscore/hard/main/screenshots/shot0000.png",
+        "profiles-local/highscore/hard/main/screenshots/shot0001.png",
+        "profiles-local/highscore/hard/main/screenshots/shot0002.png"
+      ],
+      "binaries": {
+        "openmohaa.exe": "bf9ee9796ebfbdc102481b2ba32bdc33168707e7976cbc0887b5b3e9d9c11bed",
+        "game.dll": "da267f5202f09950beff2a3c302883348e1c02b62c21e49875203bb4bbab1346"
+      }
+    },
+    {
+      "run": "tie",
+      "case": "empty",
+      "operation": 1,
+      "difficulty": 2,
+      "passed": true,
+      "records_changed": false,
+      "images": [
+        "profiles-local/highscore/tie/main/screenshots/shot0000.png",
+        "profiles-local/highscore/tie/main/screenshots/shot0001.png",
+        "profiles-local/highscore/tie/main/screenshots/shot0002.png"
+      ],
+      "binaries": {
+        "openmohaa.exe": "bf9ee9796ebfbdc102481b2ba32bdc33168707e7976cbc0887b5b3e9d9c11bed",
+        "game.dll": "da267f5202f09950beff2a3c302883348e1c02b62c21e49875203bb4bbab1346"
+      }
+    },
+    {
+      "run": "abort",
+      "case": "abort",
+      "operation": 1,
+      "difficulty": 1,
+      "passed": true,
+      "records_changed": false,
+      "images": [],
+      "binaries": {
+        "openmohaa.exe": "bf9ee9796ebfbdc102481b2ba32bdc33168707e7976cbc0887b5b3e9d9c11bed",
+        "game.dll": "da267f5202f09950beff2a3c302883348e1c02b62c21e49875203bb4bbab1346"
+      }
+    },
+    {
+      "run": "death",
+      "case": "death",
+      "operation": 1,
+      "difficulty": 1,
+      "passed": true,
+      "records_changed": false,
+      "images": [],
+      "binaries": {
+        "openmohaa.exe": "bf9ee9796ebfbdc102481b2ba32bdc33168707e7976cbc0887b5b3e9d9c11bed",
+        "game.dll": "da267f5202f09950beff2a3c302883348e1c02b62c21e49875203bb4bbab1346"
+      }
+    },
+    {
+      "run": "restart",
+      "case": "restart",
+      "operation": 1,
+      "difficulty": 1,
+      "passed": true,
+      "records_changed": false,
+      "images": [],
+      "binaries": {
+        "openmohaa.exe": "bf9ee9796ebfbdc102481b2ba32bdc33168707e7976cbc0887b5b3e9d9c11bed",
+        "game.dll": "da267f5202f09950beff2a3c302883348e1c02b62c21e49875203bb4bbab1346"
+      }
+    },
+    {
+      "run": "campaign-r2",
+      "case": "campaign",
+      "operation": 1,
+      "difficulty": 1,
+      "passed": true,
+      "records_changed": false,
+      "images": [],
+      "binaries": {
+        "openmohaa.exe": "bf9ee9796ebfbdc102481b2ba32bdc33168707e7976cbc0887b5b3e9d9c11bed",
+        "game.dll": "da267f5202f09950beff2a3c302883348e1c02b62c21e49875203bb4bbab1346"
+      }
+    },
+    {
+      "run": "sh-empty",
+      "case": "empty",
+      "operation": 14,
+      "difficulty": 1,
+      "passed": true,
+      "records_changed": true,
+      "images": [
+        "profiles-local/highscore/sh-empty/mainta/screenshots/shot0000.png",
+        "profiles-local/highscore/sh-empty/mainta/screenshots/shot0001.png",
+        "profiles-local/highscore/sh-empty/mainta/screenshots/shot0002.png"
+      ],
+      "binaries": {
+        "openmohaa.exe": "bf9ee9796ebfbdc102481b2ba32bdc33168707e7976cbc0887b5b3e9d9c11bed",
+        "game.dll": "da267f5202f09950beff2a3c302883348e1c02b62c21e49875203bb4bbab1346"
+      }
+    },
+    {
+      "run": "corrupt",
+      "case": "empty",
+      "operation": 1,
+      "difficulty": 1,
+      "passed": true,
+      "records_changed": false,
+      "images": [
+        "profiles-local/highscore/corrupt/main/screenshots/shot0000.png",
+        "profiles-local/highscore/corrupt/main/screenshots/shot0001.png",
+        "profiles-local/highscore/corrupt/main/screenshots/shot0002.png"
+      ],
+      "binaries": {
+        "openmohaa.exe": "bf9ee9796ebfbdc102481b2ba32bdc33168707e7976cbc0887b5b3e9d9c11bed",
+        "game.dll": "da267f5202f09950beff2a3c302883348e1c02b62c21e49875203bb4bbab1346"
+      }
+    },
+    {
+      "run": "backup",
+      "case": "empty",
+      "operation": 1,
+      "difficulty": 1,
+      "passed": true,
+      "records_changed": true,
+      "images": [
+        "profiles-local/highscore/backup/main/screenshots/shot0000.png",
+        "profiles-local/highscore/backup/main/screenshots/shot0001.png",
+        "profiles-local/highscore/backup/main/screenshots/shot0002.png"
+      ],
+      "binaries": {
+        "openmohaa.exe": "bf9ee9796ebfbdc102481b2ba32bdc33168707e7976cbc0887b5b3e9d9c11bed",
+        "game.dll": "da267f5202f09950beff2a3c302883348e1c02b62c21e49875203bb4bbab1346"
+      }
+    },
+    {
+      "run": "hard-combat",
+      "case": "combat",
+      "operation": 1,
+      "difficulty": 2,
+      "passed": true,
+      "records_changed": true,
+      "images": [
+        "profiles-local/highscore/hard-combat/main/screenshots/shot0000.png",
+        "profiles-local/highscore/hard-combat/main/screenshots/shot0001.png"
+      ],
+      "binaries": {
+        "openmohaa.exe": "bf9ee9796ebfbdc102481b2ba32bdc33168707e7976cbc0887b5b3e9d9c11bed",
+        "game.dll": "da267f5202f09950beff2a3c302883348e1c02b62c21e49875203bb4bbab1346"
+      }
+    },
+    {
+      "run": "menu-43",
+      "case": "inspect",
+      "operation": 1,
+      "difficulty": 1,
+      "passed": true,
+      "records_changed": false,
+      "images": [
+        "profiles-local/highscore/menu-43/main/screenshots/shot0000.png",
+        "profiles-local/highscore/menu-43/main/screenshots/shot0001.png"
+      ],
+      "binaries": {
+        "openmohaa.exe": "bf9ee9796ebfbdc102481b2ba32bdc33168707e7976cbc0887b5b3e9d9c11bed",
+        "game.dll": "da267f5202f09950beff2a3c302883348e1c02b62c21e49875203bb4bbab1346"
+      }
+    },
+    {
+      "run": "bt-empty-r2",
+      "case": "BT completion with exact baseline diagnostics",
+      "passed": true,
+      "baseline_diagnostics": 28,
+      "new_diagnostics": 0,
+      "binaries": {
+        "openmohaa.exe": "bf9ee9796ebfbdc102481b2ba32bdc33168707e7976cbc0887b5b3e9d9c11bed",
+        "game.dll": "da267f5202f09950beff2a3c302883348e1c02b62c21e49875203bb4bbab1346"
+      },
+      "images": [
+        "profiles-local/highscore/bt-empty-r2/maintt/screenshots/shot0000.png",
+        "profiles-local/highscore/bt-empty-r2/maintt/screenshots/shot0001.png",
+        "profiles-local/highscore/bt-empty-r2/maintt/screenshots/shot0002.png"
+      ]
+    }
+  ],
+  "record_isolation_verified": true,
+  "lower_and_tied_scores_keep_best": true,
+  "fresh_unlocks_preserved": true,
+  "active_user_profile_used": false,
+  "scope": "Native combat and scripted intermissions in isolated profiles; no exhaustive natural campaign playthrough."
+}

@@ -11,7 +11,7 @@ binary=rt if args.installed else p/'bin'
 if not args.installed:
  binary.mkdir()
  for f in rt.glob('*.dll'):shutil.copy2(f,binary/f.name)
- shutil.copy2(R/'build-local/cp00-r3/RelWithDebInfo/openmohaa.exe',binary/'openmohaa.exe')
+ for name in ['openmohaa.exe','game.dll']:shutil.copy2(R/'build-local/cp00-r3/RelWithDebInfo'/name,binary/name)
 folders=['main','mainta','maintt'];op=args.operation;o=ops[op];game=['AA','SH','BT'].index(o['source_game']);index=levels.index((op,o['map_chain'][0]))
 for folder in folders:
  h=p/folder;(h/'probe').mkdir(parents=True);(h/'save/omconfig').mkdir(parents=True)
@@ -46,7 +46,7 @@ elif args.case=='briefing':
  for folder in folders:
   (p/folder/'ac_context_ready.cfg').write_text('wait 4500\nfinishloadingscreen\nac_progress_report\n+attack\nwait 500\n-attack\n')
 elif args.case in ['replay','save']:
- commands+=[f'ac_level_replay {index} {args.difficulty}'];stop='AC_REPLAY_RETURN_MAIN' if args.case=='replay' else 'AC_TEST_DONE';force_stop=args.case=='replay'
+ commands+=[f'ac_level_replay {index} {args.difficulty}'];stop='AC_SCORE_COMPLETE' if args.case=='replay' else 'AC_TEST_DONE';force_stop=args.case=='replay'
  for folder in folders:
   probe=['wait 5000','finishloadingscreen','ac_progress_report','savegame other','wait 600','savegame replay_test','wait 500','loadgame replay_test','wait 2500','finishloadingscreen','ac_progress_report']
   if args.case=='replay':probe+=['script player exec probe/complete.scr','wait 6500','+attack','wait 500','-attack']
@@ -93,10 +93,11 @@ if args.case=='menu':
 if args.case=='locked':assert all(any(marker in e for e in events) for marker in ['AC_LEVEL_LOCKED','AC_BRIEFING_LOCKED'])
 if args.case in ['replay','save']:
  assert any(f'skill={args.difficulty}' in e and 'AC_LEVEL_PROGRESS' in e for e in events)
- assert any('AC_SAVE_PROTECTED campaign save' in e for e in events)
+ assert any('AC_SCORE_SAVE_LOAD_BLOCKED' in e for e in events)
+ assert not any(p.glob('*/save/omconfig/replay_test.sav'))
  assert any('replay=2' in e for e in events)
  prefs=(p/'main/ac_preferences.cfg').read_text();assert re.search(rf'seta skill \"?{args.campaign_skill}\"?(?:\n|$)',prefs)
-if args.case=='replay':assert any(f'AC_REPLAY_RETURN_MAIN skill={args.campaign_skill}' in e for e in events)
+if args.case=='replay':assert (p/'ac_scores.dat').exists()
 if args.case=='briefing':assert any(('AC_BRIEFING_VIDEO '+o['briefing_replay'].split('/')[-1]+'.roq' if game else 'AC_BRIEFING_STARTED '+o['briefing_replay']) in e for e in events)
 if args.case=='progress':assert int(after.split()[4+index//32])&(1<<(index%32))
 

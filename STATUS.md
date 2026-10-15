@@ -1,3 +1,7 @@
+## Aktuell: Mission List Highscore-Modus
+
+Getrennte Rekorde fuer Easy/Medium/Hard, letzter Levelscore, native Kampfwertung und Abschlussstatistik mit Soldatenfoto. Speichern/Laden waehrend eines Laufs gesperrt. [Regeln und Nachweise](checkpoints/CP08/highscore.md).
+
 ## Aktuell: Gesperrte Levels und Briefing-Auswahl
 
 Alle Levelplaetze bleiben sichtbar; nicht abgeschlossene Levels sind rot als LOCKED gesperrt. Briefing Room bietet die wachsende Auswahl freigeschalteter Originalbriefings. [Bericht](checkpoints/CP08/unlock-menus.md).

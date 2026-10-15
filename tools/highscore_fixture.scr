@@ -1,0 +1,100 @@
+// Diagnostic fixture only: no mission entity or success flag is changed.
+main:
+    $player nodamage
+    level.cp00_deaths = 0
+    level.cp00_base = $player.origin
+    local.dir = angles_toforward $player.angles
+    level.cp00_target = $player.origin + local.dir * 160
+    // Reject placements inside the map. Prefer the viewing direction, then
+    // try the four cardinal directions with an actor-sized world trace.
+    // Sweep above the slope, then lower the entire actor box onto terrain.
+    local.dirs[1] = local.dir
+    local.dirs[2] = ( 1 0 0 )
+    local.dirs[3] = ( 0 1 0 )
+    local.dirs[4] = ( -1 0 0 )
+    local.dirs[5] = ( 0 -1 0 )
+    level.cp00_placement = 0
+    for (local.i = 1; local.i <= 5; local.i++)
+    {
+        local.start = $player.origin + ( 0 0 128 )
+        local.goal = local.start + local.dirs[local.i] * 160
+        local.hit = trace local.start local.goal 1 ( -16 -16 0 ) ( 16 16 94 )
+        local.error = vector_length (local.hit - local.goal)
+        if (local.error < 1)
+        {
+            local.floor = trace local.goal (local.goal - ( 0 0 256 )) 1 ( -16 -16 0 ) ( 16 16 94 )
+            local.drop = vector_length (local.goal - local.floor)
+            if ((local.drop < 1) || (local.drop >= 255))
+                continue
+            level.cp00_target = local.floor + ( 0 0 2 )
+            level.cp00_placement = local.i
+            break
+        }
+    }
+    println ("CP00_PLACEMENT=" + level.cp00_placement)
+    if (level.cp00_placement == 0)
+        end
+    $player give models/weapons/colt45.tik
+    $player use models/weapons/colt45.tik
+    wait 0.6
+    level.ac_weapon = $player getactiveweap 0
+    level.ac_weapon bulletspread 0 0 0 0
+    waitthread target 1
+    waitthread fire "Bip01 Spine2"
+    waitthread fire "Bip01 Spine2"
+    level.ac_target remove
+    wait 0.1
+    waitthread target 1
+    waitthread fire "Bip01 Head"
+    level.ac_target remove
+    wait 0.1
+    waitthread target 1000
+    level.ac_target american
+    waitthread fire "Bip01 Spine2"
+    println ("AC_FIXTURE_FRIEND_HEALTH=" + level.ac_target.health)
+    level.ac_target remove
+    $player.viewangles = ( -90 0 0 )
+    wait 0.1
+    level.ac_weapon shoot
+    wait 0.1
+    // Two separate native grenade explosions. Ownership is the player;
+    // each must get its own multiplier and never inherit the previous group.
+    for(local.group = 2; local.group <= 3; local.group++)
+    {
+        for(local.i = 1; local.i <= local.group; local.i++)
+        {
+            waitthread target 1
+            local.targets[local.i] = level.ac_target
+            level.ac_target.origin = level.cp00_target + ( 0 0 12 )
+        }
+        wait 0.2
+        $player explosionattack models/fx/m2fgrenadeexplosion.tik
+        wait 0.5
+        for(local.i = 1; local.i <= local.group; local.i++)
+        {
+            println ("AC_FIXTURE_GRENADE group=" + local.group + " health=" + local.targets[local.i].health)
+            local.targets[local.i] remove
+        }
+    }
+    println "AC_FIXTURE_DONE"
+end
+
+target local.health:
+    level.ac_target = spawn models/human/german_wehrmact_soldier.tik origin level.cp00_target
+    level.ac_target threatbias ignoreme
+    level.ac_target ai_off
+    level.ac_target gravity 0
+    level.ac_target.health = local.health
+    level.ac_target.angles = $player.angles + ( 0 180 0 )
+    wait 0.1
+end
+
+fire local.tag:
+    local.aim = level.ac_target gettagposition local.tag
+    local.eye = $player.origin + ( 0 0 64 )
+    $player.viewangles = vector_toangles (local.aim - local.eye)
+    wait 0.1
+    level.ac_weapon shoot
+    wait 0.1
+    println ("AC_FIXTURE_SHOT tag=" + local.tag + " health=" + level.ac_target.health)
+end

@@ -509,6 +509,8 @@ typedef struct gameImport_s {
     void (*AC_BuildPatch)(struct dtiki_s *,const ac_pose_t *,const ac_surface_point_t *,float,float,int,int,ac_patch_t *);
     void (*AC_SurfaceTrace)(struct dtiki_s *, const ac_pose_t *, const vec3_t, const vec3_t, ac_surface_hit_t *);
     unsigned long long (*AC_StoreLocalWound)(const ac_wound_t *);
+    void (*AC_ScoreEvent)(int event, int value);
+    qboolean (*AC_ScoreIntermission)(const char *map,const char *nextMap,qboolean success);
 } game_import_t;
 
 typedef struct gameExport_s {

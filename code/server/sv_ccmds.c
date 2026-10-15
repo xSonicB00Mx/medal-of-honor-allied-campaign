@@ -325,6 +325,7 @@ This allows fair starts with variable load times.
 ================
 */
 static void SV_MapRestart_f( void ) {
+    if(AC_ScoreSaveBlocked(qfalse)){Cbuf_AddText("ac_score_failed\n");return;}
 	if( com_frameTime == sv.serverId ) {
 		return;
 	}
@@ -1688,6 +1689,7 @@ SV_LoadLastGame_f
 */
 void SV_LoadLastGame_f( void )
 {
+    if(AC_ScoreSaveBlocked(qtrue))return;
 	Cbuf_AddText( va( "loadgame %s\n", Cvar_Get( "g_lastsave", "", 0 )->string ) );
 }
 
@@ -2423,6 +2425,7 @@ void SV_Loadgame_f(void)
 	const char *name;
 	const char *archive_name;
 	qboolean    bStartedGame;
+    if(AC_ScoreSaveBlocked(qtrue))return;
 
 	if (com_cl_running && com_cl_running->integer && clc.state != CA_DISCONNECTED && cg_gametype->integer
 		|| com_sv_running && com_sv_running->integer && g_gametype->integer != GT_SINGLE_PLAYER) {
@@ -2586,6 +2589,7 @@ SV_SaveGame
 */
 void SV_SaveGame(const char *gamename, qboolean autosave)
 {
+    if(AC_ScoreSaveBlocked(!autosave))return;
 #ifndef DEDICATED
 	char *ptr;
 	char  name[64];
@@ -2647,6 +2651,7 @@ static char savegame_name[64];
 
 void SV_Savegame_f(void)
 {
+    if(AC_ScoreSaveBlocked(qtrue))return;
 #ifndef DEDICATED
 	char *s;
 
@@ -2691,6 +2696,7 @@ void SV_CheckSaveGame(void)
 
 void SV_Autosavegame_f(void)
 {
+    if(AC_ScoreSaveBlocked(qfalse))return;
 #ifndef DEDICATED
 	SV_SaveGame(NULL, qtrue);
 #endif

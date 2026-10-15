@@ -1905,6 +1905,7 @@ void Com_Init( char *commandLine ) {
 	Cmd_AddCommand("ac_briefing_replay", AC_Briefing_f);
 	Cmd_AddCommand("ac_return_main", AC_ReturnMain_f);
 	Cmd_AddCommand("ac_progress_report", AC_ProgressReport_f);
+    Cmd_AddCommand("ac_score_report", AC_ScoreReport_f);
 
 	// override anything from the config files with command line args
 	Com_StartupVariable( NULL );

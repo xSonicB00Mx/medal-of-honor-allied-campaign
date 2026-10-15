@@ -1,6 +1,23 @@
 #include "../qcommon/ac_missions.h"
 #include "ac_map.h"
 
+static void AC_OpenGeneratedMenu(const char *name)
+{
+    menuManager.Unlock(NULL);menuManager.ClearMenus(true);
+    Menu *old=menuManager.FindMenu(name);
+    if(old) {
+        UIWidgetContainer *root=(UIWidgetContainer *)old->GetContainerWidget();menuManager.DeleteMenu(old);
+        while(root->getFirstChild())delete root->getFirstChild();
+        delete root->m_layout;delete root;delete old;
+    }
+    new UILayout(va("ui/%s.urc",name));
+    UIWidgetContainer *root=(UIWidgetContainer *)uWinMan.FindWidget(name);
+    if(root) {
+        Menu *menu=new Menu(name);menu->setFullscreen(root->isFullscreen());
+        menu->setVidMode(root->getVidMode());menu->AddMenuItem(root);UI_ForceMenu(name);UI_CloseConsole();
+    }
+}
+
 static const char *AC_StateColor(int state)
 {return state==2?"0.57 0.80 0.61 1":"1 0.82 0.32 1";}
 static const char *AC_StateName(int state)
@@ -10,6 +27,62 @@ static void AC_UIItem(fileHandle_t f,const char *name,const char *title,int x,in
     FS_Printf(f,"resource\n%s\n{\nname \"%s\"\ndontlocalize\ntitle \"%s\"\nrect %d %d %d %d\nfont facfont-20\nfgcolor %s\nbgcolor 0.075 0.095 0.075 0.96\nborderstyle NONE\n",command?"Button":"Label",name,title,x,y,w,h,color);
     if(command) FS_Printf(f,"stuffcommand \"%s\"\n",command);
     FS_Printf(f,"}\n");
+}
+
+static void AC_ScoreLocked_f(void)
+{
+    if(!AC_ScoreSaveBlocked(qfalse))return;
+    const char *name="ac_score_lock";
+    if(!menuManager.FindMenu(name)) {
+        fileHandle_t f=FS_FOpenFileWrite_HomeData("ui/ac_score_lock.urc");if(!f)return;
+        FS_Printf(f,"menu \"%s\" 960 540 NONE 0\nvirtualres 1\nwidecanvas\nfullscreen 0\nbgfill 0 0 0 0.7\nborderstyle NONE\n",name);
+        AC_UIItem(f,"heading","HIGHSCORE RUN",180,170,600,40,NULL,"1 0.85 0.4 1");
+        AC_UIItem(f,"locked","Saving and loading are disabled during this run.",180,224,600,30,NULL);
+        AC_UIItem(f,"rule","Finish this level to record a score. Exiting discards the run.",180,264,600,30,NULL);
+        AC_UIItem(f,"resume","Resume Run",240,332,210,36,"popmenu 0");
+        AC_UIItem(f,"exit","Exit Run (No Score)",500,332,240,36,"ac_return_main","1 0.58 0.45 1");
+        FS_Printf(f,"end.\n");FS_FCloseFile(f);UI_LoadMenu(name);
+    }
+    UI_PushMenu(name);UI_CloseConsole();
+}
+
+static void AC_ScoreFailed_f(void)
+{
+    AC_CancelLevelReplay();Cbuf_ExecuteText(EXEC_INSERT,"disconnect\nac_score_failure_menu\n");
+}
+
+static void AC_ScoreFailureMenu_f(void)
+{
+    fileHandle_t f=FS_FOpenFileWrite_HomeData("ui/ac_score_failure.urc");if(!f)return;
+    FS_Printf(f,"menu \"ac_score_failure\" 960 540 NONE 0\nvirtualres 1\nwidecanvas\nfullscreen 1\nbgfill 0.055 0.07 0.055 1\n");
+    AC_UIItem(f,"heading","RUN NOT COMPLETED",180,160,600,40,NULL,"1 0.58 0.45 1");
+    AC_UIItem(f,"message","No score recorded. Your previous records are unchanged.",180,224,600,30,NULL);
+    AC_UIItem(f,"list","Mission List",240,332,210,36,"ac_level_list");
+    AC_UIItem(f,"main","Main Menu",500,332,210,36,"popmenu 0; pushmenu main");
+    FS_Printf(f,"end.\n");FS_FCloseFile(f);AC_OpenGeneratedMenu("ac_score_failure");
+}
+
+static void AC_ScoreResults_f(void)
+{
+    const acScoreResult_t *r=AC_GetScoreResult();if(!r->valid)return;
+    const acScoreStats_t &s=r->stats;
+    fileHandle_t f=FS_FOpenFileWrite_HomeData("ui/ac_score_results.urc");if(!f)return;
+    FS_Printf(f,"menu \"ac_score_results\" 960 540 NONE 0\nvirtualres 1\nwidecanvas\nfullscreen 1\nbgfill 0 0 0 1\nwidescreenbackground \"textures/ac/widescreen/aa-statsscreen_game\"\n");
+    AC_UIItem(f,"heading","LEVEL COMPLETE",24,20,912,38,NULL,"1 0.85 0.4 1");
+    AC_UIItem(f,"level",va("%s / %s",ac_levels[r->level].title,r->skill==0?"Easy":r->skill==1?"Medium":"Hard"),24,66,912,30,NULL);
+    AC_UIItem(f,"record",!r->saved?"SCORE NOT SAVED - RECORD FILE ERROR":r->newBest?"NEW HIGH SCORE!":"RUN COMPLETED",480,112,456,38,NULL,r->saved && r->newBest?"1 0.85 0.25 1":"0.95 0.89 0.7 1");
+    AC_UIItem(f,"kills",va("Enemy kills: %d    +%d",s.kills,100*s.kills),480,160,456,26,NULL);
+    AC_UIItem(f,"heads",va("Headshot kills: %d    +%d",s.heads,50*s.heads),480,190,456,26,NULL);
+    AC_UIItem(f,"grenades",va("Grenade kills: %d | Best: %d    +%d bonus",s.grenadeKills,s.bestGrenade,s.grenadeBonus),480,220,456,26,NULL);
+    AC_UIItem(f,"accuracy",va("Accuracy: %d / %d (%.1f%%)",s.hits,s.shots,s.shots?100.0*s.hits/s.shots:0.0),480,250,456,26,NULL);
+    AC_UIItem(f,"accuracy_bonus",va("Accuracy bonus (up to 50%%): +%d",r->accuracyBonus),480,280,456,26,NULL);
+    AC_UIItem(f,"friendly",va("Friendly hits: %d | Damage: %d    -%d",s.friendlyHits,s.friendlyDamage,r->penalty),480,310,456,26,NULL,"1 0.65 0.55 1");
+    AC_UIItem(f,"total",va("FINAL SCORE: %d",r->total),480,350,456,40,NULL,"1 0.85 0.25 1");
+    AC_UIItem(f,"previous",va("Previous best on this difficulty: %d",r->previous),480,400,456,26,NULL);
+    AC_UIItem(f,"rules","Kills + headshots + grenade bonus + accuracy - friendly fire",24,452,912,26,NULL);
+    AC_UIItem(f,"list","Mission List",24,500,220,30,"ac_level_list");
+    AC_UIItem(f,"main","Main Menu",716,500,220,30,"popmenu 0; pushmenu main");
+    FS_Printf(f,"end.\n");FS_FCloseFile(f);AC_OpenGeneratedMenu("ac_score_results");
 }
 static void AC_ShowOperations(void)
 {
@@ -149,7 +222,9 @@ static void AC_LevelList_f(void)
     FS_Printf(f,"menu \"%s\" 960 540 NONE 0\nvirtualres 1\nfullscreen 1\nbgfill 0.055 0.07 0.055 1\nborderstyle NONE\n",name);
     FS_Printf(f,"widecanvas\n");
     AC_UIItem(f,"heading","MISSION LIST",24,16,740,34,NULL,"1 0.85 0.4 1");
-    AC_UIItem(f,"description","Replay one completed level. Your campaign progress is preserved.",24,58,912,28,NULL);
+    AC_UIItem(f,"description","Highscore runs: complete the level in one attempt. No saving or loading.",24,58,912,28,NULL);
+    const char *columns[]={"Easy best","Medium best","Hard best","Last run"};
+    for(int c=0;c<4;c++)AC_UIItem(f,va("column_%d",c),columns[c],500+c*108,90,c==3?112:104,24,NULL);
     for(int row=0;row<rows && page*rows+row<count;row++) {
         int index=page*rows+row;const acLevel_t &level=ac_levels[index];
         const acMission_t &op=ac_missions[level.operation];
@@ -157,8 +232,17 @@ static void AC_LevelList_f(void)
         Com_sprintf(item,sizeof(item),"level_%d",index);
         Com_sprintf(title,sizeof(title),"%s %s / %s",selected==index?">":" ",op.game==0?"AA":op.game==1?"SH":"BT",AC_LevelCompleted(index)?level.title:"LOCKED");
         Com_sprintf(command,sizeof(command),"ac_level_list %d %d -1",page,index);
-        AC_UIItem(f,item,title,24,104+row*27,912,25,AC_LevelCompleted(index)?command:NULL,
+        AC_UIItem(f,item,title,24,120+row*25,464,24,AC_LevelCompleted(index)?command:NULL,
             !AC_LevelCompleted(index)?"1 0.25 0.2 1":selected==index?"1 0.85 0.4 1":"0.85 0.9 0.8 1");
+        acScoreRecord_t record;AC_GetScoreRecord(index,&record);
+        for(int c=0;c<4;c++) {
+            Com_sprintf(item,sizeof(item),"score_%d_%d",index,c);
+            if(c<3)Com_sprintf(title,sizeof(title),record.played[c]?"%d":"--",record.best[c]);
+            else if(record.hasLast)Com_sprintf(title,sizeof(title),"%d (%s)",record.last,record.lastSkill==0?"E":record.lastSkill==1?"M":"H");
+            else Q_strncpyz(title,"--",sizeof(title));
+            AC_UIItem(f,item,title,500+c*108,120+row*25,c==3?112:104,24,NULL);
+        }
+
     }
     AC_UIItem(f,"page",va("Page %d / %d   |   %d / %d levels unlocked",page+1,pages,unlocked,count),24,409,536,26,NULL);
     if(page>0)AC_UIItem(f,"previous","Previous",696,409,112,26,va("ac_level_list %d",page-1));
@@ -167,10 +251,10 @@ static void AC_LevelList_f(void)
         AC_UIItem(f,"choose","Choose difficulty:",24,451,216,30,NULL);
         for(int i=0;i<3;i++)AC_UIItem(f,va("difficulty_%d",i),i==0?"Easy":i==1?"Medium":"Hard",252+i*148,451,132,30,
             va("ac_level_list %d %d %d",page,selected,i),difficulty==i?"1 0.85 0.4 1":"0.85 0.9 0.8 1");
-        if(difficulty>=0 && difficulty<=2)AC_UIItem(f,"play","Start Replay",712,451,224,30,va("ac_level_replay %d %d",selected,difficulty),"1 0.85 0.4 1");
+        if(difficulty>=0 && difficulty<=2)AC_UIItem(f,"play","Start Score Run",712,451,224,30,va("ac_level_replay %d %d",selected,difficulty),"1 0.85 0.4 1");
     }
     AC_UIItem(f,"back","Main Menu",24,504,180,28,"popmenu 0; pushmenu main");
-    AC_UIItem(f,"return_hint","Level completion returns to the main menu.",252,504,684,28,NULL);
+    AC_UIItem(f,"return_hint","Finish to record a score. Abandoning awards no score.",252,504,684,28,NULL);
     FS_Printf(f,"end.\n");FS_FCloseFile(f);
     menuManager.Unlock(NULL);menuManager.ClearMenus(true);
     Menu *old=menuManager.FindMenu(name);

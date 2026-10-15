@@ -40,6 +40,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 #include "smokegrenade.h"
 
 #include "ac_hit_impl.h"
+#include "ac_score_game.h"
 
 constexpr unsigned long MAX_TRAVEL_DIST = 16216;
 
@@ -2185,6 +2186,7 @@ float BulletAttack(
     float    oldfrac;
     int      bulletbits;
 
+    ACScoreShot acShot(owner);
     lastSurfaceFlags = 0;
     iNumHit          = 0;
 

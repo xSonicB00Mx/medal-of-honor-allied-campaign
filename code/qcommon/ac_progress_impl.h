@@ -6,6 +6,7 @@ static acProgress_t ac_progress;
 static qboolean ac_progressLoaded;
 static qboolean ac_progressValid = qtrue;
 static void AC_EndReplay(void);
+#include "ac_score_impl.h"
 
 static int AC_LevelIndex(int op, const char *map)
 {
@@ -143,6 +144,7 @@ qboolean AC_LevelCompleted(int index)
 
 static void AC_EndReplay(void)
 {
+    ac_scoreActive=qfalse;
     if(Cvar_VariableIntegerValue("ac_replay")==2) {
         Cvar_Set("skill",Cvar_VariableString("ac_campaign_skill"));
         Cvar_Set("g_skill",Cvar_VariableString("ac_campaign_g_skill"));
@@ -242,6 +244,7 @@ qboolean AC_CampaignMapCommand(const char *map)
         && *expected && !strcmp(expected,map) && AC_MapInMission(op,map)) {
         if(!strcmp(map,ac_missions[op].entry) && strcmp(map,ac_missions[op].first)) Cvar_Set("ac_expected_map",ac_missions[op].first);
         else Cvar_Set("ac_expected_map", "");
+        if(Cvar_VariableIntegerValue("ac_replay")==2) AC_ScoreBegin(AC_LevelIndex(op,map));
         Com_Printf("AC_MISSION_ENTRY %s %s\n",ac_missions[op].id,map);
     } else {
         AC_EndReplay();
@@ -260,11 +263,15 @@ qboolean AC_CampaignTransition(const char *current, const char *nextMap)
     Cvar_Set("ac_native_transition","");
     if(!Cvar_VariableIntegerValue("ac_campaign_mode")||op<0||op>=AC_MISSION_COUNT) return qfalse;
     if(!native||ac_missions[op].game!=com_target_game->integer||!AC_MapInMission(op,current)) {
+        if(Cvar_VariableIntegerValue("ac_replay")==2){Cbuf_AddText("ac_score_failed\n");return qtrue;}
         Cvar_Set("ac_operation","-1");return qfalse;
     }
     if(Cvar_VariableIntegerValue("ac_replay")==2) {
         Com_Printf("AC_LEVEL_REPLAY_COMPLETE %s\n",current);
-        Cbuf_AddText("ac_return_main\n");return qtrue;
+        if(AC_ScoreFinish(current,nextMap)) {
+            AC_EndReplay();Cbuf_AddText("disconnect\nac_score_results\n");
+        } else Cbuf_AddText("ac_return_main\n");
+        return qtrue;
     }
     AC_LoadProgress();
     if(!Cvar_VariableIntegerValue("ac_replay")) {
@@ -306,16 +313,7 @@ qboolean AC_CampaignCanSave(const char *slot)
     if(Cvar_VariableIntegerValue("ac_campaign_mode") && Cvar_VariableIntegerValue("ac_replay")==3) {
         Com_Printf("AC_SAVE_PROTECTED briefing replay\n");return qfalse;
     }
-    if(Cvar_VariableIntegerValue("ac_campaign_mode") && Cvar_VariableIntegerValue("ac_replay")==2
-        && FS_ReadFileEx(Com_GetArchiveFileName(slot,"sav"),NULL,qtrue)>=0) {
-        void *data=NULL;char magic[8],hash[65],map[MAX_QPATH];int game,patch,op,replay;
-        int size=FS_ReadFileEx(Com_GetArchiveFileName(slot,"acmeta"),&data,qtrue);
-        qboolean own=size>0 && size<512
-            && sscanf((const char *)data,"%7s %d %64s %d %63s %d %d",magic,&game,hash,&patch,map,&op,&replay)==7
-            && !strcmp(magic,"ACM2") && replay==2;
-        if(data)FS_FreeFile(data);
-        if(!own) {Com_Printf("AC_SAVE_PROTECTED campaign save; choose another save name\n");return qfalse;}
-    }
+    if(AC_ScoreSaveBlocked(qtrue)) return qfalse;
     if(!Cvar_VariableIntegerValue("ac_campaign_mode") || ac_progress.resume>=AC_MISSION_COUNT) return qtrue;
     if(!strcmp(slot,ac_progress.slot) && ac_missions[ac_progress.resume].game==com_target_game->integer
         && (Cvar_VariableIntegerValue("ac_replay") || Cvar_VariableIntegerValue("ac_operation")!=ac_progress.resume)) {
@@ -329,7 +327,7 @@ void AC_CampaignRestore(int op, int replay, const char *map)
     AC_LoadProgress();
     if(op<0||op>=AC_MISSION_COUNT||!AC_MapInMission(op,map)||!AC_MissionState(op)||ac_missions[op].game!=com_target_game->integer) op=-1;
     Cvar_Set("ac_operation",va("%d",op));
-    Cvar_Set("ac_replay",replay==2 && op>=0?"2":(replay || (op>=0 && (ac_progress.completed&(1u<<op))))?"1":"0");
+    Cvar_Set("ac_replay",(replay || (op>=0 && (ac_progress.completed&(1u<<op))))?"1":"0");
     Cvar_Set("ac_expected_map",op>=0 && !strcmp(map,ac_missions[op].entry) && strcmp(map,ac_missions[op].first)?ac_missions[op].first:"");
 }
 

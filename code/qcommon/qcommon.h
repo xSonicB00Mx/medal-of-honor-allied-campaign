@@ -1265,6 +1265,13 @@ void Key_KeynameCompletion( void(*callback)(const char *s) );
 // for keyname autocompletion
 
 void Key_WriteBindings( fileHandle_t f );
+#include "ac_score.h"
+void AC_ScoreEvent(int event, int value);
+qboolean AC_ScoreIntermission(const char *map,const char *nextMap,qboolean success);
+void AC_GetScoreRecord(int level, acScoreRecord_t *record);
+const acScoreResult_t *AC_GetScoreResult(void);
+qboolean AC_ScoreSaveBlocked(qboolean notify);
+void AC_CancelLevelReplay(void);
 int AC_MissionState(int index);
 qboolean AC_ResetCampaignProgress(void);
 qboolean AC_CampaignMapCommand(const char *map);

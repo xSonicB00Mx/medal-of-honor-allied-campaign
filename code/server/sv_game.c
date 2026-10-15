@@ -1886,6 +1886,8 @@ void SV_InitGameProgs( void ) {
     import.AC_SurfaceTrace = TIKI_ACSurfaceTrace;
     import.AC_BuildPatch = TIKI_ACBuildPatch;
     import.AC_StoreLocalWound = SV_ACStoreLocalWound;
+    import.AC_ScoreEvent = AC_ScoreEvent;
+    import.AC_ScoreIntermission = AC_ScoreIntermission;
 	import.TIKI_IsOnGroundInternal		= PF_TIKI_IsOnGroundInternal;
 	import.TIKI_SetPoseInternal			= PF_SetPoseInternal;
 

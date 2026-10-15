@@ -28,6 +28,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 #include "entity.h"
 #include "consoleevent.h"
 #include "player.h"
+#include "../qcommon/ac_score.h"
 #include "worldspawn.h"
 #include "weapon.h"
 #include "trigger.h"
@@ -3142,6 +3143,7 @@ void Player::Killed(Event *ev)
         static_cast<Player *>(attacker)->KilledPlayerInDeathmatch(this, (meansOfDeath_t)meansofdeath);
     }
 
+    if(g_gametype->integer==GT_SINGLE_PLAYER)gi.AC_ScoreEvent(AC_SCORE_DEATH,0);
     deadflag = DEAD_DYING;
     health   = 0;
 

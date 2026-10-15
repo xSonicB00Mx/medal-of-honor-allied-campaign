@@ -1263,6 +1263,7 @@ CL_Disconnect_f
 ==================
 */
 void CL_Disconnect_f( void ) {
+    AC_CancelLevelReplay();
 	qboolean bConsoleState;
 
 	if ( clc.state == CA_DISCONNECTED ) {

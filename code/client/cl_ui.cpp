@@ -2609,6 +2609,7 @@ UI_PushMenu
 */
 void UI_PushMenu(const char *name)
 {
+    if((!Q_stricmp(name,"loadsave") || !Q_stricmp(name,"loadgame") || !Q_stricmp(name,"savegame")) && AC_ScoreSaveBlocked(qtrue))return;
     Menu    *menu  = menuManager.CurrentMenu();
     qboolean bDiff = qfalse;
 
@@ -2638,6 +2639,7 @@ UI_ForceMenu
 */
 void UI_ForceMenu(const char *name)
 {
+    if((!Q_stricmp(name,"loadsave") || !Q_stricmp(name,"loadgame") || !Q_stricmp(name,"savegame")) && AC_ScoreSaveBlocked(qtrue))return;
     Menu    *menu  = menuManager.CurrentMenu();
     qboolean bDiff = qfalse;
 
@@ -5216,6 +5218,10 @@ void CL_InitializeUI(void)
     Cmd_AddCommand("ac_ui_options", UI_CampaignOptions_f);
     Cmd_AddCommand("ac_campaign", UI_AlliedCampaign_f);
     Cmd_AddCommand("ac_level_list", AC_LevelList_f);
+    Cmd_AddCommand("ac_score_results", AC_ScoreResults_f);
+    Cmd_AddCommand("ac_score_locked", AC_ScoreLocked_f);
+    Cmd_AddCommand("ac_score_failed", AC_ScoreFailed_f);
+    Cmd_AddCommand("ac_score_failure_menu", AC_ScoreFailureMenu_f);
     Cmd_AddCommand("ac_briefing_play", AC_BriefingPlay_f);
     Cmd_AddCommand("ac_briefing", AC_BriefingMenu_f);
     Cmd_AddCommand("ac_reset_progress", AC_ResetProgressMenu_f);

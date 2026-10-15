@@ -42,6 +42,8 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 #include "object.h"
 #include "../corepp/tiki.h"
 #include "weapturret.h"
+#include "ac_score_game.h"
+bool *acScoreBulletHit = NULL;
 
 Event EV_Sentient_ReloadWeapon
 (
@@ -1516,6 +1518,7 @@ void Sentient::ArmorDamage(Event *ev)
         G_DebugDamage(damage, this, attacker, inflictor);
     }
 
+    const float acBeforeHealth=health;
     if (!(flags & FL_GODMODE)
         && ((g_gametype->integer != GT_SINGLE_PLAYER) || !(attacker) || (attacker) == this
             || !(attacker->IsSubclassOfSentient()) || (attacker->m_Team != m_Team))) {
@@ -1544,6 +1547,22 @@ void Sentient::ArmorDamage(Event *ev)
 
             if (act->IsImmortal()) {
                 health = 1;
+            }
+        }
+    }
+
+    if(g_gametype->integer==GT_SINGLE_PLAYER && IsSubclassOfActor() && acBeforeHealth>0
+        && attacker && attacker->IsSubclassOfPlayer() && damage>0 && !(flags & FL_GODMODE)) {
+        if(attacker->m_Team==m_Team) {
+            gi.AC_ScoreEvent(AC_SCORE_FRIENDLY,(int)ceil(fmin(damage,acBeforeHealth)));
+        } else if(health<acBeforeHealth) {
+            const bool bullet=meansofdeath==MOD_BULLET || meansofdeath==MOD_FAST_BULLET || meansofdeath==MOD_SHOTGUN;
+            if(bullet && acScoreBulletHit)*acScoreBulletHit=true;
+            if(health<0.1f) {
+                if(meansofdeath==MOD_GRENADE && inflictor && inflictor->isSubclassOf(Explosion)) {
+                    ::Explosion *explosion=static_cast<::Explosion *>(inflictor);
+                    gi.AC_ScoreEvent(AC_SCORE_GRENADE_KILL,++explosion->acScoreKills);
+                } else gi.AC_ScoreEvent(AC_SCORE_KILL,bullet && (location==HITLOC_HEAD || location==HITLOC_HELMET));
             }
         }
     }

@@ -26,6 +26,7 @@ static void AC_Context_f(void)
         "ac_campaign_skill", "ac_campaign_g_skill"
     };
 
+    if(!strcmp(Cmd_Argv(0),"ac_load") && AC_ScoreSaveBlocked(qtrue))return;
     if (Cmd_Argc() != 3 || strlen(Cmd_Argv(1)) != 1 || Cmd_Argv(1)[0] < '0' || Cmd_Argv(1)[0] > '2') {
         Com_Printf("AC_CONTEXT_REJECT usage: ac_context <0|1|2> <map|menu>\n");
         return;

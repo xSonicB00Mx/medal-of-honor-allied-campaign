@@ -1,6 +1,8 @@
 # CP08-r1 – gemeinsame Einsatzkarte
 
-Neueste Erweiterung: [Briefing Room und einzelne Level wiederholen](level-replay.md).
+Neueste Erweiterung: [Mission List Highscore-Modus](highscore.md).
+
+Fruehere Erweiterung: [Briefing Room und einzelne Level wiederholen](level-replay.md).
 
 Fruehere Korrektur: [MG-Ruckler und entfernter Kartenhinweis](mg-feedback.md).
 

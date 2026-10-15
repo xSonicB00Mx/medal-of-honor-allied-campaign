@@ -1876,6 +1876,9 @@ void G_BeginIntermission(const char *map_name, INTTYPE_e transtype, bool no_fade
 
     level.intermissiontime = level.time;
     level.intermissiontype = transtype;
+    Player *scorePlayer=static_cast<Player *>(g_entities[0].entity);
+    if(gi.AC_ScoreIntermission(level.mapname.c_str(),map_name,
+        scorePlayer && !scorePlayer->IsDead() && !level.died_already && transtype!=TRANS_MISSION_FAILED))return;
 
     if (!no_fade) {
         G_FadeOut(2.0f);

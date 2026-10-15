@@ -1,0 +1,33 @@
+{
+  "exit": 0,
+  "errors": [
+    "invalid waittill spawn for 'Level'",
+    "invalid waittill prespawn for 'Level'",
+    "invalid waittill spawn for 'Level'",
+    "invalid waittill spawn for 'Level'",
+    "invalid waittill spawn for 'Level'",
+    "invalid waittill spawn for 'Level'",
+    "invalid waittill spawn for 'Level'",
+    "invalid waittill spawn for 'Level'",
+    "invalid waittill spawn for 'Level'",
+    "invalid waittill spawn for 'Level'",
+    "invalid waittill spawn for 'Level'",
+    "invalid waittill spawn for 'Level'",
+    "invalid waittill spawn for 'Level'",
+    "invalid waittill spawn for 'Level'",
+    "invalid waittill spawn for 'Level'",
+    "invalid waittill prespawn for 'Level'",
+    "invalid waittill prespawn for 'Level'",
+    "invalid waittill spawn for 'Level'",
+    "invalid waittill spawn for 'Level'",
+    "invalid waittill spawn for 'Level'",
+    "invalid waittill prespawn for 'Level'",
+    "invalid waittill spawn for 'Level'",
+    "invalid waittill prespawn for 'Level'",
+    "invalid waittill spawn for 'Level'",
+    "invalid waittill spawn for 'Level'",
+    "command 'thread' applied to NULL listener",
+    "command 'thread' applied to NULL listener",
+    "binary '>' applied to incompatible types 'none' and 'int'"
+  ]
+}
