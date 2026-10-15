@@ -1,3 +1,7 @@
+## Aktuell: Restbilder fuer Single-Player
+
+46 vollstaendige Hintergruende fertig; AA-Hilfeseite mit Gemini 3.8 Flash / High ergaenzt. Drei vorhandene breite SH-Abschlussgemaelde werden mit unveraenderten Einblendzeiten bildfuellend dargestellt. Native Sichtpruefungen bestanden. Multiplayer- und Kalibrierungsbilder bleiben ausgenommen. [Bericht](checkpoints/CP08/remaining-art.md).
+
 ## Aktuell: Gemeinsame Kampagnenoptionen
 
 Grafik, Audio, Maus-/Joysticksteuerung, HUD und normale/Alt-/Strg-Belegungen werden gemeinsam gespeichert. Native AA -> SH -> BT -> AA-Wechsel und drei Neustarts bestanden; Spielstandszeiger und Missionsstatistik bleiben getrennt. [Bericht](checkpoints/CP08/shared-preferences.md).

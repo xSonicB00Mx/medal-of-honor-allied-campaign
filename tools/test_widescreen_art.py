@@ -12,6 +12,7 @@ ap.add_argument('--run-id', required=True)
 ap.add_argument('--game', choices=['AA', 'SH', 'BT'], default='AA')
 ap.add_argument('--width', type=int, default=1920)
 ap.add_argument('--height', type=int, default=1080)
+ap.add_argument('--menu-wait', type=int, default=1200, help='Milliseconds before each capture, including fade-in')
 ap.add_argument('--menus', nargs='+', default=['main', 'briefing1a'])
 ap.add_argument('--without-art', action='store_true')
 ap.add_argument('--installed', action='store_true', help='Test the installed runtime and its own packages')
@@ -49,7 +50,7 @@ for menu in args.menus:
     assert re.fullmatch('[a-zA-Z0-9_-]+', menu)
     # The operations map is created dynamically by its console command.
     command = 'ac_campaign' if menu == 'ac_campaign_operations' else f'pushmenu {menu}'
-    commands += [command, 'wait 1200', f'ac_ui_report {menu}', 'screenshot', 'wait 200']
+    commands += [command, f'wait {args.menu_wait}', f'ac_ui_report {menu}', 'screenshot', 'wait 200']
 commands += ['echo AC_WIDESCREEN_TEST_DONE', 'quit']
 (home/'wide-test.cfg').write_text('\n'.join(commands)+'\n', encoding='ascii')
 settings = dict(com_target_game=number, fs_basepath=runtime, fs_homepath=profile,

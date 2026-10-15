@@ -1,4 +1,4 @@
-"""Stage a single downloaded outpaint and an original-center review composite."""
+"""Stage a downloaded full-frame outpaint and preview the exact packaged image."""
 import argparse
 import hashlib
 import json
@@ -9,7 +9,7 @@ from PIL import Image
 ap = argparse.ArgumentParser(description=__doc__)
 ap.add_argument('asset')
 ap.add_argument('--download', type=Path)
-ap.add_argument('--approve', help='Visual inspection notes; only use after inspecting the composite')
+ap.add_argument('--approve', help='Visual inspection notes; only use after inspecting the full-frame preview')
 ap.add_argument('--conversation', help='Gemini conversation that generated this image')
 args = ap.parse_args()
 root = Path(__file__).resolve().parents[1]
@@ -23,8 +23,6 @@ if args.download:
     shutil.copy2(args.download, target)
 with Image.open(target) as image:
     composite = image.convert('RGB').resize((1536,864), Image.Resampling.LANCZOS)
-with Image.open(original) as image:
-    composite.paste(image.convert('RGB').resize((1152,864), Image.Resampling.LANCZOS), (192,0))
 preview = work/(args.asset+'-preview.png')
 composite.save(preview)
 if args.approve:

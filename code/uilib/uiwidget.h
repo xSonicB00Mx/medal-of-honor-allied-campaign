@@ -134,6 +134,7 @@ protected:
     float                 m_indent;
     float                 m_bottomindent;
     UIReggedMaterial     *m_material;
+    bool m_widescreenPicture;
     UIReggedMaterial     *m_hovermaterial;
     UIReggedMaterial     *m_pressedmaterial;
     bool                  m_hovermaterial_active;
@@ -232,6 +233,7 @@ public:
     void LayoutBorderColor(Event *ev);
     void LayoutShader(Event *ev);
     void LayoutTileShader(Event *ev);
+    void LayoutWidescreenPicture(Event *ev) { m_widescreenPicture = true; }
     void LayoutHoverShader(Event *ev);
     void LayoutPressedShader(Event *ev);
     void LayoutFadeIn(Event *ev);

@@ -483,7 +483,11 @@ Event EV_Layout_LoadingBackground
     "Fit a loading image crop on wide screens; source canvas is 640x480 padded to 1024x512"
 );
 
+Event EV_Layout_WidescreenPicture("widescreenpicture", EV_DEFAULT, NULL, NULL,
+    "Draw a complete 16:9 picture while retaining widget fade timing");
+
 CLASS_DECLARATION(USignal, UIWidget, NULL) {
+    {&EV_Layout_WidescreenPicture, &UIWidget::LayoutWidescreenPicture},
     {&EV_Widget_Hide,               &UIWidget::Hide                    },
     {&EV_Widget_Activate,           &UIWidget::Activate                },
     {&EV_Layout_Size,               &UIWidget::LayoutSize              },
@@ -692,6 +696,7 @@ UIWidget::UIWidget()
     m_commandhandler           = NULL;
     m_font                     = NULL;
     m_material                 = NULL;
+    m_widescreenPicture        = false;
     m_hovermaterial            = NULL;
     m_pressedmaterial          = NULL;
     m_hovermaterial_active     = false;
@@ -1975,7 +1980,14 @@ void UIWidget::Display(const UIRect2D& drawframe, float parent_alpha)
         col[3] = m_foreground_color.a * m_local_alpha;
         uii.Rend_SetColor(col);
 
-        if (m_flags & WF_TILESHADER) {
+        if (m_widescreenPicture) {
+            const float width = uid.vidHeight * (16.0f / 9.0f);
+            uii.Rend_Set2D(0, 0, uid.vidWidth, uid.vidHeight, 0, uid.vidWidth, uid.vidHeight, 0, -1, 1);
+            uii.Rend_Scissor(0, 0, uid.vidWidth, uid.vidHeight);
+            uii.Rend_DrawPicStretched((uid.vidWidth - width) * .5f, 0, width, uid.vidHeight,
+                0, 0, 1, 1, m_material->GetMaterial());
+            set2D();
+        } else if (m_flags & WF_TILESHADER) {
             if (m_bVirtual) {
                 float fvWidth =
                     m_frame.size.width / m_vVirtualScale[0] / uii.Rend_GetShaderWidth(m_material->GetMaterial());

@@ -8,7 +8,7 @@ import zipfile
 from functools import lru_cache
 from pathlib import Path
 
-from PIL import Image
+from PIL import Image, ImageChops, ImageOps
 from singleplayer_ui import multiplayer_ui
 
 
@@ -52,8 +52,7 @@ def main():
                     continue
                 with zipfile.ZipFile(package) as z:
                     for name in z.namelist():
-                        if name.lower().startswith('ui/'):
-                            entries[name.lower()] = (package, name)
+                        entries[name.lower()] = (package, name)
 
         @lru_cache(maxsize=None)
         def read(name):
@@ -103,6 +102,28 @@ def main():
                 # Exact source body remains once the one added directive is removed.
                 assert modified.replace(f'widescreenbackground "{texname}"\n', '', 1) == body
                 modifications[target] = (texname, modified.encode('latin1'))
+        if game == 'SH':
+            # The success slideshow already contains wide paintings. Preserve
+            # every timed photo and fade; replace only the two painting widgets.
+            for number in range(1, 4):
+                ui = f'ui/slideshow{number}.inc'
+                old_shader = f'textures/mohmenu/mission{number}stat_1.jpg'
+                with Image.open(io.BytesIO(read(old_shader))) as original:
+                    canvas = original.convert('RGB').resize((640, 512), Image.Resampling.LANCZOS)
+                    channels = canvas.split()
+                    mask = ImageChops.lighter(ImageChops.lighter(channels[0], channels[1]), channels[2])
+                    bounds = mask.point(lambda v: 255 if v > 20 else 0).getbbox()
+                    assert bounds and bounds[2]-bounds[0] > 600 and 300 < bounds[3]-bounds[1] < 400
+                    wide = ImageOps.fit(canvas.crop(bounds), (1536,864), method=Image.Resampling.LANCZOS)
+                    buffer = io.BytesIO(); wide.save(buffer, format='TGA')
+                texture = f'textures/ac/widescreen/sh-slideshow{number}.tga'
+                textures[texture] = buffer.getvalue()
+                body = read(ui).decode('latin1').replace('\r', '')
+                pattern = r'(?mi)^(\s*shader\s+)"'+re.escape(old_shader)+r'"\s*$'
+                modified, count = re.subn(pattern, lambda m: m.group(1)+'"'+texture+'"\nwidescreenpicture\n', body)
+                assert count == 2, (ui, count)
+                assert re.findall(r'(?m)^fadesequence.*$', body) == re.findall(r'(?m)^fadesequence.*$', modified)
+                includes[ui] = modified.encode('latin1')
         if not modifications:
             continue
         output = args.output/folder/'zzzzzz_AC_Widescreen.pk3'
