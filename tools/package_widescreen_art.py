@@ -12,6 +12,28 @@ from PIL import Image
 from singleplayer_ui import multiplayer_ui
 
 
+def strip_background(body, layers):
+    """Remove only inventoried static image tiles and legacy Voodoo copies."""
+    expected = {(layer['shader'].lower(), tuple(layer['rect'])) for layer in layers}
+    found = set()
+    def replace(match):
+        block = match.group(1)
+        shader = re.search(r'(?mi)^\s*shader\s+"?([^"\s]+)', block)
+        rect = re.search(r'(?mi)^\s*rect\s+([\d. -]+)', block)
+        if not shader or not rect:
+            return match.group(0)
+        key = (shader.group(1).lower(), tuple(float(v) for v in rect.group(1).split()))
+        if key in expected:
+            found.add(key)
+            return ''
+        if '/voodoo/' in key[0] and re.search(r'enabledcvar\s+"?ui_voodoo', block):
+            return ''
+        return match.group(0)
+    result = re.sub(r'(?is)resource\s+Label\s*\{([^{}]*)\}', replace, body)
+    assert found == expected, ('Missing background tiles', expected - found)
+    return result
+
+
 def main():
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument('--runtime', required=True, type=Path)
@@ -39,7 +61,7 @@ def main():
             with zipfile.ZipFile(package) as z:
                 return z.read(entry)
 
-        modifications, textures, shaders = {}, {}, []
+        modifications, textures, shaders, includes = {}, {}, [], {}
         for row in inventory['assets']:
             asset = row['asset_id']
             if row['game'] != game or asset not in approved or multiplayer_ui(row['ui']):
@@ -52,8 +74,7 @@ def main():
             assert hashlib.sha256(data).hexdigest() == item['sha256'], asset
             texname = 'textures/ac/widescreen/' + re.sub('[^a-z0-9_-]', '_', asset.lower())
             with Image.open(io.BytesIO(data)) as image:
-                # Slight model-output size rounding is normalized here, with
-                # no changes to the original game texture used in the center.
+                # Normalize model-output rounding without compositing original pixels.
                 image = image.convert('RGB').resize((1536, 864), Image.Resampling.LANCZOS)
                 buffer = io.BytesIO()
                 image.save(buffer, format='TGA')
@@ -62,6 +83,8 @@ def main():
             if shader not in shaders:
                 shaders.append(shader)
             ui = row['ui']
+            if not ui.endswith('.urc'):
+                includes[ui] = strip_background(read(ui).decode('latin1').replace('\r', ''), row['layers']).encode('latin1')
             targets = [ui] if ui.endswith('.urc') else [
                 name for name in entries if name.endswith('.urc')
                 and re.search(r'(?mi)^\s*include\s+"?'+re.escape(ui)+r'"?\s*$',
@@ -71,6 +94,8 @@ def main():
                     continue
                 assert not (game == 'BT' and target.startswith('ui/loading_'))
                 body = read(target).decode('latin1').replace('\r', '')
+                if ui.endswith('.urc'):
+                    body = strip_background(body, row['layers'])
                 assert re.search(r'(?m)^menu\b', body), target
                 assert target not in modifications or modifications[target][0] == texname, target
                 modified = re.sub(r'(?m)^(menu[^\n]*\n)',
@@ -83,6 +108,7 @@ def main():
         output = args.output/folder/'zzzzzz_AC_Widescreen.pk3'
         output.parent.mkdir(parents=True, exist_ok=True)
         files = {name: value[1] for name, value in modifications.items()}
+        files.update(includes)
         files.update(textures)
         files['scripts/ac_widescreen.shader'] = ''.join(shaders).encode('ascii')
         with zipfile.ZipFile(output, 'w', zipfile.ZIP_DEFLATED) as z:

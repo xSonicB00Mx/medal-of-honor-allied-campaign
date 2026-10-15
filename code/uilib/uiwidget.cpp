@@ -462,7 +462,7 @@ Event EV_Layout_WidescreenBackground
     EV_DEFAULT,
     "s",
     "shader",
-    "Draw only the side extensions of a 16:9 background around the original 4:3 menu"
+    "Draw the complete 16:9 background behind the existing menu controls"
 );
 
 Event EV_Layout_VidMode
@@ -2573,19 +2573,17 @@ void UIWidgetContainer::Draw(void)
         DrawBox(0, 0, uid.vidWidth, uid.vidHeight, m_bgfill, m_local_alpha);
     }
 
-    // The original widgets, text and animated overlays retain their exact
-    // geometry. AI artwork is sampled only outside the original 4:3 canvas.
-    // Screen scissoring crops the wings on 16:10; ultrawide keeps a 16:9 frame.
-    if (m_widescreenBackground && uid.vidWidth * 3 > uid.vidHeight * 4
+    // Use the complete supplied artwork; background labels are removed by the
+    // package builder. Interactive widgets retain their existing geometry.
+    // Scissoring crops narrower displays; ultrawide retains a centered 16:9 image.
+    if (m_widescreenBackground
         && m_frame.size.width > 0 && m_frame.size.height > 0) {
         const float wing = m_frame.size.width / 6.0f;
         const float color[4] = {1, 1, 1, m_local_alpha};
         uii.Rend_SetColor(color);
         const uihandle_t material = m_widescreenBackground->GetMaterial();
         uii.Rend_DrawPicStretched(m_frame.pos.x - wing, m_frame.pos.y,
-            wing, m_frame.size.height, 0, 0, .125f, 1, material);
-        uii.Rend_DrawPicStretched(m_frame.pos.x + m_frame.size.width, m_frame.pos.y,
-            wing, m_frame.size.height, .875f, 0, 1, 1, material);
+            m_frame.size.width + 2 * wing, m_frame.size.height, 0, 0, 1, 1, material);
         uii.Rend_SetColor(NULL);
     }
 

@@ -1,3 +1,7 @@
+## Aktuell: Vollstaendige 16:9-Hintergruende
+
+Alle 45 ausgewaehlten Hintergruende verwenden jetzt das vollstaendige Bild ohne Originalzentrum. Drei neue Ladebilder stammen direkt vom Nutzer (m4l1, m4l2, m5l2). Bedienelemente bleiben unveraendert; die optische Menueausrichtung beurteilt der Nutzer im Anschluss. [Bericht](checkpoints/CP08/widescreen-fullframe.md).
+
 ## Aktuell: Widescreen-Single-Player-Paket installiert
 
 42 von 45 ausgewaehlten SP-Hintergruenden sind fertig und installiert, 30 davon neu. Gemini 3.8 Flash / High, neue Chats und serielle Generierung. Drei AA-Vorlagen wurden von Gemini abgelehnt und bleiben original; keine Multiplayer-Bilder erzeugt. AA-/SH-/BT-Nachtests bestanden, Originale und alle 80 Nutzerdateien unveraendert. [Bericht und offene Bilder](checkpoints/CP08/widescreen-singleplayer.md). SH-/BT-Ladezoom bleibt erhalten.

@@ -81,8 +81,8 @@ for name,file in updates.items():
 owned = {r['path'] for r in old['owned_files']} | set(updates)
 widescreen = old.get('widescreen', {}) if args.loading_zoom else dict(
     batch=args.batch,approved_artworks=sorted(approved),
-    completion=completion,center='Original central artwork and controls preserved; MP entry disabled',
-    provider='Google Gemini / Nano Banana',breakthrough_loading_changed=False,
+    completion=completion,center='Full supplied artwork; original background tiles removed; controls preserved; MP entry disabled',
+    provider='Google Gemini / Nano Banana and user-supplied artwork',breakthrough_loading_changed=False,
     spearhead_letterboxed_loading_changed=False)
 if not args.loading_zoom and old.get('widescreen', {}).get('loading_zoom'):
     widescreen.update({key:old['widescreen'][key] for key in
