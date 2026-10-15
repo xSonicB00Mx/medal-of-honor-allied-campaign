@@ -75,6 +75,7 @@ static void AC_ShowOperations(void)
     }
     AC_UIItem(f,"current_key","Current operation",24,450,270,24,NULL,AC_StateColor(1));
     AC_UIItem(f,"done_key","Completed",310,450,274,24,NULL,AC_StateColor(2));
+    AC_UIItem(f,"reset_progress","Reset Progress",24,478,180,26,"ac_reset_progress","1 0.58 0.45 1");
     AC_UIItem(f,"back","Main Menu",24,508,140,26,"popmenu 0; pushmenu main");
     AC_UIItem(f,"continue","Continue Campaign",176,508,192,26,"ac_continue");
     AC_UIItem(f,"options","Allied Campaign Options",380,508,260,26,"ac_ui_options");
@@ -95,4 +96,33 @@ static void AC_ShowOperations(void)
         menu->setVidMode(root->getVidMode());menu->AddMenuItem(root);
         UI_ForceMenu(menuName);UI_CloseConsole();
     }
+}
+
+static void AC_ResetProgressMenu_f(void)
+{
+    const char *name = "ac_campaign_reset";
+    if (Cmd_Argc() > 1 && !strcmp(Cmd_Argv(1), "confirm")) {
+        Menu *current = menuManager.CurrentMenu();
+        if (!current || current->m_name != name) {
+            Com_Printf("AC_RESET_REQUIRES_CONFIRMATION\n");
+            return;
+        }
+        if (AC_ResetCampaignProgress()) Cbuf_AddText("disconnect\nac_campaign\n");
+        else Com_Printf("AC_PROGRESS_ERROR reset failed; progress retained\n");
+        return;
+    }
+    if (!menuManager.FindMenu(name)) {
+        fileHandle_t f = FS_FOpenFileWrite_HomeData("ui/ac_campaign_reset.urc");
+        if (!f) return;
+        FS_Printf(f,"menu \"%s\" 960 540 NONE 0\nvirtualres 1\nfullscreen 1\nbgfill 0.055 0.07 0.055 1\nborderstyle NONE\n",name);
+        AC_UIItem(f,"heading","RESET CAMPAIGN PROGRESS?",180,142,600,40,NULL,"1 0.58 0.45 1");
+        AC_UIItem(f,"warning","Completed operations and mission unlocks will be reset.",180,202,600,30,NULL);
+        AC_UIItem(f,"restart","Continue Campaign will start from the first operation.",180,242,600,30,NULL);
+        AC_UIItem(f,"preserved","Your saved games and options will NOT be deleted.",180,282,600,30,NULL);
+        AC_UIItem(f,"cancel","Cancel",240,358,200,36,"popmenu 0");
+        AC_UIItem(f,"confirm","Reset Progress",520,358,200,36,"ac_reset_progress confirm","1 0.58 0.45 1");
+        FS_Printf(f,"end.\n"); FS_FCloseFile(f);
+        UI_LoadMenu(name);
+    }
+    UI_PushMenu(name);
 }

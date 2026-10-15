@@ -1266,6 +1266,7 @@ void Key_KeynameCompletion( void(*callback)(const char *s) );
 
 void Key_WriteBindings( fileHandle_t f );
 int AC_MissionState(int index);
+qboolean AC_ResetCampaignProgress(void);
 void AC_CampaignMapCommand(const char *map);
 qboolean AC_CampaignTransition(const char *current, const char *nextMap);
 void AC_CampaignSaved(const char *slot, const char *map);

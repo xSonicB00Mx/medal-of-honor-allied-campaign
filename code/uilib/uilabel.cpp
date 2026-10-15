@@ -273,6 +273,8 @@ void UILabel::Draw(void)
         }
 
         if (m_bLinkCvarToShader) {
+            const bool operationsSign = m_cvarname == "ui_signshader" && !strcmp(string, "newgame_sign");
+            if (operationsSign) string = "menu_button_trans";
             if (str::icmp(m_sCurrentShaderName, string)) {
                 m_sCurrentShaderName = string;
 
@@ -283,7 +285,9 @@ void UILabel::Draw(void)
                 }
             }
 
-            if (label.length()) {
+            if (operationsSign) {
+                string = "Operations";
+            } else if (label.length()) {
                 string = label;
             } else if (m_title.length()) {
                 string = m_title;

@@ -1,3 +1,7 @@
+## Aktuell: Operations und Reset Progress
+
+Hauptmenue-Schild zeigt Operations. Reset Progress in der Einsatzkarte verlangt eine separate Bestaetigung und behaelt Saves/Optionen. Isolierte Tests pruefen Abbrechen, Reset und Neustart; aktiver Nutzerfortschritt bleibt unberuehrt. [Bericht](checkpoints/CP08/operations-reset.md).
+
 ## Aktuell: AA-Medaillen in 16:9
 
 Medaillenkasten und Reset-Dialog auf 960x540 angepasst, Medaillen proportional erhalten. Native Full-HD- und 4:3-Tests bestanden. [Bericht](checkpoints/CP08/aa-medals-wide.md).

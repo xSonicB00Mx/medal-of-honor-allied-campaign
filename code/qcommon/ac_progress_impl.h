@@ -69,6 +69,21 @@ static qboolean AC_StoreProgress(const acProgress_t *p)
     return qtrue;
 }
 
+qboolean AC_ResetCampaignProgress(void)
+{
+    acProgress_t fresh;
+    AC_LoadProgress();
+    memset(&fresh, 0, sizeof(fresh));
+    strcpy(fresh.slot, "-");
+    if (!AC_StoreProgress(&fresh)) return qfalse;
+    Cvar_Set("ac_operation", "-1");
+    Cvar_Set("ac_replay", "0");
+    Cvar_Set("ac_expected_map", "");
+    Cvar_Set("ac_native_transition", "");
+    Com_Printf("AC_PROGRESS_RESET saves and preferences preserved\n");
+    return qtrue;
+}
+
 int AC_MissionState(int index)
 {
     AC_LoadProgress();
