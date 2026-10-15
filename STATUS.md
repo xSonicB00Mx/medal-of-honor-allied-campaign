@@ -1,5 +1,7 @@
 ## Aktuell: Hochaufloesende Stoppuhr und Zuendschnur
 
+Nachkorrektur timers-r2 installiert: Metallkante entfernt und Seilmaterial am Anschluss vereinheitlicht; beide Varianten im UHD-HUD geprueft.
+
 Fuenf Grafikebenen installiert, Zeigermittelpunkte und Schnuranschluss ausgerichtet. AA/SH/BT bei UHD/HUD 1.66 geprueft; Funken-/Rauchanimation und Countdown-Logik erhalten. [Bericht und Prompts](checkpoints/CP08/timer-upscale.md).
 
 ## Aktuell: Hochaufloesende Lebensanzeige
