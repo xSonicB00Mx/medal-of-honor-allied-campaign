@@ -1,0 +1,713 @@
+{
+  "status": "PARTIAL_PROVIDER_BLOCKED",
+  "approved_artworks": [
+    "AA-advancedoptions",
+    "AA-audio options",
+    "AA-briefing_room",
+    "AA-controls",
+    "AA-loading_m1l1",
+    "AA-loading_m1l2a",
+    "AA-loading_m1l2b",
+    "AA-loading_m1l3a",
+    "AA-loading_m2l1",
+    "AA-loading_m2l2a",
+    "AA-loading_m2l3",
+    "AA-loading_m3l1a",
+    "AA-loading_m3l2",
+    "AA-loading_m3l3",
+    "AA-loading_m4l3",
+    "AA-loading_m5l1",
+    "AA-loading_m5l3",
+    "AA-loading_m6l1a",
+    "AA-loading_m6l1c",
+    "AA-loading_m6l2a",
+    "AA-loading_m6l2b",
+    "AA-loading_m6l3",
+    "AA-loadsave",
+    "AA-main",
+    "AA-missionbriefingback",
+    "AA-options_main",
+    "AA-statsscreen_failed",
+    "AA-statsscreen_game",
+    "AA-statsscreen_success",
+    "AA-video options",
+    "AA-war_records",
+    "BT-briefing_room",
+    "BT-briefing_room_nobuttons",
+    "BT-controls",
+    "BT-main",
+    "BT-options_main",
+    "SH-briefing_room",
+    "SH-main",
+    "SH-medals",
+    "SH-options_main",
+    "SH-video options",
+    "SH-war_records"
+  ],
+  "pending": [
+    "AA-loading_m4l1",
+    "AA-loading_m4l2",
+    "AA-loading_m5l2"
+  ],
+  "provider_rejections": {
+    "AA-loading_m4l1": {
+      "conversation": "https://gemini.google.com/app/fe20cc7e4f301e7a",
+      "reason": "Sorry, I cannot generate unsafe images.",
+      "retried": false
+    },
+    "AA-loading_m4l2": {
+      "conversation": "https://gemini.google.com/app/c065da0c8a0d755b",
+      "reason": "Sorry, I cannot generate unsafe images.",
+      "retried": false
+    },
+    "AA-loading_m5l2": {
+      "conversation": "https://gemini.google.com/app/77800307d59c4014",
+      "reason": "Sorry, I cannot generate unsafe images.",
+      "retried": false
+    }
+  },
+  "model": "Gemini 3.8 Flash",
+  "thinking": "High",
+  "fresh_chat_per_image": true,
+  "max_simultaneous_generations": 1,
+  "multiplayer_art_excluded": true,
+  "tests": [
+    {
+      "game": "AA",
+      "dimensions": [
+        1920,
+        1080
+      ],
+      "menus": [
+        "m4l3",
+        "m5l1a"
+      ],
+      "exit_code": 0,
+      "completed": true,
+      "errors": [],
+      "images": [
+        "profiles-local/widescreen/sp-aa-loadings-r4/main/screenshots/shot0000.png",
+        "profiles-local/widescreen/sp-aa-loadings-r4/main/screenshots/shot0001.png"
+      ],
+      "geometry": [
+        "[2026-10-15 02:18:39 UTC+1.000] AC_UI_ROOT m4l3 240.000 0.000 1440.000 1080.000",
+        "[2026-10-15 02:18:40 UTC+1.000] AC_UI_ROOT m5l1a 240.000 0.000 1440.000 1080.000"
+      ],
+      "run": "sp-aa-loadings-r4"
+    },
+    {
+      "game": "AA",
+      "dimensions": [
+        1920,
+        1080
+      ],
+      "menus": [
+        "m5l3",
+        "m6l1a"
+      ],
+      "exit_code": 0,
+      "completed": true,
+      "errors": [],
+      "images": [
+        "profiles-local/widescreen/sp-aa-loadings-r5/main/screenshots/shot0000.png",
+        "profiles-local/widescreen/sp-aa-loadings-r5/main/screenshots/shot0001.png"
+      ],
+      "geometry": [
+        "[2026-10-15 02:26:43 UTC+1.000] AC_UI_ROOT m5l3 238.875 0.000 1442.250 1080.000",
+        "[2026-10-15 02:26:45 UTC+1.000] AC_UI_ROOT m6l1a 240.000 0.000 1440.000 1080.000"
+      ],
+      "run": "sp-aa-loadings-r5"
+    },
+    {
+      "game": "AA",
+      "dimensions": [
+        1920,
+        1080
+      ],
+      "menus": [
+        "m6l2a",
+        "m6l2b"
+      ],
+      "exit_code": 0,
+      "completed": true,
+      "errors": [],
+      "images": [
+        "profiles-local/widescreen/sp-aa-loadings-r6/main/screenshots/shot0000.png",
+        "profiles-local/widescreen/sp-aa-loadings-r6/main/screenshots/shot0001.png"
+      ],
+      "geometry": [
+        "[2026-10-15 02:37:44 UTC+1.000] AC_UI_ROOT m6l2a 240.000 0.000 1440.000 1080.000",
+        "[2026-10-15 02:37:45 UTC+1.000] AC_UI_ROOT m6l2b 240.000 0.000 1440.000 1080.000"
+      ],
+      "run": "sp-aa-loadings-r6"
+    },
+    {
+      "game": "AA",
+      "dimensions": [
+        1920,
+        1080
+      ],
+      "menus": [
+        "m6l1c",
+        "m6l3a"
+      ],
+      "exit_code": 0,
+      "completed": true,
+      "errors": [],
+      "images": [
+        "profiles-local/widescreen/sp-aa-loadings-r7/main/screenshots/shot0000.png",
+        "profiles-local/widescreen/sp-aa-loadings-r7/main/screenshots/shot0001.png"
+      ],
+      "geometry": [
+        "[2026-10-15 02:45:12 UTC+1.000] AC_UI_ROOT m6l1c 240.000 0.000 1440.000 1080.000",
+        "[2026-10-15 02:45:14 UTC+1.000] AC_UI_ROOT m6l3a 240.000 0.000 1440.000 1080.000"
+      ],
+      "run": "sp-aa-loadings-r7"
+    },
+    {
+      "game": "AA",
+      "dimensions": [
+        1920,
+        1080
+      ],
+      "menus": [
+        "m2l2a",
+        "m3l2"
+      ],
+      "exit_code": 0,
+      "completed": true,
+      "errors": [],
+      "images": [
+        "profiles-local/widescreen/sp-aa-loadings-r8/main/screenshots/shot0000.png",
+        "profiles-local/widescreen/sp-aa-loadings-r8/main/screenshots/shot0001.png"
+      ],
+      "geometry": [
+        "[2026-10-15 02:52:39 UTC+1.000] AC_UI_ROOT m2l2a 240.000 0.000 1440.000 1080.000",
+        "[2026-10-15 02:52:40 UTC+1.000] AC_UI_ROOT m3l2 240.000 0.000 1440.000 1080.000"
+      ],
+      "run": "sp-aa-loadings-r8"
+    },
+    {
+      "game": "AA",
+      "dimensions": [
+        1920,
+        1080
+      ],
+      "menus": [
+        "war_records"
+      ],
+      "exit_code": 0,
+      "completed": true,
+      "errors": [],
+      "images": [
+        "profiles-local/widescreen/sp-aa-records-r1/main/screenshots/shot0000.png"
+      ],
+      "geometry": [
+        "[2026-10-15 01:51:45 UTC+1.000] AC_UI_ROOT war_records 240.000 0.000 1440.000 1080.000"
+      ],
+      "run": "sp-aa-records-r1"
+    },
+    {
+      "game": "BT",
+      "dimensions": [
+        1920,
+        1080
+      ],
+      "menus": [
+        "briefingroom"
+      ],
+      "exit_code": 0,
+      "completed": true,
+      "errors": [],
+      "images": [
+        "profiles-local/widescreen/sp-bt-briefing-r1/maintt/screenshots/shot0000.png"
+      ],
+      "geometry": [
+        "[2026-10-15 01:36:19 UTC+1.000] AC_UI_ROOT briefingroom 240.000 0.000 1440.000 1080.000"
+      ],
+      "run": "sp-bt-briefing-r1"
+    },
+    {
+      "game": "BT",
+      "dimensions": [
+        1920,
+        1080
+      ],
+      "menus": [
+        "controls"
+      ],
+      "exit_code": 0,
+      "completed": true,
+      "errors": [],
+      "images": [
+        "profiles-local/widescreen/sp-bt-controls-r1/maintt/screenshots/shot0000.png"
+      ],
+      "geometry": [
+        "[2026-10-15 01:44:28 UTC+1.000] AC_UI_ROOT controls 240.000 0.000 1440.000 1080.000"
+      ],
+      "run": "sp-bt-controls-r1"
+    },
+    {
+      "game": "BT",
+      "dimensions": [
+        1920,
+        1080
+      ],
+      "menus": [
+        "options_main"
+      ],
+      "exit_code": 0,
+      "completed": true,
+      "errors": [],
+      "images": [
+        "profiles-local/widescreen/sp-bt-options-r1/maintt/screenshots/shot0000.png"
+      ],
+      "geometry": [
+        "[2026-10-15 01:39:53 UTC+1.000] AC_UI_ROOT options_main 240.000 0.000 1440.000 1080.000"
+      ],
+      "run": "sp-bt-options-r1"
+    },
+    {
+      "game": "AA",
+      "dimensions": [
+        1920,
+        1080
+      ],
+      "menus": [
+        "m6l3a",
+        "StatsScreen_Success"
+      ],
+      "exit_code": 0,
+      "completed": true,
+      "errors": [],
+      "images": [
+        "profiles-local/widescreen/sp-final-installed-aa/main/screenshots/shot0000.png",
+        "profiles-local/widescreen/sp-final-installed-aa/main/screenshots/shot0001.png"
+      ],
+      "geometry": [
+        "[2026-10-15 02:59:49 UTC+1.000] AC_UI_ROOT m6l3a 240.000 0.000 1440.000 1080.000",
+        "[2026-10-15 02:59:50 UTC+1.000] AC_UI_ROOT StatsScreen_Success 240.000 0.000 1440.000 1080.000"
+      ],
+      "run": "sp-final-installed-aa"
+    },
+    {
+      "game": "BT",
+      "dimensions": [
+        1920,
+        1080
+      ],
+      "menus": [
+        "briefingroom",
+        "options_main"
+      ],
+      "exit_code": 0,
+      "completed": true,
+      "errors": [],
+      "images": [
+        "profiles-local/widescreen/sp-final-installed-bt/maintt/screenshots/shot0000.png",
+        "profiles-local/widescreen/sp-final-installed-bt/maintt/screenshots/shot0001.png"
+      ],
+      "geometry": [
+        "[2026-10-15 03:00:01 UTC+1.000] AC_UI_ROOT briefingroom 240.000 0.000 1440.000 1080.000",
+        "[2026-10-15 03:00:02 UTC+1.000] AC_UI_ROOT options_main 240.000 0.000 1440.000 1080.000"
+      ],
+      "run": "sp-final-installed-bt"
+    },
+    {
+      "game": "SH",
+      "dimensions": [
+        1920,
+        1080
+      ],
+      "menus": [
+        "briefingroom",
+        "options_main"
+      ],
+      "exit_code": 0,
+      "completed": true,
+      "errors": [],
+      "images": [
+        "profiles-local/widescreen/sp-final-installed-sh/mainta/screenshots/shot0000.png",
+        "profiles-local/widescreen/sp-final-installed-sh/mainta/screenshots/shot0001.png"
+      ],
+      "geometry": [
+        "[2026-10-15 02:59:55 UTC+1.000] AC_UI_ROOT briefingroom 240.000 0.000 1440.000 1080.000",
+        "[2026-10-15 02:59:56 UTC+1.000] AC_UI_ROOT options_main 240.000 0.000 1440.000 1080.000"
+      ],
+      "run": "sp-final-installed-sh"
+    },
+    {
+      "game": "AA",
+      "dimensions": [
+        1920,
+        1080
+      ],
+      "menus": [
+        "main",
+        "ac_campaign_operations",
+        "video_options"
+      ],
+      "exit_code": 0,
+      "completed": true,
+      "errors": [],
+      "images": [
+        "profiles-local/widescreen/sp-installed-r1/main/screenshots/shot0000.png",
+        "profiles-local/widescreen/sp-installed-r1/main/screenshots/shot0001.png",
+        "profiles-local/widescreen/sp-installed-r1/main/screenshots/shot0002.png"
+      ],
+      "geometry": [
+        "[2026-10-15 01:25:43 UTC+1.000] AC_UI_ROOT main 240.000 0.000 1440.000 1080.000",
+        "[2026-10-15 01:25:44 UTC+1.000] AC_UI_ROOT ac_campaign_operations 0.000 0.000 1920.000 1080.000",
+        "[2026-10-15 01:25:45 UTC+1.000] AC_UI_ROOT video_options 240.000 0.000 1440.000 1080.000"
+      ],
+      "run": "sp-installed-r1"
+    },
+    {
+      "game": "AA",
+      "dimensions": [
+        1920,
+        1080
+      ],
+      "menus": [
+        "m3l1a",
+        "m3l3"
+      ],
+      "exit_code": 0,
+      "completed": true,
+      "errors": [],
+      "images": [
+        "profiles-local/widescreen/sp-loading-r2/main/screenshots/shot0000.png",
+        "profiles-local/widescreen/sp-loading-r2/main/screenshots/shot0001.png"
+      ],
+      "geometry": [
+        "[2026-10-15 01:33:18 UTC+1.000] AC_UI_ROOT m3l1a 240.000 0.000 1440.000 1080.000",
+        "[2026-10-15 01:33:20 UTC+1.000] AC_UI_ROOT m3l3 240.000 0.000 1440.000 1080.000"
+      ],
+      "run": "sp-loading-r2"
+    },
+    {
+      "game": "AA",
+      "dimensions": [
+        1920,
+        1080
+      ],
+      "menus": [
+        "loadsave"
+      ],
+      "exit_code": 0,
+      "completed": true,
+      "errors": [],
+      "images": [
+        "profiles-local/widescreen/sp-loadsave-r1/main/screenshots/shot0000.png"
+      ],
+      "geometry": [
+        "[2026-10-15 01:46:53 UTC+1.000] AC_UI_ROOT loadsave 240.000 0.000 1440.000 1080.000"
+      ],
+      "run": "sp-loadsave-r1"
+    },
+    {
+      "game": "SH",
+      "dimensions": [
+        1920,
+        1080
+      ],
+      "menus": [
+        "medals"
+      ],
+      "exit_code": 0,
+      "completed": true,
+      "errors": [],
+      "images": [
+        "profiles-local/widescreen/sp-medals-r1/mainta/screenshots/shot0000.png"
+      ],
+      "geometry": [
+        "[2026-10-15 01:54:50 UTC+1.000] AC_UI_ROOT medals 240.000 0.000 1440.000 1080.000"
+      ],
+      "run": "sp-medals-r1"
+    },
+    {
+      "game": "AA",
+      "dimensions": [
+        1920,
+        1080
+      ],
+      "menus": [
+        "controls",
+        "audio_options",
+        "advancedoptions",
+        "video_options"
+      ],
+      "exit_code": 0,
+      "completed": true,
+      "errors": [],
+      "images": [
+        "profiles-local/widescreen/sp-options-r1/main/screenshots/shot0000.png",
+        "profiles-local/widescreen/sp-options-r1/main/screenshots/shot0001.png",
+        "profiles-local/widescreen/sp-options-r1/main/screenshots/shot0002.png",
+        "profiles-local/widescreen/sp-options-r1/main/screenshots/shot0003.png"
+      ],
+      "geometry": [
+        "[2026-10-15 01:24:03 UTC+1.000] AC_UI_ROOT controls 240.000 0.000 1440.000 1080.000",
+        "[2026-10-15 01:24:04 UTC+1.000] AC_UI_ROOT audio_options 240.000 0.000 1440.000 1080.000",
+        "[2026-10-15 01:24:05 UTC+1.000] AC_UI_ROOT advancedoptions 240.000 0.000 1440.000 1080.000",
+        "[2026-10-15 01:24:07 UTC+1.000] AC_UI_ROOT video_options 240.000 0.000 1440.000 1080.000"
+      ],
+      "run": "sp-options-r1"
+    },
+    {
+      "game": "SH",
+      "dimensions": [
+        1920,
+        1080
+      ],
+      "menus": [
+        "briefingroom"
+      ],
+      "exit_code": 0,
+      "completed": true,
+      "errors": [],
+      "images": [
+        "profiles-local/widescreen/sp-sh-briefing-r1/mainta/screenshots/shot0000.png"
+      ],
+      "geometry": [
+        "[2026-10-15 01:36:15 UTC+1.000] AC_UI_ROOT briefingroom 240.000 0.000 1440.000 1080.000"
+      ],
+      "run": "sp-sh-briefing-r1"
+    },
+    {
+      "game": "SH",
+      "dimensions": [
+        1920,
+        1080
+      ],
+      "menus": [
+        "options_main"
+      ],
+      "exit_code": 0,
+      "completed": true,
+      "errors": [],
+      "images": [
+        "profiles-local/widescreen/sp-sh-options-r1/mainta/screenshots/shot0000.png"
+      ],
+      "geometry": [
+        "[2026-10-15 01:39:49 UTC+1.000] AC_UI_ROOT options_main 240.000 0.000 1440.000 1080.000"
+      ],
+      "run": "sp-sh-options-r1"
+    },
+    {
+      "game": "SH",
+      "dimensions": [
+        1920,
+        1080
+      ],
+      "menus": [
+        "war_records"
+      ],
+      "exit_code": 0,
+      "completed": true,
+      "errors": [],
+      "images": [
+        "profiles-local/widescreen/sp-sh-records-r1/mainta/screenshots/shot0000.png"
+      ],
+      "geometry": [
+        "[2026-10-15 01:51:50 UTC+1.000] AC_UI_ROOT war_records 240.000 0.000 1440.000 1080.000"
+      ],
+      "run": "sp-sh-records-r1"
+    },
+    {
+      "game": "SH",
+      "dimensions": [
+        1920,
+        1080
+      ],
+      "menus": [
+        "video_options"
+      ],
+      "exit_code": 0,
+      "completed": true,
+      "errors": [],
+      "images": [
+        "profiles-local/widescreen/sp-sh-video-r1/mainta/screenshots/shot0000.png"
+      ],
+      "geometry": [
+        "[2026-10-15 01:44:23 UTC+1.000] AC_UI_ROOT video_options 240.000 0.000 1440.000 1080.000"
+      ],
+      "run": "sp-sh-video-r1"
+    },
+    {
+      "game": "AA",
+      "dimensions": [
+        1920,
+        1080
+      ],
+      "menus": [
+        "StatsScreen_Failed"
+      ],
+      "exit_code": 0,
+      "completed": true,
+      "errors": [],
+      "images": [
+        "profiles-local/widescreen/sp-stats-failed-r1/main/screenshots/shot0000.png"
+      ],
+      "geometry": [
+        "[2026-10-15 02:09:55 UTC+1.000] AC_UI_ROOT StatsScreen_Failed 240.000 0.000 1440.000 1080.000"
+      ],
+      "run": "sp-stats-failed-r1"
+    },
+    {
+      "game": "AA",
+      "dimensions": [
+        1920,
+        1080
+      ],
+      "menus": [
+        "StatsScreen_game"
+      ],
+      "exit_code": 0,
+      "completed": true,
+      "errors": [],
+      "images": [
+        "profiles-local/widescreen/sp-stats-game-r2/main/screenshots/shot0000.png"
+      ],
+      "geometry": [
+        "[2026-10-15 02:59:34 UTC+1.000] AC_UI_ROOT StatsScreen_game 240.000 0.000 1440.000 1080.000"
+      ],
+      "run": "sp-stats-game-r2"
+    }
+  ],
+  "diagnostics": [
+    {
+      "game": "AA",
+      "dimensions": [
+        1920,
+        1080
+      ],
+      "menus": [
+        "m4l3",
+        "m5l1"
+      ],
+      "exit_code": 0,
+      "completed": true,
+      "errors": [
+        "[2026-10-15 02:17:14 UTC+1.000] Couldn't find menu m5l1"
+      ],
+      "images": [
+        "profiles-local/widescreen/sp-aa-loadings-r3/main/screenshots/shot0000.png",
+        "profiles-local/widescreen/sp-aa-loadings-r3/main/screenshots/shot0001.png"
+      ],
+      "geometry": [
+        "[2026-10-15 02:17:14 UTC+1.000] AC_UI_ROOT m4l3 240.000 0.000 1440.000 1080.000"
+      ],
+      "run": "sp-aa-loadings-r3"
+    },
+    {
+      "game": "AA",
+      "dimensions": [
+        1920,
+        1080
+      ],
+      "menus": [
+        "loading_m3l1a",
+        "loading_m3l3"
+      ],
+      "exit_code": 0,
+      "completed": true,
+      "errors": [
+        "[2026-10-15 01:32:00 UTC+1.000] Couldn't find menu loading_m3l1a",
+        "[2026-10-15 01:32:02 UTC+1.000] Couldn't find menu loading_m3l3"
+      ],
+      "images": [
+        "profiles-local/widescreen/sp-loading-r1/main/screenshots/shot0000.png",
+        "profiles-local/widescreen/sp-loading-r1/main/screenshots/shot0001.png"
+      ],
+      "geometry": [],
+      "run": "sp-loading-r1"
+    },
+    {
+      "game": "AA",
+      "dimensions": [
+        1920,
+        1080
+      ],
+      "menus": [
+        "StatsScreen_Success",
+        "StatsScreen_game"
+      ],
+      "exit_code": 0,
+      "completed": true,
+      "errors": [],
+      "images": [
+        "profiles-local/widescreen/sp-stats-final-r1/main/screenshots/shot0000.png",
+        "profiles-local/widescreen/sp-stats-final-r1/main/screenshots/shot0001.png"
+      ],
+      "geometry": [
+        "[2026-10-15 02:59:01 UTC+1.000] AC_UI_ROOT StatsScreen_Success 240.000 0.000 1440.000 1080.000",
+        "[2026-10-15 02:59:02 UTC+1.000] AC_UI_ROOT StatsScreen_game 240.000 0.000 1440.000 1080.000"
+      ],
+      "run": "sp-stats-final-r1",
+      "visual_diagnostic": "Success dialog obscured subsequently pushed campaign statistics; separately verified in sp-stats-game-r2."
+    }
+  ],
+  "personal_acceptance": false,
+  "merged": false,
+  "delivery": {
+    "source_commit": "a82ce709c451b2167c2b0a9b372eb47cd360765b",
+    "integrity": {
+      "original_files_unchanged": 9072,
+      "runtime_base_files_unchanged": 9000,
+      "mp1_files_unchanged": 8,
+      "user_profile_files_unchanged": 80,
+      "rollback_copy": "generated-local/widescreen/backups/widescreen-sp-final"
+    },
+    "package": "artifacts-local/CP08-r1-widescreen-sp-final-update.zip",
+    "sha256": "aac5b15ac3ecb45ca673b46959694a679c9bc21bf0d6c7cef525fe2eed244f99",
+    "upload_allowed": false,
+    "approved_artworks": [
+      "AA-advancedoptions",
+      "AA-audio options",
+      "AA-briefing_room",
+      "AA-controls",
+      "AA-loading_m1l1",
+      "AA-loading_m1l2a",
+      "AA-loading_m1l2b",
+      "AA-loading_m1l3a",
+      "AA-loading_m2l1",
+      "AA-loading_m2l2a",
+      "AA-loading_m2l3",
+      "AA-loading_m3l1a",
+      "AA-loading_m3l2",
+      "AA-loading_m3l3",
+      "AA-loading_m4l3",
+      "AA-loading_m5l1",
+      "AA-loading_m5l3",
+      "AA-loading_m6l1a",
+      "AA-loading_m6l1c",
+      "AA-loading_m6l2a",
+      "AA-loading_m6l2b",
+      "AA-loading_m6l3",
+      "AA-loadsave",
+      "AA-main",
+      "AA-missionbriefingback",
+      "AA-options_main",
+      "AA-statsscreen_failed",
+      "AA-statsscreen_game",
+      "AA-statsscreen_success",
+      "AA-video options",
+      "AA-war_records",
+      "BT-briefing_room",
+      "BT-briefing_room_nobuttons",
+      "BT-controls",
+      "BT-main",
+      "BT-options_main",
+      "SH-briefing_room",
+      "SH-main",
+      "SH-medals",
+      "SH-options_main",
+      "SH-video options",
+      "SH-war_records"
+    ],
+    "completion": "PARTIAL_PROVIDER_BLOCKED"
+  },
+  "framing_note": "Campaign statistics retains framed photo with ivory album-paper side wings.",
+  "visual_limits": "Minor original/generated lighting and texture seams remain possible."
+}

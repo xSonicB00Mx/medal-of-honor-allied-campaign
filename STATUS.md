@@ -1,3 +1,7 @@
+## Aktuell: Widescreen-Single-Player-Paket installiert
+
+42 von 45 ausgewaehlten SP-Hintergruenden sind fertig und installiert, 30 davon neu. Gemini 3.8 Flash / High, neue Chats und serielle Generierung. Drei AA-Vorlagen wurden von Gemini abgelehnt und bleiben original; keine Multiplayer-Bilder erzeugt. AA-/SH-/BT-Nachtests bestanden, Originale und alle 80 Nutzerdateien unveraendert. [Bericht und offene Bilder](checkpoints/CP08/widescreen-singleplayer.md). SH-/BT-Ladezoom bleibt erhalten.
+
 ## Aktuell: Single-Player und Jeep-MG
 
 Multiplayer ist in AA, SH und BT nicht mehr anwaehlbar; alternative Menue-, Verbindungs- und Kartenaufrufe werden abgewiesen. Das echte m1l3a-Jeep-MG erzeugt jetzt die freigegebenen Bluteffekte. Native Tests bestanden, in CP08-r1 installiert, 80 Nutzerdateien unveraendert. [Bericht](checkpoints/CP08/singleplayer-jeep.md). Gemini-Bildarbeit wird mit 3.8 Flash / High und einem neuen Chat pro Bild fortgesetzt; Multiplayer-Bilder sind ausgeschlossen.

@@ -28,7 +28,11 @@ old = json.loads((runtime/'build-manifest.json').read_text())
 approved = json.loads((work/'approved.json').read_text())
 progress = json.loads((work/'progress.json').read_text())
 remaining = [item for item in progress['remaining'] if item not in approved]
-completion = 'COMPLETE' if not remaining else ('PARTIAL_GEMINI_QUOTA_BLOCKED' if progress['status']=='BLOCKED_BY_GEMINI_QUOTA' else 'PARTIAL_IN_PROGRESS')
+completion = 'COMPLETE' if not remaining else {
+    'BLOCKED_BY_GEMINI_QUOTA': 'PARTIAL_GEMINI_QUOTA_BLOCKED',
+    'BLOCKED_BY_PROVIDER': 'PARTIAL_PROVIDER_BLOCKED',
+    'BLOCKED_BY_PROVIDER_AND_QUALITY': 'PARTIAL_PROVIDER_AND_QUALITY_BLOCKED',
+}.get(progress['status'], 'PARTIAL_IN_PROGRESS')
 packages = json.loads((work/('loading-zoom/packages/package-report.json' if args.loading_zoom else 'packages/package-report.json')).read_text())
 profile = root/'profiles-local/CP08-r1/user'
 def profile_hashes():
