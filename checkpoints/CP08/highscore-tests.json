@@ -243,5 +243,26 @@
   "lower_and_tied_scores_keep_best": true,
   "fresh_unlocks_preserved": true,
   "active_user_profile_used": false,
-  "scope": "Native combat and scripted intermissions in isolated profiles; no exhaustive natural campaign playthrough."
+  "scope": "Native combat and scripted intermissions in isolated profiles; no exhaustive natural campaign playthrough.",
+  "installed_smoke": {
+    "run": "installed-bt",
+    "passed": true,
+    "binaries": {
+      "openmohaa.exe": "bf9ee9796ebfbdc102481b2ba32bdc33168707e7976cbc0887b5b3e9d9c11bed",
+      "game.dll": "da267f5202f09950beff2a3c302883348e1c02b62c21e49875203bb4bbab1346"
+    },
+    "unexpected_errors": [],
+    "images": [
+      "profiles-local/highscore/installed-bt/maintt/screenshots/shot0000.png",
+      "profiles-local/highscore/installed-bt/maintt/screenshots/shot0001.png",
+      "profiles-local/highscore/installed-bt/maintt/screenshots/shot0002.png"
+    ]
+  },
+  "installation_integrity": {
+    "original_files_unchanged": 9072,
+    "runtime_base_files_unchanged": 9000,
+    "mp1_files_unchanged": 8,
+    "user_profile_files_unchanged": 80,
+    "rollback_copy": "generated-local/widescreen/backups/highscore-r1"
+  }
 }
