@@ -34,3 +34,9 @@ Built-in Imagegen, one original sprite as edit target per call, transparent_back
 ## Verification scope
 
 tools/test_ammo_art.py uses isolated profiles and actual weapon selection, firing and reload commands at 3840x2160 with ac_hud_scale=1.66. Native captures cover AA m2l1, SH t1l3 and BT e3l1. This is HUD visual smoke coverage, not exhaustive gameplay acceptance of every weapon or mounted emplacement. Special artillery sprites are packaged but not all are exercised at an actual emplacement. User acceptance and merge remain open.
+
+AA aa-r2 visually verified Garand 8 -> 7 rounds, pistol, shotgun, launchers and grenades. SH sh-r2 verified the staggered SMG counter 30/120 -> 26/120 -> 30/116 after reload, plus smoke grenades. The earlier +reload diagnostic command was invalid; corrected to the native reload command before the successful run. BT captures verify PIAT and the shared ammunition counters. Source/policy validators and git diff --check passed.
+
+Installed batch ammo-r1 from source 967cc389. Deployment verified 9072 original files, 9000 runtime-base files, eight MP1 input files and all 80 active-profile files unchanged. Existing compass/font packages and binaries are retained. Rollback metadata: generated-local/widescreen/backups/ammo-r1. Delivery: artifacts-local/CP08-r1-ammo-r1-update.zip.
+
+Final installed BT capture bt-installed-r1 also verified both Italian grenade variants after allowing the weapon-give event to finish before selection. No test package overlay was used. Selected full-resolution captures are bundled in artifacts-local/CP08-Ammo-UHD-Screenshots.zip.
