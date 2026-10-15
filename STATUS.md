@@ -1,3 +1,7 @@
+## Aktuell: Courier New fuer Menues und HUD
+
+Hochaufloesende Courier-New-Bold-Schrift mit bisherigen Zeichenbreiten, Originalfarben und kleinem Schlagschatten. AA/SH/BT in Full HD sowie AA in 4K und 4:3 geprueft. [Umfang und Nachweise](checkpoints/CP08/courier-fonts.md).
+
 ## Aktuell: Mission List Highscore-Modus
 
 Level-Complete zeigt das vorhandene Gemini-16:9-Bild mit Helm und Sonnenuntergang; der Statistikblock steht auf Nutzerwunsch links. Proportionale Darstellung bleibt erhalten; siehe denselben Bericht.

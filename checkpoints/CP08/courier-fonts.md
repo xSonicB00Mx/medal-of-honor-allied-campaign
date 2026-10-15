@@ -1,0 +1,17 @@
+# Courier New for runtime UI and HUD text
+
+The requested font replacement uses locally installed Courier New Bold outlines, rasterized at eight times the original atlas resolution (2048x1024 or 2048x2048). The regular face was tested first but became too thin when compressed to the original advances; Bold and mip filtering retain readable strokes at small HUD sizes. This is exact font rasterization, not generative imitation of letters.
+
+Every glyph is horizontally fitted to its original cell. RitualFont metrics, indirections, line heights, string advances and menu geometry are unchanged. The generator resolves each campaign's effective WCR font definitions independently: ten text atlases for AA, eleven each for SH and BT. Marlett symbol fonts remain intact. Existing runtime colors and fades still modulate white glyphs; a black shadow at 70% opacity is offset about 0.6 source pixels down/right inside each cell. The existing shader loader supplies the same global colors. Mipmaps prevent high-resolution strokes from being undersampled at small display sizes, while nopicmip avoids the general texture quality setting reducing font resolution.
+
+This covers live menu text, bindings, mission lists, HUD labels/numbers, objectives, subtitles and script HUD text. Lettering baked into artwork (including main-menu sign graphics) is artwork, not a runtime font, and is unchanged. Other HUD/2D textures have not been redesigned in this step. The font file and generated atlases/packages stay local and are not committed or uploaded.
+
+## Validation
+
+Native isolated AA/SH/BT Full-HD runs checked gameplay HUD, objectives/subtitles, custom options and Mission List, with synthetic white/yellow/red text and accented characters. AA also ran at 3840x2160 and 1024x768, with HUD scale 1.4. Original control bindings were visually checked at 1024x768. Font image listings confirm 2048-wide RGBA atlases with mipmaps and the unchanged 256-wide Marlett atlas. All final cited runs completed without script/font diagnostics. The engine binary was unchanged; this is a package-only update.
+
+Early captures did not show the controls screen because the test pushed it during the preceding menu's transition lock. The corrected harness explicitly loads the menu, waits for the transition and asserts AC_UI_CURRENT controls; aa-43-r4 passed that check. Earlier r2 runs are evidence for HUD/custom options/list only. No exhaustive menu, language or hardware matrix is claimed. Detailed local reports: generated-local/courier/*.json; committed summary: courier-fonts-tests.json. Screenshot delivery: artifacts-local/CP08-Courier-New-Screenshots.zip.
+
+## Rebuild
+
+Run tools/package_courier_fonts.py with --runtime runtime-local/CP08-r1, --font pointing to the local courbd.ttf, and --output generated-local/courier/packages. Inspect isolated captures using tools/test_courier_fonts.py. Deployment uses tools/deploy_widescreen_art.py --font-packages generated-local/courier/packages/package-report.json with a fresh batch name and the existing MP1 input path. It verifies protected inputs and active user-profile hashes, backs up the prior manifest and records newly introduced package paths for rollback. Font-only deployment does not replace engine/game binaries or widescreen artwork.

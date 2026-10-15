@@ -1,5 +1,7 @@
 # CP08-r1 – gemeinsame Einsatzkarte
 
+Neueste Darstellungsaenderung: [Courier New fuer Menues und HUD](courier-fonts.md).
+
 Neueste Erweiterung: [Mission List Highscore-Modus](highscore.md).
 
 Fruehere Erweiterung: [Briefing Room und einzelne Level wiederholen](level-replay.md).
