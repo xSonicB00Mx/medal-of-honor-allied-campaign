@@ -1,3 +1,7 @@
+## Aktuell: Dynamische Fadenkreuze
+
+Vier getrennte Linien mit Mittelpunkt und dunkler Kontur installiert. Die Oeffnung folgt der echten Waffenstreuung bei Bewegung, Dauerfeuer und Erholung, mit korrekter FOV-/Aufloesungsprojektion. Sie markiert den 95%-Bereich der gaussfoermigen Kugelstreuung; HUD-Groesse beeinflusst nur Strich/Punkt. AA/SH/BT, Full HD/UHD, Optiken und Save/Load geprueft; 80 persoenliche Profildateien unveraendert. [Formel, Nachweise und Grenzen](checkpoints/CP08/dynamic-crosshair.md).
+
 ## Aktuell: Hochaufloesende Waffengruppen
 
 Sechs Waffengruppen mit je drei Zustaenden als 512x256-Metallreliefs installiert: vorhanden silbern, ausgeruestet bronze, nicht vorhanden dunkel. Originale Anordnung und Auswahlpuls erhalten. [Bericht und Prompts](checkpoints/CP08/weapon-group-upscale.md).

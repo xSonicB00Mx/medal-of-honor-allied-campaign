@@ -1,0 +1,138 @@
+{
+  "source_commit": "433e760e873aaa3e0afd49000d12de62da828caf",
+  "tests": [
+    {
+      "run": "aa-installed-1080",
+      "game": "AA",
+      "installed": true,
+      "resolution": [
+        1920,
+        1080
+      ],
+      "standing_radius": 23.638,
+      "firing_radius": 53.173,
+      "moving_radius": 39.291,
+      "recovered_radius": 23.638,
+      "fov90_radius": 19.835,
+      "rifle_radius": 4.196,
+      "shot_samples": 10,
+      "projection_error_pixels": 0.0008227498695063673,
+      "binaries": {
+        "game.dll": "cce56f7b5f1c2883ef48ab0012cc98fafe5e94861cb40b061b7164bea7c8d4ca",
+        "cgame.dll": "dd4a69fc89085ff6a5e73757a4590a7b6c83e0d5c107b15b925eb9c6df3b77b9"
+      },
+      "screenshots": [
+        "artifacts-local/Crosshair-AA-aa-installed-1080-standing.png",
+        "artifacts-local/Crosshair-AA-aa-installed-1080-firing.png",
+        "artifacts-local/Crosshair-AA-aa-installed-1080-recovery.png",
+        "artifacts-local/Crosshair-AA-aa-installed-1080-moving.png",
+        "artifacts-local/Crosshair-AA-aa-installed-1080-stopped.png",
+        "artifacts-local/Crosshair-AA-aa-installed-1080-hud1.png",
+        "artifacts-local/Crosshair-AA-aa-installed-1080-hud166.png",
+        "artifacts-local/Crosshair-AA-aa-installed-1080-fov90.png",
+        "artifacts-local/Crosshair-AA-aa-installed-1080-fov80.png",
+        "artifacts-local/Crosshair-AA-aa-installed-1080-rifle.png",
+        "artifacts-local/Crosshair-AA-aa-installed-1080-rifle-shot.png",
+        "artifacts-local/Crosshair-AA-aa-installed-1080-rifle-recovered.png",
+        "artifacts-local/Crosshair-AA-aa-installed-1080-scope.png",
+        "artifacts-local/Crosshair-AA-aa-installed-1080-unscoped.png",
+        "artifacts-local/Crosshair-AA-aa-installed-1080-projectile.png",
+        "artifacts-local/Crosshair-AA-aa-installed-1080-save.png",
+        "artifacts-local/Crosshair-AA-aa-installed-1080-loaded.png",
+        "artifacts-local/Crosshair-AA-aa-installed-1080-hidden.png",
+        "artifacts-local/Crosshair-AA-aa-installed-1080-legacy.png"
+      ]
+    },
+    {
+      "run": "sh-r8",
+      "game": "SH",
+      "installed": false,
+      "resolution": [
+        3840,
+        2160
+      ],
+      "standing_radius": 47.276,
+      "firing_radius": 106.346,
+      "moving_radius": 78.375,
+      "recovered_radius": 47.276,
+      "fov90_radius": 39.669,
+      "rifle_radius": 8.392,
+      "shot_samples": 10,
+      "projection_error_pixels": 0.0013173917288327175,
+      "binaries": {
+        "game.dll": "cce56f7b5f1c2883ef48ab0012cc98fafe5e94861cb40b061b7164bea7c8d4ca",
+        "cgame.dll": "dd4a69fc89085ff6a5e73757a4590a7b6c83e0d5c107b15b925eb9c6df3b77b9"
+      },
+      "screenshots": [
+        "artifacts-local/Crosshair-SH-sh-r8-standing.png",
+        "artifacts-local/Crosshair-SH-sh-r8-firing.png",
+        "artifacts-local/Crosshair-SH-sh-r8-recovery.png",
+        "artifacts-local/Crosshair-SH-sh-r8-moving.png",
+        "artifacts-local/Crosshair-SH-sh-r8-stopped.png",
+        "artifacts-local/Crosshair-SH-sh-r8-hud1.png",
+        "artifacts-local/Crosshair-SH-sh-r8-hud166.png",
+        "artifacts-local/Crosshair-SH-sh-r8-fov90.png",
+        "artifacts-local/Crosshair-SH-sh-r8-fov80.png",
+        "artifacts-local/Crosshair-SH-sh-r8-rifle.png",
+        "artifacts-local/Crosshair-SH-sh-r8-rifle-shot.png",
+        "artifacts-local/Crosshair-SH-sh-r8-rifle-recovered.png",
+        "artifacts-local/Crosshair-SH-sh-r8-scope.png",
+        "artifacts-local/Crosshair-SH-sh-r8-unscoped.png",
+        "artifacts-local/Crosshair-SH-sh-r8-projectile.png",
+        "artifacts-local/Crosshair-SH-sh-r8-save.png",
+        "artifacts-local/Crosshair-SH-sh-r8-loaded.png",
+        "artifacts-local/Crosshair-SH-sh-r8-hidden.png",
+        "artifacts-local/Crosshair-SH-sh-r8-legacy.png"
+      ]
+    },
+    {
+      "run": "bt-installed-r1",
+      "game": "BT",
+      "installed": true,
+      "resolution": [
+        3840,
+        2160
+      ],
+      "standing_radius": 47.276,
+      "firing_radius": 105.52,
+      "moving_radius": 78.581,
+      "recovered_radius": 47.276,
+      "fov90_radius": 39.669,
+      "rifle_radius": 8.392,
+      "shot_samples": 10,
+      "projection_error_pixels": 0.0011821999787997584,
+      "binaries": {
+        "game.dll": "cce56f7b5f1c2883ef48ab0012cc98fafe5e94861cb40b061b7164bea7c8d4ca",
+        "cgame.dll": "dd4a69fc89085ff6a5e73757a4590a7b6c83e0d5c107b15b925eb9c6df3b77b9"
+      },
+      "screenshots": [
+        "artifacts-local/Crosshair-BT-bt-installed-r1-standing.png",
+        "artifacts-local/Crosshair-BT-bt-installed-r1-firing.png",
+        "artifacts-local/Crosshair-BT-bt-installed-r1-recovery.png",
+        "artifacts-local/Crosshair-BT-bt-installed-r1-moving.png",
+        "artifacts-local/Crosshair-BT-bt-installed-r1-stopped.png",
+        "artifacts-local/Crosshair-BT-bt-installed-r1-hud1.png",
+        "artifacts-local/Crosshair-BT-bt-installed-r1-hud166.png",
+        "artifacts-local/Crosshair-BT-bt-installed-r1-fov90.png",
+        "artifacts-local/Crosshair-BT-bt-installed-r1-fov80.png",
+        "artifacts-local/Crosshair-BT-bt-installed-r1-rifle.png",
+        "artifacts-local/Crosshair-BT-bt-installed-r1-rifle-shot.png",
+        "artifacts-local/Crosshair-BT-bt-installed-r1-rifle-recovered.png",
+        "artifacts-local/Crosshair-BT-bt-installed-r1-scope.png",
+        "artifacts-local/Crosshair-BT-bt-installed-r1-unscoped.png",
+        "artifacts-local/Crosshair-BT-bt-installed-r1-projectile.png",
+        "artifacts-local/Crosshair-BT-bt-installed-r1-save.png",
+        "artifacts-local/Crosshair-BT-bt-installed-r1-loaded.png",
+        "artifacts-local/Crosshair-BT-bt-installed-r1-hidden.png",
+        "artifacts-local/Crosshair-BT-bt-installed-r1-legacy.png"
+      ]
+    }
+  ],
+  "profile_files_unchanged": 80,
+  "runtime_hashes_verified": 56,
+  "screenshots_zip": "artifacts-local/CP08-Dynamic-Crosshairs-Screenshots.zip",
+  "zip_sha256": "5c8e6a60c52b08596f41d7d3ac4e1878f868abdc5389a9e681a02d1a80a42a8c",
+  "zip_bytes": 50825714,
+  "personal_acceptance": false,
+  "merged": false
+}
