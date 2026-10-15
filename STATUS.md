@@ -1,3 +1,7 @@
+## Aktuell: Gemeinsame Kampagnenoptionen
+
+Grafik, Audio, Maus-/Joysticksteuerung, HUD und normale/Alt-/Strg-Belegungen werden gemeinsam gespeichert. Native AA -> SH -> BT -> AA-Wechsel und drei Neustarts bestanden; Spielstandszeiger und Missionsstatistik bleiben getrennt. [Bericht](checkpoints/CP08/shared-preferences.md).
+
 ## Aktuell: Vollstaendige 16:9-Hintergruende
 
 Alle 45 ausgewaehlten Hintergruende verwenden jetzt das vollstaendige Bild ohne Originalzentrum. Drei neue Ladebilder stammen direkt vom Nutzer (m4l1, m4l2, m5l2). Bedienelemente bleiben unveraendert; die optische Menueausrichtung beurteilt der Nutzer im Anschluss. [Bericht](checkpoints/CP08/widescreen-fullframe.md).

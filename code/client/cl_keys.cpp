@@ -760,6 +760,8 @@ void Key_Unbindall_f(void)
         if (keys[i].binding) {
             Key_SetBinding(i, "");
         }
+        if (altkeys[i].binding) Key_SetAltBinding(i, "");
+        if (ctrlkeys[i].binding) Key_SetCtrlBinding(i, "");
     }
 }
 
@@ -909,6 +911,10 @@ void Key_WriteBindings(fileHandle_t f)
         if (keys[i].binding && keys[i].binding[0]) {
             FS_Printf(f, "bind %s \"%s\"\n", Key_KeynumToString(i), keys[i].binding);
         }
+        if (altkeys[i].binding && altkeys[i].binding[0])
+            FS_Printf(f, "altbind %s \"%s\"\n", Key_KeynumToString(i), altkeys[i].binding);
+        if (ctrlkeys[i].binding && ctrlkeys[i].binding[0])
+            FS_Printf(f, "ctrlbind %s \"%s\"\n", Key_KeynumToString(i), ctrlkeys[i].binding);
     }
 }
 

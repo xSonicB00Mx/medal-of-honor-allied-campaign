@@ -1,0 +1,40 @@
+{
+  "checks": [
+    {
+      "folder": "mainta",
+      "phase": "received-aa.cfg",
+      "passed": true
+    },
+    {
+      "folder": "maintt",
+      "phase": "received-sh.cfg",
+      "passed": true
+    },
+    {
+      "folder": "main",
+      "phase": "received-bt.cfg",
+      "passed": true
+    },
+    {
+      "folder": "main",
+      "phase": "fresh-process",
+      "passed": true
+    },
+    {
+      "folder": "mainta",
+      "phase": "fresh-process",
+      "passed": true
+    },
+    {
+      "folder": "maintt",
+      "phase": "fresh-process",
+      "passed": true
+    }
+  ],
+  "passed": true,
+  "isolated_profile": "profiles-local/shared-preferences/shared-r1",
+  "latched_graphics": true,
+  "normal_alt_ctrl_bindings": true,
+  "removed_bindings": true,
+  "mission_state_excluded": true
+}

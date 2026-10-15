@@ -3544,7 +3544,7 @@ void CL_Init( void ) {
 #endif
 
 	cl_altbindings = Cvar_Get( "cl_altbindings", "0", CVAR_ARCHIVE );
-	cl_ctrlbindings = Cvar_Get( "cl_altbindings", "0", CVAR_ARCHIVE );
+	cl_ctrlbindings = Cvar_Get( "cl_ctrlbindings", "0", CVAR_ARCHIVE );
 
 	cl_conXOffset = Cvar_Get ("cl_conXOffset", "0", 0);
 #ifdef MACOS_X

@@ -2,16 +2,12 @@
 static void AC_WriteSharedConfiguration(void)
 {
 #ifndef DEDICATED
-    static const char *names[]={"ac_ui_auto","ac_menu_scale","ac_hud_scale","ac_hud_safe","ac_blood_mist","ac_world_blood","ac_body_wounds","ac_corpse_effects","cg_fov","s_volume","s_musicvolume","sensitivity","skill","r_mode","r_customwidth","r_customheight","r_fullscreen","cl_playintro"};
-    fileHandle_t f;int i;
+    fileHandle_t f;
     if(!Cvar_VariableIntegerValue("ac_campaign_mode")) return;
-    f=FS_BaseDir_FOpenFileWrite_HomeConfig("main/ac_shared.cfg");if(!f) return;
+    f=FS_BaseDir_FOpenFileWrite_HomeConfig("main/ac_preferences.cfg");if(!f) return;
     Key_WriteBindings(f);
-    for(i=0;i<ARRAY_LEN(names);i++) {
-        const char *value=Cvar_VariableString(names[i]);
-        if(!*value || strpbrk(value,"\"\n\r")) continue;
-        FS_Printf(f,"seta %s \"%s\"\n",names[i],value);
-    }
+    Cvar_WriteCampaignPreferences(f);
+    Cmd_WriteAliases(f);
     FS_FCloseFile(f);
 #endif
 }
@@ -21,11 +17,7 @@ static void AC_Context_f(void)
     char targetText[8], map[MAX_QPATH];
     int target, i;
     static const char *sharedNames[] = {
-        "ac_ui_auto", "ac_menu_scale", "ac_hud_scale", "ac_hud_safe",
-        "ac_blood_mist", "ac_world_blood", "ac_body_wounds", "ac_corpse_effects",
-        "cg_fov", "s_volume", "s_musicvolume", "sensitivity", "skill",
-        "r_mode", "r_customwidth", "r_customheight", "r_fullscreen",
-        "cl_playintro", "developer", "logfile", "com_maxfps", "com_maxfpsUnfocused", "ac_campaign_mode",
+        "developer", "logfile", "ac_campaign_mode",
         "ac_operation", "ac_replay", "ac_expected_map"
     };
 
@@ -85,6 +77,7 @@ static void AC_Context_f(void)
         Com_Memset(&si,0,sizeof(si));si.cb=sizeof(si);
         Com_Memset(&pi,0,sizeof(pi));
         Com_WriteConfiguration();
+        AC_WriteSharedConfiguration();
         if (!CreateProcessA(exe,args,NULL,NULL,FALSE,0,NULL,NULL,&si,&pi)) {
             Com_Printf("AC_CONTEXT_FAILED create process: %lu\n",GetLastError()); return;
         }

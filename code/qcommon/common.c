@@ -1864,7 +1864,8 @@ void Com_Init( char *commandLine ) {
 
 	Cbuf_AddText( "exec localized.cfg\n" );
 	Cbuf_AddText( "exec autoexec.cfg\n" );
-	if(Cvar_VariableIntegerValue("ac_campaign_mode")) Cbuf_AddText("exec ac_shared.cfg\n");
+	if(Cvar_VariableIntegerValue("ac_campaign_mode"))
+		Cbuf_AddText("exec ac_shared.cfg\nexec ac_preferences.cfg\n");
 	Cbuf_Execute( 0 );
 	Com_StartupVariable( NULL );
 	Cvar_Set( "config", configname );
