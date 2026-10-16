@@ -1216,3 +1216,4 @@ specialeffect_t *ClientSpecialEffectsManager::GetTestEffectPointer()
 }
 
 #include "ac_blood_impl.h"
+#include "ac_mortar_aim.h"

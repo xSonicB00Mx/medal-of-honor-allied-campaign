@@ -1,3 +1,7 @@
+## Aktuell: Moerser-Zielhilfe und lesbare Beschriftung
+
+Roter Einschlagmarker mit echter Ballistik; vorhandener BT-Spielstand als Kopie geladen und erneut gespeichert. Boden-Probetreffer deckungsgleich. [Bericht](checkpoints/CP08/mortar-aim.md).
+
 ## Aktuell: Schrotflinte mit pelletweisen Bluteffekten
 
 Neun Pellets erzeugen unabhaengige kleine Wunden und Tropfen; AA/SH/BT sowie toedliche Salve und Save/Load nativ geprueft. [Bericht](checkpoints/CP08/shotgun-blood.md).

@@ -47,6 +47,8 @@ extern "C" {
     void CG_ACWoundsDraw(refEntity_t *model,int usage);
     void CG_ACBloodEvent(void);
     void CG_ACBloodFrame(void);
+    void CG_ACMortarEvent(void);
+    void CG_ACMortarFrame(void);
     void CG_ACBloodBody(refEntity_t *model);
     void CG_ACBloodReset(void);
 

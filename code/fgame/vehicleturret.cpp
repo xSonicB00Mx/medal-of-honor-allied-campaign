@@ -29,6 +29,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 #include "explosion.h"
 #include "gibs.h"
 #include "scriptexception.h"
+#include "ac_mortar_aim.h"
 
 static const Vector g_vUserMins(-16, -16, 0);
 static const Vector g_vUserMaxs(16, 16, 96);
@@ -339,6 +340,8 @@ void VehicleTurretGun::Think(void)
     UpdateOrientation(false);
     UpdateSound();
     UpdateFireControl();
+
+    ACMortarAim(this, owner ? static_cast<Entity *>(owner.Pointer()) : GetRemoteOwner(), static_cast<Entity *>(m_pVehicleOwner.Pointer()), projectileModel[FIRE_PRIMARY]);
 
     if (sentOwner) {
         G_TouchTriggers(sentOwner);

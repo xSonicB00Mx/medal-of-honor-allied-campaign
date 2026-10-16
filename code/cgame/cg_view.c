@@ -1027,6 +1027,7 @@ void CG_DrawActiveFrame(int serverTime, int frameTime, stereoFrame_t stereoView,
     CG_AddBulletTracers();
     CG_AddBulletImpacts();
     CG_ACBloodFrame();
+    CG_ACMortarFrame();
     CG_AddBeams();
 
     if (cg_acidtrip->integer) {

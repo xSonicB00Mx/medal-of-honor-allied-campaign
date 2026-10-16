@@ -1,0 +1,14 @@
+{
+  "impacts": [
+    "AC_MORTAR_IMPACT point=1545.165,-2506.355,-58.018",
+    "AC_MORTAR_IMPACT point=1656.414,-2981.798,13.054"
+  ],
+  "errors": [
+    "[2026-10-17 00:10:12 UTC+1.000] TIKI_InitTiki: Failed to load animation 'models/weapons/Breda/It_W_Breda_clip.skc' at ",
+    "[2026-10-17 00:10:15 UTC+1.000] TIKI_InitTiki: Failed to load animation 'models/weapons/Breda/It_W_Breda_clip.skc' at ",
+    "[2026-10-17 00:10:23 UTC+1.000] TIKI_InitTiki: Failed to load animation 'models/weapons/Breda/It_W_Breda_clip.skc' at "
+  ],
+  "profile_preserved": true,
+  "launch_prediction_error": 0.0,
+  "prediction_count": 205
+}

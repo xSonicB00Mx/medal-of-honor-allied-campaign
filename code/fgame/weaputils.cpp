@@ -1140,6 +1140,8 @@ void Projectile::DoDecal(void)
 
 void Projectile::Touch(Event *ev)
 {
+    if(Q_stristr(model.c_str(),"granatwerferproj") && gi.Cvar_Get("ac_mortar_debug","0",0)->integer)
+        gi.Printf("AC_MORTAR_IMPACT point=%.3f,%.3f,%.3f\n",origin.x,origin.y,origin.z);
     Entity *other;
     Entity *owner;
     str     realname;
@@ -2813,6 +2815,7 @@ Projectile *HeavyAttack(Vector start, Vector dir, str projectileModel, float rea
 
     proj->setSize(proj->mins, proj->maxs);
     proj->setOrigin(start);
+    if(Q_stristr(projectileModel.c_str(),"granatwerferproj") && gi.Cvar_Get("ac_mortar_debug","0",0)->integer)gi.Printf("AC_MORTAR_LAUNCH owner=%d point=%.3f,%.3f,%.3f velocity=%.3f,%.3f,%.3f gravity=%.3f dt=%.5f\n",owner->entnum,start.x,start.y,start.z,proj->velocity.x,proj->velocity.y,proj->velocity.z,proj->gravity,level.frametime);
     proj->origin.copyTo(proj->edict->s.origin2);
 
     if (proj->m_beam) {
