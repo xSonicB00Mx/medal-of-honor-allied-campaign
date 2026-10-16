@@ -18,7 +18,7 @@ ap.add_argument('--with-game-binaries', action='store_true', help='Install teste
 ap.add_argument('--font-packages', type=Path, help='Install a reviewed local font package report instead of widescreen packages')
 ap.add_argument('--with-engine', action='store_true', help='Also install the tested engine with font layout changes')
 ap.add_argument('--hud-packages', type=Path, help='Install reviewed HUD artwork only')
-ap.add_argument('--hud-component', choices=['compass','ammo','inventory','health','timers','overlays','weapons','special','menu-polish','loading-fallback','campaign-map'], default='compass', help='HUD manifest section to update')
+ap.add_argument('--hud-component', choices=['compass','ammo','inventory','health','timers','overlays','weapons','special','menu-polish','loading-fallback','campaign-map','menu-background'], default='compass', help='HUD manifest section to update')
 ap.add_argument('--with-cgame', action='store_true', help='Install tested client-game DLL with HUD artwork')
 ap.add_argument('--logic-only', action='store_true', help='Install tested game/cgame DLLs, preserving artwork (optionally update engine)')
 args = ap.parse_args()
@@ -27,7 +27,7 @@ assert not args.hud_packages or not (args.font_packages or args.loading_zoom or 
 asset_packages = args.font_packages or args.hud_packages
 assert not (args.font_packages and args.loading_zoom)
 assert not (args.font_packages and args.with_game_binaries)
-assert not args.with_engine or args.logic_only or args.font_packages or (args.hud_packages and args.hud_component == 'menu-polish')
+assert not args.with_engine or args.logic_only or args.font_packages or (args.hud_packages and args.hud_component in ['menu-polish','menu-background'])
 assert not args.with_cgame or args.hud_packages
 assert args.batch.replace('-', '').isalnum()
 root = Path(__file__).resolve().parents[1]
@@ -121,7 +121,8 @@ if args.hud_packages:
     provider = {'overlays':'Analytic optical masks and Built-in Imagegen gas mask',
                 'inventory':'Built-in Imagegen and user-supplied uniform/pass artwork',
                 'loading-fallback':'User-supplied artwork',
-                'campaign-map':'User-supplied artwork'}.get(args.hud_component,'Built-in Imagegen')
+                'campaign-map':'User-supplied artwork',
+                'menu-background':'User-supplied artwork'}.get(args.hud_component,'Built-in Imagegen')
     manifest[args.hud_component] = dict(batch=args.batch, packages=packages, provider=provider, upload_allowed=False)
 if args.with_cgame or args.with_game_binaries or args.logic_only:
     manifest['cgame_source_commit'] = source

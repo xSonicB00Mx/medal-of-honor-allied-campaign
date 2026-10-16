@@ -120,7 +120,7 @@ static void AC_ShowOperations(void)
     const char *menuName="ac_campaign_operations";
     fileHandle_t f=FS_FOpenFileWrite_HomeData("ui/ac_campaign_operations.urc");if(!f)return;
     FS_Printf(f,"menu \"%s\" 960 540 NONE 0\nvirtualres 1\nfullscreen 1\nbgfill 0 0 0 1\nbgcolor 0.055 0.07 0.055 1\nborderstyle NONE\n",menuName);
-    FS_Printf(f,"resource\nLabel\n{\nname canvas\nrect 0 0 960 540\nbgcolor 0.055 0.07 0.055 1\nborderstyle NONE\n}\n");
+    FS_Printf(f,"widescreenbackground \"textures/ac/menu_background\"\n");
     AC_UIItem(f,"heading","ALLIED CAMPAIGN / OPERATIONS",24,16,640,34,NULL);
     AC_UIItem(f,"reset_progress","Reset Progress",756,20,180,28,"ac_reset_progress","1 0.58 0.45 1");
     for(int r=0;r<2;r++)
@@ -241,7 +241,7 @@ static void AC_LevelList_f(void)
     if(!AC_LevelCompleted(selected))selected=-1;
     fileHandle_t f=FS_FOpenFileWrite_HomeData("ui/ac_level_list.urc");if(!f)return;
     FS_Printf(f,"menu \"%s\" 960 540 NONE 0\nvirtualres 1\nfullscreen 1\nbgfill 0.055 0.07 0.055 1\nborderstyle NONE\n",name);
-    FS_Printf(f,"widecanvas\n");
+    FS_Printf(f,"widecanvas\nwidescreenbackground \"textures/ac/menu_background\"\n");
     AC_UIItem(f,"heading","MISSION LIST",24,16,912,34,NULL,"1 0.85 0.4 1");
     AC_UIItem(f,"description","Highscore runs: complete the level in one attempt. No saving or loading.",24,58,912,28,NULL);
     const char *columns[]={"Easy best","Medium best","Hard best","Last run"};
@@ -297,6 +297,7 @@ static void AC_BriefingMenu_f(void)
     const char *name="ac_briefing_room";
     fileHandle_t f=FS_FOpenFileWrite_HomeData("ui/ac_briefing_room.urc");if(!f)return;
     FS_Printf(f,"menu \"%s\" 960 540 NONE 0\nvirtualres 1\nwidecanvas\nfullscreen 1\nbgfill 0.055 0.07 0.055 1\nborderstyle NONE\n",name);
+    FS_Printf(f,"widescreenbackground \"textures/ac/menu_background\"\n");
     AC_UIItem(f,"heading","BRIEFING ROOM",24,16,912,34,NULL,"1 0.85 0.4 1");
     AC_UIItem(f,"description","Select a briefing. More unlock as you advance through Operations.",24,58,912,28,NULL);
     int row=0;

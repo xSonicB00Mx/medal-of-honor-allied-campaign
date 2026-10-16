@@ -58,7 +58,8 @@ if args.all_medals:
 for menu in args.menus:
     assert re.fullmatch('[a-zA-Z0-9_-]+', menu)
     # The operations map is created dynamically by its console command.
-    command = 'ac_campaign' if menu == 'ac_campaign_operations' else f'pushmenu {menu}'
+    command = {'ac_campaign_operations':'ac_campaign','ac_level_list':'ac_level_list',
+               'ac_briefing_room':'ac_briefing','ac_scaling':'ac_ui_options'}.get(menu,f'pushmenu {menu}')
     commands += [command, f'wait {args.menu_wait}', f'ac_ui_report {menu}', 'screenshot', 'wait 200']
 commands += ['echo AC_WIDESCREEN_TEST_DONE', 'quit']
 signs = []

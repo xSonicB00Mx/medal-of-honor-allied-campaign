@@ -1,3 +1,7 @@
+## Aktuell: Gemeinsamer Menuehintergrund
+
+Nutzerbild in Operations, Mission List, Briefing Room und Allied Campaign Options integriert; vier native Ansichten geprueft. [Bericht](checkpoints/CP08/menu-background.md).
+
 ## Aktuell: Operations-Auswahl, Schwierigkeit und stille Score-Autosaves
 
 Vier Nutzerkorrekturen implementiert und isoliert geprueft. [Bericht](checkpoints/CP08/operations-feedback.md).
