@@ -33,9 +33,11 @@ for f in ['main','mainta','maintt']:
  shutil.copy2(R/'tools/highscore_fixture.scr',h/'probe/combat.scr')
  (h/'probe/complete.scr').write_text(f'main:\n $player nodamage\n bsptransition {o["map_chain"][1] if len(o["map_chain"])>1 else o["completion_event"]["native_next"]}\nend\n')
  (h/'probe/die.scr').write_text('main:\n $player takedamage\n $player kill\nend\n')
+ (h/'probe/checkpoint.scr').write_text('main:\n local.checkpoint = spawn trigger_save\n local.checkpoint triggereffect $player\nend\n')
  commands=['wait 5000','finishloadingscreen','set developer 1','ac_score_report']
  if args.case=='combat':commands+=['script player exec probe/combat.scr','wait 6500','ac_score_report']
  if args.case in ['combat','empty']:
+  commands+=['echo AC_AUTO_BEGIN','autosavegame','script player exec probe/checkpoint.scr','wait 800','echo AC_AUTO_END']
   commands+=['savegame keep','wait 200','screenshot silent','popmenu 0','savegame forbidden','wait 200','popmenu 0','autosavegame','loadgame keep','wait 200','popmenu 0','loadlastgame','wait 200','popmenu 0','ac_load 0 keep','wait 200','popmenu 0','pushmenu loadsave','wait 200','popmenu 0','ac_score_report','script player exec probe/complete.scr','wait 7000','+attack','wait 300','-attack','wait 1200','ac_ui_report ac_score_results','screenshot silent','ac_level_list 0 0 1','wait 600','screenshot silent','echo AC_TEST_DONE','quit']
  elif args.case=='abort':commands+=['script player exec probe/combat.scr','wait 6500','ac_score_report','disconnect','wait 700','ac_level_list','wait 400','echo AC_TEST_DONE','quit']
  elif args.case in ['death','restart']:
@@ -79,6 +81,7 @@ assert done and not unexpected
 assert (p/'ac_progress.dat').read_text()==state
 for f in ['main','mainta','maintt']:assert (p/f/'save/omconfig/keep.sav').read_bytes()==b'CAMPAIGN SAVE SENTINEL'
 if args.case in ['combat','empty']:
+ assert 'AC_SCORE_SAVE_LOAD_BLOCKED' not in text.split('AC_AUTO_BEGIN\n',1)[-1].split('AC_AUTO_END',1)[0]
  assert 'AC_SCORE_COMPLETE' in text and 'AC_SCORE_SAVE_LOAD_BLOCKED' in text
  assert not any(p.glob('*/save/omconfig/forbidden.sav'))
  ui=(p/folder/'ui/ac_score_results.urc').read_text();assert 'FINAL SCORE' in ui and 'aa-statsscreen_failed' in ui

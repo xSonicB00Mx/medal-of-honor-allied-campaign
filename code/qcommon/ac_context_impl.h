@@ -7,8 +7,8 @@ static void AC_WriteSharedConfiguration(void)
     f=FS_BaseDir_FOpenFileWrite_HomeConfig("main/ac_preferences.cfg");if(!f) return;
     Key_WriteBindings(f);
     Cvar_WriteCampaignPreferences(f);
-    // A one-level difficulty selection must not become the campaign preference.
-    if(Cvar_VariableIntegerValue("ac_replay")==2) {
+    // Replay difficulty must not become the campaign preference.
+    if(Cvar_VariableIntegerValue("ac_replay")==1 || Cvar_VariableIntegerValue("ac_replay")==2) {
         FS_Printf(f,"seta skill %d\nseta g_skill %d\n",Cvar_VariableIntegerValue("ac_campaign_skill"),Cvar_VariableIntegerValue("ac_campaign_g_skill"));
     }
     Cmd_WriteAliases(f);
@@ -23,7 +23,7 @@ static void AC_Context_f(void)
     static const char *sharedNames[] = {
         "developer", "logfile", "ac_campaign_mode",
         "ac_operation", "ac_replay", "ac_expected_map", "ac_level_skill",
-        "ac_campaign_skill", "ac_campaign_g_skill"
+        "ac_campaign_skill", "ac_campaign_g_skill", "ac_next_skill"
     };
 
     if(!strcmp(Cmd_Argv(0),"ac_load") && AC_ScoreSaveBlocked(qtrue))return;
@@ -72,7 +72,7 @@ static void AC_Context_f(void)
             FS_FCloseFile(controls);
         }
         Q_strcat(args, sizeof(args), " +exec ac_controls.cfg");
-        if(Cvar_VariableIntegerValue("ac_replay")==2) {
+        if(Cvar_VariableIntegerValue("ac_replay")==1 || Cvar_VariableIntegerValue("ac_replay")==2) {
             int difficulty=Cvar_VariableIntegerValue("ac_level_skill");
             if(difficulty<0 || difficulty>2) return;
             Com_sprintf(part,sizeof(part)," +difficulty%s +set g_skill %d",difficulty==0?"Easy":difficulty==1?"Medium":"Hard",difficulty);

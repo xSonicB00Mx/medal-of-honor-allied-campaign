@@ -1,3 +1,7 @@
+## Aktuell: Operations-Auswahl, Schwierigkeit und stille Score-Autosaves
+
+Vier Nutzerkorrekturen implementiert und isoliert geprueft. [Bericht](checkpoints/CP08/operations-feedback.md).
+
 ## Aktuell: Neue Kampagnenkarten
 
 Beide gelieferten Regionen installiert und mit 15 Missionsauswahlen nativ geprueft. [Bericht](checkpoints/CP08/user-map-art.md).

@@ -22,8 +22,14 @@ static const char *AC_StateColor(int state)
 {return state==2?"0.57 0.80 0.61 1":"1 0.82 0.32 1";}
 static const char *AC_StateName(int state)
 {return state==2?"COMPLETE":"CURRENT";}
-static void AC_UIItem(fileHandle_t f,const char *name,const char *title,int x,int y,int w,int h,const char *command,const char *color="0.95 0.89 0.7 1",int maxFontHeight=17)
+struct AC_UICommand {
+    str text;
+    AC_UICommand(const char *value):text(value?value:"") {}
+};
+static void AC_UIItem(fileHandle_t f,const str name,const str title,int x,int y,int w,int h,const AC_UICommand command,const char *color="0.95 0.89 0.7 1",int maxFontHeight=17)
 {
+    // Own va() arguments before font lookup reuses the rotating format buffers.
+    const str commandText=command.text;
     // Choose a uniformly smaller font where needed, never stretch glyph axes.
     char fontName[32]="facfont-20";
     for(int size=maxFontHeight;size>=10;--size) {
@@ -34,8 +40,8 @@ static void AC_UIItem(fileHandle_t f,const char *name,const char *title,int x,in
             Q_strncpyz(fontName,candidate,sizeof(fontName));break;
         }
     }
-    FS_Printf(f,"resource\n%s\n{\nname \"%s\"\ndontlocalize\ntitle \"%s\"\nrect %d %d %d %d\nfont %s\nfgcolor %s\nbgcolor 0.075 0.095 0.075 0.96\nborderstyle NONE\n",command?"Button":"Label",name,title,x,y,w,h,fontName,color);
-    if(command) FS_Printf(f,"stuffcommand \"%s\"\n",command);
+    FS_Printf(f,"resource\n%s\n{\nname \"%s\"\ndontlocalize\ntitle \"%s\"\nrect %d %d %d %d\nfont %s\nfgcolor %s\nbgcolor 0.075 0.095 0.075 0.96\nborderstyle NONE\n",commandText.length()?"Button":"Label",name.c_str(),title.c_str(),x,y,w,h,fontName,color);
+    if(commandText.length()) FS_Printf(f,"stuffcommand \"%s\"\n",commandText.c_str());
     FS_Printf(f,"}\n");
 }
 
@@ -98,6 +104,9 @@ static void AC_ShowOperations(void)
 {
     int selected=Cmd_Argc()>1?atoi(Cmd_Argv(1)):-1;
     int region=Cmd_Argc()>2?atoi(Cmd_Argv(2)):-1;
+    if(Cmd_Argc()>3 && strlen(Cmd_Argv(3))==1 && Cmd_Argv(3)[0]>='0' && Cmd_Argv(3)[0]<='2')
+        Cvar_Set("ac_next_skill",Cmd_Argv(3));
+    int difficulty=Cvar_VariableIntegerValue("ac_next_skill");
     if(selected<0||selected>=AC_MISSION_COUNT||!AC_MissionState(selected)) {
         selected=-1;
         for(int i=0;i<AC_MISSION_COUNT;i++) if(AC_MissionState(i)) {
@@ -146,10 +155,12 @@ static void AC_ShowOperations(void)
     } else AC_UIItem(f,"empty","No operations unlocked in this region",608,146,328,30,NULL);
     int row=0;
     for(int i=0;i<AC_MISSION_COUNT;i++)if(AC_MissionState(i)&&ac_mapMarkers[0][i].region==region) {
-        AC_UIItem(f,va("mission_%d",i),va("%02d %s%s",i+1,i==selected?"> ":"",ac_missions[i].title),608,316+row*22,328,21,va("ac_campaign %d %d",i,region),AC_StateColor(AC_MissionState(i)));row++;
+        AC_UIItem(f,va("mission_%d",i),va("%02d %s%s",i+1,i==selected?"> ":"",ac_missions[i].title),608,316+row*22,328,21,va("ac_campaign %d %d",i,region),i==selected?"1 0.85 0.3 1":AC_StateColor(AC_MissionState(i)));row++;
     }
-    AC_UIItem(f,"current_key","Current operation",24,450,270,24,NULL,AC_StateColor(1));
-    AC_UIItem(f,"done_key","Completed",310,450,274,24,NULL,AC_StateColor(2));
+    AC_UIItem(f,"difficulty_label","Next mission difficulty",24,446,560,24,NULL);
+    for(int i=0;i<3;i++)
+        AC_UIItem(f,va("difficulty_%d",i),i==0?"Easy":i==1?"Medium":"Hard",24+i*190,474,180,26,
+            va("ac_campaign %d %d %d",selected,region,i),i==difficulty?"1 0.85 0.3 1":"0.85 0.9 0.8 1");
     AC_UIItem(f,"back","Main Menu",24,508,140,26,"popmenu 0; pushmenu main");
     AC_UIItem(f,"continue","Continue Campaign",176,508,192,26,"ac_continue");
     AC_UIItem(f,"options","Allied Campaign Options",380,508,260,26,"ac_ui_options");
@@ -231,7 +242,7 @@ static void AC_LevelList_f(void)
     fileHandle_t f=FS_FOpenFileWrite_HomeData("ui/ac_level_list.urc");if(!f)return;
     FS_Printf(f,"menu \"%s\" 960 540 NONE 0\nvirtualres 1\nfullscreen 1\nbgfill 0.055 0.07 0.055 1\nborderstyle NONE\n",name);
     FS_Printf(f,"widecanvas\n");
-    AC_UIItem(f,"heading","MISSION LIST",24,16,740,34,NULL,"1 0.85 0.4 1");
+    AC_UIItem(f,"heading","MISSION LIST",24,16,912,34,NULL,"1 0.85 0.4 1");
     AC_UIItem(f,"description","Highscore runs: complete the level in one attempt. No saving or loading.",24,58,912,28,NULL);
     const char *columns[]={"Easy best","Medium best","Hard best","Last run"};
     for(int c=0;c<4;c++)AC_UIItem(f,va("column_%d",c),columns[c],500+c*108,90,c==3?112:104,24,NULL,"0.95 0.89 0.7 1",12);

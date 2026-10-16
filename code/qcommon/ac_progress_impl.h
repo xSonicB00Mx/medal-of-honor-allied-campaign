@@ -145,7 +145,7 @@ qboolean AC_LevelCompleted(int index)
 static void AC_EndReplay(void)
 {
     ac_scoreActive=qfalse;
-    if(Cvar_VariableIntegerValue("ac_replay")==2) {
+    if(Cvar_VariableIntegerValue("ac_replay")==1 || Cvar_VariableIntegerValue("ac_replay")==2) {
         Cvar_Set("skill",Cvar_VariableString("ac_campaign_skill"));
         Cvar_Set("g_skill",Cvar_VariableString("ac_campaign_g_skill"));
         Cvar_Set("g_maxplayerhealth",Cvar_VariableIntegerValue("skill")==0?"1500":Cvar_VariableIntegerValue("skill")==2?"250":"750");
@@ -213,10 +213,18 @@ static void AC_Mission_f(void)
     AC_EndReplay();
     replay=(ac_progress.completed&(1u<<op))!=0;
     if(!replay) {next=ac_progress;next.resume=op;if(!AC_StoreProgress(&next)) return;}
+    Cvar_Set("ac_campaign_skill",Cvar_VariableString("skill"));
+    Cvar_Set("ac_campaign_g_skill",Cvar_VariableString("g_skill"));
+    Cvar_Set("ac_level_skill",Cvar_VariableString("ac_next_skill"));
     Cvar_Set("ac_operation",va("%d",op));
     Cvar_Set("ac_replay",replay?"1":"0");
     Cvar_Set("ac_expected_map",ac_missions[op].entry);
-    Cbuf_AddText(va("ac_context %d %s\n",ac_missions[op].game,ac_missions[op].entry));
+    {
+        int difficulty=Cvar_VariableIntegerValue("ac_next_skill");
+        if(difficulty<0 || difficulty>2)difficulty=1;
+        Cbuf_AddText(va("difficulty%s\nset g_skill %d\nac_context %d %s\n",
+            difficulty==0?"Easy":difficulty==1?"Medium":"Hard",difficulty,ac_missions[op].game,ac_missions[op].entry));
+    }
 }
 
 static void AC_Continue_f(void)
@@ -288,7 +296,7 @@ qboolean AC_CampaignTransition(const char *current, const char *nextMap)
     }
     AC_LoadProgress();
     if(Cvar_VariableIntegerValue("ac_replay")) {
-        Cvar_Set("ac_operation","-1");Cbuf_AddText("disconnect\nac_campaign\n");
+        AC_EndReplay();Cbuf_AddText("disconnect\nac_campaign\n");
         Com_Printf("AC_REPLAY_COMPLETE %s\n",ac_missions[op].id);return qtrue;
     }
     if(!AC_MissionState(op)) return qtrue;
