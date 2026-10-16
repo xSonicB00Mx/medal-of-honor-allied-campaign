@@ -1,3 +1,7 @@
+## Aktuell: Optionales Spieler-Flinching
+
+Treffer-Kamerabewegung standardmaessig aus, in Allied Campaign Options schaltbar. Rotblendung bleibt erhalten. AA/SH/BT und kampagnenuebergreifende Speicherung geprueft. [Bericht](checkpoints/CP08/player-flinch.md).
+
 ## Aktuell: Moerser-Zielhilfe und lesbare Beschriftung
 
 Roter Einschlagmarker mit echter Ballistik; vorhandener BT-Spielstand als Kopie geladen und erneut gespeichert. Boden-Probetreffer deckungsgleich. [Bericht](checkpoints/CP08/mortar-aim.md).

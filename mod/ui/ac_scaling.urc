@@ -236,7 +236,7 @@ bgcolor 0.12 0.14 0.12 1
 borderstyle NONE
 font facfont-20
 borderstyle RAISED
-stuffcommand "set ac_ui_auto 1; set ac_menu_scale 1; set ac_hud_scale 1; set ac_hud_safe 1; set ac_blood_mist 1; set ac_world_blood 1; set ac_body_wounds 1; set ac_corpse_effects 1"
+stuffcommand "set ac_ui_auto 1; set ac_menu_scale 1; set ac_hud_scale 1; set ac_hud_safe 1; set ac_blood_mist 1; set ac_world_blood 1; set ac_body_wounds 1; set ac_corpse_effects 1; set ac_player_flinch 0"
 }
 
 resource
@@ -356,5 +356,28 @@ font facfont-20
 fgcolor 0.75 0.72 0.55 1
 bgcolor 0.055 0.065 0.06 1
 borderstyle NONE
+}
+resource
+Label
+{
+name "flinchLabel"
+dontlocalize
+title "Player hit flinch"
+rect 520 422 330 30
+font facfont-20
+fgcolor 0.91 0.86 0.7 1
+bgcolor 0.055 0.065 0.06 1
+borderstyle NONE
+}
+resource
+CheckBox
+{
+name "playerFlinch"
+dontlocalize
+title ""
+rect 880 422 30 30
+linkcvar ac_player_flinch
+checked_shader textures/menu/checkbox_checked
+unchecked_shader textures/menu/checkbox_unchecked
 }
 end.
