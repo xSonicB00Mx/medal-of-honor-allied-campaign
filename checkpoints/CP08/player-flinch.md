@@ -12,3 +12,5 @@ Tests:
 - tools/test_shared_preferences.py --run-id flinch-r1: AA -> SH -> BT -> AA und anschliessend frische Prozesse aller drei Kampagnen. ac_player_flinch=1 bleibt erhalten, ebenso bisherige Grafik-/Steuerungspraeferenzen; Missionszustand wird nicht geteilt.
 
 Keine Nutzerabnahme oder Merge behauptet. Testprofile und Bildschirmbilder bleiben lokal.
+
+Installiert als player-flinch-r1 aus b96da84c. Alle 78 Laufzeitdateien hashgeprueft, Engine/game/cgame bytegleich mit Testbuild. 358 persoenliche Profildateien, 9072 Originaldateien, 9000 Basisdateien und acht MP-Eingaben unveraendert. Ruecksicherung: generated-local/widescreen/backups/player-flinch-r1.
