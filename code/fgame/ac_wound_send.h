@@ -7,7 +7,7 @@ static void ACSendWound(Entity *target,const ac_pose_t& pose,const ac_surface_po
     w.seed=ACVisualOrientation(seed,branch,w.rotation,w.flipU,w.flipV);
     w.entity=target->edict->s.number;w.usage=target->edict->s.usageIndex;w.group=group;w.branch=branch;
     Q_strncpyz(w.model,gi.getConfigstring(CS_MODELS+target->edict->s.modelindex),sizeof(w.model));
-    float radius=(branch || group>=3)?AC_LARGE_RADIUS:AC_SMALL_RADIUS;
+    float radius=(group!=5 && (branch || group>=3))?AC_LARGE_RADIUS:AC_SMALL_RADIUS;
     gi.AC_BuildPatch(target->edict->tiki,&pose,&point,radius,w.rotation,w.flipU,w.flipV,&w.patch);
     if(gi.Cvar_Get("ac_fx_debug","0",0)->integer)
         gi.Printf("AC_WOUND id=%u branch=%d entity=%d usage=%d group=%d radius=%.2f seed=%u rotation=%.6f flip=%d,%d triangles=%d\n",event,branch,w.entity,w.usage,group,radius,w.seed,w.rotation,w.flipU,w.flipV,w.patch.count);

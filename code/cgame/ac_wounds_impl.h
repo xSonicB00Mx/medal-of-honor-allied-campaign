@@ -6,7 +6,7 @@ struct ACStoredWound {ac_wound_t data;bool active,rebind;};
 ACStoredWound acWounds[64]={};unsigned acWoundCursor=0;
 byte acPacket[sizeof(ac_wound_t)]={};unsigned acPacketId=0,acPacketOffset=0,acPacketSize=0;int acPacketBranch=0;
 bool ACValidWound(const ac_wound_t& w) {
-    if((w.version!=1 && w.version!=2 && w.version!=3) || w.entity<0 || w.entity>=MAX_GENTITIES || w.usage<=0 || w.group<1 || w.group>4 || w.branch<0 || w.branch>1
+    if((w.version!=1 && w.version!=2 && w.version!=3) || w.entity<0 || w.entity>=MAX_GENTITIES || w.usage<=0 || w.group<1 || w.group>5 || w.branch<0 || w.branch>1
         || w.flipU<0 || w.flipU>1 || w.flipV<0 || w.flipV>1 || !std::isfinite(w.rotation) || w.rotation<0 || w.rotation>=360
         || !memchr(w.model,0,sizeof(w.model)) || !w.model[0] || w.patch.count<1 || w.patch.count>AC_PATCH_MAX)return false;
     for(int i=0;i<w.patch.count;++i) {
@@ -49,8 +49,9 @@ extern "C" void CG_ACWoundsEvent(void) {
     if(!ACValidWound(w) || w.event!=id || w.branch!=branch || size!=offsetof(ac_wound_t,patch)+offsetof(ac_patch_t,triangle)+w.patch.count*sizeof(ac_patch_triangle_t))return;
     }
     int same=0;for(auto& old:acWounds)if(old.active && old.data.entity==w.entity && old.data.usage==w.usage){if(old.data.event==w.event && old.data.seed==w.seed && old.data.branch==w.branch)return;++same;}
-    // Max 16 wounds per actor; FIFO ring gives a hard 64-wound scene budget.
-    if(same>=16)for(unsigned i=0;i<64;++i){auto& old=acWounds[(acWoundCursor+i)%64];if(old.active && old.data.entity==w.entity){old.active=false;break;}}
+    // Up to 32 wounds per actor fits all 18 entry/exit wounds of a nine-pellet volley.
+    // The FIFO ring retains the hard 64-wound scene and archive budget.
+    if(same>=32)for(unsigned i=0;i<64;++i){auto& old=acWounds[(acWoundCursor+i)%64];if(old.active && old.data.entity==w.entity){old.active=false;break;}}
     auto& slot=acWounds[acWoundCursor++%64];slot.data=w;slot.active=true;slot.rebind=false;
     if(cgi.Cvar_Get("ac_fx_debug","0",0)->integer)cgi.Printf("AC_WOUND_RECEIVED id=%u branch=%d triangles=%d rotation=%.6f flip=%d,%d\n",w.event,w.branch,w.patch.count,w.rotation,w.flipU,w.flipV);
 }
@@ -71,7 +72,7 @@ extern "C" void CG_ACWoundsDraw(refEntity_t *model,int usage) {
     for(const auto& w:acWounds)if(w.active && w.data.entity==model->entityNumber) {
         if(count+w.data.patch.count>512)continue; // Never draw a partially cut wound at the frame budget.
         submitted[&w-acWounds]=true;
-        for(int i=0;i<w.data.patch.count && count<512;++i){triangles[count]=w.data.patch.triangle[i];materials[count++]=(w.data.branch || w.data.group>=3)?1:0;}
+        for(int i=0;i<w.data.patch.count && count<512;++i){triangles[count]=w.data.patch.triangle[i];materials[count++]=(w.data.group!=5 && (w.data.branch || w.data.group>=3))?1:0;}
     }
     if(!count)return;
     if(dump && cgi.Cvar_Get("ac_fx_debug","0",0)->integer>1)for(const auto& w:acWounds)if(w.active && w.data.entity==model->entityNumber) {

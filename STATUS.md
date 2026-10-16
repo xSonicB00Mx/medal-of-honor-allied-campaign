@@ -1,3 +1,7 @@
+## Aktuell: Schrotflinte mit pelletweisen Bluteffekten
+
+Neun Pellets erzeugen unabhaengige kleine Wunden und Tropfen; AA/SH/BT sowie toedliche Salve und Save/Load nativ geprueft. [Bericht](checkpoints/CP08/shotgun-blood.md).
+
 ## Aktuell: Einheitliche Menues und direkte Rueckkehr
 
 AA-Oberflaeche fuer alle Kampagnen, rote CURRENT-Markierung und atomarer Main-Menu-Wechsel ohne Musik-Neustart. Sechs native isolierte Tests bestanden. [Bericht](checkpoints/CP08/shared-menus-navigation.md).

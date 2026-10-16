@@ -31,7 +31,7 @@ static void ACVisualHit(Entity *target,Weapon *weapon,const Vector& point,const 
         gi.SetBroadcastVisible(geometry.entry.position,NULL);
         gi.MSG_StartCGM(CGM_AC_FLESH);
         for(int k=0;k<3;++k)gi.MSG_WriteCoord(geometry.entry.position[k]);
-        gi.MSG_WriteDir(geometry.entry.normal);gi.MSG_WriteBits(group>=3,1);gi.MSG_EndCGM();
+        gi.MSG_WriteDir(geometry.entry.normal);gi.MSG_WriteBits(group==3 || group==4,1);gi.MSG_EndCGM();
     }
     ACSendWound(target,pose,geometry.entry,event,seed,group,0);
     if(geometry.exitValid)ACSendWound(target,pose,geometry.exit,event,seed,group,1);

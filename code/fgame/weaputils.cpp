@@ -2187,6 +2187,9 @@ float BulletAttack(
     int      bulletbits;
 
     ACScoreShot acShot(owner);
+    const bool acShotgunDebug=weap && ACWeaponGroup(weap->model.c_str())==5
+        && gi.Cvar_Get("ac_fx_debug","0",0)->integer>1;
+    const int acShotgunStart=acShotgunDebug?gi.Milliseconds():0;
     lastSurfaceFlags = 0;
     iNumHit          = 0;
 
@@ -2628,6 +2631,7 @@ float BulletAttack(
 
     gi.MSG_EndCGM();
 
+    if(acShotgunDebug)gi.Printf("AC_SHOTGUN pellets=%d damage=%.3f server_ms=%d\n",count,damage_total,gi.Milliseconds()-acShotgunStart);
     if (damage_total > 0) {
         return damage_total;
     } else {

@@ -1,0 +1,86 @@
+[
+  {
+    "game": "AA",
+    "death": false,
+    "pellets": 9,
+    "wounds": 18,
+    "droplets": 108,
+    "archives": [
+      [
+        "save",
+        "0"
+      ],
+      [
+        "save",
+        "18"
+      ],
+      [
+        "load",
+        "18"
+      ]
+    ],
+    "server_timing": [
+      "AC_SHOTGUN pellets=9 damage=297.000 server_ms=3"
+    ],
+    "passed": true
+  },
+  {
+    "game": "SH",
+    "death": false,
+    "pellets": 9,
+    "wounds": 18,
+    "droplets": 108,
+    "archives": [
+      [
+        "save",
+        "18"
+      ],
+      [
+        "load",
+        "18"
+      ]
+    ],
+    "server_timing": [
+      "AC_SHOTGUN pellets=9 damage=297.000 server_ms=2"
+    ],
+    "passed": true
+  },
+  {
+    "game": "BT",
+    "death": false,
+    "pellets": 9,
+    "wounds": 18,
+    "droplets": 108,
+    "archives": [
+      [
+        "save",
+        "18"
+      ],
+      [
+        "load",
+        "18"
+      ]
+    ],
+    "server_timing": [
+      "AC_SHOTGUN pellets=9 damage=297.000 server_ms=2"
+    ],
+    "passed": true
+  },
+  {
+    "game": "AA",
+    "death": true,
+    "pellets": 9,
+    "wounds": 18,
+    "droplets": 108,
+    "archives": [
+      [
+        "save",
+        "0"
+      ]
+    ],
+    "server_timing": [
+      "AC_SHOTGUN pellets=9 damage=1.000 server_ms=3"
+    ],
+    "passed": true
+  }
+]

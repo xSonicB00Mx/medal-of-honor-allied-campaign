@@ -21,6 +21,7 @@ void ACBloodMark(const trace_t& tr,float radius,unsigned& seed,const char *branc
     if(cgi.Cvar_Get("ac_fx_debug","0",0)->integer)cgi.Printf("AC_MARK %s %.3f %.3f %.3f\n",branch,tr.endpos[0],tr.endpos[1],tr.endpos[2]);
 }
 void ACSpawnDrops(const vec3_t point,const vec3_t normal,int target,unsigned seed,bool exit,int usage) {
+    int spawned=0;
     for(int i=0;i<6;++i) {
         ACDrop& d=acDrops[acCursor++%256];d={};d.active=true;d.born=d.last=cg.time;d.target=target;d.usage=usage;d.seed=seed+i+1;
         // Test the tiny start offset too; never step across a close floor or wall.
@@ -32,7 +33,10 @@ void ACSpawnDrops(const vec3_t point,const vec3_t normal,int target,unsigned see
         VectorMA(d.velocity,(ACUnit(d.seed)-0.5f)*30,tangent,d.velocity);
         VectorMA(d.velocity,(ACUnit(d.seed)-0.5f)*30,other,d.velocity);
         d.velocity[2]+=10;
+        ++spawned;
     }
+    if(cgi.Cvar_Get("ac_fx_debug","0",0)->integer>1)
+        cgi.Printf("AC_DROPS target=%d seed=%u branch=%d count=%d\n",target,seed,exit,spawned);
 }
 }
 extern "C" void CG_ACBloodEvent(void) {
@@ -41,7 +45,7 @@ extern "C" void CG_ACBloodEvent(void) {
     unsigned event=(unsigned)strtoul(cgi.Argv(1),NULL,10),seed=(unsigned)strtoul(cgi.Argv(2),NULL,10);
     for(unsigned seen:acSeen)if(seen==event)return;acSeen[acSeenCursor++%128]=event;
     int target=atoi(cgi.Argv(3)),group=atoi(cgi.Argv(4)),hasExit=atoi(cgi.Argv(5));
-    if(target<0 || target>=MAX_GENTITIES || group<1 || group>4)return;
+    if(target<0 || target>=MAX_GENTITIES || group<1 || group>5)return;
     vec3_t entry,normal,exit,dir;
     for(int i=0;i<3;++i){entry[i]=atof(cgi.Argv(6+i));normal[i]=atof(cgi.Argv(9+i));exit[i]=atof(cgi.Argv(12+i));dir[i]=atof(cgi.Argv(15+i));
         if(!std::isfinite(entry[i]) || !std::isfinite(normal[i]) || !std::isfinite(exit[i]) || !std::isfinite(dir[i]))return;}

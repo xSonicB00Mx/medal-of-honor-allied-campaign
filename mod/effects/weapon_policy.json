@@ -1,8 +1,8 @@
 {
-  "version": 4,
+  "version": 5,
   "unknown": "no new blood; preserve existing WCR effects",
   "special": {
-    "shotgun": "excluded",
+    "shotgun": "per-pellet small entry and exit wounds, independent blood droplets",
     "melee": "excluded",
     "explosions": "excluded"
   },
@@ -350,6 +350,15 @@
       "code": 4,
       "entry_wound_material": "ac/wound_large",
       "exit_wound_material": "ac/wound_large",
+      "allow_exit_wound": true,
+      "allow_exit_spray": true
+    },
+    {
+      "weapon_id": "models/weapons/shotgun.tik",
+      "group": "shotgun",
+      "code": 5,
+      "entry_wound_material": "ac/wound_small",
+      "exit_wound_material": "ac/wound_small",
       "allow_exit_wound": true,
       "allow_exit_spray": true
     }
