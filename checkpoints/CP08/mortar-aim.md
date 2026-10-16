@@ -13,3 +13,5 @@ Validierung mit tools/test_mortar_aim.py in isolierten Profilen:
 - Release-with-debug-info-Builds game/cgame erfolgreich. Drei Warnungen ueber fehlende Breda-Clipanimation beim Laden im Testprotokoll; keine Scriptfehler oder unbekannten Kommandos. Diese Assetwarnung wurde in diesem Auftrag nicht behoben.
 
 Keine persoenliche Abnahme oder Merge behauptet. Originalassets, Saves und Binaerdateien nicht versioniert.
+
+Installiert als mortar-aim-r1 aus 0d8aa726. Alle 75 Laufzeitdateien hashgeprueft, game/cgame bytegleich mit dem Testbuild. 350 persoenliche Profildateien, 9072 Originaldateien, 9000 Basisdateien und acht MP-Eingaben unveraendert. Ruecksicherung: generated-local/widescreen/backups/mortar-aim-r1.
