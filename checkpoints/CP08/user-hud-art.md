@@ -7,3 +7,5 @@ Alle bisherigen Inventartexturen sind bytegleich. In AA/SH/BT kommen jeweils nur
 Das gelieferte Sepiabild ersetzt nur AA ui/loading_default.urc als durchgehender 1920x1080-Hintergrund. Ladebalken bleibt eingebunden. Andere Ladebilder, Erweiterungshintergruende, Multiplayer-Menues und Abschlussstatistik bleiben unveraendert.
 
 Native Tests: tools/test_inventory_art.py user-uniforms-r1 (3840x2160, HUD 1.66, neun Aufnahmen inklusive Hinzufuegen/Entfernen und Zaehlern), tools/test_widescreen_art.py --run-id user-sepia-r1 --installed --menus loading_default --overlay generated-local/widescreen/sepia/packages (1920x1080). Beide erfolgreich; Uniformen, Ausweise und Ladehintergrund visuell geprueft. Erweiterungen paketweise geprueft, kein erneuter nativer SH/BT-Inventartest. Keine Nutzerabnahme und kein Merge unterstellt.
+
+Installiert: user-inventory-r1 und user-sepia-r1, Quellcommit 40e1cd90. Alle 63 verwalteten Laufzeitdateien hashgeprueft. Beide Lieferungen bestaetigen 9072 Originaldateien, 9000 Basisdateien, 8 Max-Payne-Eingaben und 131 persoenliche Profildateien unveraendert. Rueckrollkopien und Screenshot-ZIP lokal vorhanden.

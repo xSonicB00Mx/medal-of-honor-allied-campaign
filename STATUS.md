@@ -1,3 +1,7 @@
+## Aktuell: Gelieferte HD-Inventarbilder und Sepia-Ladebild
+
+Drei Uniformen und zwei Ausweise integriert; AA-Standardladebild in echtem 16:9. UHD-HUD und Ladebild nativ geprueft. [Bericht](checkpoints/CP08/user-hud-art.md).
+
 ## Aktuell: Zusammenhaengende Kopfwundprojektion
 
 Kopfwunden folgen steilen Gesichtsflächen und ueberbruecken UV-Naehte. Kopf-Dreiecke liegen buendig auf der Haut statt einzeln angehoben zu werden; eigenes begrenztes Geometriebudget. Koerperprojektion unveraendert. [Bericht](checkpoints/CP08/head-wound-projection.md).
