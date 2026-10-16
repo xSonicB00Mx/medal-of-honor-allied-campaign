@@ -10,10 +10,9 @@ prepared=work/'prepared';prepared.mkdir(exist_ok=True)
 font_path=Path('C:/Windows/Fonts/courbd.ttf')
 images={};layers=[]
 # The binocular texture is a legacy label; its live shader uses binoc3 instead.
-# Frames are outside this object-art pass. Booklets/uniforms retain original art
-# after provider refusals; do not create misleading stand-ins or altered insignia.
-excluded={'item_binoculars','item_empty','item_selected','item_papers1','item_papers2',
-          'item_uniform','item_uniform_weh','item_uniform_dak'}
+# Frames are outside this object-art pass. The five booklets/uniforms now use
+# the transparent high-resolution masters supplied by the user on 2026-10-16.
+excluded={'item_binoculars','item_empty','item_selected'}
 
 def number_overlay(value,target=None):
     # Typeset actual text rather than asking an image model to invent counters.
