@@ -14,3 +14,5 @@ Native Tests tools/test_shotgun_blood.py, jeweils eigene Profile:
 - Alle vier Prozesse normal beendet, keine Script-/UI-/reliable-command-overflow-Fehler. Sichtkontrolle der nativen AA-Nahaufnahme bestaetigt die getrennten kleinen Eintrittswunden und Bodenflecken. Generationstest --check bestanden.
 
 Keine persoenliche Nutzerabnahme oder Merge behauptet. Tests benutzen ausschliesslich isolierte Profile.
+
+Installiert als shotgun-blood-r1 aus 77bf2ceb. Alle 72 Laufzeitdateien hashgeprueft; game/cgame bytegleich mit Testbuild. 265 persoenliche Profildateien, 9072 Originaldateien, 9000 Basisdateien und acht MP-Eingaben unveraendert. Ruecksicherung: generated-local/widescreen/backups/shotgun-blood-r1.
