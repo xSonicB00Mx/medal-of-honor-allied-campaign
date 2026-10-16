@@ -1,3 +1,7 @@
+## Aktuell: Neue Kampagnenkarten
+
+Beide gelieferten Regionen installiert und mit 15 Missionsauswahlen nativ geprueft. [Bericht](checkpoints/CP08/user-map-art.md).
+
 ## Aktuell: Gelieferte HD-Inventarbilder und Sepia-Ladebild
 
 Drei Uniformen und zwei Ausweise integriert; AA-Standardladebild in echtem 16:9. UHD-HUD und Ladebild nativ geprueft. [Bericht](checkpoints/CP08/user-hud-art.md).
