@@ -1,6 +1,6 @@
 # Einheitliche Menues und direkte Rueckkehr
 
-2026-10-16: AA-Hauptmenue und acht bestehende AA-Options-/Steuerungsansichten in allen drei Kontexten paketiert. Bilder und Shader bekommen eigene Namen, damit Erweiterungsassets die AA-Darstellung nicht ueberschreiben. Generierte Operations-Beschriftung bleibt erhalten. War Records, Medaillen, Save/Load, Missionsbriefings, Ladebilder und Spiel-DLLs werden nicht ersetzt. Pakete/Assets bleiben lokal und ignoriert.
+2026-10-16: Acht Ansichten (AA-Hauptmenue sowie AA-Options-/Steuerungsansichten) in allen drei Kontexten paketiert. Bilder und Shader bekommen eigene Namen, damit Erweiterungsassets die AA-Darstellung nicht ueberschreiben. Generierte Operations-Beschriftung bleibt erhalten. War Records, Medaillen, Save/Load, Missionsbriefings, Ladebilder und Spiel-DLLs werden nicht ersetzt. Pakete/Assets bleiben lokal und ignoriert.
 
 Ursache des Rueckkehr-/Musikfehlers: PopMenu sperrt den Menustack bis zum naechsten Eventdurchlauf, wodurch das folgende pushmenu main verloren ging. Im Spiel blieb kein Menue; ausserhalb des Spiels oeffnete die automatische Disconnected-Behandlung main und startete die Intromusik neu. ac_main_menu ersetzt die zwei getrennten Befehle atomar ohne Disconnect oder Sound-Neustart. Auch die entsprechenden Score-Abschlussbuttons verwenden den korrigierten Pfad.
 
@@ -14,3 +14,5 @@ RelWithDebInfo-Engine erfolgreich gebaut. Native isolierte Tests mit tools/test_
 - Fortschrittssentinel in allen sechs Profilen unveraendert. Keine Unknown-command-/fehlendes-Menue-/UI-Exception-Fehler. Nutzerprofil nicht zum Testen verwendet.
 
 Keine persoenliche Nutzerabnahme oder Merge behauptet.
+
+Installiert als shared-menus-r1 aus Commit cea81c16. Alle 72 verwalteten Dateien hashgeprueft, Engine bytegleich mit Testbuild. Integritaet: 9072 Originaldateien, 9000 Basisdateien, 8 MP-Eingaben und 261 aktuelle persoenliche Profildateien unveraendert. Ruecksicherung: generated-local/widescreen/backups/shared-menus-r1.
