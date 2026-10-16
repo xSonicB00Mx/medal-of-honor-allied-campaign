@@ -3460,6 +3460,7 @@ static void UI_CampaignReport_f(void)
 {
     Menu *current = menuManager.CurrentMenu();
     Com_Printf("AC_UI_CURRENT %s\n", current ? current->m_name.c_str() : "none");
+    Com_Printf("AC_UI_MUSIC %s offset=%u\n", S_GetMusicFilename(), S_GetMusicOffset());
     const char *name = Cmd_Argc() > 1 ? Cmd_Argv(1) : "hud_compass";
     Menu *menu = menuManager.FindMenu(name);
     Com_Printf("AC_UI drawable=%dx%d base=%.4f menu=%.4f hud=%.4f safe=%.4f\n",
@@ -5221,6 +5222,7 @@ void CL_InitializeUI(void)
 
     // Add all commands
     Cmd_AddCommand("ac_ui_options", UI_CampaignOptions_f);
+    Cmd_AddCommand("ac_main_menu", AC_MainMenu_f);
     Cmd_AddCommand("ac_campaign", UI_AlliedCampaign_f);
     Cmd_AddCommand("ac_level_list", AC_LevelList_f);
     Cmd_AddCommand("ac_score_results", AC_ScoreResults_f);

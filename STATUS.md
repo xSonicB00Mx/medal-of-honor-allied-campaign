@@ -1,3 +1,7 @@
+## Aktuell: Einheitliche Menues und direkte Rueckkehr
+
+AA-Oberflaeche fuer alle Kampagnen, rote CURRENT-Markierung und atomarer Main-Menu-Wechsel ohne Musik-Neustart. Sechs native isolierte Tests bestanden. [Bericht](checkpoints/CP08/shared-menus-navigation.md).
+
 ## Aktuell: Gemeinsamer Menuehintergrund
 
 Nutzerbild in Operations, Mission List, Briefing Room und Allied Campaign Options integriert; vier native Ansichten geprueft. [Bericht](checkpoints/CP08/menu-background.md).

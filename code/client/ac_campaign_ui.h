@@ -19,7 +19,19 @@ static void AC_OpenGeneratedMenu(const char *name)
 }
 
 static const char *AC_StateColor(int state)
-{return state==2?"0.57 0.80 0.61 1":"1 0.82 0.32 1";}
+{return state==2?"0.57 0.80 0.61 1":"1 0.58 0.45 1";}
+
+static void AC_MainMenu_f(void)
+{
+    // PopMenu locks the stack until the next UI event pass. A pop/push command
+    // pair therefore loses its push and exposes gameplay (or restarts intro music).
+    menuManager.Unlock(NULL);
+    menuManager.ClearMenus(true);
+    UI_ForceMenu("main");
+    UI_MainMenuWidgetsUpdate();
+    UI_CloseConsole();
+    Com_Printf("AC_MAIN_MENU context=%d active=%d\n", Cvar_VariableIntegerValue("com_target_game"), clc.state);
+}
 static const char *AC_StateName(int state)
 {return state==2?"COMPLETE":"CURRENT";}
 struct AC_UICommand {
@@ -74,7 +86,7 @@ static void AC_ScoreFailureMenu_f(void)
     AC_UIItem(f,"heading","RUN NOT COMPLETED",180,160,600,40,NULL,"1 0.58 0.45 1");
     AC_UIItem(f,"message","No score recorded. Your previous records are unchanged.",180,224,600,30,NULL);
     AC_UIItem(f,"list","Mission List",240,332,210,36,"ac_level_list");
-    AC_UIItem(f,"main","Main Menu",500,332,210,36,"popmenu 0; pushmenu main");
+    AC_UIItem(f,"main","Main Menu",500,332,210,36,"ac_main_menu");
     FS_Printf(f,"end.\n");FS_FCloseFile(f);AC_OpenGeneratedMenu("ac_score_failure");
 }
 
@@ -97,7 +109,7 @@ static void AC_ScoreResults_f(void)
     AC_UIItem(f,"previous",va("Previous best on this difficulty: %d",r->previous),24,400,456,26,NULL);
     AC_UIItem(f,"rules","Kills + headshots + grenade bonus + accuracy - friendly fire",24,452,912,26,NULL);
     AC_UIItem(f,"list","Mission List",24,500,220,30,"ac_level_list");
-    AC_UIItem(f,"main","Main Menu",716,500,220,30,"popmenu 0; pushmenu main");
+    AC_UIItem(f,"main","Main Menu",716,500,220,30,"ac_main_menu");
     FS_Printf(f,"end.\n");FS_FCloseFile(f);AC_OpenGeneratedMenu("ac_score_results");
 }
 static void AC_ShowOperations(void)
@@ -161,7 +173,7 @@ static void AC_ShowOperations(void)
     for(int i=0;i<3;i++)
         AC_UIItem(f,va("difficulty_%d",i),i==0?"Easy":i==1?"Medium":"Hard",24+i*190,474,180,26,
             va("ac_campaign %d %d %d",selected,region,i),i==difficulty?"1 0.85 0.3 1":"0.85 0.9 0.8 1");
-    AC_UIItem(f,"back","Main Menu",24,508,140,26,"popmenu 0; pushmenu main");
+    AC_UIItem(f,"back","Main Menu",24,508,140,26,"ac_main_menu");
     AC_UIItem(f,"continue","Continue Campaign",176,508,192,26,"ac_continue");
     AC_UIItem(f,"options","Allied Campaign Options",380,508,260,26,"ac_ui_options");
     for(int i=0;i<3;i++)AC_UIItem(f,va("saves_%d",i),i==0?"AA saves":i==1?"SH saves":"BT saves",656+i*96,508,88,26,va("ac_context %d saves",i));
@@ -274,7 +286,7 @@ static void AC_LevelList_f(void)
             va("ac_level_list %d %d %d",page,selected,i),difficulty==i?"1 0.85 0.4 1":"0.85 0.9 0.8 1");
         if(difficulty>=0 && difficulty<=2)AC_UIItem(f,"play","Start Score Run",712,451,224,30,va("ac_level_replay %d %d",selected,difficulty),"1 0.85 0.4 1");
     }
-    AC_UIItem(f,"back","Main Menu",24,504,180,28,"popmenu 0; pushmenu main");
+    AC_UIItem(f,"back","Main Menu",24,504,180,28,"ac_main_menu");
     AC_UIItem(f,"return_hint","Finish to record a score. Abandoning awards no score.",252,504,684,28,NULL);
     FS_Printf(f,"end.\n");FS_FCloseFile(f);
     menuManager.Unlock(NULL);menuManager.ClearMenus(true);
@@ -314,7 +326,7 @@ static void AC_BriefingMenu_f(void)
         AC_UIItem(f,item,title,24,104+row*30,912,28,command);row++;
     }
     if(!row)AC_UIItem(f,"empty","No briefings available.",24,104,912,28,NULL);
-    AC_UIItem(f,"back","Main Menu",24,504,180,28,"popmenu 0; pushmenu main");
+    AC_UIItem(f,"back","Main Menu",24,504,180,28,"ac_main_menu");
     AC_UIItem(f,"count",va("%d briefings unlocked",row),252,504,684,28,NULL);
     FS_Printf(f,"end.\n");FS_FCloseFile(f);
     menuManager.Unlock(NULL);menuManager.ClearMenus(true);
