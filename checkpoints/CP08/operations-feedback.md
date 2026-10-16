@@ -11,3 +11,5 @@ Pruefung: Engine und game.dll RelWithDebInfo gebaut. Highscore empty menu-fixes-
 BT e3l4 meldet bestehende Script-Diagnosen (PathNode/AISpawnPoint); dieselben Diagnosen wurden mit dem vorherigen installierten Build in baseline-r1 bestaetigt. Fruehe Testfixtures wurden korrigiert: regulare Starts erlauben keine Test-Skriptbefehle, und ein vorzeitig eingereihter Quit blockierte den nachgereihten nativen gamemap-Befehl. Der abschliessende AA-Test wartet auf AC_REPLAY_COMPLETE.
 
 Persoenliche Nutzerabnahme und Merge ausstehend. Quelldaten und Nutzerprofil werden nicht zum Testen veraendert.
+
+Installiert als operations-feedback-r1 aus Commit 0c1642dd. Alle 66 verwalteten Laufzeitdateien hashgeprueft, Engine/game/cgame bytegleich mit Build. 211 aktuelle persoenliche Profildateien vor/nach Installation unveraendert; 9072 Original-, 9000 Basis- und 8 Max-Payne-Eingabedateien verifiziert.
