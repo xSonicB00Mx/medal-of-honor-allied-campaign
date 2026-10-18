@@ -11,3 +11,5 @@ Native Tests in isolierten Profilen:
 - Native FHD-Menueansicht: Prozentwert und Additional Options korrekt, keine Ueberlappungen. game/Engine erfolgreich gebaut.
 
 Keine persoenliche Nutzerabnahme oder Merge behauptet.
+
+Installiert als flinch-percent-r3 aus 3f7ea7b8. Alle 78 Laufzeitdateien hashgeprueft, Engine/game/cgame bytegleich mit Testbuild. 382 persoenliche Profildateien, 9072 Originaldateien, 9000 Basisdateien und acht MP-Eingaben unveraendert. Ruecksicherung: generated-local/widescreen/backups/flinch-percent-r3.
