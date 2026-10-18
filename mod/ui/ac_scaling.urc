@@ -236,7 +236,7 @@ bgcolor 0.12 0.14 0.12 1
 borderstyle NONE
 font facfont-20
 borderstyle RAISED
-stuffcommand "set ac_ui_auto 1; set ac_menu_scale 1; set ac_hud_scale 1; set ac_hud_safe 1; set ac_blood_mist 1; set ac_world_blood 1; set ac_body_wounds 1; set ac_corpse_effects 1; set ac_player_flinch 0"
+stuffcommand "set ac_ui_auto 1; set ac_menu_scale 1; set ac_hud_scale 1; set ac_hud_safe 1; set ac_blood_mist 1; set ac_world_blood 1; set ac_body_wounds 1; set ac_corpse_effects 1; set ac_player_flinch_mode 1; set ac_bt_drop_limits 0"
 }
 
 resource
@@ -269,7 +269,7 @@ Label
 name "worldLabel"
 dontlocalize
 title "Blood drops and stains"
-rect 520 218 330 30
+rect 520 202 330 30
 font facfont-20
 fgcolor 0.91 0.86 0.7 1
 bgcolor 0.055 0.065 0.06 1
@@ -281,7 +281,7 @@ CheckBox
 name "worldBlood"
 dontlocalize
 title ""
-rect 880 218 30 30
+rect 880 202 30 30
 linkcvar ac_world_blood
 checked_shader textures/menu/checkbox_checked
 unchecked_shader textures/menu/checkbox_unchecked
@@ -293,7 +293,7 @@ Label
 name "bodyLabel"
 dontlocalize
 title "Body wounds"
-rect 520 286 330 30
+rect 520 254 330 30
 font facfont-20
 fgcolor 0.91 0.86 0.7 1
 bgcolor 0.055 0.065 0.06 1
@@ -305,7 +305,7 @@ CheckBox
 name "bodyWounds"
 dontlocalize
 title ""
-rect 880 286 30 30
+rect 880 254 30 30
 linkcvar ac_body_wounds
 checked_shader textures/menu/checkbox_checked
 unchecked_shader textures/menu/checkbox_unchecked
@@ -316,7 +316,7 @@ Label
 name "corpseLabel"
 dontlocalize
 title "Corpse hit effects"
-rect 520 354 330 30
+rect 520 306 330 30
 font facfont-20
 fgcolor 0.91 0.86 0.7 1
 bgcolor 0.055 0.065 0.06 1
@@ -328,7 +328,7 @@ CheckBox
 name "corpseEffects"
 dontlocalize
 title ""
-rect 880 354 30 30
+rect 880 306 30 30
 linkcvar ac_corpse_effects
 checked_shader textures/menu/checkbox_checked
 unchecked_shader textures/menu/checkbox_unchecked
@@ -362,21 +362,54 @@ Label
 {
 name "flinchLabel"
 dontlocalize
-title "Player hit flinch"
-rect 520 422 330 30
+title "Hit flinch"
+rect 520 354 180 30
 font facfont-20
 fgcolor 0.91 0.86 0.7 1
-bgcolor 0.055 0.065 0.06 1
+borderstyle NONE
+}
+resource
+Label
+{
+name "flinchValue"
+dontlocalize
+rect 700 354 220 30
+font facfont-20
+fgcolor 1 0.9 0.65 1
+linkcvar ac_player_flinch_mode
+linkstring 0 "Off"
+linkstring 1 "Reduced (20%)"
+linkstring 2 "Original"
+borderstyle NONE
+}
+resource
+Slider
+{
+name "playerFlinch"
+rect 520 394 400 24
+shader textures/menu/slider
+linkcvar ac_player_flinch_mode
+slidertype integer
+setrange 0 2
+stepsize 1
+}
+resource
+Label
+{
+name "dropLabel"
+dontlocalize
+title "BT drop restrictions"
+rect 520 438 330 30
+font facfont-20
+fgcolor 0.91 0.86 0.7 1
 borderstyle NONE
 }
 resource
 CheckBox
 {
-name "playerFlinch"
-dontlocalize
-title ""
-rect 880 422 30 30
-linkcvar ac_player_flinch
+name "dropLimits"
+rect 880 438 30 30
+linkcvar ac_bt_drop_limits
 checked_shader textures/menu/checkbox_checked
 unchecked_shader textures/menu/checkbox_unchecked
 }

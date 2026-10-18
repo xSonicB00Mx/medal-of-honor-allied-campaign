@@ -1,0 +1,120 @@
+{
+  "flinch": [
+    {
+      "game": "AA",
+      "feedback_samples": 78,
+      "off_camera_zero": true,
+      "reduced_exactly_20_percent": true,
+      "original_exactly_100_percent": true,
+      "red_blend_preserved": true,
+      "archived_preference_saved": true,
+      "errors": []
+    },
+    {
+      "game": "SH",
+      "feedback_samples": 77,
+      "off_camera_zero": true,
+      "reduced_exactly_20_percent": true,
+      "original_exactly_100_percent": true,
+      "red_blend_preserved": true,
+      "archived_preference_saved": true,
+      "errors": []
+    },
+    {
+      "game": "BT",
+      "feedback_samples": 77,
+      "off_camera_zero": true,
+      "reduced_exactly_20_percent": true,
+      "original_exactly_100_percent": true,
+      "red_blend_preserved": true,
+      "archived_preference_saved": true,
+      "errors": []
+    }
+  ],
+  "drops": {
+    "game": "BT",
+    "difficulty_note": "Loaded reference difficulty; original hard-mode guard reviewed separately",
+    "live_switches": [
+      {
+        "limits": 1,
+        "drops": []
+      },
+      {
+        "limits": 0,
+        "drops": [
+          [
+            "0",
+            "models/items/item_25_healthbox.tik",
+            "1"
+          ],
+          [
+            "0",
+            "models/weapons/kar98.tik",
+            "1"
+          ]
+        ]
+      },
+      {
+        "limits": 1,
+        "drops": []
+      },
+      {
+        "limits": 0,
+        "drops": [
+          [
+            "0",
+            "models/items/item_25_healthbox.tik",
+            "1"
+          ],
+          [
+            "0",
+            "models/weapons/kar98.tik",
+            "1"
+          ]
+        ]
+      }
+    ],
+    "save_load": true,
+    "passed": true
+  },
+  "preferences": {
+    "checks": [
+      {
+        "folder": "mainta",
+        "phase": "received-aa.cfg",
+        "passed": true
+      },
+      {
+        "folder": "maintt",
+        "phase": "received-sh.cfg",
+        "passed": true
+      },
+      {
+        "folder": "main",
+        "phase": "received-bt.cfg",
+        "passed": true
+      },
+      {
+        "folder": "main",
+        "phase": "fresh-process",
+        "passed": true
+      },
+      {
+        "folder": "mainta",
+        "phase": "fresh-process",
+        "passed": true
+      },
+      {
+        "folder": "maintt",
+        "phase": "fresh-process",
+        "passed": true
+      }
+    ],
+    "passed": true,
+    "isolated_profile": "profiles-local/shared-preferences/flinch-drops-r2",
+    "latched_graphics": true,
+    "normal_alt_ctrl_bindings": true,
+    "removed_bindings": true,
+    "mission_state_excluded": true
+  }
+}

@@ -1,3 +1,7 @@
+## Aktuell: Drei Flinching-Modi und BT-Dropoption
+
+Standardmaessig 20 Prozent Flinching; Off/Reduced/Original und BT drop restrictions im Optionsmenue, sofort wirksam und kampagnenuebergreifend gespeichert. [Bericht](checkpoints/CP08/flinch-modes-drop-options.md).
+
 ## Aktuell: Stabiler Stand und Speicherbereinigung
 
 Nutzer bestaetigt aktuellen Stand als stabil. 172.23 GiB alte lokale Versionen und Testprodukte entfernt; aktuelle Installation und persoenliches Profil hashidentisch erhalten. Historische Auslieferungs-/Rollback-Pfade sind entfernt. [Bericht](checkpoints/CP08/storage-cleanup.md).

@@ -6762,10 +6762,12 @@ void Player::SetPlayerView(
         client->ps.damage_angles[YAW]   = G_CRandom() * level.earthquake_magnitude * EARTHQUAKE_SCREENSHAKE_YAW;
         client->ps.damage_angles[ROLL]  = G_CRandom() * level.earthquake_magnitude * EARTHQUAKE_SCREENSHAKE_ROLL;
     } else if (damage_count && (g_gametype->integer != GT_SINGLE_PLAYER
-        || gi.Cvar_Get("ac_player_flinch", "0", CVAR_ARCHIVE)->integer)) {
-        client->ps.damage_angles[PITCH] = damage_angles[PITCH];
-        client->ps.damage_angles[YAW]   = damage_angles[YAW];
-        client->ps.damage_angles[ROLL]  = damage_angles[ROLL];
+        || gi.Cvar_Get("ac_player_flinch_mode", "1", CVAR_ARCHIVE)->integer)) {
+        const float intensity = g_gametype->integer == GT_SINGLE_PLAYER
+            && gi.Cvar_Get("ac_player_flinch_mode", "1", CVAR_ARCHIVE)->integer == 1 ? 0.2f : 1.0f;
+        client->ps.damage_angles[PITCH] = damage_angles[PITCH] * intensity;
+        client->ps.damage_angles[YAW]   = damage_angles[YAW] * intensity;
+        client->ps.damage_angles[ROLL]  = damage_angles[ROLL] * intensity;
     } else {
         VectorClear(client->ps.damage_angles);
     }
@@ -6774,7 +6776,7 @@ void Player::SetPlayerView(
     // weapon recoil and scripted earthquake/view-variation effects.
     if (damage_count && gi.Cvar_Get("ac_flinch_debug", "0", 0)->integer) {
         gi.Printf("AC_FLINCH enabled=%d health=%.2f alpha=%.3f source=%.3f,%.3f,%.3f camera=%.3f,%.3f,%.3f\n",
-            gi.Cvar_Get("ac_player_flinch", "0", CVAR_ARCHIVE)->integer, health, damage_alpha,
+            gi.Cvar_Get("ac_player_flinch_mode", "1", CVAR_ARCHIVE)->integer, health, damage_alpha,
             damage_angles.x, damage_angles.y, damage_angles.z,
             client->ps.damage_angles[0], client->ps.damage_angles[1], client->ps.damage_angles[2]);
     }

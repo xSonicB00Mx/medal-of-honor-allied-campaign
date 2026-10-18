@@ -33,7 +33,7 @@ def launch(game, script, initial=False):
 
 initial = ['wait 600','seta r_gamma 1.25','seta s_ambientvolume 0.37',
     'seta m_pitch -0.022','seta cl_ctrlbindings 1','seta cl_altbindings 0',
-    'seta cg_fov 93','seta ac_player_flinch 1','seta g_subtitle 0','seta r_picmip 1',
+    'seta cg_fov 93','seta ac_player_flinch_mode 1','seta ac_bt_drop_limits 1','seta g_subtitle 0','seta r_picmip 1',
     'bind F7 +forward','altbind F8 +moveleft','ctrlbind F9 +moveright',
     'seta g_lastsave AA_ONLY','seta ui_NumShotsFired_game 123','ac_context 1 menu']
 (home/'main/initial.cfg').write_text('\n'.join(initial)+'\n')
@@ -66,7 +66,7 @@ for folder,name,gamma,ambient in [('mainta','received-aa.cfg','1.25','0.37'),
     ('maintt','received-sh.cfg','1.4','0.63'),('main','received-bt.cfg','1.3','0.55')]:
     values,text=config(folder,name)
     assert values['r_gamma']==gamma and values['s_ambientvolume']==ambient,(folder,values)
-    for key,value in [('m_pitch','-0.022'),('cg_fov','93'),('ac_player_flinch','1'),('g_subtitle','0'),('cl_ctrlbindings','1'),('cl_altbindings','0')]:
+    for key,value in [('m_pitch','-0.022'),('cg_fov','93'),('ac_player_flinch_mode','1'),('ac_bt_drop_limits','1'),('g_subtitle','0'),('cl_ctrlbindings','1'),('cl_altbindings','0')]:
         assert values[key]==value,(folder,key,values[key])
     if folder=='mainta':
         assert 'bind F7 "+forward"' in text and 'altbind F8 "+moveleft"' in text
@@ -82,7 +82,7 @@ for game,folder in enumerate(folders):
     launch(game,'restart.cfg').wait(timeout=30)
     values,text=config(folder,'restarted.cfg')
     assert values['r_gamma']=='1.3' and values['s_ambientvolume']=='0.55' and values['r_picmip']=='0'
-    assert values['ac_player_flinch']=='1'
+    assert values['ac_player_flinch_mode']=='1' and values['ac_bt_drop_limits']=='1'
     assert 'ctrlbind F9 "+attack"' in text and '\nbind F7 ' not in text and '\naltbind F8 ' not in text
     checks.append(dict(folder=folder,phase='fresh-process',passed=True))
 shared=(home/'main/ac_preferences.cfg').read_text()
