@@ -350,7 +350,7 @@ Label
 {
 name "effectsSection"
 dontlocalize
-title "Additional Options"
+title "ADDITIONAL OPTIONS"
 rect 520 108 400 28
 font facfont-20
 fgcolor 0.75 0.72 0.55 1

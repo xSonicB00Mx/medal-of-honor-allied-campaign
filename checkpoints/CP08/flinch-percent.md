@@ -13,3 +13,9 @@ Native Tests in isolierten Profilen:
 Keine persoenliche Nutzerabnahme oder Merge behauptet.
 
 Installiert als flinch-percent-r3 aus 3f7ea7b8. Alle 78 Laufzeitdateien hashgeprueft, Engine/game/cgame bytegleich mit Testbuild. 382 persoenliche Profildateien, 9072 Originaldateien, 9000 Basisdateien und acht MP-Eingaben unveraendert. Ruecksicherung: generated-local/widescreen/backups/flinch-percent-r3.
+
+## Korrektur 2026-10-18: Maus-Raster
+
+Die vorherigen Tests prueften Schadenswerte, nicht den Mauspfad des Reglers. stepsize galt nur fuer Pfeile; Pressed/MouseDragged schrieben kontinuierliche Werte. Der Flinch-Regler rundet jetzt vor jeder Ausgabe auf 0/10/.../100. Beim Einlesen werden alte Zwischenwerte ebenso normalisiert. Andere Slider bleiben unveraendert. Ueberschrift jetzt ADDITIONAL OPTIONS.
+
+Engine-Build erfolgreich. tools/test_flinch_slider.py prueft pro Kampagne 121 echte Widget-Klickereignisse und 121 Ziehereignisse: alle elf Stufen erreicht, keine Zwischenwerte, alter Wert 37 wird 40 und als 40 gespeichert. Pakete aller drei Kampagnen auf Grossschreibung geprueft; native Menueaufnahme kontrolliert. Isolierte Profile snap-r4; keine persoenliche Abnahme behauptet.

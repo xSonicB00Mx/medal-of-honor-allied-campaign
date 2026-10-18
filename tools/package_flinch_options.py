@@ -15,7 +15,7 @@ for game,folder in [('AA','main'),('SH','mainta'),('BT','maintt')]:
  body=body.replace('set ac_corpse_effects 1"','set ac_corpse_effects 1; set ac_player_flinch_percent 20; set ac_bt_drop_limits 0"')
  for old,new in [(218,202),(286,254),(354,306)]:
   body=body.replace(f'520 {old} ',f'520 {new} ').replace(f'880 {old} ',f'880 {new} ')
- body=body.replace('title "VISUAL EFFECTS"','title "Additional Options"').replace('end.',block+'end.')
+ body=body.replace('title "VISUAL EFFECTS"','title "ADDITIONAL OPTIONS"').replace('end.',block+'end.')
  p=r/'generated-local/flinch/packages'/folder/'zzzzzzzzzzzzz_AC_FlinchOptions.pk3';p.parent.mkdir(parents=True,exist_ok=True)
  with zipfile.ZipFile(p,'w',zipfile.ZIP_DEFLATED) as z:z.writestr('ui/ac_scaling.urc',body.encode('latin1'))
  rows.append(dict(game=game,package=p.relative_to(r).as_posix(),sha256=hashlib.sha256(p.read_bytes()).hexdigest()))
