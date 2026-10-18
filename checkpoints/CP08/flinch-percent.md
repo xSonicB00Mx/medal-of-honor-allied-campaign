@@ -1,0 +1,13 @@
+# Hit-Flinch-Prozentregler
+
+2026-10-18: Hit flinch bietet 0 bis 100 Prozent in zehn Prozentpunkten pro Schritt, inklusive Prozentanzeige. Rechter Abschnitt heisst Additional Options. Standard und Defaults bleiben 20 Prozent.
+
+ac_player_flinch_percent ersetzt den Dreistufenwert. Initialisierung nach Konfigurationsimport migriert fehlenden Prozentwert aus ac_player_flinch_mode: 0 -> 0, 1 -> 20, 2 -> 100. Ein vorhandener Prozentwert hat Vorrang. Neue Profile starten bei 20. Gemeinsame Kampagnenpraeferenzen speichern den Prozentwert. Trefferwinkel werden nach Originalbegrenzung mit dem gewaehlten Anteil multipliziert; externe Werte werden auf 0..100 begrenzt und auf Zehnerschritte gerundet. Rote Schadenseinblendung, Rueckstoss, BT-Dropoption und Saveformat unveraendert.
+
+Native Tests in isolierten Profilen:
+- AA percent-aa (213 Samples), SH percent-sh und BT percent-bt (je 212): alle elf Stufen anhand echter gerichteter Schadensereignisse geprueft. Ausgabe entspricht Quelle mal Prozent innerhalb Protokollrundung, Rotblendung erhalten, keine Script-/Event-/Kommando-Fehler.
+- flinch-percent: AA -> SH -> BT -> AA und frische Prozesse aller Kampagnen behalten 70 Prozent und BT-Dropoption.
+- test_flinch_migration.py: Off/Reduced/Original ergeben 0/20/100; vorhandene 70 Prozent werden nicht ueberschrieben; neues Profil 20 Prozent.
+- Native FHD-Menueansicht: Prozentwert und Additional Options korrekt, keine Ueberlappungen. game/Engine erfolgreich gebaut.
+
+Keine persoenliche Nutzerabnahme oder Merge behauptet.

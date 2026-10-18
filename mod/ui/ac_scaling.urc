@@ -236,7 +236,7 @@ bgcolor 0.12 0.14 0.12 1
 borderstyle NONE
 font facfont-20
 borderstyle RAISED
-stuffcommand "set ac_ui_auto 1; set ac_menu_scale 1; set ac_hud_scale 1; set ac_hud_safe 1; set ac_blood_mist 1; set ac_world_blood 1; set ac_body_wounds 1; set ac_corpse_effects 1; set ac_player_flinch_mode 1; set ac_bt_drop_limits 0"
+stuffcommand "set ac_ui_auto 1; set ac_menu_scale 1; set ac_hud_scale 1; set ac_hud_safe 1; set ac_blood_mist 1; set ac_world_blood 1; set ac_body_wounds 1; set ac_corpse_effects 1; set ac_player_flinch_percent 20; set ac_bt_drop_limits 0"
 }
 
 resource
@@ -350,7 +350,7 @@ Label
 {
 name "effectsSection"
 dontlocalize
-title "VISUAL EFFECTS"
+title "Additional Options"
 rect 520 108 400 28
 font facfont-20
 fgcolor 0.75 0.72 0.55 1
@@ -376,10 +376,18 @@ dontlocalize
 rect 700 354 220 30
 font facfont-20
 fgcolor 1 0.9 0.65 1
-linkcvar ac_player_flinch_mode
-linkstring 0 "Off"
-linkstring 1 "Reduced (20%)"
-linkstring 2 "Original"
+linkcvar ac_player_flinch_percent
+linkstring 0 "0%"
+linkstring 10 "10%"
+linkstring 20 "20%"
+linkstring 30 "30%"
+linkstring 40 "40%"
+linkstring 50 "50%"
+linkstring 60 "60%"
+linkstring 70 "70%"
+linkstring 80 "80%"
+linkstring 90 "90%"
+linkstring 100 "100%"
 borderstyle NONE
 }
 resource
@@ -388,10 +396,10 @@ Slider
 name "playerFlinch"
 rect 520 394 400 24
 shader textures/menu/slider
-linkcvar ac_player_flinch_mode
+linkcvar ac_player_flinch_percent
 slidertype integer
-setrange 0 2
-stepsize 1
+setrange 0 100
+stepsize 10
 }
 resource
 Label

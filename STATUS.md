@@ -1,3 +1,7 @@
+## Aktuell: Hit-Flinch-Prozentregler
+
+0 bis 100 Prozent in Zehnerschritten, alte Auswahl migriert, Abschnitt Additional Options. Alle Stufen in AA/SH/BT sowie Persistenz geprueft. [Bericht](checkpoints/CP08/flinch-percent.md).
+
 ## Aktuell: Drei Flinching-Modi und BT-Dropoption
 
 Standardmaessig 20 Prozent Flinching; Off/Reduced/Original und BT drop restrictions im Optionsmenue, sofort wirksam und kampagnenuebergreifend gespeichert. [Bericht](checkpoints/CP08/flinch-modes-drop-options.md).

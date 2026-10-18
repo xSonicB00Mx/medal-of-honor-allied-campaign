@@ -1892,7 +1892,10 @@ void Com_Init( char *commandLine ) {
 	Cvar_Get("ac_world_blood", "1", CVAR_ARCHIVE);
 	Cvar_Get("ac_body_wounds", "1", CVAR_ARCHIVE);
 	Cvar_Get("ac_corpse_effects", "1", CVAR_ARCHIVE);
-	Cvar_Get("ac_player_flinch_mode", "1", CVAR_ARCHIVE);
+	// Migrate the former three-state preference only when no percentage exists.
+	Cvar_Get("ac_player_flinch_percent", *Cvar_VariableString("ac_player_flinch_mode")
+		? (Cvar_VariableIntegerValue("ac_player_flinch_mode") == 0 ? "0"
+		: Cvar_VariableIntegerValue("ac_player_flinch_mode") == 2 ? "100" : "20") : "20", CVAR_ARCHIVE);
 	Cvar_Get("ac_bt_drop_limits", "0", CVAR_ARCHIVE);
 	Cvar_Get("ac_operation", "-1", CVAR_INIT);
 	Cvar_Get("ac_replay", "0", CVAR_INIT);

@@ -1,0 +1,98 @@
+{
+  "feedback": [
+    {
+      "game": "AA",
+      "feedback_samples": 213,
+      "off_camera_zero": true,
+      "all_eleven_percentages_verified": true,
+      "red_blend_preserved": true,
+      "archived_preference_saved": true,
+      "errors": []
+    },
+    {
+      "game": "SH",
+      "feedback_samples": 212,
+      "off_camera_zero": true,
+      "all_eleven_percentages_verified": true,
+      "red_blend_preserved": true,
+      "archived_preference_saved": true,
+      "errors": []
+    },
+    {
+      "game": "BT",
+      "feedback_samples": 212,
+      "off_camera_zero": true,
+      "all_eleven_percentages_verified": true,
+      "red_blend_preserved": true,
+      "archived_preference_saved": true,
+      "errors": []
+    }
+  ],
+  "migration": [
+    {
+      "case": "off",
+      "expected": 0,
+      "passed": true
+    },
+    {
+      "case": "reduced",
+      "expected": 20,
+      "passed": true
+    },
+    {
+      "case": "original",
+      "expected": 100,
+      "passed": true
+    },
+    {
+      "case": "existing",
+      "expected": 70,
+      "passed": true
+    },
+    {
+      "case": "fresh",
+      "expected": 20,
+      "passed": true
+    }
+  ],
+  "preferences": {
+    "checks": [
+      {
+        "folder": "mainta",
+        "phase": "received-aa.cfg",
+        "passed": true
+      },
+      {
+        "folder": "maintt",
+        "phase": "received-sh.cfg",
+        "passed": true
+      },
+      {
+        "folder": "main",
+        "phase": "received-bt.cfg",
+        "passed": true
+      },
+      {
+        "folder": "main",
+        "phase": "fresh-process",
+        "passed": true
+      },
+      {
+        "folder": "mainta",
+        "phase": "fresh-process",
+        "passed": true
+      },
+      {
+        "folder": "maintt",
+        "phase": "fresh-process",
+        "passed": true
+      }
+    ],
+    "passed": true,
+    "isolated_profile": "profiles-local/shared-preferences/flinch-percent",
+    "latched_graphics": true,
+    "normal_alt_ctrl_bindings": true,
+    "removed_bindings": true,
+    "mission_state_excluded": true
+  }
+}
