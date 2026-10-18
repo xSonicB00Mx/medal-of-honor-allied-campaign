@@ -13,3 +13,5 @@ Native Pruefung:
 - BT live-r1: e2l2-Referenzsave, vier echte Testactor-Tode mit Grenzen an/aus/an/aus in derselben Sitzung. An keine Drops; aus je eine Kar98 und Gesundheitsbox, Drop() bestaetigt. Fuer deterministische Gesundheitsdrops waren die Testschwellen auf 1 gesetzt. Save/Load zwischen Phasen erfolgreich. Test nutzt gespeicherte Referenzschwierigkeit; Hard-Sonderregel separat im Code geprueft, nicht als native Hard-Abnahme behauptet.
 - flinch-drops-r2: Kontextkette AA -> SH -> BT -> AA und frische Prozesse aller Kampagnen erhalten beide Optionen und bestehende Praeferenzen.
 - game und Engine erfolgreich gebaut. Ausschliesslich isolierte Testprofile; persoenliche Abnahme und Merge nicht behauptet.
+
+Installiert als flinch-drops-r2 aus fc992325; alle 78 Laufzeitdateien hashgeprueft. 382 persoenliche Profildateien, 9072 Originaldateien, 9000 Basisdateien und acht MP-Eingaben unveraendert. Ruecksicherung des unmittelbar vorherigen stabilen Standes: generated-local/widescreen/backups/flinch-drops-r2.
