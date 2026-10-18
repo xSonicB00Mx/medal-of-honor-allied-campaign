@@ -1,3 +1,7 @@
+## Aktuell: Stabiler Stand und Speicherbereinigung
+
+Nutzer bestaetigt aktuellen Stand als stabil. 172.23 GiB alte lokale Versionen und Testprodukte entfernt; aktuelle Installation und persoenliches Profil hashidentisch erhalten. Historische Auslieferungs-/Rollback-Pfade sind entfernt. [Bericht](checkpoints/CP08/storage-cleanup.md).
+
 ## Aktuell: Optionales Spieler-Flinching
 
 Treffer-Kamerabewegung standardmaessig aus, in Allied Campaign Options schaltbar. Rotblendung bleibt erhalten. AA/SH/BT und kampagnenuebergreifende Speicherung geprueft. [Bericht](checkpoints/CP08/player-flinch.md).
