@@ -18,7 +18,7 @@ ap.add_argument('--with-game-binaries', action='store_true', help='Install teste
 ap.add_argument('--font-packages', type=Path, help='Install a reviewed local font package report instead of widescreen packages')
 ap.add_argument('--with-engine', action='store_true', help='Also install the tested engine with font layout changes')
 ap.add_argument('--hud-packages', type=Path, help='Install reviewed HUD artwork only')
-ap.add_argument('--hud-component', choices=['compass','ammo','inventory','health','timers','overlays','weapons','special','menu-polish','loading-fallback','campaign-map','menu-background','shared-menus','mortar','flinch'], default='compass', help='HUD manifest section to update')
+ap.add_argument('--hud-component', choices=['compass','ammo','inventory','health','timers','overlays','weapons','special','menu-polish','loading-fallback','campaign-map','menu-background','shared-menus','mortar','flinch','campaign-finales'], default='compass', help='Component manifest section to update')
 ap.add_argument('--with-cgame', action='store_true', help='Install tested client-game DLL with HUD artwork')
 ap.add_argument('--logic-only', action='store_true', help='Install tested game/cgame DLLs, preserving artwork (optionally update engine)')
 args = ap.parse_args()
@@ -125,6 +125,7 @@ if args.hud_packages:
                 'menu-background':'User-supplied artwork',
                 'shared-menus':'Existing AA presentation',
                 'flinch':'Existing options menu with hit-flinch control',
+                'campaign-finales':'Existing WCR finale scripts with campaign transition hooks',
                 'mortar':'Code-native aim marker'}.get(args.hud_component,'Built-in Imagegen')
     manifest[args.hud_component] = dict(batch=args.batch, packages=packages, provider=provider, upload_allowed=False)
 if args.with_cgame or args.with_game_binaries or args.logic_only:

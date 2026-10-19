@@ -1,3 +1,7 @@
+## Aktuell: Credits erst nach Berlin
+
+AA-/BT-Finales setzen die gemeinsame Kampagne vor dem Abspann fort. Berlin behaelt Schlussvideo und Credits. [Bericht](checkpoints/CP08/campaign-finales.md).
+
 ## Aktuell: Hit-Flinch-Prozentregler
 
 0 bis 100 Prozent in Zehnerschritten, alte Auswahl migriert, Abschnitt Additional Options. Alle Stufen in AA/SH/BT sowie Persistenz geprueft. [Bericht](checkpoints/CP08/flinch-percent.md).
