@@ -19,3 +19,9 @@ Isolierte native Profile unter profiles-local/stats-briefing-breda:
 Keine natuerliche Durchspielung aller Missionen oder persoenliche Nutzerabnahme behauptet. Testwerte sind synthetisch. Persoenliches Profil nicht fuer Tests verwendet.
 
 Installiert als stats-briefing-breda-r1 aus df97f899. Alle 83 eigenen Laufzeitdateien hashgeprueft; game/cgame identisch zum getesteten Build. 382 persoenliche Profildateien, 9072 Originaldateien, 9000 Basisdateien und acht Max-Payne-Eingaben unveraendert. Ruecksicherung: generated-local/widescreen/backups/stats-briefing-breda-r1.
+
+## Nachkorrektur: vollstaendiges BT-Helmmotiv
+
+Die vorige Sichtpruefung konzentrierte sich auf die Zahlenfelder und liess die alten opaken BT-Statistikkacheln bestehen. Dadurch verdeckten sie das breite Helmmotiv mit dem schwarzen Originalhintergrund. Alle drei BT-mission_success-Ansichten verwenden jetzt direkt widescreenbackground mit aa-statsscreen_failed (Helm/Sonnenuntergang); ihre beiden alten Bildwidgets entfallen. Musik, Statistiken und Fortsetzen-Verhalten bleiben erhalten. AA und SH bleiben unveraendert.
+
+stats-bt-helmet-r1: alle drei BT-Abschlussansichten nativ in 3840x2160 angezeigt, keine Script-/Ressourcenfehler. Screenshots der ersten und dritten Ansicht visuell geprueft: vollstaendiges bildfuellendes Helmmotiv ohne schwarze Abdeckung, Statistik lesbar. Keine Engine-/DLL-Aenderung erforderlich; isolierte Testwerte, keine persoenlichen Spielstaende verwendet.

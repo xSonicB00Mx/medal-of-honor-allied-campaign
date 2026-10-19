@@ -1,4 +1,4 @@
-"""Widen original campaign statistic fields without changing their bindings or art."""
+"""Widen campaign statistics and use the full helmet artwork for BT completion."""
 from pathlib import Path
 import re, json, zipfile, hashlib
 
@@ -32,6 +32,12 @@ for game,folder in [('AA','main'),('SH','mainta'),('BT','maintt')]:
    else:return block
    return block[:rect.start()]+f'rect {x:g} {y:g} {w:g} {h:g}'+block[rect.end():]
   modified=re.sub(r'(?is)resource\s+Label\s*\{[^{}]*\}',adjust,text)
+  if game=='BT' and re.fullmatch(r'ui/mission_success_[123]\.urc',name):
+   # These expansion menus still place opaque 4:3 tiles over the backdrop.
+   # Remove only those two artwork widgets; preserve sound and stat bindings.
+   modified,count=re.subn(r'(?is)resource\s+Label\s*\{[^{}]*\bshader\s+"statscreen[123]_[12]"[^{}]*\}', '', modified)
+   assert count==2,(name,count)
+   modified=re.sub(r'(?m)^(menu[^\n]*\n)',r'\1widescreenbackground "textures/ac/widescreen/aa-statsscreen_failed"\n',modified,count=1)
   if modified!=text:
    assert re.findall(r'(?mi)^\s*linkcvar.*',modified)==re.findall(r'(?mi)^\s*linkcvar.*',text)
    changed[name]=modified.encode('latin1')
