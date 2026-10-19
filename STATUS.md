@@ -1,3 +1,7 @@
+## Aktuell: Statistik, AA-Briefings und Breda korrigiert
+
+Breitere Kampagnenstatistik, echte AA-Briefings mit vorhandenem 16:9-Raumhintergrund und MG-Blutprofil fuer die stationaere Breda. Native Tests erfolgreich. [Bericht](checkpoints/CP08/stats-briefing-breda.md).
+
 ## Aktuell: Credits erst nach Berlin
 
 AA-/BT-Finales setzen die gemeinsame Kampagne vor dem Abspann fort. Berlin behaelt Schlussvideo und Credits. [Bericht](checkpoints/CP08/campaign-finales.md).

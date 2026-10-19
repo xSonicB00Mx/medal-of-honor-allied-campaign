@@ -627,6 +627,24 @@ void CG_HudDrawElements()
             continue;
         }
 
+        // AA briefings use scripted HUD layers, bypassing the menu artwork.
+        // Replace the two old room tiles with the already installed full image.
+        // Slides, subtitles, fades and skip prompts keep their centered canvas.
+        if (briefing && cgi.HudDrawElements[i].bVirtualScreen
+            && !cgi.HudDrawElements[i].string[0]) {
+            const char *shader = cgi.HudDrawElements[i].shaderName;
+            if (!Q_stricmp(shader, "briefingroomdark_b")) continue;
+            if (!Q_stricmp(shader, "briefingroomdark_a")) {
+                const float height = 480.f * canvasScale;
+                const float width = height * (16.f / 9.f);
+                cgi.R_SetColor(cgi.HudDrawElements[i].vColor);
+                cgi.R_DrawStretchPic((cgs.glconfig.vidWidth - width) * .5f, canvasY,
+                    width, height, 0, 0, 1, 1,
+                    cgi.R_RegisterShaderNoMip("textures/ac/widescreen/aa-missionbriefingback"));
+                continue;
+            }
+        }
+
         fX      = cgi.HudDrawElements[i].iX;
         fY      = cgi.HudDrawElements[i].iY;
         fWidth  = cgi.HudDrawElements[i].iWidth;

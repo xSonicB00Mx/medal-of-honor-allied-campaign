@@ -1,5 +1,5 @@
 {
-  "version": 5,
+  "version": 6,
   "unknown": "no new blood; preserve existing WCR effects",
   "special": {
     "shotgun": "per-pellet small entry and exit wounds, independent blood droplets",
@@ -359,6 +359,15 @@
       "code": 5,
       "entry_wound_material": "ac/wound_small",
       "exit_wound_material": "ac/wound_small",
+      "allow_exit_wound": true,
+      "allow_exit_spray": true
+    },
+    {
+      "weapon_id": "models/statweapons/it_w_breda_gun.tik",
+      "group": "mg",
+      "code": 4,
+      "entry_wound_material": "ac/wound_large",
+      "exit_wound_material": "ac/wound_large",
       "allow_exit_wound": true,
       "allow_exit_spray": true
     }
