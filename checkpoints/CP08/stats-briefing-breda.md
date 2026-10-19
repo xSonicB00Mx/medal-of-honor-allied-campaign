@@ -17,3 +17,5 @@ Isolierte native Profile unter profiles-local/stats-briefing-breda:
 - breda-r2: echte stationaere Breda im isolierten BT-Spielstand mit kontrolliertem Ziel. Acht bestaetigte Treffer mit Gruppe 4, jeweils Eintritt und Austritt, 16 Tropfen-Emissionen, Nebel und Weltblut. 16 Wunden gespeichert und 16 wieder geladen; Screenshot mit Koerperwunde und Bodenblut geprueft. Erste Testfixture scheiterte am deaktivierten Entwickler-Scriptbefehl und wurde vor dem erfolgreichen Test korrigiert.
 
 Keine natuerliche Durchspielung aller Missionen oder persoenliche Nutzerabnahme behauptet. Testwerte sind synthetisch. Persoenliches Profil nicht fuer Tests verwendet.
+
+Installiert als stats-briefing-breda-r1 aus df97f899. Alle 83 eigenen Laufzeitdateien hashgeprueft; game/cgame identisch zum getesteten Build. 382 persoenliche Profildateien, 9072 Originaldateien, 9000 Basisdateien und acht Max-Payne-Eingaben unveraendert. Ruecksicherung: generated-local/widescreen/backups/stats-briefing-breda-r1.
