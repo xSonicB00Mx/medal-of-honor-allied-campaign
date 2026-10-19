@@ -17,3 +17,5 @@ Isolierte Profile mit vorbereitetem Fortschritt und synthetischem Aufruf der ech
 - Direkte BT-/SH-Finalmapstarts erzeugen schon ohne Patch acht beziehungsweise zehn Spawn-/Waittill-Meldungen. Vergleich mit baseline-11 und baseline-14 bestaetigt identische Meldungen; keine zusaetzlichen Fehler durch den Patch.
 
 Keine natuerliche Missionsdurchspielung oder persoenliche Nutzerabnahme behauptet. Rohprotokolle lokal unter profiles-local/campaign-finales. Keine persoenlichen Spielstaende verwendet.
+
+Installiert als campaign-finales-r1 aus b0391b68. Alle 80 eigenen Laufzeitdateien hashgeprueft. 382 persoenliche Profildateien, 9072 Originaldateien, 9000 Basisdateien und acht Max-Payne-Eingaben unveraendert. Ruecksicherung: generated-local/widescreen/backups/campaign-finales-r1.
