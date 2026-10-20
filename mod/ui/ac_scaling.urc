@@ -236,7 +236,7 @@ bgcolor 0.12 0.14 0.12 1
 borderstyle NONE
 font facfont-20
 borderstyle RAISED
-stuffcommand "set ac_ui_auto 1; set ac_menu_scale 1; set ac_hud_scale 1; set ac_hud_safe 1; set ac_blood_mist 1; set ac_world_blood 1; set ac_body_wounds 1; set ac_corpse_effects 1; set ac_player_flinch_percent 20; set ac_bt_drop_limits 0"
+stuffcommand "set ac_ui_auto 1; set ac_menu_scale 1; set ac_hud_scale 1; set ac_hud_safe 1; set ac_blood_mist 1; set ac_world_blood 1; set ac_body_wounds 1; set ac_corpse_effects 1; set ac_player_flinch_percent 20; set ac_bt_drop_limits 0; set ac_hud_outline 0"
 }
 
 resource
@@ -418,6 +418,26 @@ CheckBox
 name "dropLimits"
 rect 880 438 30 30
 linkcvar ac_bt_drop_limits
+checked_shader textures/menu/checkbox_checked
+unchecked_shader textures/menu/checkbox_unchecked
+}
+resource
+Label
+{
+name "hudOutlineLabel"
+dontlocalize
+title "HUD black outline"
+rect 40 458 340 24
+font facfont-20
+fgcolor 0.91 0.86 0.7 1
+borderstyle NONE
+}
+resource
+CheckBox
+{
+name "hudOutline"
+rect 420 458 24 24
+linkcvar ac_hud_outline
 checked_shader textures/menu/checkbox_checked
 unchecked_shader textures/menu/checkbox_unchecked
 }

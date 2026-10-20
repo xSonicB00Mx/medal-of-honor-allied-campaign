@@ -166,7 +166,7 @@ static void AC_ShowOperations(void)
         bool custom=false;
         for(int s=0;s<AC_LOADOUT_SLOTS;s++) {
             const int i=Cvar_VariableIntegerValue(va("ac_loadout_%d",s))-1;
-            if(i>=0 && i<AC_LOADOUT_COUNT && ac_loadoutWeapons[i].slot==s)custom=true;
+            if(i>=0 && i<AC_LOADOUT_COUNT && ac_loadoutWeapons[i].selectable && ac_loadoutWeapons[i].slot==s)custom=true;
         }
         AC_UIItem(f,"loadout",state==2?(custom?"Loadout: CUSTOM / Change":"Loadout: DEFAULT / Change"):"Loadout: mission equipment",608,236,328,24,state==2?"ac_loadout":NULL,"0.7 0.85 0.7 1",14);
         AC_UIItem(f,"status",AC_StateName(state),608,268,144,30,NULL,AC_StateColor(state));

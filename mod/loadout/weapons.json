@@ -179,7 +179,8 @@
     "name": "Minensuchgerat",
     "model": "models/weapons/gr_w_minedetector.tik",
     "slot": 6,
-    "game": 2
+    "game": 2,
+    "selectable": false
   },
   {
     "id": "it_w_beretta",
@@ -235,7 +236,8 @@
     "name": "Minedetector",
     "model": "models/weapons/us_w_minedetector.tik",
     "slot": 6,
-    "game": 2
+    "game": 2,
+    "selectable": false
   },
   {
     "id": "m2frag_grenade",
@@ -270,21 +272,24 @@
     "name": "M18 Smoke Grenade",
     "model": "models/weapons/m18_smoke_grenade.tik",
     "slot": 4,
-    "game": 1
+    "game": 1,
+    "selectable": false
   },
   {
     "id": "nebelhandgranate",
     "name": "Nebelhandgranate",
     "model": "models/weapons/nebelhandgranate.tik",
     "slot": 4,
-    "game": 1
+    "game": 1,
+    "selectable": false
   },
   {
     "id": "rdg-1_smoke_grenade",
     "name": "RDG-1 Smoke Grenade",
     "model": "models/weapons/rdg-1_smoke_grenade.tik",
     "slot": 4,
-    "game": 1
+    "game": 1,
+    "selectable": false
   },
   {
     "id": "it_w_bomba",
@@ -298,6 +303,7 @@
     "name": "Breda Grenade",
     "model": "models/weapons/it_w_bombabreda.tik",
     "slot": 4,
-    "game": 2
+    "game": 2,
+    "selectable": false
   }
 ]

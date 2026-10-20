@@ -3,13 +3,13 @@
 static int AC_LoadoutChoice(int slot)
 {
     const int i=Cvar_VariableIntegerValue(va("ac_loadout_%d",slot))-1;
-    return i>=0 && i<AC_LOADOUT_COUNT && ac_loadoutWeapons[i].slot==slot?i:-1;
+    return i>=0 && i<AC_LOADOUT_COUNT && ac_loadoutWeapons[i].selectable && ac_loadoutWeapons[i].slot==slot?i:-1;
 }
 
 static void AC_Loadout_f(void)
 {
     int slot=Cmd_Argc()>2?atoi(Cmd_Argv(2)):0;
-    if(slot<0 || slot>=AC_LOADOUT_SLOTS)slot=0;
+    if(slot<0 || slot>=6)slot=0;
     bool changed=false;
     // Removed catalogue entries fall back to DEFAULT; other saved indices stay stable.
     for(int s=0;s<AC_LOADOUT_SLOTS;s++) {
@@ -22,14 +22,14 @@ static void AC_Loadout_f(void)
         changed=true;
     } else if(Cmd_Argc()>3 && !strcmp(Cmd_Argv(1),"select")) {
         const int n=atoi(Cmd_Argv(3));
-        if(n>=0 && n<=AC_LOADOUT_COUNT && (!n || ac_loadoutWeapons[n-1].slot==slot)) {
+        if(n>=0 && n<=AC_LOADOUT_COUNT && (!n || (ac_loadoutWeapons[n-1].selectable && ac_loadoutWeapons[n-1].slot==slot))) {
             const str key=va("ac_loadout_%d",slot);
             Cvar_Set(key,va("%d",n));changed=true;
         }
     } else if(Cmd_Argc()>1 && !strcmp(Cmd_Argv(1),"shuffle")) {
         for(int s=0;s<AC_LOADOUT_SLOTS;s++) {
             int pool[AC_LOADOUT_COUNT],count=0;
-            for(int i=0;i<AC_LOADOUT_COUNT;i++)if(ac_loadoutWeapons[i].slot==s)pool[count++]=i+1;
+            for(int i=0;i<AC_LOADOUT_COUNT;i++)if(ac_loadoutWeapons[i].selectable && ac_loadoutWeapons[i].slot==s)pool[count++]=i+1;
             if(count){const str key=va("ac_loadout_%d",s);Cvar_Set(key,va("%d",pool[rand()%count]));}
         }
         changed=true;
@@ -43,6 +43,7 @@ static void AC_Loadout_f(void)
     AC_UIItem(f,"default_all","DEFAULT",760,20,176,30,"ac_loadout default","1 0.58 0.45 1");
     AC_UIItem(f,"rules","Completed Operations only. New missions and Mission List use standard equipment.",24,62,912,25,NULL,"0.8 0.85 0.78 1",14);
     for(int s=0;s<AC_LOADOUT_SLOTS;s++) {
+        if(s==6)continue;
         int c=AC_LoadoutChoice(s);
         AC_UIItem(f,va("slot_%d",s),ac_loadoutSlots[s],24,106+s*48,224,23,va("ac_loadout view %d",s),s==slot?"1 0.85 0.4 1":"0.85 0.9 0.8 1",16);
         AC_UIItem(f,va("equipped_%d",s),c<0?"DEFAULT":ac_loadoutWeapons[c].name,24,129+s*48,224,21,va("ac_loadout view %d",s),"0.65 0.75 0.65 1",12);
@@ -50,7 +51,7 @@ static void AC_Loadout_f(void)
     AC_UIItem(f,"choose",ac_loadoutSlots[slot],268,106,292,28,NULL,"1 0.85 0.4 1",20);
     AC_UIItem(f,"slot_default",selected<0?"> DEFAULT":"DEFAULT",268,142,292,23,va("ac_loadout select %d 0",slot),selected<0?"1 0.85 0.4 1":"0.85 0.9 0.8 1",14);
     int row=0;
-    for(int i=0;i<AC_LOADOUT_COUNT;i++)if(ac_loadoutWeapons[i].slot==slot) {
+    for(int i=0;i<AC_LOADOUT_COUNT;i++)if(ac_loadoutWeapons[i].selectable && ac_loadoutWeapons[i].slot==slot) {
         const acLoadoutWeapon_t &w=ac_loadoutWeapons[i];
         AC_UIItem(f,va("weapon_%d",i),va("%s%s",selected==i?"> ":"",w.name),268,171+row*22,292,21,va("ac_loadout select %d %d",slot,i+1),selected==i?"1 0.85 0.4 1":"0.85 0.9 0.8 1",13);
         row++;

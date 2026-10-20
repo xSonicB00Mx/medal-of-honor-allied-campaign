@@ -4693,7 +4693,7 @@ void Player::ACApplyLoadout()
     Weapon *equip=NULL;
     for(int slot=0;slot<AC_LOADOUT_SLOTS;slot++) {
         const int index=gi.Cvar_Get(va("ac_loadout_%d",slot),"0",0)->integer-1;
-        if(index<0 || index>=AC_LOADOUT_COUNT || ac_loadoutWeapons[index].slot!=slot)continue;
+        if(index<0 || index>=AC_LOADOUT_COUNT || !ac_loadoutWeapons[index].selectable || ac_loadoutWeapons[index].slot!=slot)continue;
         const acLoadoutWeapon_t &choice=ac_loadoutWeapons[index];
         Item *existing=FindItemByModelname(choice.model);
         Item *item=existing?existing:giveItem(choice.model);

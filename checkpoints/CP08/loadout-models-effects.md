@@ -69,3 +69,9 @@ hashgeprueft. Ruecksicherung:
 `generated-local/widescreen/backups/loadout-models-r3`.
 Lokales Updatepaket: `artifacts-local/CP08-r1-loadout-models-r3-update.zip`.
 Keine persoenliche Nutzerabnahme und kein Merge behauptet.
+
+## Persoenlicher Nachtest vom 20.10.2026
+
+Der Nutzer hat alle Waffen und Granaten im separaten AA-Schnee-Testprofil selbst
+geprueft und bestaetigt, dass sie funktionieren. Die zuvor offene Rueckmeldung
+zu Modellen und Granatensounds ist damit fuer diesen Test erbracht.

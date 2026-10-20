@@ -12,7 +12,7 @@ for game,folder in [('AA','main'),('SH','mainta'),('BT','maintt')]:
    with zipfile.ZipFile(p) as z:
     if 'ui/ac_scaling.urc' in z.namelist():body=z.read('ui/ac_scaling.urc').decode('latin1').replace('\r','')
  assert body and 'widescreenbackground' in body and 'playerFlinch' not in body
- body=body.replace('set ac_corpse_effects 1"','set ac_corpse_effects 1; set ac_player_flinch_percent 20; set ac_bt_drop_limits 0"')
+ body=body.replace('set ac_corpse_effects 1"','set ac_corpse_effects 1; set ac_player_flinch_percent 20; set ac_bt_drop_limits 0; set ac_hud_outline 0"')
  for old,new in [(218,202),(286,254),(354,306)]:
   body=body.replace(f'520 {old} ',f'520 {new} ').replace(f'880 {old} ',f'880 {new} ')
  body=body.replace('title "VISUAL EFFECTS"','title "ADDITIONAL OPTIONS"').replace('end.',block+'end.')

@@ -189,24 +189,11 @@ for game,folder in enumerate(['main','mainta','maintt']):
  (out/folder/'main-before.urc').write_text(menu)
  def entry(m):
   if 'pushmenu multiplayer' not in m[0]:return m[0]
-  return '''resource
-Button
-{
-name loadout
-rect 466 216 140 34
-title "LOADOUT"
-font facfont-20
-fgcolor 1 0.85 0.4 1
-bgcolor 0.075 0.095 0.075 0.88
-borderstyle RAISED
-clicksound "sound/menu/apply.wav"
-stuffcommand "ac_loadout"
-hovercommand "set ui_signshader 0"
-}
-'''
+  return m[0].replace('name "Default"','name "loadout"').replace('pushmenu multiplayer','ac_loadout').replace('set ui_signshader ac_shared/multiplayer_sign','set ui_signshader 0; set ac_loadout_hover 1').replace('hovercommand ', 'mouseawaycommand "set ac_loadout_hover 0"\nhovercommand ')
  menu=re.sub(r'(?is)resource\s+Button\s*\{[^{}]*\}',entry,menu)
  assert 'stuffcommand "ac_loadout"' in menu
  assert 'pushmenu multiplayer' not in menu
+ menu=menu.replace('end.', 'resource\nLabel\n{\nname loadout_sign\nbgcolor 0 0 0 0\nrect 48 36 172 56\nfont facfont-20\nfgcolor 1 0.85 0.4 1\nborderstyle NONE\nlinkcvar ac_loadout_hover\nlinkstring 0 ""\nlinkstring 1 "LOADOUT"\n}\nend.')
  files['ui/main.urc']=menu.encode('latin1')
  p=out/folder/'zzzzzzzzzzzzzzzz_AC_Loadout.pk3'
  with zipfile.ZipFile(p,'w',zipfile.ZIP_DEFLATED) as z:

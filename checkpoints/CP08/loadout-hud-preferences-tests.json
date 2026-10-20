@@ -1,0 +1,32 @@
+[
+  {
+    "game": "main",
+    "door_opened": true,
+    "retired_choices_default": true,
+    "outline_default_off_checkbox_on": true,
+    "persisted": true,
+    "known_native_warnings": []
+  },
+  {
+    "game": "mainta",
+    "door_opened": true,
+    "retired_choices_default": true,
+    "outline_default_off_checkbox_on": true,
+    "persisted": true,
+    "known_native_warnings": []
+  },
+  {
+    "game": "maintt",
+    "door_opened": true,
+    "retired_choices_default": true,
+    "outline_default_off_checkbox_on": true,
+    "persisted": true,
+    "known_native_warnings": [
+      "[2026-10-20 10:00:57 UTC+1.000] ^~^~^ Script Error : invalid waittill prespawn for 'Level'",
+      "[2026-10-20 10:00:57 UTC+1.000] ^~^~^ Script Error : invalid waittill prespawn for 'Level'",
+      "[2026-10-20 10:00:57 UTC+1.000] ^~^~^ Script Error : invalid waittill prespawn for 'Level'",
+      "[2026-10-20 10:00:57 UTC+1.000] ^~^~^ Script Error : invalid waittill prespawn for 'Level'",
+      "[2026-10-20 10:00:57 UTC+1.000] ^~^~^ Script Error : invalid waittill prespawn for 'Level'"
+    ]
+  }
+]

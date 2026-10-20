@@ -260,7 +260,7 @@ float UIDMBox::PrintWrap(UIFont *font, float x, float y, str text)
 
 float UIDMBox::DrawItem(item_t *in, float x, float y, float alpha)
 {
-    if (m_drawoutline) {
+    if (Cvar_VariableIntegerValue("ac_hud_outline")) {
         //
         // Draw an outline
         //

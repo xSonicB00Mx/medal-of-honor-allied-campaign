@@ -1897,6 +1897,7 @@ void Com_Init( char *commandLine ) {
 		? (Cvar_VariableIntegerValue("ac_player_flinch_mode") == 0 ? "0"
 		: Cvar_VariableIntegerValue("ac_player_flinch_mode") == 2 ? "100" : "20") : "20", CVAR_ARCHIVE);
 	Cvar_Get("ac_bt_drop_limits", "0", CVAR_ARCHIVE);
+	Cvar_Get("ac_hud_outline", "0", CVAR_ARCHIVE);
 	Cvar_Get("ac_operation", "-1", CVAR_INIT);
 	Cvar_Get("ac_replay", "0", CVAR_INIT);
 	Cvar_Get("ac_level_skill", "1", CVAR_INIT);

@@ -59,6 +59,7 @@ class UILabel : public UIWidget
 
 protected:
     qboolean m_bOutlinedText;
+    void PrintLabelText(const char *text, const UColor& textColor);
 
 public:
     CLASS_PROTOTYPE(UILabel);

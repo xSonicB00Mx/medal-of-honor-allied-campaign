@@ -1,3 +1,10 @@
+## Aktuell: LOADOUT-Tuer, Auswahlfilter und globale HUD-Kontur
+
+Fruehere Multiplayer-Tuer mit Hover-Leuchten oeffnet LOADOUT. 37 waehlbare Waffen,
+fuenf Sprenggranaten, keine Minendetektoren. HUD black outline standardmaessig aus,
+sofort und kampagnenuebergreifend schaltbar. Nutzer bestaetigt vorherigen Waffen-
+und Granatentest. [Bericht](checkpoints/CP08/loadout-hud-preferences.md).
+
 ## Aktuell: LOADOUT-Modellflaechen und Rauch-Effekte
 
 FG42/G43/SVT-Materialien gegen fehlende Flaechen korrigiert; Sprite-Abhaengigkeiten kampagnenuebergreifend vervollstaendigt. Granaten-Sounds in AA/SH/BT ausgeloest, AA zusaetzlich bis OpenAL verfolgt; gemeldeter Tonausfall noch nicht reproduziert. [Bericht](checkpoints/CP08/loadout-models-effects.md).
