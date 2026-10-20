@@ -55,3 +55,14 @@ ersetzen, identische breite cremefarbene Slab-Serif-Versalien, schmale dunkle
 Olivkontur und Schatten nach rechts unten, eine Zeile ohne Hintergrund.
 Anschliessend nur dieselbe technische Zuschneide-/Skalierpipeline wie fuer die
 anderen Menueschilder. Bild und Spielressourcen bleiben lokal.
+
+## Installation
+
+Aus Quellstand `b5573702` als `loadout-sign-viewmodels-r1` in CP08-r1 installiert:
+Engine, cgame und drei LOADOUT-Pakete. Alle 86 eigenen Laufzeitdateien und die
+Uebereinstimmung mit den getesteten Binaerdateien/Paketen hashgeprueft.
+427 persoenliche Profildateien, 9072 Originaldateien, 9000 Basisdateien und acht
+Max-Payne-Eingaben blieben unveraendert. Ruecksicherung:
+`generated-local/widescreen/backups/loadout-sign-viewmodels-r1`;
+lokales Update: `artifacts-local/CP08-r1-loadout-sign-viewmodels-r1-update.zip`.
+Keine persoenliche Abnahme oder Merge behauptet.
