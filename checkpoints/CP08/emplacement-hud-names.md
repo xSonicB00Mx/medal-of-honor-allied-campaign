@@ -37,3 +37,10 @@ Damit ueberdeckt kein aelterer LOADOUT-Import die Reparatur.
   `fixed-r3` blendet die vorige Ansicht sofort aus.
 - CP00-Integritaetsregeln und Diff-Pruefung bestanden. Persoenliche Saves und
   Einstellungen werden nicht als Testprofil benutzt oder ueberschrieben.
+
+Installiert aus `1354fb7e` als `emplacement-hud-names-r1`. Alle 86 eigenen
+Laufzeitdateien hashgeprueft. 427 persoenliche Profildateien, 9072 Original-,
+9000 Basis- und acht Max-Payne-Eingabedateien unveraendert. Ruecksicherung unter
+`generated-local/widescreen/backups/emplacement-hud-names-r1`; lokales Update
+`artifacts-local/CP08-r1-emplacement-hud-names-r1-update.zip`. Keine Binaer-
+oder Speicherformataenderung. Keine persoenliche Abnahme oder Merge behauptet.
