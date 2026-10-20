@@ -60,3 +60,12 @@ Sie werden nicht pauschal als durch diesen Auftrag behoben bezeichnet.
 Die Tests sind gezielte Szenarien, keine vollstaendigen Kampagnendurchlaeufe.
 Client-Modul gebaut, Kampagnenvalidierung und Kataloggenerator erfolgreich;
 Paketintegritaet und Shaderverweise in allen drei Paketen geprueft.
+
+Installiert als `loadout-models-r3` aus `20dfdb12`: drei Ressourcenpakete und
+das Client-Modul mit optionaler Sounddiagnose. Engine und Server-Spielmodul
+bleiben beim bisherigen Stand. 412 persoenliche Profildateien, 9072
+Originaldateien, 9000 Basisdateien und acht Max-Payne-Eingaben unveraendert
+hashgeprueft. Ruecksicherung:
+`generated-local/widescreen/backups/loadout-models-r3`.
+Lokales Updatepaket: `artifacts-local/CP08-r1-loadout-models-r3-update.zip`.
+Keine persoenliche Nutzerabnahme und kein Merge behauptet.
