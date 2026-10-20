@@ -93,5 +93,15 @@ waittill spawn). Ein Vergleichslauf ohne Loadout-Ressourcenpaket reproduziert
 exakt diese Meldungen; der Loadout-Lauf hat keine zusaetzlichen Skriptfehler.
 Weitere native Asset-Warnungen sind unverkuerzt in den lokalen Logs erhalten.
 
-Die Installation folgt nach dem Quellcode-Commit und wird separat protokolliert.
+Installiert als `loadout-r1` aus `6383611f8a55cad5b29d3aee936dd8386ef71e04`.
+Alle 86 eigenen Laufzeitdateien nach der Installation hashgeprueft; Engine,
+game.dll und cgame.dll identisch zum nativen Testlauf. 412 persoenliche
+Profildateien, 9072 Originaldateien, 9000 Basisdateien und acht Max-Payne-Eingaben
+waehrend der Installation unveraendert. Ruecksicherung:
+`generated-local/widescreen/backups/loadout-r1`. Lokales Updatepaket:
+`artifacts-local/CP08-r1-loadout-r1-update.zip` (enthaelt lokale Spielassets,
+kein GitHub-Upload).
+
+Quellcode-Push auf `codex/cp08-operations-map` durch frisch gelesenen Remote-SHA
+`6383611f8a55cad5b29d3aee936dd8386ef71e04` bestaetigt.
 Keine persoenliche Nutzerabnahme und kein Merge behauptet.
