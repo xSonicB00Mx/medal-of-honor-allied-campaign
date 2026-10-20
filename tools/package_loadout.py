@@ -6,6 +6,7 @@ missing dependencies are imported and restored scope materials are repaired.
 from pathlib import Path
 import zipfile,re,json,hashlib,io
 from PIL import Image,ImageOps
+from hud_weapon_names import expand_static_weapon_names
 r=Path(__file__).resolve().parents[1];rt=r/'runtime-local/CP08-r1';out=r/'generated-local/loadout/packages'
 catalog=json.loads((r/'mod/loadout/weapons.json').read_text())
 archives={};indices=[]
@@ -183,6 +184,13 @@ for game,folder in enumerate(['main','mainta','maintt']):
   source=re.sub(r'\bshader\s+(\w+)',two_sided,source)
   files[n]=source.encode('latin1')
  drain()
+ # The shared ammo HUD also serves mounted weapons. Their static names use
+ # different widget names and were missed by the old "weaponname" widening.
+ for n in union:
+  if not (n.startswith('ui/hud_ammo_') and n.endswith('.urc')):continue
+  body=(files[n] if n in files else read(native if n in native else union,n)).decode('latin1').replace('\r','')
+  widened=expand_static_weapon_names(body)
+  if widened!=body:files[n]=widened.encode('latin1')
  if materials:files['scripts/ac_loadout.shader']='\n'.join(n+'\n'+b for n,b in materials.values()).encode('latin1')
  # Main-menu presentation is shared AA; replace the disabled MP hotspot.
  menu=txt(native,'ui/main.urc')

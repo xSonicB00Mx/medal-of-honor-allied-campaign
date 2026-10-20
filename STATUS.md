@@ -1,3 +1,10 @@
+## Funktionsumfang abgeschlossen / Geschuetz-HUD korrigiert
+
+Nutzerfestlegung vom 20.10.2026: Feature-complete, nur noch Bugfixes. CP09 ist
+noch nicht als abgeschlossen oder vollstaendig durchgefuehrt freigegeben.
+Abgeschnittene Namen stationaerer Waffen verbreitert, einschliesslich Modello 37.
+[Bericht](checkpoints/CP08/emplacement-hud-names.md).
+
 ## Aktuell: LOADOUT-Schriftzug und Ego-Waffenflaechen
 
 LOADOUT nutzt die generierte Schriftgrafik im Stil der anderen Hauptmenueschilder.

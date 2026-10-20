@@ -14,6 +14,7 @@ from pathlib import Path
 
 from PIL import Image, ImageDraw, ImageFont
 from singleplayer_ui import multiplayer_ui
+from hud_weapon_names import expand_static_weapon_names
 
 
 def digest(data):
@@ -152,6 +153,7 @@ def main():
             if ammo:
                 modified = re.sub(r'(?m)^(menu\s+"[^"]+"\s+)([\d.]+)',
                                   lambda m:m[1]+f'{float(m[2])+100:g}',modified,count=1)
+                modified = expand_static_weapon_names(modified)
             if modified != body:
                 bindings = lambda s:re.findall(r'(?m)^\s*(?:linkcvar|stuffcommand|playerstat|itemstat|maxplayerstat|addpopup|checked_command|unchecked_command)\b[^\n]*',s)
                 assert bindings(modified)==bindings(body),name
