@@ -1,3 +1,10 @@
+## CP09 begonnen - Regression und separate Durchspielabnahme
+
+Nutzerfreigabe 20.10.2026: CP09 beginnen. Feature-freeze bleibt bestehen.
+Technische Matrix in isolierten Profilen; danach beendet der Nutzer die
+Kampagne mit seinem bestehenden Spielstand. Kein Reset, keine vorweggenommene
+Gesamtabnahme und kein Merge. [CP09-Bericht](checkpoints/CP09/REPORT.md).
+
 ## Funktionsumfang abgeschlossen / Geschuetz-HUD korrigiert
 
 Nutzerfestlegung vom 20.10.2026: Feature-complete, nur noch Bugfixes. CP09 ist

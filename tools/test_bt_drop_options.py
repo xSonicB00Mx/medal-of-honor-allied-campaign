@@ -2,7 +2,7 @@
 from pathlib import Path
 import argparse,subprocess,shutil,json,re
 from PIL import Image
-ap=argparse.ArgumentParser();ap.add_argument('game',choices=['AA','SH','BT']);ap.add_argument('run');a=ap.parse_args()
+ap=argparse.ArgumentParser();ap.add_argument('game',choices=['AA','SH','BT']);ap.add_argument('run');ap.add_argument('--installed',action='store_true');a=ap.parse_args()
 r=Path(__file__).resolve().parents[1];rt=r/'runtime-local/CP08-r1';p=r/'profiles-local/drop-options'/a.run
 num=['AA','SH','BT'].index(a.game);h=p/['main','mainta','maintt'][num];(h/'fixture').mkdir(parents=True,exist_ok=False)
 b=p/'bin';b.mkdir()
@@ -10,7 +10,8 @@ for f in rt.glob('*.dll'):shutil.copy2(f,b/f.name)
 for n in ['openmohaa.exe','game.dll','cgame.dll']:shutil.copy2(r/'build-local/cp00-r3/RelWithDebInfo'/n,b/n)
 for folder in ['main','mainta','maintt']:
  (p/folder).mkdir(exist_ok=True)
- for f in (r/'generated-local/flinch/packages'/folder).glob('*.pk3'):shutil.copy2(f,p/folder/f.name)
+ if not a.installed:
+  for f in (r/'generated-local/flinch/packages'/folder).glob('*.pk3'):shutil.copy2(f,p/folder/f.name)
 (h/'fixture/hit.scr').write_text('main:\n $player.health = 100\n $player hurt 10 bullet ( 1 1 1 )\nend\n')
 start='devmap m2l1'
 if num:
@@ -39,10 +40,14 @@ assert len(segments)==4
 checks=[]
 for state,segment in segments:
  items=re.findall(r'AC_DROP_ITEM limits=([01]) model=([^ ]+) dropped=(\d)',segment)
- assert 'AC_DROP_POLICY limits='+state in segment
- assert 'CP00_DEATH_EVENT count=1' in segment
- if state=='1':assert not items,items
+ assert segment.count('CP00_DEATH_EVENT count=1')==1
+ if a.game!='BT':
+  assert 'AC_DROP_POLICY' not in segment and not items, 'BT policy leaked into AA/SH'
+ elif state=='1':
+  assert 'AC_DROP_POLICY limits='+state in segment
+  assert not items,items
  else:
+  assert 'AC_DROP_POLICY limits='+state in segment
   assert any('weapons/' in x[1].lower() and x[2]=='1' for x in items),items
   assert any('health' in x[1].lower() and x[2]=='1' for x in items),items
  checks.append(dict(limits=int(state),drops=items))

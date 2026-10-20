@@ -1,5 +1,5 @@
 """Isolated copy of the user's m1l1 save; actual mounted MG42 and native frame timings."""
-import argparse, hashlib, json, re, shutil, subprocess
+import argparse, hashlib, json, re, shutil, subprocess, statistics
 from pathlib import Path
 ap=argparse.ArgumentParser();ap.add_argument('run');ap.add_argument('--fx',type=int,default=1);ap.add_argument('--debug',type=int,default=0);ap.add_argument('--perf',type=int,default=1);ap.add_argument('--roundtrip',action='store_true');a=ap.parse_args()
 r=Path(__file__).resolve().parents[1];rt=r/'runtime-local/CP08-r1';p=r/'profiles-local/CP08-r1'/a.run;h=p/'main'
@@ -120,7 +120,7 @@ for name in ['idle','firing','dying']:
  pending=[int(x) for x in re.findall(r'AC_PERF_SNAPSHOT[^\n]*pending=(\d+)',section)]
  sizes=[int(x) for x in re.findall(r'AC_PERF_SNAPSHOT[^\n]*bytes=(\d+)',section)]
  ordered=sorted(values)
- stages[name]=dict(snapshots=len(gaps),max_snapshot_gap_ms=max(gaps,default=0),max_pending_commands=max(pending,default=0),max_snapshot_bytes=max(sizes,default=0),frames=len(values),mean_ms=round(sum(values)/max(1,len(values)),2),p95_ms=ordered[int(.95*(len(ordered)-1))] if ordered else None,max_ms=max(values,default=0),over_33ms=sum(v>33 for v in values),over_100ms=sum(v>100 for v in values))
+ stages[name]=dict(snapshots=len(gaps),max_snapshot_gap_ms=max(gaps,default=0),max_pending_commands=max(pending,default=0),max_snapshot_bytes=max(sizes,default=0),frames=len(values),mean_ms=round(sum(values)/max(1,len(values)),2),median_ms=statistics.median(values) if values else None,p95_ms=ordered[int(.95*(len(ordered)-1))] if ordered else None,p99_ms=ordered[int(.99*(len(ordered)-1))] if ordered else None,max_ms=max(values,default=0),over_33ms=sum(v>33 for v in values),over_100ms=sum(v>100 for v in values),measurement="com_speeds CPU wall time; includes driver waits, excludes limiter sleep; not GPU query time")
 errors=[l for l in log.splitlines() if any(x in l for x in ['was not properly loaded','Script Error','compile error','unknown command','Unknown command','Invalid event','command not available','Server command overflow','msg overflow'])]
 archive=re.findall(r'AC_WOUND_ARCHIVE (save|load) count=(\d+)',log)
 if a.roundtrip:assert 'Game Loaded' in log and len(archive)>=3 and archive[-2][0]=='save' and archive[-1][0]=='load' and archive[-2][1]==archive[-1][1]

@@ -2,14 +2,14 @@
 from pathlib import Path
 import argparse, json, shutil, subprocess, time
 
-ap=argparse.ArgumentParser(); ap.add_argument('run'); ap.add_argument('operation',type=int); ap.add_argument('--replay',action='store_true'); ap.add_argument('--baseline',action='store_true'); args=ap.parse_args()
+ap=argparse.ArgumentParser(); ap.add_argument('run'); ap.add_argument('operation',type=int); ap.add_argument('--replay',action='store_true'); ap.add_argument('--baseline',action='store_true'); ap.add_argument('--installed',action='store_true'); args=ap.parse_args()
 r=Path(__file__).resolve().parents[1]; rt=r/'runtime-local/CP08-r1'; p=r/'profiles-local/campaign-finales'/args.run
 p.mkdir(parents=True,exist_ok=False)
 ops=json.loads((r/'mod/campaign/missions.json').read_text())['operations']; op=ops[args.operation]
 game=['AA','SH','BT'].index(op['source_game']); folders=['main','mainta','maintt']; h=p/folders[game]
 for folder in folders:
  (p/folder/'probe').mkdir(parents=True)
- if not args.baseline:
+ if not args.baseline and not args.installed:
   for package in (r/'generated-local/campaign-finales/packages'/folder).glob('*.pk3'): shutil.copy2(package,p/folder/package.name)
  (p/folder/'ac_context_ready.cfg').write_text('wait 1500\nac_progress_report\necho AC_FINALE_CHILD_READY\nquit\n')
 completed=(1<<(args.operation+int(args.replay)))-1

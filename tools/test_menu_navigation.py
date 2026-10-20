@@ -11,6 +11,7 @@ ap=argparse.ArgumentParser()
 ap.add_argument('game', choices=['AA','SH','BT'])
 ap.add_argument('run')
 ap.add_argument('--in-game', action='store_true')
+ap.add_argument('--installed', action='store_true', help='Use the delivered menu packages without historical overrides')
 a=ap.parse_args()
 r=Path(__file__).resolve().parents[1]
 rt=r/'runtime-local/CP08-r1';p=r/'profiles-local/menu-navigation'/a.run
@@ -20,7 +21,8 @@ for f in rt.glob('*.dll'):shutil.copy2(f,b/f.name)
 shutil.copy2(r/'build-local/cp00-r3/RelWithDebInfo/openmohaa.exe',b/'openmohaa.exe')
 for folder in ['main','mainta','maintt']:
     h=p/folder;h.mkdir()
-    for f in (r/'generated-local/shared-menus/packages'/folder).glob('*.pk3'):shutil.copy2(f,h/f.name)
+    if not a.installed:
+        for f in (r/'generated-local/shared-menus/packages'/folder).glob('*.pk3'):shutil.copy2(f,h/f.name)
 (p/'ac_progress.dat').write_text('ACPROG1 4095 12 keep\n')
 number,folder,mapname={'AA':(0,'main','m1l1'),'SH':(1,'mainta','t1l1'),'BT':(2,'maintt','e1l1')}[a.game]
 cmd=['wait 2500']
