@@ -126,3 +126,8 @@ DEFAULT ist gespeichert, Testfortschritt unveraendert. Der Auswertungspfad der
 zusaetzlichen Test-Konfiguration wurde auf `configs/` korrigiert und die
 vorhandenen nativen Ergebnisse anschliessend vollstaendig nachgeprueft.
 Ressourcenpakete inhaltlich identisch zu r1; nur Engine/Spielmodule zu installieren.
+
+Installiert als `loadout-r2` aus `0ef1a22f`. Alle 86 Laufzeitdateien hashgeprueft;
+Engine/Spielmodule identisch zum nativen Nachtest. 412 persoenliche Profildateien
+sowie Original-/Basis-/Max-Payne-Eingaben unveraendert. Ruecksicherung unter
+`generated-local/widescreen/backups/loadout-r2`.
