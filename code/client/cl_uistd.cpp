@@ -1644,7 +1644,7 @@ void UIFakkLabel::Draw(void)
         }
     }
 
-    if (m_rendermodel) {
+    if (m_rendermodel && m_cvarname != "ac_loadout_preview") {
         VectorSet(mins, -16, -16, 0);
         VectorSet(maxs, 16, 16, 96);
     } else {

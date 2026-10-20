@@ -1901,6 +1901,8 @@ void Com_Init( char *commandLine ) {
 	Cvar_Get("ac_replay", "0", CVAR_INIT);
 	Cvar_Get("ac_level_skill", "1", CVAR_INIT);
     Cvar_Get("ac_next_skill", "1", CVAR_ARCHIVE);
+    for (int slot=0;slot<7;slot++) Cvar_Get(va("ac_loadout_%d",slot),"0",CVAR_ARCHIVE);
+    Cvar_Get("ac_loadout_authorized","0",CVAR_INIT);
 	Cvar_Get("ac_campaign_skill", *Cvar_VariableString("skill")?Cvar_VariableString("skill"):"1", CVAR_INIT);
 	Cvar_Get("ac_campaign_g_skill", *Cvar_VariableString("g_skill")?Cvar_VariableString("g_skill"):"1", CVAR_INIT);
 	Cvar_Get("ac_expected_map", "", CVAR_INIT);

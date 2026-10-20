@@ -1842,9 +1842,12 @@ void PlaceLandmine(const Vector& origin, Entity *owner, const str& model, Weapon
         return;
     }
 
+    const bool replayMine=owner && owner->IsSubclassOfPlayer() && ((Player *)owner)->ACLoadoutEligible();
     args.setArg("model", model.c_str());
-    args.setArg("setthread", "global/landmine.scr::steppedOn");
-    args.setArg("$defuseThread", "global/landmine.scr::defuse");
+    args.setArg("setthread", replayMine?"global/ac_loadout_mine.scr::steppedOn":"global/landmine.scr::steppedOn");
+    args.setArg("$defuseThread", replayMine?"global/ac_loadout_mine.scr::defuse":"global/landmine.scr::defuse");
+    // Stock multiplayer mines only respond to clients. Replays contain AI.
+    if(replayMine)args.setArg("spawnflags","8");
     args.setArg("targetname", "landmine");
 
     l = args.Spawn();
@@ -1879,6 +1882,12 @@ void PlaceLandmine(const Vector& origin, Entity *owner, const str& model, Weapon
     }
 
     trigger->NewAnim("idle");
+
+    if(replayMine) {
+        ScriptThreadLabel init;
+        init.Set("global/ac_loadout_mine.scr::init");
+        init.Execute(trigger,owner,ListenerPtr());
+    }
 
     if (g_gametype->integer == GT_SINGLE_PLAYER) {
         if (!owner) {

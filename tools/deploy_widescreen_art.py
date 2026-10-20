@@ -18,16 +18,16 @@ ap.add_argument('--with-game-binaries', action='store_true', help='Install teste
 ap.add_argument('--font-packages', type=Path, help='Install a reviewed local font package report instead of widescreen packages')
 ap.add_argument('--with-engine', action='store_true', help='Also install the tested engine with font layout changes')
 ap.add_argument('--hud-packages', type=Path, help='Install reviewed HUD artwork only')
-ap.add_argument('--hud-component', choices=['compass','ammo','inventory','health','timers','overlays','weapons','special','menu-polish','loading-fallback','campaign-map','menu-background','shared-menus','mortar','flinch','campaign-finales','campaign-feedback'], default='compass', help='Component manifest section to update')
+ap.add_argument('--hud-component', choices=['compass','ammo','inventory','health','timers','overlays','weapons','special','menu-polish','loading-fallback','campaign-map','menu-background','shared-menus','mortar','flinch','campaign-finales','campaign-feedback','loadout'], default='compass', help='Component manifest section to update')
 ap.add_argument('--with-cgame', action='store_true', help='Install tested client-game DLL with HUD artwork')
 ap.add_argument('--logic-only', action='store_true', help='Install tested game/cgame DLLs, preserving artwork (optionally update engine)')
 args = ap.parse_args()
 assert not args.logic_only or not any([args.hud_packages,args.font_packages,args.loading_zoom,args.with_cgame,args.with_game_binaries])
-assert not args.hud_packages or not (args.font_packages or args.loading_zoom or (args.with_game_binaries and args.hud_component not in ['mortar','flinch','campaign-feedback']))
+assert not args.hud_packages or not (args.font_packages or args.loading_zoom or (args.with_game_binaries and args.hud_component not in ['mortar','flinch','campaign-feedback','loadout']))
 asset_packages = args.font_packages or args.hud_packages
 assert not (args.font_packages and args.loading_zoom)
 assert not (args.font_packages and args.with_game_binaries)
-assert not args.with_engine or args.logic_only or args.font_packages or (args.hud_packages and args.hud_component in ['menu-polish','menu-background','shared-menus','flinch'])
+assert not args.with_engine or args.logic_only or args.font_packages or (args.hud_packages and args.hud_component in ['menu-polish','menu-background','shared-menus','flinch','loadout'])
 assert not args.with_cgame or args.hud_packages
 assert args.batch.replace('-', '').isalnum()
 root = Path(__file__).resolve().parents[1]
@@ -127,6 +127,7 @@ if args.hud_packages:
                 'flinch':'Existing options menu with hit-flinch control',
                 'campaign-finales':'Existing WCR finale scripts with campaign transition hooks',
                 'campaign-feedback':'Existing campaign statistics with wider text fields',
+                'loadout':'Native AA/SH/BT weapon models, animations, sounds and HUD definitions',
                 'mortar':'Code-native aim marker'}.get(args.hud_component,'Built-in Imagegen')
     manifest[args.hud_component] = dict(batch=args.batch, packages=packages, provider=provider, upload_allowed=False)
 if args.with_cgame or args.with_game_binaries or args.logic_only:

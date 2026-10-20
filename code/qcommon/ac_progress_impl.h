@@ -144,6 +144,7 @@ qboolean AC_LevelCompleted(int index)
 
 static void AC_EndReplay(void)
 {
+    Cvar_Set("ac_loadout_authorized","0");
     ac_scoreActive=qfalse;
     if(Cvar_VariableIntegerValue("ac_replay")==1 || Cvar_VariableIntegerValue("ac_replay")==2) {
         Cvar_Set("skill",Cvar_VariableString("ac_campaign_skill"));
@@ -212,6 +213,7 @@ static void AC_Mission_f(void)
     if(op<0||op>=AC_MISSION_COUNT||!AC_MissionState(op)) {Com_Printf("AC_MISSION_LOCKED\n");return;}
     AC_EndReplay();
     replay=(ac_progress.completed&(1u<<op))!=0;
+    Cvar_Set("ac_loadout_authorized",replay?"1":"0");
     if(!replay) {next=ac_progress;next.resume=op;if(!AC_StoreProgress(&next)) return;}
     Cvar_Set("ac_campaign_skill",Cvar_VariableString("skill"));
     Cvar_Set("ac_campaign_g_skill",Cvar_VariableString("g_skill"));
@@ -336,6 +338,7 @@ void AC_CampaignRestore(int op, int replay, const char *map)
     if(op<0||op>=AC_MISSION_COUNT||!AC_MapInMission(op,map)||!AC_MissionState(op)||ac_missions[op].game!=com_target_game->integer) op=-1;
     Cvar_Set("ac_operation",va("%d",op));
     Cvar_Set("ac_replay",(replay || (op>=0 && (ac_progress.completed&(1u<<op))))?"1":"0");
+    Cvar_Set("ac_loadout_authorized",op>=0 && (ac_progress.completed&(1u<<op))?"1":"0");
     Cvar_Set("ac_expected_map",op>=0 && !strcmp(map,ac_missions[op].entry) && strcmp(map,ac_missions[op].first)?ac_missions[op].first:"");
 }
 

@@ -1220,7 +1220,8 @@ void Cvar_WriteCampaignPreferences(fileHandle_t f)
         "cl_consoleKeys", "ui_crosshair", "ui_compass_scale", "ui_weaponsbar", "ui_weaponsbartime",
         "ui_itemsbar", "ui_gmbox", "ui_minicon", "ui_voodoo", "fps", "fps_location",
         "ac_ui_auto", "ac_menu_scale", "ac_hud_scale", "ac_hud_safe", "ac_blood_mist",
-        "ac_world_blood", "ac_body_wounds", "ac_corpse_effects", "ac_player_flinch_percent", "ac_bt_drop_limits"
+        "ac_world_blood", "ac_body_wounds", "ac_corpse_effects", "ac_player_flinch_percent", "ac_bt_drop_limits",
+        "ac_loadout_0", "ac_loadout_1", "ac_loadout_2", "ac_loadout_3", "ac_loadout_4", "ac_loadout_5", "ac_loadout_6"
     };
     cvar_t *var;
     int i;

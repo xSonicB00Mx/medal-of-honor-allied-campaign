@@ -1,0 +1,310 @@
+[
+  {
+    "id": "bar",
+    "name": "BAR",
+    "model": "models/weapons/bar.tik",
+    "slot": 3,
+    "game": 0
+  },
+  {
+    "id": "bazooka",
+    "name": "Bazooka",
+    "model": "models/weapons/bazooka.tik",
+    "slot": 5,
+    "game": 0
+  },
+  {
+    "id": "colt45",
+    "name": "Colt 45",
+    "model": "models/weapons/colt45.tik",
+    "slot": 0,
+    "game": 0
+  },
+  {
+    "id": "kar98",
+    "name": "Mauser KAR 98K",
+    "model": "models/weapons/kar98.tik",
+    "slot": 1,
+    "game": 0
+  },
+  {
+    "id": "kar98sniper",
+    "name": "KAR98 - Sniper",
+    "model": "models/weapons/kar98sniper.tik",
+    "slot": 1,
+    "game": 0
+  },
+  {
+    "id": "m1_garand",
+    "name": "M1 Garand",
+    "model": "models/weapons/m1_garand.tik",
+    "slot": 1,
+    "game": 0
+  },
+  {
+    "id": "mp40",
+    "name": "MP40",
+    "model": "models/weapons/mp40.tik",
+    "slot": 2,
+    "game": 0
+  },
+  {
+    "id": "mp44",
+    "name": "StG 44",
+    "model": "models/weapons/mp44.tik",
+    "slot": 3,
+    "game": 0
+  },
+  {
+    "id": "p38",
+    "name": "Walther P38",
+    "model": "models/weapons/p38.tik",
+    "slot": 0,
+    "game": 0
+  },
+  {
+    "id": "panzerschreck",
+    "name": "Panzerschreck",
+    "model": "models/weapons/panzerschreck.tik",
+    "slot": 5,
+    "game": 0
+  },
+  {
+    "id": "shotgun",
+    "name": "Shotgun",
+    "model": "models/weapons/shotgun.tik",
+    "slot": 5,
+    "game": 0
+  },
+  {
+    "id": "silencedpistol",
+    "name": "Hi-Standard Silenced",
+    "model": "models/weapons/silencedpistol.tik",
+    "slot": 0,
+    "game": 0
+  },
+  {
+    "id": "springfield",
+    "name": "Springfield '03 Sniper",
+    "model": "models/weapons/springfield.tik",
+    "slot": 1,
+    "game": 0
+  },
+  {
+    "id": "thompsonsmg",
+    "name": "Thompson",
+    "model": "models/weapons/thompsonsmg.tik",
+    "slot": 2,
+    "game": 0
+  },
+  {
+    "id": "enfield",
+    "name": "Lee-Enfield",
+    "model": "models/weapons/enfield.tik",
+    "slot": 1,
+    "game": 1
+  },
+  {
+    "id": "fg42",
+    "name": "FG 42",
+    "model": "models/weapons/fg42.tik",
+    "slot": 1,
+    "game": 1
+  },
+  {
+    "id": "g43",
+    "name": "G 43",
+    "model": "models/weapons/g43.tik",
+    "slot": 1,
+    "game": 1
+  },
+  {
+    "id": "mosin_nagant_rifle",
+    "name": "Mosin Nagant Rifle",
+    "model": "models/weapons/mosin_nagant_rifle.tik",
+    "slot": 1,
+    "game": 1
+  },
+  {
+    "id": "nagant_revolver",
+    "name": "Nagant Revolver",
+    "model": "models/weapons/nagant_revolver.tik",
+    "slot": 0,
+    "game": 1
+  },
+  {
+    "id": "ppsh_smg",
+    "name": "PPSH SMG",
+    "model": "models/weapons/ppsh_smg.tik",
+    "slot": 2,
+    "game": 1
+  },
+  {
+    "id": "sten",
+    "name": "Sten Mark II",
+    "model": "models/weapons/sten.tik",
+    "slot": 2,
+    "game": 1
+  },
+  {
+    "id": "svt_rifle",
+    "name": "SVT 40",
+    "model": "models/weapons/svt_rifle.tik",
+    "slot": 1,
+    "game": 1
+  },
+  {
+    "id": "webley_revolver",
+    "name": "Webley Revolver",
+    "model": "models/weapons/webley_revolver.tik",
+    "slot": 0,
+    "game": 1
+  },
+  {
+    "id": "kar98_mortar",
+    "name": "Gewehrgranate",
+    "model": "models/weapons/kar98_mortar.tik",
+    "slot": 5,
+    "game": 1
+  },
+  {
+    "id": "delisle",
+    "name": "DeLisle",
+    "model": "models/weapons/delisle.tik",
+    "slot": 1,
+    "game": 2
+  },
+  {
+    "id": "gr_w_minedetector",
+    "name": "Minensuchgerat",
+    "model": "models/weapons/gr_w_minedetector.tik",
+    "slot": 6,
+    "game": 2
+  },
+  {
+    "id": "it_w_beretta",
+    "name": "Beretta",
+    "model": "models/weapons/it_w_beretta.tik",
+    "slot": 0,
+    "game": 2
+  },
+  {
+    "id": "it_w_breda",
+    "name": "Breda",
+    "model": "models/weapons/it_w_breda.tik",
+    "slot": 3,
+    "game": 2
+  },
+  {
+    "id": "it_w_carcano",
+    "name": "Carcano",
+    "model": "models/weapons/it_w_carcano.tik",
+    "slot": 1,
+    "game": 2
+  },
+  {
+    "id": "it_w_moschetto",
+    "name": "Moschetto",
+    "model": "models/weapons/it_w_moschetto.tik",
+    "slot": 2,
+    "game": 2
+  },
+  {
+    "id": "uk_w_l42a1",
+    "name": "Enfield L42A1",
+    "model": "models/weapons/uk_w_l42a1.tik",
+    "slot": 1,
+    "game": 2
+  },
+  {
+    "id": "uk_w_piat",
+    "name": "PIAT",
+    "model": "models/weapons/uk_w_piat.tik",
+    "slot": 5,
+    "game": 2
+  },
+  {
+    "id": "uk_w_vickers",
+    "name": "Vickers-Berthier",
+    "model": "models/weapons/uk_w_vickers.tik",
+    "slot": 3,
+    "game": 2
+  },
+  {
+    "id": "us_w_minedetector",
+    "name": "Minedetector",
+    "model": "models/weapons/us_w_minedetector.tik",
+    "slot": 6,
+    "game": 2
+  },
+  {
+    "id": "m2frag_grenade",
+    "name": "M2 Fragmentation Grenade",
+    "model": "models/weapons/m2frag_grenade.tik",
+    "slot": 4,
+    "game": 0
+  },
+  {
+    "id": "steilhandgranate",
+    "name": "Stielhandgranate",
+    "model": "models/weapons/steilhandgranate.tik",
+    "slot": 4,
+    "game": 0
+  },
+  {
+    "id": "mills_grenade",
+    "name": "Mills Bomb",
+    "model": "models/weapons/mills_grenade.tik",
+    "slot": 4,
+    "game": 1
+  },
+  {
+    "id": "russian_f1_grenade",
+    "name": "F1 Grenade",
+    "model": "models/weapons/russian_f1_grenade.tik",
+    "slot": 4,
+    "game": 1
+  },
+  {
+    "id": "m18_smoke_grenade",
+    "name": "M18 Smoke Grenade",
+    "model": "models/weapons/m18_smoke_grenade.tik",
+    "slot": 4,
+    "game": 1
+  },
+  {
+    "id": "nebelhandgranate",
+    "name": "Nebelhandgranate",
+    "model": "models/weapons/nebelhandgranate.tik",
+    "slot": 4,
+    "game": 1
+  },
+  {
+    "id": "rdg-1_smoke_grenade",
+    "name": "RDG-1 Smoke Grenade",
+    "model": "models/weapons/rdg-1_smoke_grenade.tik",
+    "slot": 4,
+    "game": 1
+  },
+  {
+    "id": "it_w_bomba",
+    "name": "Italian Bomba",
+    "model": "models/weapons/it_w_bomba.tik",
+    "slot": 4,
+    "game": 2
+  },
+  {
+    "id": "it_w_bombabreda",
+    "name": "Breda Grenade",
+    "model": "models/weapons/it_w_bombabreda.tik",
+    "slot": 4,
+    "game": 2
+  },
+  {
+    "id": "mg42carryable",
+    "name": "Deployable MG42",
+    "model": "models/weapons/mg42carryable.tik",
+    "slot": 6,
+    "game": 1
+  }
+]

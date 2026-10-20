@@ -597,6 +597,9 @@ public:
     void     CheckMoveFlags(void);
     void     ClientInactivityTimer(void);
     void     ClientThink(void) override;
+    bool     ACLoadoutEligible() const;
+    const char *ACStateFile() const;
+    void     ACApplyLoadout();
     void     UpdateEnemies(void);
 
     void InitLegsStateTable(void);
@@ -1201,10 +1204,10 @@ inline void Player::Archive(Archiver& arc)
         arc.ArchiveString(&tempStr);
     } else {
         statemap_Legs = GetStatemap(
-            str(g_statefile->string) + "_Legs.st", (Condition<Class> *)m_conditions, &legs_conditionals, false
+            str(ACStateFile()) + "_Legs.st", (Condition<Class> *)m_conditions, &legs_conditionals, false
         );
         statemap_Torso = GetStatemap(
-            str(g_statefile->string) + "_Torso.st", (Condition<Class> *)m_conditions, &torso_conditionals, false
+            str(ACStateFile()) + "_Torso.st", (Condition<Class> *)m_conditions, &torso_conditionals, false
         );
 
         arc.ArchiveString(&tempStr);

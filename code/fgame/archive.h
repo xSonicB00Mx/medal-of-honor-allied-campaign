@@ -207,6 +207,11 @@ inline void Container<str>::Archive(Archiver& arc)
         arc.ArchiveInteger(&num);
     }
     for (i = 1; i <= num; i++) {
+        // Resize reserves raw storage; it does not construct strings. Assigning
+        // an archived value into that storage dereferences an uninitialized
+        // string buffer (e.g. expansion weapon start-ammo lists on save load).
+        // Keep the serialized count/strings unchanged for existing save files.
+        if(arc.Loading())AddObject();
         arc.ArchiveString(AddressOfObjectAt(i));
     }
 }

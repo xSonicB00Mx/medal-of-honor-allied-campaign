@@ -1273,6 +1273,7 @@ const acScoreResult_t *AC_GetScoreResult(void);
 qboolean AC_ScoreSaveBlocked(qboolean notify);
 void AC_CancelLevelReplay(void);
 int AC_MissionState(int index);
+void Com_WriteConfiguration(void);
 qboolean AC_ResetCampaignProgress(void);
 qboolean AC_CampaignMapCommand(const char *map);
 qboolean AC_LevelCompleted(int index);

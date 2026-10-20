@@ -3444,6 +3444,7 @@ static void UI_CampaignOptions_f(void)
 }
 
 #include "ac_campaign_ui.h"
+#include "ac_loadout_ui.h"
 
 static void UI_AlliedCampaign_f(void)
 {
@@ -5223,6 +5224,7 @@ void CL_InitializeUI(void)
     // Add all commands
     Cmd_AddCommand("ac_ui_options", UI_CampaignOptions_f);
     Cmd_AddCommand("ac_main_menu", AC_MainMenu_f);
+    Cmd_AddCommand("ac_loadout", AC_Loadout_f);
     Cmd_AddCommand("ac_campaign", UI_AlliedCampaign_f);
     Cmd_AddCommand("ac_level_list", AC_LevelList_f);
     Cmd_AddCommand("ac_score_results", AC_ScoreResults_f);

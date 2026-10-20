@@ -2435,8 +2435,13 @@ void Weapon::PickupWeapon(Event *ev)
 
     hasweapon = sen->HasItem(item_name);
     hasclass  = sen->HasWeaponClass(weapon_class);
+    // Completed Operations replays may collect distinct weapons in one class.
+    // Duplicate guns still become ammunition; normal campaigns/score runs keep
+    // their original pickup rules.
+    const bool replayInventory=other->IsSubclassOfPlayer() && ((Player *)other)->ACLoadoutEligible();
+    if(!hasweapon && replayInventory)hasclass=false;
 
-    if ((g_gametype->integer || g_realismmode->integer) && !hasclass && !IsSecondaryWeapon()
+    if (!replayInventory && (g_gametype->integer || g_realismmode->integer) && !hasclass && !IsSecondaryWeapon()
         && sen->HasPrimaryWeapon()) {
         // Make sure the sentient doesn't have a primary weapon on DM modes
         return;

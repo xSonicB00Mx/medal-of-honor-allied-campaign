@@ -23,7 +23,7 @@ static void AC_Context_f(void)
     static const char *sharedNames[] = {
         "developer", "logfile", "ac_campaign_mode",
         "ac_operation", "ac_replay", "ac_expected_map", "ac_level_skill",
-        "ac_campaign_skill", "ac_campaign_g_skill", "ac_next_skill"
+        "ac_campaign_skill", "ac_campaign_g_skill", "ac_next_skill", "ac_loadout_authorized"
     };
 
     if(!strcmp(Cmd_Argv(0),"ac_load") && AC_ScoreSaveBlocked(qtrue))return;

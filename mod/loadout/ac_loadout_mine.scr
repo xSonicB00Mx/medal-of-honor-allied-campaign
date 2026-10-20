@@ -1,0 +1,60 @@
+// Single-player replay mines: bounded, saveable, AI-aware; no DM class checks.
+init local.placer:
+    if (local.placer.ac_mine_next == NIL)
+        local.placer.ac_mine_next = 1
+    local.index = local.placer.ac_mine_next
+    local.old = NULL
+    if (local.placer.ac_mines != NIL)
+        local.old = local.placer.ac_mines[local.index]
+    if (local.old != NIL && local.old != NULL)
+        local.old delete
+    local.placer.ac_mines[local.index] = self
+    local.placer.ac_mine_next = local.index + 1
+    if (local.placer.ac_mine_next > 8)
+        local.placer.ac_mine_next = 1
+    self playsound landmine_place
+    self thread watch
+end
+
+watch:
+    local.health = self.health
+    while (self != NULL)
+    {
+        if (self.health < local.health)
+        {
+            self thread explode
+            end
+        }
+        wait 0.2
+    }
+end
+
+steppedOn local.stepper:
+    if (local.stepper == NULL)
+        end
+    if (self isimmune local.stepper)
+        end
+    self thread explode
+end
+
+explode:
+    if (self.ac_exploded == 1)
+        end
+    self.ac_exploded = 1
+    self nottriggerable
+    self playsound landmine_explode
+    local.fx = spawn script_model model models/emitters/explosion_mine.tik
+    local.fx.origin = self.origin
+    local.fx notsolid
+    local.fx anim start
+    landminedamage self 100 150
+    self delete
+    wait 1
+    local.fx remove
+end
+
+defuse local.defuser:
+    local.defuser ammo landmine 1
+    self playsound landmine_defuse
+    self delete
+end

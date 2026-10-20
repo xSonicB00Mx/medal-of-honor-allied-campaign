@@ -1,3 +1,7 @@
+## Aktuell: LOADOUT fuer Operations-Replays
+
+44 tragbare Waffen aus AA/SH/BT, sieben Slots, echte 3D-Vorschau, DEFAULT und Zufallsauswahl. Nur abgeschlossene Operations-Replays; Mission List und neue Missionen unveraendert. Klassenweises Durchschalten zusaetzlicher Pickups. Native Waffen-, Kontext-, Speicher- und Fortschrittstests abgeschlossen. [Bericht](checkpoints/CP08/loadout.md).
+
 ## Aktuell: Statistik, AA-Briefings und Breda korrigiert
 
 Breitere Kampagnenstatistik, echte AA-Briefings mit vorhandenem 16:9-Raumhintergrund und MG-Blutprofil fuer die stationaere Breda. Native Tests erfolgreich. [Bericht](checkpoints/CP08/stats-briefing-breda.md).
