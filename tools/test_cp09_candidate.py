@@ -1,12 +1,16 @@
 """Transactional local installation/rollback regression; no game launch or saves."""
-import json
+import argparse,json
 from pathlib import Path
 from cp09_candidate import R, install, uninstall, expected, digest
 
-target=R/"runtime-local/CP09-install-test-r1"
+ap=argparse.ArgumentParser()
+ap.add_argument("--run",default="r1")
+args=ap.parse_args()
+assert args.run.replace("-","").isalnum()
+target=R/("runtime-local/CP09-install-test-"+args.run)
 source=R/"runtime-local/CP08-r1"
 assert not target.exists() and not target.with_name(target.name+".staging").exists()
-out=R/"generated-local/CP09/install-r1"
+out=R/("generated-local/CP09/install-"+args.run)
 out.mkdir(parents=True,exist_ok=False)
 results=[]
 results.append(install(source,target,interrupt_after=25))

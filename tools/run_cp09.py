@@ -41,6 +41,11 @@ def audit():
         counts[name] = len(rows)
     for name in ("openmohaa.exe", "game.dll", "cgame.dll"):
         assert sha(RT / name) == sha(R / "build-local/cp00-r3/RelWithDebInfo" / name), name
+    for folder in ("main","mainta","maintt"):
+        packages=list((R/"generated-local/loadout/packages"/folder).glob("*.pk3"))
+        assert packages, "Missing LOADOUT test packages"
+        for package in packages:
+            assert sha(package)==sha(RT/folder/package.name), "Stale LOADOUT test override"
     wcr = json.loads((R / "third_party/wcr/manifest.json").read_text())
     for row in wcr["modules"]:
         assert sha(RT / row["path"]) == row["sha256"], row["path"]
@@ -78,10 +83,13 @@ def matrix(prefix):
     for game in range(3):
         for mode in ("replay","score","new","default","locked"):
             tests.append(case(f"loadout-{game}-{mode}", "test_loadout_lifecycle",
-                              f"{prefix}-loadout-{game}-{mode}",mode,"--game",str(game)))
+                              f"{prefix}-loadout-{game}-{mode}",mode,"--game",str(game),
+                              *(["--baseline-report","checkpoints/CP09/known-bt-e3l3.json"] if game==2 else [])))
     for fx in (0,1):
         tests.append(case("performance-"+str(fx),"test_cp08_mg_performance",
                           prefix+"-perf-"+str(fx),"--fx",str(fx),"--roundtrip"))
+    tests.append(case("reload-memory","test_cp09_memory",prefix+"-memory"))
+    tests.append(case("portable-candidate","test_cp09_portable",prefix+"-portable"))
     return tests
 
 

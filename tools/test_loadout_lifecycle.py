@@ -3,6 +3,7 @@
 Seeded isolated progress is a boundary test, not a natural mission playthrough.
 """
 from pathlib import Path
+from collections import Counter
 import argparse,json,shutil,subprocess,time,re,zipfile
 
 a=argparse.ArgumentParser()
@@ -85,8 +86,12 @@ unexpected=errors
 if args.baseline_report:
  baseline=json.loads(args.baseline_report.read_text());assert baseline['case']=='default' and baseline['game']==args.game
  normalize=lambda s:re.sub(r'^\[[^\]]*\]\s*','',s)
- known={normalize(e) for e in baseline['errors']}
- unexpected=[e for e in errors if normalize(e) not in known]
+ known=Counter(normalize(e) for e in baseline['errors'])
+ unexpected=[]
+ for e in errors:
+  text=normalize(e)
+  if known[text]>0:known[text]-=1
+  else:unexpected.append(e)
 report=dict(case=args.case,game=args.game,passed=not unexpected,errors=errors,unexpected_errors=unexpected,native_resources=args.native_resources,applied=applied,child_restarts=len(children),progress_and_save_unchanged=True,preference_persisted=True)
 (p/'result.json').write_text(json.dumps(report,indent=2)+'\n');print(json.dumps(report),flush=True)
 assert not unexpected,unexpected

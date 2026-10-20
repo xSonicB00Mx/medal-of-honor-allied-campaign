@@ -4,7 +4,8 @@ Begonnen am 20.10.2026 auf Nutzerauftrag. Feature-freeze: nur Fehlerkorrekturen,
 Pruefung und Auslieferung. Der Nutzer uebernimmt anschliessend den natuerlichen
 Kampagnenabschluss mit seinem bestehenden Spielstand.
 
-**Status: technische Pruefung laeuft; keine Gesamtspielabnahme, kein Merge.**
+**Status: erste technische Runde abgeschlossen, CP09 insgesamt weiterhin offen.
+Keine Gesamtspielabnahme, kein Merge.**
 
 ## Festgelegte Basis
 
@@ -33,7 +34,52 @@ CP09-Runde nicht mehr als Test-Overrides eingesetzt.
 Jeder Test bekommt eigenes Log und Windows-Prozessspeichermessungen.
 Fehlschlaege bleiben erhalten, auch nach bestandenem Wiederholungstest.
 Grenztests mit gesetztem Testfortschritt sind kein natuerlicher Durchlauf.
-Konkrete Ergebnisse folgen nach Laufende.
+Ergebnis: 46 Werkzeuglaeufe fuer 44 unterschiedliche Faelle. 40 Faelle ohne
+Fehlschlag, vier BT-LOADOUT-Faelle mit den exakt bereits dokumentierten drei
+Skriptfehlern. Der erste AA-Droptest hatte faelschlich BT-spezifische
+Diagnoseausgaben erwartet; korrigierter Wiederholungstest bestanden.
+Die urspruenglichen Fehlschlaege bleiben im Ergebnisbericht erhalten.
+
+Nachweise in [regression.json](regression.json):
+
+- AA/SH/BT: Menue-Rueckkehr, Schrotflintenpellets, Kopf-/Koerperwunden mit
+  Save/Load, BT-Dropumschaltung und AA/SH-Isolation.
+- Scorekampf inklusive stiller Autosaves und Save-/Load-Sperre, Abbruch ohne
+  Punkte, Operations-Replayabschluss mit geschuetztem Kampagnenfortschritt.
+- Alle drei Spiele: LOADOUT-Replay, neue Mission, Score, DEFAULT und gesperrte
+  Mission. AA/SH ohne Skriptfehler; BT-Funktionsassertionen bestanden, bekannte
+  Skriptdiagnosen separat in [known-bt-e3l3.json](known-bt-e3l3.json).
+- Gemeinsame Einstellungen AA -> SH -> BT -> AA plus frische Neustarts.
+- Fadenkreuze bei 3840x2160, 1280x960 und 3440x1440; Projektionsabweichung im
+  Testprotokoll kleiner 0,002 Pixel. Nativer AA-HUD- und BT-Operations-Screenshot
+  visuell kontrolliert. Kein physischer Monitor-/DPI-Wechseltest.
+- Finale-Grenzen AA/BT setzen fort; Berlin startet debriefing.roq, dessen
+  unveraenderter Skriptpfad anschliessend die Credits aufruft.
+- Zehn Save-/Load-Zyklen mit einer Bytekopie des aktuellen persoenlichen
+  BT-Quicksaves: elf erfolgreiche Ladevorgaenge inklusive Erstladen.
+  Private Bytes nach Aufwaermphase um rund 17,6 MiB niedriger; kein fortlaufender
+  Anstieg in diesen zehn Zyklen. Keine allgemeine Langzeit-Leakgarantie.
+- 427 persoenliche Profildateien unveraendert; alle Original-/Runtime-Hashes
+  vor und nach beiden Runden unveraendert.
+
+### MG-Belastung
+
+AA m1l1, echte montierte MG42, lebendes Ziel und mehrere Sterbeereignisse;
+1920x1080, 60-FPS-Limit, GL1, RTX 4090, NVIDIA 610.88. CPU-Identifier:
+AMD64 Family 26 Model 68 Stepping 0. `com_speeds`-Millisekunden:
+
+| Phase | Effekte | Frames | Median | P95 | P99 | Maximum |
+|---|---:|---:|---:|---:|---:|---:|
+| Dauerfeuer | aus | 374 | 2 | 3 | 3 | 9 |
+| Dauerfeuer | an | 374 | 3 | 5 | 5 | 6 |
+| Sterbephase | aus | 406 | 2 | 3 | 4 | 8 |
+| Sterbephase | an | 406 | 3 | 4 | 5 | 6 |
+
+Snapshotabstand maximal 50 ms, keine Skript-/Command-Overflow-Fehler.
+Wundarchive vor/nach Laden identisch: aus 6/6 vorhandene Datensaetze,
+an 64/64 Datensaetze am festen Budget. Debugausgabe erst fuer den
+anschliessenden Archivtest aktiviert, nicht waehrend der Zeitmessung.
+CPU-Wandzeit inklusive moeglicher Treiberwartezeit, keine GPU-Queryzeit.
 
 Vorhandene C++-Tests: 65.536 Orientierungsseeds, getrennte Ein-/Austrittsfolgen,
 Spiegelung, begrenzte lokale Ereignisspeicherung, geometrische Negativfaelle.
@@ -58,6 +104,13 @@ Moddatei, Rueckbau mit 9.000 unveraenderten Basisdateien und Save-Sentinel.
 Gefundener Fehler: interne `Start-AA/SH/BT.cmd` verwiesen noch auf CP05a-Starter
 ausserhalb der Runtime. CP09 bekommt eigenstaendige relative Starter.
 Der normale CP08-Spielstarter war davon nicht betroffen.
+
+`runtime-local/CP09-r1` ist erstellt und hashgeprueft: 9.000 Basisdateien und
+90 eigene Dateien inklusive vier neuer Starter-/Inventar-/Hinweisdateien.
+Nativer Start aus diesem Kandidaten, AA->BT-Prozesswechsel und Laden der Kopie
+des aktuellen BT-Spielstands bestanden; keine CP08-Runtime im Suchpfad.
+`Start-CP09-r1.cmd` im Workspace verwendet das bestehende persoenliche Profil.
+Details: [INSTALLATION.md](INSTALLATION.md), [PLAYER-TEST.md](PLAYER-TEST.md).
 
 Dies ist ein lokaler Wiederherstellungs-/Kandidatenweg, **kein universeller
 Installer fuer beliebige rohe Spiel-, WCR- und ZIP-Bestaende**.

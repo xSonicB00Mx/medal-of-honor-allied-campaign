@@ -1,5 +1,10 @@
 ## CP09 begonnen - Regression und separate Durchspielabnahme
 
+Erste technische Runde: 44 unterschiedliche Prueffaelle, davon 40 ohne
+Fehlschlag und vier mit exakt bekannten BT-Skriptdiagnosen. CP09-r1 ist lokal
+startbar; 427 persoenliche Profildateien unveraendert. GPU-/Langzeitpruefung
+und natuerliche Durchspielabnahme bleiben offen.
+
 Nutzerfreigabe 20.10.2026: CP09 beginnen. Feature-freeze bleibt bestehen.
 Technische Matrix in isolierten Profilen; danach beendet der Nutzer die
 Kampagne mit seinem bestehenden Spielstand. Kein Reset, keine vorweggenommene

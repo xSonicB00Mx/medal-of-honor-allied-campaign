@@ -64,6 +64,7 @@ finally:
     for child in known.values():child.close()
 log=(h/"qconsole.log").read_text(encoding="latin1")
 assert proc.returncode==0 and "CP09_MEMORY_DONE" in log
+assert log.count("Game Loaded")==11 and log.count("Saving to cp09_roundtrip")==10
 assert all(hashlib.sha256((source/n).read_bytes()).hexdigest()==v for n,v in hashes.items())
 errors=[l for l in log.splitlines() if any(s in l for s in ("Script Error","Unknown command","AC_SAVE_REJECT","Invalid event"))]
 assert not errors,errors
