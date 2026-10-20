@@ -4,7 +4,8 @@ Original content stays local. Existing weapon gameplay retains native priority;
 missing dependencies are imported and restored scope materials are repaired.
 """
 from pathlib import Path
-import zipfile,re,json,hashlib
+import zipfile,re,json,hashlib,io
+from PIL import Image,ImageOps
 r=Path(__file__).resolve().parents[1];rt=r/'runtime-local/CP08-r1';out=r/'generated-local/loadout/packages'
 catalog=json.loads((r/'mod/loadout/weapons.json').read_text())
 archives={};indices=[]
@@ -189,11 +190,24 @@ for game,folder in enumerate(['main','mainta','maintt']):
  (out/folder/'main-before.urc').write_text(menu)
  def entry(m):
   if 'pushmenu multiplayer' not in m[0]:return m[0]
-  return m[0].replace('name "Default"','name "loadout"').replace('pushmenu multiplayer','ac_loadout').replace('set ui_signshader ac_shared/multiplayer_sign','set ui_signshader 0; set ac_loadout_hover 1').replace('hovercommand ', 'mouseawaycommand "set ac_loadout_hover 0"\nhovercommand ')
+  return m[0].replace('name "Default"','name "loadout"').replace('pushmenu multiplayer','ac_loadout').replace('set ui_signshader ac_shared/multiplayer_sign','set ui_signshader textures/ac/widescreen/loadout_sign')
  menu=re.sub(r'(?is)resource\s+Button\s*\{[^{}]*\}',entry,menu)
  assert 'stuffcommand "ac_loadout"' in menu
  assert 'pushmenu multiplayer' not in menu
- menu=menu.replace('end.', 'resource\nLabel\n{\nname loadout_sign\nbgcolor 0 0 0 0\nrect 48 36 172 56\nfont facfont-20\nfgcolor 1 0.85 0.4 1\nborderstyle NONE\nlinkcvar ac_loadout_hover\nlinkstring 0 ""\nlinkstring 1 "LOADOUT"\n}\nend.')
+ # Use the same generated lettering layout and sign-plane shear as the other
+ # main-menu hotspots, rather than a separately positioned font label.
+ with Image.open(r/'generated-local/menu-lettering/loadout.png') as image:
+  assert image.mode=='RGBA' and image.getchannel('A').getextrema()[0]==0
+  bounds=image.getchannel('A').point(lambda v:255 if v>32 else 0).getbbox()
+  assert bounds
+  bounds=(max(0,bounds[0]-8),max(0,bounds[1]-8),min(image.width,bounds[2]+8),min(image.height,bounds[3]+8))
+  lettering=ImageOps.contain(image.crop(bounds),(216,24),Image.Resampling.LANCZOS)
+  canvas=Image.new('RGBA',(256,64))
+  canvas.alpha_composite(lettering,((256-lettering.width)//2,35-lettering.height//2))
+  buffer=io.BytesIO();canvas.save(buffer,format='TGA')
+ texture='textures/ac/widescreen/loadout_sign'
+ files[texture+'.tga']=buffer.getvalue()
+ files['scripts/ac_loadout_sign.shader']=(f'{texture}\n{{\n nomipmaps\n nopicmip\n {{\n clampmap {texture}.tga\n tcMod transform 1 -0.14 0 1 0 0.07\n rgbGen global\n alphaGen global\n blendFunc GL_SRC_ALPHA GL_ONE_MINUS_SRC_ALPHA\n }}\n}}\n').encode('ascii')
  files['ui/main.urc']=menu.encode('latin1')
  p=out/folder/'zzzzzzzzzzzzzzzz_AC_Loadout.pk3'
  with zipfile.ZipFile(p,'w',zipfile.ZIP_DEFLATED) as z:

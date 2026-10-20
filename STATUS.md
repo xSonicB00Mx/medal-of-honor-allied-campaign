@@ -1,3 +1,10 @@
+## Aktuell: LOADOUT-Schriftzug und Ego-Waffenflaechen
+
+LOADOUT nutzt die generierte Schriftgrafik im Stil der anderen Hauptmenueschilder.
+Bei breitem FOV offene Schaft-/Armrueckseiten werden in der Egoansicht geschlossen,
+fuer alle Waffenherkuenfte. Acht Waffen je AA/SH/BT, alter AA-Testsave und native
+Tuerbedienung geprueft. [Bericht](checkpoints/CP08/loadout-sign-viewmodels.md).
+
 ## Aktuell: LOADOUT-Tuer, Auswahlfilter und globale HUD-Kontur
 
 Fruehere Multiplayer-Tuer mit Hover-Leuchten oeffnet LOADOUT. 37 waehlbare Waffen,

@@ -2,7 +2,7 @@
 from pathlib import Path
 import argparse,json,shutil,subprocess,re,zipfile
 from PIL import Image
-a=argparse.ArgumentParser();a.add_argument('run');a.add_argument('--game',type=int,default=0);a.add_argument('--case',choices=['menu','arsenal','apply','standard','score','cycle','special','transition','mines','minecontact','retired','models','grenadefx'],default='menu');a.add_argument('--start',type=int,default=0);a.add_argument('--count',type=int,default=12);a.add_argument('--asset-override',type=Path);args=a.parse_args()
+a=argparse.ArgumentParser();a.add_argument('run');a.add_argument('--game',type=int,default=0);a.add_argument('--case',choices=['menu','arsenal','apply','standard','score','cycle','special','transition','mines','minecontact','retired','models','viewmodels','grenadefx'],default='menu');a.add_argument('--start',type=int,default=0);a.add_argument('--count',type=int,default=12);a.add_argument('--asset-override',type=Path);args=a.parse_args()
 r=Path(__file__).resolve().parents[1];rt=r/'runtime-local/CP08-r1';p=r/'profiles-local/loadout'/args.run
 p.mkdir(parents=True,exist_ok=False);b=p/'bin';b.mkdir()
 for f in rt.glob('*.dll'):shutil.copy2(f,b/f.name)
@@ -48,6 +48,18 @@ else:
    cmd += [f'script player ammo {t} 10' for t in ['grenade','agrenade','smokegrenade']]
    cmd += [f'script player use {w["model"]}','wait 2100','+attack','wait 700','-attack','wait 34000' if w['id']=='it_w_bomba' else 'wait 7000','screenshot silent']
   cmd += ['echo AC_GRENADE_END']
+ elif args.case=='viewmodels':
+  # Reproduce the stock/shoulder opening at widescreen FOV, then exercise
+  # other original and imported models plus animated shotgun poses.
+  for name in ['shotgun','m1_garand','bar','thompsonsmg','mp40','fg42','ppsh_smg','it_w_breda']:
+   model=next(w['model'] for w in weapons if w['id']==name)
+   cmd += [f'script player give {model}',f'script player use {model}','wait 2300',f'echo AC_VIEWMODEL {name}']
+   for fov in [90,110]:
+    cmd += [f'set cg_fov {fov}','wait 200','screenshot silent']
+  cmd += ['set cg_fov 90','script player use models/weapons/shotgun.tik','script player ammo shotgun 100','wait 2200',
+          '+attack','wait 180','screenshot silent','-attack','wait 1500','reload','wait 700','screenshot silent','wait 3500',
+          '+movedown','wait 600','screenshot silent','-movedown','set cg_3rd_person 1','wait 600','screenshot silent',
+          'set cg_3rd_person 0','ac_loadout select 5 11','wait 600','screenshot silent']
  elif args.case=='models':
   for name in ['fg42','g43','svt_rifle','delisle','it_w_breda','ppsh_smg']:
    model=next(w['model'] for w in weapons if w['id']==name)
@@ -116,8 +128,13 @@ if args.case=='grenadefx':
   report['grenade_audio_checks'].append(dict(weapon=name,alias=expected,dispatched=bool(sounds),positive_volume=all(volume>0 for file,volume in sounds),mixed=mixed))
 if args.case=='cycle':
  report['cycle']=re.findall(r'AC_WEAPON_STATE model=(\S+) active=1',log)
+if args.case=='viewmodels':
+ report['viewmodel_weapons']=re.findall(r'AC_VIEWMODEL (\S+)',log)
+ report['screenshots']=len(list((h/'screenshots').glob('*.tga')))
 (p/'result.json').write_text(json.dumps(report,indent=2)+'\n');print(json.dumps(report))
 assert proc.returncode==0 and report['done'] and report['progress_unchanged']
+if args.case=='viewmodels':
+ assert len(report['viewmodel_weapons'])==8 and report['screenshots']==21
 if args.case=='arsenal':assert all(x['selected'] and x['fired'] and x['reloaded'] for x in report['weapons']),report['weapons']
 if args.case=='cycle':assert report['cycle']==['models/weapons/mp40.tik','models/weapons/sten.tik','models/weapons/thompsonsmg.tik','models/weapons/mp40.tik'],report['cycle']
 if args.case=='grenadefx':assert len(report['grenade_audio_checks'])==9 and all(x['dispatched'] and x['positive_volume'] and x['mixed'] for x in report['grenade_audio_checks']),report['grenade_audio_checks']

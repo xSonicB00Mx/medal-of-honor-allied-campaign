@@ -1686,7 +1686,12 @@ void RB_StageIteratorGeneric( void )
 	//
 	// set face culling appropriately
 	//
-	if (input->shader->cullType == CT_TWO_SIDED)
+	// Match GL1: wide FOV can expose the back of view-weapon/sleeve sheets.
+	// Do not change world entities, previews or explicitly back-sided shaders.
+	if (input->shader->cullType == CT_TWO_SIDED ||
+		(input->shader->cullType == CT_FRONT_SIDED && backEnd.currentEntity &&
+		 (backEnd.currentEntity->e.renderfx & (RF_FIRST_PERSON | RF_DEPTHHACK)) ==
+			(RF_FIRST_PERSON | RF_DEPTHHACK)))
 	{
 		GL_Cull( CT_TWO_SIDED );
 	}

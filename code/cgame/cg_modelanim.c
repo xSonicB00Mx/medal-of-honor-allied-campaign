@@ -1266,8 +1266,8 @@ void CG_ModelAnim(centity_t *cent, qboolean bDoShaderTime)
         }
 
         // set the attached model to have the same render FX
-        model.renderfx &= ~(RF_THIRD_PERSON | RF_THIRD_PERSON | RF_DEPTHHACK);
-        model.renderfx |= parent->renderfx & (RF_THIRD_PERSON | RF_THIRD_PERSON | RF_DEPTHHACK);
+        model.renderfx &= ~(RF_FIRST_PERSON | RF_THIRD_PERSON | RF_DEPTHHACK);
+        model.renderfx |= parent->renderfx & (RF_FIRST_PERSON | RF_THIRD_PERSON | RF_DEPTHHACK);
     }
 
     for (i = 0; i < 3; i++) {
