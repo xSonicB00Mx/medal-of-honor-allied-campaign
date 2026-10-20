@@ -19,8 +19,13 @@ Test: `tools/test_operations_numbers.py operations-roman-r1`.
 Lokale Nachweise: `generated-local/CP09/operations-roman-r1/`.
 427 persoenliche Profildateien nach dem Test bytegleich.
 
-Auslieferung erfolgt mit `tools/deploy_cp09_engine.py operations-roman-r1`:
+Ausgeliefert mit `tools/deploy_cp09_engine.py operations-roman-r1`:
 nur Engine fuer beide lokalen Starter CP08-r1/CP09-r1, vorher Hashpruefung,
 Rueckbaukopie und anschliessende Manifest-/Profilpruefung. Die urspruengliche
 CP09-Gesamtregression bleibt als historischer Ausgangsstand dokumentiert;
 dieser Nachtest ersetzt keine vollstaendige CP09-Abnahme.
+
+Engine-Quelle: `75ce5578826395c3cfe628bb0b6ffc373db8dd6d`.
+Engine-SHA256: `25b37d4288d6f360c88aeef0e1ebf522e14b52e2bf6db31c86b7d6454c4c2bef`.
+Auslieferungspruefung bestanden: 9.072 Originaldateien, 9.086 Dateien in CP08-r1,
+9.090 Dateien in CP09-r1; 427 persoenliche Profildateien weiterhin bytegleich.

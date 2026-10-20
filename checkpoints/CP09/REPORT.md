@@ -7,6 +7,10 @@ Kampagnenabschluss mit seinem bestehenden Spielstand.
 **Status: erste technische Runde abgeschlossen, CP09 insgesamt weiterhin offen.
 Keine Gesamtspielabnahme, kein Merge.**
 
+Nachtrag auf direkten Nutzerauftrag: [Roemische Missionsnummern in Operations](operations-roman.md),
+sechs native Menuepruefungen bestanden, in CP08-r1 und CP09-r1 installiert.
+Arabische Gruppenanzahlen und persoenlicher Fortschritt bleiben erhalten.
+
 ## Festgelegte Basis
 
 - Ausgangsbranch `codex/cp08-operations-map`, Commit `880b3df1`.
