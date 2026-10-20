@@ -46,3 +46,12 @@ Abschliessender Lauf `profiles-local/loadout/preferences-r5`: alle drei Kontexte
 bestanden; jeweils Thompson, PPSH und Breda aktiv ausgeruestet und Kontur an/aus
 visuell geprueft. Neustarts AA -> SH, SH -> BT und BT -> AA behalten die Option.
 Kampagnenvalidierung, CP00-Integritaetsregeln und Diff-Pruefung bestanden.
+
+Installiert aus `47d6d5c8` als `loadout-hud-r4` plus
+`hud-outline-options-r1`. Alle 86 eigenen Laufzeitdateien hashgeprueft;
+Engine/Spielmodule entsprechen dem abschliessenden Testbuild. Bei beiden
+Installationsschritten blieben 413 persoenliche Profildateien, 9072 Original-,
+9000 Basis- und acht Max-Payne-Eingabedateien unveraendert. Ruecksicherungen und
+lokale Update-ZIPs liegen unter den jeweiligen Batchnamen. Tuer-Hover mit
+oeffnender/beleuchteter Tuer und LOADOUT-Schild abschliessend nativ kontrolliert
+(`profiles-local/loadout/door-final-r1`). Keine Spielassets in Git. Kein Merge.
