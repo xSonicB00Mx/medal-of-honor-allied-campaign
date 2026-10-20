@@ -48,7 +48,6 @@ static const acLoadoutWeapon_t ac_loadoutWeapons[]={
     {"rdg-1_smoke_grenade","RDG-1 Smoke Grenade","models/weapons/rdg-1_smoke_grenade.tik",4,1},
     {"it_w_bomba","Italian Bomba","models/weapons/it_w_bomba.tik",4,2},
     {"it_w_bombabreda","Breda Grenade","models/weapons/it_w_bombabreda.tik",4,2},
-    {"mg42carryable","Deployable MG42","models/weapons/mg42carryable.tik",6,1},
 };
-#define AC_LOADOUT_COUNT 44
+#define AC_LOADOUT_COUNT 43
 #endif

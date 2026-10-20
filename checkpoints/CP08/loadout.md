@@ -6,7 +6,7 @@ Wiederholungen abgeschlossener Kampagnenmissionen. Keine Multiplayer-Freigabe.
 ## Bedienung
 
 Der fruehere Multiplayer-Platz im gemeinsamen Hauptmenue oeffnet LOADOUT.
-Sieben Kategorien enthalten 44 tragbare Waffen und Ausruestungsvarianten.
+Sieben Kategorien enthalten 43 tragbare Waffen und Ausruestungsvarianten.
 Pro Kategorie kann eine Waffe oder DEFAULT ausgewaehlt werden. Die Auswahl wird
 sofort gespeichert und zwischen AA, SH und BT geteilt. DEFAULT oben setzt alle
 Kategorien zurueck; SHUFFLE LOADOUT stellt eine zufaellige Ausruestung zusammen.
@@ -105,3 +105,24 @@ kein GitHub-Upload).
 Quellcode-Push auf `codex/cp08-operations-map` durch frisch gelesenen Remote-SHA
 `6383611f8a55cad5b29d3aee936dd8386ef71e04` bestaetigt.
 Keine persoenliche Nutzerabnahme und kein Merge behauptet.
+
+
+## Korrektur: keine stationaeren Waffen im Loadout
+
+Das aufstellbare MG42 ist aus dem Auswahlkatalog und damit auch aus SHUFFLE
+entfernt. Die uebrigen 43 IDs behalten ihre bisherigen Positionen. Eine gespeicherte
+MG42-Auswahl (44) wird nicht mehr vergeben, in Operations als DEFAULT behandelt
+und beim Oeffnen von LOADOUT auf DEFAULT gespeichert. Stationaere MGs, Moerser,
+Bordwaffen und Geschuetze waren bereits ausgeschlossen. Die tragbare Breda und
+Vickers-Berthier bleiben Handwaffen und weiterhin waehlbar.
+
+Die MG42-Ressourcen bleiben fuer bestehende r1-Spielstaende vorhanden; bereits
+laufende Missionen oder darin gespeicherte Inventare werden nicht nachtraeglich
+veraendert. Die oben genannten 44-Waffen-/MG42-Tests dokumentieren den vorherigen
+r1-Stand. Engine/game/cgame erfolgreich gebaut. Der isolierte native Nachtest
+`no-stationary-r1` bestaetigt: keine MG42-Vergabe auch vor dem Menueaufruf,
+kein MG42-Eintrag, alte Auswahl und direkter Auswahlbefehl 44 ergeben DEFAULT,
+DEFAULT ist gespeichert, Testfortschritt unveraendert. Der Auswertungspfad der
+zusaetzlichen Test-Konfiguration wurde auf `configs/` korrigiert und die
+vorhandenen nativen Ergebnisse anschliessend vollstaendig nachgeprueft.
+Ressourcenpakete inhaltlich identisch zu r1; nur Engine/Spielmodule zu installieren.

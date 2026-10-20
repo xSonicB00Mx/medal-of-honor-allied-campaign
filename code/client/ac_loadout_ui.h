@@ -11,6 +11,12 @@ static void AC_Loadout_f(void)
     int slot=Cmd_Argc()>2?atoi(Cmd_Argv(2)):0;
     if(slot<0 || slot>=AC_LOADOUT_SLOTS)slot=0;
     bool changed=false;
+    // Removed catalogue entries fall back to DEFAULT; other saved indices stay stable.
+    for(int s=0;s<AC_LOADOUT_SLOTS;s++) {
+        if(Cvar_VariableIntegerValue(va("ac_loadout_%d",s)) && AC_LoadoutChoice(s)<0) {
+            Cvar_Set(va("ac_loadout_%d",s),"0");changed=true;
+        }
+    }
     if(Cmd_Argc()>1 && !strcmp(Cmd_Argv(1),"default")) {
         for(int s=0;s<AC_LOADOUT_SLOTS;s++)Cvar_Set(va("ac_loadout_%d",s),"0");
         changed=true;

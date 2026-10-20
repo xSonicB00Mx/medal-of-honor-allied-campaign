@@ -1,5 +1,6 @@
 #include "../qcommon/ac_missions.h"
 #include "ac_map.h"
+#include "../qcommon/ac_loadout.h"
 
 static void AC_OpenGeneratedMenu(const char *name)
 {
@@ -163,7 +164,10 @@ static void AC_ShowOperations(void)
         AC_UIItem(f,"place",m.place,608,176,328,24,NULL);
         AC_UIItem(f,"hero",va("%s / %s",m.game==0?"Allied Assault":m.game==1?"Spearhead":"Breakthrough",m.hero),608,206,328,24,NULL);
         bool custom=false;
-        for(int s=0;s<7;s++)if(Cvar_VariableIntegerValue(va("ac_loadout_%d",s))>0)custom=true;
+        for(int s=0;s<AC_LOADOUT_SLOTS;s++) {
+            const int i=Cvar_VariableIntegerValue(va("ac_loadout_%d",s))-1;
+            if(i>=0 && i<AC_LOADOUT_COUNT && ac_loadoutWeapons[i].slot==s)custom=true;
+        }
         AC_UIItem(f,"loadout",state==2?(custom?"Loadout: CUSTOM / Change":"Loadout: DEFAULT / Change"):"Loadout: mission equipment",608,236,328,24,state==2?"ac_loadout":NULL,"0.7 0.85 0.7 1",14);
         AC_UIItem(f,"status",AC_StateName(state),608,268,144,30,NULL,AC_StateColor(state));
         AC_UIItem(f,"start",state==2?"Replay Mission":"Start Mission",764,268,172,30,va("ac_mission %d",selected),AC_StateColor(state));

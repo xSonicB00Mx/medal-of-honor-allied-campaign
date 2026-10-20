@@ -86,7 +86,9 @@ for game,folder in enumerate(['main','mainta','maintt']):
      if add(base.rstrip('/')+'/'+token):break
   for sh in re.findall(r'(?im)\b(?:\w*shader|cacheimage|map|clampmap)\s+([^\s{}]+)',s):material(sh)
  for w in catalog:add(w['model'])
- # The portable turret derives these filenames in C++, not in its .tik file.
+ # Retain portable turret resources for existing r1 saves, not loadout selection.
+ # The turret derives these filenames in C++, not in its .tik file.
+ add("models/weapons/mg42carryable.tik")
  for n in union:
   if n.startswith('models/weapons/mg42portable_placed') and n.endswith('.tik'):add(n)
  files['global/ac_loadout_mine.scr']=(r/'mod/loadout/ac_loadout_mine.scr').read_bytes()

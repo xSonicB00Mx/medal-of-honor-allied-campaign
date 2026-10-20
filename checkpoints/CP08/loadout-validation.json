@@ -72,5 +72,11 @@
     "life-aa-locked"
   ],
   "shared_preferences": "loadout-final",
-  "native_warning_baseline": "BT e3l3 produces the same three pre-existing script errors without the loadout resource pack (baseline-bt2). life-bt-final has zero unexpected errors. Other native asset warnings are retained in local logs."
+  "native_warning_baseline": "BT e3l3 produces the same three pre-existing script errors without the loadout resource pack (baseline-bt2). life-bt-final has zero unexpected errors. Other native asset warnings are retained in local logs.",
+  "catalog_revision_2": {
+    "selectable_weapons": 43,
+    "removed": "mg42carryable",
+    "legacy_selection_fallback_test": "no-stationary-r1",
+    "resource_contents_unchanged": true
+  }
 }

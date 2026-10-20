@@ -2,7 +2,7 @@
 from pathlib import Path
 import argparse,json,shutil,subprocess,re,zipfile
 from PIL import Image
-a=argparse.ArgumentParser();a.add_argument('run');a.add_argument('--game',type=int,default=0);a.add_argument('--case',choices=['menu','arsenal','apply','standard','score','cycle','special','transition','mines','minecontact'],default='menu');a.add_argument('--start',type=int,default=0);a.add_argument('--count',type=int,default=12);args=a.parse_args()
+a=argparse.ArgumentParser();a.add_argument('run');a.add_argument('--game',type=int,default=0);a.add_argument('--case',choices=['menu','arsenal','apply','standard','score','cycle','special','transition','mines','minecontact','retired'],default='menu');a.add_argument('--start',type=int,default=0);a.add_argument('--count',type=int,default=12);args=a.parse_args()
 r=Path(__file__).resolve().parents[1];rt=r/'runtime-local/CP08-r1';p=r/'profiles-local/loadout'/args.run
 p.mkdir(parents=True,exist_ok=False);b=p/'bin';b.mkdir()
 for f in rt.glob('*.dll'):shutil.copy2(f,b/f.name)
@@ -16,6 +16,7 @@ state='ACPROG1 32767 15 keep\n';(p/'ac_progress.dat').write_text(state)
 h=p/['main','mainta','maintt'][args.game];weapons=json.loads((r/'mod/loadout/weapons.json').read_text())
 settings=dict(com_target_game=args.game,fs_basepath=rt,fs_homepath=p,fs_steampath=rt,fs_gogpath=rt,fs_microsoftstorepath=rt,net_enabled=0,logfile=2,developer=1,cheats=1,ui_console=0,r_fullscreen=0,r_mode=-1,r_customwidth=1920,r_customheight=1080,com_maxfps=60,com_maxfpsUnfocused=60,cl_playintro=0,ac_campaign_mode=1)
 cmd=['set autopaused 0','wait 1200']
+if args.case=='retired':settings['ac_loadout_6']=44
 if args.case=='menu':
  cmd+=['ac_loadout default','wait 500','ac_ui_report ac_loadout','screenshot silent']
  for slot,id in [(2,'ppsh_smg'),(3,'it_w_breda'),(1,'uk_w_l42a1')]:
@@ -69,6 +70,7 @@ else:
   cmd += ['script player exec probe/pickup.scr','wait 500']
   for _ in range(4):cmd+=['useweaponclass smg','wait 1800','script player state','screenshot silent']
  else:cmd+=['script player state','screenshot silent','savegame loadout','wait 500','loadgame loadout','wait 3500','finishloadingscreen','script player state','screenshot silent'] if args.case!='score' else ['script player state','screenshot silent']
+if args.case=='retired':cmd+=['ac_loadout view 6','wait 500','ac_loadout select 6 44','wait 500','writeconfig retired_verified','screenshot silent']
 if args.case!='transition':cmd+=['echo AC_LOADOUT_TEST_DONE','quit']
 (h/'probe.cfg').write_text('\n'.join(cmd)+'\n')
 command=[str(b/'openmohaa.exe')]
@@ -106,3 +108,10 @@ if args.case=='transition':
  assert 'model=models/weapons/mp40.tik' in after and 'model=models/weapons/it_w_moschetto.tik' in after
 if args.case in ['mines','minecontact']:assert 'AC_MINE_PRESENT' in log and 'AC_MINE_KILLED_ACTOR' in log and not any('Script Error' in e for e in errors)
 for folder in ['main','mainta','maintt']:assert (p/folder/'save/omconfig/keep.sav').read_bytes()==b'PERSONAL SAVE SENTINEL'
+
+if args.case=='retired':
+ assert 'AC_LOADOUT_GIVE' not in log
+ assert 'AC_WEAPON_STATE model=models/weapons/mg42carryable.tik' not in log
+ menu=(h/'ui/ac_loadout.urc').read_text()
+ assert 'MG42' not in menu and 'selected=0 custom=0' in log
+ assert re.search(r'seta ac_loadout_6 "0"',(h/'configs/retired_verified.cfg').read_text())

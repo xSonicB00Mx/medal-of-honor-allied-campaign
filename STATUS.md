@@ -1,6 +1,6 @@
 ## Aktuell: LOADOUT fuer Operations-Replays
 
-44 tragbare Waffen aus AA/SH/BT, sieben Slots, echte 3D-Vorschau, DEFAULT und Zufallsauswahl. Nur abgeschlossene Operations-Replays; Mission List und neue Missionen unveraendert. Klassenweises Durchschalten zusaetzlicher Pickups. Native Waffen-, Kontext-, Speicher- und Fortschrittstests abgeschlossen. [Bericht](checkpoints/CP08/loadout.md).
+43 tragbare Waffen aus AA/SH/BT, sieben Slots, echte 3D-Vorschau, DEFAULT und Zufallsauswahl. Nur abgeschlossene Operations-Replays; Mission List und neue Missionen unveraendert. Klassenweises Durchschalten zusaetzlicher Pickups. Native Waffen-, Kontext-, Speicher- und Fortschrittstests abgeschlossen. [Bericht](checkpoints/CP08/loadout.md).
 
 ## Aktuell: Statistik, AA-Briefings und Breda korrigiert
 

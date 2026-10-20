@@ -299,12 +299,5 @@
     "model": "models/weapons/it_w_bombabreda.tik",
     "slot": 4,
     "game": 2
-  },
-  {
-    "id": "mg42carryable",
-    "name": "Deployable MG42",
-    "model": "models/weapons/mg42carryable.tik",
-    "slot": 6,
-    "game": 1
   }
 ]
