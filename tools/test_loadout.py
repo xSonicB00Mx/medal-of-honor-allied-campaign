@@ -2,7 +2,7 @@
 from pathlib import Path
 import argparse,json,shutil,subprocess,re,zipfile
 from PIL import Image
-a=argparse.ArgumentParser();a.add_argument('run');a.add_argument('--game',type=int,default=0);a.add_argument('--case',choices=['menu','arsenal','apply','standard','score','cycle','special','transition','mines','minecontact','retired'],default='menu');a.add_argument('--start',type=int,default=0);a.add_argument('--count',type=int,default=12);args=a.parse_args()
+a=argparse.ArgumentParser();a.add_argument('run');a.add_argument('--game',type=int,default=0);a.add_argument('--case',choices=['menu','arsenal','apply','standard','score','cycle','special','transition','mines','minecontact','retired','models','grenadefx'],default='menu');a.add_argument('--start',type=int,default=0);a.add_argument('--count',type=int,default=12);a.add_argument('--asset-override',type=Path);args=a.parse_args()
 r=Path(__file__).resolve().parents[1];rt=r/'runtime-local/CP08-r1';p=r/'profiles-local/loadout'/args.run
 p.mkdir(parents=True,exist_ok=False);b=p/'bin';b.mkdir()
 for f in rt.glob('*.dll'):shutil.copy2(f,b/f.name)
@@ -14,6 +14,7 @@ for folder in ['main','mainta','maintt']:
  (p/folder/'save/omconfig/keep.sav').write_bytes(b'PERSONAL SAVE SENTINEL')
 state='ACPROG1 32767 15 keep\n';(p/'ac_progress.dat').write_text(state)
 h=p/['main','mainta','maintt'][args.game];weapons=json.loads((r/'mod/loadout/weapons.json').read_text())
+if args.asset_override:shutil.copy2(args.asset_override,h/'zzzzzzzzzzzzzzzzz_AC_Test.pk3')
 settings=dict(com_target_game=args.game,fs_basepath=rt,fs_homepath=p,fs_steampath=rt,fs_gogpath=rt,fs_microsoftstorepath=rt,net_enabled=0,logfile=2,developer=1,cheats=1,ui_console=0,r_fullscreen=0,r_mode=-1,r_customwidth=1920,r_customheight=1080,com_maxfps=60,com_maxfpsUnfocused=60,cl_playintro=0,ac_campaign_mode=1)
 cmd=['set autopaused 0','wait 1200']
 if args.case=='retired':settings['ac_loadout_6']=44
@@ -40,6 +41,20 @@ else:
    cmd += [f'script player use {w["model"]}','wait 2100','echo AC_BEFORE','script player state','screenshot silent','+attack','wait 700','-attack','wait 1800','echo AC_AFTER','script player state']
    if w['id']=='m1_garand':cmd+=['script player exec probe/empty.scr','wait 200']
    cmd+=['reload','wait 5000','echo AC_RELOADED','script player state']
+ elif args.case=='grenadefx':
+  cmd += ['set debugSound 2','set s_show_sounds 1']
+  for w in [w for w in weapons if w['slot']==4]:
+   cmd += [f'echo AC_GRENADE {w["id"]}', f'script player give {w["model"]}']
+   cmd += [f'script player ammo {t} 10' for t in ['grenade','agrenade','smokegrenade']]
+   cmd += [f'script player use {w["model"]}','wait 2100','+attack','wait 700','-attack','wait 34000' if w['id']=='it_w_bomba' else 'wait 7000','screenshot silent']
+  cmd += ['echo AC_GRENADE_END']
+ elif args.case=='models':
+  for name in ['fg42','g43','svt_rifle','delisle','it_w_breda','ppsh_smg']:
+   model=next(w['model'] for w in weapons if w['id']==name)
+   cmd += [f'script player give {model}',f'script player use {model}','wait 2300',f'echo AC_MODEL {name}','set r_uselod 1','wait 200','screenshot silent','set r_uselod 0','wait 200','screenshot silent']
+  for name in ['fg42','g43','svt_rifle']:
+   choice=next(i+1 for i,w in enumerate(weapons) if w['id']==name)
+   cmd += [f'ac_loadout select 1 {choice}','wait 800','screenshot silent']
  elif args.case in ['mines','minecontact']:
   (h/'probe/mine.scr').write_text('main:\n if ($landmine != NULL)\n {\n  println AC_MINE_PRESENT\n  local.pos = $landmine.origin\n  $player.origin = $player.origin + ( 0 128 0 )\n  local.actor = spawn models/human/german_wehrmact_soldier.tik origin local.pos\n  local.actor ai_off\n  local.actor.health = 20\n  waitframe\n  $landmine doTouch local.actor\n  wait 2\n  if (!isalive local.actor)\n   println AC_MINE_KILLED_ACTOR\n }\nend\n')
   if args.case=='minecontact':
@@ -75,7 +90,7 @@ if args.case!='transition':cmd+=['echo AC_LOADOUT_TEST_DONE','quit']
 (h/'probe.cfg').write_text('\n'.join(cmd)+'\n')
 command=[str(b/'openmohaa.exe')]
 for k,v in settings.items():command+=['+set',k,str(v)]
-proc=subprocess.run(command+['+exec','probe.cfg'],cwd=rt,timeout=240)
+proc=subprocess.run(command+['+exec','probe.cfg'],cwd=rt,timeout=300)
 log=(h/'qconsole.log').read_text(encoding='latin1')
 errors=[s for s in log.splitlines() if re.search(r'Script Error|Invalid event|Unknown command|command not available|TIKI.*[Ee]rror|could not find|[Cc]ouldn.t (?:load|find)|[Mm]issing animation|[Nn]ot found',s)]
 for f in (h/'screenshots').glob('*.tga'):Image.open(f).save(f.with_suffix('.png'))
@@ -90,12 +105,22 @@ if args.case=='arsenal':
   reloaded=selected and (w['slot'] in [4,6] or int(rows[2][1])>=int(rows[0][1]))
   checks.append(dict(weapon=name,selected=selected,fired=fired,reloaded=reloaded,states=rows))
  report['weapons']=checks
+if args.case=='grenadefx':
+ report['grenade_sounds']={}
+ report['grenade_audio_checks']=[]
+ for block in re.split('AC_GRENADE ',log)[1:]:
+  name=block.splitlines()[0];report['grenade_sounds'][name]=re.findall(r'AC_SOUND_PLAY alias=(\S+) file=(\S+) volume=(\S+)',block)
+  expected={'m18_smoke_grenade':'smokegrenade_exp_start','nebelhandgranate':'nebelsmokegrenade_exp_start','rdg-1_smoke_grenade':'rdg1smokegrenade_exp_start','it_w_bombabreda':'smokegrenade_exp_start'}.get(name,'grenade_explode')
+  sounds=[(file,float(volume)) for alias,file,volume in report['grenade_sounds'][name] if alias==expected]
+  mixed=any(any('OpenAL:' in line and file.lower() in line.lower() and 'vol ' in line for line in block.splitlines()) for file,volume in sounds)
+  report['grenade_audio_checks'].append(dict(weapon=name,alias=expected,dispatched=bool(sounds),positive_volume=all(volume>0 for file,volume in sounds),mixed=mixed))
 if args.case=='cycle':
  report['cycle']=re.findall(r'AC_WEAPON_STATE model=(\S+) active=1',log)
 (p/'result.json').write_text(json.dumps(report,indent=2)+'\n');print(json.dumps(report))
 assert proc.returncode==0 and report['done'] and report['progress_unchanged']
 if args.case=='arsenal':assert all(x['selected'] and x['fired'] and x['reloaded'] for x in report['weapons']),report['weapons']
 if args.case=='cycle':assert report['cycle']==['models/weapons/mp40.tik','models/weapons/sten.tik','models/weapons/thompsonsmg.tik','models/weapons/mp40.tik'],report['cycle']
+if args.case=='grenadefx':assert len(report['grenade_audio_checks'])==9 and all(x['dispatched'] and x['positive_volume'] and x['mixed'] for x in report['grenade_audio_checks']),report['grenade_audio_checks']
 if args.case=='special':
  assert log.count('AC_TURRET_MOUNTED')==2
  before=log.split('AC_SECONDARY_BEFORE')[1].split('AC_SECONDARY_AFTER')[0]

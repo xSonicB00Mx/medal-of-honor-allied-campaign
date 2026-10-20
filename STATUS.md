@@ -1,3 +1,7 @@
+## Aktuell: LOADOUT-Modellflaechen und Rauch-Effekte
+
+FG42/G43/SVT-Materialien gegen fehlende Flaechen korrigiert; Sprite-Abhaengigkeiten kampagnenuebergreifend vervollstaendigt. Granaten-Sounds in AA/SH/BT ausgeloest, AA zusaetzlich bis OpenAL verfolgt; gemeldeter Tonausfall noch nicht reproduziert. [Bericht](checkpoints/CP08/loadout-models-effects.md).
+
 ## Aktuell: LOADOUT fuer Operations-Replays
 
 43 tragbare Waffen aus AA/SH/BT, sieben Slots, echte 3D-Vorschau, DEFAULT und Zufallsauswahl. Nur abgeschlossene Operations-Replays; Mission List und neue Missionen unveraendert. Klassenweises Durchschalten zusaetzlicher Pickups. Native Waffen-, Kontext-, Speicher- und Fortschrittstests abgeschlossen. [Bericht](checkpoints/CP08/loadout.md).

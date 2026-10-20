@@ -1,7 +1,7 @@
 """Build local additive cross-campaign weapon resources and the LOADOUT entry.
 
-Original content stays local. Existing weapon definitions retain native priority;
-only missing resources and missing animation/sound/shader names are imported.
+Original content stays local. Existing weapon gameplay retains native priority;
+missing dependencies are imported and restored scope materials are repaired.
 """
 from pathlib import Path
 import zipfile,re,json,hashlib
@@ -81,6 +81,9 @@ for game,folder in enumerate(['main','mainta','maintt']):
   # path directives in this definition. No model/weapon source is overwritten.
   paths=re.findall(r'(?im)^\s*\$?path\s+([^\s]+)',s)
   for token in re.findall(r'[\w./$-]+\.(?:tik|txt|scr|skd|skc|spr|wav|mp3|tga|jpg|png)',s,re.I):
+   # Sprite model names resolve to extensionless shader names at runtime;
+   # they usually have no physical .spr file to follow.
+   if token.lower().endswith('.spr'):material(token[:-4])
    if not add(token):
     for base in paths:
      if add(base.rstrip('/')+'/'+token):break
@@ -162,6 +165,22 @@ for game,folder in enumerate(['main','mainta','maintt']):
   # Alias declarations must precede the script's terminating end statement.
   s=re.sub(r'(?im)^\s*end\s*$', '\n'.join(extra)+'\nend',s,count=1)
  files[n]=s.encode('latin1')
+ drain()
+ # These restored rifles contain single-sheet scope/receiver geometry that is
+ # viewed from its back side in first person. Give only their model surfaces
+ # two-sided materials, preserving the native textures, alpha and reflections.
+ for weapon in ['fg42','g43','svt_rifle']:
+  n='models/weapons/'+weapon+'.tik'
+  source=(files[n] if n in files else read(native,n)).decode('latin1')
+  def two_sided(m):
+   original=m[1].lower();replacement='ac_loadout_twosided_'+original
+   body=native_shaders.get(original,shader_union[original][1])
+   body=re.sub(r'(?im)^\s*cull\s+\S+[^\n]*','',body)
+   body=body.replace('{','{\n cull none',1)
+   materials[replacement]=(replacement,body);scan(body)
+   return 'shader '+replacement
+  source=re.sub(r'\bshader\s+(\w+)',two_sided,source)
+  files[n]=source.encode('latin1')
  drain()
  if materials:files['scripts/ac_loadout.shader']='\n'.join(n+'\n'+b for n,b in materials.values()).encode('latin1')
  # Main-menu presentation is shared AA; replace the disabled MP hotspot.
