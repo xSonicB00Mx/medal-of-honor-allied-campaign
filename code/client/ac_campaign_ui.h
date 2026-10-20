@@ -113,6 +113,17 @@ static void AC_ScoreResults_f(void)
     AC_UIItem(f,"main","Main Menu",716,500,220,30,"ac_main_menu");
     FS_Printf(f,"end.\n");FS_FCloseFile(f);AC_OpenGeneratedMenu("ac_score_results");
 }
+static const char *AC_OperationNumber(int index)
+{
+    static const char *numbers[] = {
+        "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X",
+        "XI", "XII", "XIII", "XIV", "XV"
+    };
+    static_assert(sizeof(numbers)/sizeof(numbers[0]) == AC_MISSION_COUNT,
+                  "Add Roman labels when the operation count changes");
+    return index>=0 && index<AC_MISSION_COUNT ? numbers[index] : "";
+}
+
 static void AC_ShowOperations(void)
 {
     int selected=Cmd_Argc()>1?atoi(Cmd_Argv(1)):-1;
@@ -155,7 +166,10 @@ static void AC_ShowOperations(void)
         int target=n>1?members[(chosen+1)%n]:i,state=AC_MissionState(i);
         for(int j=0;j<n;j++)if(AC_MissionState(members[j])!=2)state=AC_MissionState(members[j]);
         const acMapMarker_t &p=ac_mapMarkers[region][i];int x=24+(int)p.x,y=110+(int)p.y;
-        AC_UIItem(f,va("marker_%d",i),n>1?va("%d",n):va("%02d",i+1),x-12,y-10,24,20,va("ac_campaign %d %d",target,region),AC_StateColor(state));
+        const str label=n>1?va("%d",n):AC_OperationNumber(i);
+        // Keep cluster counts Arabic; wider Roman labels stay centered on the location.
+        const int width=label.length()>2?label.length()*10+4:24;
+        AC_UIItem(f,va("marker_%d",i),label,x-width/2,y-10,width,20,va("ac_campaign %d %d",target,region),AC_StateColor(state));
     }
     if(selected>=0) {
         const acMission_t &m=ac_missions[selected];int state=AC_MissionState(selected);
@@ -174,7 +188,7 @@ static void AC_ShowOperations(void)
     } else AC_UIItem(f,"empty","No operations unlocked in this region",608,146,328,30,NULL);
     int row=0;
     for(int i=0;i<AC_MISSION_COUNT;i++)if(AC_MissionState(i)&&ac_mapMarkers[0][i].region==region) {
-        AC_UIItem(f,va("mission_%d",i),va("%02d %s%s",i+1,i==selected?"> ":"",ac_missions[i].title),608,316+row*22,328,21,va("ac_campaign %d %d",i,region),i==selected?"1 0.85 0.3 1":AC_StateColor(AC_MissionState(i)));row++;
+        AC_UIItem(f,va("mission_%d",i),va("%s %s%s",AC_OperationNumber(i),i==selected?"> ":"",ac_missions[i].title),608,316+row*22,328,21,va("ac_campaign %d %d",i,region),i==selected?"1 0.85 0.3 1":AC_StateColor(AC_MissionState(i)));row++;
     }
     AC_UIItem(f,"difficulty_label","Next mission difficulty",24,446,560,24,NULL);
     for(int i=0;i<3;i++)
