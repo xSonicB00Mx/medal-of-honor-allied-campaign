@@ -27,3 +27,8 @@ Game-DLL SHA256:
 `4fbf734baf683e299d8cfa9c79a72305090289211144a1f914532310f5d0cc4f`.
 Deployment verwendet `deploy_cp09_engine.py --game-only` mit Rueckbaukopien,
 Runtime-Manifestpruefung sowie Schutzpruefung fuer Originale und Nutzerprofil.
+
+Installiert in CP08-r1 und CP09-r1, Quelle `43161930`.
+9072 Originaldateien, 9086 CP08- und 9090 CP09-Dateien geprueft.
+Alle 439 persoenlichen Profildateien unveraendert. Nur game.dll ersetzt;
+Engine, Cgame und Assets unveraendert.

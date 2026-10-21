@@ -1,3 +1,10 @@
+## AB41-MG-Bluteffekte korrigiert (22.10.2026)
+
+Exakte MG-Zuordnung und visuelle Waffenreferenz fuer besitzerlose Schuesse
+korrigiert. AB41- und Breda-Tests inklusive Wunden-Save/Load bestanden.
+In CP08-r1/CP09-r1 installiert; 439 persoenliche Profildateien unveraendert.
+[Bericht](checkpoints/CP09/ab41-blood.md).
+
 ## Optionsmenue aufgeraeumt (21.10.2026)
 
 DISPLAY & HUD, BLOOD EFFECTS und ADDITIONAL OPTIONS als klare Bereiche.
