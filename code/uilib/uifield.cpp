@@ -299,6 +299,16 @@ void UIField::UpdateData(void)
 {
     if (m_cvarname.length()) {
         str::snprintf(m_edit.m_buffer, EDITFIELD_BUFSIZE, "%s", CvarGetForUI(m_cvarname, ""));
+        // Keep stored precision and editing intact, but do not fill the options
+        // readout with padding from Cvar_SetValue (for example 1.660000).
+        if (!IsActive() && (m_cvarname == "ac_menu_scale" || m_cvarname == "ac_hud_scale"
+                          || m_cvarname == "ac_hud_safe")) {
+            char *dot = strchr(m_edit.m_buffer, '.');
+            if (dot && strspn(dot + 1, "0123456789") == strlen(dot + 1)) {
+                char *end = m_edit.m_buffer + strlen(m_edit.m_buffer);
+                while (end - dot > 3 && end[-1] == '0') *--end = '\0';
+            }
+        }
         m_edit.m_cursor = Q_min(m_edit.m_cursor, strlen(m_edit.m_buffer));
     }
 }

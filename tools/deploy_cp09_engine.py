@@ -1,4 +1,4 @@
-"""Deploy a tested engine-only fix to the local CP08/CP09 launchers with rollback."""
+"""Deploy a tested engine and optional shared options layout with rollback."""
 import argparse
 import hashlib
 import json
@@ -6,17 +6,19 @@ from pathlib import Path
 import re
 import shutil
 import subprocess
+import zipfile
 
 from cp09_candidate import R, digest, expected, safe
 
 ap = argparse.ArgumentParser()
 ap.add_argument('run', help='Unique backup name; native test report folder')
+ap.add_argument('--options-layout', action='store_true', help='Also install the exact options packages from the test report')
 a = ap.parse_args()
 assert re.fullmatch(r'[a-zA-Z0-9-]+', a.run)
 report = json.loads((R/'generated-local/CP09'/a.run/'result.json').read_text())
 engine = R/'build-local/cp00-r3/RelWithDebInfo/openmohaa.exe'
 assert digest(engine)==report['engine_sha256'], 'Test the exact engine first'
-assert not subprocess.check_output(['git','diff','HEAD','--','code'],cwd=R), 'Commit engine source first'
+assert not subprocess.check_output(['git','diff','HEAD','--','code','mod/ui'],cwd=R), 'Commit tested sources first'
 commit = subprocess.check_output(['git','rev-parse','HEAD'],cwd=R,text=True).strip()
 runtimes = [R/'runtime-local'/name for name in ['CP08-r1','CP09-r1']]
 backup = R/'generated-local/CP09'/a.run/'rollback'
@@ -30,22 +32,43 @@ for row in original:
     assert digest(safe(R.parent,row['path']))==row['sha256']
 manifests = [expected(rt)[0] for rt in runtimes]
 print('Original data and both runtimes verified',flush=True)
+updates={'openmohaa.exe':engine}
+if a.options_layout:
+    packages=report['packages']
+    assert {row['game'] for row in packages}=={'AA','SH','BT'} and len(packages)==3
+    for row in packages:
+        src=safe(R,row['package'])
+        assert digest(src)==row['sha256'], 'Package changed after test'
+        name=src.parent.name+'/'+src.name
+        assert src.parent.name in ['main','mainta','maintt'] and src.name=='zzzzzzzzzzzzz_AC_FlinchOptions.pk3'
+        with zipfile.ZipFile(src) as z:
+            assert z.namelist()==['ui/ac_scaling.urc'] and z.testzip() is None
+            assert z.read('ui/ac_scaling.urc')==(R/'mod/ui/ac_scaling.urc').read_text().encode('latin1')
+        updates[name]=src
+    for manifest in manifests:
+        assert set(updates).issubset({row['path'] for row in manifest['owned_files']})
 files = [['openmohaa.exe','build-manifest.json'],
          ['openmohaa.exe','build-manifest.json','CP09-candidate.json','COMPLETE']]
+for names in files:
+    names.extend(name for name in updates if name!='openmohaa.exe')
 for rt,names in zip(runtimes,files):
     target = backup/rt.name
     target.mkdir(parents=True)
     for name in names:
+        (target/name).parent.mkdir(parents=True,exist_ok=True)
         shutil.copy2(rt/name,target/name)
         assert digest(target/name)==digest(rt/name)
 def save(path, value):
     path.write_text(json.dumps(value,indent=2)+'\n')
 try:
     for rt,manifest in zip(runtimes,manifests):
-        shutil.copy2(engine,rt/'openmohaa.exe')
+        for name,src in updates.items(): shutil.copy2(src,rt/name)
         manifest.update(source_commit=commit,engine_source_commit=commit)
         for row in manifest['owned_files']:
-            if row['path']=='openmohaa.exe': row['sha256']=digest(engine)
+            if row['path'] in updates: row['sha256']=digest(updates[row['path']])
+        if a.options_layout:
+            manifest['flinch']={**manifest.get('flinch',{}),'batch':a.run,'packages':packages,
+                               'provider':'Shared three-section options layout','upload_allowed':False}
         save(rt/'build-manifest.json',manifest)
     _,_,source_rows = expected(runtimes[0])
     record = json.loads((runtimes[1]/'CP09-candidate.json').read_text())
@@ -64,6 +87,6 @@ except BaseException:
     raise
 result = dict(source_commit=commit,engine_sha256=digest(engine),verified_files=verified,
               original_files_verified=len(original),personal_files_unchanged=len(before),
-              rollback=str(backup.relative_to(R)),scope='Engine only; game/cgame/assets unchanged')
+              rollback=str(backup.relative_to(R)),scope='Engine and options layout; game/cgame/artwork unchanged' if a.options_layout else 'Engine only; game/cgame/assets unchanged')
 save(backup.parent/'deployment.json',result)
 print(json.dumps(result,indent=2))

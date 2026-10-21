@@ -1,27 +1,65 @@
 menu "ac_scaling" 960 540 NONE 0
-
 virtualres 1
-
+widecanvas
 fullscreen 1
-
-bgcolor 0.055 0.065 0.06 1
-
-bgfill 0.02 0.025 0.02 1
-
+bgfill 0 0 0 1
 borderstyle NONE
+widescreenbackground "textures/ac/menu_background"
+
+resource
+Label
+{
+name "displayPanel"
+dontlocalize
+title ""
+rect 28 104 440 252
+font ac-courier-14
+fgcolor 0.91 0.86 0.7 1
+bgcolor 0.055 0.07 0.06 0.87
+borderstyle NONE
+
+}
+
+resource
+Label
+{
+name "bloodPanel"
+dontlocalize
+title ""
+rect 492 104 440 252
+font ac-courier-14
+fgcolor 0.91 0.86 0.7 1
+bgcolor 0.055 0.07 0.06 0.87
+borderstyle NONE
+
+}
+
+resource
+Label
+{
+name "additionalPanel"
+dontlocalize
+title ""
+rect 28 370 904 106
+font ac-courier-14
+fgcolor 0.91 0.86 0.7 1
+bgcolor 0.055 0.07 0.06 0.87
+borderstyle NONE
+
+}
 
 resource
 Label
 {
 name "heading"
 dontlocalize
-title "Allied Campaign Options"
-rect 40 24 880 40
-fgcolor 0.91 0.86 0.7 1
-bgcolor 0.055 0.065 0.06 1
-borderstyle NONE
+title "ALLIED CAMPAIGN OPTIONS"
+rect 36 22 888 34
 font facfont-20
-
+fgcolor 0.91 0.86 0.7 1
+bgcolor 0 0 0 0
+borderstyle NONE
+textalign left
 }
 
 resource
@@ -29,13 +67,55 @@ Label
 {
 name "intro"
 dontlocalize
-title "Display, HUD and visual effects"
-rect 40 70 880 28
-fgcolor 0.91 0.86 0.7 1
-bgcolor 0.055 0.065 0.06 1
+title "Fine-tune your interface and combat effects."
+rect 36 64 888 22
+font ac-courier-13
+fgcolor 0.67 0.73 0.66 1
+bgcolor 0 0 0 0
 borderstyle NONE
-font facfont-20
+textalign left
+}
 
+resource
+Label
+{
+name "displaySection"
+dontlocalize
+title "DISPLAY & HUD"
+rect 44 116 408 24
+font ac-courier-16
+fgcolor 1 0.85 0.4 1
+bgcolor 0 0 0 0
+borderstyle NONE
+textalign left
+}
+
+resource
+Label
+{
+name "effectsSection"
+dontlocalize
+title "BLOOD EFFECTS"
+rect 508 116 408 24
+font ac-courier-16
+fgcolor 1 0.85 0.4 1
+bgcolor 0 0 0 0
+borderstyle NONE
+textalign left
+}
+
+resource
+Label
+{
+name "additionalSection"
+dontlocalize
+title "ADDITIONAL OPTIONS"
+rect 44 382 872 24
+font ac-courier-16
+fgcolor 1 0.85 0.4 1
+bgcolor 0 0 0 0
+borderstyle NONE
+textalign left
 }
 
 resource
@@ -44,12 +124,12 @@ Label
 name "autoLabel"
 dontlocalize
 title "Automatic scaling"
-rect 40 150 340 30
+rect 44 154 330 26
+font ac-courier-14
 fgcolor 0.91 0.86 0.7 1
-bgcolor 0.055 0.065 0.06 1
+bgcolor 0 0 0 0
 borderstyle NONE
-font facfont-20
-
+textalign left
 }
 
 resource
@@ -58,11 +138,11 @@ CheckBox
 name "auto"
 dontlocalize
 title ""
-rect 420 150 30 30
+rect 420 154 26 26
+font ac-courier-14
 fgcolor 0.91 0.86 0.7 1
-bgcolor 0.12 0.14 0.12 1
+bgcolor 0 0 0 0
 borderstyle NONE
-font facfont-20
 linkcvar ac_ui_auto
 checked_shader textures/menu/checkbox_checked
 unchecked_shader textures/menu/checkbox_unchecked
@@ -74,12 +154,12 @@ Label
 name "menuLabel"
 dontlocalize
 title "Menu font size"
-rect 40 210 400 30
+rect 44 196 158 28
+font ac-courier-14
 fgcolor 0.91 0.86 0.7 1
-bgcolor 0.055 0.065 0.06 1
+bgcolor 0 0 0 0
 borderstyle NONE
-font facfont-20
-
+textalign left
 }
 
 resource
@@ -88,11 +168,11 @@ Slider
 name "menuSlider"
 dontlocalize
 title ""
-rect 40 250 300 24
+rect 210 198 132 24
+font ac-courier-14
 fgcolor 0.91 0.86 0.7 1
-bgcolor 0.12 0.14 0.12 1
+bgcolor 0 0 0 0
 borderstyle NONE
-font facfont-20
 shader textures/menu/slider
 linkcvar ac_menu_scale
 slidertype float
@@ -106,11 +186,11 @@ Field
 name "menuValue"
 dontlocalize
 title ""
-rect 364 246 96 32
+rect 354 196 94 28
+font ac-courier-14
 fgcolor 0.91 0.86 0.7 1
-bgcolor 0.12 0.14 0.12 1
+bgcolor 0.06 0.075 0.07 1
 borderstyle NONE
-font facfont-20
 linkcvar ac_menu_scale
 borderstyle INDENT_BORDER
 }
@@ -121,12 +201,12 @@ Label
 name "hudLabel"
 dontlocalize
 title "HUD size"
-rect 40 298 400 30
+rect 44 236 158 28
+font ac-courier-14
 fgcolor 0.91 0.86 0.7 1
-bgcolor 0.055 0.065 0.06 1
+bgcolor 0 0 0 0
 borderstyle NONE
-font facfont-20
-
+textalign left
 }
 
 resource
@@ -135,11 +215,11 @@ Slider
 name "hudSlider"
 dontlocalize
 title ""
-rect 40 338 300 24
+rect 210 238 132 24
+font ac-courier-14
 fgcolor 0.91 0.86 0.7 1
-bgcolor 0.12 0.14 0.12 1
+bgcolor 0 0 0 0
 borderstyle NONE
-font facfont-20
 shader textures/menu/slider
 linkcvar ac_hud_scale
 slidertype float
@@ -153,11 +233,11 @@ Field
 name "hudValue"
 dontlocalize
 title ""
-rect 364 334 96 32
+rect 354 236 94 28
+font ac-courier-14
 fgcolor 0.91 0.86 0.7 1
-bgcolor 0.12 0.14 0.12 1
+bgcolor 0.06 0.075 0.07 1
 borderstyle NONE
-font facfont-20
 linkcvar ac_hud_scale
 borderstyle INDENT_BORDER
 }
@@ -168,12 +248,12 @@ Label
 name "safeLabel"
 dontlocalize
 title "HUD safe area"
-rect 40 386 400 30
+rect 44 276 158 28
+font ac-courier-14
 fgcolor 0.91 0.86 0.7 1
-bgcolor 0.055 0.065 0.06 1
+bgcolor 0 0 0 0
 borderstyle NONE
-font facfont-20
-
+textalign left
 }
 
 resource
@@ -182,11 +262,11 @@ Slider
 name "safeSlider"
 dontlocalize
 title ""
-rect 40 426 300 24
+rect 210 278 132 24
+font ac-courier-14
 fgcolor 0.91 0.86 0.7 1
-bgcolor 0.12 0.14 0.12 1
+bgcolor 0 0 0 0
 borderstyle NONE
-font facfont-20
 shader textures/menu/slider
 linkcvar ac_hud_safe
 slidertype float
@@ -200,43 +280,43 @@ Field
 name "safeValue"
 dontlocalize
 title ""
-rect 364 422 96 32
+rect 354 276 94 28
+font ac-courier-14
 fgcolor 0.91 0.86 0.7 1
-bgcolor 0.12 0.14 0.12 1
+bgcolor 0.06 0.075 0.07 1
 borderstyle NONE
-font facfont-20
 linkcvar ac_hud_safe
 borderstyle INDENT_BORDER
 }
 
 resource
-Button
+Label
 {
-name "back"
+name "hudOutlineLabel"
 dontlocalize
-title "Back"
-rect 40 486 180 32
+title "HUD black outline"
+rect 44 318 330 26
+font ac-courier-14
 fgcolor 0.91 0.86 0.7 1
-bgcolor 0.12 0.14 0.12 1
+bgcolor 0 0 0 0
 borderstyle NONE
-font facfont-20
-borderstyle RAISED
-stuffcommand "popmenu 0"
+textalign left
 }
 
 resource
-Button
+CheckBox
 {
-name "reset"
+name "hudOutline"
 dontlocalize
-title "Defaults"
-rect 700 486 220 32
+title ""
+rect 420 318 26 26
+font ac-courier-14
 fgcolor 0.91 0.86 0.7 1
-bgcolor 0.12 0.14 0.12 1
+bgcolor 0 0 0 0
 borderstyle NONE
-font facfont-20
-borderstyle RAISED
-stuffcommand "set ac_ui_auto 1; set ac_menu_scale 1; set ac_hud_scale 1; set ac_hud_safe 1; set ac_blood_mist 1; set ac_world_blood 1; set ac_body_wounds 1; set ac_corpse_effects 1; set ac_player_flinch_percent 20; set ac_bt_drop_limits 0; set ac_hud_outline 0"
+linkcvar ac_hud_outline
+checked_shader textures/menu/checkbox_checked
+unchecked_shader textures/menu/checkbox_unchecked
 }
 
 resource
@@ -245,19 +325,25 @@ Label
 name "mistLabel"
 dontlocalize
 title "Red hit mist"
-rect 520 150 330 30
-font facfont-20
+rect 508 154 352 24
+font ac-courier-14
 fgcolor 0.91 0.86 0.7 1
-bgcolor 0.055 0.065 0.06 1
+bgcolor 0 0 0 0
 borderstyle NONE
+textalign left
 }
+
 resource
 CheckBox
 {
 name "mist"
 dontlocalize
 title ""
-rect 880 150 30 30
+rect 884 160 26 26
+font ac-courier-14
+fgcolor 0.91 0.86 0.7 1
+bgcolor 0 0 0 0
+borderstyle NONE
 linkcvar ac_blood_mist
 checked_shader textures/menu/checkbox_checked
 unchecked_shader textures/menu/checkbox_unchecked
@@ -266,22 +352,42 @@ unchecked_shader textures/menu/checkbox_unchecked
 resource
 Label
 {
+name "mistHint"
+dontlocalize
+title "A brief blood cloud on impact."
+rect 508 178 360 18
+font ac-courier-11
+fgcolor 0.67 0.73 0.66 1
+bgcolor 0 0 0 0
+borderstyle NONE
+textalign left
+}
+
+resource
+Label
+{
 name "worldLabel"
 dontlocalize
 title "Blood drops and stains"
-rect 520 202 330 30
-font facfont-20
+rect 508 204 352 24
+font ac-courier-14
 fgcolor 0.91 0.86 0.7 1
-bgcolor 0.055 0.065 0.06 1
+bgcolor 0 0 0 0
 borderstyle NONE
+textalign left
 }
+
 resource
 CheckBox
 {
 name "worldBlood"
 dontlocalize
 title ""
-rect 880 202 30 30
+rect 884 210 26 26
+font ac-courier-14
+fgcolor 0.91 0.86 0.7 1
+bgcolor 0 0 0 0
+borderstyle NONE
 linkcvar ac_world_blood
 checked_shader textures/menu/checkbox_checked
 unchecked_shader textures/menu/checkbox_unchecked
@@ -290,92 +396,148 @@ unchecked_shader textures/menu/checkbox_unchecked
 resource
 Label
 {
+name "worldBloodHint"
+dontlocalize
+title "Particles and blood on nearby surfaces."
+rect 508 228 360 18
+font ac-courier-11
+fgcolor 0.67 0.73 0.66 1
+bgcolor 0 0 0 0
+borderstyle NONE
+textalign left
+}
+
+resource
+Label
+{
 name "bodyLabel"
 dontlocalize
 title "Body wounds"
-rect 520 254 330 30
-font facfont-20
+rect 508 254 352 24
+font ac-courier-14
 fgcolor 0.91 0.86 0.7 1
-bgcolor 0.055 0.065 0.06 1
+bgcolor 0 0 0 0
 borderstyle NONE
+textalign left
 }
+
 resource
 CheckBox
 {
 name "bodyWounds"
 dontlocalize
 title ""
-rect 880 254 30 30
+rect 884 260 26 26
+font ac-courier-14
+fgcolor 0.91 0.86 0.7 1
+bgcolor 0 0 0 0
+borderstyle NONE
 linkcvar ac_body_wounds
 checked_shader textures/menu/checkbox_checked
 unchecked_shader textures/menu/checkbox_unchecked
 }
+
+resource
+Label
+{
+name "bodyWoundsHint"
+dontlocalize
+title "Visible wounds on characters."
+rect 508 278 360 18
+font ac-courier-11
+fgcolor 0.67 0.73 0.66 1
+bgcolor 0 0 0 0
+borderstyle NONE
+textalign left
+}
+
 resource
 Label
 {
 name "corpseLabel"
 dontlocalize
 title "Corpse hit effects"
-rect 520 306 330 30
-font facfont-20
+rect 508 304 352 24
+font ac-courier-14
 fgcolor 0.91 0.86 0.7 1
-bgcolor 0.055 0.065 0.06 1
+bgcolor 0 0 0 0
 borderstyle NONE
+textalign left
 }
+
 resource
 CheckBox
 {
 name "corpseEffects"
 dontlocalize
 title ""
-rect 880 306 30 30
+rect 884 310 26 26
+font ac-courier-14
+fgcolor 0.91 0.86 0.7 1
+bgcolor 0 0 0 0
+borderstyle NONE
 linkcvar ac_corpse_effects
 checked_shader textures/menu/checkbox_checked
 unchecked_shader textures/menu/checkbox_unchecked
 }
+
 resource
 Label
 {
-name "displaySection"
+name "corpseEffectsHint"
 dontlocalize
-title "DISPLAY & HUD"
-rect 40 108 420 28
-font facfont-20
-fgcolor 0.75 0.72 0.55 1
-bgcolor 0.055 0.065 0.06 1
+title "Visual feedback when shooting bodies."
+rect 508 328 360 18
+font ac-courier-11
+fgcolor 0.67 0.73 0.66 1
+bgcolor 0 0 0 0
 borderstyle NONE
+textalign left
 }
-resource
-Label
-{
-name "effectsSection"
-dontlocalize
-title "ADDITIONAL OPTIONS"
-rect 520 108 400 28
-font facfont-20
-fgcolor 0.75 0.72 0.55 1
-bgcolor 0.055 0.065 0.06 1
-borderstyle NONE
-}
+
 resource
 Label
 {
 name "flinchLabel"
 dontlocalize
 title "Hit flinch"
-rect 520 354 180 30
-font facfont-20
+rect 44 418 112 26
+font ac-courier-14
 fgcolor 0.91 0.86 0.7 1
+bgcolor 0 0 0 0
 borderstyle NONE
+textalign left
 }
+
+resource
+Slider
+{
+name "playerFlinch"
+dontlocalize
+title ""
+rect 166 420 206 24
+font ac-courier-14
+fgcolor 0.91 0.86 0.7 1
+bgcolor 0 0 0 0
+borderstyle NONE
+shader textures/menu/slider
+linkcvar ac_player_flinch_percent
+slidertype integer
+setrange 0 100
+stepsize 10
+}
+
 resource
 Label
 {
 name "flinchValue"
 dontlocalize
-rect 700 354 220 30
-font facfont-20
+title ""
+rect 382 418 68 26
+font ac-courier-14
 fgcolor 1 0.9 0.65 1
+bgcolor 0 0 0 0
+borderstyle NONE
 linkcvar ac_player_flinch_percent
 linkstring 0 "0%"
 linkstring 10 "10%"
@@ -388,57 +550,105 @@ linkstring 70 "70%"
 linkstring 80 "80%"
 linkstring 90 "90%"
 linkstring 100 "100%"
-borderstyle NONE
 }
+
 resource
-Slider
+Label
 {
-name "playerFlinch"
-rect 520 394 400 24
-shader textures/menu/slider
-linkcvar ac_player_flinch_percent
-slidertype integer
-setrange 0 100
-stepsize 10
+name "flinchHint"
+dontlocalize
+title "Camera kick on damage: 0% off, 100% original."
+rect 44 448 412 18
+font ac-courier-11
+fgcolor 0.67 0.73 0.66 1
+bgcolor 0 0 0 0
+borderstyle NONE
+textalign left
 }
+
 resource
 Label
 {
 name "dropLabel"
 dontlocalize
 title "BT drop restrictions"
-rect 520 438 330 30
-font facfont-20
+rect 508 418 352 26
+font ac-courier-14
 fgcolor 0.91 0.86 0.7 1
+bgcolor 0 0 0 0
 borderstyle NONE
+textalign left
 }
+
 resource
 CheckBox
 {
 name "dropLimits"
-rect 880 438 30 30
+dontlocalize
+title ""
+rect 884 418 26 26
+font ac-courier-14
+fgcolor 0.91 0.86 0.7 1
+bgcolor 0 0 0 0
+borderstyle NONE
 linkcvar ac_bt_drop_limits
 checked_shader textures/menu/checkbox_checked
 unchecked_shader textures/menu/checkbox_unchecked
 }
+
 resource
 Label
 {
-name "hudOutlineLabel"
+name "dropHint"
 dontlocalize
-title "HUD black outline"
-rect 40 458 340 24
-font facfont-20
-fgcolor 0.91 0.86 0.7 1
+title "Use original drop rules in Breakthrough."
+rect 508 448 408 18
+font ac-courier-11
+fgcolor 0.67 0.73 0.66 1
+bgcolor 0 0 0 0
 borderstyle NONE
+textalign left
 }
+
 resource
-CheckBox
+Button
 {
-name "hudOutline"
-rect 420 458 24 24
-linkcvar ac_hud_outline
-checked_shader textures/menu/checkbox_checked
-unchecked_shader textures/menu/checkbox_unchecked
+name "back"
+dontlocalize
+title "Back"
+rect 28 496 132 30
+font ac-courier-16
+fgcolor 0.91 0.86 0.7 1
+bgcolor 0.09 0.11 0.09 1
+borderstyle NONE
+stuffcommand "popmenu 0"
+}
+
+resource
+Label
+{
+name "applyHint"
+dontlocalize
+title "Changes apply immediately across all campaigns."
+rect 176 496 580 30
+font ac-courier-12
+fgcolor 0.67 0.73 0.66 1
+bgcolor 0 0 0 0
+borderstyle NONE
+
+}
+
+resource
+Button
+{
+name "reset"
+dontlocalize
+title "Defaults"
+rect 772 496 160 30
+font ac-courier-16
+fgcolor 0.91 0.86 0.7 1
+bgcolor 0.09 0.11 0.09 1
+borderstyle NONE
+stuffcommand "set ac_ui_auto 1; set ac_menu_scale 1; set ac_hud_scale 1; set ac_hud_safe 1; set ac_blood_mist 1; set ac_world_blood 1; set ac_body_wounds 1; set ac_corpse_effects 1; set ac_player_flinch_percent 20; set ac_bt_drop_limits 0; set ac_hud_outline 0"
 }
 end.
