@@ -1,8 +1,9 @@
 """Isolated native probes for campaign stats, live AA briefings and mounted Breda."""
 from pathlib import Path
-import argparse, shutil, subprocess, json, re
+import argparse, shutil, subprocess, json, re, hashlib
 from PIL import Image
-ap=argparse.ArgumentParser();ap.add_argument('run');ap.add_argument('kind',choices=['stats','briefing','breda']);ap.add_argument('--game',type=int,default=0);ap.add_argument('--width',type=int,default=1920);ap.add_argument('--height',type=int,default=1080);a=ap.parse_args()
+ap=argparse.ArgumentParser();ap.add_argument('run');ap.add_argument('kind',choices=['stats','briefing','breda','ab41']);ap.add_argument('--game',type=int,default=0);ap.add_argument('--width',type=int,default=1920);ap.add_argument('--height',type=int,default=1080);a=ap.parse_args()
+gun_model='models/vehicles/ab_turret_mini.tik' if a.kind=='ab41' else 'models/statweapons/It_W_Breda_gun.tik'
 r=Path(__file__).resolve().parents[1];rt=r/'runtime-local/CP08-r1';p=r/'profiles-local/stats-briefing-breda'/a.run;h=p/['main','mainta','maintt'][a.game]
 (h/'probe').mkdir(parents=True,exist_ok=False);b=p/'bin';b.mkdir()
 for f in rt.glob('*.dll'):shutil.copy2(f,b/f.name)
@@ -50,22 +51,24 @@ else:
  println "AC_BREDA_END"
 end
 '''
- (h/'probe/breda.scr').write_text(fixture)
+ (h/'probe/breda.scr').write_text(fixture.replace('models/statweapons/It_W_Breda_gun.tik',gun_model))
  cmd+=['loadgame reference','wait 4000','finishloadingscreen','wait 1500','script player exec probe/breda.scr','wait 1700','screenshot silent','wait 2200','screenshot silent','savegame breda','wait 1000','loadgame breda','wait 3500','finishloadingscreen','wait 800','screenshot silent']
 cmd+=['echo AC_PROBE_DONE','quit'];(h/'test.cfg').write_text('\n'.join(cmd)+'\n')
-settings=dict(com_target_game=a.game,fs_basepath=rt,fs_homepath=p,fs_steampath=rt,fs_gogpath=rt,fs_microsoftstorepath=rt,net_enabled=0,logfile=2,developer=int(a.kind=='breda'),cheats=1,ui_console=0,r_fullscreen=0,r_mode=-1,r_customwidth=a.width,r_customheight=a.height,com_maxfps=60,com_maxfpsUnfocused=60,cl_playintro=0,ac_campaign_mode=0,ac_fx_debug=2,ac_body_wounds=1,ac_world_blood=1,ac_blood_mist=1,g_subtitle=1)
+settings=dict(com_target_game=a.game,fs_basepath=rt,fs_homepath=p,fs_steampath=rt,fs_gogpath=rt,fs_microsoftstorepath=rt,net_enabled=0,logfile=2,developer=int(a.kind in ['breda','ab41']),cheats=1,ui_console=0,r_fullscreen=0,r_mode=-1,r_customwidth=a.width,r_customheight=a.height,com_maxfps=60,com_maxfpsUnfocused=60,cl_playintro=0,ac_campaign_mode=0,ac_fx_debug=2,ac_body_wounds=1,ac_world_blood=1,ac_blood_mist=1,g_subtitle=1)
 args=[str(b/'openmohaa.exe')]
 for key,value in settings.items():args+=['+set',key,str(value)]
 proc=subprocess.run(args+['+exec','test.cfg'],cwd=rt,timeout=120)
 log=(h/'qconsole.log').read_text(encoding='latin1');errors=[s for s in log.splitlines() if any(x in s for x in ['Script Error','command not available','Unknown command','Invalid event','Failed to find resource',"Couldn't find menu"])]
-report=dict(kind=a.kind,game=a.game,exit=proc.returncode,done='AC_PROBE_DONE' in log,errors=errors)
-if a.kind=='breda':
- hits=re.findall(r'AC_HIT[^\n]+weapon=models/statweapons/It_W_Breda_gun.tik[^\n]+',log,re.I)
- report.update(hits=hits,drops=len(re.findall('AC_DROPS',log)),mist='AC_MIST' in log,marks='AC_MARK drop' in log,archives=re.findall(r'AC_WOUND_ARCHIVE (save|load) count=(\d+)',log))
+report=dict(engine_sha256=hashlib.sha256((b/'openmohaa.exe').read_bytes()).hexdigest(),game_sha256=hashlib.sha256((b/'game.dll').read_bytes()).hexdigest(),kind=a.kind,game=a.game,exit=proc.returncode,done='AC_PROBE_DONE' in log,errors=errors)
+if a.kind in ['breda','ab41']:
+ hits=re.findall(r'AC_HIT[^\n]+weapon='+re.escape(gun_model)+r'[^\n]+',log,re.I)
+ report.update(hits=hits,drops=len(re.findall('AC_DROPS',log)),mist=bool(re.search(r'AC_MIST[^\n]+enabled=1[^\n]+authorized=1',log)),marks='AC_MARK drop' in log,archives=re.findall(r'AC_WOUND_ARCHIVE (save|load) count=(\d+)',log),target_health=re.findall(r'AC_BREDA_HEALTH=([\d.]+)',log))
 for f in (h/'screenshots').glob('*.tga'):Image.open(f).save(f.with_suffix('.png'))
 (p/'result.json').write_text(json.dumps(report,indent=2)+'\n');print(json.dumps(report))
 assert proc.returncode==0 and report['done'] and not errors
-if a.kind=='breda':
- assert len(hits)==8 and all('group=4' in hit for hit in hits)
+if a.kind in ['breda','ab41']:
+ assert len(hits)==(16 if a.kind=='ab41' else 8) and all('group=4' in hit for hit in hits)
  assert report['drops'] and report['mist'] and report['marks']
- assert ('save','16') in report['archives'] and ('load','16') in report['archives']
+ count='32' if a.kind=='ab41' else '16'
+ assert ('save',count) in report['archives'] and ('load',count) in report['archives']
+ if a.kind=='ab41': assert report['target_health']==['7120.000']

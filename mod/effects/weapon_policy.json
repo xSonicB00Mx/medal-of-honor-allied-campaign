@@ -1,5 +1,5 @@
 {
-  "version": 6,
+  "version": 7,
   "unknown": "no new blood; preserve existing WCR effects",
   "special": {
     "shotgun": "per-pellet small entry and exit wounds, independent blood droplets",
@@ -364,6 +364,15 @@
     },
     {
       "weapon_id": "models/statweapons/it_w_breda_gun.tik",
+      "group": "mg",
+      "code": 4,
+      "entry_wound_material": "ac/wound_large",
+      "exit_wound_material": "ac/wound_large",
+      "allow_exit_wound": true,
+      "allow_exit_spray": true
+    },
+    {
+      "weapon_id": "models/vehicles/ab_turret_mini.tik",
       "group": "mg",
       "code": 4,
       "entry_wound_material": "ac/wound_large",

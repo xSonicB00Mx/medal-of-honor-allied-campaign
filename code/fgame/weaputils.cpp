@@ -2215,6 +2215,9 @@ float BulletAttack(
         count = 63;
     }
 
+    // Script-fired vehicle guns can have no sentient owner. Keep their exact
+    // weapon identity for cosmetics; retain the original damage/stat ownership.
+    Weapon *const acVisualWeapon = weap;
     if (!owner || owner->IsDead() || owner == world) {
         weap = NULL;
     }
@@ -2355,11 +2358,11 @@ float BulletAttack(
                     trace_t visual=G_Trace(vTraceStart,vec_zero,vec_zero,vTmpEnd+vDir*128,ent,MASK_SHOT,false,"AC corpse visibility",true);
                     acEnd=visual.endpos;
                 }
-                ACCorpseSegment(vTraceStart,acEnd,vDir,weap,acCorpseSeen);
+                ACCorpseSegment(vTraceStart,acEnd,vDir,acVisualWeapon,acCorpseSeen);
 
                 if (ent && ent != world && ent != owner) {
                     const bool acMistContact = g_gametype->integer==GT_SINGLE_PLAYER && ent->takedamage
-                        && ent->IsSubclassOfActor() && ent->health>0 && weap && ACWeaponGroup(weap->model.c_str());
+                        && ent->IsSubclassOfActor() && ent->health>0 && acVisualWeapon && ACWeaponGroup(acVisualWeapon->model.c_str());
                     if (ent->takedamage) {
                         if (g_gametype->integer == GT_SINGLE_PLAYER && !iNumHit) {
                             BulletAttack_Stat(owner, ent, &trace, weap);
@@ -2371,7 +2374,7 @@ float BulletAttack(
 
                         original_value = ent->health;
                         acCorpseSeen[ent->edict->s.number]=true;
-                        ACVisualHit(ent, weap, trace.endpos, vDir);
+                        ACVisualHit(ent, acVisualWeapon, trace.endpos, vDir);
 
                         ent->Damage(
                             world,
