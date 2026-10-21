@@ -11,6 +11,10 @@ Nachtrag auf direkten Nutzerauftrag: [Roemische Missionsnummern in Operations](o
 sechs native Menuepruefungen bestanden, in CP08-r1 und CP09-r1 installiert.
 Arabische Gruppenanzahlen und persoenlicher Fortschritt bleiben erhalten.
 
+Nachtrag 21.10.2026: [Optionsmenue aufgeraeumt](options-layout.md), drei klare
+Bereiche und kompakte Werte. Native Darstellungs-/Bedientests in AA/SH/BT
+bestanden; fuer CP08-r1 und CP09-r1 installiert.
+
 ## Festgelegte Basis
 
 - Ausgangsbranch `codex/cp08-operations-map`, Commit `880b3df1`.

@@ -25,3 +25,10 @@ Werkzeuge: `package_flinch_options.py`, `test_options_layout.py` und
 `deploy_cp09_engine.py --options-layout`. Lokale Testbilder und Berichte liegen
 unter `generated-local/CP09/options-layout-r*/`. Fruehe Testlaeufe fanden einen
 nicht vorhandenen Font und abgeschnittene Dezimalzahlen; beides ist korrigiert.
+
+Finaler Lauf `options-layout-r5` bestanden und fuer CP08-r1/CP09-r1 installiert.
+Quelle: `a06a52d78f5640b1ed3b79f65e1e33eb1200d9eb`.
+Engine-SHA256: `8a5a2cefcde606bc6fed2056050c4828c9b005665e244c23417720ddbf45f356`.
+Integritaet: 9.072 Originaldateien geprueft, 9.086 CP08- und 9.090 CP09-Dateien
+gegen aktualisierte Manifeste bestaetigt. 427 persoenliche Profildateien
+unveraendert. Rueckbaukopien unter dem lokalen Testbericht im Ordner `rollback`.

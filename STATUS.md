@@ -1,3 +1,10 @@
+## Optionsmenue aufgeraeumt (21.10.2026)
+
+DISPLAY & HUD, BLOOD EFFECTS und ADDITIONAL OPTIONS als klare Bereiche.
+Alle elf Einstellungen erhalten; AA/SH/BT-Bedienung und 16:9/4:3/Ultrawide
+geprueft. In CP08-r1/CP09-r1 installiert, 427 persoenliche Profildateien
+unveraendert. [Bericht](checkpoints/CP09/options-layout.md).
+
 ## CP09 begonnen - Regression und separate Durchspielabnahme
 
 Erste technische Runde: 44 unterschiedliche Prueffaelle, davon 40 ohne
