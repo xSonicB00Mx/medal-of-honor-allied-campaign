@@ -1,3 +1,11 @@
+## Ladeblende beim Kampagnenwechsel (22.10.2026)
+
+Desktop-Startluecke durch eine separate Ladeblende abgedeckt. Alle sechs
+Wechselrichtungen im Fenster und UHD-Vollbild sowie Aufloesungswechsel und
+Abbruchbereinigung geprueft. In CP08-r1/CP09-r1 installiert; alle 456
+persoenlichen Profildateien unveraendert.
+[Bericht](checkpoints/CP09/context-cover.md).
+
 ## AB41-MG-Bluteffekte korrigiert (22.10.2026)
 
 Exakte MG-Zuordnung und visuelle Waffenreferenz fuer besitzerlose Schuesse

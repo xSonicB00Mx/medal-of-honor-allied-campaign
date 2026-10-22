@@ -33,3 +33,9 @@ Werkzeuge: `test_context_cover.py`, `test_context_cover_failure.py`.
 Berichte unter `generated-local/CP09/context-cover-*`; keine persoenlichen Saves
 verwendet. Fenster-/Render-Synchronisation getestet, keine pixelweise Videoanalyse
 oder Aussage ueber saemtliche Grafiktreiber und Monitorkonfigurationen.
+
+Installiert in CP08-r1 und CP09-r1, Quelle `1ae6c8b4`.
+Engine-SHA256: `d306577f3380153aa19acfe97e712f95a38cd6b5034531949a903e55691f301c`.
+9072 Originaldateien und 9086/9090 Runtime-Dateien verifiziert; alle 456
+persoenlichen Profildateien unveraendert. Game/Cgame/Assets unveraendert,
+lokale Rueckbaukopien unter `context-cover-mode-final/rollback`.
