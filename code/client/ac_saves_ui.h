@@ -90,7 +90,6 @@ static void AC_ShowSavedGames(void)
     fileHandle_t f=FS_FOpenFileWrite_HomeData("ui/ac_saved_games.urc");if(!f)return;
     FS_Printf(f,"menu ac_saved_games 960 540 NONE 0\nvirtualres 1\nwidecanvas\nfullscreen 1\nbgfill 0 0 0 1\nwidescreenbackground \"textures/ac/menu_background\"\n");
     AC_UIItem(f,"heading","SAVED GAMES",24,16,912,34,NULL,"1 0.85 0.4 1");
-    AC_UIItem(f,"note","All campaigns / Newest first / The correct campaign loads automatically",24,58,912,26,NULL);
     AC_UIItem(f,"date_header","Date and time",24,98,200,25,NULL);
     AC_UIItem(f,"campaign_header","Campaign",232,98,176,25,NULL);
     AC_UIItem(f,"save_header","Saved game",416,98,520,25,NULL);
