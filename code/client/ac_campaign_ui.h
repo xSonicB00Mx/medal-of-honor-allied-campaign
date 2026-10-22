@@ -197,7 +197,7 @@ static void AC_ShowOperations(void)
     AC_UIItem(f,"back","Main Menu",24,508,140,26,"ac_main_menu");
     AC_UIItem(f,"continue","Continue Campaign",176,508,192,26,"ac_continue");
     AC_UIItem(f,"options","Allied Campaign Options",380,508,260,26,"ac_ui_options");
-    for(int i=0;i<3;i++)AC_UIItem(f,va("saves_%d",i),i==0?"AA saves":i==1?"SH saves":"BT saves",656+i*96,508,88,26,va("ac_context %d saves",i));
+    AC_UIItem(f,"saves","Saved Games",656,508,280,26,"ac_saves");
     FS_Printf(f,"end.\n");FS_FCloseFile(f);
     menuManager.Unlock(NULL);menuManager.ClearMenus(true);
     Menu *old=menuManager.FindMenu(menuName);

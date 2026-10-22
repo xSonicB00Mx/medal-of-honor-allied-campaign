@@ -3445,6 +3445,7 @@ static void UI_CampaignOptions_f(void)
 
 #include "ac_campaign_ui.h"
 #include "ac_loadout_ui.h"
+#include "ac_saves_ui.h"
 
 static void UI_AlliedCampaign_f(void)
 {
@@ -3453,8 +3454,7 @@ static void UI_AlliedCampaign_f(void)
 
 static void UI_AlliedSaves_f(void)
 {
-    if (!menuManager.FindMenu("loadsave")) UI_LoadMenu("loadsave");
-    UI_PushMenu("loadsave");
+    AC_ShowSavedGames();
 }
 
 static void UI_CampaignReport_f(void)
@@ -5235,6 +5235,7 @@ void CL_InitializeUI(void)
     Cmd_AddCommand("ac_briefing", AC_BriefingMenu_f);
     Cmd_AddCommand("ac_reset_progress", AC_ResetProgressMenu_f);
     Cmd_AddCommand("ac_saves", UI_AlliedSaves_f);
+    Cmd_AddCommand("ac_saves_load", AC_LoadSelectedSave_f);
     Cmd_AddCommand("ac_ui_report", UI_CampaignReport_f);
     Cmd_AddCommand("pushmenu", UI_PushMenu_f);
     Cmd_AddCommand("pushmenu_sp", UI_PushMenuSP_f);
