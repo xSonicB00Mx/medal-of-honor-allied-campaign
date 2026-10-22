@@ -1,3 +1,10 @@
+## Gemeinsame Spielstandliste (22.10.2026)
+
+Operations hat einen Saved-Games-Zugang fuer AA/SH/BT, neueste Saves zuerst,
+mit automatischem Kontextwechsel beim Laden. Native Ladevorgaenge fuer alle
+drei Kampagnen getestet; CP08-r1/CP09-r1 aktualisiert, 456 persoenliche
+Profildateien unveraendert. [Bericht](checkpoints/CP09/unified-saves.md).
+
 ## Ladeblende beim Kampagnenwechsel (22.10.2026)
 
 Desktop-Startluecke durch eine separate Ladeblende abgedeckt. Alle sechs

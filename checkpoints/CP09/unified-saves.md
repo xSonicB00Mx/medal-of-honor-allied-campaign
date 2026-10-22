@@ -36,3 +36,9 @@ Frueher Test r1 fand eine hinter dem Test-Quit angehaengte Load-Anweisung.
 Der ausgewaehlte Load wird jetzt unmittelbar vor die restliche Befehlswarteschlange
 eingefuegt; finaler Lauf r2 bestanden. Belege bleiben lokal unter
 `generated-local/CP09/unified-saves-r2` und `profiles-local/unified-saves/`.
+
+Installiert in CP08-r1 und CP09-r1, Quelle `5c71300d`.
+Engine-SHA256: `af1614e419f638250c2068dde682a63e44067ea41118f54aadb3d2e059f0888c`.
+9072 Originaldateien, 9086/9090 Runtime-Dateien verifiziert; alle 456
+persoenlichen Profildateien unveraendert. Nur Engine ersetzt, lokale
+Rueckbaukopien im Berichtordner unter `rollback`.
