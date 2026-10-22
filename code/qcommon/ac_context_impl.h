@@ -94,6 +94,7 @@ static void AC_Context_f(void)
         if (!CreateProcessA(exe,args,NULL,NULL,FALSE,0,NULL,NULL,&si,&pi)) {
             Com_Printf("AC_CONTEXT_FAILED create process: %lu\n",GetLastError()); return;
         }
+        Sys_ACTransitionStart(pi.dwProcessId);
         CloseHandle(pi.hThread);CloseHandle(pi.hProcess);
         Com_Printf("AC_CONTEXT_RESTART %d -> %d %s child=%lu\n",com_target_game->integer,target,map,pi.dwProcessId);
         Com_Quit_f();
@@ -118,6 +119,7 @@ static void AC_WaitForPreviousContext(void)
             if (result != WAIT_OBJECT_0) Com_Error(ERR_FATAL,"Previous campaign context did not stop");
         }
         Cvar_Set("ac_parent_pid", "");
+        Cvar_Set("ac_transition_pending", "1");
     }
 #endif
 }

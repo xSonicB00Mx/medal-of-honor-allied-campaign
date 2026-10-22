@@ -1471,6 +1471,11 @@ void Sys_CloseMutex( void );
 void Sys_ShowConsole( int visLevel, qboolean quitOnClose );
 void Sys_DebugPrint(const char* message);
 void Sys_PumpMessageLoop( void );
+#ifdef _WIN32
+int Sys_ACTransitionMain(int argc, char **argv);
+void Sys_ACTransitionStart(unsigned long childPid);
+void Sys_ACTransitionPresented(void);
+#endif
 
 qboolean SaveRegistryInfo( qboolean user, const char *pszName, void *pvBuf, long lSize );
 qboolean LoadRegistryInfo( qboolean user, const char *pszName, void *pvBuf, long *plSize );

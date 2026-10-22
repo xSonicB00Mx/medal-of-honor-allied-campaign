@@ -787,6 +787,11 @@ int main( int argc, char **argv )
 	char *protocolCommand = NULL;
 #endif
 
+#ifdef _WIN32
+	if (argc > 1 && !strcmp(argv[1], "--ac-transition"))
+		return Sys_ACTransitionMain(argc, argv);
+#endif
+
 #ifdef USE_AUTOUPDATER
 	Sys_LaunchAutoupdater(argc, argv);
 #endif

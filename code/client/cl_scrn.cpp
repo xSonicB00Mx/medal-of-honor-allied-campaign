@@ -509,6 +509,9 @@ void SCR_SimpleUpdateScreen( void ) {
 	else {
 		re.EndFrame( NULL, NULL );
 	}
+#ifdef _WIN32
+	Sys_ACTransitionPresented();
+#endif
 }
 
 /*

@@ -974,3 +974,152 @@ qboolean Sys_SetMaxFileLimit( void )
 {
 	return qtrue;
 }
+
+// A separate, short-lived window bridges destruction/recreation of the SDL
+// window across campaign processes. No renderer, content or profile is loaded.
+static void AC_TransitionEventName(char *name, size_t size, DWORD pid, const char *suffix)
+{
+    snprintf(name, size, "Local\\OpenMOHAA_AC_%lu_%s", pid, suffix);
+}
+
+static BOOL CALLBACK AC_FindGameWindow(HWND window, LPARAM result)
+{
+    DWORD pid;
+    char className[64];
+    GetWindowThreadProcessId(window, &pid);
+    GetClassNameA(window, className, sizeof(className));
+    if (pid == GetCurrentProcessId() && IsWindowVisible(window) && !IsIconic(window)
+        && !strcmp(className, "SDL_app")) {
+        *(HWND *)result = window;
+        return FALSE;
+    }
+    return TRUE;
+}
+
+static LRESULT CALLBACK AC_TransitionProc(HWND window, UINT message, WPARAM wparam, LPARAM lparam)
+{
+    if (message == WM_DISPLAYCHANGE) {
+        HMONITOR monitor = (HMONITOR)GetWindowLongPtr(window, GWLP_USERDATA);
+        MONITORINFO info = {0};
+        info.cbSize = sizeof(info);
+        if (monitor && GetMonitorInfo(monitor, &info)) {
+            RECT *r = &info.rcMonitor;
+            SetWindowPos(window, HWND_TOPMOST, r->left, r->top, r->right-r->left, r->bottom-r->top, SWP_NOACTIVATE);
+            UpdateWindow(window);
+        }
+    }
+    if (message == WM_PAINT) {
+        PAINTSTRUCT paint;
+        RECT rect;
+        HDC dc = BeginPaint(window, &paint);
+        GetClientRect(window, &rect);
+        FillRect(dc, &rect, (HBRUSH)GetStockObject(BLACK_BRUSH));
+        SetBkMode(dc, TRANSPARENT);
+        SetTextColor(dc, RGB(220, 210, 180));
+        SelectObject(dc, GetStockObject(DEFAULT_GUI_FONT));
+        DrawTextA(dc, "Loading Allied Campaign...", -1, &rect, DT_CENTER | DT_VCENTER | DT_SINGLELINE);
+        EndPaint(window, &paint);
+        return 0;
+    }
+    return DefWindowProcA(window, message, wparam, lparam);
+}
+
+int Sys_ACTransitionMain(int argc, char **argv)
+{
+    HANDLE handles[2], ready;
+    WNDCLASSA wc = {0};
+    HWND window;
+    char name[96];
+    DWORD pid, start;
+    int x, y, width, height;
+    if (argc != 8) return 1;
+    pid = (DWORD)strtoul(argv[2], NULL, 10);
+    x = atoi(argv[3]); y = atoi(argv[4]); width = atoi(argv[5]); height = atoi(argv[6]);
+    if (!pid || width < 1 || height < 1 || width > 32768 || height > 32768) return 1;
+    handles[0] = OpenProcess(SYNCHRONIZE, FALSE, pid);
+    AC_TransitionEventName(name, sizeof(name), pid, "done");
+    handles[1] = CreateEventA(NULL, TRUE, FALSE, name);
+    AC_TransitionEventName(name, sizeof(name), pid, "ready");
+    ready = OpenEventA(EVENT_MODIFY_STATE, FALSE, name);
+    if (!handles[0] || !handles[1] || !ready) {
+        if (handles[0]) CloseHandle(handles[0]);
+        if (handles[1]) CloseHandle(handles[1]);
+        if (ready) CloseHandle(ready);
+        return 1;
+    }
+    SetProcessDPIAware();
+    wc.lpfnWndProc = AC_TransitionProc;
+    wc.hInstance = GetModuleHandle(NULL);
+    wc.hbrBackground = (HBRUSH)GetStockObject(BLACK_BRUSH);
+    wc.lpszClassName = "AlliedCampaignTransition";
+    RegisterClassA(&wc);
+    window = CreateWindowExA(WS_EX_TOPMOST | WS_EX_TOOLWINDOW | WS_EX_NOACTIVATE,
+        wc.lpszClassName, "Allied Campaign - Loading", WS_POPUP,
+        x, y, width, height, NULL, NULL, wc.hInstance, NULL);
+    if (window) {
+        if (atoi(argv[7])) {
+            RECT rect = {x, y, x+width, y+height};
+            SetWindowLongPtr(window, GWLP_USERDATA, (LONG_PTR)MonitorFromRect(&rect, MONITOR_DEFAULTTONEAREST));
+            SendMessage(window, WM_DISPLAYCHANGE, 0, 0);
+        }
+        ShowWindow(window, SW_SHOWNOACTIVATE);
+        UpdateWindow(window);
+        SetEvent(ready);
+        start = GetTickCount();
+        while (GetTickCount() - start < 120000) {
+            MSG message;
+            DWORD result = MsgWaitForMultipleObjects(2, handles, FALSE, 100, QS_ALLINPUT);
+            if (result == WAIT_OBJECT_0 || result == WAIT_OBJECT_0 + 1 || result == WAIT_FAILED) break;
+            while (PeekMessage(&message, NULL, 0, 0, PM_REMOVE)) {
+                TranslateMessage(&message);
+                DispatchMessage(&message);
+            }
+            if (!IsWindow(window)) break;
+        }
+        DestroyWindow(window);
+    }
+    CloseHandle(ready); CloseHandle(handles[1]); CloseHandle(handles[0]);
+    return window ? 0 : 1;
+}
+
+void Sys_ACTransitionStart(unsigned long childPid)
+{
+    HWND window = NULL;
+    RECT rect;
+    STARTUPINFOA si = {0};
+    PROCESS_INFORMATION pi = {0};
+    HANDLE ready;
+    char exe[MAX_OSPATH], args[2048], name[96];
+    EnumWindows(AC_FindGameWindow, (LPARAM)&window);
+    if (!window || !GetWindowRect(window, &rect) || !GetModuleFileNameA(NULL, exe, sizeof(exe))) return;
+    AC_TransitionEventName(name, sizeof(name), childPid, "ready");
+    ready = CreateEventA(NULL, TRUE, FALSE, name);
+    if (!ready) return;
+    snprintf(args, sizeof(args), "\"%s\" --ac-transition %lu %ld %ld %ld %ld %d", exe, childPid,
+        rect.left, rect.top, rect.right - rect.left, rect.bottom - rect.top, Cvar_VariableIntegerValue("r_fullscreen"));
+    si.cb = sizeof(si);
+    if (CreateProcessA(exe, args, NULL, NULL, FALSE, CREATE_NO_WINDOW, NULL, NULL, &si, &pi)) {
+        DWORD result = WaitForSingleObject(ready, 5000);
+        Com_Printf("AC_TRANSITION_COVER child=%lu ready=%d\n", childPid, result == WAIT_OBJECT_0);
+        CloseHandle(pi.hThread); CloseHandle(pi.hProcess);
+    }
+    CloseHandle(ready);
+}
+
+void Sys_ACTransitionPresented(void)
+{
+    HWND window = NULL;
+    HANDLE done;
+    char name[96];
+    if (!Cvar_VariableIntegerValue("ac_transition_pending")) return;
+    EnumWindows(AC_FindGameWindow, (LPARAM)&window);
+    if (!window) return;
+    AC_TransitionEventName(name, sizeof(name), GetCurrentProcessId(), "done");
+    done = OpenEventA(EVENT_MODIFY_STATE, FALSE, name);
+    if (done) {
+        SetEvent(done);
+        CloseHandle(done);
+        Com_Printf("AC_TRANSITION_PRESENTED child=%lu\n", GetCurrentProcessId());
+    }
+    Cvar_Set("ac_transition_pending", "0");
+}
