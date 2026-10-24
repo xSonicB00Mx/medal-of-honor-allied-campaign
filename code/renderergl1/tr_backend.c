@@ -642,7 +642,13 @@ void RB_BeginDrawingView (void) {
 			if (r_fastsky->integer)
 			{
 				clearBits |= GL_COLOR_BUFFER_BIT;
-				qglClearColor(0.5, 0.5, 1.0, 1.0);
+				// The simplified sky must retain the map's atmosphere. A fixed
+				// bright blue background turns night missions into daylight.
+				// Use this view's color directly, even when fog is disabled.
+				qglClearColor(
+					backEnd.viewParms.farplane_color[0] * tr.identityLight,
+					backEnd.viewParms.farplane_color[1] * tr.identityLight,
+					backEnd.viewParms.farplane_color[2] * tr.identityLight, 1.0);
 			}
 		}
 	}
