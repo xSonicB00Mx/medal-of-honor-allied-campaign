@@ -23,3 +23,7 @@ Build: openmohaa RelWithDebInfo erfolgreich. Getestete EXE SHA256:
 Berichte/Bilder: generated-local/CP09/night-sky-{before,fixed},
 profiles-local/night-sky/night-sky-{before,fixed}.
 Die natuerliche Missionsabnahme durch den Nutzer bleibt offen.
+
+Auslieferung: Engine ce1d5be3 in CP08-r1 und CP09-r1 installiert; 9086/9090
+Laufzeitdateien und 9072 Originaldateien geprueft, 462 persoenliche Dateien
+unveraendert. Rollback und Deploymentbericht unter night-sky-fixed.

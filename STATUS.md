@@ -1,3 +1,10 @@
+## 2026-10-24: Spearhead D-Day night sky fixed
+
+- Simplified sky used hard-coded daylight blue; now uses map/view atmosphere color.
+- Existing t1l1 save tested in isolation; fog on/off and normal sky checked.
+- Engine ce1d5be3 installed in CP08-r1 and CP09-r1; 462 personal files unchanged.
+- Details: checkpoints/CP09/night-sky.md. Natural playthrough acceptance remains open.
+
 ## Gemeinsame Spielstandliste (22.10.2026)
 
 Operations hat einen Saved-Games-Zugang fuer AA/SH/BT, neueste Saves zuerst,
