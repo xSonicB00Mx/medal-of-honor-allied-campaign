@@ -1,3 +1,9 @@
+## 2026-10-25: Startup movies restored
+
+- CP08/CP09 normal launchers now use cl_playintro 1; internal campaign switches retain 0.
+- Original intro chain completed naturally in isolated profile (184 seconds), then Main Menu verified.
+- Launcher-only change; no binaries, assets or personal profile modified.
+
 ## 2026-10-24: Spearhead D-Day night sky fixed
 
 - Simplified sky used hard-coded daylight blue; now uses map/view atmosphere color.
