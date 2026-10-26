@@ -1,3 +1,10 @@
+## 2026-10-26: Installer-Lieferumfang praezisiert
+
+- Alle benoetigten Modressourcen und Laufzeitabhaengigkeiten im kostenlosen Setup mitliefern.
+- WCR zuerst vollstaendig pruefen; kompatiblen Bestand ohne Download uebernehmen.
+- Nur fehlendes/zu reparierendes WCR extern beziehen; keine Max-Payne-/Fontgenerierungs-Voraussetzung.
+- Weiterhin ausschliesslich Planung, kein Installerbau.
+
 ## 2026-10-26: Installerplanung, noch kein Installerbau
 
 - Nutzerauftrag: spaeter rohe Warchest erkennen, WCR herunterladen, danach Allied Campaign installieren.

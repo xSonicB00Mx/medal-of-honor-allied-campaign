@@ -7,10 +7,17 @@ Keine Downloads von Paketen, Paketgenerierung oder Laufzeitaenderungen in dieser
 
 ## Ziel
 
-Ein Windows-x64-Setup erkennt eine unveraenderte, vollstaendige Installation von
-Allied Assault, Spearhead und Breakthrough. Nach der Eingabe von Quell- und
-Zielordner laedt es zuerst die freigegebene WCR-Fassung herunter, installiert
-diese und anschliessend Allied Campaign samt passender Engine und Abhaengigkeiten.
+Praezisierung des Nutzers: Die kostenlose Mod liefert alle benoetigten
+Modressourcen mit. Nur WCR ist ein externer Download, und nur wenn keine
+vollstaendige kompatible Installation vorhanden ist. Keine zusaetzliche
+Max-Payne-Installation, Fontgenerierung oder separaten Assetdownloads beim Spieler.
+
+Ein Windows-x64-Setup erkennt eine vollstaendige Installation von Allied Assault,
+Spearhead und Breakthrough, entweder unveraendert oder bereits mit kompatiblem WCR.
+Nach der Eingabe von Quell- und Zielordner uebernimmt es vorhandenes WCR oder
+laedt den freigegebenen fehlenden Stand herunter. Danach installiert es Allied
+Campaign samt passender Engine und saemtlichen benoetigten Modressourcen aus dem Setup.
+Das kommerzielle Warchest-Grundspiel bleibt die vorhandene Voraussetzung.
 Kein manuelles PK3-Kopieren, kein separat installiertes Python, Git oder Compiler.
 Bedienoberflaeche und Fehlermeldungen im Setup auf Englisch.
 
@@ -26,7 +33,11 @@ Bedienoberflaeche und Fehlermeldungen im Setup auf Englisch.
    auf dem Laufwerk des Spiels. Originalinstallation bleibt die gelesene Quelle.
    Quelle und Ziel duerfen weder identisch noch ineinander verschachtelt sein.
    Freien Platz fuer Datenkopie, Downloads, Entpacken und Update-Rollback berechnen.
-3. **Download WCR:** exakt freigegebene Vollversion und erforderlichen Patch von
+3. **Check / Download WCR:** Quelle und gegebenenfalls bestehende AC-Zielinstallation
+   anhand der erforderlichen Module UND losen Dateien mit Versions-/Hashmanifest
+   pruefen. Dateinamen allein genuegen nicht. Vollstaendiges kompatibles WCR ohne
+   Netzwerkzugriff uebernehmen; auch Offline-Installation muss dann funktionieren.
+   Fehlt WCR, exakt freigegebene Vollversion und erforderlichen Patch von
    der Quelle des Autors beziehen. Versionsnummer, Dateigroesse und SHA-256 im
    Release-Manifest festschreiben. Kein Download eines beliebigen "latest".
    Transport und Weiterleitungen pruefen, nur erwartete Dateien akzeptieren.
@@ -34,21 +45,27 @@ Bedienoberflaeche und Fehlermeldungen im Setup auf Englisch.
    Falls der Hoster einen Browser-Schritt verlangt: Original-Downloadseite und
    Auswahl eines lokal geladenen, identisch geprueften Archivs anbieten. Kein
    stiller Fremd-Mirror und keine Zusage eines unbeaufsichtigten Downloads, bevor
-   der tatsaechliche Downloadpfad getestet wurde.
+   der tatsaechliche Downloadpfad getestet wurde. Bei unvollstaendigem, veraendertem
+   oder inkompatiblem WCR den Befund anzeigen und gezielte Reparatur bzw. den
+   freigegebenen Stand fuer die getrennte Zielinstallation anbieten. Keine stille
+   Aktualisierung vorhandener WCR-Dateien in der Quelle. Gueltige vorhandene
+   Module wiederverwenden; nur tatsaechlich erforderliche Archive herunterladen.
 4. **Prepare Game:** nur benoetigte Originalspieldaten aus dem Besitz des Spielers
    in einen Arbeitsordner auf dem Ziellaufwerk kopieren. Keine Saves, persoenlichen
    Einstellungen, Originalstarter oder beliebigen fremden PK3s uebernehmen.
    Keine Hardlinks/Junctions zur Originalinstallation.
-5. **Install WCR:** Archive in den Arbeitsordner entpacken, Pfade und Groessen
+5. **Install WCR:** bereits verifizierte lokale WCR-Dateien kopieren oder die
+   benoetigten heruntergeladenen Archive in den Arbeitsordner entpacken, Pfade und Groessen
    begrenzen, absolute/uebergeordnete Pfade und Links ablehnen. Nur die getesteten
    Module und erforderlichen losen Dateien uebernehmen. Keine ungeprueften
    Installations-/Deinstallationsskripte aus Downloads ausfuehren. Ergebnis mit
    der freigegebenen WCR-Basis vergleichen.
 6. **Install Allied Campaign:** zusammengehoerige EXE, game.dll, cgame.dll,
    benoetigte Laufzeitbibliotheken, UI/HUD/Karten/Effekte und Integrationspakete
-   installieren. Kampagnenuebergreifende Waffenressourcen lokal aus den drei
-   Originalspielen/WCR ableiten. Paketprioritaeten und gezielte Skriptaenderungen
-   anhand bekannter Eingabehashes anwenden; bei Abweichungen abbrechen.
+   aus dem Setup installieren. Kampagnenuebergreifende Waffenressourcen, fertige
+   Fontatlanten, Blutressourcen und Skriptintegration gehoeren zum Modpaket.
+   Diese werden beim Releasebau vorbereitet, nicht erst auf dem Spieler-PC erzeugt.
+   Paketprioritaeten und WCR-Kompatibilitaet anhand des Manifests pruefen.
 7. **Verify and Activate:** Gesamtmanifest pruefen und erst dann die fertige
    Installation aktivieren. Startmenue-/Desktopverknuepfung optional erstellen.
    Ein normaler Einstieg in Allied Campaign mit Startvideos; interne Kampagnenwechsel
@@ -85,17 +102,18 @@ versionsgebundenen Eingaben statt aus einem gewachsenen Runtime-Verzeichnis arbe
 | Kategorie | Geplanter Umgang |
 | --- | --- |
 | Eigene Engine/Game/Cgame-Aenderungen | Passende Release-Binaerdateien, Quellstand, Buildanleitung und Lizenztexte zusammen bereitstellen |
-| Originale MOHAA/SH/BT-Assets | Lokal aus gepruefter Warchest ableiten; nicht mit dem Setup ausliefern |
-| WCR | Externe, festgelegte Downloads; Autorenhinweise erhalten; Module/lose Dateien genau zuordnen |
-| Geaenderte Original-/WCR-Skripte | Lokal aus bekannten Originalen und dokumentierten Aenderungsrezepten erzeugen; Verbreitbarkeit der Rezepte separat pruefen |
-| Neue HUD-/Menuegrafiken und Nutzerbilder | Vollstaendige Herkunfts- und Freigabeliste je Datei, einschliesslich abgeleiteter Bilder |
-| Max-Payne-Blutressourcen | Freigabe klaeren oder gleichwertige eigene Ressourcen einsetzen; rohe Warchest allein liefert diese nicht |
-| Courier-New-Bold-Atlanten | Font-/Atlasverwendung pruefen; ggf. lokal aus vorhandenem Windows-Font erzeugen, mit klarer Fehlermeldung falls nicht vorhanden |
-| BT-Dropintegration | Bisherige externe Patchbasis identifizieren und reproduzierbar einbinden; keinen zweiten Drop-Patch darueberinstallieren |
+| Warchest-Grunddaten | Aus vorhandener Spielinstallation kopieren; keine komplette kommerzielle Spielkopie im Setup |
+| Kampagnenuebergreifende Waffen-/Modressourcen | Fertig vorbereitet mit dem Modpaket liefern |
+| WCR | Vorhandenen kompatiblen Stand uebernehmen; nur bei Bedarf extern herunterladen; Autorenhinweise erhalten |
+| Geaenderte Original-/WCR-Skripte | Getestete Integration fertig mitliefern, abgestimmt auf die freigegebene WCR-Basis |
+| Neue HUD-/Menuegrafiken und Nutzerbilder | Fertig mitliefern; Herkunft je Datei dokumentieren |
+| Max-Payne-Blutressourcen | Benoetigte Modressourcen im Setup vorsehen; keine Max-Payne-Installation beim Spieler voraussetzen |
+| Courier-New-Bold-Atlanten | Fertige Atlanten/Metadaten mitliefern; keine lokale Fontgenerierung beim Spieler |
+| BT-Dropintegration | Fertige getestete Integration mitliefern; kein separater Patchdownload und keine Doppelinstallation |
 
-Eine zusaetzlich benoetigte Max-Payne-Installation waere mit dem gewuenschten
-"nur rohe Warchest"-Ziel unvereinbar. Die Herkunftsfragen werden vor der
-Veroeffentlichung geloest, nicht durch einen funktional unvollstaendigen Installer.
+Der Lieferumfang ist damit festgelegt. Die vorhandenen Herkunfts-/Lizenzvermerke
+bleiben im Releaseinventar erhalten; die Entscheidung zum kostenlosen Vertrieb
+wird nicht als bereits dokumentierte Freigabe fremder Rechteinhaber eingetragen.
 Keine Kontaktaufnahme mit Autoren oder Veroeffentlichung durch diesen Plan autorisiert.
 
 ## Noch offene Voraussetzungen
@@ -115,8 +133,9 @@ Keine Kontaktaufnahme mit Autoren oder Veroeffentlichung durch diesen Plan autor
    Auslieferungsart und Lizenzhinweis erfassen. Fehlende lokale Entwicklungsinputs
    und private Pfade aus Paketierungswerkzeugen beseitigen.
 4. **Laufzeitabhaengigkeiten:** DLL-Abhaengigkeiten des finalen Builds auf einem
-   sauberen Windows ohne Entwicklerwerkzeuge pruefen; erforderliche offizielle
-   Redistributables oder zulassige lokale Bibliotheken versionsgebunden aufnehmen.
+   sauberen Windows ohne Entwicklerwerkzeuge pruefen; erforderliche
+   Redistributables oder lokale Bibliotheken versionsgebunden im Setup mitliefern.
+   WCR bleibt der einzige vorgesehene externe Download.
 5. **Starter konsolidieren:** die persoenlichen CP08/CP09-Starter verwenden bereits
    `cl_playintro 1`; der historische Standalone-Generator in cp09_candidate.py
    noch 0. Der neue Release-Starter muss die aktuelle gewuenschte Einstellung 1
@@ -129,8 +148,9 @@ Keine Kontaktaufnahme mit Autoren oder Veroeffentlichung durch diesen Plan autor
 Vorgeschlagen: Inno Setup als Windows-Assistent, mit einem kleinen mitgelieferten
 Import-/Pruefhelfer fuer die spielabhaengigen Ressourcen. Konkrete Toolversion,
 Archivbibliothek und Signierung erst beim Bau festlegen. Der Nutzer soll kein
-Python oder andere Entwicklungswerkzeuge installieren muessen. Unser eigenes
-auslieferbares Material vorzugsweise im Setup mitliefern; WCR extern herunterladen.
+Python oder andere Entwicklungswerkzeuge installieren muessen. Alle benoetigten
+Modressourcen verbindlich im Setup mitliefern; nur fehlendes/zu reparierendes WCR
+extern beziehen. Ressourcenaufbereitung findet beim Releasebau statt.
 Die konkrete Paketgroesse ist erst nach dem Releaseinventar belastbar.
 
 Spaetere Reihenfolge: (1) Quellen/Versionen klaeren, (2) reproduzierbares
@@ -142,7 +162,12 @@ Aktuell wird ausschliesslich dieser Plan erstellt.
 ## Abnahmetests fuer den spaeteren Installer
 
 - Von frischer Warchest bis zum Hauptmenue ohne Entwicklungsordner, Internet nur
-  fuer deklarierte Downloads. Externe Originalinstallation danach byteidentisch.
+  fuer WCR. Externe Originalinstallation danach byteidentisch.
+- Vorhandenes vollstaendiges kompatibles WCR: Installation ohne Download und
+  ohne Netzwerk moeglich. Teilinstallation, falsche Version und veraenderte
+  Module getrennt erkennen; Reparatur nur fuer den fehlenden benoetigten Stand.
+- Ohne Max Payne, ohne Entwicklungswerkzeuge und ohne lokale Fontgenerierung
+  bleiben saemtliche vorgesehenen Modfeatures verfuegbar.
 - AA, SH, BT starten; Missionswechsel, vereinheitlichte Saves, Fortschritt,
   Einstellungen, WCR-Skripte, HUD, FMVs, Blut und LOADOUT-Abhaengigkeiten pruefen.
 - Im neuen Installationsbestand gleiche effektive Ressourcen und Paketprioritaeten
