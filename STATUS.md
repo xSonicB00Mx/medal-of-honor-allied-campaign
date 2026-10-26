@@ -1,3 +1,11 @@
+## 2026-10-26: Installerplanung, noch kein Installerbau
+
+- Nutzerauftrag: spaeter rohe Warchest erkennen, WCR herunterladen, danach Allied Campaign installieren.
+- Ablauf, getrennte Installation, Paketierung, Updates/Rollback und Abnahme geplant.
+- Offen: WCR-Releasezuordnung, saubere Ausgangsbasis und Releaseherkunft aller Assets.
+- Keine Pakete heruntergeladen, kein Installer erzeugt, keine Runtime-/Profilveraenderung.
+- Plan: checkpoints/CP09/INSTALLER-PLAN.md.
+
 ## 2026-10-25: Startup movies restored
 
 - CP08/CP09 normal launchers now use cl_playintro 1; internal campaign switches retain 0.
