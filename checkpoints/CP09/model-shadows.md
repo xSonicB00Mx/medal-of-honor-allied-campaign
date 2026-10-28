@@ -83,7 +83,11 @@ Ambient-Kontaktsilhouette ist bewusst eine Naeherung. GL2 und andere GPUs sind
 damit nicht abgenommen. Natuerlicher Kampagnendurchlauf und CP09-Gesamtabnahme
 bleiben offen.
 
-Die regulaere Installation wird nach dem Source-Commit mit
+Die regulaeren Installationen CP08-r1 und CP09-r1 wurden mit
 `tools/deploy_cp09_engine.py model-shadows-r4 --options-layout --cgame`
-gegen die geprueften Hashes aktualisiert. Der lokale Deployment-Bericht und
-Rollback liegen im selben ignorierten Ergebnisordner.
+aktualisiert. Source-Commit: `a9f7c4862acff21b1c72b6fda6d09f525368a6af`.
+Danach 9086 bzw. 9090 Laufzeitdateien gegen die Manifeste verifiziert;
+9072 Originaldateien und alle 531 persoenlichen Profildateien hashgleich.
+Der lokale Deployment-Bericht und Rollback liegen im selben ignorierten
+Ergebnisordner. Der Source-Commit wurde auf `codex/cp09-regression` gepusht
+und durch einen frisch gelesenen Remote-SHA bestaetigt; kein Merge nach main.

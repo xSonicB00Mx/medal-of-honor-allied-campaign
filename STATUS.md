@@ -3,6 +3,7 @@
 - Expliziter Nutzerauftrag: regulaere GL1-Mod, NPCs und Pickups, keine neuen Umgebungsschatten.
 - Geprueft in AA/SH/BT mit Save/Load, Renderer-Neustart, Live-Option und UHD-Stresstest.
 - Gemeinsamer Schalter Dynamic model shadows, standardmaessig an; 531 Profildateien in Tests unveraendert.
+- In CP08-r1 und CP09-r1 installiert, 9086/9090 Laufzeitdateien verifiziert; Source a9f7c486 auf GitHub bestaetigt.
 - Details und Grenzen: checkpoints/CP09/model-shadows.md. CP09-Gesamtabnahme weiterhin offen.
 
 ## 2026-10-28: Vollstaendiger Himmel kampagnenuebergreifend aktiviert
