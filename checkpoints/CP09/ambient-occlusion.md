@@ -99,7 +99,11 @@ Natuerlicher Kampagnendurchlauf und CP09-Gesamtabnahme bleiben offen.
 
 ## Auslieferung
 
-Nach bestandener Abschlussmatrix: regulaere CP08-r1-/CP09-r1-Installationen,
-Engine plus drei identische Optionspakete. Originaldaten, Artwork, game/cgame
-und persoenliche Spielstaende bleiben erhalten. Deployment/Hashes werden nach
-der geprueften Installation hier ergaenzt.
+Die regulaeren CP08-r1-/CP09-r1-Installationen wurden mit
+`tools/deploy_cp09_engine.py gtao-r3 --options-layout` aktualisiert.
+Source-Commit: `f279dc06a9b6eccb01aeee94449d39df08a4062d`.
+Engine-Hash entspricht exakt den Abschlusspruefungen. 9086 bzw. 9090
+Laufzeitdateien gegen die Manifeste verifiziert; 9072 Originaldateien und
+alle 531 persoenlichen Profildateien hashgleich. Game/cgame/Artwork unveraendert.
+Deployment-Bericht und gesicherter Rueckbau liegen unter
+`generated-local/CP09/gtao-r3/`. Kein Merge nach main; CP09-Gesamtabnahme offen.

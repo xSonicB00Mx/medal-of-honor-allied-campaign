@@ -1,3 +1,11 @@
+## 2026-10-28: Hochwertige Ambient Occlusion
+
+- Direkter Nutzerauftrag: GTAO-basierte Kontaktverschattung, volle Aufloesung, geglaettete Modellnormalen und kantenbewahrende Filterung.
+- Ambient occlusion als kampagnenuebergreifender Live-Schalter, standardmaessig an.
+- AA/SH/BT, Save/Load, Renderer-/Aufloesungswechsel, Optionen und UHD-Stresstest bestanden; Modellschatten separat regressiert.
+- CP08-r1 und CP09-r1 aktualisiert, 9086/9090 Laufzeitdateien verifiziert, 531 persoenliche Profildateien unveraendert.
+- Details, Messwerte und Bildraum-Grenzen: checkpoints/CP09/ambient-occlusion.md. CP09-Gesamtabnahme weiterhin offen.
+
 ## 2026-10-28: Dynamische Modellschatten
 
 - Expliziter Nutzerauftrag: regulaere GL1-Mod, NPCs und Pickups, keine neuen Umgebungsschatten.
