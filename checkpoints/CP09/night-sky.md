@@ -24,6 +24,30 @@ Berichte/Bilder: generated-local/CP09/night-sky-{before,fixed},
 profiles-local/night-sky/night-sky-{before,fixed}.
 Die natuerliche Missionsabnahme durch den Nutzer bleibt offen.
 
+## 28.10.2026: Vollstaendigen Himmel in allen drei Profilkontexten aktivieren
+
+Die vorherige Korrektur schaltete den vereinfachten Himmel nicht ab. Im
+persoenlichen Profil stand weiterhin `r_fastsky 1`, sowohl in den drei
+omconfig.cfg-Dateien als auch in main/ac_preferences.cfg. Damit blieb die
+eigentliche Himmelsdarstellung zugunsten der einfarbigen Flaeche ausgeblendet.
+
+Auf die erneute Meldung zu Spearhead t1l3 hin diese vier Einstellungen auf
+`r_fastsky 0` gesetzt, mit lokaler Sicherung der vorherigen Dateien. Keine
+Engine-, Karten- oder Saveformat-Aenderung; die gemeinsame Einstellung gilt
+fuer beide CP08/CP09-Starter und wird beim Kampagnenwechsel weitergegeben.
+Die normale Grafikoption bleibt bedienbar, wird nicht zwangsweise gesperrt.
+
+Pruefung: getrennte Kopien der Konfigurationen in AA, SH und BT gestartet;
+alle melden r_fastsky 0. Kopie des aktuellen SH-Quicksaves erfolgreich als
+t1l3 geladen; Wert bleibt 0. Bildvergleich mit nach oben gerichteter Testkamera:
+bei 1 einfarbige Flaeche, bei 0 strukturierter Himmel. Erste Versuche ohne
+Developer-Modus beim Start aktivierten die Testkamera nicht; erst der
+abschliessende Lauf mit Developer-Modus belegt diesen Bildvergleich.
+Testdaten: generated-local/CP09/full-sky-20261028; isolierte Profile unter
+profiles-local/full-sky-20261028*. Der natuerliche Missionsablauf wurde damit
+nicht erneut durchgespielt. Persoenliche Saves und Fortschritt unveraendert;
+nur die vier genannten Konfigurationsdateien wurden gezielt geaendert.
+
 Auslieferung: Engine ce1d5be3 in CP08-r1 und CP09-r1 installiert; 9086/9090
 Laufzeitdateien und 9072 Originaldateien geprueft, 462 persoenliche Dateien
 unveraendert. Rollback und Deploymentbericht unter night-sky-fixed.

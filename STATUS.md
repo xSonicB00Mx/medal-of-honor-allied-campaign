@@ -1,3 +1,10 @@
+## 2026-10-28: Vollstaendiger Himmel kampagnenuebergreifend aktiviert
+
+- Vorherige Farbkorrektur hatte r_fastsky nicht deaktiviert; persoenliches Profil stand in allen Kontexten auf 1.
+- Jetzt vier Konfigurationswerte auf 0, gesichert; 503 andere Profildateien unveraendert.
+- AA/SH/BT-Start und Kopie des aktuellen t1l3-Saves geprueft; strukturierter Himmel im Bildvergleich.
+- Details: checkpoints/CP09/night-sky.md. Keine Engine- oder Saveaenderung.
+
 ## 2026-10-26: Installer-Lieferumfang praezisiert
 
 - Alle benoetigten Modressourcen und Laufzeitabhaengigkeiten im kostenlosen Setup mitliefern.
