@@ -18,12 +18,13 @@ Dies ist weder eine vollstaendige XeGTAO-Portierung noch Raytracing.
   aus dem Tiefenbild. Alpha-getestete Ausschnitte bleiben ausgeschnitten.
 - Volle Renderaufloesung, sechs Schnitte mit je vier Samples auf beiden Seiten
   (48 Tiefensamples pro Pixel), quadratische Sampleverteilung und 32 Welteinheiten
-  Reichweite. Distanz-/Dickenabfall begrenzt dunkle Saeume an duennen Objekten.
+  Reichweite. Sphaerischer Distanzabfall begrenzt die lokale Verdeckung.
 - Zwei raeumliche Neun-Tap-Filter mit Normalen-, Ebenen- und Tiefenpruefung.
   Kein zufaelliger Wechsel pro Frame und kein Historybuffer mit Nachzieheffekten.
 - Einmalige Komposition gegen den originalen Szenentiefenpuffer; keine mehrfache
   Abdunklung ueberlappender opaker Materialien. Ein begrenzter, neigungsabhaengiger
-  Tiefenabstand gleicht Rundungsunterschiede des alten Fixed-Function-Pfads aus.
+  Tiefenabstand gleicht Rundungsunterschiede des alten Fixed-Function-Pfads aus;
+  Silhouettenspruenge werden dabei nicht als Flaechenneigung gewertet.
 - Keine AO auf HUD, Menues, Himmel, First-Person-Waffe oder transparenten Effekten.
   Nebel reduziert den Effekt entsprechend der Sichtweite.
 - Neue Modellschatten und AO koennen gemeinsam laufen. Bei aktiver AO entfaellt
@@ -39,7 +40,9 @@ Dies ist weder eine vollstaendige XeGTAO-Portierung noch Raytracing.
   ein Ueberlauf laesst beide Zusatzpaesse fuer dieses Bild aus.
 
 `r_acAODebug 1` zeigt die AO-Komposition in Weiss/Grau; `2` misst den
-synchronisierten Pass und dessen GL-Fehler. Beide sind Entwicklungsdiagnosen,
+synchronisierten Pass und dessen GL-Fehler. `3` schreibt einmal die RGBA32F-
+Normalen/Tiefen als `ao-geometry.f32` ins aktive Profil und schaltet auf `2`
+zurueck. Groesse und Projektionsskalen stehen im Log. Dies sind Entwicklungsdiagnosen,
 keine gespeicherten Spieloptionen. `r_acShadowDebug 4` protokolliert zusaetzlich
 Geometrie/Materialsortierung fuer die Diagnose alter Materialien.
 
@@ -66,8 +69,8 @@ Bildvergleiche werden zusaetzlich visuell geprueft; erfolgreiche GL-Aufrufe alle
 sind kein Nachweis fuer Bildqualitaet. Der bekannte GL-Fehler 1281 vor Beginn
 des Zusatzpasses wird getrennt protokolliert; er tritt auch ohne neue Effekte auf.
 
-Der AO-Pass lag in den 1600x900-Szenen bei 0–3 ms, im UHD-Stresstest bei
-3–6 ms (Median 4 ms), gemessen mit GPU-Synchronisation auf diesem Rechner.
+Der AO-Pass lag in den 1600x900-Szenen bei 0â€“3 ms, im UHD-Stresstest bei
+3â€“6 ms (Median 4 ms), gemessen mit GPU-Synchronisation auf diesem Rechner.
 30 Modellgruppen waren in der UHD-Szene erfasst. Die Testkarte bot keine direkte
 Lichtquelle fuer Modellschatten; deshalb ersetzt dort AO die bisherige
 Ambient-Silhouette. Der bestehende Modellschattenpfad wurde mit AO aus separat regressiert.
@@ -107,3 +110,91 @@ Laufzeitdateien gegen die Manifeste verifiziert; 9072 Originaldateien und
 alle 531 persoenlichen Profildateien hashgleich. Game/cgame/Artwork unveraendert.
 Deployment-Bericht und gesicherter Rueckbau liegen unter
 `generated-local/CP09/gtao-r3/`. Kein Merge nach main; CP09-Gesamtabnahme offen.
+
+## Nachtrag: Blickwinkel- und Silhouettenkorrektur
+
+Nutzer meldete mit der Kamera wandernde AO und falsch geschwaerzte Kanten.
+Die Tiefenrekonstruktion selbst war konsistent; korrigiert wurden diese Stellen:
+
+- Der wichtigste zusaetzlich im Spiel reproduzierte Fehler betraf TIKI-
+  Umgebungsmodelle. Der t1l3-Brueckenboden hatte stark gekippte, interpolierte
+  Beleuchtungsnormalen trotz ebener Geometrie. Die AO erzeugte dadurch grosse
+  dunkle Dreiecke und runde Umschlagstellen der kameraseitigen Normalenausrichtung.
+  Geglaettete Modellnormalen werden jetzt nur fuer markierte NPCs/Pickups genutzt;
+  Umgebungsmodelle verwenden ihre tatsaechlichen Flaechennormalen. Der Effekt
+  wurde in der Spearhead-Kopie visuell und anhand des echten G-Buffers bestaetigt.
+- Die sechs Integrationsschnitte liegen nun gleichmaessig um den tatsaechlichen
+  Blickstrahl des Pixels. Zuvor lagen sie in der Kamera-Bildebene und deckten
+  besonders am Rand eines breiten Sichtfelds ungleichmaessige Winkel ab.
+  Die Sample-Abstaende werden passend perspektivisch projiziert; die minimale
+  Sample-Laenge verdreht die Schnitte nicht mehr komponentenweise.
+- Entfernt wurde die 1,35-fache Gewichtung der Kameratiefenrichtung. Sie machte
+  den eigentlich sphaerischen Wirkungsradius zu einem mitdrehenden Ellipsoid.
+- Blockiertes Licht wird mit der Laenge der projizierten Flaechennormale
+  integriert, statt jeden Schnitt separat auf seinen eigenen Basiswert zu
+  normieren. Die analytisch freie Hemisphaere bleibt 1; dadurch verursacht die
+  endliche Winkelabtastung keine kuenstliche Grundabdunklung freier Flaechen.
+- Der Kompositionsbias verwendet den jeweils naechsten Tiefennachbarn pro Achse
+  statt einer Ableitung ueber eine Silhouette. Ein Tiefensprung hatte sonst
+  Hintergrund-AO vor eine sichtbare Vordergrundflaeche ziehen koennen.
+- Der AO-Geometriepass respektiert die Vorder-/Rueckseiteneinstellung des
+  Originalmaterials. Die zweiseitige Erfassung aus Sicht einer Schattenlichtquelle
+  bleibt separat erhalten. Keine Aenderung an Spiel-, Save- oder Optionsformaten.
+
+Reproduzierbarer GPU-Test: `tools/test_ao_geometry.py` kompiliert die echten
+GLSL-Strings aus `tr_ac_ao.c` in einem unsichtbaren SDL/OpenGL-Kontext. Analytische
+Ebenen und ein konvexer Quader pruefen freie Flaechen, Bodenkontakt, neun
+Kamerapositionen und fuenf Schwenks vom identischen Standpunkt. Ein eigener
+Tiefensprung testet die Komposition gegen einen tatsaechlichen Tiefenpuffer.
+
+- Vorher (`ao-geometry-baseline-regression`): Sichtbarkeit desselben Kontakts
+  schwankt beim 60-Grad-Schwenk um 0,01372; der verdeckte Hintergrund schwaerzt
+  eine Vordergrundspalte bis auf 0,45. Der Regressionstest schlaegt fehl.
+- Korrigiert (`ao-geometry-fixed`): Schwankung 0,00426, also rund 69 Prozent
+  geringer; die Vordergrundspalte bleibt 1,0. Freie analytische Flaechen haben
+  mindestens 0,99994 Sichtbarkeit, der sichtbare AO-Testbereich weiterhin 0,45.
+  Das ist ein begrenzter Geometrietest, keine weltweite Qualitaetsgarantie.
+- Native Kameraschwenks: `tools/test_ao_camera.py ao-camera-fixed-r2`, `m3l2`
+  und `m6l3a`, jeweils fuenf Winkel mit Diagnose- und Farbbildern. Keine GL-Fehler.
+  Der direkte `m6l3a`-Start erzeugt bereits mit der alten Engine vier bekannte
+  NULL-Deathlistener aus `global/friendly.scr`, da die uebernommenen Gefangenen
+  fehlen. Nur diese exakten Meldungen werden im Kameratest separat erfasst;
+  sie werden nicht als durch die AO-Korrektur behobene Spielfehler ausgegeben.
+  Der zuerst irrtuemlich vor Abschluss des Builds gestartete Lauf
+  `ao-camera-fix-r1` enthaelt noch die alte Engine und ist kein Fixnachweis.
+
+Die erste kampagnenweite Korrekturrunde `ao-viewfix` bestand die Laufpruefungen,
+zeigte bei der anschliessenden Sichtpruefung aber noch den oben beschriebenen
+Brueckenfehler. Sie wurde nicht ausgeliefert. `ao-bridge-normal-probe` konserviert
+die falschen Normalen, `ao-bridge-normal-fix` den korrigierten G-Buffer und die
+saubere AO-Ansicht. An den drei freien Bodenkontrollen steht die Diagnose danach
+auf 255/255/255 statt grossflaechiger Eigenverschattung. Ein vierter Kontrollpunkt
+prueft nur die Normale, weil er berechtigt nahe an einem Brueckenpfeiler liegt.
+`test_ambient_occlusion.py --bridge-normals --spearhead-save <Kopie>` sichert diese
+zusaetzliche Regression; die Eingabekopie wird niemals direkt bespielt.
+
+Abschliessend mit Engine
+`c861c7623c4a4dc7a9a2e89777f08c1bdd9907f1dc550426bb7b71e1efbea584` geprueft:
+
+- `ao-geometry-final`: analytische GPU-Regression einschliesslich Silhouettenbias.
+- `ao-viewfix-final --bridge-normals --spearhead-save <gesicherte Kopie>`:
+  AA/SH/BT, Ein/Aus, Diagnose, NPC/Pickup, gemeinsame Schattenoption, Save/Load,
+  Renderer-Neustart und Optionsschalter. Die Brueckennormalen stimmen an vier
+  Kontrollpunkten mit den unabhaengig aus Tiefe rekonstruierten Flaechennormalen
+  ueberein (Skalarprodukt mindestens 0,9999999).
+- `ao-camera-final --spearhead-save <gesicherte Kopie>`: je fuenf Kamerawinkel
+  im AA-Dorf, AA-Waggon und auf der SH-Bruecke, Diagnose- und Farbbilder.
+- `ao-viewfix-final-resize`: 16:9/4:3, Renderer-Neustart, Fassadenkomposition und
+  unveraenderte First-Person-Waffe.
+- `ao-viewfix-final-uhd`: 3840x2160, 30 erfasste Modellgruppen, 3-5 ms
+  synchronisierter AO-Pass auf der vorhandenen RTX 4090. Keine GL-Fehler im Pass;
+  die bekannten vorherigen GL-Fehler werden weiterhin getrennt erfasst.
+
+Die geschuetzten Testlaeufe bestaetigen 535 unveraenderte persoenliche
+Profildateien. Screenshots/Normalen-Dumps/Saves bleiben lokal und ignoriert.
+Keine persoenliche Gesamtspielabnahme oder neue CP09-Freigabe unterstellt.
+
+Die grundlegende Bildraumgrenze bleibt: hinter anderen Objekten oder ausserhalb
+des Bilds liegende Geometrie kann weiterhin fehlen. Die Korrektur reduziert
+unbegruendete Blickwinkelabhaengigkeit, behauptet aber keine vollstaendig
+blickwinkelunabhaengige Weltgeometrie-AO oder Raytracing.

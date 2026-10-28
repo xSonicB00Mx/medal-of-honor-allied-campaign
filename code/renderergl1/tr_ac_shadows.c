@@ -19,6 +19,7 @@ typedef struct {
     GLuint texture;
     float alpha;
     qboolean polygonOffset;
+    cullType_t cullType;
     vec3_t mins, maxs;
 } acShadowBatch_t;
 typedef struct { int owner; vec3_t mins, maxs; float distance; } acShadowCaster_t;
@@ -166,6 +167,7 @@ void RB_ACShadowCapture(void) {
     if(ent&&ent!=&tr.worldEntity&&ent->e.acShadowCaster)owner=ent->e.acShadowOwner;
     b=&batches[numBatches++];b->first=numVertices;b->count=tess.numIndexes;b->owner=owner;
     b->polygonOffset=tess.shader->polygonOffset;
+    b->cullType=tess.shader->cullType;
     b->texture=stage->bundle[0].image[0]?stage->bundle[0].image[0]->texnum:tr.whiteImage->texnum;
     b->alpha=-1;
     if(stage->stateBits&GLS_ATEST_GE_80)b->alpha=0.5f;
@@ -176,10 +178,13 @@ void RB_ACShadowCapture(void) {
         for(j=0;j<3;j++)v->xyz[j]=backEnd.ori.origin[j]+tess.xyz[k][0]*backEnd.ori.axis[0][j]
             +tess.xyz[k][1]*backEnd.ori.axis[1][j]+tess.xyz[k][2]*backEnd.ori.axis[2][j];
         v->uv[0]=tess.texCoords[k][0][0];v->uv[1]=tess.texCoords[k][0][1];AddPointToBounds(v->xyz,b->mins,b->maxs);
-        // Skeletal surfaces always provide skinned normals; unlit BSP/terrain
-        // batches may leave tess.normal undefined, so use face derivatives there.
+        // Only characters/pickups need smooth shading normals. TIKI also
+        // represents large architectural models (e.g. the t1l3 bridge), whose
+        // authored smooth normals can point sideways across a perfectly flat
+        // deck. Using them for visibility creates triangle-shaped self-AO that
+        // flips with the camera. Environment geometry uses actual face normals.
         VectorClear(v->normal);
-        if(ent&&ent!=&tr.worldEntity&&ent->e.tiki) {
+        if(owner>=0&&ent&&ent->e.tiki) {
             for(j=0;j<3;j++)v->normal[j]=tess.normal[k][0]*backEnd.ori.axis[0][j]
                 +tess.normal[k][1]*backEnd.ori.axis[1][j]+tess.normal[k][2]*backEnd.ori.axis[2][j];
             VectorNormalize(v->normal);
@@ -205,12 +210,21 @@ void RB_ACDrawCapturedScene(GLint alphaCut) {
     qglEnableClientState(GL_NORMAL_ARRAY);
     acNormalPointer(GL_FLOAT,sizeof(vertices[0]),vertices[0].normal);
     for(i=0;i<numBatches;i++) {
+        // AO must see the same side of each surface as the color pass. Shadow
+        // light views intentionally keep their separate two-sided policy.
+        if(batches[i].cullType==CT_TWO_SIDED)qglDisable(GL_CULL_FACE);
+        else {
+            qboolean back=batches[i].cullType==CT_BACK_SIDED;
+            qglEnable(GL_CULL_FACE);
+            qglCullFace(back!=backEnd.viewParms.isMirror?GL_BACK:GL_FRONT);
+        }
         if(batches[i].polygonOffset){qglEnable(GL_POLYGON_OFFSET_FILL);qglPolygonOffset(r_offsetFactor->value,r_offsetUnits->value);}
         else qglDisable(GL_POLYGON_OFFSET_FILL);
         qglBindTexture(GL_TEXTURE_2D,batches[i].texture);
         acUniform1f(alphaCut,batches[i].alpha);
         qglDrawArrays(GL_TRIANGLES,batches[i].first,batches[i].count);
     }
+    qglDisable(GL_CULL_FACE); // Following fullscreen AO/filter quads are two-sided.
 }
 static void AC_Matrix(GLuint p,const char *name,const float *m) {acUniformMatrix4fv(acGetUniformLocation(p,name),1,GL_FALSE,m);}
 static int QDECL AC_SortCaster(const void *a,const void *b) {

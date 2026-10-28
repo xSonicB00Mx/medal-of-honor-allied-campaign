@@ -12,10 +12,13 @@ import shutil
 import subprocess
 import zipfile
 from PIL import Image
+import numpy as np
 
 R = Path(__file__).resolve().parents[1]
 ap = argparse.ArgumentParser()
 ap.add_argument('run')
+ap.add_argument('--spearhead-save', type=Path, help='Read-only input save; copied into the isolated profile')
+ap.add_argument('--bridge-normals', action='store_true', help='Require t1l3 bridge fixture and verify its flat deck normals')
 a = ap.parse_args()
 assert re.fullmatch('[a-zA-Z0-9-]+', a.run)
 out = R/'generated-local/CP09'/a.run
@@ -49,7 +52,7 @@ for game,folder in enumerate(['main','mainta','maintt']):
         dst.parent.mkdir(exist_ok=True);shutil.copy2(src,dst)
     start='map m2l1'
     if game:
-        src = (personal/'mainta/save/omconfig/quick.sav' if game==1 else
+        src = ((a.spearhead_save or personal/'mainta/save/omconfig/quick.sav') if game==1 else
                R/'profiles-local/CP00-r4/r4-bt-foot-e2l2/maintt/save/omconfig/cp00_foot_ready.sav')
         dst=h/'save/omconfig';dst.mkdir(parents=True)
         for f in src.parent.glob(src.stem+'.*'):shutil.copy2(f,dst/('reference'+f.suffix))
@@ -96,6 +99,9 @@ end
               'widgetcommand ambientOcclusion left_mouse_up 721 768 0','r_acAmbientOcclusion',
               'writeconfig ao_off','set r_acAmbientOcclusion 1','writeconfig ao_on',
               'echo AC_AO_TEST_DONE','quit']
+    if game==1 and a.bridge_normals:
+        i=commands.index('set r_acAODebug 1')
+        commands[i:i]=['set r_acAODebug 3','wait 100']
     (h/'probe.cfg').write_text('\n'.join(commands)+'\n')
     args=[str(b/'openmohaa.exe')]
     settings=dict(com_target_game=game,fs_basepath=rt,fs_homepath=p,fs_steampath=rt,fs_gogpath=rt,
@@ -130,6 +136,25 @@ end
     for i,f in enumerate(sorted((h/'screenshots').glob('*.tga'))):
         dst=out/f'{folder}-{i}.png';Image.open(f).save(dst);images.append(dst.relative_to(R).as_posix())
     assert len(images)==10,images
+    if game==1 and a.bridge_normals:
+        # The saved scene is t1l3, before planting the bridge charges. These
+        # interior deck samples were badly smoothed TIKI normals, despite flat
+        # geometry. Verify the actual G-buffer against independent depth slopes.
+        g=np.fromfile(h/'ao-geometry.f32',np.float32).reshape(900,1600,4)
+        sx,sy=map(float,re.search(r'AC_AO_GEOMETRY width=1600 height=900 projection=([\d.]+) ([\d.]+)',log).groups())
+        y,x=np.mgrid[:900,:1600]
+        pos=np.stack([((x+.5)/1600*2-1)*g[:,:,3]/sx,((y+.5)/900*2-1)*g[:,:,3]/sy,-g[:,:,3]],-1)
+        geometric=np.cross(np.gradient(pos,axis=1),np.gradient(pos,axis=0))
+        geometric/=np.maximum(np.linalg.norm(geometric,axis=2,keepdims=True),1e-9)
+        dots=[]; diagnostic=np.array(Image.open(R/images[4]))
+        for x,y in [(400,250),(330,330),(50,440),(1200,330)]:
+            dots.append(float(np.dot(geometric[899-y,x],g[899-y,x,:3])))
+            assert dots[-1]>.999, ('Bridge normal mismatch',x,y,dots[-1])
+            # Right-hand probe is close to a real upright support: validate its
+            # normal, but do not demand zero legitimate contact occlusion there.
+            if (x,y)!=(1200,330):
+                assert diagnostic[y,x,:3].min()>250, ('False self-AO on flat deck',x,y)
+        (out/'bridge-normals.json').write_text(json.dumps(dict(agreement=dots,flat_deck_unoccluded=True),indent=2)+'\n')
     cases.append(dict(game=folder,synchronized_ao_pass_ms=[ms for ms,_ in costs],
                       renderer_restart=True,save_load=True,live_toggle=True,options_overlap_free=True,images=images))
     print('PASS',folder,'AO pass ms',[ms for ms,_ in costs],flush=True)

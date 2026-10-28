@@ -72,25 +72,31 @@ static const char *horizonFragment =
  " float radius=32.0; vec2 screenRadius=0.5*size*projectionScale*radius/g.a;\n"
  // Stable spatial rotation; there is deliberately no per-frame jitter.
  " float phase=fract(52.9829189*fract(dot(gl_FragCoord.xy,vec2(0.06711056,0.00583715))));\n"
- " float sum=0.0;\n"
+ // Integrate uniformly around the actual pixel view ray, not the camera's Z
+ // axis. Screen-plane slices cluster at wide-FOV edges and change their solid
+ // angle when the camera turns, even when the visible geometry is unchanged.
+ " vec3 tangent=normalize(cross(vec3(0.0,1.0,0.0),v)),bitangent=cross(v,tangent);float sum=0.0;\n"
  " for(int slice=0;slice<6;slice++){\n"
  "  float phi=(float(slice)+phase)*3.14159265/6.0;vec2 direction=vec2(cos(phi),sin(phi));\n"
- "  vec3 d=vec3(direction,0.0);vec3 ortho=d-dot(d,v)*v;\n"
+ "  vec3 d=tangent*direction.x+bitangent*direction.y;vec3 ortho=d;\n"
+ "  vec2 projected=d.xy-v.xy*d.z/v.z;\n"
  "  vec3 axis=normalize(cross(ortho,v));vec3 np=N-axis*dot(N,axis);float plen=length(np);\n"
  "  float c=clamp(dot(np,v)/max(plen,0.0001),0.0,1.0);\n"
  "  float n=sign(dot(ortho,np))*acos(c);\n"
  "  vec2 low=cos(vec2(n+1.57079633,n-1.57079633));vec2 horizon=low;\n"
  "  for(int tap=1;tap<=4;tap++){\n"
  "   float t=(float(tap)-0.35)/4.0;t*=t;\n"
- "   vec2 delta=direction*max(vec2(1.0),screenRadius*t);\n"
+ // Preserve the slice's projected direction, including at sub-pixel radii.
+ "   vec2 delta=projected*screenRadius*t;delta*=max(1.0,1.0/max(length(delta),0.0001));\n"
  "   for(int side=0;side<2;side++){\n"
  "    vec2 st=(floor(gl_FragCoord.xy+delta*(side==0?1.0:-1.0))+0.5)/size;\n"
  "    if(any(lessThan(st,vec2(0.0)))||any(greaterThan(st,vec2(1.0))))continue;\n"
  "    float z=texture2D(scene,st).a;if(z<=0.0)continue;\n"
  "    vec3 offset=reconstruct(st,z)-p;float dist=length(offset);if(dist<0.05)continue;\n"
- // Small normal offset rejects self-occlusion of an otherwise planar triangle.
- // Extra depth falloff limits the heightfield's thin-object halo.
- "    float weight=clamp((radius-length(vec3(offset.xy,offset.z*1.35)))/(radius*0.7),0.0,1.0);\n"
+ // A spherical world-space radius must stay spherical when the camera turns.
+ // Stretching view-space Z as a thickness heuristic caused moving dark edges.
+ // The surface-normal rejection still prevents planar self-occlusion.
+ "    float weight=clamp((radius-dist)/(radius*0.7),0.0,1.0);\n"
  "    if(dot(offset,N)<0.08)weight=0.0;\n"
  "    float h=dot(offset/dist,v);\n"
  "    if(side==0)horizon.x=max(horizon.x,mix(low.x,h,weight));\n"
@@ -99,9 +105,13 @@ static const char *horizonFragment =
  "  }\n"
  "  float h0=-acos(clamp(horizon.y,-1.0,1.0)),h1=acos(clamp(horizon.x,-1.0,1.0));\n"
  "  float base=integral(n-1.57079633,n,c)+integral(n+1.57079633,n,c);\n"
- "  sum+=clamp((integral(h0,n,c)+integral(h1,n,c))/max(base,0.001),0.0,1.0);\n"
+ // Integrate blocked irradiance with the projected normal's length. Dividing
+ // each slice by its own baseline instead gives grazing slices too much weight.
+ // Subtract from analytic visibility 1 so a free plane stays exactly unoccluded
+ // even with the finite angular quadrature (including at grazing angles).
+ "  sum+=plen*max(0.0,base-integral(h0,n,c)-integral(h1,n,c));\n"
  " }\n"
- " gl_FragColor=vec4(sum/6.0);}\n";
+ " gl_FragColor=vec4(clamp(1.0-sum/6.0,0.0,1.0));}\n";
 static const char *filterFragment =
  "#version 120\n"
  "uniform sampler2D scene,ao;uniform vec2 size,projectionScale,direction;varying vec2 uv;\n"
@@ -117,13 +127,18 @@ static const char *filterFragment =
  " } gl_FragColor=vec4(sum/max(total,0.0001));}\n";
 static const char *compositeFragment =
  "#version 120\n"
- "uniform sampler2D ao,sceneDepth;uniform vec2 depthReconstruct;uniform float fogStart,fogEnd,diagnostic;\n"
+ "uniform sampler2D ao,sceneDepth;uniform vec2 size,depthReconstruct;uniform float fogStart,fogEnd,diagnostic;\n"
  "varying vec2 uv;\n"
  "void main(){float z=texture2D(sceneDepth,uv).r;if(z>=1.0)discard;\n"
  // Use actual per-pixel scene depth, not a quad at the near plane. First-person
  // depthhack geometry in the window buffer remains in front and fails the test.
  // Compositing once also avoids double darkening of overlapping opaque layers.
- " float bias=min(0.0001,0.0000003+max(abs(dFdx(z)),abs(dFdy(z))));\n"
+ // A derivative crossing a silhouette is not a surface slope. Use the closer
+ // depth on each axis so a background edge cannot bias AO onto the foreground.
+ " vec2 pixel=1.0/size;\n"
+ " float dx=min(abs(z-texture2D(sceneDepth,uv-vec2(pixel.x,0.0)).r),abs(z-texture2D(sceneDepth,uv+vec2(pixel.x,0.0)).r));\n"
+ " float dy=min(abs(z-texture2D(sceneDepth,uv-vec2(0.0,pixel.y)).r),abs(z-texture2D(sceneDepth,uv+vec2(0.0,pixel.y)).r));\n"
+ " float bias=min(0.0001,0.0000003+max(dx,dy));\n"
  " gl_FragDepth=max(0.0,z-bias);float eyeDepth=depthReconstruct.y/(2.0*z-1.0+depthReconstruct.x);\n"
  " float a=texture2D(ao,uv).r;\n"
  " float fog=fogEnd>fogStart?clamp((fogEnd-eyeDepth)/(fogEnd-fogStart),0.0,1.0):1.0;\n"
@@ -215,6 +230,13 @@ void RB_ACAOApply(void){
  qglClearColor(0,0,0,0);qglClearDepth(1);qglClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);
  aoUseProgram(geometryProgram);Camera(geometryProgram);I(geometryProgram,"skin",0);
  RB_ACDrawCapturedScene(aoGetUniformLocation(geometryProgram,"alphaCut"));
+ if(debug->integer==3){
+  int bytes=width*height*4*sizeof(float);float *pixels=ri.Malloc(bytes);
+  qglReadPixels(0,0,width,height,GL_RGBA,GL_FLOAT,pixels);
+  ri.FS_WriteFile("ao-geometry.f32",pixels,bytes);ri.Free(pixels);
+  ri.Printf(PRINT_ALL,"AC_AO_GEOMETRY width=%d height=%d projection=%f %f\n",width,height,backEnd.viewParms.projectionMatrix[0],backEnd.viewParms.projectionMatrix[5]);
+  ri.Cvar_Set("r_acAODebug","2");
+ }
  aoFramebufferTexture2D(GL_FRAMEBUFFER,GL_DEPTH_ATTACHMENT,GL_TEXTURE_2D,0,0);
  aoFramebufferTexture2D(GL_FRAMEBUFFER,GL_COLOR_ATTACHMENT0,GL_TEXTURE_2D,visibility[0],0);
  qglDisable(GL_DEPTH_TEST);qglDepthMask(GL_FALSE);qglBindTexture(GL_TEXTURE_2D,geometry);
