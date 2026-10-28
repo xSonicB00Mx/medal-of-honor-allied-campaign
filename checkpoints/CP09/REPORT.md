@@ -7,6 +7,9 @@ Kampagnenabschluss mit seinem bestehenden Spielstand.
 **Status: erste technische Runde abgeschlossen, CP09 insgesamt weiterhin offen.
 Keine Gesamtspielabnahme, kein Merge.**
 
+Weiterer direkter Nutzerauftrag vom 28.10.2026: [Hochwertige Ambient Occlusion](ambient-occlusion.md),
+GTAO-basierter GL1-Pass, gemeinsame Option und isolierte Spielpruefungen.
+
 Neuer direkter Nutzerauftrag vom 28.10.2026: [Dynamische NPC-/Pickup-Schatten](model-shadows.md),
 GL1, gemeinsamer Live-Schalter und isolierte AA/SH/BT-/UHD-Pruefungen.
 

@@ -97,7 +97,7 @@ end
     settings=dict(com_target_game=game,fs_basepath=rt,fs_homepath=p,fs_steampath=rt,fs_gogpath=rt,
                   fs_microsoftstorepath=rt,net_enabled=0,logfile=2,developer=1,cheats=1,
                   cl_playintro=0,r_fullscreen=0,r_mode=-1,r_customwidth=1600,r_customheight=900,
-                  com_maxfps=60,com_maxfpsUnfocused=60,r_fastsky=0,r_acShadowDebug=3,ac_campaign_mode=0 if game==2 else 1)
+                  com_maxfps=60,com_maxfpsUnfocused=60,r_fastsky=0,r_acShadowDebug=3,r_acAmbientOcclusion=0,ac_campaign_mode=0 if game==2 else 1)
     for k,v in settings.items():args+=['+set',k,str(v)]
     proc=subprocess.run(args+['+exec','probe.cfg'],cwd=b,timeout=100)
     log=(h/'qconsole.log').read_text(encoding='latin1')

@@ -2025,6 +2025,11 @@ void R_ACShadowShutdown(void);
 void RB_ACShadowBegin(void);
 void RB_ACShadowCapture(void);
 void RB_ACShadowFinish(void);
+void RB_ACDrawCapturedScene(GLint alphaCut);
+void R_ACAOInit(void);
+void R_ACAOShutdown(void);
+qboolean R_ACAOActive(void);
+void RB_ACAOApply(void);
 void RB_ShadowFinish( void );
 void RB_ProjectionShadowDeform( void );
 

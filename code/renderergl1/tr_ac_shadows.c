@@ -13,11 +13,12 @@
 #define AC_CASTERS 128
 #define AC_MAP_SIZE 1024
 
-typedef struct { float xyz[3], uv[2]; } acShadowVertex_t;
+typedef struct { float xyz[3], uv[2], normal[3]; } acShadowVertex_t;
 typedef struct {
     int first, count, owner;
     GLuint texture;
     float alpha;
+    qboolean polygonOffset;
     vec3_t mins, maxs;
 } acShadowBatch_t;
 typedef struct { int owner; vec3_t mins, maxs; float distance; } acShadowCaster_t;
@@ -54,6 +55,7 @@ static float AC_Clamp(float v,float lo,float hi) {return v<lo?lo:v>hi?hi:v;}
  X(GLint, GetUniformLocation, (GLuint p, const char *s)) \
  X(void, Uniform1i, (GLint u, GLint v)) \
  X(void, Uniform1f, (GLint u, GLfloat v)) \
+ X(void, NormalPointer, (GLenum type, GLsizei stride, const GLvoid *pointer)) \
  X(void, UniformMatrix4fv, (GLint u, GLsizei n, GLboolean t, const GLfloat *m)) \
  X(void, PushAttrib, (GLbitfield b)) \
  X(void, PopAttrib, (void)) \
@@ -142,7 +144,7 @@ void R_ACShadowShutdown(void) {
 }
 void RB_ACShadowBegin(void) {
     numVertices=numBatches=numCasters=0;overflow=qfalse;finished=qfalse;
-    collecting=ready&&enabled->integer&&tr.world&&!backEnd.viewParms.isPortal
+    collecting=ready&&(enabled->integer||R_ACAOActive())&&tr.world&&!backEnd.viewParms.isPortal
         &&!(backEnd.refdef.rdflags&(RDF_NOWORLDMODEL|RDF_HUD))&&!backEnd.isHyperspace;
 }
 static qboolean AC_BoundsOverlap(const vec3_t a, const vec3_t b, const vec3_t c, const vec3_t d) {
@@ -151,15 +153,19 @@ static qboolean AC_BoundsOverlap(const vec3_t a, const vec3_t b, const vec3_t c,
 void RB_ACShadowCapture(void) {
     int i,j,k,owner=-1; acShadowBatch_t *b; shaderStage_t *stage;
     trRefEntity_t *ent=backEnd.currentEntity;
+    if(collecting && debug->integer>3 && backEnd.refdef.time%1000<20 && tess.shader && tess.xstages[0])
+        ri.Printf(PRINT_ALL,"AC_GEOMETRY %s sort=%.1f bits=%x offset=%d entity=%d vertices=%d\n",tess.shader->name,tess.shader->sort,tess.xstages[0]->stateBits,tess.shader->polygonOffset,ent?ent->e.reType:-1,tess.numIndexes);
     if(!collecting || finished || overflow || !tess.numIndexes || !tess.shader || tess.shader->isSky
-        || tess.shader->sort<SS_OPAQUE || tess.shader->sort>SS_SEE_THROUGH || tess.shader->sort==SS_DECAL)return;
+        || tess.shader->sort<SS_OPAQUE || tess.shader->sort>SS_SEE_THROUGH)return;
     if(ent && ent!=&tr.worldEntity && ((ent->e.renderfx&(RF_FIRST_PERSON|RF_DEPTHHACK|RF_DONTDRAW|RF_AC_CORPSE_PROXY)) || ent->e.shaderRGBA[3]<250))return;
     stage=tess.xstages[0]; if(!stage)return;
     // Transparent surfaces have no reliable receiver depth. Alpha-tested cutouts do.
     if((stage->stateBits&(GLS_SRCBLEND_BITS|GLS_DSTBLEND_BITS)) && !(stage->stateBits&GLS_DEPTHMASK_TRUE))return;
+    if(tess.shader->sort==SS_DECAL && !(stage->stateBits&GLS_DEPTHMASK_TRUE))return;
     if(numBatches==AC_BATCHES || numVertices+tess.numIndexes>AC_VERTS){overflow=qtrue;return;}
     if(ent&&ent!=&tr.worldEntity&&ent->e.acShadowCaster)owner=ent->e.acShadowOwner;
     b=&batches[numBatches++];b->first=numVertices;b->count=tess.numIndexes;b->owner=owner;
+    b->polygonOffset=tess.shader->polygonOffset;
     b->texture=stage->bundle[0].image[0]?stage->bundle[0].image[0]->texnum:tr.whiteImage->texnum;
     b->alpha=-1;
     if(stage->stateBits&GLS_ATEST_GE_80)b->alpha=0.5f;
@@ -170,6 +176,14 @@ void RB_ACShadowCapture(void) {
         for(j=0;j<3;j++)v->xyz[j]=backEnd.ori.origin[j]+tess.xyz[k][0]*backEnd.ori.axis[0][j]
             +tess.xyz[k][1]*backEnd.ori.axis[1][j]+tess.xyz[k][2]*backEnd.ori.axis[2][j];
         v->uv[0]=tess.texCoords[k][0][0];v->uv[1]=tess.texCoords[k][0][1];AddPointToBounds(v->xyz,b->mins,b->maxs);
+        // Skeletal surfaces always provide skinned normals; unlit BSP/terrain
+        // batches may leave tess.normal undefined, so use face derivatives there.
+        VectorClear(v->normal);
+        if(ent&&ent!=&tr.worldEntity&&ent->e.tiki) {
+            for(j=0;j<3;j++)v->normal[j]=tess.normal[k][0]*backEnd.ori.axis[0][j]
+                +tess.normal[k][1]*backEnd.ori.axis[1][j]+tess.normal[k][2]*backEnd.ori.axis[2][j];
+            VectorNormalize(v->normal);
+        }
     }
     if(owner>=0) {
         for(i=0;i<numCasters;i++)if(casters[i].owner==owner)break;
@@ -179,6 +193,24 @@ void RB_ACShadowCapture(void) {
 }
 static void AC_Multiply(const float *a,const float *b,float *out) {
     int row,col,k;for(col=0;col<4;col++)for(row=0;row<4;row++){out[col*4+row]=0;for(k=0;k<4;k++)out[col*4+row]+=a[k*4+row]*b[col*4+k];}
+}
+/* Shared opaque geometry for AO. The caller owns GL state and the shader;
+ * the active server texture unit receives each cutout's skin. */
+void RB_ACDrawCapturedScene(GLint alphaCut) {
+    int i;
+    qglClientActiveTextureARB(GL_TEXTURE0_ARB);
+    qglEnableClientState(GL_VERTEX_ARRAY);qglEnableClientState(GL_TEXTURE_COORD_ARRAY);
+    qglVertexPointer(3,GL_FLOAT,sizeof(vertices[0]),vertices[0].xyz);
+    qglTexCoordPointer(2,GL_FLOAT,sizeof(vertices[0]),vertices[0].uv);
+    qglEnableClientState(GL_NORMAL_ARRAY);
+    acNormalPointer(GL_FLOAT,sizeof(vertices[0]),vertices[0].normal);
+    for(i=0;i<numBatches;i++) {
+        if(batches[i].polygonOffset){qglEnable(GL_POLYGON_OFFSET_FILL);qglPolygonOffset(r_offsetFactor->value,r_offsetUnits->value);}
+        else qglDisable(GL_POLYGON_OFFSET_FILL);
+        qglBindTexture(GL_TEXTURE_2D,batches[i].texture);
+        acUniform1f(alphaCut,batches[i].alpha);
+        qglDrawArrays(GL_TRIANGLES,batches[i].first,batches[i].count);
+    }
 }
 static void AC_Matrix(GLuint p,const char *name,const float *m) {acUniformMatrix4fv(acGetUniformLocation(p,name),1,GL_FALSE,m);}
 static int QDECL AC_SortCaster(const void *a,const void *b) {
@@ -221,7 +253,10 @@ static qboolean AC_LightMatrix(const acShadowCaster_t *c,float *matrix,vec3_t lo
     }
     // Diffuse-only areas still need contact grounding. An overhead, low-opacity
     // silhouette approximates ambient occlusion; it does not invent a sun angle.
-    if(light==-1) {VectorCopy(center,eye);eye[2]+=1024;best=0.32f;light=-3;}
+    if(light==-1) {
+        if(R_ACAOActive())return qfalse; // GTAO supplies diffuse contact grounding.
+        VectorCopy(center,eye);eye[2]+=1024;best=0.32f;light=-3;
+    }
     if(light>=0)VectorCopy(positions[light],eye);
     VectorSubtract(center,eye,forward);distance=VectorNormalize(forward);
     if(distance<radius+2)return qfalse;
@@ -252,7 +287,8 @@ static void AC_DrawBatch(const acShadowBatch_t *b,qboolean depth) {
 void RB_ACShadowFinish(void) {
     GLint oldFbo,oldProgram,oldDraw,oldRead;int i,j,pass,drawn=0,start=0;float camera[16];
     if(finished)return;finished=qtrue;
-    if(!collecting||overflow||!numCasters) {
+    if(collecting&&!overflow&&numVertices&&R_ACAOActive())RB_ACAOApply();
+    if(!collecting||overflow||!numCasters||!enabled->integer) {
         if(debug->integer>2 && backEnd.refdef.time%1000<50)
             ri.Printf(PRINT_ALL,"AC_SHADOW_SKIPPED enabled=%d gl_error=%d\n",enabled->integer,qglGetError());
         return;

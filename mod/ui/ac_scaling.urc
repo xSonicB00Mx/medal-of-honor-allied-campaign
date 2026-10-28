@@ -555,15 +555,31 @@ linkstring 100 "100%"
 resource
 Label
 {
-name "flinchHint"
+name "ambientOcclusionLabel"
 dontlocalize
-title "Camera kick on damage: 0% off, 100% original."
-rect 44 448 412 18
-font ac-courier-11
-fgcolor 0.67 0.73 0.66 1
+title "Ambient occlusion"
+rect 44 448 352 24
+font ac-courier-14
+fgcolor 0.91 0.86 0.7 1
 bgcolor 0 0 0 0
 borderstyle NONE
 textalign left
+}
+
+resource
+CheckBox
+{
+name "ambientOcclusion"
+dontlocalize
+title ""
+rect 420 448 26 26
+font ac-courier-14
+fgcolor 0.91 0.86 0.7 1
+bgcolor 0 0 0 0
+borderstyle NONE
+linkcvar r_acAmbientOcclusion
+checked_shader textures/menu/checkbox_checked
+unchecked_shader textures/menu/checkbox_unchecked
 }
 
 resource
@@ -665,6 +681,6 @@ font ac-courier-16
 fgcolor 0.91 0.86 0.7 1
 bgcolor 0.09 0.11 0.09 1
 borderstyle NONE
-stuffcommand "set ac_ui_auto 1; set ac_menu_scale 1; set ac_hud_scale 1; set ac_hud_safe 1; set ac_blood_mist 1; set ac_world_blood 1; set ac_body_wounds 1; set ac_corpse_effects 1; set ac_player_flinch_percent 20; set ac_bt_drop_limits 0; set ac_hud_outline 0; set r_acModelShadows 1"
+stuffcommand "set ac_ui_auto 1; set ac_menu_scale 1; set ac_hud_scale 1; set ac_hud_safe 1; set ac_blood_mist 1; set ac_world_blood 1; set ac_body_wounds 1; set ac_corpse_effects 1; set ac_player_flinch_percent 20; set ac_bt_drop_limits 0; set ac_hud_outline 0; set r_acModelShadows 1; set r_acAmbientOcclusion 1"
 }
 end.

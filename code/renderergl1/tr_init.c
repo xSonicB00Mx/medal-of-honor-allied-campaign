@@ -1740,6 +1740,7 @@ void RE_Shutdown( qboolean destroyWindow ) {
 
 	if ( tr.registered ) {
 		R_IssuePendingRenderCommands();
+		R_ACAOShutdown();
 		R_ACShadowShutdown();
 		R_DeleteTextures();
 	}
@@ -1864,6 +1865,7 @@ refexport_t *GetRefAPI ( int apiVersion, refimport_t *rimp ) {
 
 	R_Init();
 	R_ACShadowInit();
+	R_ACAOInit();
 
 	// the RE_ functions are Renderer Entry points
 
