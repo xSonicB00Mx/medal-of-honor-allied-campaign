@@ -1,3 +1,11 @@
+## 2026-10-29: AO-Blickwinkel und falsche Kanten korrigiert
+
+- TIKI-Umgebungsmodelle nutzen geometrische Flaechennormalen; falsche Dreiecksmuster auf der SH-Bruecke beseitigt. NPC-/Pickup-Normalen bleiben geglaettet.
+- Gleichmaessige Integration um den Pixel-Blickstrahl, sphaerischer Radius und korrigierte Normalengewichtung; Tiefenspruenge ziehen keine Hintergrund-AO mehr auf Vordergrundkanten.
+- Analytische GPU-Regression, 15 native Kamerawinkel, AA/SH/BT mit Save/Load, Renderer-/Aufloesungswechsel und UHD bestanden. Bildraumgrenzen bleiben dokumentiert.
+- Engine c861c762 in CP08-r1 und CP09-r1 installiert; 9086/9090 Laufzeitdateien und 9072 Originaldateien verifiziert, 535 persoenliche Profildateien unveraendert.
+- Source 0a549e91 auf CP09-Arbeitsbranch gesichert. Details: checkpoints/CP09/ambient-occlusion.md. Kein Merge, CP09-Gesamtabnahme offen.
+
 ## 2026-10-28: Hochwertige Ambient Occlusion
 
 - Direkter Nutzerauftrag: GTAO-basierte Kontaktverschattung, volle Aufloesung, geglaettete Modellnormalen und kantenbewahrende Filterung.

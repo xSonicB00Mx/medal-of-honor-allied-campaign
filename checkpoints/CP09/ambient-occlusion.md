@@ -194,6 +194,13 @@ Die geschuetzten Testlaeufe bestaetigen 535 unveraenderte persoenliche
 Profildateien. Screenshots/Normalen-Dumps/Saves bleiben lokal und ignoriert.
 Keine persoenliche Gesamtspielabnahme oder neue CP09-Freigabe unterstellt.
 
+Ausgeliefert mit `tools/deploy_cp09_engine.py ao-viewfix-final`: Engine-Source
+`0a549e9159c737af8645c71d1646627ff660a4c1`, obiger Engine-Hash in CP08-r1/CP09-r1.
+9086/9090 Laufzeitdateien, 9072 Originaldateien und 535 persoenliche Profildateien
+verifiziert. Nur die Engine ersetzt; game/cgame, Spielinhalte und Optionen
+unveraendert. Deploymentbericht und Rueckbau:
+`generated-local/CP09/ao-viewfix-final/deployment.json` bzw. `rollback/`.
+
 Die grundlegende Bildraumgrenze bleibt: hinter anderen Objekten oder ausserhalb
 des Bilds liegende Geometrie kann weiterhin fehlen. Die Korrektur reduziert
 unbegruendete Blickwinkelabhaengigkeit, behauptet aber keine vollstaendig

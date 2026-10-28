@@ -7,6 +7,11 @@ Kampagnenabschluss mit seinem bestehenden Spielstand.
 **Status: erste technische Runde abgeschlossen, CP09 insgesamt weiterhin offen.
 Keine Gesamtspielabnahme, kein Merge.**
 
+Nachtrag 29.10.2026: [AO-Blickwinkel-/Kantenkorrektur](ambient-occlusion.md),
+geometrische Normalen fuer Umgebungsmodelle, stabilere Integration und
+Silhouetten-Tiefenabgleich. AA/SH/BT, Brueckenregression, Kameraschwenks und UHD
+geprueft; regulaere CP08-/CP09-Engine aktualisiert, 535 Profildateien unveraendert.
+
 Weiterer direkter Nutzerauftrag vom 28.10.2026: [Hochwertige Ambient Occlusion](ambient-occlusion.md),
 GTAO-basierter GL1-Pass, gemeinsame Option und isolierte Spielpruefungen.
 
