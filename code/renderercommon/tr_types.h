@@ -154,6 +154,8 @@ typedef struct {
 	int         morphstart;
 	qboolean    hasMorph;
     qboolean    acFullDetail; // bounded close-range wound geometry; never networked
+    qboolean    acShadowCaster; // renderer-only, never saved/networked
+    int         acShadowOwner; // attachments share their parent silhouette
 } refEntity_t;
 
 

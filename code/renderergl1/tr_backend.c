@@ -713,6 +713,7 @@ void RB_RenderDrawSurfList( drawSurf_t *drawSurfs, int numDrawSurfs ) {
 
 	// clear the z buffer, set the modelview, etc
 	RB_BeginDrawingView ();
+	RB_ACShadowBegin();
 
 	// draw everything
 	oldEntityNum = -1;
@@ -753,6 +754,7 @@ void RB_RenderDrawSurfList( drawSurf_t *drawSurfs, int numDrawSurfs ) {
 			if (oldShader != NULL) {
 				RB_EndSurface();
 			}
+			if (shader->sort > SS_SEE_THROUGH) RB_ACShadowFinish();
 			RB_BeginSurface( shader );
 			oldShader = shader;
 			oldDlightMap = dlightMap;
@@ -892,6 +894,7 @@ void RB_RenderDrawSurfList( drawSurf_t *drawSurfs, int numDrawSurfs ) {
 		qglDepthRange (0, 1.0);
 	}
 
+	RB_ACShadowFinish();
 	RB_ShadowFinish();
 	if (!(backEnd.refdef.rdflags & RDF_HUD)) {
 		RB_RenderFlares();

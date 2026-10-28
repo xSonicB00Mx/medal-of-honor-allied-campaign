@@ -14,14 +14,17 @@ ap = argparse.ArgumentParser()
 ap.add_argument('run', help='Unique backup name; native test report folder')
 ap.add_argument('--options-layout', action='store_true', help='Also install the exact options packages from the test report')
 ap.add_argument('--game-only', action='store_true', help='Install only the tested game DLL')
+ap.add_argument('--cgame', action='store_true', help='Install the matching tested cgame ABI with the engine')
 a = ap.parse_args()
-assert not (a.game_only and a.options_layout)
+assert not (a.game_only and (a.options_layout or a.cgame))
 assert re.fullmatch(r'[a-zA-Z0-9-]+', a.run)
 report = json.loads((R/'generated-local/CP09'/a.run/'result.json').read_text())
 engine = R/'build-local/cp00-r3/RelWithDebInfo/openmohaa.exe'
 assert digest(engine)==report['engine_sha256'], 'Test the exact engine first'
 game = engine.with_name('game.dll')
+cgame = engine.with_name('cgame.dll')
 if a.game_only: assert digest(game)==report['game_sha256'], 'Test the exact game DLL first'
+if a.cgame: assert digest(cgame)==report['cgame_sha256'], 'Test the exact cgame DLL first'
 assert not subprocess.check_output(['git','diff','HEAD','--','code','mod/ui'],cwd=R), 'Commit tested sources first'
 commit = subprocess.check_output(['git','rev-parse','HEAD'],cwd=R,text=True).strip()
 runtimes = [R/'runtime-local'/name for name in ['CP08-r1','CP09-r1']]
@@ -38,6 +41,7 @@ manifests = [expected(rt)[0] for rt in runtimes]
 print('Original data and both runtimes verified',flush=True)
 updates={'openmohaa.exe':engine}
 if a.game_only: updates={'game.dll':game}
+if a.cgame: updates['cgame.dll']=cgame
 if a.options_layout:
     packages=report['packages']
     assert {row['game'] for row in packages}=={'AA','SH','BT'} and len(packages)==3
@@ -70,6 +74,7 @@ try:
         for name,src in updates.items(): shutil.copy2(src,rt/name)
         manifest.update(source_commit=commit)
         manifest['game_dll_source_commit' if a.game_only else 'engine_source_commit']=commit
+        if a.cgame: manifest['cgame_source_commit']=commit
         for row in manifest['owned_files']:
             if row['path'] in updates: row['sha256']=digest(updates[row['path']])
         if a.options_layout:
@@ -80,6 +85,7 @@ try:
     record = json.loads((runtimes[1]/'CP09-candidate.json').read_text())
     record.update(source_commit=commit,engine_source_commit=manifests[1]['engine_source_commit'],checkpoint_source_commit=commit,
                   input_fingerprint=hashlib.sha256(json.dumps(source_rows,sort_keys=True).encode()).hexdigest())
+    if a.cgame: record['cgame_source_commit']=commit
     save(runtimes[1]/'CP09-candidate.json',record)
     for row in manifests[1]['owned_files']:
         if row['path']=='CP09-candidate.json': row['sha256']=digest(runtimes[1]/row['path'])
@@ -95,5 +101,6 @@ result = dict(source_commit=commit,engine_sha256=digest(engine),verified_files=v
               original_files_verified=len(original),personal_files_unchanged=len(before),
               rollback=str(backup.relative_to(R)),scope='Engine and options layout; game/cgame/artwork unchanged' if a.options_layout else 'Engine only; game/cgame/assets unchanged')
 if a.game_only: result.update(game_sha256=digest(game),scope='Game DLL only; engine/cgame/assets unchanged')
+if a.cgame: result.update(cgame_sha256=digest(cgame),scope='Engine and matching cgame; shared options' if a.options_layout else 'Engine and matching cgame')
 save(backup.parent/'deployment.json',result)
 print(json.dumps(result,indent=2))

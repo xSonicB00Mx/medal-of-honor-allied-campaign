@@ -2020,6 +2020,11 @@ SHADOWS
 
 void RB_ShadowTessEnd( void );
 void RB_ComputeShadowVolume();
+void R_ACShadowInit(void);
+void R_ACShadowShutdown(void);
+void RB_ACShadowBegin(void);
+void RB_ACShadowCapture(void);
+void RB_ACShadowFinish(void);
 void RB_ShadowFinish( void );
 void RB_ProjectionShadowDeform( void );
 

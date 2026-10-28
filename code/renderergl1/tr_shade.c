@@ -1870,6 +1870,7 @@ void RB_EndSurface( void ) {
 	// call off to shader specific tess end function
 	//
 	tess.currentStageIteratorFunc();
+	RB_ACShadowCapture();
 
 	if (!(tr.refdef.rdflags & RDF_NOWORLDMODEL) && !backEnd.in2D)
 	{

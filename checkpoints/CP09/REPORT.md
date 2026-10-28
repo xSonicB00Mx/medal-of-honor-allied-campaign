@@ -7,6 +7,9 @@ Kampagnenabschluss mit seinem bestehenden Spielstand.
 **Status: erste technische Runde abgeschlossen, CP09 insgesamt weiterhin offen.
 Keine Gesamtspielabnahme, kein Merge.**
 
+Neuer direkter Nutzerauftrag vom 28.10.2026: [Dynamische NPC-/Pickup-Schatten](model-shadows.md),
+GL1, gemeinsamer Live-Schalter und isolierte AA/SH/BT-/UHD-Pruefungen.
+
 Nachtrag auf direkten Nutzerauftrag: [Roemische Missionsnummern in Operations](operations-roman.md),
 sechs native Menuepruefungen bestanden, in CP08-r1 und CP09-r1 installiert.
 Arabische Gruppenanzahlen und persoenlicher Fortschritt bleiben erhalten.

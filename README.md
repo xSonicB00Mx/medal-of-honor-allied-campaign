@@ -13,6 +13,7 @@ Allied Campaign is a single-player mod and customized [OpenMoHAA](https://github
 - **LOADOUT:** choose portable weapons from all three games for completed Operations replays. New campaign missions and Mission List score runs retain their normal equipment. The former multiplayer entrance opens LOADOUT.
 - **Shared presentation:** campaign-wide settings, widescreen menu and briefing artwork, Courier New Bold text, higher-resolution HUD elements, adjustable HUD size and a separate menu font-size control.
 - **Combat feedback:** dynamic spread-based crosshairs, blood mist, drops, surface stains and persistent character wounds, including visual corpse-hit effects. A mortar impact guide helps with aiming.
+- **Model shadows:** filtered dynamic shadows for NPCs and pickups, with a shared live toggle. The environment receives shadows; new environment shadow casting is outside the current scope.
 - **Allied Campaign Options:** organized display, HUD and blood settings; hit flinch adjustable from 0% to 100% in 10% steps; optional original Breakthrough drop restrictions.
 
 Multiplayer is outside this mod's scope. Upstream networking and server code remain in the source tree, but they are not an Allied Campaign feature or a tested release target.

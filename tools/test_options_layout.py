@@ -4,16 +4,17 @@ from pathlib import Path
 from PIL import Image
 
 R=Path(__file__).resolve().parents[1]
-ap=argparse.ArgumentParser();ap.add_argument('run');a=ap.parse_args()
+ap=argparse.ArgumentParser();ap.add_argument('run');ap.add_argument('--packages-report');a=ap.parse_args()
 assert re.fullmatch('[a-zA-Z0-9-]+',a.run)
 out=R/'generated-local/CP09'/a.run;out.mkdir(parents=True,exist_ok=False)
 rt=R/'runtime-local/CP09-r1'
 exe=R/'build-local/cp00-r3/RelWithDebInfo/openmohaa.exe'
 source=(R/'mod/ui/ac_scaling.urc').read_text()
-packages=json.loads((R/'generated-local/flinch/packages/package-report.json').read_text())
+packages=(json.loads((R/a.packages_report).read_text())['packages'] if a.packages_report else
+          json.loads((R/'generated-local/flinch/packages/package-report.json').read_text()))
 defaults=dict(ac_ui_auto=1,ac_menu_scale=1,ac_hud_scale=1,ac_hud_safe=1,ac_blood_mist=1,
               ac_world_blood=1,ac_body_wounds=1,ac_corpse_effects=1,ac_player_flinch_percent=20,
-              ac_bt_drop_limits=0,ac_hud_outline=0)
+              ac_bt_drop_limits=0,ac_hud_outline=0,r_acModelShadows=1)
 personal=R/'profiles-local/CP08-r1/user'
 def hashes():
  return {p.relative_to(personal).as_posix():hashlib.sha256(p.read_bytes()).hexdigest() for p in personal.rglob('*') if p.is_file()}
@@ -25,7 +26,7 @@ for game,(width,height) in enumerate([(1920,1080),(1280,960),(3440,1440)]):
   f=R/item['package'];dst=p/f.parent.name/f.name;dst.parent.mkdir(exist_ok=True);shutil.copy2(f,dst)
  # Only add continuations to the real button commands, so the command buffer drains.
  fixture=source.replace('stuffcommand "popmenu 0"','stuffcommand "popmenu 0; exec back.cfg"')
- fixture=fixture.replace('set ac_hud_outline 0"','set ac_hud_outline 0; exec defaults.cfg"')
+ fixture=fixture.replace('set r_acModelShadows 1"','set r_acModelShadows 1; exec defaults.cfg"')
  with zipfile.ZipFile(h/'zzzzzzzzzzzzzzzzz_AC_OptionsProbe.pk3','w') as z:z.writestr('ui/ac_scaling.urc',fixture)
  scale=min(width/960,height/540);ox=(width-960*scale)/2;oy=(height-540*scale)/2
  def mouse(name,event,x,y,buttons=0):
@@ -35,7 +36,7 @@ for game,(width,height) in enumerate([(1920,1080),(1280,960),(3440,1440)]):
  for name,cv,x,y in [('auto','ac_ui_auto',433,167),('hudOutline','ac_hud_outline',433,331),
                      ('mist','ac_blood_mist',897,166),('worldBlood','ac_world_blood',897,216),
                      ('bodyWounds','ac_body_wounds',897,266),('corpseEffects','ac_corpse_effects',897,316),
-                     ('dropLimits','ac_bt_drop_limits',897,431)]:
+                     ('dropLimits','ac_bt_drop_limits',897,431),('modelShadows','r_acModelShadows',897,461)]:
   cmd += [mouse(name,'left_mouse_up',x,y),cv]
  for name,cv,x,y in [('menuSlider','ac_menu_scale',290,210),('hudSlider','ac_hud_scale',290,250),('safeSlider','ac_hud_safe',290,290)]:
   cmd += [mouse(name,'left_mouse_down',x,y,1),mouse(name,'left_mouse_up',x,y),cv]
@@ -67,8 +68,8 @@ for game,(width,height) in enumerate([(1920,1080),(1280,960),(3440,1440)]):
   if not name.endswith('Panel'):rects.append((name,x,y,w,t))
  for i,(n,x,y,w,t) in enumerate(rects):
   for m,bx,by,bw,bt in rects[i+1:]:assert min(x+w,bx+bw)-max(x,bx)<=.1 or min(y+t,by+bt)-max(y,by)<=.1,(n,m)
- changed=dict(re.findall(r'seta (ac_\w+) "([^"]+)"',(h/'configs/changed.cfg').read_text()))
- restored=dict(re.findall(r'seta (ac_\w+) "([^"]+)"',(h/'configs/restored.cfg').read_text()))
+ changed=dict(re.findall(r'seta (ac_\w+|r_acModelShadows) "([^"]+)"',(h/'configs/changed.cfg').read_text()))
+ restored=dict(re.findall(r'seta (ac_\w+|r_acModelShadows) "([^"]+)"',(h/'configs/restored.cfg').read_text()))
  assert all(float(restored[k])==v for k,v in defaults.items()),restored
  assert all(float(changed[k])!=v for k,v in defaults.items() if k!='ac_player_flinch_percent'),changed
  flinch=[float(v) for v in re.findall(r'"ac_player_flinch_percent" is:"([^" ]+)',log)]

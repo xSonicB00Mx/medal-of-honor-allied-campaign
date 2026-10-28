@@ -1178,6 +1178,9 @@ void CG_ModelAnim(centity_t *cent, qboolean bDoShaderTime)
     // set skin
     model.skinNum = s1->skinNum;
     model.renderfx |= s1->renderfx;
+    model.acShadowCaster = s1->number != cg.snap->ps.clientNum
+        && (s1->eType == ET_ITEM || model.tiki->a->bIsCharacter);
+    model.acShadowOwner = s1->number;
     cgi.TIKI_SetEyeTargetPos(model.tiki, model.entityNumber, s1->eyeVector);
 
     CG_InterpolateAnimParms(s1, sNext, &model);
@@ -1268,6 +1271,8 @@ void CG_ModelAnim(centity_t *cent, qboolean bDoShaderTime)
         // set the attached model to have the same render FX
         model.renderfx &= ~(RF_FIRST_PERSON | RF_THIRD_PERSON | RF_DEPTHHACK);
         model.renderfx |= parent->renderfx & (RF_FIRST_PERSON | RF_THIRD_PERSON | RF_DEPTHHACK);
+        model.acShadowCaster = parent->acShadowCaster;
+        model.acShadowOwner = parent->acShadowOwner;
     }
 
     for (i = 0; i < 3; i++) {
@@ -1290,7 +1295,9 @@ void CG_ModelAnim(centity_t *cent, qboolean bDoShaderTime)
         && !CG_SimpleDistanceCull(model.origin, Square(1400))
         && !CG_FrustumCullSphere(model.origin, model.radius + 64)) {
         // add the shadow
-        CG_EntityShadow(cent, &model);
+        if (!model.acShadowCaster || !cgi.Cvar_Get("r_acModelShadows", "1", CVAR_ARCHIVE)->integer
+            || !cgi.Cvar_Get("r_acShadowReady", "0", 0)->integer)
+            CG_EntityShadow(cent, &model);
     }
 
     iAnimFlags = 0;
