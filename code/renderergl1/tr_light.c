@@ -1138,12 +1138,7 @@ void R_GetLightingForSmoke(vec3_t vLight, const vec3_t vOrigin)
         power = dl->radius * dl->radius;
         if (power >= d) {
             if (!R_ACLightVisible(dl->origin, vOrigin, &backEnd.refdef)) continue;
-            if (R_ACDynamicLightingActive(&backEnd.refdef)) {
-                float falloff = 1.0f - sqrtf(d) / dl->radius;
-                d = 375.0f * falloff * falloff;
-            } else {
-                d = dl->radius * 7500.0 / Q_max(d, 64.0f);
-            }
+            d = dl->radius * 7500.0 / Q_max(d, 64.0f);
             VectorMA(vLight, d, dl->color, vLight);
         }
     }

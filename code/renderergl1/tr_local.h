@@ -2033,7 +2033,7 @@ void R_ACLightingInit(void);
 void R_ACLightingShutdown(void);
 void RB_ACLightingBegin(void);
 void RB_ACModelLighting(unsigned char *colors);
-void RB_ACDynamicModelLighting(unsigned char *colors);
+void RB_ACDynamicModelLighting(unsigned char *colors, qboolean grid);
 qboolean R_ACLightVisible(const vec3_t light, const vec3_t receiver, const trRefdef_t *refdef);
 void R_ACLightWorldPoint(const vec3_t local, const orientationr_t *ori, vec3_t world);
 void RB_ACParticleColors(const shaderStage_t *stage);

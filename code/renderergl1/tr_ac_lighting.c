@@ -165,31 +165,41 @@ void RB_ACModelLighting(unsigned char *colors)
     probeBatches++;
 }
 
-/* Bounded, common falloff for animated and baked static models. Visibility
- * is tested at the actual vertex, not just a model origin hidden by a door.
- * Dynamic light is excluded from the old model paths while this is active. */
-void RB_ACDynamicModelLighting(unsigned char *colors)
+/* Preserve MOH's model-light response and influence bounds. A lightmap's
+ * 375*(1-d/r)^2 curve is NOT interchangeable with the model inverse-square
+ * response: it extinguishes most small muzzle lights. Only visibility is new.
+ * Test each actual vertex so a partly exposed model can still receive light. */
+void RB_ACDynamicModelLighting(unsigned char *colors, qboolean grid)
 {
     int i,j,k;
     float modelScale=1;
+    vec3_t centre;
+    qboolean isStatic=backEnd.currentStaticModel!=NULL;
     if(!R_ACDynamicLightingActive(&backEnd.refdef) || backEnd.in2D || !backEnd.refdef.num_dlights)return;
-    if(backEnd.currentStaticModel)modelScale=backEnd.currentStaticModel->tiki->load_scale*backEnd.currentStaticModel->scale;
+    if(isStatic){
+        modelScale=backEnd.currentStaticModel->tiki->load_scale*backEnd.currentStaticModel->scale;
+        VectorCopy(backEnd.currentStaticModel->origin,centre);
+    }
     else if(!backEnd.currentEntity || backEnd.currentEntity==&tr.worldEntity || !backEnd.currentEntity->e.tiki
         || (backEnd.currentEntity->e.renderfx & (RF_FULLBRIGHT | RF_INVISIBLE)))return;
+    else VectorCopy(grid?backEnd.currentSphere->traceOrigin:backEnd.currentSphere->worldOrigin,centre);
     for(i=0;i<tess.numVertexes;i++){
         vec3_t local,world,normal={0,0,0},add={0,0,0};
         VectorScale(tess.xyz[i],modelScale,local);R_ACLightWorldPoint(local,&backEnd.ori,world);
         for(k=0;k<3;k++)VectorMA(normal,tess.normal[i][k],backEnd.ori.axis[k],normal);
         VectorNormalize(normal);
         for(j=0;j<backEnd.refdef.num_dlights;j++){
-            dlight_t *dl=&backEnd.refdef.dlights[j];vec3_t dir;float distance,lambert,f;
+            dlight_t *dl=&backEnd.refdef.dlights[j];vec3_t dir,delta;float distance,lambert,f,centreDistance;
             if(dl->radius<=0)continue;
+            VectorSubtract(dl->origin,centre,delta);centreDistance=VectorLength(delta);
+            if(centreDistance>dl->radius+(grid?0:(isStatic?dl->radius:backEnd.currentSphere->radius)))continue;
             VectorSubtract(dl->origin,world,dir);distance=VectorNormalize(dir);
-            if(distance>=dl->radius)continue;
-            lambert=Q_max(0,DotProduct(normal,dir));if(lambert<=0)continue;
+            lambert=grid?1.0f:Q_max(0,DotProduct(normal,dir));if(lambert<=0)continue;
             if(!R_ACLightVisible(dl->origin,world,&backEnd.refdef))continue;
-            f=1.0f-distance/dl->radius;
-            VectorMA(add,375.0f*f*f*lambert*tr.overbrightMult,dl->color,add);
+            if(grid)f=7500.0f*dl->radius/Q_max(centreDistance*centreDistance,64.0f);
+            else if(isStatic)f=7500.0f*dl->radius/Q_max(distance*distance,64.0f);
+            else f=r_entlight_scale->value*7500.0f*dl->radius/(Q_max(centreDistance,8.0f)*Q_max(distance,8.0f));
+            VectorMA(add,f*lambert*tr.overbrightMult,dl->color,add);
         }
         for(k=0;k<3;k++)colors[4*i+k]=(byte)Clamp(colors[4*i+k]+add[k],0,255);
     }
@@ -315,6 +325,12 @@ void RB_ACLightingBegin(void)
     captured=qfalse;
     if(debugLighting && debugLighting->integer && backEnd.refdef.time-lastReport>1000){
         ri.Printf(PRINT_ALL,"AC_LIGHT probes=%d clouds=%d traces=%d blocked=%d\n",probeBatches,particleBatches,lightTraces,blockedTraces);
+        if(debugLighting->integer>1){
+            int i;for(i=0;i<backEnd.refdef.num_dlights;i++){
+                const dlight_t *d=&backEnd.refdef.dlights[i];
+                ri.Printf(PRINT_ALL,"AC_LIGHT_SOURCE %.2f %.2f %.2f radius=%.2f rgb=%.2f %.2f %.2f\n",d->origin[0],d->origin[1],d->origin[2],d->radius,d->color[0],d->color[1],d->color[2]);
+            }
+        }
         probeBatches=particleBatches=lightTraces=blockedTraces=0;lastReport=backEnd.refdef.time;
     }
 }

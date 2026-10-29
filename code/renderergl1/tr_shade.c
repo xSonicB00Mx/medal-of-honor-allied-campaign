@@ -1003,7 +1003,7 @@ static void ComputeColors( shaderStage_t *pStage )
 	if (pStage->rgbGen == CGEN_LIGHTING_SPHERICAL || pStage->rgbGen == CGEN_LIGHTING_GRID)
         RB_ACModelLighting((unsigned char *)tess.svars.colors);
     if (pStage->rgbGen == CGEN_LIGHTING_SPHERICAL || pStage->rgbGen == CGEN_LIGHTING_GRID || pStage->rgbGen == CGEN_STATIC)
-        RB_ACDynamicModelLighting((unsigned char *)tess.svars.colors);
+        RB_ACDynamicModelLighting((unsigned char *)tess.svars.colors, pStage->rgbGen == CGEN_LIGHTING_GRID);
 
 	//
 	// alphaGen
@@ -1667,28 +1667,12 @@ void RB_StageIteratorVertexLitTextureUnfogged( void )
 
 	shader = input->shader;
 
-	if (backEnd.currentSphere->TessFunction && r_drawspherelights->integer)
-	{
-		//
-		// compute colors using the sphere function
-		//
-		backEnd.currentSphere->TessFunction((unsigned char*)tess.svars.colors);
-	}
-	else if (backEnd.currentStaticModel)
-	{
-		//
-		// compute colors
-		//
-		ComputeColors(input->xstages[0]);
-	}
-	else
-	{
-		//
-		// calculate using previously calculated lighting grid
-		// for the entity
-		//
-		RB_CalcLightGridColor((unsigned char*)tess.svars.colors);
-	}
+	/* Use the same colour pipeline as the generic iterator. Calling the
+	 * sphere/grid function directly bypassed AC lighting while the original
+	 * dynamic contribution was suppressed: ordinary single-stage models
+	 * consequently lost muzzle lights (and local grid probes) entirely.
+	 * The optimized texture/array draw below remains unchanged. */
+	ComputeColors(input->xstages[0]);
 
 	//
 	// log this call

@@ -3,6 +3,76 @@
 Direkter Nutzerauftrag vom 29.10.2026: Grafikvorschlaege 1, 4 und 5 in die
 regulaere Mod integrieren. Kein separater Spielstand erforderlich.
 
+## Korrektur 30.10.2026: Fehlendes Waffenlicht
+
+Der Nutzer meldete fehlendes Umgebungslicht beim Schiessen. Reproduktion in
+einer getrennten Kopie seines neuesten AA-Spielstands: m3l2, Thompson.
+Die urspruenglichen Tests unten verwendeten gesetzte Dauerlichter und prueften
+nicht den vollstaendigen Waffenablauf. Sie waren fuer diese Regression nicht
+ausreichend; ihre erfolgreiche Ausfuehrung war keine visuelle Gesamtabnahme.
+
+Ursachen und Korrektur:
+
+- Der optimierte Vertex-Lichtpfad rief nur die alte Sphere/Grid-Funktion auf.
+  Die neuen Beitraege liefen allein durch `ComputeColors`, waehrend der alte
+  dynamische Beitrag bereits abgeschaltet war. Dadurch fehlte das Waffenlicht
+  auf vielen normalen Ein-Pass-Modellen vollstaendig. Der schnelle Zeichenpfad
+  nutzt nun dieselbe Farbberechnung wie der generische Pfad. Er behaelt seine
+  optimierte Textur-/Array-Ausgabe; keine globale Abschaltung der Optimierung.
+- Derselbe fehlende Aufruf betraf die lokalen Lichtgitter-Proben. Diese werden
+  jetzt auch auf den zuvor ausgelassenen Modellen ausgefuehrt.
+- Der neue gemeinsame Lightmap-Distanzabfall schwaechte kleine Waffenlichter
+  auf Modellen/Rauch zusaetzlich ab. Die bisherigen modellspezifischen
+  Einflussbereiche und Sphere/Grid-/Static-Lichtformeln gelten wieder; die
+  Sichtbarkeit wird weiterhin am tatsaechlichen Vertex geprueft. Vorhanden
+  beleuchteter Rauch verwendet wieder seinen urspruenglichen Distanzabfall.
+- Welt-Lightmaps, Verdeckung durch BSP/bewegliche Brushes, Schadenslogik,
+  Waffenparameter und Speicherformat werden in dieser Korrektur nicht geaendert.
+
+Neue Nachweise: `test_ac_weapon_lighting.py` feuert die echte Waffe und erfasst
+26 Frames. `test_ac_muzzle_response.py` reproduziert anschliessend die gemessene
+Thompson-Lichtquelle (Radius 150, RGB .25/.20/.15) mit fester Kamera. So werden
+Rueckstoss und zufaellige Partikel nicht mit einer Lichtkorrektur verwechselt.
+Ein versuchter Pause-Vergleich war nicht bildstabil und wurde verworfen.
+
+| Statische Bildprobe | Vor Korrektur, Verdeckung an | Nach Korrektur | Originallicht ohne Verdeckung |
+|---|---:|---:|---:|
+| Kopf | +0,03 | +19,76 | +18,84 |
+| Oberkoerper | +0,02 | +7,33 | +5,81 |
+| Zweiter Koerper | 0,00 | +10,25 | +8,34 |
+
+Werte: mittlerer RGB-Zuwachs in festen Bildausschnitten (0..255), keine
+physikalischen Luminanzen. Bei ausgeschalteter Quelle sind diese Ausschnitte
+pixelgleich. Optimierter und erzwungener generischer Pfad liefern identische
+Lichtwerte (`muzzle-final`, `muzzle-generic-final`, `parity.json`). Die zuvor
+installierte Engine scheitert an diesen Kriterien (`muzzle-before-visible`).
+Das echte Thompson-Feuer ist zusaetzlich in `fire-save-final` sichtbar geprueft.
+
+Die lokale Lichtgitter-Korrektur ist im gleichmaessig beleuchteten Bocage-
+Ausschnitt weiterhin sehr klein (unter 0,03 RGB-Stufen im Mittel). Das ist
+keine neue GI und dort kein grosser sichtbarer Grafiksprung. Soft Particles
+verbessern vorrangig Schnittkanten von Rauch/Staub mit Geometrie; sie veraendern
+nicht grundsaetzlich die Beleuchtung der ganzen Szene.
+
+Weitere Regression mit Engine
+`101d26baac78ab0adca58963f30eff31707f8c9471c3e1a37121005d8c647ec9`:
+
+- `fire-interior-final`: echtes MP40-Feuer in m2l2a, 26 Frames.
+- `muzzle-walls-final --fast`: verdeckte Decke 0 fehlerhafte Lichtpixel,
+  sichtbare Bodenprobe weiterhin 149.919 beleuchtete Pixel.
+- `muzzle-door-final`: geschlossene Drehtuer 0 Lichtpixel, offen 14.300.
+- `muzzle-aa-release --uhd`, `muzzle-sh-final`, `muzzle-bt-final`: je acht
+  Bilder, Save/Load, Grafikneustart, native Optionsschalter und Defaults;
+  persoenliche 555 Dateien jeweils hashgleich.
+- `muzzle-stress-final`: UHD, 16 NPCs/acht Pickups/zwei Lichter mit AO/Schatten.
+  249 Frames je Zustand: Zusatzbeleuchtung aus 6 ms Median/7 ms P95,
+  an 15 ms Median/16 ms P95/20 ms Maximum. CPU-Wandzeit einschliesslich
+  Treiberwartezeit. Der zuvor dokumentierte niedrigere Aufwand von 10 ms
+  galt fuer die fehlerhafte Fassung, die viele Modelle nicht beleuchtete.
+
+Die folgenden Abschnitte dokumentieren die erste Lieferung vom 29.10.;
+Quellen-/Installationsstand der Korrektur wird separat festgehalten.
+
 ## Umsetzung
 
 - **Lokale Modellbeleuchtung:** sechs durch die Levelkollision begrenzte
@@ -16,7 +86,7 @@ regulaere Mod integrieren. Kein separater Spielstand erforderlich.
 - **Dynamische Lichter:** vorhandene Waffen-/Explosionslichter pruefen die
   Sichtbarkeit zur beleuchteten Weltflaeche bzw. zum Modellvertex. Solide
   BSP-/Terrainkollision und aktuell positionierte/gedrehte Brushmodelle
-  blockieren die Strahlen. Gemeinsamer begrenzter quadratischer Distanzabfall;
+  blockieren die Strahlen. Urspruengliche, modellspezifische Lichtantwort;
   keine doppelte Addition aus dem alten Modelllichtpfad. Empfaengerproben von
   Flaechenlichtmaps werden fuer den Sichtbarkeitstest auf ihre sichtbare Ebene
   gelegt: einige Originalproben lagen acht Einheiten hinter der Wand.
