@@ -1,3 +1,11 @@
+## 2026-10-29: Blickwinkelabhaengigen Modellschatten-Bias korrigiert
+
+- Schatten-Tiefenvergleich nutzt die Empfaengerebene in Licht-UV statt Kamerapixel-Steilheit; auch alle PCF-Filtertaps folgen der Flaeche.
+- Alte Quelle reproduziert den Kontaktverlust im GPU-Test; neue Quelle besteht 48 Kamera-/Tiefenfaelle. Landungsboot m3l1a in fuenf Ansichten mit getrennten Effekten geprueft.
+- AA/SH/BT, Save/Load, Renderer-Neustart, Live-Schalter und UHD bestanden. Keine GL-Fehler im Schattenpass.
+- Engine 6916445b aus Source 790e9b68 in CP08-r1/CP09-r1 installiert; 9086/9090 Runtime-Dateien, 9072 Originaldateien und 535 persoenliche Profildateien verifiziert.
+- Bericht checkpoints/CP09/model-shadows.md; Sichtbarkeits-/Bildraumgrenzen bleiben dokumentiert. CP09 offen, kein Merge.
+
 ## 2026-10-29: Schwebende AO auf statischen Modellen behoben
 
 - Fehlender TIKI-/Instanzmassstab im AO-/Schatten-Geometriepass korrigiert; echte m2l2a-Schreibmaschine vorher/nachher und gegen normalen Tiefenpuffer geprueft.

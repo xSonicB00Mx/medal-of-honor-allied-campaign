@@ -135,3 +135,9 @@ Die zuvor dokumentierten Grenzen der kameraseitig eingereichten Geometrie
 und der bildraumbasierten AO bleiben bestehen. Diese Korrektur beseitigt
 den nachgewiesenen winkelabhaengigen Tiefenbias, behauptet aber keine
 vollstaendige Sichtbarkeit verdeckter/offscreen Geometrie. CP09 bleibt offen.
+
+Auslieferung: Source `790e9b68ceb7e52a0e1eeea10ac9cfb37eee07cb`,
+`deploy_cp09_engine.py boat-shadow-release` aktualisierte die regulaeren
+CP08-r1-/CP09-r1-Engines. 9086/9090 Runtime-Dateien, 9072 Originaldateien und
+535 unveraenderte persoenliche Profildateien verifiziert. Deployment-Bericht
+und Rollback unter `generated-local/CP09/boat-shadow-release/`.

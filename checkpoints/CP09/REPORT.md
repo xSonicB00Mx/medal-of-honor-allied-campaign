@@ -7,6 +7,12 @@ Kampagnenabschluss mit seinem bestehenden Spielstand.
 **Status: erste technische Runde abgeschlossen, CP09 insgesamt weiterhin offen.
 Keine Gesamtspielabnahme, kein Merge.**
 
+Nachtrag 29.10.2026: [Schattenkontakt auf dem Normandy-Boot](model-shadows.md).
+Kamerapixelabhaengigen Tiefenbias durch Empfaengerebenen in Lichtprojektion
+ersetzt. 48 GPU-Faelle, fuenf Bootswinkel mit getrennten Effekten, AA/SH/BT,
+Save/Load, Renderer-Neustart und UHD geprueft. Engine 6916445b in CP08/CP09
+installiert; 535 persoenliche Profildateien unveraendert.
+
 Weiterer Nachtrag 29.10.2026: [Schwebende Prop-AO und Distanzstabilisierung](ambient-occlusion.md).
 Statischer TIKI-Massstab korrigiert, validierte zeitliche Rueckprojektion ergaenzt.
 Schreibmaschine, Tiefenabgleich, GPU-Distanz-/Verlaufstests, AA/SH/BT, Kamerawinkel,
