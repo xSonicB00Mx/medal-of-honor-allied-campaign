@@ -1,3 +1,11 @@
+## 2026-10-29: Durch Waende scheinende Modellschatten behoben
+
+- Verdeckte BSP-/statische Levelgeometrie blockiert Schatten unabhaengig von der Kamera. Bewegliche Brushmodelle verwenden ihre aktuelle Transformation.
+- Keine Projektion auf die unbeleuchtete Wandrueckseite; jeder PCF-Tap prueft seine eigene Verdeckung.
+- Nativer m2l2a-Deckentest: vorher 105726 fehlerhafte Schattenpixel, nachher 0; sichtbarer Bodenschatten bleibt erhalten. 60 GPU-Faelle plus Filtertest, AA/SH/BT, Save/Load, Grafikneustart, Normandy-Boot und UHD bestanden.
+- Engine 1f269954, Source 88550606, in CP08-r1/CP09-r1 installiert. 9086/9090 Runtime-Dateien und 9072 Originaldateien verifiziert, 551 persoenliche Profildateien unveraendert.
+- Details checkpoints/CP09/model-shadows.md. CP09-Gesamtabnahme offen, kein Merge.
+
 ## 2026-10-29: Blickwinkelabhaengigen Modellschatten-Bias korrigiert
 
 - Schatten-Tiefenvergleich nutzt die Empfaengerebene in Licht-UV statt Kamerapixel-Steilheit; auch alle PCF-Filtertaps folgen der Flaeche.

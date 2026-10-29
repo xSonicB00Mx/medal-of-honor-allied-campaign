@@ -192,3 +192,9 @@ Der fruehere Hinweis auf fehlende kameraseitig verdeckte BSP-/statische
 Levelblocker wird damit ersetzt. Schattenwerfer und bewegliche Entities
 muessen weiterhin vom Spiel eingereicht werden; AO bleibt bildraumbasiert.
 Dies ist keine Gesamtspielabnahme. CP09 bleibt offen.
+
+Auslieferung ueber `deploy_cp09_engine.py walls-shadow-release`, Source
+`885506063332a523c462147b46d69b6f4fe5ae03`: Engine in CP08-r1 und CP09-r1
+ersetzt, 9086/9090 Runtime-Dateien und 9072 Originaldateien verifiziert,
+551 persoenliche Profildateien unveraendert. Bericht/Rollback unter
+`generated-local/CP09/walls-shadow-release/`.

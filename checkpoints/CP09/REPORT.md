@@ -7,6 +7,13 @@ Kampagnenabschluss mit seinem bestehenden Spielstand.
 **Status: erste technische Runde abgeschlossen, CP09 insgesamt weiterhin offen.
 Keine Gesamtspielabnahme, kein Merge.**
 
+Nachtrag 29.10.2026: [Schatten durch Waende korrigiert](model-shadows.md).
+BSP-/statische Levelblocker unabhaengig von der Kamerasicht, aktuelle
+Brushmodell-Transformationen, Lichtseiten- und Filtertap-Pruefung.
+Nativer Deckendurchschlag vorher reproduziert, danach 0 fehlerhafte Pixel
+bei erhaltener Bodenschattenkontrolle. GPU-, AA/SH/BT-, Normandy- und UHD-Tests
+bestanden. Engine 1f269954 in CP08/CP09 installiert, 551 Profildateien unveraendert.
+
 Nachtrag 29.10.2026: [Schattenkontakt auf dem Normandy-Boot](model-shadows.md).
 Kamerapixelabhaengigen Tiefenbias durch Empfaengerebenen in Lichtprojektion
 ersetzt. 48 GPU-Faelle, fuenf Bootswinkel mit getrennten Effekten, AA/SH/BT,
