@@ -141,3 +141,54 @@ Auslieferung: Source `790e9b68ceb7e52a0e1eeea10ac9cfb37eee07cb`,
 CP08-r1-/CP09-r1-Engines. 9086/9090 Runtime-Dateien, 9072 Originaldateien und
 535 unveraenderte persoenliche Profildateien verifiziert. Deployment-Bericht
 und Rollback unter `generated-local/CP09/boat-shadow-release/`.
+
+## 29.10.2026: Levelgeometrie verdeckt Modellschatten
+
+Nutzerfehler: Silhouetten verdeckter Gegner scheinen durch Waende.
+Drei zusammenhaengende Ursachen im bisherigen Pass: Der First-Receiver-Puffer
+enthielt nur kameraseitig eingereichte Flaechen, die Lichtprojektion durfte
+auch die unbeleuchtete Wandrueckseite abdunkeln, und die 25 PCF-Taps prueften
+die Verdeckung nicht einzeln.
+
+- Zusaetzlicher Tiefenpass fuer BSP-Flaechen, Dreiecksgeometrie und Patches
+  ueber den BSP-Baum, begrenzt auf das Welt-AABB des jeweiligen Schattenvolumens.
+  Kein Kamera-Frustum/PVS/Backface-Culling fuer diese Blocker. Doppelte
+  Blattreferenzen werden ueber einen rendererinternen Besuchspuffer vermieden.
+- Statische TIKI-Levelmodelle mit korrektem Instanz-/Lademassstab sowie
+  eingereichte bewegliche Brushmodelle mit aktueller Position und Rotation
+  nehmen ebenfalls am Verdeckungspass teil. Opaque/Alpha-Test-Materialien
+  behalten ihre Texturmaske; Himmel, Nodraw und transparente Materialien
+  werden nicht zu undurchsichtigen Blockern gemacht.
+- Vorzeichen des Licht-UV-Jacobians verwirft Schatten auf der vom Licht
+  abgewandten sichtbaren Seite. Jeder Filtertap verifiziert seine eigene
+  First-Receiver-Tiefe, damit weiche Raender nicht durch Hindernisse greifen.
+- Die zusaetzlichen Flaechen schreiben nur Tiefe: keine neuen Umgebungsschatten,
+  keine Aenderung der Farb-/AO-Paesse, Spielskripte oder Saveformate.
+
+Validierung, Engine
+`1f2699548c933e6d041b08b0acf2a0541b54df3a1d18e26d9532c785a6a2cb5a`:
+
+- `test_shadow_walls.py walls-native-before-r3 --baseline` reproduziert den
+  Fehler in m2l2a: Soldat im oberen Raum, Kamera unter der massiven Decke.
+  Der isolierte Testactor wird per Broadcast garantiert eingereicht, damit
+  PVS-Culling den Fehler nicht verdeckt. Welttrace trifft die Decke bei
+  Z=-128.125. Im Decken-ROI 105726 unberechtigt abgedunkelte Pixel (>2/255).
+- `test_shadow_walls.py walls-native-verified`: gleicher Test, 0 abgedunkelte
+  Deckenpixel, mittlere Differenz 0.0. Sichtbarer Boden im oberen Raum als
+  Positivkontrolle: 26854 Schattenpixel im reinen Boden-ROI. Test prueft
+  ausdruecklich, dass der verdeckte Actor im Schattenpass verarbeitet wird.
+- `test_shadow_receiver.py walls-receiver-final-r2`: 60 GPU-Faelle fuer
+  Kontakte, freie/koplanare/verdeckte Empfaenger, Kameraperspektiven und
+  Wandrueckseiten plus Filtertap-Verdeckung. Alte Quelle scheitert an allen
+  sechs Rueckseitenkameras mit Alpha 0.4 statt 0; neue besteht.
+- `walls-shadow-release`: AA/SH/BT, NPC/Pickup, Bewegung, Save/Load,
+  Grafikneustart und Live-Schalter bestanden. `walls-shadow-boat`: fuenf
+  Normandy-Bootswinkel mit getrenntem AO-/Schattenvergleich bestanden.
+- `walls-shadows-uhd`: 3840x2160, 24 Schatten, aktiver Pass 3-4 ms auf dem
+  Testrechner. Keine GL-Fehler im Schattenpass; bekannte vorherige GL1-1281
+  separat protokolliert. 551 persoenliche Profildateien hashgleich.
+
+Der fruehere Hinweis auf fehlende kameraseitig verdeckte BSP-/statische
+Levelblocker wird damit ersetzt. Schattenwerfer und bewegliche Entities
+muessen weiterhin vom Spiel eingereicht werden; AO bleibt bildraumbasiert.
+Dies ist keine Gesamtspielabnahme. CP09 bleibt offen.

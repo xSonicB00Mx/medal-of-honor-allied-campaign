@@ -29,6 +29,8 @@ static acShadowCaster_t casters[AC_CASTERS];
 static int numVertices, numBatches, numCasters;
 static qboolean collecting, finished, overflow, ready;
 static GLuint framebuffer, maps[2], depthProgram, shadeProgram;
+static byte *blockerVisited;
+static int blockerCapacity, blockerDraws;
 static cvar_t *enabled, *debug;
 static float AC_Clamp(float v,float lo,float hi) {return v<lo?lo:v>hi?hi:v;}
 
@@ -86,7 +88,9 @@ static const char *shadowShader =
     // Screen-pixel depth slopes change when the player turns/looks down, even
     // though neither the light nor the boat deck moved. They must not set bias.
     " vec3 dx=dFdx(p),dy=dFdy(p); float det=dx.x*dy.y-dx.y*dy.x;\n"
-    " if(abs(det)<1.0e-16)discard;\n"
+    // A positive Jacobian means the camera-visible side also faces the light.
+    // Two-sided light-depth rendering must never darken an unlit wall backside.
+    " if(det<=1.0e-16)discard;\n"
     " vec2 gradient=vec2(dy.y*dx.z-dx.y*dy.z,dx.x*dy.z-dy.x*dx.z)/det;\n"
     " vec2 center=(floor(p.xy*1024.0)+0.5)/1024.0;\n"
     " float plane=p.z+dot(gradient,center-p.xy);\n"
@@ -98,7 +102,8 @@ static const char *shadowShader =
     " vec2 tapCenter=(floor(tap*1024.0)+0.5)/1024.0;\n"
     " float z=texture2D(silhouette,tap).r;\n"
     " float receiverZ=p.z+dot(gradient,tapCenter-p.xy);\n"
-    " shade+=float(z<receiverZ-0.00025 && z<0.9999); }\n"
+    " float first=texture2D(receiver,tap).r;\n"
+    " shade+=float(z<receiverZ-0.00025 && z<0.9999 && abs(first-receiverZ)<=0.0008); }\n"
     " float edge=min(min(p.x,1.0-p.x),min(p.y,1.0-p.y));\n"
     " float visibility=fogEnd>fogStart?clamp((fogEnd-eyeDepth)/(fogEnd-fogStart),0.0,1.0):1.0;\n"
     " gl_FragColor=vec4(0.0,0.0,0.0,visibility*opacity*shade/25.0*smoothstep(0.002,0.025,edge));\n"
@@ -146,6 +151,8 @@ void R_ACShadowInit(void) {
     ri.Printf(PRINT_ALL,"AC model shadows ready: NPCs/items, 1024 depth maps, filtered silhouette and first receiver.\n");
 }
 void R_ACShadowShutdown(void) {
+    if(blockerVisited)ri.Free(blockerVisited);
+    blockerVisited=NULL;blockerCapacity=0;
     if(framebuffer&&acDeleteFramebuffers)acDeleteFramebuffers(1,&framebuffer);
     if(maps[0])qglDeleteTextures(2,maps);
     if(depthProgram&&acDeleteProgram)acDeleteProgram(depthProgram);
@@ -315,6 +322,147 @@ static void AC_DrawBatch(const acShadowBatch_t *b,qboolean depth) {
     if(depth) {qglBindTexture(GL_TEXTURE_2D,b->texture);acUniform1f(acGetUniformLocation(depthProgram,"alphaCut"),b->alpha);}
     qglDrawArrays(GL_TRIANGLES,b->first,b->count);
 }
+
+/* The light's blockers cannot be taken only from the camera's draw list:
+ * backface/frustum/PVS culling removes exactly the far wall skin needed to
+ * stop a silhouette on the other side. Traverse BSP bounds in light space's
+ * world AABB instead, independently of camera visibility. These extra faces
+ * write DEPTH ONLY, never introduce new world shadows or alter AO/color. */
+static qboolean AC_BlockerMaterial(const shader_t *shader) {
+    const shaderStage_t *stage;
+    float alpha=-1;
+    if(!shader||shader->isSky||(shader->surfaceFlags&SURF_NODRAW)
+        ||shader->sort<SS_OPAQUE||shader->sort>SS_SEE_THROUGH)return qfalse;
+    stage=shader->unfoggedStages[0];if(!stage)return qfalse;
+    if((stage->stateBits&(GLS_SRCBLEND_BITS|GLS_DSTBLEND_BITS))
+        &&!(stage->stateBits&GLS_DEPTHMASK_TRUE))return qfalse;
+    if(stage->stateBits&GLS_ATEST_GE_80)alpha=0.5f;
+    else if(stage->stateBits&GLS_ATEST_GT_0)alpha=0.01f;
+    qglBindTexture(GL_TEXTURE_2D,stage->bundle[0].image[0]?stage->bundle[0].image[0]->texnum:tr.whiteImage->texnum);
+    acUniform1f(acGetUniformLocation(depthProgram,"alphaCut"),alpha);
+    return qtrue;
+}
+static void AC_DrawBlockerSurface(const msurface_t *surface) {
+    if(!AC_BlockerMaterial(surface->shader))return;
+    switch(*surface->data) {
+    case SF_FACE: {
+        const srfSurfaceFace_t *face=(const srfSurfaceFace_t *)surface->data;
+        qglVertexPointer(3,GL_FLOAT,VERTEXSIZE*sizeof(float),face->points[0]);
+        qglTexCoordPointer(2,GL_FLOAT,VERTEXSIZE*sizeof(float),face->points[0]+3);
+        qglDrawElements(GL_TRIANGLES,face->numIndices,GL_UNSIGNED_INT,(const byte *)face+face->ofsIndices);
+        break;
+    }
+    case SF_TRIANGLES: {
+        const srfTriangles_t *tri=(const srfTriangles_t *)surface->data;
+        qglVertexPointer(3,GL_FLOAT,sizeof(drawVert_t),tri->verts[0].xyz);
+        qglTexCoordPointer(2,GL_FLOAT,sizeof(drawVert_t),tri->verts[0].st);
+        qglDrawElements(GL_TRIANGLES,tri->numIndexes,GL_UNSIGNED_INT,tri->indexes);
+        break;
+    }
+    case SF_GRID: {
+        const srfGridMesh_t *grid=(const srfGridMesh_t *)surface->data;
+        unsigned int indexes[6*(MAX_GRID_SIZE-1)];int x,y,n;
+        qglVertexPointer(3,GL_FLOAT,sizeof(drawVert_t),grid->verts[0].xyz);
+        qglTexCoordPointer(2,GL_FLOAT,sizeof(drawVert_t),grid->verts[0].st);
+        for(y=0;y<grid->height-1;y++) {
+            for(x=0,n=0;x<grid->width-1;x++) {
+                int v=y*grid->width+x;
+                indexes[n++]=v;indexes[n++]=v+grid->width;indexes[n++]=v+1;
+                indexes[n++]=v+1;indexes[n++]=v+grid->width;indexes[n++]=v+grid->width+1;
+            }
+            qglDrawElements(GL_TRIANGLES,n,GL_UNSIGNED_INT,indexes);
+        }
+        break;
+    }
+    default:return;
+    }
+    blockerDraws++;
+}
+static void AC_WorldBlockers(const mnode_t *node,const vec3_t lo,const vec3_t hi) {
+    int i;
+    if(!AC_BoundsOverlap(node->mins,node->maxs,lo,hi))return;
+    if(node->contents==CONTENTS_NODE) {
+        AC_WorldBlockers(node->children[0],lo,hi);
+        AC_WorldBlockers(node->children[1],lo,hi);
+        return;
+    }
+    for(i=0;i<node->nummarksurfaces;i++) {
+        const msurface_t *s=node->firstmarksurface[i];
+        int index=(int)(s-tr.world->surfaces);
+        if(index<0||index>=tr.world->numsurfaces||blockerVisited[index])continue;
+        blockerVisited[index]=1;
+        AC_DrawBlockerSurface(s);
+    }
+}
+static void AC_DrawLevelBlockers(const float *light,const vec3_t lo,const vec3_t hi) {
+    int i,j,k;
+    if(blockerCapacity<tr.world->numsurfaces) {
+        if(blockerVisited)ri.Free(blockerVisited);
+        blockerCapacity=tr.world->numsurfaces;
+        blockerVisited=ri.Malloc(blockerCapacity);
+    }
+    memset(blockerVisited,0,tr.world->numsurfaces);
+    AC_Matrix(depthProgram,"mvp",light);
+    AC_WorldBlockers(tr.world->nodes,lo,hi);
+    // Baked architectural TIKI meshes (walls, bridge parts, props) can also be
+    // camera-culled. Their immutable posed vertices are already available.
+    for(i=0;i<tr.world->numStaticModels;i++) {
+        const cStaticModelUnpacked_t *sm=&tr.world->staticModels[i];
+        const dtiki_t *tiki=sm->tiki;dtikisurface_t *ds;vec3_t center,mins,maxs;
+        float scale,transform[16]={0},mvp[16];int mesh;
+        if(!tiki)continue;
+        scale=tiki->load_scale*sm->scale;VectorCopy(sm->origin,center);
+        for(j=0;j<3;j++)VectorMA(center,tiki->load_origin[j]*scale,sm->axis[j],center);
+        for(j=0;j<3;j++){mins[j]=center[j]-sm->cull_radius;maxs[j]=center[j]+sm->cull_radius;}
+        if(!AC_BoundsOverlap(mins,maxs,lo,hi))continue;
+        for(j=0;j<3;j++) {
+            for(k=0;k<3;k++)transform[j*4+k]=sm->axis[j][k]*scale;
+            transform[12+j]=sm->origin[j];
+        }
+        transform[15]=1;AC_Multiply(light,transform,mvp);AC_Matrix(depthProgram,"mvp",mvp);
+        ds=tiki->surfaces;
+        for(mesh=0;mesh<tiki->numMeshes;mesh++) {
+            const skelHeaderGame_t *skel=ri.TIKI_GetSkel(tiki->mesh[mesh]);
+            const skelSurfaceGame_t *surf;
+            if(!skel)continue;
+            for(j=0,surf=skel->pSurfaces;j<skel->numSurfaces;j++,surf=surf->pNext,ds++) {
+                if(!surf->pStaticXyz||!surf->pStaticTexCoords||!surf->numTriangles
+                    ||!AC_BlockerMaterial(tr.shaders[ds->hShader[0]]))continue;
+                qglVertexPointer(3,GL_FLOAT,sizeof(vec4_t),surf->pStaticXyz);
+                qglTexCoordPointer(2,GL_FLOAT,sizeof(vec2_t[2]),surf->pStaticTexCoords);
+                qglDrawElements(GL_TRIANGLES,surf->numTriangles*3,GL_UNSIGNED_SHORT,surf->pTriangles);
+                blockerDraws++;
+            }
+        }
+    }
+    // Moving doors/platforms must use their current transform, not a stale
+    // world-space copy. Inspect all submitted entities before frustum culling.
+    for(i=0;i<backEnd.refdef.num_entities;i++) {
+        const trRefEntity_t *ent=&backEnd.refdef.entities[i];
+        model_t *model; bmodel_t *brush; vec3_t mins,maxs,corner;
+        float transform[16]={0},mvp[16];
+        if(ent->e.reType!=RT_MODEL||ent->e.shaderRGBA[3]<250
+            ||(ent->e.renderfx&(RF_DONTDRAW|RF_FIRST_PERSON|RF_DEPTHHACK)))continue;
+        model=R_GetModelByHandle(ent->e.hModel);
+        if(!model||model->type!=MOD_BRUSH)continue;
+        brush=model->d.bmodel;ClearBounds(mins,maxs);
+        for(j=0;j<8;j++) {
+            VectorCopy(ent->e.origin,corner);
+            for(k=0;k<3;k++)VectorMA(corner,brush->bounds[(j>>k)&1][k],ent->e.axis[k],corner);
+            AddPointToBounds(corner,mins,maxs);
+        }
+        if(!AC_BoundsOverlap(mins,maxs,lo,hi))continue;
+        for(j=0;j<3;j++) {
+            for(k=0;k<3;k++)transform[j*4+k]=ent->e.axis[j][k];
+            transform[12+j]=ent->e.origin[j];
+        }
+        transform[15]=1;AC_Multiply(light,transform,mvp);AC_Matrix(depthProgram,"mvp",mvp);
+        for(j=0;j<brush->numSurfaces;j++)AC_DrawBlockerSurface(brush->firstSurface+j);
+    }
+    AC_Matrix(depthProgram,"mvp",light);
+    qglVertexPointer(3,GL_FLOAT,sizeof(vertices[0]),vertices[0].xyz);
+    qglTexCoordPointer(2,GL_FLOAT,sizeof(vertices[0]),vertices[0].uv);
+}
 void RB_ACShadowFinish(void) {
     GLint oldFbo,oldProgram,oldDraw,oldRead;int i,j,pass,drawn=0,start=0;float camera[16];
     if(finished)return;finished=qtrue;
@@ -324,7 +472,7 @@ void RB_ACShadowFinish(void) {
             ri.Printf(PRINT_ALL,"AC_SHADOW_SKIPPED enabled=%d gl_error=%d\n",enabled->integer,qglGetError());
         return;
     }
-    collecting=qfalse;
+    collecting=qfalse;blockerDraws=0;
     if(debug->integer>2){GLenum err=qglGetError();qglFinish();start=ri.Milliseconds();if(err && backEnd.refdef.time%1000<50)ri.Printf(PRINT_ALL,"AC_SHADOW_PRIOR_GL_ERROR %d\n",err);}
     for(i=0;i<numCasters;i++){vec3_t center;VectorAdd(casters[i].mins,casters[i].maxs,center);VectorScale(center,0.5f,center);casters[i].distance=DistanceSquared(center,backEnd.viewParms.ori.origin);}
     qsort(casters,numCasters,sizeof(casters[0]),AC_SortCaster);
@@ -356,7 +504,7 @@ void RB_ACShadowFinish(void) {
                 if(!AC_BoundsOverlap(b->mins,b->maxs,lo,hi))continue;
                 AC_DrawBatch(b,qtrue);
             }
-
+            if(pass==1)AC_DrawLevelBlockers(light,lo,hi);
         }
         acBindFramebuffer(GL_FRAMEBUFFER,oldFbo);
         // GL1 uses the window framebuffer; restore its buffer before compositing.
@@ -382,4 +530,5 @@ void RB_ACShadowFinish(void) {
     acBindFramebuffer(GL_FRAMEBUFFER,oldFbo);acUseProgram(oldProgram);acPopClientAttrib();acPopAttrib();
     if(debug->integer>2){qglFinish();if(backEnd.refdef.time%1000<50)ri.Printf(PRINT_ALL,"AC_SHADOW_COST ms=%d gl_error=%d\n",ri.Milliseconds()-start,qglGetError());}
     if(debug->integer && backEnd.refdef.time%1000<50)ri.Printf(PRINT_ALL,"AC_SHADOW casters=%d drawn=%d vertices=%d batches=%d\n",numCasters,drawn,numVertices,numBatches);
+    if(debug->integer && backEnd.refdef.time%1000<50)ri.Printf(PRINT_ALL,"AC_SHADOW_BLOCKERS surfaces=%d\n",blockerDraws);
 }

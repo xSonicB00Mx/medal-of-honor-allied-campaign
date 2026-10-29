@@ -59,7 +59,7 @@ uv=np.stack(np.meshgrid((np.arange(1024)+.5)/1024,(np.arange(1024)+.5)/1024),-1)
 results=[]
 for gradient in [(.3,.2),(.7,-.4)]:
     plane=.5+np.sum((uv-.5)*gradient,axis=-1)
-    for case,gap,front_gap,expected in [('contact',.001,0,.4),('clear',-.01,0,0),('coplanar',0,0,0),('blocked',.05,.02,0)]:
+    for case,gap,front_gap,expected in [('contact',.001,0,.4),('clear',-.01,0,0),('coplanar',0,0,0),('blocked',.05,.02,0),('wall-backside',.05,0,0)]:
         for unit,values in [(0,plane-gap),(1,plane-front_gap)]:
             values=np.ascontiguousarray(values,dtype=np.float32)
             active(0x84C0+unit);bind(0x0DE1,tex[unit]);upload(0x0DE1,0,0x822E,1024,1024,0,0x1903,0x1406,values.ctypes.data)
@@ -67,6 +67,7 @@ for gradient in [(.3,.2),(.7,-.4)]:
         for scale,shear,perspective in [(.35,0,0),(.7,.7,0),(1.5,-.6,0),(3,0,0),(.7,.5,.6),(1.5,-.5,-.6)]:
             m=np.eye(4);m[0,0]=scale;m[1,1]=scale;m[0,2]=shear*scale
             m[3,0]=perspective;m[3,1]=perspective*.5
+            if case=='wall-backside':m[0,:]*=-1
             matrix('mvp',m)
             gl('ClearColor',None,F,F,F,F)(0,0,0,0);gl('Clear',None,U)(0x4000)
             begin(7)
@@ -76,7 +77,22 @@ for gradient in [(.3,.2),(.7,-.4)]:
             values.append(float(pixels[:,:,3].mean()))
         results.append(dict(gradient=gradient,case=case,expected=expected,alpha=values))
         assert all(abs(v-expected)<.002 for v in values),results[-1]
+# The center sees the receiver, but two of the five PCF columns are blocked
+# by a closer wall. Filter taps must not borrow shadows through that wall.
+for unit in [0,1]:
+    v=np.full((1024,1024),.45 if unit==0 else .5,dtype=np.float32)
+    if unit==1:v[:,::4]=.48
+    active(0x84C0+unit);bind(0x0DE1,tex[unit]);upload(0x0DE1,0,0x822E,1024,1024,0,0x1903,0x1406,v.ctypes.data)
+light=np.eye(4);light[0,3]=light[1,3]=1/1024
+matrix('lightMatrix',light) # Texel centers, not unstable nearest-filter ties.
+matrix('mvp',np.eye(4));gl('Clear',None,U)(0x4000)
+begin(7)
+for x,y in [(-.8,-.8),(.8,-.8),(.8,.8),(-.8,.8)]:vertex(x,y,0)
+end()
+pixels=np.empty((8,8,4),dtype=np.float32);read(124,124,8,8,0x1908,0x1406,pixels.ctypes.data)
+value=float(pixels[:,:,3].mean());results.append(dict(case='PCF-wall-taps',expected=.24,alpha=value))
+assert abs(value-.24)<.002,results[-1]
 assert gl('GetError',U)()==0
 (out/'result.json').write_text(json.dumps(results,indent=2)+'\n')
 sf('SDL_GL_DeleteContext',None,C.c_void_p)(ctx);sf('SDL_DestroyWindow',None,C.c_void_p)(window);sf('SDL_Quit',None)()
-print('PASS: 48 fixed-light receiver cases across camera scales/shears/perspectives')
+print('PASS: 60 receiver/backside cases and per-tap wall occlusion')
