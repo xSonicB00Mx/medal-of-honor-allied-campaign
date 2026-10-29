@@ -7,6 +7,12 @@ Kampagnenabschluss mit seinem bestehenden Spielstand.
 **Status: erste technische Runde abgeschlossen, CP09 insgesamt weiterhin offen.
 Keine Gesamtspielabnahme, kein Merge.**
 
+Nachtrag 29.10.2026: [Lokale Beleuchtung und Partikel](lighting-particles.md).
+Nutzerauftrag zu Vorschlaegen 1/4/5: Lichtgitter-Proben fuer Modelle,
+verdeckte dynamische Lichter und beleuchtete Soft Particles mit eigener
+Optionsseite. AA/SH/BT, Save/Load, Live-Optionen, Grafikneustart, UHD,
+Decke/Drehtuer, GPU-Partikelpruefungen und Normandy-Boot bestanden.
+
 Nachtrag 29.10.2026: [Schatten durch Waende korrigiert](model-shadows.md).
 BSP-/statische Levelblocker unabhaengig von der Kamerasicht, aktuelle
 Brushmodell-Transformationen, Lichtseiten- und Filtertap-Pruefung.

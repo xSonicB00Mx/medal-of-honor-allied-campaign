@@ -42,6 +42,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 #define	RF_DEPTHHACK		0x0008		// for view weapon Z crunching
 
 */
+#define RF_AC_PARTICLE_LIT (1<<29) // client-only sprite colour already contains lighting
 #define RF_CROSSHAIR		(1<<31)		// This item is a cross hair and will draw over everything similar to
 						// DEPTHHACK in stereo rendering mode, with the difference that the
 						// projection matrix won't be hacked to reduce the stereo separation as

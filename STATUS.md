@@ -1,3 +1,10 @@
+## 2026-10-29: Lokale Beleuchtung und Soft Particles implementiert und geprueft
+
+- Direkter Nutzerauftrag fuer Vorschlaege 1/4/5: lokale Lichtgitter-Proben, verdeckte dynamische Lichter, beleuchtete Soft Particles.
+- Neue Seite Lighting & Particles mit drei gemeinsamen Live-Schaltern. Spiel-/Speicherformat unveraendert.
+- AA/SH/BT, Save/Load, Renderer-Neustart, UHD, Decke/Drehtuer, Partikel-GPU und Normandy-Boot bestanden. UHD-Last mit 16 NPCs, acht Pickups und zwei Lichtern: 10 ms Median / 11 ms P95 CPU-Wandzeit.
+- Finale Engine d0eea6b9, cgame 0d2d018e; Installation nach Quellen-Commit. Details checkpoints/CP09/lighting-particles.md. CP09-Gesamtabnahme offen, kein Merge.
+
 ## 2026-10-29: Durch Waende scheinende Modellschatten behoben
 
 - Verdeckte BSP-/statische Levelgeometrie blockiert Schatten unabhaengig von der Kamera. Bewegliche Brushmodelle verwenden ihre aktuelle Transformation.

@@ -263,13 +263,10 @@ static	void R_LoadLightmaps(gamelump_t* l) {
         ri.Printf( PRINT_ALL, "Brightest lightmap value: %d\n", ( int ) ( maxIntensity * 255 ) );
     }
 
-    if (r_fastdlights->integer) {
-        s_worldData.lighting = NULL;
-    }
-    else {
-        s_worldData.lighting = ri.Hunk_Alloc(l->length, h_dontcare);
-        Com_Memcpy(s_worldData.lighting, l->buffer, l->length);
-    }
+    // Keep source lightmaps for live switching to occluded dynamic lights,
+    // including maps initially loaded with legacy fast dynamic lighting.
+    s_worldData.lighting = ri.Hunk_Alloc(l->length, h_dontcare);
+    Com_Memcpy(s_worldData.lighting, l->buffer, l->length);
 }
 
 
