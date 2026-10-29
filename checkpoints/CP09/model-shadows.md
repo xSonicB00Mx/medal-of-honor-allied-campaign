@@ -91,3 +91,47 @@ Danach 9086 bzw. 9090 Laufzeitdateien gegen die Manifeste verifiziert;
 Der lokale Deployment-Bericht und Rollback liegen im selben ignorierten
 Ergebnisordner. Der Source-Commit wurde auf `codex/cp09-regression` gepusht
 und durch einen frisch gelesenen Remote-SHA bestaetigt; kein Merge nach main.
+
+## 29.10.2026: Blickwinkelabhaengige Kontakte auf dem Normandy-Boot
+
+Nutzerbeobachtung in AA `m3l1a`: Schatten veraendern sich beim Umschauen.
+Der Modellschatten-Shader verwendete `fwidth(p.z)` in Kamerapixeln fuer
+Empfaengertoleranz und Tiefenbias. Damit aenderte ein Kameraschwenk die
+Akzeptanz derselben Kontaktstelle trotz unveraenderter Licht-/Modellgeometrie.
+Ausserdem verglichen alle 25 Filtertaps mit der Tiefe des zentralen Pixels,
+statt mit der jeweiligen Tiefe der geneigten Empfaengerflaeche.
+
+Korrektur: Bildschirmableitungen werden ueber die inverse 2x2-Jacobi-Matrix
+in einen Gradienten in Licht-UV umgerechnet. Sowohl First-Receiver-Pruefung
+als auch PCF vergleichen mit der Empfaengerebene am tatsaechlichen
+Shadow-Map-Texelzentrum. Konstante Tiefentoleranzen ersetzen den
+kamerapixelabhaengigen Bias. Numerisch entartete Projektionen werden verworfen.
+AO, Spielskripte und Saveformat sind unveraendert.
+
+Validierung der Engine
+`6916445b53b7081231a4570f1e3471bf5bda7571ddbae19f7c3cb568163641dd`:
+
+- `test_shadow_receiver.py boat-receiver-gpu-final`: echte GLSL-Programme
+  auf der GPU, 48 Kombinationen aus geneigter Flaeche, Kameraskalierung,
+  Scherung/Perspektive und Kontakt/frei/koplanar/verdeckt bestanden.
+  Alte Quelle scheitert schon am ersten Kontakttest: Alpha je nach Kamera
+  0.000/0.085/0.1475/0.229 statt 0.4; korrigiert durchgehend 0.4.
+- `test_ao_boat.py boat-shadow-normandy-final`: fuenf Ansichten auf dem
+  echten Landungsboot, jeweils aus/nur Modellschatten/nur AO/beides,
+  insgesamt 20 Screenshots. Vorwaerts-, Seiten- und Bodenansichten visuell
+  geprueft. Boat/Actors bleiben animiert: kein behaupteter identischer
+  Weltzustand zwischen diesen Bildern. Der deterministische Vergleich
+  erfolgt separat im GPU-Test. Erste Diagnosebilder mit schwarzem
+  Missionsauftakt wurden verworfen; der Test lehnt leere Aufnahmen ab.
+- `test_model_shadows.py boat-shadow-release`: AA/SH/BT, NPC/Pickup,
+  Bewegung, Save/Load, Grafikneustart und Live-Option bestanden.
+- `test_model_shadow_stress.py boat-shadows-uhd`: 3840x2160, 24 Schatten,
+  aktiver Schattenpass meist 3-4 ms, maximal 5 ms auf dem Testrechner.
+- Keine GL-Fehler im Schattenpass. Der bekannte GL1-Fehler 1281 vor dem
+  Pass wird weiterhin getrennt erfasst. 535 persoenliche Profildateien
+  nach den Spieltests hashgleich.
+
+Die zuvor dokumentierten Grenzen der kameraseitig eingereichten Geometrie
+und der bildraumbasierten AO bleiben bestehen. Diese Korrektur beseitigt
+den nachgewiesenen winkelabhaengigen Tiefenbias, behauptet aber keine
+vollstaendige Sichtbarkeit verdeckter/offscreen Geometrie. CP09 bleibt offen.
