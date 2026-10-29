@@ -7,6 +7,12 @@ Kampagnenabschluss mit seinem bestehenden Spielstand.
 **Status: erste technische Runde abgeschlossen, CP09 insgesamt weiterhin offen.
 Keine Gesamtspielabnahme, kein Merge.**
 
+Weiterer Nachtrag 29.10.2026: [Schwebende Prop-AO und Distanzstabilisierung](ambient-occlusion.md).
+Statischer TIKI-Massstab korrigiert, validierte zeitliche Rueckprojektion ergaenzt.
+Schreibmaschine, Tiefenabgleich, GPU-Distanz-/Verlaufstests, AA/SH/BT, Kamerawinkel,
+Renderer-Neustart, UHD und Modellschatten geprueft. Engine 1ecbe66e in CP08/CP09
+installiert, 535 persoenliche Profildateien unveraendert.
+
 Nachtrag 29.10.2026: [AO-Blickwinkel-/Kantenkorrektur](ambient-occlusion.md),
 geometrische Normalen fuer Umgebungsmodelle, stabilere Integration und
 Silhouetten-Tiefenabgleich. AA/SH/BT, Brueckenregression, Kameraschwenks und UHD

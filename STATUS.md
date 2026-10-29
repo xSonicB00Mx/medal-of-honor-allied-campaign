@@ -1,3 +1,11 @@
+## 2026-10-29: Schwebende AO auf statischen Modellen behoben
+
+- Fehlender TIKI-/Instanzmassstab im AO-/Schatten-Geometriepass korrigiert; echte m2l2a-Schreibmaschine vorher/nachher und gegen normalen Tiefenpuffer geprueft.
+- Zeitlich stabilisierte AO mit Kamera-Rueckprojektion, Tiefen-/Normalenpruefung und begrenztem Verlauf; keine feste Kamera-Abschaltdistanz.
+- GPU-Regression bis 2880 Einheiten, fuenf Prop-Ansichten, AA/SH/BT, Kameraschwenks, Save/Load, Aufloesungswechsel, UHD und separate Modellschatten bestanden.
+- Engine 1ecbe66e in CP08-r1/CP09-r1 installiert; 9086/9090 Runtime-Dateien, 9072 Originaldateien und 535 unveraenderte persoenliche Profildateien verifiziert.
+- Source e2067c3c, Bericht checkpoints/CP09/ambient-occlusion.md. CP09-Gesamtabnahme weiterhin offen, kein Merge.
+
 ## 2026-10-29: AO-Blickwinkel und falsche Kanten korrigiert
 
 - TIKI-Umgebungsmodelle nutzen geometrische Flaechennormalen; falsche Dreiecksmuster auf der SH-Bruecke beseitigt. NPC-/Pickup-Normalen bleiben geglaettet.

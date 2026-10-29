@@ -284,3 +284,10 @@ bereits dokumentierten vier NULL-Deathlistener separat ausgewiesen.
 
 Gepruefter Engine-SHA256:
 `1ecbe66ed1d14aec9cde41cff8ff48afcf4739e7577a98a887e75fe0dc8bf2b6`.
+
+Ausgeliefert mit `tools/deploy_cp09_engine.py ao-props-release`: Engine-Source
+`e2067c3cfd846ac48a4c9efe3c02f548a76dce5e`, obiger Hash in CP08-r1/CP09-r1.
+9086/9090 Laufzeitdateien und 9072 Originaldateien verifiziert; 535 persoenliche
+Profildateien unveraendert. Nur Engine ausgetauscht, game/cgame/Assets unveraendert.
+Deploymentbericht und Rueckbau in `generated-local/CP09/ao-props-release/`.
+Kein Merge und keine vorweggenommene persoenliche Gesamtspielabnahme.
