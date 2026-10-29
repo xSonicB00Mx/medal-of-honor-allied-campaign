@@ -20,7 +20,8 @@ Dies ist weder eine vollstaendige XeGTAO-Portierung noch Raytracing.
   (48 Tiefensamples pro Pixel), quadratische Sampleverteilung und 32 Welteinheiten
   Reichweite. Sphaerischer Distanzabfall begrenzt die lokale Verdeckung.
 - Zwei raeumliche Neun-Tap-Filter mit Normalen-, Ebenen- und Tiefenpruefung.
-  Kein zufaelliger Wechsel pro Frame und kein Historybuffer mit Nachzieheffekten.
+  Kein zufaelliger Wechsel pro Frame. Seit 29.10.2026 folgt eine tiefen-/normalen-
+  gepruefte zeitliche Stabilisierung mit begrenztem Historyeinfluss (siehe Nachtrag).
 - Einmalige Komposition gegen den originalen Szenentiefenpuffer; keine mehrfache
   Abdunklung ueberlappender opaker Materialien. Ein begrenzter, neigungsabhaengiger
   Tiefenabstand gleicht Rundungsunterschiede des alten Fixed-Function-Pfads aus;
@@ -41,7 +42,8 @@ Dies ist weder eine vollstaendige XeGTAO-Portierung noch Raytracing.
 
 `r_acAODebug 1` zeigt die AO-Komposition in Weiss/Grau; `2` misst den
 synchronisierten Pass und dessen GL-Fehler. `3` schreibt einmal die RGBA32F-
-Normalen/Tiefen als `ao-geometry.f32` ins aktive Profil und schaltet auf `2`
+Normalen/Tiefen als `ao-geometry.f32` sowie die unabhaengige Szenentiefe als
+`ao-window-depth.f32` ins aktive Profil und schaltet auf `2`
 zurueck. Groesse und Projektionsskalen stehen im Log. Dies sind Entwicklungsdiagnosen,
 keine gespeicherten Spieloptionen. `r_acShadowDebug 4` protokolliert zusaetzlich
 Geometrie/Materialsortierung fuer die Diagnose alter Materialien.
@@ -94,7 +96,7 @@ und indirektes Licht nicht sauber: die begrenzte AO-Komposition moduliert das
 fertige Szenenlicht. Transparente Vegetationsschichten sind keine soliden
 AO-Empfaenger. Die Qualitaet wird nicht fuer jede Karte und GPU behauptet.
 
-Volle UHD-Aufloesung braucht etwa 222 MiB Texturspeicher fuer die AO-Puffer
+Volle UHD-Aufloesung braucht mit den Verlaufspuffern etwa 380 MiB Texturspeicher fuer die AO-Puffer
 (zuzueglich Treiberverwaltung); der gemeinsame Geometriepuffer ist fest begrenzt.
 Passmessungen umfassen nicht die gesamte Spiel-Frametime oder die vorgelagerte
 Geometrieerfassung. Hardwarebasis der nativen Tests: GeForce RTX 4090.
@@ -205,3 +207,80 @@ Die grundlegende Bildraumgrenze bleibt: hinter anderen Objekten oder ausserhalb
 des Bilds liegende Geometrie kann weiterhin fehlen. Die Korrektur reduziert
 unbegruendete Blickwinkelabhaengigkeit, behauptet aber keine vollstaendig
 blickwinkelunabhaengige Weltgeometrie-AO oder Raytracing.
+
+
+## Nachtrag 29.10.2026: schwebende Prop-AO und Distanzstabilisierung
+
+Nutzer meldet vergroesserte, ueber Schreibmaschinen schwebende AO und sichtbares
+Aufpoppen. In `m2l2a` mit der bisherigen regulaeren Engine direkt reproduziert:
+Die Diagnose zeichnet eine nahezu doppelt grosse Schreibmaschine oberhalb der
+sichtbaren Maschine; auch Tisch-/Stuhl-/Lampen-Kontakte sind versetzt.
+
+Ursache: `R_RotateForStaticModel` multipliziert die Modellmatrix mit
+`TIKI.load_scale * StaticModel.scale`, laesst `ori.axis` aber unskaliert.
+Die gemeinsame AO-/Schatten-Geometrieerfassung hatte nur `ori.axis` verwendet.
+Bei der Schreibmaschine fehlte so der Massstab 0,52. Die Erfassung verwendet
+nun denselben Gesamtmassstab wie der normale Renderer. Das gilt fuer alle
+statischen Modelle und deren Verwendung als Schattenempfaenger/-verdeckung;
+keine neue Umgebungsschattenfunktion, keine Aenderung der eigentlichen Modelle.
+
+Der AO-Wirkungsradius von 32 Welteinheiten ist ein **Kontaktradius**, keine
+Kamera-Abschaltdistanz. Es gibt weiterhin keinen festen Abstand, ab dem AO
+abgeschaltet wird. Kleine ferne Objekte haben aber nur wenige Bildpunkte:
+Abtastwechsel koennen deshalb Kontaktverschattung sprunghaft veraendern.
+Neu ist eine zeitliche Stabilisierung nach den raeumlichen Filtern:
+
+- Vorherige Geometrie/Visibility werden in Renderertexturen gehalten; keine
+  Spielstanddaten. Rueckprojektion mit vorheriger Sicht-/Projektionsmatrix.
+- Uebereinstimmung von Tiefe und Flaechennormale erforderlich. Neue/verdeckte
+  Flaechen, Kameraschnitte, Teleports, Renderer-/Aufloesungswechsel, Zeitruecksprung
+  und Ein/Aus-Wechsel verwerfen ungueltigen Verlauf.
+- Zeitabhaengige Filterung (75 ms Zeitkonstante, Mindestschritt 8 ms), keine
+  zusaetzliche Entfernungsabschaltung. Der lokale aktuelle Sichtbarkeitsbereich
+  begrenzt den Verlauf mit 0,08 Reserve, damit bewegte NPCs keine lange dunkle
+  Spur auf unveraenderten Empfaengern hinterlassen.
+- Vier Textursampler erforderlich; etwa 380 MiB AO-Texturspeicher bei UHD,
+  zuzueglich Treiberverwaltung. Der 48-Sample-Horizontpass bleibt unveraendert.
+  Ein untersuchter 4-Tap-Abtastungsansatz wurde wegen geringen Gewinns verworfen.
+
+### Nachweise
+
+- `test_ao_props.py ao-props-before-r4 --baseline`: fuenf echte Ansichten der
+  gebackenen `m2l2a`-Schreibmaschine, 15 Aus/An/AO-Bilder. Der Fehler ist sichtbar.
+  Die ersten Probeversuche hatten den Kamerabefehl durch die originale
+  `thereisnomonkey`-Cheatsperre deaktiviert; sie sind **kein** Sichtnachweis.
+  Der Test verlangt jetzt explizite Bestaetigungen aller ausgefuehrten Kameras.
+- `test_ao_props.py ao-props-final`: dieselben Ansichten korrigiert. Zusaetzlich
+  Vergleich des AO-Geometriepuffers mit dem unabhaengigen normalen Tiefenpuffer
+  auf dem Schreibmaschinengehaeuse: Median 1,79e-7, P99 7,15e-7 im normierten
+  Tiefenraum. Die grosse schwebende Silhouette ist verschwunden.
+- `test_ao_geometry.py ao-props-temporal`: vorhandene Ebenen-/Silhouetten-/
+  Kamerawinkelregression bestanden. Kontakt-AO eines 20x20x30-Quaders bleibt
+  in 13 Entfernungen von 120 bis 2880 Einheiten vorhanden. Das belegt keine
+  perfekte Konstanz einer nur noch wenige Pixel grossen Form.
+- Derselbe GPU-Test kompiliert auch den echten Verlaufsshader: periodische
+  Schwankung auf 11,14 Prozent reduziert, Tiefen-/Normalenabweichungen und
+  Reset ohne alten AO-Einfluss, kontrollierte Kameraverschiebung korrekt.
+  Bei entferntem Verdeckungsobjekt bleibt maximal 0,064 alte Verdeckung nach
+  einem Testschritt (vor der 0,7-Kompositionsstaerke). Das ist ein begrenzter
+  Shader-Regressionswert, keine allgemeine Prozentgarantie fuer Spielszenen.
+- `test_ambient_occlusion.py ao-props-release --bridge-normals
+  --spearhead-save <gesicherte Kopie>`: AA/SH/BT, Aus/An, bewegte Modelle,
+  Save/Load, Renderer-Neustart, Optionsschalter und SH-Brueckennormalen bestanden;
+  535 persoenliche Profildateien hashgleich.
+- `ao-props-resize`: 16:9/4:3, Renderer-Neustart, Fassaden und Viewmodelausschluss.
+- `ao-props-uhd`: 3840x2160 mit 30 Modellgruppen, AO-Pass 3-6 ms auf RTX 4090;
+  keine GL-Fehler im Zusatzpass. Bekannte vorherige GL-1281 separat protokolliert.
+
+Die Bildraumgrenze bleibt: verdeckte/offscreen Geometrie ist nicht vollstaendig
+verfuegbar; Unterpixelobjekte und die Sichtweite/Nebel der Karte begrenzen die
+Sichtbarkeit. Die Korrektur verspricht keine Weltgeometrie-AO oder Raytracing.
+
+Weitere Abschlusspruefungen mit derselben Engine:
+`ao-props-camera` (15 native Kamerawinkel AA-Dorf/AA-Waggon/SH-Bruecke) und
+`ao-props-shadows` (AO aus, Modellschatten AA/SH/BT einschliesslich
+Save/Load/Renderer-Neustart) bestanden. Beim direkten Waggonstart sind die
+bereits dokumentierten vier NULL-Deathlistener separat ausgewiesen.
+
+Gepruefter Engine-SHA256:
+`1ecbe66ed1d14aec9cde41cff8ff48afcf4739e7577a98a887e75fe0dc8bf2b6`.

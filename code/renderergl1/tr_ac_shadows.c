@@ -153,6 +153,7 @@ static qboolean AC_BoundsOverlap(const vec3_t a, const vec3_t b, const vec3_t c,
 }
 void RB_ACShadowCapture(void) {
     int i,j,k,owner=-1; acShadowBatch_t *b; shaderStage_t *stage;
+    float modelScale=1.0f;
     trRefEntity_t *ent=backEnd.currentEntity;
     if(collecting && debug->integer>3 && backEnd.refdef.time%1000<20 && tess.shader && tess.xstages[0])
         ri.Printf(PRINT_ALL,"AC_GEOMETRY %s sort=%.1f bits=%x offset=%d entity=%d vertices=%d\n",tess.shader->name,tess.shader->sort,tess.xstages[0]->stateBits,tess.shader->polygonOffset,ent?ent->e.reType:-1,tess.numIndexes);
@@ -173,10 +174,16 @@ void RB_ACShadowCapture(void) {
     if(stage->stateBits&GLS_ATEST_GE_80)b->alpha=0.5f;
     else if(stage->stateBits&GLS_ATEST_GT_0)b->alpha=0.01f;
     ClearBounds(b->mins,b->maxs);
+    // Static TIKI vertices are still in asset units. R_RotateForStaticModel
+    // applies this scale in modelMatrix, but deliberately leaves ori.axis
+    // unscaled. Match the color pass exactly instead of capturing enlarged,
+    // displaced occluders (e.g. the 0.52-scale typewriter).
+    if(backEnd.currentStaticModel)
+        modelScale=backEnd.currentStaticModel->tiki->load_scale*backEnd.currentStaticModel->scale;
     for(i=0;i<tess.numIndexes;i++) {
         acShadowVertex_t *v=&vertices[numVertices++];k=tess.indexes[i];
-        for(j=0;j<3;j++)v->xyz[j]=backEnd.ori.origin[j]+tess.xyz[k][0]*backEnd.ori.axis[0][j]
-            +tess.xyz[k][1]*backEnd.ori.axis[1][j]+tess.xyz[k][2]*backEnd.ori.axis[2][j];
+        for(j=0;j<3;j++)v->xyz[j]=backEnd.ori.origin[j]+modelScale*(tess.xyz[k][0]*backEnd.ori.axis[0][j]
+            +tess.xyz[k][1]*backEnd.ori.axis[1][j]+tess.xyz[k][2]*backEnd.ori.axis[2][j]);
         v->uv[0]=tess.texCoords[k][0][0];v->uv[1]=tess.texCoords[k][0][1];AddPointToBounds(v->xyz,b->mins,b->maxs);
         // Only characters/pickups need smooth shading normals. TIKI also
         // represents large architectural models (e.g. the t1l3 bridge), whose

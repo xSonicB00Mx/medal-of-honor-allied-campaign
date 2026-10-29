@@ -4,7 +4,8 @@
  * This is a GL1 implementation, not a port of XeGTAO or ray-traced lighting.
  * Screen-space visibility is deliberately local (32 world units). The replay
  * against the original depth buffer excludes the weapon, sky, HUD and particles.
- * No history buffer: no temporal trails or savegame-owned rendering state.
+ * Reprojected renderer-only history stabilizes sub-pixel distant contacts;
+ * depth/normal validation rejects disocclusions. No savegame-owned state.
  */
 #include "tr_local.h"
 #include "SDL.h"
@@ -43,6 +44,11 @@ AO_FUNCTIONS(DECL)
 #undef DECL
 
 static GLuint fbo, geometry, depth, visibility[2], geometryProgram, horizonProgram, filterProgram, compositeProgram;
+static GLuint previousGeometry, previousVisibility, temporalProgram;
+static float previousView[16],previousProjection[16];
+static world_t *previousWorld;
+static int previousTime;
+static qboolean historyValid;
 static int width,height;
 static qboolean ready;
 static cvar_t *enabled,*debug;
@@ -125,6 +131,28 @@ static const char *filterFragment =
  "  if(q.a<=0.0 || abs(q.a-g.a)>max(2.0,g.a*0.025))w=0.0;\n"
  "  sum+=texture2D(ao,t).r*w;total+=w;\n"
  " } gl_FragColor=vec4(sum/max(total,0.0001));}\n";
+static const char *temporalFragment =
+ "#version 120\n"
+ "uniform sampler2D scene,ao,oldScene,oldAO;uniform vec2 size,projectionScale;\n"
+ "uniform mat4 previousFromCurrent,previousProjection;uniform float retention;varying vec2 uv;\n"
+ "void main(){float current=texture2D(ao,uv).r;vec4 g=texture2D(scene,uv);\n"
+ " if(retention<=0.0||g.a<=0.0){gl_FragColor=vec4(current);return;}\n"
+ " vec4 p=previousFromCurrent*vec4((uv*2.0-1.0)*g.a/projectionScale,-g.a,1.0);\n"
+ " vec4 clip=previousProjection*p;vec2 oldUV=clip.xy/clip.w*0.5+0.5;\n"
+ " if(clip.w<=0.0||any(lessThan(oldUV,vec2(0.0)))||any(greaterThan(oldUV,vec2(1.0)))){gl_FragColor=vec4(current);return;}\n"
+ " vec4 old=texture2D(oldScene,oldUV);vec3 N=normalize(mat3(previousFromCurrent)*g.xyz);\n"
+ " float tolerance=max(0.25,abs(p.z)*0.001);\n"
+ " if(old.a<=0.0||abs(old.a+p.z)>tolerance||dot(N,old.xyz)<0.95){gl_FragColor=vec4(current);return;}\n"
+ // Clip history to the current local visibility range, with a small allowance
+ // for gradual changes. This bounds trails when an occluder moves while its
+ // receiver (e.g. floor) keeps the same depth and normal.
+ " float low=current,high=current;\n"
+ " for(int y=-1;y<=1;y++)for(int x=-1;x<=1;x++){\n"
+ "  vec2 t=uv+vec2(float(x),float(y))/size;vec4 q=texture2D(scene,t);\n"
+ "  if(abs(q.a-g.a)<=max(0.5,g.a*0.002)&&dot(q.xyz,g.xyz)>0.95){\n"
+ "   float a=texture2D(ao,t).r;low=min(low,a);high=max(high,a);}}\n"
+ " float history=clamp(texture2D(oldAO,oldUV).r,low-0.08,high+0.08);\n"
+ " gl_FragColor=vec4(clamp(mix(current,history,retention),0.0,1.0));}\n";
 static const char *compositeFragment =
  "#version 120\n"
  "uniform sampler2D ao,sceneDepth;uniform vec2 size,depthReconstruct;uniform float fogStart,fogEnd,diagnostic;\n"
@@ -159,6 +187,16 @@ static GLuint Program(const char *vertex,const char *fragment) {
 static void I(GLuint p,const char *n,int v){aoUniform1i(aoGetUniformLocation(p,n),v);}
 static void F(GLuint p,const char *n,float v){aoUniform1f(aoGetUniformLocation(p,n),v);}
 static void V(GLuint p,const char *n,float x,float y){aoUniform2f(aoGetUniformLocation(p,n),x,y);}
+static void Multiply(const float *a,const float *b,float *out){
+ int r,c,k;for(c=0;c<4;c++)for(r=0;r<4;r++){out[c*4+r]=0;for(k=0;k<4;k++)out[c*4+r]+=a[k*4+r]*b[c*4+k];}
+}
+static void PreviousFromCurrent(float *out){
+ const float *view=backEnd.viewParms.world.modelMatrix;float inverse[16]={0};int r,c;
+ // The world view is rigid: transpose its rotation and invert translation.
+ for(r=0;r<3;r++)for(c=0;c<3;c++)inverse[c*4+r]=view[r*4+c];
+ for(r=0;r<3;r++)inverse[12+r]=-(inverse[r]*view[12]+inverse[4+r]*view[13]+inverse[8+r]*view[14]);
+ inverse[15]=1;Multiply(previousView,inverse,out);
+}
 static void Camera(GLuint p){
  aoUniformMatrix4fv(aoGetUniformLocation(p,"projection"),1,GL_FALSE,backEnd.viewParms.projectionMatrix);
  aoUniformMatrix4fv(aoGetUniformLocation(p,"view"),1,GL_FALSE,backEnd.viewParms.world.modelMatrix);
@@ -177,10 +215,11 @@ static void Texture(GLuint tex,GLint format,GLenum external,GLenum type){
 static qboolean Resize(void){
  int w=backEnd.viewParms.viewportWidth,h=backEnd.viewParms.viewportHeight;
  if(w==width&&h==height)return qtrue;
- width=w;height=h;
+ width=w;height=h;historyValid=qfalse;
  // RGBA32F avoids half-float depth quantization on far, shallow-angle surfaces.
  Texture(geometry,GL_RGBA32F,GL_RGBA,GL_FLOAT);Texture(depth,GL_DEPTH_COMPONENT24,GL_DEPTH_COMPONENT,GL_UNSIGNED_INT);
  Texture(visibility[0],GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE);Texture(visibility[1],GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE);
+ Texture(previousGeometry,GL_RGBA32F,GL_RGBA,GL_FLOAT);Texture(previousVisibility,GL_RGBA8,GL_RGBA,GL_UNSIGNED_BYTE);
  aoFramebufferTexture2D(GL_FRAMEBUFFER,GL_DEPTH_ATTACHMENT,GL_TEXTURE_2D,depth,0);
  aoFramebufferTexture2D(GL_FRAMEBUFFER,GL_COLOR_ATTACHMENT0,GL_TEXTURE_2D,geometry,0);
  if(aoCheckFramebufferStatus(GL_FRAMEBUFFER)!=GL_FRAMEBUFFER_COMPLETE){
@@ -194,24 +233,29 @@ void R_ACAOInit(void){
 #define LOAD(ret,name,args) ao##name=(ret (APIENTRYP) args)SDL_GL_GetProcAddress("gl" #name);if(!ao##name)loaded=qfalse;
  AO_FUNCTIONS(LOAD)
 #undef LOAD
- if(!loaded||!qglActiveTextureARB||!qglClientActiveTextureARB||glConfig.numTextureUnits<2||!ri.Cvar_VariableIntegerValue("r_acShadowReady"))return;
+ if(!loaded||!qglActiveTextureARB||!qglClientActiveTextureARB||glConfig.numTextureUnits<4||!ri.Cvar_VariableIntegerValue("r_acShadowReady"))return;
  geometryProgram=Program(sceneVertex,geometryFragment);horizonProgram=Program(screenVertex,horizonFragment);
  filterProgram=Program(screenVertex,filterFragment);compositeProgram=Program(screenVertex,compositeFragment);
- if(!geometryProgram||!horizonProgram||!filterProgram||!compositeProgram){R_ACAOShutdown();return;}
+ temporalProgram=Program(screenVertex,temporalFragment);
+ if(!geometryProgram||!horizonProgram||!filterProgram||!compositeProgram||!temporalProgram){R_ACAOShutdown();return;}
  aoGenFramebuffers(1,&fbo);qglGenTextures(1,&geometry);qglGenTextures(1,&depth);qglGenTextures(2,visibility);
- ready=qtrue;ri.Cvar_Set("r_acAOReady","1");ri.Printf(PRINT_ALL,"AC GTAO ready: full-resolution geometry, 48 horizon samples, bilateral filter.\n");
+ qglGenTextures(1,&previousGeometry);qglGenTextures(1,&previousVisibility);historyValid=qfalse;
+ ready=qtrue;ri.Cvar_Set("r_acAOReady","1");ri.Printf(PRINT_ALL,"AC GTAO ready: full-resolution geometry, 48 horizon samples, bilateral filter, validated reprojection.\n");
 }
 void R_ACAOShutdown(void){
  if(fbo&&aoDeleteFramebuffers)aoDeleteFramebuffers(1,&fbo);
  if(geometry)qglDeleteTextures(1,&geometry);if(depth)qglDeleteTextures(1,&depth);if(visibility[0])qglDeleteTextures(2,visibility);
+ if(previousGeometry)qglDeleteTextures(1,&previousGeometry);if(previousVisibility)qglDeleteTextures(1,&previousVisibility);
  if(geometryProgram)aoDeleteProgram(geometryProgram);if(horizonProgram)aoDeleteProgram(horizonProgram);
  if(filterProgram)aoDeleteProgram(filterProgram);if(compositeProgram)aoDeleteProgram(compositeProgram);
+ if(temporalProgram)aoDeleteProgram(temporalProgram);
  fbo=geometry=depth=visibility[0]=visibility[1]=geometryProgram=horizonProgram=filterProgram=compositeProgram=0;
  width=height=0;ready=qfalse;ri.Cvar_Set("r_acAOReady","0");
+ previousGeometry=previousVisibility=temporalProgram=0;historyValid=qfalse;previousWorld=NULL;
 }
-qboolean R_ACAOActive(void){return ready&&enabled&&enabled->integer;}
+qboolean R_ACAOActive(void){qboolean active=ready&&enabled&&enabled->integer;if(!active)historyValid=qfalse;return active;}
 void RB_ACAOApply(void){
- GLint oldFbo,oldProgram,oldDraw,oldRead;int pass,start=0;GLenum error;
+ GLint oldFbo,oldProgram,oldDraw,oldRead;int pass,start=0;GLenum error;GLuint swap;
  if(!R_ACAOActive())return;
  if(debug->integer>1){error=qglGetError();qglFinish();start=ri.Milliseconds();if(error&&backEnd.refdef.time%1000<50)ri.Printf(PRINT_ALL,"AC_AO_PRIOR_GL_ERROR %d\n",error);}
  qglGetIntegerv(GL_FRAMEBUFFER_BINDING,&oldFbo);qglGetIntegerv(GL_CURRENT_PROGRAM,&oldProgram);
@@ -234,7 +278,14 @@ void RB_ACAOApply(void){
   int bytes=width*height*4*sizeof(float);float *pixels=ri.Malloc(bytes);
   qglReadPixels(0,0,width,height,GL_RGBA,GL_FLOAT,pixels);
   ri.FS_WriteFile("ao-geometry.f32",pixels,bytes);ri.Free(pixels);
-  ri.Printf(PRINT_ALL,"AC_AO_GEOMETRY width=%d height=%d projection=%f %f\n",width,height,backEnd.viewParms.projectionMatrix[0],backEnd.viewParms.projectionMatrix[5]);
+  // Independent reference for alignment tests: the actual fixed-function scene
+  // depth, before AO composition, including the original model transforms/LOD.
+  bytes=width*height*sizeof(float);pixels=ri.Malloc(bytes);
+  aoBindFramebuffer(GL_FRAMEBUFFER,oldFbo);
+  qglReadPixels(backEnd.viewParms.viewportX,backEnd.viewParms.viewportY,width,height,GL_DEPTH_COMPONENT,GL_FLOAT,pixels);
+  ri.FS_WriteFile("ao-window-depth.f32",pixels,bytes);ri.Free(pixels);
+  aoBindFramebuffer(GL_FRAMEBUFFER,fbo);
+  ri.Printf(PRINT_ALL,"AC_AO_GEOMETRY width=%d height=%d projection=%f %f depth=%f %f\n",width,height,backEnd.viewParms.projectionMatrix[0],backEnd.viewParms.projectionMatrix[5],backEnd.viewParms.projectionMatrix[10],backEnd.viewParms.projectionMatrix[14]);
   ri.Cvar_Set("r_acAODebug","2");
  }
  aoFramebufferTexture2D(GL_FRAMEBUFFER,GL_DEPTH_ATTACHMENT,GL_TEXTURE_2D,0,0);
@@ -246,6 +297,31 @@ void RB_ACAOApply(void){
   qglActiveTextureARB(GL_TEXTURE1_ARB);qglBindTexture(GL_TEXTURE_2D,visibility[pass]);qglActiveTextureARB(GL_TEXTURE0_ARB);
   aoUseProgram(filterProgram);I(filterProgram,"scene",0);I(filterProgram,"ao",1);V(filterProgram,"direction",pass==0?1:0,pass==1?1:0);Screen(filterProgram);
  }
+ {
+  float transform[16],retention=0;int elapsed=backEnd.refdef.time-previousTime;
+  if(historyValid&&previousWorld==tr.world&&elapsed>=0&&elapsed<250){
+   PreviousFromCurrent(transform);
+   // Camera cuts and teleports must not carry old contacts into a new view.
+   if(transform[12]*transform[12]+transform[13]*transform[13]+transform[14]*transform[14]<128*128
+      &&transform[0]+transform[5]+transform[10]>1.0f)
+    retention=expf(-fmaxf(elapsed,8)/75.0f);
+  }else{memset(transform,0,sizeof(transform));transform[0]=transform[5]=transform[10]=transform[15]=1;}
+  aoFramebufferTexture2D(GL_FRAMEBUFFER,GL_COLOR_ATTACHMENT0,GL_TEXTURE_2D,visibility[1],0);
+  qglActiveTextureARB(GL_TEXTURE3_ARB);qglBindTexture(GL_TEXTURE_2D,previousVisibility);
+  qglActiveTextureARB(GL_TEXTURE2_ARB);qglBindTexture(GL_TEXTURE_2D,previousGeometry);
+  qglActiveTextureARB(GL_TEXTURE1_ARB);qglBindTexture(GL_TEXTURE_2D,visibility[0]);
+  qglActiveTextureARB(GL_TEXTURE0_ARB);qglBindTexture(GL_TEXTURE_2D,geometry);
+  aoUseProgram(temporalProgram);I(temporalProgram,"scene",0);I(temporalProgram,"ao",1);
+  I(temporalProgram,"oldScene",2);I(temporalProgram,"oldAO",3);F(temporalProgram,"retention",retention);
+  aoUniformMatrix4fv(aoGetUniformLocation(temporalProgram,"previousFromCurrent"),1,GL_FALSE,transform);
+  aoUniformMatrix4fv(aoGetUniformLocation(temporalProgram,"previousProjection"),1,GL_FALSE,previousProjection);
+  Screen(temporalProgram);
+  swap=previousVisibility;previousVisibility=visibility[1];visibility[1]=swap;
+  swap=previousGeometry;previousGeometry=geometry;geometry=swap;
+  memcpy(previousView,backEnd.viewParms.world.modelMatrix,sizeof(previousView));
+  memcpy(previousProjection,backEnd.viewParms.projectionMatrix,sizeof(previousProjection));
+  previousTime=backEnd.refdef.time;previousWorld=tr.world;historyValid=qtrue;
+ }
  aoBindFramebuffer(GL_FRAMEBUFFER,oldFbo);qglDrawBuffer(oldDraw);aoReadBuffer(oldRead);
  qglViewport(backEnd.viewParms.viewportX,backEnd.viewParms.viewportY,width,height);qglScissor(backEnd.viewParms.viewportX,backEnd.viewParms.viewportY,width,height);
  qglEnable(GL_DEPTH_TEST);qglDepthFunc(GL_LEQUAL);qglDisable(GL_POLYGON_OFFSET_FILL);
@@ -254,7 +330,7 @@ void RB_ACAOApply(void){
  V(compositeProgram,"depthReconstruct",backEnd.viewParms.projectionMatrix[10],backEnd.viewParms.projectionMatrix[14]);
  F(compositeProgram,"fogStart",backEnd.viewParms.farplane_bias);F(compositeProgram,"fogEnd",r_farplane_nofog->integer?0:backEnd.viewParms.farplane_distance);
  F(compositeProgram,"diagnostic",debug->integer==1?1.0f:0.0f);
- qglBindTexture(GL_TEXTURE_2D,visibility[0]);qglActiveTextureARB(GL_TEXTURE1_ARB);qglBindTexture(GL_TEXTURE_2D,depth);qglActiveTextureARB(GL_TEXTURE0_ARB);
+ qglBindTexture(GL_TEXTURE_2D,previousVisibility);qglActiveTextureARB(GL_TEXTURE1_ARB);qglBindTexture(GL_TEXTURE_2D,depth);qglActiveTextureARB(GL_TEXTURE0_ARB);
  Screen(compositeProgram);
 restore:
  aoBindFramebuffer(GL_FRAMEBUFFER,oldFbo);qglDrawBuffer(oldDraw);aoReadBuffer(oldRead);aoUseProgram(oldProgram);aoPopClientAttrib();aoPopAttrib();

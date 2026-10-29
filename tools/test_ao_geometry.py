@@ -158,6 +158,21 @@ for turn in [-30,-15,0,15,30]:
     ao=render(g)
     contact=valid & (pos[:,:,2]<.01) & (np.abs(pos[:,:,0]-14)<2) & (np.abs(pos[:,:,1])<4)
     rows.append(dict(turn=turn,contact_mean=float(ao[contact].mean()),pixels=int(contact.sum())))
+# Retreat continuously from the same 20x20x30 prop. Integrate the full local
+# floor contact, normalized by projected area: it must not disappear at a fixed
+# camera distance. Pixel coverage is necessarily finite for a tiny distant
+# object; this test checks retention, not perfect sub-pixel motion stability.
+distance_rows=[]
+for distance in [120,240,480,720,960,1200,1440,1680,1920,2160,2400,2640,2880]:
+    g,pos,n,valid=scene([distance,0,distance*.6+8],True)
+    ao=render(g)
+    floor=valid & (pos[:,:,2]<.01) & (np.linalg.norm(pos[:,:,:2],axis=2)<50)
+    mass=float((1-ao[floor]).sum()*distance*distance/(W*H))
+    distance_rows.append(dict(distance=distance,contact_mass=mass,contact_pixels=int(floor.sum())))
+    if distance in [120,960,1920,2880]:
+        Image.fromarray(np.uint8(np.clip(ao[::-1],0,1)*255)).save(out/f'distance-{distance}.png')
+(out/'distance.json').write_text(json.dumps(distance_rows,indent=2)+'\n')
+assert all(r['contact_mass']>.05 for r in distance_rows), 'Distant contact AO disappeared'
 # At a depth discontinuity, the old dFdx-based compositor bias pulled a hidden
 # background surface onto a foreground pixel. A flat surface just behind the
 # window depth must stay hidden, including the last column at its silhouette.
@@ -189,6 +204,62 @@ rows.append(dict(composite_hidden_edge_min=float(result[:,:edge,0].min()),
 Image.fromarray(np.uint8(np.clip(result[::-1,:,:3],0,1)*255)).save(out/'depth-discontinuity.png')
 print(json.dumps(rows,indent=2))
 (out/'result.json').write_text(json.dumps(rows,indent=2)+'\n')
+# Test the real temporal shader separately: retained distant contacts, correct
+# camera reprojection, disocclusion/normal rejection, history reset, and a bound
+# on ghosting when the occluder leaves a receiver whose depth did not change.
+temporal=program('temporalFragment')
+uniform_matrix=gl('UniformMatrix4fv',None,I,I,C.c_ubyte,P)
+hist=(U*5)();gen_tex(5,hist)
+for t in hist:
+    bind_tex(0x0DE1,t)
+    for name,value in [(0x2801,0x2600),(0x2800,0x2600),(0x2802,0x812F),(0x2803,0x812F)]:tex_param(0x0DE1,name,value)
+    tex_image(0x0DE1,0,0x8814,W,H,0,0x1908,0x1406,None)
+attach_tex(0x8D40,0x8CE0,0x0DE1,hist[4],0)
+disable(0x0B71)
+g=np.zeros((H,W,4),np.float32);g[:,:,2]=1;g[:,:,3]=100
+identity=np.eye(4,dtype=np.float32)
+projection=np.zeros((4,4),np.float32)
+projection[0,0]=scale[0];projection[1,1]=scale[1];projection[2,2]=-1;projection[2,3]=-8;projection[3,2]=-1
+def temporal_render(current,old_ao,old_g=None,retention=.8,transform=identity):
+    for unit,data in enumerate([g,current,g if old_g is None else old_g,old_ao]):
+        active(0x84C0+unit);bind_tex(0x0DE1,hist[unit]);data=np.ascontiguousarray(data,dtype=np.float32)
+        tex_image(0x0DE1,0,0x8814,W,H,0,0x1908,0x1406,data.ctypes.data)
+    use(temporal)
+    for i,name in enumerate([b'scene',b'ao',b'oldScene',b'oldAO']):uniform1i(loc(temporal,name),i)
+    uniform1f(loc(temporal,b'retention'),retention)
+    uniform2f(loc(temporal,b'size'),W,H);uniform2f(loc(temporal,b'projectionScale'),*scale)
+    for name,matrix in [(b'previousFromCurrent',transform),(b'previousProjection',projection)]:
+        matrix=np.ascontiguousarray(matrix.T);uniform_matrix(loc(temporal,name),1,0,matrix.ctypes.data)
+    begin(7)
+    for x,y in [(-1,-1),(1,-1),(1,1),(-1,1)]:vertex(x,y,0)
+    end()
+    result=np.empty((H,W,4),np.float32);read(0,0,W,H,0x1908,0x1406,result.ctypes.data)
+    assert get_error()==0
+    return result
+old=np.full_like(g,.8);values=[];raw=[]
+for frame in range(30):
+    value=.77 if frame%2 else .83
+    old=temporal_render(np.full_like(g,value),old)
+    values.append(float(old[H//2,W//2,0]));raw.append(value)
+ratio=float(np.std(values[10:])/np.std(raw[10:]))
+assert ratio<.2,('Unstable distant AO',ratio)
+current=np.full_like(g,.9);old=np.full_like(g,.3)
+wrong_depth=g.copy();wrong_depth[:,:,3]=120
+wrong_normal=g.copy();wrong_normal[:,:,:3]=[0,1,0]
+checks={}
+for name,old_g,retention in [('depth',wrong_depth,.8),('normal',wrong_normal,.8),('reset',g,0)]:
+    result=temporal_render(current,old,old_g,retention)
+    checks[name]=float(np.max(np.abs(result[:,:,:3]-.9)))
+    assert checks[name]<1e-6,('History leaked',name)
+released=temporal_render(np.ones_like(g),np.full_like(g,.3))
+assert released[:,:,0].min()>=.935, 'Trailing shadow exceeds clipping bound'
+gradient=np.broadcast_to(np.linspace(.3,.7,W,dtype=np.float32)[None,:,None],(H,W,4)).copy()
+transform=identity.copy();transform[0,3]=400/W
+reprojected=temporal_render(gradient,gradient,transform=transform)
+expected=.2*gradient[H//2,W//2,0]+.8*gradient[H//2,W//2+2,0]
+assert abs(reprojected[H//2,W//2,0]-expected)<1e-6,'Wrong camera reprojection'
+(out/'temporal.json').write_text(json.dumps(dict(variation_ratio=ratio,rejection_errors=checks,
+    release_min=float(released[:,:,0].min()),camera_reprojection=True),indent=2)+'\n')
 sf('SDL_GL_DeleteContext',None,C.c_void_p)(context)
 sf('SDL_DestroyWindow',None,C.c_void_p)(window)
 sf('SDL_Quit',None)()
