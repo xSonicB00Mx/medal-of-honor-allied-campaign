@@ -68,7 +68,7 @@ Label
 name "intro"
 dontlocalize
 title "Fine-tune your interface and combat effects."
-rect 36 64 680 22
+rect 36 64 888 22
 font ac-courier-13
 fgcolor 0.67 0.73 0.66 1
 bgcolor 0 0 0 0
@@ -681,19 +681,6 @@ font ac-courier-16
 fgcolor 0.91 0.86 0.7 1
 bgcolor 0.09 0.11 0.09 1
 borderstyle NONE
-stuffcommand "set ac_ui_auto 1; set ac_menu_scale 1; set ac_hud_scale 1; set ac_hud_safe 1; set ac_blood_mist 1; set ac_world_blood 1; set ac_body_wounds 1; set ac_corpse_effects 1; set ac_player_flinch_percent 20; set ac_bt_drop_limits 0; set ac_hud_outline 0; set r_acModelShadows 1; set r_acAmbientOcclusion 1; set r_acModelLighting 1; set r_acDynamicLighting 1; set r_acSoftParticles 1"
-}
-resource
-Button
-{
-name "lightingOptions"
-dontlocalize
-title "Lighting..."
-rect 752 60 180 30
-font ac-courier-14
-fgcolor 0.91 0.86 0.7 1
-bgcolor 0.09 0.11 0.09 1
-borderstyle NONE
-stuffcommand "pushmenu ac_lighting"
+stuffcommand "set ac_ui_auto 1; set ac_menu_scale 1; set ac_hud_scale 1; set ac_hud_safe 1; set ac_blood_mist 1; set ac_world_blood 1; set ac_body_wounds 1; set ac_corpse_effects 1; set ac_player_flinch_percent 20; set ac_bt_drop_limits 0; set ac_hud_outline 0; set r_acModelShadows 1; set r_acAmbientOcclusion 1"
 }
 end.

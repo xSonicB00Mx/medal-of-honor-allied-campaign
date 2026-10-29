@@ -1,5 +1,21 @@
 # Lokale Modellbeleuchtung, dynamische Lichter und Partikel
 
+**Zurueckgenommen auf Nutzerauftrag vom 30.10.2026.** Die drei Erweiterungen
+einschliesslich Optionsseite und ihrer spaeteren Waffenlicht-Korrektur wurden
+vollstaendig aus Code und Spielmenues entfernt. Code, CMake, UI und Werkzeuge
+entsprechen wieder `a9671da0`, dem Stand vor ihrer Einfuehrung. Die folgenden
+Abschnitte bleiben ausschliesslich als historische Arbeitsdokumentation
+erhalten und beschreiben keine weiterhin ausgelieferten Funktionen.
+
+Rueckbau installiert: gesicherte Engine `1f269954` (Source `88550606`),
+cgame `af9d7974` und die drei damaligen Optionspakete in CP08-r1/CP09-r1
+bytegleich wiederhergestellt. Native AA/SH/BT-Pruefung mit Save/Load,
+Grafikneustart, Schatten und Optionslayout bestanden (`remove-lighting-test`).
+9086/9090 Runtime-Dateien und 9072 Originaldateien verifiziert; alle Saves und
+557 von 559 Profildateien unveraendert. In den verbleibenden zwei cfg-Dateien
+wurden ausschliesslich die Eintraege der entfernten Optionen geloescht.
+Nachweis und Transaktionssicherung: `generated-local/CP09/remove-lighting/`.
+
 Direkter Nutzerauftrag vom 29.10.2026: Grafikvorschlaege 1, 4 und 5 in die
 regulaere Mod integrieren. Kein separater Spielstand erforderlich.
 

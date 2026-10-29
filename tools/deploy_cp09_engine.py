@@ -51,10 +51,8 @@ if a.options_layout:
         name=src.parent.name+'/'+src.name
         assert src.parent.name in ['main','mainta','maintt'] and src.name=='zzzzzzzzzzzzz_AC_FlinchOptions.pk3'
         with zipfile.ZipFile(src) as z:
-            assert z.namelist() in [['ui/ac_scaling.urc'], ['ui/ac_scaling.urc','ui/ac_lighting.urc']]
-            assert z.testzip() is None
-            for member in z.namelist():
-                assert z.read(member)==(R/'mod'/member).read_text().encode('latin1')
+            assert z.namelist()==['ui/ac_scaling.urc'] and z.testzip() is None
+            assert z.read('ui/ac_scaling.urc')==(R/'mod/ui/ac_scaling.urc').read_text().encode('latin1')
         updates[name]=src
     for manifest in manifests:
         assert set(updates).issubset({row['path'] for row in manifest['owned_files']})
@@ -81,7 +79,7 @@ try:
             if row['path'] in updates: row['sha256']=digest(updates[row['path']])
         if a.options_layout:
             manifest['flinch']={**manifest.get('flinch',{}),'batch':a.run,'packages':packages,
-                               'provider':'Shared Allied Campaign options layout','upload_allowed':False}
+                               'provider':'Shared three-section options layout','upload_allowed':False}
         save(rt/'build-manifest.json',manifest)
     _,_,source_rows = expected(runtimes[0])
     record = json.loads((runtimes[1]/'CP09-candidate.json').read_text())

@@ -1,3 +1,11 @@
+## 2026-10-30: Drei Beleuchtungs-/Partikel-Erweiterungen vollstaendig zurueckgenommen
+
+- Ausdruecklicher Nutzerauftrag: lokale Modellbeleuchtung, verdeckte dynamische Lichter und Lit Soft Particles samt Optionen und nachtraeglicher Waffenlichtkorrektur entfernt.
+- Code/CMake/UI/Werkzeuge entsprechen wieder a9671da0 (vor Einfuehrung). Optionsseite Lighting & Particles und ihr Zugang entfernt. Vorhandene Modellschatten mit Wandverdeckung und Ambient Occlusion erhalten.
+- Originale gesicherte Engine 1f269954 und cgame af9d7974 sowie alle drei alten Optionspakete in CP08-r1/CP09-r1 bytegleich wiederhergestellt. Passende lokale Build-Binaerdateien ebenfalls zurueckgesetzt; keine neue Kompilierung behauptet.
+- Native AA/SH/BT-Pruefung mit Save/Load, Grafikneustart, Modellschatten, Live-Schalter und Optionslayout bestanden. 9086/9090 Runtime-Dateien und 9072 Originaldateien verifiziert. 557 von 559 Profildateien, darunter alle Spielstaende, unveraendert hashgeprueft; ausschliesslich neue Cvar-Zeilen aus zwei Konfigurationen entfernt (559 Dateien insgesamt).
+- Nachweis/Transaktionssicherung generated-local/CP09/remove-lighting; Spieltest remove-lighting-test. Historischer Bericht checkpoints/CP09/lighting-particles.md als zurueckgenommen gekennzeichnet. Kein Merge, CP09-Gesamtabnahme offen.
+
 ## 2026-10-30: Fehlendes Waffenlicht im optimierten Renderer behoben
 
 - Nutzerfehler in Kopie des aktuellen m3l2-Spielstands mit echter Thompson reproduziert. Optimierter Modellpfad liess neue Lichtbeitraege aus, nachdem das alte Licht bereits unterdrueckt wurde.

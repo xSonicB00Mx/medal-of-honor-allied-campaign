@@ -174,7 +174,6 @@ static void RB_SurfaceSprite( void ) {
 	}
 
 	RB_AddQuadStamp( backEnd.currentEntity->e.origin, left, up, backEnd.currentEntity->e.shaderRGBA );
-    memset(tess.acParticlePrelit+tess.numVertexes-4, (backEnd.currentEntity->e.renderfx & RF_AC_PARTICLE_LIT) != 0, 4);
 }
 
 

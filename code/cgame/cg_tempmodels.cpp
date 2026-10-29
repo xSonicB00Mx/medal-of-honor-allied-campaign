@@ -438,9 +438,7 @@ qboolean ClientGameCommandManager::TempModelRealtimeEffects(ctempmodel_t *p, flo
         }
     }
 
-    p->ent.renderfx &= ~RF_AC_PARTICLE_LIT;
     if (p->cgd.flags & T_COLLISION) {
-        p->ent.renderfx |= RF_AC_PARTICLE_LIT;
         vec3_t vLighting;
         cgi.R_GetLightingForSmoke(vLighting, p->ent.origin);
 

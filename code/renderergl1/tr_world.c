@@ -313,7 +313,7 @@ static int R_DlightSurface( msurface_t *surf, int dlightBits ) {
 	dlightMap = 0;
 
 	if ( *surf->data == SF_FACE ) {
-		if ((!r_fastdlights->integer || R_ACDynamicLightingActive(&tr.refdef))) {
+		if (!r_fastdlights->integer) {
 			if (surf->shader->lightmapIndex >= 0) {
 				dlightMap = R_RealDlightFace((srfSurfaceFace_t*)surf->data, dlightBits);
 			} else {
@@ -325,7 +325,7 @@ static int R_DlightSurface( msurface_t *surf, int dlightBits ) {
 			dlightBits = R_FastDlightFace((srfSurfaceFace_t*)surf->data, dlightBits);
 		}
 	} else if ( *surf->data == SF_GRID ) {
-		if ((!r_fastdlights->integer || R_ACDynamicLightingActive(&tr.refdef))) {
+		if (!r_fastdlights->integer) {
 			if (surf->shader->lightmapIndex >= 0) {
 				dlightMap = R_RealDlightPatch((srfGridMesh_t*)surf->data, dlightBits);
 			} else {
@@ -359,7 +359,7 @@ int R_DlightTerrain(cTerraPatchUnpacked_t* surf, int dlightBits)
 
     dlightMap = 0;
 
-    if (r_fastdlights->integer && !R_ACDynamicLightingActive(&tr.refdef))
+    if (r_fastdlights->integer)
     {
         if (R_FastDlightTerrain(surf, dlightBits)) {
             ++tr.pc.c_dlightSurfaces;
