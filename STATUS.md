@@ -1,3 +1,10 @@
+## 2026-10-30: Fehlendes Waffenlicht im optimierten Renderer behoben
+
+- Nutzerfehler in Kopie des aktuellen m3l2-Spielstands mit echter Thompson reproduziert. Optimierter Modellpfad liess neue Lichtbeitraege aus, nachdem das alte Licht bereits unterdrueckt wurde.
+- Gemeinsame Farbberechnung fuer schnellen/generischen Pfad; lokale Lichtgitter-Proben erreichen nun ebenfalls diese Modelle. Urspruengliche Modell-/Rauch-Lichtantwort wiederhergestellt, Verdeckung weiterhin vertexgenau.
+- Regressionsprobe scheitert mit alter Engine; neue schnelle/generische Pfade liefern gleiche Lichtwerte. Echtes Feuer innen/aussen, Decke/Drehtuer, AA/SH/BT, Save/Load, Grafikneustart und UHD geprueft. UHD-Last 15 ms Median/16 ms P95 CPU-Wandzeit; gleichmaessiges Bocage-Licht bleibt bei lokalen Proben dezent.
+- Engine 101d26ba aus Source 83fbf55a in CP08-r1/CP09-r1 installiert. 9086/9090 Runtime-Dateien, 9072 Originaldateien und 555 unveraenderte persoenliche Dateien verifiziert. Persoenliche Option Occluded dynamic lights bleibt aus. Details checkpoints/CP09/lighting-particles.md. Kein Merge, CP09-Gesamtabnahme offen.
+
 ## 2026-10-29: Lokale Beleuchtung und Soft Particles implementiert und geprueft
 
 - Direkter Nutzerauftrag fuer Vorschlaege 1/4/5: lokale Lichtgitter-Proben, verdeckte dynamische Lichter, beleuchtete Soft Particles.

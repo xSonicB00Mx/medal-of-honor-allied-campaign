@@ -70,8 +70,16 @@ Weitere Regression mit Engine
   Treiberwartezeit. Der zuvor dokumentierte niedrigere Aufwand von 10 ms
   galt fuer die fehlerhafte Fassung, die viele Modelle nicht beleuchtete.
 
-Die folgenden Abschnitte dokumentieren die erste Lieferung vom 29.10.;
-Quellen-/Installationsstand der Korrektur wird separat festgehalten.
+Korrektur aus Quellen-Commit `83fbf55abac2c52400202b16ffcfe9404fd0de56`
+mit `tools/deploy_cp09_engine.py muzzle-aa-release` in CP08-r1 und CP09-r1
+installiert. 9.086/9.090 Runtime-Dateien und 9.072 Originaldateien verifiziert;
+alle 555 persoenlichen Profildateien hashgleich. Nur die Engine ersetzt,
+game/cgame/Assets unveraendert. Nachweis und Rollback unter
+`generated-local/CP09/muzzle-aa-release/`. Persoenliche Einstellung
+`r_acDynamicLighting=0` bewusst beibehalten; der Nutzer kann die korrigierte
+Option wieder einschalten. Kein Merge, CP09-Gesamtabnahme weiterhin offen.
+
+Die folgenden Abschnitte dokumentieren die erste Lieferung vom 29.10.
 
 ## Umsetzung
 
