@@ -12,6 +12,8 @@ Nutzerauftrag zu Vorschlaegen 1/4/5: Lichtgitter-Proben fuer Modelle,
 verdeckte dynamische Lichter und beleuchtete Soft Particles mit eigener
 Optionsseite. AA/SH/BT, Save/Load, Live-Optionen, Grafikneustart, UHD,
 Decke/Drehtuer, GPU-Partikelpruefungen und Normandy-Boot bestanden.
+Engine d0eea6b9 und cgame 0d2d018e aus Source 7d32ce06 in CP08/CP09
+installiert; 555 persoenliche Profildateien unveraendert.
 
 Nachtrag 29.10.2026: [Schatten durch Waende korrigiert](model-shadows.md).
 BSP-/statische Levelblocker unabhaengig von der Kamerasicht, aktuelle

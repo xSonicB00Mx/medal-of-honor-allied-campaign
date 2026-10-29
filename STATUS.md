@@ -3,7 +3,7 @@
 - Direkter Nutzerauftrag fuer Vorschlaege 1/4/5: lokale Lichtgitter-Proben, verdeckte dynamische Lichter, beleuchtete Soft Particles.
 - Neue Seite Lighting & Particles mit drei gemeinsamen Live-Schaltern. Spiel-/Speicherformat unveraendert.
 - AA/SH/BT, Save/Load, Renderer-Neustart, UHD, Decke/Drehtuer, Partikel-GPU und Normandy-Boot bestanden. UHD-Last mit 16 NPCs, acht Pickups und zwei Lichtern: 10 ms Median / 11 ms P95 CPU-Wandzeit.
-- Finale Engine d0eea6b9, cgame 0d2d018e; Installation nach Quellen-Commit. Details checkpoints/CP09/lighting-particles.md. CP09-Gesamtabnahme offen, kein Merge.
+- Engine d0eea6b9 und cgame 0d2d018e aus Source 7d32ce06 in CP08-r1/CP09-r1 installiert. 9086/9090 Runtime-Dateien und 9072 Originaldateien verifiziert, 555 persoenliche Profildateien unveraendert. Details checkpoints/CP09/lighting-particles.md. CP09-Gesamtabnahme offen, kein Merge.
 
 ## 2026-10-29: Durch Waende scheinende Modellschatten behoben
 

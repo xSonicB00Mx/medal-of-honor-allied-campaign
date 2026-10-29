@@ -98,7 +98,15 @@ ebenfalls korrigiert; fehlgeschlagene Laeufe gelten nicht als Abnahmen.
 
 ## Installation
 
-Installation erfolgt ueber `tools/deploy_cp09_engine.py lighting-release
---options-layout --cgame`, mit Hashpruefung, Sicherung der ersetzten Moddateien
-und Rueckbau bei Fehlern. Installationsnachweis wird nach erfolgtem Kopieren
-ergänzt. Originalinstallation und persoenliches Profil bleiben geschuetzt.
+Engine, passendes cgame und die beiden Optionslayouts sind in **CP08-r1 und
+CP09-r1 installiert**, Quellen-Commit `7d32ce0620ed918622cf6cb14a6bfdf6d885033c`.
+Der normale Spielstarter verwendet damit die neuen, standardmaessig aktiven
+Effekte. `game.dll`, Kunst-/Inhaltspakete und Speicherformat bleiben unveraendert.
+
+`tools/deploy_cp09_engine.py lighting-release --options-layout --cgame`
+verifizierte 9.086/9.090 Runtime-Dateien sowie 9.072 Originaldateien.
+Alle 555 persoenlichen Profildateien blieben hashgleich. Der lokale
+Installationsnachweis liegt in `generated-local/CP09/lighting-release/deployment.json`,
+die ersetzten Moddateien liegen dort unter `rollback/`.
+
+Kein Merge, keine Vorwegnahme der persoenlichen Kampagnenabnahme.
