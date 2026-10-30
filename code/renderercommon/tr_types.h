@@ -157,6 +157,8 @@ typedef struct {
     qboolean    acFullDetail; // bounded close-range wound geometry; never networked
     qboolean    acShadowCaster; // renderer-only, never saved/networked
     int         acShadowOwner; // attachments share their parent silhouette
+    unsigned int acMotionId; // stable temporary-model pool slot; renderer-only
+    unsigned int acMotionGeneration; // spawn time guards recycled slots; NOT archived
 } refEntity_t;
 
 

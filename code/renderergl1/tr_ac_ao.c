@@ -69,8 +69,8 @@ static const char *geometryFragment =
  " gl_FragColor=vec4(n,-position.z);}\n";
 static const char *horizonFragment =
  "#version 120\n"
- "uniform sampler2D scene;uniform vec2 size,projectionScale; varying vec2 uv;\n"
- "vec3 reconstruct(vec2 t,float z){return vec3((t*2.0-1.0)*z/projectionScale,-z);}\n"
+ "uniform sampler2D scene;uniform vec2 size,projectionScale,projectionOffset; varying vec2 uv;\n"
+ "vec3 reconstruct(vec2 t,float z){return vec3((t*2.0-1.0+projectionOffset)*z/projectionScale,-z);}\n"
  "float integral(float h,float n,float c){return (c+2.0*h*sin(n)-cos(2.0*h-n))*0.25;}\n"
  "void main(){\n"
  " vec4 g=texture2D(scene,uv);if(g.a<=0.0){gl_FragColor=vec4(1.0);return;}\n"
@@ -120,8 +120,8 @@ static const char *horizonFragment =
  " gl_FragColor=vec4(clamp(1.0-sum/6.0,0.0,1.0));}\n";
 static const char *filterFragment =
  "#version 120\n"
- "uniform sampler2D scene,ao;uniform vec2 size,projectionScale,direction;varying vec2 uv;\n"
- "vec3 reconstruct(vec2 t,float z){return vec3((t*2.0-1.0)*z/projectionScale,-z);}\n"
+ "uniform sampler2D scene,ao;uniform vec2 size,projectionScale,projectionOffset,direction;varying vec2 uv;\n"
+ "vec3 reconstruct(vec2 t,float z){return vec3((t*2.0-1.0+projectionOffset)*z/projectionScale,-z);}\n"
  "void main(){vec4 g=texture2D(scene,uv);if(g.a<=0.0){gl_FragColor=vec4(1.0);return;}\n"
  " vec3 p=reconstruct(uv,g.a);float sum=0.0,total=0.0;\n"
  " for(int i=-4;i<=4;i++){vec2 t=uv+direction*float(i)/size;vec4 q=texture2D(scene,t);\n"
@@ -133,11 +133,11 @@ static const char *filterFragment =
  " } gl_FragColor=vec4(sum/max(total,0.0001));}\n";
 static const char *temporalFragment =
  "#version 120\n"
- "uniform sampler2D scene,ao,oldScene,oldAO;uniform vec2 size,projectionScale;\n"
+ "uniform sampler2D scene,ao,oldScene,oldAO;uniform vec2 size,projectionScale,projectionOffset;\n"
  "uniform mat4 previousFromCurrent,previousProjection;uniform float retention;varying vec2 uv;\n"
  "void main(){float current=texture2D(ao,uv).r;vec4 g=texture2D(scene,uv);\n"
  " if(retention<=0.0||g.a<=0.0){gl_FragColor=vec4(current);return;}\n"
- " vec4 p=previousFromCurrent*vec4((uv*2.0-1.0)*g.a/projectionScale,-g.a,1.0);\n"
+ " vec4 p=previousFromCurrent*vec4((uv*2.0-1.0+projectionOffset)*g.a/projectionScale,-g.a,1.0);\n"
  " vec4 clip=previousProjection*p;vec2 oldUV=clip.xy/clip.w*0.5+0.5;\n"
  " if(clip.w<=0.0||any(lessThan(oldUV,vec2(0.0)))||any(greaterThan(oldUV,vec2(1.0)))){gl_FragColor=vec4(current);return;}\n"
  " vec4 old=texture2D(oldScene,oldUV);vec3 N=normalize(mat3(previousFromCurrent)*g.xyz);\n"
@@ -204,6 +204,7 @@ static void Camera(GLuint p){
 static void Screen(GLuint p){
  static const GLfloat quad[12]={-1,-1,0, 1,-1,0, 1,1,0, -1,1,0};
  aoUseProgram(p);V(p,"size",width,height);V(p,"projectionScale",backEnd.viewParms.projectionMatrix[0],backEnd.viewParms.projectionMatrix[5]);
+ V(p,"projectionOffset",backEnd.viewParms.projectionMatrix[8],backEnd.viewParms.projectionMatrix[9]);
  qglDisableClientState(GL_TEXTURE_COORD_ARRAY);qglDisableClientState(GL_NORMAL_ARRAY);
  qglVertexPointer(3,GL_FLOAT,0,quad);qglDrawArrays(GL_QUADS,0,4);
 }

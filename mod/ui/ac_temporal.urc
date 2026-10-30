@@ -1,0 +1,191 @@
+menu "ac_temporal" 960 540 NONE 0
+virtualres 1
+widecanvas
+fullscreen 1
+bgfill 0 0 0 1
+borderstyle NONE
+widescreenbackground "textures/ac/menu_background"
+
+resource
+Label
+{
+name "heading"
+title "ANTI-ALIASING & MOTION"
+rect 44 34 872 36
+dontlocalize
+font ac-courier-16
+fgcolor 0.91 0.86 0.7 1
+bgcolor 0 0 0 0
+borderstyle NONE
+font facfont-20
+}
+
+resource
+Label
+{
+name "taaLabel"
+title "Temporal anti-aliasing (TAA)"
+rect 64 132 760 30
+dontlocalize
+font ac-courier-16
+fgcolor 0.91 0.86 0.7 1
+bgcolor 0 0 0 0
+borderstyle NONE
+}
+
+resource
+CheckBox
+{
+name "temporalAA"
+title ""
+rect 854 132 28 28
+dontlocalize
+font ac-courier-16
+fgcolor 0.91 0.86 0.7 1
+bgcolor 0 0 0 0
+borderstyle NONE
+linkcvar r_acTAA
+checked_shader textures/menu/checkbox_checked
+unchecked_shader textures/menu/checkbox_unchecked
+}
+
+resource
+Label
+{
+name "taaHint"
+title "Smooths edges and reduces shimmering on fine details."
+rect 64 175 824 28
+dontlocalize
+font ac-courier-16
+fgcolor 0.91 0.86 0.7 1
+bgcolor 0 0 0 0
+borderstyle NONE
+font ac-courier-12
+}
+
+resource
+Label
+{
+name "blurLabel"
+title "Object motion blur"
+rect 64 265 600 30
+dontlocalize
+font ac-courier-16
+fgcolor 0.91 0.86 0.7 1
+bgcolor 0 0 0 0
+borderstyle NONE
+}
+
+resource
+Slider
+{
+name "objectBlur"
+title ""
+rect 558 267 238 24
+dontlocalize
+font ac-courier-16
+fgcolor 0.91 0.86 0.7 1
+bgcolor 0 0 0 0
+borderstyle NONE
+shader textures/menu/slider
+linkcvar r_acObjectMotionBlur
+slidertype integer
+setrange 0 100
+stepsize 10
+}
+
+resource
+Label
+{
+name "blurValue"
+title ""
+rect 816 265 90 30
+dontlocalize
+font ac-courier-16
+fgcolor 0.91 0.86 0.7 1
+bgcolor 0 0 0 0
+borderstyle NONE
+linkcvar r_acObjectMotionBlur
+linkstring 0 "Off"
+linkstring 10 "10%"
+linkstring 20 "20%"
+linkstring 30 "30%"
+linkstring 40 "40%"
+linkstring 50 "50%"
+linkstring 60 "60%"
+linkstring 70 "70%"
+linkstring 80 "80%"
+linkstring 90 "90%"
+linkstring 100 "100%"
+}
+
+resource
+Label
+{
+name "blurHint"
+title "Only moving objects blur. Camera movement and HUD stay sharp."
+rect 64 308 824 28
+dontlocalize
+font ac-courier-16
+fgcolor 0.91 0.86 0.7 1
+bgcolor 0 0 0 0
+borderstyle NONE
+font ac-courier-12
+}
+
+resource
+Label
+{
+name "blurHint2"
+title "Strength controls exposure: 100% = 1/60 second; 0% = Off."
+rect 64 342 824 28
+dontlocalize
+font ac-courier-16
+fgcolor 0.91 0.86 0.7 1
+bgcolor 0 0 0 0
+borderstyle NONE
+font ac-courier-12
+}
+
+resource
+Label
+{
+name "applyHint"
+title "Changes apply immediately across all campaigns."
+rect 208 476 550 32
+dontlocalize
+font ac-courier-16
+fgcolor 0.91 0.86 0.7 1
+bgcolor 0 0 0 0
+borderstyle NONE
+font ac-courier-12
+}
+
+resource
+Button
+{
+name "back"
+title "Back"
+rect 44 476 140 32
+dontlocalize
+font ac-courier-16
+fgcolor 0.91 0.86 0.7 1
+bgcolor 0 0 0 0
+borderstyle NONE
+stuffcommand "popmenu 0"
+}
+
+resource
+Button
+{
+name "temporalDefaults"
+title "Defaults"
+rect 772 476 144 32
+dontlocalize
+font ac-courier-16
+fgcolor 0.91 0.86 0.7 1
+bgcolor 0 0 0 0
+borderstyle NONE
+stuffcommand "set r_acTAA 1; set r_acObjectMotionBlur 0"
+}
+end.

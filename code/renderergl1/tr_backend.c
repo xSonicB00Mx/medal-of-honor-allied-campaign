@@ -715,6 +715,7 @@ void RB_RenderDrawSurfList( drawSurf_t *drawSurfs, int numDrawSurfs ) {
 	RB_BeginDrawingView ();
 	RB_ACShadowBegin();
 	RB_ACLightingBegin();
+	RB_ACTemporalBegin();
 
 	// draw everything
 	oldEntityNum = -1;
@@ -732,7 +733,9 @@ void RB_RenderDrawSurfList( drawSurf_t *drawSurfs, int numDrawSurfs ) {
 	for (i = 0, drawSurf = drawSurfs ; i < numDrawSurfs ; i++, drawSurf++) {
 		if ( drawSurf->sort == (unsigned)oldSort && *drawSurf->surface != SF_SPRITE ) {
 			// fast path, same as previous sort
+			qboolean isolated = RB_ACTemporalSurface(drawSurf->surface);
 			rb_surfaceTable[ *drawSurf->surface ]( drawSurf->surface );
+			RB_ACTemporalSurfaceEnd(isolated);
 			continue;
 		}
 		oldSort = (int)drawSurf->sort;
@@ -881,7 +884,11 @@ void RB_RenderDrawSurfList( drawSurf_t *drawSurfs, int numDrawSurfs ) {
 		}
 
 		// add the triangles for this surface
-		rb_surfaceTable[ *drawSurf->surface ]( drawSurf->surface );
+		{
+			qboolean isolated = RB_ACTemporalSurface(drawSurf->surface);
+			rb_surfaceTable[ *drawSurf->surface ]( drawSurf->surface );
+			RB_ACTemporalSurfaceEnd(isolated);
+		}
 	}
 
 	// draw the contents of the last shader batch
@@ -1002,6 +1009,7 @@ RB_SetGL2D
 ================
 */
 void	RB_SetGL2D (void) {
+	RB_ACTemporalFinish();
 	Set2DWindow(0, 0, glConfig.vidWidth, glConfig.vidHeight, 0.0, glConfig.vidWidth, glConfig.vidHeight, 0.0, 0.0, 1.0);
 }
 
@@ -1245,6 +1253,7 @@ const void	*RB_DrawSurfs( const void *data ) {
 
 	cmd = (const drawSurfsCommand_t *)data;
 
+	RB_ACTemporalFinish();
 	backEnd.refdef = cmd->refdef;
 	backEnd.viewParms = cmd->viewParms;
 
@@ -1392,6 +1401,7 @@ const void *RB_ClearDepth(const void *data)
 	
 	if(tess.numIndexes)
 		RB_EndSurface();
+	RB_ACTemporalFinish();
 
 	// texture swapping test
 	if (r_showImages->integer)
@@ -1418,6 +1428,7 @@ const void	*RB_SwapBuffers( const void *data ) {
 	}
 
 	// texture swapping test
+	RB_ACTemporalFinish();
 	if ( r_showImages->integer ) {
 		RB_ShowImages(qfalse);
 	}

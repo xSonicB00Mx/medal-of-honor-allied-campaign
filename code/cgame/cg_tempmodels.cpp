@@ -1054,6 +1054,8 @@ void ClientGameCommandManager::AddTempModels(void)
         newEnt.wasframe     = p->ent.wasframe;
         newEnt.actionWeight = 1.0;
         newEnt.entityNumber = ENTITYNUM_NONE;
+        newEnt.acMotionId = (unsigned int)(p - m_tempmodels) + 1;
+        newEnt.acMotionGeneration = (unsigned int)p->cgd.createTime;
         newEnt.tiki         = p->ent.tiki;
 
         AnimateTempModel(p, newEnt.origin, &newEnt);

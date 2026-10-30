@@ -1875,6 +1875,7 @@ void RB_EndSurface( void ) {
 	//
 	tess.currentStageIteratorFunc();
 	RB_ACShadowCapture();
+	RB_ACTemporalCapture();
 
 	if (!(tr.refdef.rdflags & RDF_NOWORLDMODEL) && !backEnd.in2D)
 	{

@@ -284,7 +284,7 @@ void UISlider::UpdateData(void)
 {
     // This percentage control is discrete even when the thumb is dragged.
     // Legacy sliders retain their continuous mouse behaviour.
-    if (!Q_stricmp(m_cvarname.c_str(), "ac_player_flinch_percent")) {
+    if (!Q_stricmp(m_cvarname.c_str(), "ac_player_flinch_percent") || !Q_stricmp(m_cvarname.c_str(), "r_acObjectMotionBlur")) {
         m_value = floorf(Q_clamp_float(m_value, 0.0f, 100.0f) / 10.0f + 0.5f) * 10.0f;
     }
     if (m_cvarname.length()) {
@@ -313,7 +313,7 @@ void UISlider::UpdateData(void)
 void UISlider::UpdateUIElement(void)
 {
     m_value = UI_GetCvarFloat(m_cvarname, 0.0f);
-    if (!Q_stricmp(m_cvarname.c_str(), "ac_player_flinch_percent")) {
+    if (!Q_stricmp(m_cvarname.c_str(), "ac_player_flinch_percent") || !Q_stricmp(m_cvarname.c_str(), "r_acObjectMotionBlur")) {
         const float snapped = floorf(Q_clamp_float(m_value, 0.0f, 100.0f) / 10.0f + 0.5f) * 10.0f;
         if (m_value != snapped) {
             m_value = snapped;

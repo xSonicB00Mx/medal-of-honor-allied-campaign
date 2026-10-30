@@ -14,6 +14,7 @@ binary.mkdir(parents=True)
 for dll in runtime.glob('*.dll'):
     shutil.copy2(dll, binary/dll.name)
 shutil.copy2(root/'build-local/cp00-r3/RelWithDebInfo/openmohaa.exe', binary/'openmohaa.exe')
+shutil.copy2(root/'build-local/cp00-r3/RelWithDebInfo/cgame.dll', binary/'cgame.dll')
 folders = ['main', 'mainta', 'maintt']
 for folder in folders:
     (home/folder/'configs').mkdir(parents=True)
@@ -32,6 +33,7 @@ def launch(game, script, initial=False):
     return subprocess.Popen(cmd+['+exec',script],cwd=runtime)
 
 initial = ['wait 600','seta r_gamma 1.25','seta s_ambientvolume 0.37',
+    'seta r_acTAA 0','seta r_acObjectMotionBlur 70',
     'seta m_pitch -0.022','seta cl_ctrlbindings 1','seta cl_altbindings 0',
     'seta cg_fov 93','seta ac_player_flinch_percent 70','seta ac_bt_drop_limits 1','seta ac_loadout_2 30','seta g_subtitle 0','seta r_picmip 1',
     'bind F7 +forward','altbind F8 +moveleft','ctrlbind F9 +moveright',
@@ -66,6 +68,7 @@ for folder,name,gamma,ambient in [('mainta','received-aa.cfg','1.25','0.37'),
     ('maintt','received-sh.cfg','1.4','0.63'),('main','received-bt.cfg','1.3','0.55')]:
     values,text=config(folder,name)
     assert values['ac_loadout_2']=='30'
+    assert values['r_acTAA']=='0' and values['r_acObjectMotionBlur']=='70'
     assert values['r_gamma']==gamma and values['s_ambientvolume']==ambient,(folder,values)
     for key,value in [('m_pitch','-0.022'),('cg_fov','93'),('ac_player_flinch_percent','70'),('ac_bt_drop_limits','1'),('g_subtitle','0'),('cl_ctrlbindings','1'),('cl_altbindings','0')]:
         assert values[key]==value,(folder,key,values[key])
@@ -85,6 +88,7 @@ for game,folder in enumerate(folders):
     assert values['ac_loadout_2']=='30'
     assert values['r_gamma']=='1.3' and values['s_ambientvolume']=='0.55' and values['r_picmip']=='0'
     assert values['ac_player_flinch_percent']=='70' and values['ac_bt_drop_limits']=='1'
+    assert values['r_acTAA']=='0' and values['r_acObjectMotionBlur']=='70'
     assert 'ctrlbind F9 "+attack"' in text and '\nbind F7 ' not in text and '\naltbind F8 ' not in text
     checks.append(dict(folder=folder,phase='fresh-process',passed=True))
 shared=(home/'main/ac_preferences.cfg').read_text()
