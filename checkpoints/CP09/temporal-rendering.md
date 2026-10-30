@@ -148,4 +148,16 @@ CPU-Wandzeiten einschliesslich Treiberwartezeiten, keine GPU-Timestamps:
 
 Getestete Engine: `992d5a0a4afdaa31c3413ef9c0a27863b330ad49b2ce2421e32f5a38f5d89919`.
 Passendes cgame: `e1cdf10fb0403915d7ae8ed5e1d2be7ddf62ecc2670b97f82c8f2e0dd29d75b3`.
-Der transaktionale Installationsnachweis wird im Anschluss ergaenzt.
+Quellen-Commit: `fac172f1c91fc9d521463442b66cc34032f48915`.
+
+Die getestete Engine, das passende cgame und alle drei gemeinsamen Optionspakete
+sind in **CP08-r1 und CP09-r1 installiert**. Der normale Modstarter verwendet
+diese Fassung. `tools/deploy_cp09_engine.py temporal-aa-delivery --cgame
+--options-layout` verifizierte 9086/9090 Runtime-Dateien sowie 9072 Originaldateien.
+Alle **571 persoenlichen Dateien**, einschliesslich Spielstaenden und Einstellungen,
+blieben hashgleich. `game.dll` und die vorhandenen Kunst-/Inhaltspakete bleiben
+unveraendert; nur das bereits vorhandene gemeinsame Optionspaket wurde erweitert.
+
+Nachweis: `generated-local/CP09/temporal-aa-delivery/deployment.json`.
+Die ersetzten Moddateien liegen dort unter `rollback/`. Keine neue isolierte
+Testversion als fertige Installation ausgegeben, kein Merge.

@@ -1,3 +1,11 @@
+## 2026-10-30: Echtes TAA und reine Objektbewegungsunschaerfe eingebaut
+
+- Direkter Featureauftrag: zeitliche Kantenglaettung mit Projektionsjitter, Tiefen-/Farbhistorie und deformierten Modellvertices; getrennte, kamerabereinigte Bewegungsvektoren fuer Object Motion Blur. HUD/Menues bleiben hinter dem Effektpass.
+- Neue Seite Allied Campaign Options -> AA & Motion...: TAA standardmaessig an; Object motion blur Off bis 100% in 10%-Schritten, standardmaessig aus. Live und kampagnenuebergreifend. Kein DLSS: aktueller GL1-Renderer hat keinen passenden Streamline-Backendpfad.
+- 30 GPU-Faelle, AA/SH/BT, UHD, echtes 4x MSAA, Waffenfeuer/Nachladen, Save/Load, Grafik-/Aufloesungs-/FOV-/Kartenwechsel und UI-Pruefungen bestanden. MSAA-Tiefenabgleich und Tempmodel-Identitaeten korrigiert. UHD-Stress: 15 ms Median aus / 17 ms TAA / 17 ms TAA+Blur, CPU-Wandzeit inklusive Treiberwartezeit.
+- Quellen fac172f1, Engine 992d5a0a, cgame e1cdf10f in CP08-r1/CP09-r1 installiert. 9086/9090 Runtime-Dateien und 9072 Originale verifiziert; 571 persoenliche Dateien inklusive Spielstaenden unveraendert. Spiel-/Speicherformat unveraendert.
+- Nachweise generated-local/CP09/temporal-*-delivery und checkpoints/CP09/temporal-rendering.md. Bestehende Beleuchtungs-/Partikel-, Schatten- und AO-Features erhalten. CP09-Gesamtabnahme offen; kein Merge.
+
 ## 2026-10-30: Beleuchtungs-/Partikel-Erweiterungen zur Nutzeranalyse wieder eingebaut
 
 - Neuer ausdruecklicher Auftrag nach Rueckbau: exakt die zuletzt korrigierte Fassung 406a0616 einschliesslich Waffenlichtkorrektur und Optionsseite Lighting & Particles wiederhergestellt.
