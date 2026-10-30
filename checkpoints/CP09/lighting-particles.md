@@ -1,11 +1,23 @@
 # Lokale Modellbeleuchtung, dynamische Lichter und Partikel
 
-**Zurueckgenommen auf Nutzerauftrag vom 30.10.2026.** Die drei Erweiterungen
+## Erneute Bereitstellung zur Analyse, 30.10.2026
+
+Der Nutzer hat den Rueckbau widerrufen und die drei Erweiterungen fuer eigene
+Analysen erneut beauftragt. Wiederhergestellt wird exakt die zuletzt korrigierte
+Fassung `406a0616` (Implementierung `83fbf55a`), einschliesslich des reparierten
+Waffenlichtpfads, der drei Schalter und der Seite Lighting & Particles.
+Engine `101d26ba` und cgame `0d2d018e` stammen bytegleich aus der gesicherten,
+bereits geprueften Fassung; keine erneute Kompilierung behauptet. Keine neue
+Featureabnahme und keine Veraenderung persoenlicher Spielstaende.
+
+## Zwischenzeitlicher Rueckbau (historisch)
+
+**Zwischenzeitlich zurueckgenommen auf Nutzerauftrag vom 30.10.2026.** Die drei Erweiterungen
 einschliesslich Optionsseite und ihrer spaeteren Waffenlicht-Korrektur wurden
 vollstaendig aus Code und Spielmenues entfernt. Code, CMake, UI und Werkzeuge
 entsprechen wieder `a9671da0`, dem Stand vor ihrer Einfuehrung. Die folgenden
-Abschnitte bleiben ausschliesslich als historische Arbeitsdokumentation
-erhalten und beschreiben keine weiterhin ausgelieferten Funktionen.
+Abschnitte dokumentieren diesen zwischenzeitlichen Rueckbau. Der erneute
+Nutzerauftrag oben stellt die anschliessend beschriebene Implementierung wieder her.
 
 Rueckbau installiert: gesicherte Engine `1f269954` (Source `88550606`),
 cgame `af9d7974` und die drei damaligen Optionspakete in CP08-r1/CP09-r1

@@ -44,6 +44,7 @@ typedef struct {
     byte           *dstBase;
     incidentLight_t lights[32];
     int             numLights;
+    const cplane_t *visibilityPlane;
 } dlightInfo_t;
 
 typedef struct {
@@ -143,6 +144,7 @@ int R_RealDlightPatch(srfGridMesh_t *srf, int dlightBits)
         return 0;
     }
 
+    dli.visibilityPlane = NULL;
     dli.numLights = 0;
 
     for (i = 0; i < tr.refdef.num_dlights; i++) {
@@ -309,6 +311,7 @@ int R_RealDlightFace(srfSurfaceFace_t *srf, int dlightBits)
         return 0;
     }
 
+    dli.visibilityPlane = &srf->plane;
     dli.numLights = 0;
 
     for (i = 0; i < tr.refdef.num_dlights; i++) {
@@ -404,6 +407,7 @@ int R_RealDlightTerrain(cTerraPatchUnpacked_t *srf, int dlightBits)
     float     z00, z01;
     float     z10, z11;
 
+    dli.visibilityPlane = NULL;
     dli.numLights = 0;
 
     for (i = 0; i < tr.refdef.num_dlights; i++) {
@@ -1133,7 +1137,8 @@ void R_GetLightingForSmoke(vec3_t vLight, const vec3_t vOrigin)
 
         power = dl->radius * dl->radius;
         if (power >= d) {
-            d = dl->radius * 7500.0 / d;
+            if (!R_ACLightVisible(dl->origin, vOrigin, &backEnd.refdef)) continue;
+            d = dl->radius * 7500.0 / Q_max(d, 64.0f);
             VectorMA(vLight, d, dl->color, vLight);
         }
     }
@@ -1178,14 +1183,15 @@ static int RB_GetEntityGridLighting()
         vLight[0] = vLight[1] = vLight[2] = tr.identityLight * 150.0;
     }
 
-    for (i = 0; i < backEnd.refdef.num_dlights; i++) {
+    for (i = 0; !R_ACDynamicLightingActive(&backEnd.refdef) && i < backEnd.refdef.num_dlights; i++) {
         dl = &backEnd.refdef.dlights[i];
         VectorSubtract(dl->origin, lightOrigin, dir);
         d = VectorLengthSquared(dir);
 
         power = dl->radius * dl->radius;
         if (power >= d) {
-            d = dl->radius * 7500.0 / d;
+            if (!R_ACLightVisible(dl->origin, lightOrigin, &backEnd.refdef)) continue;
+            d = dl->radius * 7500.0 / Q_max(d, 64.0f);
             VectorMA(vLight, d, dl->color, vLight);
         }
     }
@@ -1269,7 +1275,7 @@ static int RB_GetEntityGridLighting()
 	d = VectorLength(ent->directedLight);
 	VectorScale(ent->lightDir, d, lightDir);
 
-	for (i = 0; i < refdef->num_dlights; i++) {
+	for (i = 0; !R_ACDynamicLightingActive(refdef) && i < refdef->num_dlights; i++) {
 		dl = &refdef->dlights[i];
 		VectorSubtract(dl->origin, lightOrigin, dir);
 		d = VectorNormalize(dir);
@@ -1383,14 +1389,15 @@ void RB_SetupStaticModelGridLighting(trRefdef_t *refdef, cStaticModelUnpacked_t 
         vLight[0] = vLight[1] = vLight[2] = tr.identityLight * 150.0;
     }
 
-    for (i = 0; i < refdef->num_dlights; i++) {
+    for (i = 0; !R_ACDynamicLightingActive(refdef) && i < refdef->num_dlights; i++) {
         dl = &refdef->dlights[i];
         VectorSubtract(dl->origin, lightOrigin, dir);
         d = VectorLengthSquared(dir);
 
         power = dl->radius * dl->radius;
         if (power >= d) {
-            d = dl->radius * 7500.0 / d;
+            if (!R_ACLightVisible(dl->origin, lightOrigin, refdef)) continue;
+            d = dl->radius * 7500.0 / Q_max(d, 64.0f);
             VectorMA(vLight, d, dl->color, vLight);
         }
     }
@@ -1573,6 +1580,16 @@ qboolean R_DlightSample(byte *src, const vec3_t vec, byte *dst)
         VectorSubtract(vec, light->origin, dir);
         add = VectorLength(dir) * light->power;
         if (add <= 1.f) {
+            vec3_t world, receiver;
+            VectorCopy(vec, receiver);
+            /* MOH lightmap origins can lie behind the visible plane. Trace
+             * against the actual receiver, not an atlas sample inside a wall. */
+            if (dli.visibilityPlane) {
+                float offset = dli.visibilityPlane->dist - DotProduct(vec, dli.visibilityPlane->normal);
+                VectorMA(vec, offset, dli.visibilityPlane->normal, receiver);
+            }
+            R_ACLightWorldPoint(receiver, &tr.ori, world);
+            if (!R_ACLightVisible(light->dl->origin, world, &tr.refdef)) continue;
             float t = (1.0 - add) * (1.0 - add) * 375.0;
 
             r = (int)(t * light->dl->color[0] + (float)r);

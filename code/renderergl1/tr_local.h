@@ -1914,6 +1914,7 @@ typedef struct shaderCommands_s
 	int			dlightMap;
 
 	int			numIndexes;
+	byte acParticlePrelit[SHADER_MAX_VERTEXES];
 	int			numVertexes;
 
 	// info extracted from current shader
@@ -2026,6 +2027,19 @@ void RB_ACShadowBegin(void);
 void RB_ACShadowCapture(void);
 void RB_ACShadowFinish(void);
 void RB_ACDrawCapturedScene(GLint alphaCut);
+extern cvar_t *r_acModelLighting, *r_acDynamicLighting, *r_acSoftParticles;
+qboolean R_ACDynamicLightingActive(const trRefdef_t *refdef);
+void R_ACLightingInit(void);
+void R_ACLightingShutdown(void);
+void RB_ACLightingBegin(void);
+void RB_ACModelLighting(unsigned char *colors);
+void RB_ACDynamicModelLighting(unsigned char *colors, qboolean grid);
+qboolean R_ACLightVisible(const vec3_t light, const vec3_t receiver, const trRefdef_t *refdef);
+void R_ACLightWorldPoint(const vec3_t local, const orientationr_t *ori, vec3_t world);
+void RB_ACParticleColors(const shaderStage_t *stage);
+void RB_ACParticleDepth(void);
+qboolean RB_ACParticleBegin(const shaderStage_t *stage);
+void RB_ACParticleEnd(void);
 void R_ACAOInit(void);
 void R_ACAOShutdown(void);
 qboolean R_ACAOActive(void);

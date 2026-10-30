@@ -1085,6 +1085,7 @@ void RB_Sphere_BuildDLights()
     sphereor_t      *pSphere;
     reallightinfo_t *pLight;
 
+    if(R_ACDynamicLightingActive(&backEnd.refdef))return;
     pSphere                             = backEnd.currentSphere;
     backEnd.currentSphere->TessFunction = RB_Light_Real;
 
@@ -1097,6 +1098,8 @@ void RB_Sphere_BuildDLights()
             continue;
         }
 
+        if (!R_ACLightVisible(backEnd.refdef.dlights[i].origin, pSphere->traceOrigin, &backEnd.refdef)) continue;
+        length = Q_max(length, 8.0f);
         VectorSubtract(backEnd.refdef.dlights[i].origin, backEnd.currentEntity->e.origin, lightorigin);
         scale  = r_entlight_scale->value * tr.overbrightMult * 7500.0 * backEnd.refdef.dlights[i].radius / length;
         pLight = &pSphere->light[pSphere->numRealLights];

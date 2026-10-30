@@ -7,11 +7,10 @@ Kampagnenabschluss mit seinem bestehenden Spielstand.
 **Status: erste technische Runde abgeschlossen, CP09 insgesamt weiterhin offen.
 Keine Gesamtspielabnahme, kein Merge.**
 
-Nachtrag 30.10.2026: [Lokale Beleuchtung und Partikel zurueckgenommen](lighting-particles.md).
-Auf ausdruecklichen Nutzerauftrag vollstaendiger Rueckbau der drei Optionen
-und ihrer Implementierung einschliesslich nachtraeglicher Waffenlicht-Korrektur.
-Wiederherstellung des Standes `a9671da0` vor Einfuehrung; vorhandene
-Modellschatten und Ambient Occlusion bleiben enthalten.
+Nachtrag 30.10.2026: [Lokale Beleuchtung und Partikel erneut zur Analyse](lighting-particles.md).
+Nach zwischenzeitlichem Rueckbau hat der Nutzer die drei Erweiterungen erneut
+angefordert. Wiederbereitstellung der zuletzt korrigierten Fassung `406a0616`
+mit Waffenlichtkorrektur und eigener Optionsseite; keine persoenliche Abnahme.
 
 Nachtrag 29.10.2026: [Schatten durch Waende korrigiert](model-shadows.md).
 BSP-/statische Levelblocker unabhaengig von der Kamerasicht, aktuelle

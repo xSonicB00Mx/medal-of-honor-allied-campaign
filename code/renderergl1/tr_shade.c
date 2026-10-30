@@ -380,6 +380,7 @@ void RB_BeginSurface( shader_t *shader ) {
 	tess.xstages = shader->unfoggedStages;
 	tess.numPasses = shader->numUnfoggedPasses;
 	tess.currentStageIteratorFunc = shader->optimalStageIteratorFunc;
+    memset(tess.acParticlePrelit,0,sizeof(tess.acParticlePrelit));
 
 }
 
@@ -486,7 +487,11 @@ static void DrawMultitextured( shaderCommands_t *input, int stage ) {
 		GL_Bind(tr.dlightImages[input->dlightMap - 1]);
 	}
 
-	R_DrawElements( input->numIndexes, input->indexes );
+    {
+        qboolean soft = RB_ACParticleBegin(pStage);
+        R_DrawElements(input->numIndexes,input->indexes);
+        if(soft) RB_ACParticleEnd();
+    }
 
 	qglDisable(GL_TEXTURE_2D);
 	//
@@ -701,6 +706,11 @@ static void ProjectDlightTexture( void ) {
 					modulate = 2.0f * (radius - dist[2]) * scale;
 				}
 			}
+            if (modulate > 0 && r_acDynamicLighting && r_acDynamicLighting->integer) {
+                vec3_t world;
+                R_ACLightWorldPoint(tess.xyz[i], &backEnd.ori, world);
+                if (!R_ACLightVisible(dl->origin, world, &backEnd.refdef)) modulate = 0;
+            }
 			clipBits[i] = clip;
 
 			colors[0] = myftol(floatColor[0] * modulate);
@@ -989,6 +999,11 @@ static void ComputeColors( shaderStage_t *pStage )
 			RB_CalcRGBFromOneMinusDot((unsigned char*)tess.svars.colors, pStage->alphaMin, pStage->alphaMax);
 			break;
 	}
+
+	if (pStage->rgbGen == CGEN_LIGHTING_SPHERICAL || pStage->rgbGen == CGEN_LIGHTING_GRID)
+        RB_ACModelLighting((unsigned char *)tess.svars.colors);
+    if (pStage->rgbGen == CGEN_LIGHTING_SPHERICAL || pStage->rgbGen == CGEN_LIGHTING_GRID || pStage->rgbGen == CGEN_STATIC)
+        RB_ACDynamicModelLighting((unsigned char *)tess.svars.colors, pStage->rgbGen == CGEN_LIGHTING_GRID);
 
 	//
 	// alphaGen
@@ -1466,6 +1481,7 @@ static void RB_IterateStagesGeneric( shaderCommands_t *input )
 
 		ComputeTexCoords(pStage);
 		ComputeColors(pStage);
+		RB_ACParticleColors(pStage);
 
 		if (!setArraysOnce)
 		{
@@ -1513,7 +1529,11 @@ static void RB_IterateStagesGeneric( shaderCommands_t *input )
 			//
 			// draw
 			//
-			R_DrawElements(input->numIndexes, input->indexes);
+            {
+                qboolean soft = RB_ACParticleBegin(pStage);
+                R_DrawElements(input->numIndexes, input->indexes);
+                if (soft) RB_ACParticleEnd();
+            }
 		}
 		// allow skipping out to show just lightmaps during development
 		if (r_lightmap->integer && (pStage->bundle[0].isLightmap || pStage->bundle[1].isLightmap || pStage->bundle[0].vertexLightmap))
@@ -1647,28 +1667,12 @@ void RB_StageIteratorVertexLitTextureUnfogged( void )
 
 	shader = input->shader;
 
-	if (backEnd.currentSphere->TessFunction && r_drawspherelights->integer)
-	{
-		//
-		// compute colors using the sphere function
-		//
-		backEnd.currentSphere->TessFunction((unsigned char*)tess.svars.colors);
-	}
-	else if (backEnd.currentStaticModel)
-	{
-		//
-		// compute colors
-		//
-		ComputeColors(input->xstages[0]);
-	}
-	else
-	{
-		//
-		// calculate using previously calculated lighting grid
-		// for the entity
-		//
-		RB_CalcLightGridColor((unsigned char*)tess.svars.colors);
-	}
+	/* Use the same colour pipeline as the generic iterator. Calling the
+	 * sphere/grid function directly bypassed AC lighting while the original
+	 * dynamic contribution was suppressed: ordinary single-stage models
+	 * consequently lost muzzle lights (and local grid probes) entirely.
+	 * The optimized texture/array draw below remains unchanged. */
+	ComputeColors(input->xstages[0]);
 
 	//
 	// log this call
