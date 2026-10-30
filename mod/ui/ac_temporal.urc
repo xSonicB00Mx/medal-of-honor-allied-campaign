@@ -137,7 +137,7 @@ resource
 Label
 {
 name "blurHint2"
-title "Strength controls exposure: 100% = 1/60 second; 0% = Off."
+title "Strength controls exposure: 100% = 1/15 second; 0% = Off."
 rect 64 342 824 28
 dontlocalize
 font ac-courier-16

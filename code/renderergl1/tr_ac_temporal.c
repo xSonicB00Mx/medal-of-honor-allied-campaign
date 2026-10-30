@@ -227,10 +227,17 @@ static qboolean Resize(void){
   Target(targets[i]);if(tmCheckFramebufferStatus(GL_FRAMEBUFFER)!=GL_FRAMEBUFFER_COMPLETE){ri.Printf(PRINT_WARNING,"AC temporal framebuffer unavailable; effects disabled.\n");ready=qfalse;ri.Cvar_Set("r_acTemporalReady","0");return qfalse;}
  }return qtrue;
 }
+/* The full slider range intentionally reaches a strong 1/15s exposure.
+ * Normalize by frame duration, not a fixed per-frame multiplier. */
+static float Shutter(int elapsed){
+ return historyValid&&elapsed>0&&blur->value>0?fminf(blur->value,100)*.01f*66.6667f/fmaxf(elapsed,1):0;
+}
 void RB_ACTemporalFinish(void){
  GLint oldFbo,oldProgram,oldDraw,oldRead;int pass,i,elapsed,start=0;float inverse[16],relative[16],currentMVP[16],previousMVP[16],weaponPrevious[16];
+ qboolean compare;static int comparisonIndex;
  GLenum error;
  if(!pending)return;pending=qfalse;surfaceKey=NULL;
+ compare=debug->integer==4;
  if(debug->integer){qglGetError();qglFinish();start=ri.Milliseconds();}
  qglGetIntegerv(GL_FRAMEBUFFER_BINDING,&oldFbo);qglGetIntegerv(GL_CURRENT_PROGRAM,&oldProgram);qglGetIntegerv(GL_DRAW_BUFFER,&oldDraw);qglGetIntegerv(GL_READ_BUFFER,&oldRead);
  tmPushAttrib(GL_ALL_ATTRIB_BITS);tmPushClientAttrib(GL_CLIENT_ALL_ATTRIB_BITS);qglActiveTextureARB(GL_TEXTURE0_ARB);qglClientActiveTextureARB(GL_TEXTURE0_ARB);
@@ -269,9 +276,10 @@ void RB_ACTemporalFinish(void){
   }
   qglDisable(GL_CULL_FACE);qglDepthRange(0,1);qglClientActiveTextureARB(GL_TEXTURE1_ARB);qglDisableClientState(GL_TEXTURE_COORD_ARRAY);qglClientActiveTextureARB(GL_TEXTURE0_ARB);
  }
- if(debug->integer==3){
+ if(debug->integer==3||compare){
   int bytes=width*height*4*sizeof(float);float *pixels=ri.Malloc(bytes);
   Target(objects);qglReadPixels(0,0,width,height,GL_RGBA,GL_FLOAT,pixels);ri.FS_WriteFile("temporal-objects.f32",pixels,bytes);
+  if(compare)ri.FS_WriteFile(va("temporal-%03d-objects.f32",comparisonIndex),pixels,bytes);
   Target(velocity);qglReadPixels(0,0,width,height,GL_RGBA,GL_FLOAT,pixels);ri.FS_WriteFile("temporal-motion.f32",pixels,bytes);
   ri.Free(pixels);ri.Cvar_Set("r_acTemporalDebug","1");
  }
@@ -285,9 +293,19 @@ void RB_ACTemporalFinish(void){
  /* The history is pre-blur: a blurred silhouette can never feed back into TAA. */
  tmBindFramebuffer(GL_FRAMEBUFFER,oldFbo);qglDrawBuffer(oldDraw);tmReadBuffer(oldRead);qglViewport(sceneView.viewportX,sceneView.viewportY,width,height);qglScissor(sceneView.viewportX,sceneView.viewportY,width,height);
  Bind(0,history[historyIndex]);Bind(1,objects);tmUseProgram(blurProgram);I(blurProgram,"image",0);I(blurProgram,"objectData",1);
- F(blurProgram,"shutter",historyValid&&elapsed>0&&blur->value>0?fminf(blur->value,100)*.01f*16.6667f/fmaxf(elapsed,1):0);
+ F(blurProgram,"shutter",Shutter(elapsed));
  V(blurProgram,"currentJitter",sceneView.projectionMatrix[8]*.5f,sceneView.projectionMatrix[9]*.5f);
- F(blurProgram,"diagnostic",debug->integer==2?1:0);Screen(blurProgram);
+ F(blurProgram,"diagnostic",debug->integer==2?1:0);
+ if(compare){
+  int bytes=width*height*4;byte*pixels=ri.Malloc(bytes);
+  F(blurProgram,"shutter",0);Screen(blurProgram);tmReadBuffer(oldDraw);
+  qglReadPixels(sceneView.viewportX,sceneView.viewportY,width,height,GL_RGBA,GL_UNSIGNED_BYTE,pixels);
+  ri.FS_WriteFile(va("temporal-%03d-sharp.rgba",comparisonIndex),pixels,bytes);
+  F(blurProgram,"shutter",Shutter(elapsed));Screen(blurProgram);
+  qglReadPixels(sceneView.viewportX,sceneView.viewportY,width,height,GL_RGBA,GL_UNSIGNED_BYTE,pixels);
+  ri.FS_WriteFile(va("temporal-%03d-blur.rgba",comparisonIndex),pixels,bytes);ri.Free(pixels);
+  ri.Printf(PRINT_ALL,"AC_TEMPORAL_COMPARE index=%d size=%dx%d elapsed=%d strength=%g history=%d\n",comparisonIndex++,width,height,elapsed,blur->value,historyValid);
+ }else Screen(blurProgram);
  memcpy(previousView,sceneView.world.modelMatrix,sizeof(previousView));memcpy(previousProjection,sceneView.projectionMatrix,sizeof(previousProjection));
  previousTime=sceneRefdef.time;previousFrame=sceneView.frameCount;previousWorld=tr.world;previousTAA=taa->integer;
  historyValid=!overflow;historyIndex=1-historyIndex;cacheIndex=1-cacheIndex;

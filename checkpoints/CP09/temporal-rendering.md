@@ -14,9 +14,11 @@ Beide Einstellungen wirken sofort und werden kampagnenuebergreifend gespeichert.
 | Temporal anti-aliasing (TAA) | `r_acTAA` | 1 | Zeitliche Kantenglaettung an/aus |
 | Object motion blur | `r_acObjectMotionBlur` | 0 | Off bis 100%, in 10%-Schritten |
 
-100% entsprechen einer Belichtungsdauer von 1/60 Sekunde; die Berechnung
-beruecksichtigt die tatsaechliche Zeit zwischen den Spielbildern. Die Laenge
-wird auf 32 Bildpixel begrenzt. Kamerabewegung allein erzeugt keine Unschaerfe.
+Seit der Rueckmeldung zur zu schwachen Wirkung entsprechen 100% einer
+Belichtungsdauer von **1/15 Sekunde**, viermal der urspruenglichen 1/60 Sekunde.
+Die Berechnung beruecksichtigt die tatsaechliche Zeit zwischen den Spielbildern.
+Die Laenge wird aufloesungsabhaengig begrenzt: 64 Pixel bei 1080p, 128 bei UHD
+(insgesamt 32 bis 128 Pixel). Kamerabewegung allein erzeugt keine Unschaerfe.
 NPC-Animationen, bewegte Pickups/Modelle, Patronenhuelsen und die Animation der
 eigenen Waffe liefern dagegen objektbezogene Bewegung. Der HUD-/Menuepass
 liegt hinter der zeitlichen Bildverarbeitung und bleibt davon unberuehrt.
@@ -144,7 +146,7 @@ CPU-Wandzeiten einschliesslich Treiberwartezeiten, keine GPU-Timestamps:
 - Kein vollstaendiger natuerlicher Kampagnendurchlauf und keine persoenliche
   Gesamtspielabnahme. CP09 bleibt offen; keine Mergefreigabe unterstellt.
 
-## Auslieferung
+## Erstinstallation
 
 Getestete Engine: `992d5a0a4afdaa31c3413ef9c0a27863b330ad49b2ce2421e32f5a38f5d89919`.
 Passendes cgame: `e1cdf10fb0403915d7ae8ed5e1d2be7ddf62ecc2670b97f82c8f2e0dd29d75b3`.
@@ -161,3 +163,47 @@ unveraendert; nur das bereits vorhandene gemeinsame Optionspaket wurde erweitert
 Nachweis: `generated-local/CP09/temporal-aa-delivery/deployment.json`.
 Die ersetzten Moddateien liegen dort unter `rollback/`. Keine neue isolierte
 Testversion als fertige Installation ausgegeben, kein Merge.
+
+## Nachbesserung: deutlich sichtbarer Regelbereich (30.10.2026)
+
+Der Nutzer sah bei laufenden Gegnern und der eigenen Waffe selbst bei 100%
+kaum eine Wirkung und beauftragte ausdruecklich eine deutliche Verstaerkung.
+Die gespeicherte Einstellung war korrekt. Ein Vergleich desselben gerenderten
+Bildes vor/nach dem Filter in einer Kopie seines neuesten m3l3-Spielstands
+zeigte: der Pfad arbeitete, aber 1/60 Sekunde und die feste 32-Pixel-Grenze
+waren insbesondere bei UHD zu zurueckhaltend.
+
+- 100% verwendet jetzt 1/15 Sekunde, also vierfache Belichtungsdauer. Niedrigere
+  Einstellungen bleiben linear regelbar, 0% bleibt vollstaendig aus.
+- Das Limit skaliert mit der Bildhoehe: 64 Pixel bei Full HD, 128 bei UHD.
+  Die Nachbarschaftssuche folgt derselben Skalierung und erfasst auch kurze
+  und laengere Silhouettenspuren.
+- Statt einen unveraenderten 17-Sample-Filter auseinanderzuziehen, verwendet
+  der Filter geschwindigkeitsabhaengig bis zu 65 Samples. Kamera-/Objekttrennung,
+  Tiefenverdeckung, unverwischte TAA-Historie und HUD-Reihenfolge bleiben erhalten.
+- Neue Diagnose `r_acTemporalDebug 4`: einmalige Aufnahme derselben Szene mit
+  Shutter=0 und dem eingestellten Shutter sowie Objektbewegungsdaten. Damit
+  werden Animations-/Kameraunterschiede zwischen zwei Screenshots als Ursache
+  eines vermeintlichen Effekts ausgeschlossen. Nicht standardmaessig aktiv.
+
+`tools/test_object_motion.py` prueft Bewegung, Feuer und Nachladen in einer
+Kopie des aktuellen Spielstands, alternativ einen laufenden NPC vor feststehender
+Kamera. `object-motion-current-before/after` dokumentieren die Untersuchung;
+`object-motion-npc-final` zeigt deutliche Unterschiede ausschliesslich am
+bewegten Modell (286289 bzw. 359244 Pixel ueber 3/255 Aenderung bei 100%).
+In allen Off-Vergleichen sind beide Bilder bytegleich. 579 persoenliche Dateien
+bleiben unveraendert. Die ersten NPC-Testbilder vor Anlaufen der Animation
+haben erwartungsgemaess keine Bewegungsunschaerfe.
+
+`object-motion-gpu-final` besteht 31 GPU-Faelle, einschliesslich einer neuen
+Pruefung identischer relativer Unschaerfelaenge bei 1080p und UHD.
+`object-motion-aa-final` (UHD), `object-motion-sh-final` und
+`object-motion-bt-final` bestehen die nativen Waffen-/HUD-/Options-, Save/Load-
+und Grafikneustart-Pruefungen ohne Temporal-GL-Fehler oder Pufferueberlauf.
+`object-motion-stress-final` misst 15 ms Median ohne Effekte, 17 ms mit TAA und
+17 ms mit TAA plus Blur 100%; P95 jeweils 16/18/18 ms, P99 17/18/20 ms.
+Dies bleibt eine CPU-Wandzeitmessung einschliesslich Treiberwartezeiten.
+
+Getestete Engine: `6386c6f4e50843ef831ceff669dc5da7cdb40ac610881055e29b052b9c299f8b`.
+cgame und Speicherformat bleiben unveraendert. Der Installationsnachweis wird
+nach der transaktionalen Uebernahme ergaenzt.

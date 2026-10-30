@@ -60,8 +60,8 @@ fbo=U();gl('GenFramebuffers',None,I,C.POINTER(U))(1,C.byref(fbo));gl('BindFrameb
 gl('FramebufferTexture2D',None,U,U,U,U,I)(0x8D40,0x8CE0,0xDE1,target,0)
 gl('Viewport',None,I,I,I,I)(0,0,W,H)
 begin=gl('Begin',None,U);vertex=gl('Vertex3f',None,F,F,F);end=gl('End',None);mt=gl('MultiTexCoord3f',None,U,F,F,F)
-def screen():
-    uv('size',W,H);begin(7)
+def screen(*render_size):
+    uv('size',*(render_size or (W,H)));begin(7)
     for x,y in [(-1,-1),(1,-1),(1,1),(-1,1)]:vertex(x,y,0)
     end();return read()
 def read():
@@ -186,9 +186,9 @@ for frame in range(1,49):
 assert np.mean(err)<np.mean(raw)*.85,(np.mean(err),np.mean(raw))
 cases.append(dict(kind='TAA_subpixel_edge',taa_error=float(np.mean(err)),raw_error=float(np.mean(raw))))
 # Pure camera motion must leave arbitrary image pixels EXACTLY unchanged by MB.
-def blur_image(img,obj,strength=1):
+def blur_image(img,obj,strength=1,render_size=()):
     use('blur');uf('shutter',strength);uf('diagnostic',0);ui('image',0);ui('objectData',1)
-    a=texture(img,True);b=texture(obj);bind(0,a);bind(1,b);return screen()
+    a=texture(img,True);b=texture(obj);bind(0,a);bind(1,b);return screen(*render_size)
 assert np.max(abs(blur_image(current,data)-current))<1e-6
 img=rgba(0);img[20:76,40:56,:3]=1
 obj=data.copy();obj[20:76,40:56,0]=20/W;obj[20:76,40:56,2]=.4;obj[20:76,40:56,3]=7
@@ -203,6 +203,12 @@ for ratio in [.5,2.0]:
     scaled=obj.copy();scaled[...,:2]*=ratio
     assert np.max(abs(blur_image(img,scaled,1/ratio)-r))<1e-5
 cases.append(dict(kind='frame_rate_independent_exposure'))
+# A long blur must occupy the same fraction of the screen at 1080p and UHD,
+# rather than being clamped to the same 32 physical pixels at every resolution.
+fast=obj.copy();fast[20:76,40:56,0]=.25
+hd=blur_image(img,fast,1,(1920,1080));uhd=blur_image(img,fast,1,(3840,2160))
+assert np.max(abs(hd-uhd))<1e-5
+cases.append(dict(kind='resolution_independent_blur_limit'))
 
 (out/'result.json').write_text(json.dumps(dict(cases=cases),indent=2))
 print('PASS',len(cases),'temporal GPU cases',cases[-5:])

@@ -70,30 +70,34 @@ static const char *tmResolveFragment =
 static const char *tmBlurFragment =
  "#version 120\n"
  "uniform sampler2D image,objectData;uniform vec2 size,currentJitter;uniform float shutter,diagnostic;varying vec2 uv;\n"
- "vec2 velocity(vec4 g){vec2 v=g.xy*size*shutter;float n=length(v);return g.w>0.0?v*min(1.0,32.0/max(n,.001)):vec2(0.0);}\n"
+ "float pixelScale(){return clamp(size.y/1080.0,.5,2.0);}\n"
+ "float blurLimit(){return 64.0*pixelScale();}\n"
+ "vec2 velocity(vec4 g){vec2 v=g.xy*size*shutter;float n=length(v);return g.w>0.0?v*min(1.0,blurLimit()/max(n,.001)):vec2(0.0);}\n"
  "void main(){vec4 g=texture2D(objectData,uv-currentJitter);vec3 base=texture2D(image,uv).rgb;vec2 v=velocity(g);\n"
- " if(diagnostic>.5){gl_FragColor=vec4(abs(v)/32.0,0.0,1.0);return;}\n"
+ " if(diagnostic>.5){gl_FragColor=vec4(abs(v)/blurLimit(),0.0,1.0);return;}\n"
  " if(shutter<=0.0||g.w<0.0){gl_FragColor=vec4(sqrt(max(base,vec3(0.0))),1.0);return;}\n"
  /* A bounded neighbor search spreads moving silhouettes over the background.
   * Depth prevents a hidden moving actor from bleeding through a foreground
   * wall. A stationary pixel has zero velocity even during a camera pan. */
  " vec2 direction=v;float best=length(v);\n"
- " for(int ring=1;ring<=3;ring++)for(int k=0;k<8;k++){float angle=float(k)*.785398163;vec2 offset=vec2(cos(angle),sin(angle))*float(ring)*5.0;\n"
+ " for(int ring=0;ring<5;ring++)for(int k=0;k<8;k++){float angle=float(k)*.785398163;vec2 offset=vec2(cos(angle),sin(angle))*exp2(float(ring)+1.0)*pixelScale();\n"
  "  vec4 n=texture2D(objectData,uv+offset/size-currentJitter);vec2 nv=velocity(n);float len=length(nv);\n"
  "  float along=abs(dot(offset,nv/max(len,.001))),across=abs(offset.x*nv.y-offset.y*nv.x)/max(len,.001);\n"
- "  if(n.z<=g.z+.000002&&len>best&&along<=len*.5+1.0&&across<2.5){best=len;direction=nv;}}\n"
+ "  if(n.z<=g.z+.000002&&len>best&&along<=len*.5+pixelScale()&&across<2.5*pixelScale()){best=len;direction=nv;}}\n"
  " if(best<.5){gl_FragColor=vec4(sqrt(max(base,vec3(0.0))),1.0);return;}\n"
- " vec3 sum=vec3(0.0);float total=0.0;\n"
- " for(int i=-8;i<=8;i++){vec2 offset=direction*(float(i)/16.0);vec2 t=uv+offset/size;\n"
+ /* Longer UHD streaks need denser sampling, not a stretched 17-tap kernel.
+  * Adapt the work to the actual velocity, at most 65 taps (2px at UHD cap). */
+ " vec3 sum=vec3(0.0);float total=0.0;float halfSamples=clamp(ceil(best*.5),2.0,32.0);\n"
+ " for(int i=-32;i<=32;i++){if(abs(float(i))>halfSamples)continue;vec2 offset=direction*(float(i)/(2.0*halfSamples));vec2 t=uv+offset/size;\n"
  "  if(any(lessThan(t,vec2(0.0)))||any(greaterThan(t,vec2(1.0))))continue;\n"
  "  vec4 s=texture2D(objectData,t-currentJitter);vec2 sv=velocity(s);float len=length(sv);float w=0.0;\n"
  "  if(g.w>0.0&&length(v)>.5&&s.w==g.w)w=1.0;\n"
  "  else if(s.w>0.0&&len>.5&&s.z<=g.z+.000002){\n"
- "   float along=abs(dot(offset,sv/len)),across=abs(offset.x*sv.y-offset.y*sv.x)/len;w=clamp(len*.5+1.0-along,0.0,1.0)*clamp(1.5-across,0.0,1.0);}\n"
+ "   float along=abs(dot(offset,sv/len)),across=abs(offset.x*sv.y-offset.y*sv.x)/len;w=clamp((len*.5+pixelScale()-along)/pixelScale(),0.0,1.0)*clamp(1.5-across/pixelScale(),0.0,1.0);}\n"
  "  else if(g.w>0.0&&length(v)>.5&&s.w>=0.0&&s.z>=g.z-.000002)w=1.0;\n"
  "  sum+=texture2D(image,t).rgb*w;total+=w;\n"
  " }\n"
- " vec3 result=total>0.0?sum/total:base;float coverage=clamp(total/17.0,0.0,1.0);\n"
+ " vec3 result=total>0.0?sum/total:base;float coverage=clamp(total/(2.0*halfSamples+1.0),0.0,1.0);\n"
  " gl_FragColor=vec4(sqrt(max(mix(base,result,g.w>0.0&&length(v)>.5?1.0:coverage),vec3(0.0))),1.0);}\n";
 static const char *tmCopyFragment =
  "#version 120\n"
