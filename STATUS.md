@@ -1,3 +1,11 @@
+## 2026-10-30: Objektbewegungsunschaerfe deutlich verstaerkt
+
+- Nutzerrueckmeldung zu kaum sichtbarem Blur bei 100% an Gegnern/eigener Waffe nachvollzogen: Einstellung war aktiv, 1/60s und feste 32-Pixel-Grenze bei UHD zu schwach. Vergleich desselben Spielbilds vor/nach Filter in Kopie des neuesten Spielstands.
+- 100% jetzt 1/15s (vierfache Belichtungsdauer); Limit 64 Pixel/1080p bzw. 128/UHD. Geschwindigkeitsabhaengiger Filter bis 65 Samples und skalierte Silhouettensuche. Kamerabewegung allein bleibt ohne Blur; Off liefert bytegleiche Bilder.
+- Laufender NPC, eigene Waffe/Bewegung/Nachladen, 31 GPU-Faelle und AA/SH/BT inklusive UHD, Save/Load, HUD und Optionsbedienung bestanden. UHD-Stress TAA+Blur 17 ms Median/18 ms P95 CPU-Wandzeit.
+- Quellen b92d709a, Engine 6386c6f4 in CP08-r1/CP09-r1 installiert; cgame/game unveraendert. 9086/9090 Runtime-Dateien und 9072 Originale verifiziert, 579 persoenliche Dateien/Spielstaende hashgleich, gespeicherte 100%-Wahl erhalten.
+- Nachweise generated-local/CP09/object-motion-* und checkpoints/CP09/temporal-rendering.md. Kein Merge, CP09-Gesamtabnahme offen.
+
 ## 2026-10-30: Echtes TAA und reine Objektbewegungsunschaerfe eingebaut
 
 - Direkter Featureauftrag: zeitliche Kantenglaettung mit Projektionsjitter, Tiefen-/Farbhistorie und deformierten Modellvertices; getrennte, kamerabereinigte Bewegungsvektoren fuer Object Motion Blur. HUD/Menues bleiben hinter dem Effektpass.

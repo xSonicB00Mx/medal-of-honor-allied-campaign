@@ -205,5 +205,9 @@ und Grafikneustart-Pruefungen ohne Temporal-GL-Fehler oder Pufferueberlauf.
 Dies bleibt eine CPU-Wandzeitmessung einschliesslich Treiberwartezeiten.
 
 Getestete Engine: `6386c6f4e50843ef831ceff669dc5da7cdb40ac610881055e29b052b9c299f8b`.
-cgame und Speicherformat bleiben unveraendert. Der Installationsnachweis wird
-nach der transaktionalen Uebernahme ergaenzt.
+cgame und Speicherformat bleiben unveraendert. Quellen-Commit
+`b92d709afe39366999fe61cacb8c9fa248dc991f` ist in CP08-r1/CP09-r1 installiert.
+Nachweis `generated-local/CP09/object-motion-aa-final/deployment.json`:
+9086/9090 Runtime-Dateien und 9072 Originale verifiziert, alle 579 persoenlichen
+Dateien hashgleich. Die gespeicherte Einstellung 100% wurde nicht zurueckgesetzt.
+Die ersetzten Moddateien sind im dortigen `rollback/` gesichert.
