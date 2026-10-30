@@ -1,3 +1,10 @@
+## 2026-10-30: Beleuchtungs-/Partikel-Erweiterungen zur Nutzeranalyse wieder eingebaut
+
+- Neuer ausdruecklicher Auftrag nach Rueckbau: exakt die zuletzt korrigierte Fassung 406a0616 einschliesslich Waffenlichtkorrektur und Optionsseite Lighting & Particles wiederhergestellt.
+- Source cd500952; gesicherte Engine 101d26ba und cgame 0d2d018e bytegleich erneut eingesetzt, keine neue Kompilierung. Alle drei Effekte einzeln live schaltbar, bei fehlenden Einstellungen standardmaessig an.
+- Native erneute AA-Pruefung: Save/Load, Grafikneustart, alle Checkboxen und Defaults bestanden. Vorherige AA/SH/BT-/UHD-Regression gilt fuer exakt diese Binaerdateien.
+- In CP08-r1/CP09-r1 installiert; 9086/9090 Runtime-Dateien und 9072 Originale verifiziert. Alle 567 persoenlichen Dateien inklusive Spielstaenden und Einstellungen unveraendert. Nachweis generated-local/CP09/lighting-reenabled. Nutzeranalyse steht aus; kein Merge, CP09 offen.
+
 ## 2026-10-30: Drei Beleuchtungs-/Partikel-Erweiterungen vollstaendig zurueckgenommen
 
 - Ausdruecklicher Nutzerauftrag: lokale Modellbeleuchtung, verdeckte dynamische Lichter und Lit Soft Particles samt Optionen und nachtraeglicher Waffenlichtkorrektur entfernt.

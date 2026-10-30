@@ -10,6 +10,15 @@ Engine `101d26ba` und cgame `0d2d018e` stammen bytegleich aus der gesicherten,
 bereits geprueften Fassung; keine erneute Kompilierung behauptet. Keine neue
 Featureabnahme und keine Veraenderung persoenlicher Spielstaende.
 
+Erneut installiert in CP08-r1 und CP09-r1 aus Source `cd500952`.
+`lighting-reenabled`: nativer AA-Test mit Save/Load, Grafikneustart,
+Optionsschaltern und Defaults bestanden. Vorherige AA/SH/BT-/UHD-Pruefungen
+betreffen dieselben Binaerdateien. 9086/9090 Runtime-Dateien, 9072 Originale
+und alle 567 persoenlichen Profildateien verifiziert. Nachweis/Backup unter
+`generated-local/CP09/lighting-reenabled/`. Die beim Rueckbau entfernten
+Konfigurationswerte bleiben unberuehrt; bei fehlendem Wert gelten die drei
+aktivierten Standardwerte. Alle Effekte sind sofort einzeln umschaltbar.
+
 ## Zwischenzeitlicher Rueckbau (historisch)
 
 **Zwischenzeitlich zurueckgenommen auf Nutzerauftrag vom 30.10.2026.** Die drei Erweiterungen
