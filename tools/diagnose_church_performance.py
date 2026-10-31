@@ -4,7 +4,7 @@ from pathlib import Path
 from PIL import Image
 
 R=Path(__file__).resolve().parents[1]
-ap=argparse.ArgumentParser();ap.add_argument('run');ap.add_argument('--walk',type=int,default=0);ap.add_argument('--lighting',action='store_true');ap.add_argument('--paired',action='store_true');ap.add_argument('--removed',action='store_true');ap.add_argument('--candidate',action='store_true');a=ap.parse_args()
+ap=argparse.ArgumentParser();ap.add_argument('run');ap.add_argument('--walk',type=int,default=0);ap.add_argument('--lighting',action='store_true');ap.add_argument('--paired',action='store_true');ap.add_argument('--removed',action='store_true');ap.add_argument('--candidate',action='store_true');ap.add_argument('--relight-bake',type=Path);ap.add_argument('--relight-off',action='store_true');a=ap.parse_args()
 assert re.fullmatch('[a-zA-Z0-9-]+',a.run)
 out=R/'generated-local/CP09'/a.run;out.mkdir(parents=True,exist_ok=False)
 p=R/'profiles-local/CP09'/a.run;h=p/'main';h.mkdir(parents=True)
@@ -19,6 +19,9 @@ for f in personal.rglob('*.cfg'):
     dest=p/f.relative_to(personal);dest.parent.mkdir(parents=True,exist_ok=True);shutil.copy2(f,dest)
 dest=h/'save/omconfig';dest.mkdir(parents=True)
 for f in (personal/'main/save/omconfig').glob('quick.*'):shutil.copy2(f,dest/('reference'+f.suffix))
+if a.relight_bake:
+    sidecar=h/'maps/ac_relight';sidecar.mkdir(parents=True)
+    for f in a.relight_bake.glob('m3l3.ac*'):shutil.copy2(f,sidecar/f.name)
 (h/'position.scr').write_text('main:\n    println ("AC_POSITION " + $player.origin + " angles=" + $player.viewangles)\nend\n')
 defaults=dict(r_acTAA=1,r_acObjectMotionBlur=50,r_acModelShadows=1,r_acAmbientOcclusion=1,r_acModelLighting=1,r_acDynamicLighting=1,r_acSoftParticles=1)
 stages=[('baseline',{}),('no-blur',dict(r_acObjectMotionBlur=0)),('no-temporal',dict(r_acObjectMotionBlur=0,r_acTAA=0)),('no-shadows',dict(r_acModelShadows=0)),('no-ao',dict(r_acAmbientOcclusion=0)),('no-lighting',dict(r_acModelLighting=0,r_acDynamicLighting=0,r_acSoftParticles=0)),('all-off',dict.fromkeys(defaults,0)),('baseline-repeat',{})]
@@ -47,6 +50,7 @@ if a.removed:
 cmd+=['echo AC_CHURCH_DONE','quit'];(h/'probe.cfg').write_text('\n'.join(cmd)+'\n')
 args=[str(b/'openmohaa.exe')]
 for k,v in dict(com_target_game=0,fs_basepath=rt,fs_homepath=p,fs_steampath=rt,fs_gogpath=rt,fs_microsoftstorepath=rt,net_enabled=0,logfile=2,developer=1,cheats=1,thereisnomonkey=1,cl_playintro=0,r_fullscreen=0,r_mode=-1,r_customwidth=3840,r_customheight=2160,com_maxfps=0,com_maxfpsUnfocused=0,r_swapInterval=0,r_acTemporalDebug=0,r_acShadowDebug=0,r_acAODebug=0,r_acLightingDebug=0).items():args+=['+set',k,str(v)]
+args+=['+set','r_acLevelRelight',str(int(bool(a.relight_bake) and not a.relight_off))]
 proc=subprocess.run(args+['+exec','probe.cfg'],cwd=b,timeout=150)
 log=(h/'qconsole.log').read_text(encoding='latin1');assert proc.returncode==0 and 'AC_CHURCH_DONE' in log
 assert not any(e in log for e in ['Script Error','Script file compile error','Unknown command','Invalid event'])
@@ -60,6 +64,7 @@ for label,_ in stages:
 for i,f in enumerate(sorted((h/'screenshots').glob('*.tga'))):Image.open(f).save(out/f'{i}.png')
 assert hashes()==before
 if a.removed:assert 'AC lighting ready:' not in log
+if a.relight_bake and not a.relight_off:assert 'AC_RELIGHT_APPLIED m3l3' in log and 'AC_RELIGHT_GRID' in log
 result=dict(stages=results,positions=re.findall(r'AC_POSITION .*',log),engine=sha(b/'openmohaa.exe'),personal_files_unchanged=len(before),
     measurement='com_speeds CPU wall time including driver waits, not GPU timestamps; combat timing can vary between reloads')
 (out/'result.json').write_text(json.dumps(result,indent=2));print(json.dumps(result,indent=2))

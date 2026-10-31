@@ -1,3 +1,12 @@
+## 2026-10-31: Separater Beleuchtungs-Pilot fuer m3l3 fertig
+
+- Neuer ausdruecklicher Nutzerauftrag: ein Level sichtbar aufwerten, autonom pruefen, echte Vorher/Nachher-Screenshots liefern und reversibel halten.
+- AA The Nebelwerfer Hunt: geometriebasiertes diffuses Himmelslicht und ein farbiger indirekter Licht-Bounce offline neu berechnet. 512 Richtungen je Pass, alpha-korrekte Vegetation, weiche Uebergaenge kleiner Lightmap-Flaechen; Modelllichtgitter und statische Props angepasst. Originalnebel/Wetter erhalten.
+- Nur separater Pilot, standardmaessig aus; keine neuen Laufzeit-Sichtpruefungen. Die drei zuvor entfernten Experimente bleiben entfernt. CP08-r1/CP09-r1 und alle 595 persoenlichen Dateien unveraendert.
+- Engine 4b1f201a in runtime-local/CP09-Relight-Pilot. Start-CP09-Relight-Before.cmd / After.cmd laden dieselbe Spielstandkopie in getrennten Profilen; beide real getestet. Rueckkehr ueber den gewohnten Starter, keine Wiederherstellung erforderlich.
+- Fuenf Transporttests, native Fehlerdaten-/Opt-out-/Save-/Load-/Grafikneustart-/Kartenwechseltests bestanden. Finale Kirche UHD: 2118 Frames, Median 8 ms, P95 9 ms, max 15 ms CPU-Wandzeit; Referenz Median 8 ms/P95 9 ms.
+- Vier Vergleichstafeln und acht unveraenderte UHD-Aufnahmen in generated-local/CP09/relight-delivery-final, ZIP 62.9 MB. Details checkpoints/CP09/level-relight-pilot.md. Keine globale Installation, keine Nutzerabnahme vorweggenommen, kein Merge.
+
 ## 2026-10-31: Drei experimentelle Beleuchtungs-/Partikeloptionen erneut entfernt
 
 - Kirchen-Einbruch in aktueller m3l3-Spielstandkopie auf CPU-Lichtverdeckung eingegrenzt: zeitweise ueber 200000 Sichtpruefungen pro Sekunde und 23--25 ms Bildzeit.
