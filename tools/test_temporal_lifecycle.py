@@ -16,7 +16,7 @@ before=hashes()
 for f in rt.glob('*.dll'):shutil.copy2(f,b/f.name)
 for n in ['openmohaa.exe','cgame.dll']:shutil.copy2(build/n,b/n)
 with zipfile.ZipFile(h/'zzzzzzzzzzzzz_AC_FlinchOptions.pk3','w',zipfile.ZIP_DEFLATED) as z:
-    for n in ['ac_scaling','ac_lighting','ac_temporal']:
+    for n in ['ac_scaling','ac_temporal']:
         z.writestr('ui/'+n+'.urc',(R/'mod/ui'/f'{n}.urc').read_text().encode('latin1'))
 cmd=['wait 800','devmap m2l2a','wait 5000','finishloadingscreen','god','notarget',
      'set r_acTAA 0','set r_acObjectMotionBlur 100','wait 600','screenshot silent',
@@ -47,6 +47,9 @@ log=(h/'qconsole.log').read_text(encoding='latin1')
 assert proc.returncode==0 and 'AC_TEMPORAL_LIFECYCLE_DONE' in log
 assert log.count('AC temporal ready:')==3
 assert 'AC_UI_CURRENT ac_temporal' in log and log.count('AC_UI_CURRENT ac_scaling')==2
+assert 'AC_UI_CHILD lightingOptions ' not in log
+assert 'AC_UI_CHILD temporalOptions ' in log
+assert 'AC lighting ready:' not in log
 errors=[l for l in log.splitlines() if any(e in l for e in ['Script Error','Unknown command','Invalid event','AC temporal shader:','AC temporal link:'])]
 assert not errors,errors
 stats=[list(map(int,m)) for m in re.findall(r'AC_TEMPORAL batches=(\d+) vertices=(\d+) valid=(\d+) overflow=(\d+) ms=(\d+) gl_error=(\d+)',log)]

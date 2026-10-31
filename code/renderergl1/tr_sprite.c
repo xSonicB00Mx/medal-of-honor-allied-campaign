@@ -211,7 +211,6 @@ void RB_DrawSprite( const refSprite_t *spr ) {
     tess.indexes[tess.numIndexes + 4] = tess.numVertexes + 3;
     tess.indexes[tess.numIndexes + 5] = tess.numVertexes + 1;
 
-    memset(tess.acParticlePrelit+tess.numVertexes, (spr->renderfx & RF_AC_PARTICLE_LIT) != 0, 4);
     tess.numVertexes += 4;
     tess.numIndexes += 6;
 }

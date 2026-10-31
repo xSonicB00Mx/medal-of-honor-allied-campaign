@@ -4,7 +4,7 @@ from pathlib import Path
 from PIL import Image
 
 R=Path(__file__).resolve().parents[1]
-ap=argparse.ArgumentParser();ap.add_argument('run');ap.add_argument('--walk',type=int,default=0);ap.add_argument('--lighting',action='store_true');ap.add_argument('--paired',action='store_true');a=ap.parse_args()
+ap=argparse.ArgumentParser();ap.add_argument('run');ap.add_argument('--walk',type=int,default=0);ap.add_argument('--lighting',action='store_true');ap.add_argument('--paired',action='store_true');ap.add_argument('--removed',action='store_true');ap.add_argument('--candidate',action='store_true');a=ap.parse_args()
 assert re.fullmatch('[a-zA-Z0-9-]+',a.run)
 out=R/'generated-local/CP09'/a.run;out.mkdir(parents=True,exist_ok=False)
 p=R/'profiles-local/CP09'/a.run;h=p/'main';h.mkdir(parents=True)
@@ -13,6 +13,8 @@ sha=lambda f:hashlib.sha256(f.read_bytes()).hexdigest()
 def hashes():return {f.relative_to(personal).as_posix():sha(f) for f in personal.rglob('*') if f.is_file()}
 before=hashes();b=p/'bin';b.mkdir()
 for f in list(rt.glob('*.dll'))+[rt/'openmohaa.exe']:shutil.copy2(f,b/f.name)
+if a.candidate:
+    for name in ['openmohaa.exe','cgame.dll']:shutil.copy2(R/'build-local/cp00-r3/RelWithDebInfo'/name,b/name)
 for f in personal.rglob('*.cfg'):
     dest=p/f.relative_to(personal);dest.parent.mkdir(parents=True,exist_ok=True);shutil.copy2(f,dest)
 dest=h/'save/omconfig';dest.mkdir(parents=True)
@@ -35,6 +37,13 @@ if a.paired:
         cmd+=['loadgame reference','wait 4500','finishloadingscreen','god']
         cmd += [f'set {k} {v}' for k,v in (defaults|override).items()]
         cmd+=['set com_speeds 1','set r_acLightingDebug 2','wait 200','+forward','wait 6000','-forward','script player exec position.scr','wait 1500',f'echo AC_PERF_BEGIN {label}','wait 7000',f'echo AC_PERF_END {label}','screenshot silent']
+if a.removed:
+    stages=[('removed',{})]
+    cmd=['wait 800','loadgame reference','wait 4500','finishloadingscreen','god',
+        'set r_acTAA 1','set r_acObjectMotionBlur 50','set r_acModelShadows 1','set r_acAmbientOcclusion 1',
+        'set com_speeds 1','wait 200','+forward','wait 6000','-forward','script player exec position.scr',
+        'wait 1500','echo AC_PERF_BEGIN removed','wait 18000','echo AC_PERF_END removed','screenshot silent',
+        'savegame removal_check','wait 300','loadgame removal_check','wait 4500','finishloadingscreen','screenshot silent']
 cmd+=['echo AC_CHURCH_DONE','quit'];(h/'probe.cfg').write_text('\n'.join(cmd)+'\n')
 args=[str(b/'openmohaa.exe')]
 for k,v in dict(com_target_game=0,fs_basepath=rt,fs_homepath=p,fs_steampath=rt,fs_gogpath=rt,fs_microsoftstorepath=rt,net_enabled=0,logfile=2,developer=1,cheats=1,thereisnomonkey=1,cl_playintro=0,r_fullscreen=0,r_mode=-1,r_customwidth=3840,r_customheight=2160,com_maxfps=0,com_maxfpsUnfocused=0,r_swapInterval=0,r_acTemporalDebug=0,r_acShadowDebug=0,r_acAODebug=0,r_acLightingDebug=0).items():args+=['+set',k,str(v)]
@@ -50,6 +59,7 @@ for label,_ in stages:
     results[label]['frames']=len(rows)
 for i,f in enumerate(sorted((h/'screenshots').glob('*.tga'))):Image.open(f).save(out/f'{i}.png')
 assert hashes()==before
-result=dict(stages=results,positions=re.findall(r'AC_POSITION .*',log),engine=sha(rt/'openmohaa.exe'),personal_files_unchanged=len(before),
+if a.removed:assert 'AC lighting ready:' not in log
+result=dict(stages=results,positions=re.findall(r'AC_POSITION .*',log),engine=sha(b/'openmohaa.exe'),personal_files_unchanged=len(before),
     measurement='com_speeds CPU wall time including driver waits, not GPU timestamps; combat timing can vary between reloads')
 (out/'result.json').write_text(json.dumps(result,indent=2));print(json.dumps(result,indent=2))

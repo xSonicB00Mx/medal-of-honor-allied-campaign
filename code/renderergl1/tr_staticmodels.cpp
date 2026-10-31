@@ -472,8 +472,7 @@ void RB_Static_BuildDLights()
 {
     int i;
 
-    backEnd.currentStaticModel->useSpecialLighting = backEnd.refdef.num_dlights > 0
-        && !R_ACDynamicLightingActive(&backEnd.refdef);
+    backEnd.currentStaticModel->useSpecialLighting = backEnd.refdef.num_dlights > 0;
     backEnd.currentStaticModel->numdlights         = 0;
 
     if (!backEnd.currentStaticModel->useSpecialLighting) {
@@ -485,8 +484,7 @@ void RB_Static_BuildDLights()
 
         VectorCopy(backEnd.refdef.dlights[i].origin, lightorigin);
         VectorSubtract(lightorigin, backEnd.currentStaticModel->origin, delta);
-        if (backEnd.refdef.dlights[i].radius * 2.0 >= VectorLength(delta)
-            && R_ACLightVisible(lightorigin, backEnd.currentStaticModel->origin, &backEnd.refdef)) {
+        if (backEnd.refdef.dlights[i].radius * 2.0 >= VectorLength(delta)) {
             MatrixTransformVectorRight(
                 backEnd.currentStaticModel->axis,
                 delta,

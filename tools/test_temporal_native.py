@@ -19,7 +19,7 @@ packages=[]
 for game,f in zip(['AA','SH','BT'],['main','mainta','maintt']):
     zpath=out/'packages'/f/'zzzzzzzzzzzzz_AC_FlinchOptions.pk3';zpath.parent.mkdir(parents=True)
     with zipfile.ZipFile(zpath,'w',zipfile.ZIP_DEFLATED) as z:
-        for n in ['ac_scaling','ac_lighting','ac_temporal']:z.writestr('ui/'+n+'.urc',(R/'mod/ui'/f'{n}.urc').read_text().encode('latin1'))
+        for n in ['ac_scaling','ac_temporal']:z.writestr('ui/'+n+'.urc',(R/'mod/ui'/f'{n}.urc').read_text().encode('latin1'))
     dest=p/f/zpath.name;dest.parent.mkdir(exist_ok=True);shutil.copy2(zpath,dest)
     packages.append(dict(game=game,package=zpath.relative_to(R).as_posix(),sha256=sha(zpath)))
 start='devmap m2l2a'

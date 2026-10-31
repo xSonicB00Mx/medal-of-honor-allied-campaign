@@ -65,3 +65,43 @@ noch keine implementierte oder abgenommene Korrektur.
 - Konsolenlogs: entsprechende isolierte Ordner unter `profiles-local/CP09`.
 - Alle 595 persoenlichen Profildateien nach jedem Lauf hashgleich.
 - Kein natuerlicher Gesamtdurchlauf, keine Runtime-Aenderung, kein Merge.
+
+## Rueckbau auf ausdruecklichen Nutzerauftrag
+
+Nach der Diagnose hat der Nutzer alle drei nur testweise wieder eingebauten
+Erweiterungen abgelehnt. Lokale Modellbeleuchtung, verdeckte dynamische Lichter
+und Lit Soft Particles sind vollstaendig entfernt: Rendererimplementierung,
+Aufrufe, temporaere Partikelkennzeichnung, Build-Eintrag und Optionsseite.
+Urspruengliche Licht-/Partikelpfade sind wiederhergestellt; TAA, verstarkte
+Objektbewegungsunschaerfe, Modellschatten und AO bleiben erhalten. Das passende
+cgame wird wegen der entfernten rendererinternen Partikelkennung mitgebaut.
+Das Spiel-/Speicherformat aendert sich nicht.
+
+`church-effects-removed` prueft den aktuellen Save erneut mit UHD, TAA,
+Blur 50%, Schatten und AO. Nach demselben Weg werden 18 Sekunden einschliesslich
+der Kampfphase erfasst: 2115 Bilder, Median 8 ms, P95 9 ms, Maximum 16 ms.
+Anschliessend sind Speichern und Laden derselben Kopie erfolgreich. Alle 595
+persoenlichen Profildateien bleiben hashgleich. Der im ersten Abschnitt
+beschriebene Optimierungsansatz ist durch den gewuenschten Rueckbau ersetzt.
+
+Native AA-UHD-, Spearhead- und Breakthrough-Pruefungen der finalen Engine
+(`remove-lighting-aa-release`, `remove-lighting-sh-release`,
+`remove-lighting-bt-release`) bestehen Waffenbewegung/Feuer/Nachladen,
+Objektbewegungsvektoren, unveraendertes HUD, Save/Load, Grafikneustart sowie
+TAA-/Blur-Optionsbedienung. Keine Temporal-GL-Fehler oder Pufferueberlaeufe.
+Die TAA-/Blur-, Schatten- und AO-Implementierungen sind gegen den zuvor
+installierten Stand bytegleich; die urspruenglichen Licht-/Modell-/Partikelpfade
+wurden zusaetzlich gegen den Stand vor Einfuehrung der drei Effekte verglichen.
+
+`remove-lighting-ui-release` besteht die echte Optionsnavigation ohne Lighting-
+Button, bei weiterhin erreichbarer AA-&-Motion-Seite, Grafik-/Seitenverhaeltnis-,
+FOV- und Kartenwechsel. Die bereinigte Optionsseite wurde visuell geprueft.
+
+Nach Entfernen des letzten ungenutzten Partikelpuffers wurde die finale Engine
+neu gebaut und erneut in allen drei Spielen sowie an der Kirche getestet.
+`church-removal-release`: 2109 Bilder, Median 8 ms, P95 9 ms, einzelner maximaler
+Frame 27 ms. Der anhaltende Einbruch ist ausgeblieben; diese Messung behauptet
+keine absolute Freiheit von einzelnen Frame-Spitzen. Save/Load bestanden.
+
+Finale Engine: `f567924a3a3dbb671056a6136dc7a3d43bd6744e058622be269cf7f1eed1ee47`.
+Passendes cgame: `cdb016b9672275d61f0c0a051ed5e544ed9cc9b3b0b925ee59a89d753e0906f1`.

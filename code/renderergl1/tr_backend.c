@@ -714,7 +714,6 @@ void RB_RenderDrawSurfList( drawSurf_t *drawSurfs, int numDrawSurfs ) {
 	// clear the z buffer, set the modelview, etc
 	RB_BeginDrawingView ();
 	RB_ACShadowBegin();
-	RB_ACLightingBegin();
 	RB_ACTemporalBegin();
 
 	// draw everything
@@ -758,7 +757,7 @@ void RB_RenderDrawSurfList( drawSurf_t *drawSurfs, int numDrawSurfs ) {
 			if (oldShader != NULL) {
 				RB_EndSurface();
 			}
-			if (shader->sort > SS_SEE_THROUGH) { RB_ACShadowFinish(); RB_ACParticleDepth(); }
+			if (shader->sort > SS_SEE_THROUGH) RB_ACShadowFinish();
 			RB_BeginSurface( shader );
 			oldShader = shader;
 			oldDlightMap = dlightMap;
@@ -824,7 +823,7 @@ void RB_RenderDrawSurfList( drawSurf_t *drawSurfs, int numDrawSurfs ) {
 		}
 
 		tess.dlightMap = dlightMap;
-		if (r_fastdlights->integer && !R_ACDynamicLightingActive(&backEnd.refdef)) {
+		if (r_fastdlights->integer) {
 			tess.dlightMap = 0;
 		}
 

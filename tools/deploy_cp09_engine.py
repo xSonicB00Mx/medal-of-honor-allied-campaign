@@ -51,7 +51,7 @@ if a.options_layout:
         name=src.parent.name+'/'+src.name
         assert src.parent.name in ['main','mainta','maintt'] and src.name=='zzzzzzzzzzzzz_AC_FlinchOptions.pk3'
         with zipfile.ZipFile(src) as z:
-            assert z.namelist() in [['ui/ac_scaling.urc'], ['ui/ac_scaling.urc','ui/ac_lighting.urc'], ['ui/ac_scaling.urc','ui/ac_lighting.urc','ui/ac_temporal.urc']]
+            assert z.namelist() in [['ui/ac_scaling.urc'], ['ui/ac_scaling.urc','ui/ac_lighting.urc'], ['ui/ac_scaling.urc','ui/ac_lighting.urc','ui/ac_temporal.urc'], ['ui/ac_scaling.urc','ui/ac_temporal.urc']]
             assert z.testzip() is None
             for member in z.namelist():
                 assert z.read(member)==(R/'mod'/member).read_text().encode('latin1')

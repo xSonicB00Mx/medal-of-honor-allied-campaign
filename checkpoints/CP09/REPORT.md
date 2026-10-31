@@ -1,5 +1,14 @@
 # CP09 – Regression und Abnahmekandidat
 
+## Rueckbau auf Nutzerauftrag, 31.10.2026
+
+Alle drei nur zur Analyse erneut eingebauten Beleuchtungs-/Partikel-Erweiterungen
+sind erneut vollstaendig entfernt, einschliesslich Optionsseite. TAA,
+Objektbewegungsunschaerfe, Modellschatten und AO bleiben erhalten.
+Siehe [Kirchen-Performance und Rueckbau](church-performance.md).
+Die folgenden Angaben zu deren Installation sind historisch.
+
+
 Begonnen am 20.10.2026 auf Nutzerauftrag. Feature-freeze: nur Fehlerkorrekturen,
 Pruefung und Auslieferung. Der Nutzer uebernimmt anschliessend den natuerlichen
 Kampagnenabschluss mit seinem bestehenden Spielstand.
