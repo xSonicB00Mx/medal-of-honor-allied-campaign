@@ -105,3 +105,16 @@ keine absolute Freiheit von einzelnen Frame-Spitzen. Save/Load bestanden.
 
 Finale Engine: `f567924a3a3dbb671056a6136dc7a3d43bd6744e058622be269cf7f1eed1ee47`.
 Passendes cgame: `cdb016b9672275d61f0c0a051ed5e544ed9cc9b3b0b925ee59a89d753e0906f1`.
+
+## Installation
+
+Quellen-Commit `19ddd629e938e2cefee93e8e0d4d87af6ac26fd7` ist in **CP08-r1 und
+CP09-r1 installiert**, einschliesslich passendem cgame und den drei bereinigten
+Optionspaketen. Die einzige Paketquelle der entfernten Optionsseite wurde in
+allen Kampagnen ersetzt. `game.dll`, Inhalts-/Kunstpakete und persoenliche
+Einstellungen bleiben unveraendert.
+
+`generated-local/CP09/remove-lighting-aa-release/deployment.json` bestaetigt
+9086/9090 Runtime-Dateien, 9072 Originaldateien und 595 hashgleiche persoenliche
+Dateien. Die ersetzten Moddateien liegen im zugehoerigen `rollback/`.
+Keine persoenliche Gesamtabnahme und kein Merge.

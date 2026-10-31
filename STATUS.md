@@ -1,3 +1,11 @@
+## 2026-10-31: Drei experimentelle Beleuchtungs-/Partikeloptionen erneut entfernt
+
+- Kirchen-Einbruch in aktueller m3l3-Spielstandkopie auf CPU-Lichtverdeckung eingegrenzt: zeitweise ueber 200000 Sichtpruefungen pro Sekunde und 23--25 ms Bildzeit.
+- Nutzer verlangt erneut vollstaendigen Rueckbau aller drei Analyse-Features. Lokale Modellbeleuchtung, verdeckte dynamische Lichter und Lit Soft Particles samt Optionsseite/Build-/Clientanbindung entfernt. Urspruengliche Licht-/Partikelpfade wiederhergestellt. TAA, verstaerkter Object Motion Blur, Modellschatten und AO erhalten.
+- Finale Kirche/UHD: Median 8 ms, P95 9 ms ueber 2109 Frames, einzelne Spitze 27 ms. AA/SH/BT, Waffen, Save/Load, Grafikneustart, Optionsnavigation, Seitenverhaeltnis/FOV/Kartenwechsel bestanden.
+- Source 19ddd629; Engine f567924a und cgame cdb016b9 in CP08-r1/CP09-r1 installiert. 9086/9090 Runtime-Dateien und 9072 Originale verifiziert, 595 persoenliche Dateien/Spielstaende hashgleich. Vorhandene TAA-/Blur-Wahl erhalten.
+- Nachweis checkpoints/CP09/church-performance.md und generated-local/CP09/remove-lighting-aa-release/deployment.json. Kein Merge, CP09-Gesamtabnahme offen.
+
 ## 2026-10-30: Objektbewegungsunschaerfe deutlich verstaerkt
 
 - Nutzerrueckmeldung zu kaum sichtbarem Blur bei 100% an Gegnern/eigener Waffe nachvollzogen: Einstellung war aktiv, 1/60s und feste 32-Pixel-Grenze bei UHD zu schwach. Vergleich desselben Spielbilds vor/nach Filter in Kopie des neuesten Spielstands.
