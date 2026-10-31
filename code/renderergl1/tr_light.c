@@ -915,7 +915,6 @@ void R_GetLightingGridValue(const vec3_t vPos, vec3_t vLight)
     } else {
         vLight[0] = vLight[1] = vLight[2] = tr.identityLightByte;
     }
-    R_ACRelightGrid(vPos, vLight);
 }
 
 /*
@@ -1078,13 +1077,11 @@ void R_GetLightingGridValueFast(const vec3_t vPos, vec3_t vLight)
             vLight[0] = pColor[0];
             vLight[1] = pColor[1];
             vLight[2] = pColor[2];
-            R_ACRelightGrid(vPos, vLight);
             return;
         }
     }
 
     vLight[0] = vLight[1] = vLight[2] = tr.identityLightByte;
-    R_ACRelightGrid(vPos, vLight);
 }
 
 /*

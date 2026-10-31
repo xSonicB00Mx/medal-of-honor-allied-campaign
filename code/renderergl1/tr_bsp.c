@@ -2312,7 +2312,6 @@ void RE_LoadWorldMap( const char *name ) {
     _R(58);
     numLightBytes = R_LoadLump(h, Q_GetLumpByVersion(&header, LUMP_LIGHTMAPS), &lump, sizeof(byte));
     _R(59);
-    R_ACRelightLoad(&lump, name);
     R_LoadLightmaps(&lump);
     _R(60);
     R_FreeLump(&lump);
@@ -2442,9 +2441,6 @@ void RE_LoadWorldMap( const char *name ) {
     R_InitTerrain();
     ri.UI_LoadResource("*113");
     R_InitStaticModels();
-    R_ACRelightGridLoad();
-    R_ACRelightStaticModels();
-    R_ACRelightExport();
     ri.UI_LoadResource("*114");
     R_LevelMarksLoad(name);
     ri.UI_LoadResource("*115");
@@ -2508,7 +2504,6 @@ freed world data
 =================
 */
 void R_ClearWorld(void) {
-    R_ACRelightClear();
     tr.world = NULL;
     tr.worldMapLoaded = qfalse;
 }

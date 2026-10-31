@@ -1,11 +1,11 @@
 # CP09 – Regression und Abnahmekandidat
 
-## Separater Levellicht-Pilot, 31.10.2026
+## Levellicht-Pilot zurueckgenommen, 31.10.2026
 
-Auf neuen ausdruecklichen Nutzerauftrag wird `m3l3` mit vorab berechnetem
-Himmels-/Reflexionslicht verglichen. Der Pilot liegt in eigener Engine und
-Profilkopien; die regulaeren CP08-/CP09-Runtimes bleiben unveraendert.
-Siehe [Levellicht-Pilot und Rueckbau](level-relight-pilot.md).
+Der Nutzer hat die Gesamtwirkung abgelehnt. Renderer und Werkzeuge sind auf
+den vorherigen Stand zurueckgesetzt; separate Pilot-Starter sind archiviert.
+Die regulaere Installation und persoenlichen Spielstaende bleiben unveraendert.
+Siehe [Rueckbau und Nutzerfeedback](level-relight-pilot.md).
 
 ## Rueckbau auf Nutzerauftrag, 31.10.2026
 
