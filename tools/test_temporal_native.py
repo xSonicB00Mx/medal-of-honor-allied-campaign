@@ -64,15 +64,15 @@ cmd=['wait 800',start,'wait 5000','finishloadingscreen','god','notarget','wait 5
      'vid_restart','wait 3500','finishloadingscreen','wait 500','screenshot silent',
      'pushmenu ac_temporal','wait 500','ac_ui_report ac_temporal','screenshot silent','writeconfig temporal_settings']
 scale=4 if a.uhd else 1600/960
-cmd += [f'widgetcommand temporalAA left_mouse_up {int(868*scale)} {int(146*scale)} 0',
-        'widgetcommand objectBlur left_mouse_down '+str(int(795*scale))+' '+str(int(279*scale))+' 1',
-        'widgetcommand objectBlur left_mouse_up '+str(int(795*scale))+' '+str(int(279*scale))+' 0',
+cmd += [f'widgetcommand temporalAA left_mouse_up {int(433*scale)} {int(215*scale)} 0',
+        'widgetcommand objectBlur left_mouse_down '+str(int(242*scale))+' '+str(int(430*scale))+' 1',
+        'widgetcommand objectBlur left_mouse_up '+str(int(242*scale))+' '+str(int(430*scale))+' 0',
         'writeconfig temporal_changed',
-        f'widgetcommand temporalDefaults left_mouse_down {int(780*scale)} {int(485*scale)} 1',
-        f'widgetcommand temporalDefaults left_mouse_up {int(780*scale)} {int(485*scale)} 0',
+        f'widgetcommand reset left_mouse_down {int(780*scale)} {int(510*scale)} 1',
+        f'widgetcommand reset left_mouse_up {int(780*scale)} {int(510*scale)} 0',
         'widgetcommand back stuffcommand "exec finish.cfg"',
-        f'widgetcommand back left_mouse_down {int(50*scale)} {int(485*scale)} 1',
-        f'widgetcommand back left_mouse_up {int(50*scale)} {int(485*scale)} 0']
+        f'widgetcommand back left_mouse_down {int(50*scale)} {int(510*scale)} 1',
+        f'widgetcommand back left_mouse_up {int(50*scale)} {int(510*scale)} 0']
 (h/'finish.cfg').write_text('wait 100\nwriteconfig temporal_defaults\necho AC_TEMPORAL_DONE\nquit\n')
 (h/'play.scr').write_text('main:\n    cueplayer\n    $player show\n    $player.viewangles = vector_toangles (level.cp00_target + ( 0 0 45 ) - ($player.origin + ( 0 0 64 )))\n    $player give models/weapons/mp40.tik\n    $player use models/weapons/mp40.tik\nend\n')
 idx=cmd.index('savegame temporal_check')

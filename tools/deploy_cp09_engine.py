@@ -13,9 +13,12 @@ from cp09_candidate import R, digest, expected, safe
 ap = argparse.ArgumentParser()
 ap.add_argument('run', help='Unique backup name; native test report folder')
 ap.add_argument('--options-layout', action='store_true', help='Also install the exact options packages from the test report')
+ap.add_argument('--options-only', action='store_true', help='Install tested options packages without replacing engine or DLLs')
 ap.add_argument('--game-only', action='store_true', help='Install only the tested game DLL')
 ap.add_argument('--cgame', action='store_true', help='Install the matching tested cgame ABI with the engine')
 a = ap.parse_args()
+assert not (a.options_only and (a.game_only or a.cgame))
+if a.options_only: a.options_layout = True
 assert not (a.game_only and (a.options_layout or a.cgame))
 assert re.fullmatch(r'[a-zA-Z0-9-]+', a.run)
 report = json.loads((R/'generated-local/CP09'/a.run/'result.json').read_text())
@@ -39,7 +42,9 @@ for row in original:
     assert digest(safe(R.parent,row['path']))==row['sha256']
 manifests = [expected(rt)[0] for rt in runtimes]
 print('Original data and both runtimes verified',flush=True)
-updates={'openmohaa.exe':engine}
+updates={} if a.options_only else {'openmohaa.exe':engine}
+if a.options_only:
+    assert all(digest(rt/'openmohaa.exe')==report['engine_sha256'] for rt in runtimes)
 if a.game_only: updates={'game.dll':game}
 if a.cgame: updates['cgame.dll']=cgame
 if a.options_layout:
@@ -75,7 +80,8 @@ try:
     for rt,manifest in zip(runtimes,manifests):
         for name,src in updates.items(): shutil.copy2(src,rt/name)
         manifest.update(source_commit=commit)
-        manifest['game_dll_source_commit' if a.game_only else 'engine_source_commit']=commit
+        if not a.options_only:
+            manifest['game_dll_source_commit' if a.game_only else 'engine_source_commit']=commit
         if a.cgame: manifest['cgame_source_commit']=commit
         for row in manifest['owned_files']:
             if row['path'] in updates: row['sha256']=digest(updates[row['path']])
@@ -103,6 +109,7 @@ result = dict(source_commit=commit,engine_sha256=digest(engine),verified_files=v
               original_files_verified=len(original),personal_files_unchanged=len(before),
               rollback=str(backup.relative_to(R)),scope='Engine and options layout; game/cgame/artwork unchanged' if a.options_layout else 'Engine only; game/cgame/assets unchanged')
 if a.game_only: result.update(game_sha256=digest(game),scope='Game DLL only; engine/cgame/assets unchanged')
+if a.options_only: result.update(scope='Shared options packages only; engine/game/cgame/artwork unchanged')
 if a.cgame: result.update(cgame_sha256=digest(cgame),scope='Engine and matching cgame; shared options' if a.options_layout else 'Engine and matching cgame')
 save(backup.parent/'deployment.json',result)
 print(json.dumps(result,indent=2))

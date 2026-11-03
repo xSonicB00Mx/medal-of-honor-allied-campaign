@@ -28,13 +28,13 @@ cmd=['wait 800','devmap m2l2a','wait 5000','finishloadingscreen','god','notarget
      'devmap m2l2b','wait 5000','finishloadingscreen','god','wait 800','screenshot silent',
      'pushmenu ac_scaling','wait 500','ac_ui_report ac_scaling','screenshot silent',
      'widgetcommand temporalOptions stuffcommand "pushmenu ac_temporal; exec temporal_page.cfg"',
-     'widgetcommand temporalOptions left_mouse_down 1000 125 1',
-     'widgetcommand temporalOptions left_mouse_up 1000 125 0']
+     'widgetcommand temporalOptions left_mouse_down 1183 188 1',
+     'widgetcommand temporalOptions left_mouse_up 1183 188 0']
 (h/'temporal_page.cfg').write_text('\n'.join([
      'wait 400','ac_ui_report ac_temporal','screenshot silent',
      'widgetcommand back stuffcommand "popmenu 0; exec finish.cfg"',
-     'widgetcommand back left_mouse_down 80 810 1',
-     'widgetcommand back left_mouse_up 80 810 0'])+'\n')
+     'widgetcommand back left_mouse_down 133 850 1',
+     'widgetcommand back left_mouse_up 133 850 0'])+'\n')
 (h/'finish.cfg').write_text('wait 200\nac_ui_report ac_scaling\necho AC_TEMPORAL_LIFECYCLE_DONE\nquit\n')
 (h/'probe.cfg').write_text('\n'.join(cmd)+'\n')
 args=[str(b/'openmohaa.exe')]

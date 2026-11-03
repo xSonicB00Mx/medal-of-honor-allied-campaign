@@ -10,37 +10,136 @@ resource
 Label
 {
 name "heading"
-title "ANTI-ALIASING & MOTION"
-rect 44 34 872 36
 dontlocalize
-font ac-courier-16
+title "ALLIED CAMPAIGN OPTIONS"
+rect 36 22 888 34
+font facfont-20
 fgcolor 0.91 0.86 0.7 1
 bgcolor 0 0 0 0
 borderstyle NONE
-font facfont-20
+textalign left
 }
 
 resource
 Label
 {
-name "taaLabel"
-title "Temporal anti-aliasing (TAA)"
-rect 64 132 760 30
+name "intro"
 dontlocalize
+title "Choose a category. Settings are shared across all campaigns."
+rect 36 64 888 22
+font ac-courier-12
+fgcolor 0.67 0.73 0.66 1
+bgcolor 0 0 0 0
+borderstyle NONE
+textalign left
+}
+
+resource
+Button
+{
+name "interfaceOptions"
+dontlocalize
+title "Interface & Gameplay"
+rect 28 96 440 34
+font ac-courier-14
+fgcolor 0.91 0.86 0.7 1
+bgcolor 0.09 0.11 0.09 1
+borderstyle NONE
+stuffcommand "popmenu 0"
+}
+
+resource
+Label
+{
+name "graphicsTab"
+dontlocalize
+title "Graphics & Effects"
+rect 492 96 440 34
 font ac-courier-16
+fgcolor 1 0.85 0.4 1
+bgcolor 0.18 0.19 0.12 1
+borderstyle NONE
+textalign center
+}
+
+resource
+Label
+{
+name "leftPanel"
+dontlocalize
+title ""
+rect 28 146 440 330
+font ac-courier-14
+fgcolor 0.91 0.86 0.7 1
+bgcolor 0.055 0.07 0.06 0.87
+borderstyle NONE
+
+}
+
+resource
+Label
+{
+name "leftPanelTitle"
+dontlocalize
+title "RENDERING"
+rect 44 160 408 26
+font ac-courier-16
+fgcolor 1 0.85 0.4 1
+bgcolor 0 0 0 0
+borderstyle NONE
+textalign left
+}
+
+resource
+Label
+{
+name "rightPanel"
+dontlocalize
+title ""
+rect 492 146 440 330
+font ac-courier-14
+fgcolor 0.91 0.86 0.7 1
+bgcolor 0.055 0.07 0.06 0.87
+borderstyle NONE
+
+}
+
+resource
+Label
+{
+name "rightPanelTitle"
+dontlocalize
+title "BLOOD EFFECTS"
+rect 508 160 408 26
+font ac-courier-16
+fgcolor 1 0.85 0.4 1
+bgcolor 0 0 0 0
+borderstyle NONE
+textalign left
+}
+
+resource
+Label
+{
+name "temporalAALabel"
+dontlocalize
+title "Temporal anti-aliasing"
+rect 44 202 352 26
+font ac-courier-14
 fgcolor 0.91 0.86 0.7 1
 bgcolor 0 0 0 0
 borderstyle NONE
+textalign left
 }
 
 resource
 CheckBox
 {
 name "temporalAA"
-title ""
-rect 854 132 28 28
 dontlocalize
-font ac-courier-16
+title ""
+rect 420 202 26 26
+font ac-courier-14
 fgcolor 0.91 0.86 0.7 1
 bgcolor 0 0 0 0
 borderstyle NONE
@@ -52,57 +151,128 @@ unchecked_shader textures/menu/checkbox_unchecked
 resource
 Label
 {
-name "taaHint"
-title "Smooths edges and reduces shimmering on fine details."
-rect 64 175 824 28
+name "temporalAAHint"
 dontlocalize
-font ac-courier-16
+title "Smooths edges and reduces shimmering."
+rect 44 232 408 22
+font ac-courier-11
+fgcolor 0.67 0.73 0.66 1
+bgcolor 0 0 0 0
+borderstyle NONE
+textalign left
+}
+
+resource
+Label
+{
+name "ambientOcclusionLabel"
+dontlocalize
+title "Ambient occlusion"
+rect 44 262 352 26
+font ac-courier-14
 fgcolor 0.91 0.86 0.7 1
 bgcolor 0 0 0 0
 borderstyle NONE
-font ac-courier-12
+textalign left
+}
+
+resource
+CheckBox
+{
+name "ambientOcclusion"
+dontlocalize
+title ""
+rect 420 262 26 26
+font ac-courier-14
+fgcolor 0.91 0.86 0.7 1
+bgcolor 0 0 0 0
+borderstyle NONE
+linkcvar r_acAmbientOcclusion
+checked_shader textures/menu/checkbox_checked
+unchecked_shader textures/menu/checkbox_unchecked
+}
+
+resource
+Label
+{
+name "ambientOcclusionHint"
+dontlocalize
+title "Adds depth around nearby surfaces."
+rect 44 292 408 22
+font ac-courier-11
+fgcolor 0.67 0.73 0.66 1
+bgcolor 0 0 0 0
+borderstyle NONE
+textalign left
+}
+
+resource
+Label
+{
+name "modelShadowsLabel"
+dontlocalize
+title "Dynamic model shadows"
+rect 44 322 352 26
+font ac-courier-14
+fgcolor 0.91 0.86 0.7 1
+bgcolor 0 0 0 0
+borderstyle NONE
+textalign left
+}
+
+resource
+CheckBox
+{
+name "modelShadows"
+dontlocalize
+title ""
+rect 420 322 26 26
+font ac-courier-14
+fgcolor 0.91 0.86 0.7 1
+bgcolor 0 0 0 0
+borderstyle NONE
+linkcvar r_acModelShadows
+checked_shader textures/menu/checkbox_checked
+unchecked_shader textures/menu/checkbox_unchecked
+}
+
+resource
+Label
+{
+name "modelShadowsHint"
+dontlocalize
+title "Shadows for characters and pickups."
+rect 44 352 408 22
+font ac-courier-11
+fgcolor 0.67 0.73 0.66 1
+bgcolor 0 0 0 0
+borderstyle NONE
+textalign left
 }
 
 resource
 Label
 {
 name "blurLabel"
+dontlocalize
 title "Object motion blur"
-rect 64 265 600 30
-dontlocalize
-font ac-courier-16
+rect 44 382 310 26
+font ac-courier-14
 fgcolor 0.91 0.86 0.7 1
 bgcolor 0 0 0 0
 borderstyle NONE
-}
-
-resource
-Slider
-{
-name "objectBlur"
-title ""
-rect 558 267 238 24
-dontlocalize
-font ac-courier-16
-fgcolor 0.91 0.86 0.7 1
-bgcolor 0 0 0 0
-borderstyle NONE
-shader textures/menu/slider
-linkcvar r_acObjectMotionBlur
-slidertype integer
-setrange 0 100
-stepsize 10
+textalign left
 }
 
 resource
 Label
 {
 name "blurValue"
-title ""
-rect 816 265 90 30
 dontlocalize
-font ac-courier-16
-fgcolor 0.91 0.86 0.7 1
+title ""
+rect 366 382 80 26
+font ac-courier-14
+fgcolor 1 0.85 0.4 1
 bgcolor 0 0 0 0
 borderstyle NONE
 linkcvar r_acObjectMotionBlur
@@ -120,72 +290,253 @@ linkstring 100 "100%"
 }
 
 resource
+Slider
+{
+name "objectBlur"
+dontlocalize
+title ""
+rect 44 418 398 24
+font ac-courier-14
+fgcolor 0.91 0.86 0.7 1
+bgcolor 0 0 0 0
+borderstyle NONE
+shader textures/menu/slider
+linkcvar r_acObjectMotionBlur
+slidertype integer
+setrange 0 100
+stepsize 10
+}
+
+resource
 Label
 {
 name "blurHint"
-title "Only moving objects blur. Camera movement and HUD stay sharp."
-rect 64 308 824 28
 dontlocalize
-font ac-courier-16
-fgcolor 0.91 0.86 0.7 1
+title "Moving objects only; camera and HUD stay sharp."
+rect 44 448 408 20
+font ac-courier-11
+fgcolor 0.67 0.73 0.66 1
 bgcolor 0 0 0 0
 borderstyle NONE
-font ac-courier-12
+textalign left
 }
 
 resource
 Label
 {
-name "blurHint2"
-title "Strength controls exposure: 100% = 1/15 second; 0% = Off."
-rect 64 342 824 28
+name "mistLabel"
 dontlocalize
-font ac-courier-16
+title "Red hit mist"
+rect 508 202 352 26
+font ac-courier-14
 fgcolor 0.91 0.86 0.7 1
 bgcolor 0 0 0 0
 borderstyle NONE
-font ac-courier-12
+textalign left
+}
+
+resource
+CheckBox
+{
+name "mist"
+dontlocalize
+title ""
+rect 884 202 26 26
+font ac-courier-14
+fgcolor 0.91 0.86 0.7 1
+bgcolor 0 0 0 0
+borderstyle NONE
+linkcvar ac_blood_mist
+checked_shader textures/menu/checkbox_checked
+unchecked_shader textures/menu/checkbox_unchecked
 }
 
 resource
 Label
 {
-name "applyHint"
-title "Changes apply immediately across all campaigns."
-rect 208 476 550 32
+name "mistHint"
 dontlocalize
-font ac-courier-16
+title "A brief blood cloud on impact."
+rect 508 232 408 22
+font ac-courier-11
+fgcolor 0.67 0.73 0.66 1
+bgcolor 0 0 0 0
+borderstyle NONE
+textalign left
+}
+
+resource
+Label
+{
+name "worldBloodLabel"
+dontlocalize
+title "Blood drops and stains"
+rect 508 262 352 26
+font ac-courier-14
 fgcolor 0.91 0.86 0.7 1
 bgcolor 0 0 0 0
 borderstyle NONE
-font ac-courier-12
+textalign left
+}
+
+resource
+CheckBox
+{
+name "worldBlood"
+dontlocalize
+title ""
+rect 884 262 26 26
+font ac-courier-14
+fgcolor 0.91 0.86 0.7 1
+bgcolor 0 0 0 0
+borderstyle NONE
+linkcvar ac_world_blood
+checked_shader textures/menu/checkbox_checked
+unchecked_shader textures/menu/checkbox_unchecked
+}
+
+resource
+Label
+{
+name "worldBloodHint"
+dontlocalize
+title "Particles and blood on nearby surfaces."
+rect 508 292 408 22
+font ac-courier-11
+fgcolor 0.67 0.73 0.66 1
+bgcolor 0 0 0 0
+borderstyle NONE
+textalign left
+}
+
+resource
+Label
+{
+name "bodyWoundsLabel"
+dontlocalize
+title "Body wounds"
+rect 508 322 352 26
+font ac-courier-14
+fgcolor 0.91 0.86 0.7 1
+bgcolor 0 0 0 0
+borderstyle NONE
+textalign left
+}
+
+resource
+CheckBox
+{
+name "bodyWounds"
+dontlocalize
+title ""
+rect 884 322 26 26
+font ac-courier-14
+fgcolor 0.91 0.86 0.7 1
+bgcolor 0 0 0 0
+borderstyle NONE
+linkcvar ac_body_wounds
+checked_shader textures/menu/checkbox_checked
+unchecked_shader textures/menu/checkbox_unchecked
+}
+
+resource
+Label
+{
+name "bodyWoundsHint"
+dontlocalize
+title "Visible wounds on characters."
+rect 508 352 408 22
+font ac-courier-11
+fgcolor 0.67 0.73 0.66 1
+bgcolor 0 0 0 0
+borderstyle NONE
+textalign left
+}
+
+resource
+Label
+{
+name "corpseEffectsLabel"
+dontlocalize
+title "Corpse hit effects"
+rect 508 382 352 26
+font ac-courier-14
+fgcolor 0.91 0.86 0.7 1
+bgcolor 0 0 0 0
+borderstyle NONE
+textalign left
+}
+
+resource
+CheckBox
+{
+name "corpseEffects"
+dontlocalize
+title ""
+rect 884 382 26 26
+font ac-courier-14
+fgcolor 0.91 0.86 0.7 1
+bgcolor 0 0 0 0
+borderstyle NONE
+linkcvar ac_corpse_effects
+checked_shader textures/menu/checkbox_checked
+unchecked_shader textures/menu/checkbox_unchecked
+}
+
+resource
+Label
+{
+name "corpseEffectsHint"
+dontlocalize
+title "Visual feedback when shooting bodies."
+rect 508 412 408 22
+font ac-courier-11
+fgcolor 0.67 0.73 0.66 1
+bgcolor 0 0 0 0
+borderstyle NONE
+textalign left
 }
 
 resource
 Button
 {
 name "back"
-title "Back"
-rect 44 476 140 32
 dontlocalize
-font ac-courier-16
+title "Back"
+rect 28 496 132 30
+font ac-courier-14
 fgcolor 0.91 0.86 0.7 1
-bgcolor 0 0 0 0
+bgcolor 0.09 0.11 0.09 1
 borderstyle NONE
 stuffcommand "popmenu 0"
 }
 
 resource
-Button
+Label
 {
-name "temporalDefaults"
-title "Defaults"
-rect 772 476 144 32
+name "applyHint"
 dontlocalize
-font ac-courier-16
-fgcolor 0.91 0.86 0.7 1
+title "Changes apply immediately."
+rect 176 496 570 30
+font ac-courier-12
+fgcolor 0.67 0.73 0.66 1
 bgcolor 0 0 0 0
 borderstyle NONE
-stuffcommand "set r_acTAA 1; set r_acObjectMotionBlur 0"
+textalign left
 }
+
+resource
+Button
+{
+name "reset"
+dontlocalize
+title "Page defaults"
+rect 772 496 160 30
+font ac-courier-14
+fgcolor 0.91 0.86 0.7 1
+bgcolor 0.09 0.11 0.09 1
+borderstyle NONE
+stuffcommand "set r_acTAA 1; set r_acObjectMotionBlur 0; set r_acAmbientOcclusion 1; set r_acModelShadows 1; set ac_blood_mist 1; set ac_world_blood 1; set ac_body_wounds 1; set ac_corpse_effects 1"
+}
+
 end.
