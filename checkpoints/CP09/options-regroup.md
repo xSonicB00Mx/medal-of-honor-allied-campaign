@@ -6,7 +6,9 @@ with graphics options together.
 
 ## Result
 
-Two consistently styled category tabs with a highlighted current page:
+A full-width page navigation bar, clearly separate from the content columns,
+shows PAGE 1 OF 2 / PAGE 2 OF 2, a centered current-page title and previous/next
+arrows. Unavailable directions are dim and non-interactive:
 
 - **Interface & Gameplay**: automatic scaling, menu font size, HUD size/safe
   area/outline, hit flinch and Breakthrough drop restrictions. The existing
@@ -55,3 +57,20 @@ cgame and artwork are unchanged. Evidence:
 `generated-local/CP09/options-regroup-r2/deployment.json`.
 Previous packages/manifests are backed up under that folder's `rollback`.
 No campaign playthrough or user visual acceptance is claimed.
+
+## Follow-up: separate navigation from content
+
+The user found that the two wide category tabs looked like headings for the
+columns underneath. Replaced them with one unified page navigation strip.
+Only the current page name is shown, centered between arrows; the explicit
+page counter establishes that the controls switch whole pages. All options,
+column contents, cvars, scoped defaults and menu-stack behavior are retained.
+
+Source `a8bdf3ec`; shared package SHA-256
+`0c79f800e8c2c403d68ebf904e67c036a42358abe9210447bf26893efa12a428`.
+`generated-local/CP09/options-page-navigation/result.json` passes the same
+four native layout/control/navigation cases (AA 1080p/UHD, SH 4:3, BT ultrawide),
+including both font sizes, discrete sliders and defaults. Both pages visually
+inspected. All 683 personal files remain unchanged. Deployment evidence:
+`generated-local/CP09/options-page-navigation/deployment.json`.
+The previous delivery paths and hashes above describe the initial layout.

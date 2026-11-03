@@ -1,3 +1,10 @@
+## 2026-11-03: Options-Seitennavigation eindeutig getrennt
+
+- Nutzerfeedback: spaltenbreite Reiter wirkten wie Spaltenueberschriften. Ersetzt durch eine gemeinsame Navigationsleiste mit PAGE 1 OF 2 / PAGE 2 OF 2, zentriertem Seitentitel und Blaetterpfeilen. Nicht verfuegbare Richtung ist grau und nicht bedienbar.
+- Inhalte, Bindings, Einstellungen und seitenweise Defaults unveraendert. Native AA/SH/BT-Pruefung bei 1080p, 4:3, Ultrawide und UHD samt kleiner/grosser Schrift bestanden; Screenshots geprueft.
+- Source a8bdf3ec, sechs UI-Pakete in CP08/CP09 ersetzt. 9086/9090 Runtime-Dateien, 9072 Originale und 683 unveraenderte Profildateien verifiziert. Engine/DLLs unveraendert, Rueckbausicherung vorhanden.
+- Nachweis generated-local/CP09/options-page-navigation/deployment.json und checkpoints/CP09/options-regroup.md. Kein Merge.
+
 ## 2026-11-03: Allied Campaign Options aufgeraeumt
 
 - Zwei einheitliche Kategorien: Interface & Gameplay fuer HUD/Schrift/Flinch/BT-Drops und Graphics & Effects fuer TAA, AO, Modellschatten, Object Motion Blur sowie alle Bluteffekte. Aktiver Reiter markiert; klare Spalten, Hilfstexte und gemeinsame Abstaende.
