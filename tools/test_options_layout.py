@@ -45,7 +45,7 @@ for case,(game,width,height) in enumerate([(0,1920,1080),(1,1280,960),(2,3440,14
  for n,x,y in [('auto',433,215),('hudOutline',433,399),('dropLimits',897,343)]:cmd += [mouse(n,'left_mouse_up',x,y)]
  for n,y in [('menuSlider',260),('hudSlider',306),('safeSlider',352)]:cmd += click(n,290,y)
  cmd += drag('playerFlinch','ac_player_flinch_percent',512,900,256)
- cmd += ['writeconfig interface_changed']+click('temporalOptions',710,113)
+ cmd += ['writeconfig interface_changed']+click('temporalOptions',686,113)
  cfg('probe',cmd)
  cmd=['wait 300','writeconfig graphics_entered','set ac_menu_scale 1','wait 200','ac_ui_report ac_temporal','screenshot silent','set ac_menu_scale 0.65','wait 200','ac_ui_report ac_temporal','screenshot silent']
  # Restore the interface font chosen before page navigation (without resetting the page).
@@ -56,7 +56,7 @@ for case,(game,width,height) in enumerate([(0,1920,1080),(1,1280,960),(2,3440,14
  cfg('graphics',cmd)
  # Menu slider click above selects .85 in the unchanged-width UI.
  cfg('font_restore',['set ac_menu_scale 0.85'])
- cfg('graphics_defaults',['wait 200','writeconfig graphics_restored','ac_ui_report ac_temporal','screenshot silent']+click('interfaceOptions',240,113))
+ cfg('graphics_defaults',['wait 200','writeconfig graphics_restored','ac_ui_report ac_temporal','screenshot silent']+click('interfaceOptions',274,113))
  cfg('interface_return',['wait 200','ac_ui_report ac_scaling']+click('reset',850,510))
  cfg('interface_defaults',['wait 200','writeconfig restored','ac_ui_report ac_scaling','screenshot silent']+click('back',80,510))
  cfg('finish',['wait 200','ac_ui_report main','echo OPTIONS_LAYOUT_DONE','quit'])

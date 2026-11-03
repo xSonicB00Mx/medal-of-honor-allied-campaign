@@ -28,8 +28,8 @@ cmd=['wait 800','devmap m2l2a','wait 5000','finishloadingscreen','god','notarget
      'devmap m2l2b','wait 5000','finishloadingscreen','god','wait 800','screenshot silent',
      'pushmenu ac_scaling','wait 500','ac_ui_report ac_scaling','screenshot silent',
      'widgetcommand temporalOptions stuffcommand "pushmenu ac_temporal; exec temporal_page.cfg"',
-     'widgetcommand temporalOptions left_mouse_down 1183 188 1',
-     'widgetcommand temporalOptions left_mouse_up 1183 188 0']
+     'widgetcommand temporalOptions left_mouse_down 1143 188 1',
+     'widgetcommand temporalOptions left_mouse_up 1143 188 0']
 (h/'temporal_page.cfg').write_text('\n'.join([
      'wait 400','ac_ui_report ac_temporal','screenshot silent',
      'widgetcommand back stuffcommand "popmenu 0; exec finish.cfg"',

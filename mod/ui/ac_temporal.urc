@@ -25,8 +25,36 @@ Label
 {
 name "intro"
 dontlocalize
-title "Choose a category. Settings are shared across all campaigns."
+title "Use the arrows to switch pages. Settings apply to all campaigns."
 rect 36 64 888 22
+font ac-courier-12
+fgcolor 0.67 0.73 0.66 1
+bgcolor 0 0 0 0
+borderstyle NONE
+textalign left
+}
+
+resource
+Label
+{
+name "navigationPanel"
+dontlocalize
+title ""
+rect 28 92 904 42
+font ac-courier-14
+fgcolor 1 1 1 1
+bgcolor 0.065 0.08 0.07 0.94
+borderstyle NONE
+
+}
+
+resource
+Label
+{
+name "pageNumber"
+dontlocalize
+title "PAGE 2 OF 2"
+rect 44 96 180 34
 font ac-courier-12
 fgcolor 0.67 0.73 0.66 1
 bgcolor 0 0 0 0
@@ -39,11 +67,11 @@ Button
 {
 name "interfaceOptions"
 dontlocalize
-title "Interface & Gameplay"
-rect 28 96 440 34
-font ac-courier-14
+title "<"
+rect 254 96 40 34
+font ac-courier-16
 fgcolor 0.91 0.86 0.7 1
-bgcolor 0.09 0.11 0.09 1
+bgcolor 0.12 0.14 0.11 1
 borderstyle NONE
 stuffcommand "popmenu 0"
 }
@@ -54,10 +82,24 @@ Label
 name "graphicsTab"
 dontlocalize
 title "Graphics & Effects"
-rect 492 96 440 34
+rect 306 96 348 34
 font ac-courier-16
 fgcolor 1 0.85 0.4 1
-bgcolor 0.18 0.19 0.12 1
+bgcolor 0 0 0 0
+borderstyle NONE
+textalign center
+}
+
+resource
+Label
+{
+name "nextUnavailable"
+dontlocalize
+title ">"
+rect 666 96 40 34
+font ac-courier-16
+fgcolor 0.3 0.34 0.3 1
+bgcolor 0 0 0 0
 borderstyle NONE
 textalign center
 }
