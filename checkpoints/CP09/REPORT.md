@@ -1,5 +1,11 @@
 # CP09 – Regression und Abnahmekandidat
 
+## Optionsmenue neu gegliedert, 03.11.2026
+
+Interface & Gameplay und Graphics & Effects ersetzen die verstreuten Optionen.
+AA/SH/BT inklusive UHD und laufender Mission geprueft, als reine UI-Aenderung
+in beiden Runtimes installiert. [Bericht und Nachweise](options-regroup.md).
+
 ## Levellicht-Pilot zurueckgenommen, 31.10.2026
 
 Der Nutzer hat die Gesamtwirkung abgelehnt. Renderer und Werkzeuge sind auf

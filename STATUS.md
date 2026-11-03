@@ -1,3 +1,11 @@
+## 2026-11-03: Allied Campaign Options aufgeraeumt
+
+- Zwei einheitliche Kategorien: Interface & Gameplay fuer HUD/Schrift/Flinch/BT-Drops und Graphics & Effects fuer TAA, AO, Modellschatten, Object Motion Blur sowie alle Bluteffekte. Aktiver Reiter markiert; klare Spalten, Hilfstexte und gemeinsame Abstaende.
+- Page defaults setzt nur die aktuelle Seite zurueck. Alle bisherigen Cvars/Werte bleiben erhalten; Flinch und Blur weiterhin ausschliesslich in 10%-Schritten.
+- Echte Bedienpruefung AA/SH/BT bei 1080p, 4:3, Ultrawide und UHD; keine Widget-Ueberlappungen, beide Schriftgroessen, Tabs/Back, alle 15 Einstellungen und getrennte Defaults bestanden. Ingame-/Grafikneustart-/Kartenwechselpruefung ebenfalls bestanden.
+- Source 4a44de98. Ausschliesslich die sechs Optionspakete in CP08-r1/CP09-r1 installiert; Engine f567924a und DLLs unveraendert. 9086/9090 Runtime-Dateien, 9072 Originale und 683 unveraenderte persoenliche Dateien verifiziert.
+- Nachweis checkpoints/CP09/options-regroup.md und generated-local/CP09/options-regroup-r2/deployment.json; Rueckbausicherung vorhanden. Keine neue Grafikfunktion, kein Merge.
+
 ## 2026-10-31: Levellicht-Pilot auf Nutzerwunsch zurueckgenommen
 
 - Nutzer lehnt die Gesamtwirkung als zu starke Veraenderung ab. Pilot e29b1d53 vollstaendig aus aktivem Renderer, Buildanbindung und Werkzeugen entfernt; Code entspricht wieder 69b26086.

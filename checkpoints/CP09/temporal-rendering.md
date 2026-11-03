@@ -6,7 +6,9 @@ Die zuvor wiederhergestellten Beleuchtungs-/Partikeleffekte bleiben erhalten.
 
 ## Bedienung
 
-Allied Campaign Options -> **AA & Motion...** -> **ANTI-ALIASING & MOTION**.
+Seit 03.11.2026: Allied Campaign Options -> **Graphics & Effects** -> **RENDERING**.
+TAA, Object Motion Blur, Ambient Occlusion und Dynamic Model Shadows stehen
+auf derselben Seite; daneben sind die Bluteffekte zusammengefasst.
 Beide Einstellungen wirken sofort und werden kampagnenuebergreifend gespeichert.
 
 | Option | Cvar | Standard | Bedeutung |
