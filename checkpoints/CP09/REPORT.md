@@ -8,9 +8,11 @@ Fenster sichtbar blitzen. Spielerwahl r_fastsky und Speicherformat bleiben
 unveraendert. Streifen an Felsen und ein schmaler UHD-Moebel-Lichtsaum wurden
 gezielt reproduziert und korrigiert.
 Finale AA/SH/BT-, UHD-/MSAA-/TAA-, Save/Load-, Grafikneustart- und Altspielstand-
-Pruefungen bestanden; 703 persoenliche Profildateien unveraendert. Kandidat
-Engine ca661d55 / game 139b51a1 / cgame d1cf1e29, Installation nach Integritaets-
-pruefung. [Technik und Nachweise](night-sky.md). Kein Merge oder Gesamtspielabnahme.
+Pruefungen bestanden; 703 persoenliche Profildateien unveraendert. Source
+683eea53 mit Engine ca661d55 / game 139b51a1 / cgame d1cf1e29 in CP08/CP09
+installiert. 9086/9090 Runtime-Dateien und 9072 Originaldateien verifiziert;
+Rueckbausicherung vorhanden. [Technik und Nachweise](night-sky.md).
+Kein Merge oder Gesamtspielabnahme.
 
 ## Gewitter mit vollstaendigem Himmel, 08.11.2026
 

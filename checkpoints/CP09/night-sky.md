@@ -144,6 +144,14 @@ GL-Fehler und vorher anstehende Fehler sind 0; 703 persoenliche Profildateien
 bleiben hashgleich. Geprueft wurde der ausgelieferte GL1-Pfad; kein Anspruch
 auf eine neue GL2-Implementierung oder persoenliche Gesamtkampagnenabnahme.
 
+Auslieferung: Source `683eea53392ecca18434ef2c45a08f96e5e02533` mit den oben
+geprueften drei Binaerdateien gemeinsam in CP08-r1 und CP09-r1 installiert.
+Deployment verifiziert 9086 beziehungsweise 9090 Runtime-Dateien, 9072
+Originaldateien sowie 703 unveraenderte persoenliche Profildateien.
+Nachweis: `generated-local/CP09/lightning-outdoor-final/deployment.json`;
+Rueckbausicherung im dortigen Unterordner `rollback`. Keine Assets oder
+Missionsskripte ersetzt; kein Merge oder persoenliche Gesamtabnahme.
+
 ## 08.11.2026: Blitzwirkung vom vereinfachten Himmel trennen
 
 Die vorherige Sperre schuetzte die Spieleroption, entfernte aber zugleich den
