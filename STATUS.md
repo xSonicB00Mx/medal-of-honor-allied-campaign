@@ -1,3 +1,10 @@
+## 2026-11-08: Aussenfassaden erhalten seitliches Gewitterlicht
+
+- Die senkrechte Dachmaske durch Himmelsbelichtung aus neun Richtungen ersetzt. Fassaden unter Dachueberstaenden blitzen wieder auf; geschlossene Raeume bleiben abgeschirmt, sichtbare Aussenbereiche durch Fenster bleiben beleuchtet.
+- Statische Architektur wird einmal vorbereitet, bewegliche Tueren nur bei Bedarf aktualisiert. Zwischen Blitzen keine Atlasarbeit. Praezise Kontakt-/Normalenpruefungen verhindern Lichtsaeume und falsche dunkle Gelaendestreifen; r_fastsky bleibt Spielerwahl.
+- Finale AA-UHD-, MSAA4-, SH-, BT- und Cache-Pruefungen samt unabhaengiger Bildkontrolle bestanden. Testkamerafehler nach Save/Load korrigiert, keine Pixelgrenze gelockert. Details: checkpoints/CP09/night-sky.md.
+- Source 35276e80 / Engine 4b6b2778 in CP08/CP09 installiert; game/cgame/Assets/Speicherformat unveraendert. 9072 Original- und 9086/9090 Runtime-Dateien verifiziert; alle 703 persoenlichen Dateien unveraendert. Rueckbausicherung vorhanden, kein Merge und keine persoenliche Gesamtabnahme.
+
 ## 2026-11-08: Gewitter blitzen nur in sichtbaren Aussenbereichen
 
 - Ganzbild-Aufhellung durch geometrische Deckenabschirmung ersetzt. Innenraeume und Fensterrahmen bleiben dunkel; sichtbarer Himmel und freie Aussenflaechen blitzen auch beim Blick aus einem Fenster. Normale Nebelfarbe bleibt erhalten, r_fastsky wird nicht umgeschaltet.

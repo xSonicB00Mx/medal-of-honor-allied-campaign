@@ -1,5 +1,22 @@
 # CP09 – Regression und Abnahmekandidat
 
+## Aussenfassaden und geschuetzte Innenraeume bei Gewitter, 08.11.2026
+
+Die reine Dachmaske dunkelte Fassaden unter kleinen Dachueberstaenden ab.
+Neun feste Himmelsrichtungen beruecksichtigen nun auch seitliche Belichtung,
+waehrend vollstaendige Architektur die Innenraeume abschirmt. Nahe Decken-
+kontakte werden geometrisch gesichert; entfernte Kanten bleiben weich.
+Statische Geometrie wird gecacht, zwischen Blitzen erfolgen keine Atlasupdates.
+
+AA-UHD, MSAA4 mit optionalen Schatten/AO aus, SH, BT und 13 Cache-Lebenszyklus-
+faelle bestanden, einschliesslich TAA an/aus, Save/Load, Grafikneustart und
+unabhaengiger Vollbildpruefung. BT-Terrain wird mit fester Kamera geprueft,
+da Save/Load den Spieler aufstehen liess; kein Testgrenzwert wurde gelockert.
+Source 35276e80 / Engine 4b6b2778 in CP08/CP09 installiert. 9072 Originaldateien,
+9086/9090 Runtime-Dateien und 703 unveraenderte persoenliche Dateien verifiziert.
+Rueckbausicherung vorhanden. [Technik, Nachweise und Grenzen](night-sky.md).
+Keine Assets-/Skript-/Speicherformataenderung, kein Merge oder Gesamtspielabnahme.
+
 ## Gewitter mit Innenraumabschirmung, 08.11.2026
 
 Die Ganzbild-Aufhellung ist durch eine geometrische Deckenmaske ersetzt.

@@ -1,5 +1,141 @@
 # Spearhead D-Day: heller Himmel im vereinfachten Modus
 
+## 08.11.2026: Seitliche Himmelsbeleuchtung statt reiner Dachmaske
+
+Die vorherige Innenraumkorrektur war zu restriktiv: Ein einzelner senkrechter
+Strahl behandelte ganze Aussenfassaden unter kleinen Dachueberstaenden wie
+Innenraeume. Die alten Tests konservierten diesen Fehler, weil sie genau diese
+Fassaden als dunkel zu haltende Flaechen einordneten. Das Nutzerfeedback wurde
+an den bestehenden AA-Kameras reproduziert; die Fassade hatte praktisch keine
+Blitzaufhellung.
+
+Die GL1-Wetterdarstellung ermittelt jetzt die sichtbare Himmelsbeleuchtung aus
+neun festen Richtungen (Zenit und acht schräge Richtungen). Vollstaendige,
+zweiseitig gezeichnete Architektur blockiert die Strahlen; Fenster lassen
+sichtbare Aussenbereiche aufleuchten. Die Oberflaechenausrichtung gewichtet
+die Sichtbarkeit, mit einem kleinen diffusen Anteil fuer Blattunterseiten.
+Eine weiche Ueberblendung verhindert das bisherige Alles-oder-nichts-Verhalten
+an Dachueberstaenden. Die Kameraposition entscheidet nicht ueber den ganzen
+Bildschirm. r_fastsky, normale Nebelfarbe, Wetterdauer und HUD bleiben erhalten.
+
+Feste Projektionen ueber das gesamte Level verhindern Blickwinkel- und
+Entfernungsgrenzen. Ein 3x3-Tiefenatlas verwendet normalerweise 2048 Pixel pro
+Richtung, auf Hardware mit kleinerer maximaler Textur 1024. Alle drei benoetigten
+Tiefentexturen werden auf gueltige Framebuffer-Anbindung geprueft; bei fehlender
+Unterstuetzung bleibt der sichere Himmelsblitz. Die statische Architektur wird
+nach Kartenladen oder Grafikneustart einmal aufgebaut. Fuer bewegliche Brush-
+Tueren und Plattformen wird nur dieser Atlas auf der GPU kopiert und mit den
+aktuellen Transformationen ergaenzt. Unveraenderte Szenen verwenden beide
+Atlanten erneut. Explizite Kartenereignisse invalidieren den Cache auch bei
+wiederverwendeter Weltadresse. Der normale Modellschattenpfad bleibt unveraendert.
+
+Eine fruehe Variante mit gleich gewichteten Richtungen erzeugte einen hellen
+Saum am inneren Fensterrahmen und wurde verworfen. Die finale Gewichtung laesst
+die nach aussen orientierte Holzlaibung Licht erhalten, waehrend der zum Raum
+zeigende Rahmen dunkel bleibt. Offline-BSP-Strahlen bestaetigen die getrennten
+Normalen (+X beziehungsweise -Y). Entsprechend pruefen die Tests die wirkliche
+Rahmenflaeche und die wirklichen Fassaden; eine Toroeffnung ist nicht Teil der
+positiven Mauerwerkskontrolle. Belege: `lightning-hemisphere-review`.
+
+Die zusaetzliche BT-Bildkontrolle fand einen dunklen Strassenfleck, obwohl
+grobe Helligkeitskontrollen bereits bestanden. Ursache war keine fehlende
+Himmelsverbindung: Bei flach betrachteten Boeden ueberschritten beide
+Nachbarpixel die bisherige Augentiefen-Grenze, so dass die Normale auf null
+fiel. Der Roh-Tiefenverlauf war dort dagegen exakt linear. Eine begrenzte
+Ebenenpruefung (drei Tiefen-LSB plus zwei Prozent der Steigung) erhaelt nun
+Normale und MSAA-Toleranz auf solchen Flaechen. Fuenf Tiefenproben waehlen
+bevorzugt die Seite, deren Ebene den Mittelpunkt tatsaechlich rekonstruiert.
+An gekruemmten Strassendreiecken muessen alternativ vier aufeinanderfolgende
+Gradienten gleichgerichtet sein und hoechstens um Faktor zwei variieren.
+Echte Objektspruenge bestehen diese Kontinuitaetspruefung nicht. Es wurde
+keine Wand entfernt und kein grosser Tiefenbias hinzugefuegt. Numerische
+Belege: `lightning-hemisphere-bt-depth` und `lightning-hemisphere-review`.
+
+Die vergroesserte Bildkontrolle entdeckte ausserdem schmale helle Pixel direkt
+unter einer Zimmerdecke. Die Atlasfilterung griff dort ueber die Deckenkante.
+Eine konservative 3x3-Abdeckung sichert jetzt nahe Wand-/Deckenkontakte; ihre
+Staerke nimmt in echten Weltabstaenden weich ab. Entfernte Verdeckungsgrenzen
+bleiben bilinear gefiltert, damit Aussenfassaden keine groben Atlas-Treppen
+zeigen. Der Abstand allein reichte nicht: Benachbarte steile Gelaendedreiecke
+wurden faelschlich als Deckenkontakt erkannt. Zusaetzlich muss der Blocker
+oberhalb des Empfaengers liegen und seine aus Atlasnachbarn rekonstruierte
+Flaeche eine Decken-/Dachneigung besitzen. Tieferliegender Boden und steile
+Felswaende aktivieren diese konservative Kontaktbehandlung nicht. Ungueltige
+Atlasrand-/Himmelsnachbarn werden verworfen; die vier Zusatzproben werden nur
+fuer nahe verdeckte Strahlen benoetigt. Nach oben gerichtetes Terrain behaelt
+seine Ebenenfilterung. Die Vergleichstoleranz betraegt nur ein Tiefen-LSB.
+Der Test prueft diese Bereiche pixelgenau, nicht nur anhand unauffaelliger
+Raum-/Strassenmittelwerte.
+
+Ein verbleibender einzelner UHD-Deckenpixel lag durch Tiefenquantisierung
+0.002 Welteinheiten ueber der echten Deckenebene. Die getrennte Hoehenpruefung
+des Kontaktblockers erlaubt deshalb 0.01 Welteinheiten Rundungsabweichung;
+die eigentlichen Tiefenvergleiche/Empfaengerpositionen werden nicht verschoben.
+Die anschliessende strenge UHD-Innenraumpruefung besteht vollstaendig.
+
+Eine letzte BT-Abweichung war dagegen ein Fixturefehler: Save/Load liess den
+Spieler aufstehen, so dass die Kamerahoehe von 2519 auf 2552 stieg. Derselbe
+Bildbereich traf anschliessend andere Strassenstellen, deren seitliche
+Himmelsrichtungen tatsaechlich durch entfernte Geometrie blockiert sind.
+Synchroner Szenen-/Atlasdump und korrekte Normalen schliessen dort den
+frueheren Nullnormalen-/Kontaktfehler aus. Nur die gezielten Terrainkontrollen
+verwenden jetzt ihre fest validierte Kamera (6296,-5600,2519), Winkel
+(0,270,0). Die vorhergehenden Save/Load-/Neustartkontrollen behalten die
+normale Spieleransicht. Kein Pixelgrenzwert wurde dafuer gelockert.
+
+Der Cache-Test deckte ausserdem acht wirklich im Wind schwingende AA-
+Fensterlaeden auf. Ihre laufenden Updates sind korrekt; ein Test auf eine
+unveraenderte Szene darf sie nicht als Fehler werten. Nur in diesem isolierten
+Cache-Test werden diese vorhandenen Laeden ausgeblendet, dann eine echte
+Brush-Tuer geklont, verschoben, gedreht, verborgen, gezeigt und entfernt.
+Die normalen Bildtests behalten alle originalen Fensterlaeden.
+
+Die statische Erstvorbereitung bleibt ausserhalb des ersten Blitzes. Danach
+entfaellt die Fingerprint-/Atlasaktualisierung zwischen Blitzen vollstaendig;
+auch staendig schwingende Laeden verursachen dann keine fortlaufenden
+Atlas-Kopien. Beim naechsten Blitz wird die aktuelle Brush-Pose geprueft und
+bei Bedarf aktualisiert. Der Cache-Test kontrolliert diese Pause und das
+anschliessende Nachziehen einer waehrenddessen verschobenen Tuer.
+
+Finale Nachweise unter `generated-local/CP09/`, alle fuer denselben Build:
+
+| Lauf | Ergebnis |
+|---|---|
+| `lightning-hemisphere-aa-release2` | UHD, vier Innen-/Fenster-/Aussenkameras, beide TAA-Modi, Fassadenabdeckung und Save/Load bestanden. 26 Bilder, 48 Kontrollen. Deckenpixel ohne TAA maximal +2 RGB; Fassadenabdeckung 99.03-100 Prozent. |
+| `lightning-hemisphere-msaa-release2` | Echte MSAA4-Abnahme mit optionalen Modellschatten/AO aus; beide TAA-Modi und gleiche Innen-/Fassadenkontrollen bestanden. |
+| `lightning-hemisphere-sh-release2` | Spearhead-Wetter, normale helle Nebelfarbe, explizite Fastsky-Wahl, TAA, Save/Load, Grafikneustart und kurze Original-Pulsfolge bestanden. |
+| `lightning-hemisphere-bt-release3` | Bestehender e2l2-Save, 22 Wetterfaelle und 14 Terrainkontrollen bestanden. Feste Terrainkamera ohne verdeckenden eigenen Spielerkoerper; NPCs bleiben sichtbar. Strassen-Antwort 0.561-0.609, schwache Pixel maximal 0.43 Prozent bei unveraenderter 1-Prozent-Grenze. |
+| `lightning-hemisphere-cache-release2` | 13 Lebenszyklusfaelle bestanden: Spawn, Versatz, Drehung, Aus-/Einblenden, Entfernen, Pause ohne Blitz, erneuter Blitz, Save/Load und Grafikneustart. Cache-Nachweis allein ist keine Bildabnahme. |
+
+Der nominell bestandene BT-Lauf `lightning-hemisphere-bt-release2` ist als
+Bildnachweis ungueltig: Die feste Kamera sah zunaechst in den eigenen
+Spielerkoerper. Der finale Lauf `release3` blendet ausschliesslich in dieser
+Testphase den eigenen Koerper/das Viewmodel aus. Keine Testschwelle wurde
+gelockert; Vollbilder wurden zusaetzlich unabhaengig kontrolliert.
+Die Puls-Erholung wird mit einer unbeleuchteten Aufnahme derselben Kamera
+verglichen, nicht mit der vorherigen stehenden Spieleransicht.
+
+Alle finalen Laeufe: GL-Fehler null, 703 persoenliche Dateien unveraendert,
+Binärhashes frisch mit den tatsaechlichen Testdateien abgeglichen. Auf der
+Test-GPU (RTX 4090) liegen synchronisierte Effektmessungen meist bei 1-2 ms,
+bei UHD/Brush-Updates maximal 4 ms. Einmalige statische Erstaufbauten werden
+getrennt erfasst (BT 151 ms); zwischen Blitzen faellt keine Atlasarbeit an.
+Die normale 2048er-Konfiguration wurde nativ getestet; der 1024er-Pfad fuer
+aeltere GPUs und absichtlicher VRAM-Mangel wurden nicht nativ erprobt.
+Dies ist gezielte GL1-Regression, keine erneute Gesamtspielabnahme.
+
+Source `35276e80`, Engine
+`4b6b2778c2cae9f64859bdf05b8a3318c8f7c858f0e5e1c6ccb73cc0d57fd1ae`.
+Keine Aenderung an game.dll (`139b51a1`), cgame.dll (`d1cf1e29`), Assets,
+Missionsskripten, Speicherformat oder persoenlichem Kampagnenfortschritt.
+
+Diese Engine ist in CP08-r1 und CP09-r1 installiert. Deployment hat 9072
+Originaldateien sowie 9086/9090 Runtime-Dateien verifiziert; alle 703
+persoenlichen Profildateien blieben unveraendert. Nachweis:
+`generated-local/CP09/lightning-hemisphere-aa-release2/deployment.json`.
+Der dortige Ordner `rollback` enthaelt die vorherige Engine und Manifeste.
+Arbeitsbranch `codex/cp09-regression`; kein Merge in main.
+
 ## 08.11.2026: Gewitter auf sichtbare Aussenbereiche begrenzen
 
 Nutzerfeedback: Der neue Ganzbild-Blitz hellte auch geschlossene Raeume auf.
