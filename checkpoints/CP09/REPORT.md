@@ -1,5 +1,12 @@
 # CP09 – Regression und Abnahmekandidat
 
+## Himmelsoption gegen Missionsskripte geschuetzt, 08.11.2026
+
+Gewitterskripte duerfen r_fastsky nicht mehr als temporaeren Effekt ueberschreiben.
+Explizite Spielerwahl bleibt erhalten; vorhandene Saves profitieren ebenfalls.
+AA/SH/BT gezielt geprueft und game.dll 3d6e1833 in CP08/CP09 installiert.
+Profil auf 0 korrigiert, Spielstaende unveraendert. [Ursache und Nachweise](night-sky.md).
+
 ## Optionsmenue neu gegliedert, 03.11.2026
 
 Interface & Gameplay und Graphics & Effects ersetzen die verstreuten Optionen.

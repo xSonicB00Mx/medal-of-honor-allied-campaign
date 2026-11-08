@@ -52,6 +52,12 @@ Getestete game.dll: 3d6e1833ec1709f903d9177e748ba34224b3a883e14576b2074acf8624fa
 Engine f567924a, cgame, Spielskripte und Assets unveraendert.
 Zusammengefuehrtes Ergebnis: generated-local/CP09/sky-choice-release/result.json.
 
+Auslieferung Source 6ae93008: ausschliesslich game.dll in CP08-r1/CP09-r1
+ersetzt. 9086/9090 Runtime-Dateien und 9072 Originaldateien verifiziert;
+699 persoenliche Dateien beim Deployment unveraendert. Rueckbausicherung und
+Nachweis unter generated-local/CP09/sky-choice-release/{rollback,deployment.json}.
+Kein Merge; keine persoenliche Gesamtspielabnahme vorweggenommen.
+
 Die folgenden Abschnitte dokumentieren die vorherigen Korrekturen.
 
 Ursache: Das persoenliche Profil verwendet `r_fastsky 1`. Der Renderer ersetzte

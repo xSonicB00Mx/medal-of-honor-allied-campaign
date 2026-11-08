@@ -1,3 +1,11 @@
+## 2026-11-08: Himmel bleibt unter Kontrolle des Spielers
+
+- Erneut r_fastsky 1 im AA-Profil/gemeinsamen Preferences gefunden. Wetter-Flash setzt 1, Unflash stellt einen alten Levelwert wieder her; die bisherige Profilkorrektur schuetzte nicht davor.
+- ScriptThread::SetCvarEvent ignoriert jetzt ausschliesslich Skriptzugriffe auf r_fastsky. Standard und persoenliche Einstellung 0; ausdrueckliche Konsolen-/Menuewahl bleibt moeglich. Alte Saves ebenfalls geschuetzt, kein neues Speicherformat.
+- AA m5l1b und SH t1l3 aus bestehenden Saves sowie BT e1l1 geprueft: Wetter, beide Schaltrichtungen, Save/Load, Grafik-/Prozessneustart, gemeinsame Spielerwahl. BT-Missionsskriptmeldungen durch Vergleich mit alter DLL als bereits vorhanden bestaetigt.
+- Source 6ae93008, game.dll 3d6e1833 in CP08-r1/CP09-r1 installiert. 9086/9090 Runtime-Dateien und 9072 Originaldateien verifiziert. Engine/cgame/Assets unveraendert. 699 Profildateien bei Tests/Deployment unveraendert; davor nur zwei r_fastsky-Zeilen mit Sicherung korrigiert, Saves unberuehrt.
+- Nachweise checkpoints/CP09/night-sky.md und generated-local/CP09/sky-choice-release/deployment.json. Kein Merge.
+
 ## 2026-11-03: Options-Seitennavigation eindeutig getrennt
 
 - Nutzerfeedback: spaltenbreite Reiter wirkten wie Spaltenueberschriften. Ersetzt durch eine gemeinsame Navigationsleiste mit PAGE 1 OF 2 / PAGE 2 OF 2, zentriertem Seitentitel und Blaetterpfeilen. Nicht verfuegbare Richtung ist grau und nicht bedienbar.
