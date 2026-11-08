@@ -3077,6 +3077,14 @@ void ScriptThread::MapEvent(Event *ev)
 
 void ScriptThread::SetCvarEvent(Event *ev)
 {
+    // AC: sky quality belongs to the player. Legacy weather scripts temporarily
+    // set fastsky for lightning and restore a saved value afterwards. Both writes
+    // can overwrite a newer player choice or leak into archived/shared settings
+    // on save, shutdown or a map transition. Ignore them at the script boundary,
+    // including resumed threads from existing saves; console/UI writes still work.
+    if (!Q_stricmp(ev->GetString(1), "r_fastsky")) {
+        return;
+    }
     gi.cvar_set(ev->GetString(1), ev->GetString(2));
 }
 
