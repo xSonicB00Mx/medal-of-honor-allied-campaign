@@ -31,6 +31,7 @@ static qboolean collecting, finished, overflow, ready;
 static GLuint framebuffer, maps[2], depthProgram, shadeProgram;
 static byte *blockerVisited;
 static int blockerCapacity, blockerDraws;
+static qboolean weatherRoofPass;
 static cvar_t *enabled, *debug;
 static float AC_Clamp(float v,float lo,float hi) {return v<lo?lo:v>hi?hi:v;}
 
@@ -75,8 +76,16 @@ static const char *vertexShader =
     "void main(){ gl_Position=mvp*gl_Vertex; eyeDepth=gl_Position.w; lightPos=lightMatrix*gl_Vertex; uv=gl_MultiTexCoord0.xy; }\n";
 static const char *depthShader =
     "#version 120\n"
-    "uniform sampler2D skin; uniform float alphaCut; varying vec2 uv;\n"
-    "void main(){if(alphaCut>=0.0 && texture2D(skin,uv).a<alphaCut)discard; gl_FragColor=vec4(1.0);}\n";
+    "uniform sampler2D skin; uniform float alphaCut; uniform float weatherSlopeX; uniform float weatherSlopeY; varying vec2 uv;\n"
+    "void main(){\n"
+    // A steep wall is not an overhead cover. Limit the vertical projection's
+    // condition number to four (|normal.z| >= .25); otherwise a roof texel
+    // spans a long wall strip and produces false jagged cover on cliffs.
+    // Derive the geometric world slope from
+    // depth, including the current brush/static-model transform. This filter
+    // is enabled only for weather; ordinary model shadows keep all geometry.
+    " if(weatherSlopeX>0.0){vec2 slope=vec2(dFdx(gl_FragCoord.z)*weatherSlopeX,dFdy(gl_FragCoord.z)*weatherSlopeY);if(dot(slope,slope)>15.0)discard;}\n"
+    " if(alphaCut>=0.0 && texture2D(skin,uv).a<alphaCut)discard; gl_FragColor=vec4(1.0);}\n";
 static const char *shadowShader =
     "#version 120\n"
     "uniform sampler2D silhouette; uniform sampler2D receiver; uniform float opacity; uniform float blurStep; uniform float fogStart; uniform float fogEnd;\n"
@@ -333,11 +342,30 @@ static qboolean AC_BlockerMaterial(const shader_t *shader) {
     float alpha=-1;
     if(!shader||shader->isSky||(shader->surfaceFlags&SURF_NODRAW)
         ||shader->sort<SS_OPAQUE||shader->sort>SS_SEE_THROUGH)return qfalse;
+    if(weatherRoofPass&&(shader->surfaceFlags&SURF_FOLIAGE))return qfalse;
     stage=shader->unfoggedStages[0];if(!stage)return qfalse;
     if((stage->stateBits&(GLS_SRCBLEND_BITS|GLS_DSTBLEND_BITS))
         &&!(stage->stateBits&GLS_DEPTHMASK_TRUE))return qfalse;
     if(stage->stateBits&GLS_ATEST_GE_80)alpha=0.5f;
     else if(stage->stateBits&GLS_ATEST_GT_0)alpha=0.01f;
+    // Non-solid wire/fence cards are not ceilings. Their broad transparent
+    // quads can otherwise cast coarse roof-grid stripes across a whole hill.
+    // Test the explicit parsed flags: render shaders do not default to SOLID.
+    if(weatherRoofPass&&alpha>=0.0f
+        &&((shader->surfaceFlags&SURF_NONSOLID)||(shader->contentFlags&CONTENTS_FENCE)))return qfalse;
+    if(weatherRoofPass) {
+        // The weather field represents covering undersides, not ordinary
+        // object shadows. Upward terrain/roof skins must not occlude their own
+        // visible surface (especially curved BSP patches at different LODs).
+        // MOHAA's default visible faces are clockwise: from above, a covering
+        // underside has the opposite winding. Preserve authored two-sided
+        // covers such as tent cloth, which have no separate underside mesh.
+        if(shader->cullType==CT_TWO_SIDED)qglDisable(GL_CULL_FACE);
+        else {
+            qglEnable(GL_CULL_FACE);
+            qglCullFace(shader->cullType==CT_BACK_SIDED?GL_FRONT:GL_BACK);
+        }
+    }
     qglBindTexture(GL_TEXTURE_2D,stage->bundle[0].image[0]?stage->bundle[0].image[0]->texnum:tr.whiteImage->texnum);
     acUniform1f(acGetUniformLocation(depthProgram,"alphaCut"),alpha);
     return qtrue;
@@ -411,6 +439,17 @@ static void AC_DrawLevelBlockers(const float *light,const vec3_t lo,const vec3_t
         const dtiki_t *tiki=sm->tiki;dtikisurface_t *ds;vec3_t center,mins,maxs;
         float scale,transform[16]={0},mvp[16];int mesh;
         if(!tiki)continue;
+        if(weatherRoofPass) {
+            const char *name=COM_SkipPath(sm->model);
+            // Authored vegetation is not an enclosed room. Leaf/branch cards
+            // otherwise classify each other as ceilings and create binary
+            // speckling during a sky-wide ambient flash. Keep these models in
+            // ordinary model-shadow occlusion; omit them only from this mask.
+            if(!Q_stricmpn(name,"tree",4)||!Q_stricmpn(name,"bush",4)
+                ||!Q_stricmpn(name,"shrub",5)||!Q_stricmpn(name,"grass",5)
+                ||!Q_stricmpn(name,"plant",5)||!Q_stricmpn(name,"hedge",5)
+                ||!Q_stricmpn(name,"palm",4))continue;
+        }
         scale=tiki->load_scale*sm->scale;VectorCopy(sm->origin,center);
         for(j=0;j<3;j++)VectorMA(center,tiki->load_origin[j]*scale,sm->axis[j],center);
         for(j=0;j<3;j++){mins[j]=center[j]-sm->cull_radius;maxs[j]=center[j]+sm->cull_radius;}
@@ -463,6 +502,37 @@ static void AC_DrawLevelBlockers(const float *light,const vec3_t lo,const vec3_t
     qglVertexPointer(3,GL_FLOAT,sizeof(vertices[0]),vertices[0].xyz);
     qglTexCoordPointer(2,GL_FLOAT,sizeof(vertices[0]),vertices[0].uv);
 }
+
+/* Weather uses the same view-independent architectural blockers, even with
+ * model shadows/AO disabled. The caller owns its framebuffer and all GL state.
+ * Dynamic actors are deliberately absent: a character's own head must not be
+ * mistaken for a building roof over the rest of its body. */
+int RB_ACDrawWorldOccluders(const float *matrix,const vec3_t mins,const vec3_t maxs) {
+    int previousDraws=blockerDraws,draws;
+    GLint viewport[4];
+    if(!ready||!tr.world)return -1;
+    acUseProgram(depthProgram);
+    acUniform1i(acGetUniformLocation(depthProgram,"skin"),0);
+    qglActiveTextureARB(GL_TEXTURE0_ARB);
+    qglClientActiveTextureARB(GL_TEXTURE0_ARB);
+    qglDisableClientState(GL_COLOR_ARRAY);qglDisableClientState(GL_NORMAL_ARRAY);
+    qglEnableClientState(GL_VERTEX_ARRAY);qglEnableClientState(GL_TEXTURE_COORD_ARRAY);
+    qglGetIntegerv(GL_VIEWPORT,viewport);
+    acUniform1f(acGetUniformLocation(depthProgram,"weatherSlopeX"),
+        (maxs[2]-mins[2])*viewport[2]/fmaxf(maxs[0]-mins[0],1.0f));
+    acUniform1f(acGetUniformLocation(depthProgram,"weatherSlopeY"),
+        (maxs[2]-mins[2])*viewport[3]/fmaxf(maxs[1]-mins[1],1.0f));
+    blockerDraws=0;
+    weatherRoofPass=qtrue;
+    AC_DrawLevelBlockers(matrix,mins,maxs);
+    weatherRoofPass=qfalse;
+    acUniform1f(acGetUniformLocation(depthProgram,"weatherSlopeX"),0.0f);
+    acUniform1f(acGetUniformLocation(depthProgram,"weatherSlopeY"),0.0f);
+    qglDisable(GL_CULL_FACE);
+    draws=blockerDraws;blockerDraws=previousDraws;
+    return draws;
+}
+
 void RB_ACShadowFinish(void) {
     GLint oldFbo,oldProgram,oldDraw,oldRead;int i,j,pass,drawn=0,start=0;float camera[16];
     if(finished)return;finished=qtrue;

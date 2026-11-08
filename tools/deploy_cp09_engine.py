@@ -23,6 +23,8 @@ if a.options_only: a.options_layout = True
 assert not (a.game_only and (a.options_layout or a.cgame or a.game))
 assert re.fullmatch(r'[a-zA-Z0-9-]+', a.run)
 report = json.loads((R/'generated-local/CP09'/a.run/'result.json').read_text())
+assert report.get('passed') is True, 'Native acceptance must pass before deployment'
+assert report.get('acceptance_eligible', True) and not report.get('survey', False), 'Diagnostic/survey runs are not acceptance'
 engine = R/'build-local/cp00-r3/RelWithDebInfo/openmohaa.exe'
 assert digest(engine)==report['engine_sha256'], 'Test the exact engine first'
 game = engine.with_name('game.dll')

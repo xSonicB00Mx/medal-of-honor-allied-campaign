@@ -1191,9 +1191,12 @@ void CG_ModelAnim(centity_t *cent, qboolean bDoShaderTime)
         dtiki_t     *tiki;
 
         parent = cgi.R_GetRenderEntity(cent->currentState.parent);
-        if (!parent) {
+        // A save screenshot/camera update can leave a render slot for a hidden
+        // parent without its skeletal model. A non-null slot alone is not a
+        // valid tag attachment; wait for the parent's model on the next frame.
+        if (!parent || !parent->tiki || !cgi.R_Model_GetHandle(parent->hModel)) {
             if (developer->integer > 1) {
-                cgi.DPrintf("CG_ModelAnim: Could not find parent entity\n");
+                cgi.DPrintf("CG_ModelAnim: Could not find skeletal parent entity\n");
             }
 
             return;

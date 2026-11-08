@@ -1,5 +1,17 @@
 # CP09 – Regression und Abnahmekandidat
 
+## Gewitter mit Innenraumabschirmung, 08.11.2026
+
+Die Ganzbild-Aufhellung ist durch eine geometrische Deckenmaske ersetzt.
+Innenraeume bleiben dunkel, waehrend Himmel und freie Aussenbereiche durch
+Fenster sichtbar blitzen. Spielerwahl r_fastsky und Speicherformat bleiben
+unveraendert. Streifen an Felsen und ein schmaler UHD-Moebel-Lichtsaum wurden
+gezielt reproduziert und korrigiert.
+Finale AA/SH/BT-, UHD-/MSAA-/TAA-, Save/Load-, Grafikneustart- und Altspielstand-
+Pruefungen bestanden; 703 persoenliche Profildateien unveraendert. Kandidat
+Engine ca661d55 / game 139b51a1 / cgame d1cf1e29, Installation nach Integritaets-
+pruefung. [Technik und Nachweise](night-sky.md). Kein Merge oder Gesamtspielabnahme.
+
 ## Gewitter mit vollstaendigem Himmel, 08.11.2026
 
 Blitze haben einen eigenen kurzzeitigen Renderzustand: Himmel und 3D-Szene

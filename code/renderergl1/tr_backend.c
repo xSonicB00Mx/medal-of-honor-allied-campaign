@@ -25,10 +25,11 @@ backEndData_t	*backEndData;
 backEndState_t	backEnd;
 
 
-// Shared scene boundary: complete temporal rendering, then weather exposure.
+// Expose the original scene before temporal reconstruction, so its depth mask
+// and color share the exact same jitter. Lightning transitions reset history.
 static void RB_FinishSceneEffects(void) {
-    RB_ACTemporalFinish();
     RB_ACLightningFinish();
+    RB_ACTemporalFinish();
 }
 
 static float	s_flipMatrix[16] = {

@@ -17,15 +17,19 @@ R = Path(__file__).resolve().parents[1]
 ap = argparse.ArgumentParser()
 ap.add_argument('run')
 ap.add_argument('--installed', action='store_true', help='Capture the previous renderer for comparison')
+ap.add_argument('--dump-depth', action='store_true', help='Diagnostic roof/scene depth readback; not acceptance')
 ap.add_argument('--width', type=int, default=1920)
 ap.add_argument('--height', type=int, default=1080)
 ap.add_argument('--game', type=int, choices=[0, 1, 2], default=0)
+ap.add_argument('--aa-exterior-camera', action='store_true',
+                help='Use a fixed m5l1b exterior camera instead of the saved player view')
 ap.add_argument('--save', help='Existing save basename to copy, instead of the default QA start')
 ap.add_argument('--baseline-error-log', type=Path,
                 help='Old-DLL control log for matching existing BT mission script errors')
 a = ap.parse_args()
 assert re.fullmatch(r'[A-Za-z0-9-]+', a.run)
 assert a.save is None or re.fullmatch(r'[A-Za-z0-9_-]+', a.save)
+assert not a.aa_exterior_camera or a.game == 0
 out = R/'generated-local/CP09'/a.run
 out.mkdir(parents=True, exist_ok=False)
 p = R/'profiles-local/CP09'/a.run
@@ -67,8 +71,21 @@ if a.save:
  level.ac_lightning_probe_running = 1
  level.thundertime = 99999
  println ("AC_LIGHTNING_PROBE base=" + level.farplane_color)
+ // An archived thunder wait is already scheduled: changing its next delay
+ // cannot cancel it. WCR's maximum normal wait is 20*2.5 seconds, followed by
+ // less than five seconds of pulses. Drain that finite remainder in AA.
+ println ("AC_LIGHTNING_SETTLE_BEGIN time=" + level.time)
+ local.settle_until = level.time + QA_SETTLE_SECONDS
+ while (level.time < local.settle_until)
+ {
+  level.thundertime = 99999
+  waitthread global/weather.scr::unflash
+  waitframe
+ }
+ println ("AC_LIGHTNING_SETTLE_END time=" + level.time)
  while (level.ac_lightning_probe_running == 1)
  {
+  level.thundertime = 99999
   if (level.ac_lightning_probe_mode == 1)
   {
    waitthread global/weather.scr::flash
@@ -84,7 +101,7 @@ if a.save:
   waitframe
  }
 end
-''')
+'''.replace('QA_SETTLE_SECONDS', '55' if a.game == 0 else '0'))
 for label, mode in [('off', 0), ('on', 1), ('plain_fog', 2)]:
     (h/f'lightning_{label}.scr').write_text(
         f'main:\n level.ac_lightning_probe_mode = {mode}\n'
@@ -94,6 +111,16 @@ for label, mode in [('off', 0), ('on', 1), ('plain_fog', 2)]:
 # because of the pre-existing WCR spawn errors documented by the control run.
 # Remove only that cinematic overlay in this isolated visual QA profile.
 (h/'lightning_clearfade.scr').write_text('main:\n clearfade\nend\n')
+if a.aa_exterior_camera:
+    (h/'lightning_camera.scr').write_text('''main:
+ $player.origin = ( 700 401 782 )
+ level.ac_lightning_camera = spawn Camera
+ level.ac_lightning_camera.origin = ( 700 401 782 )
+ level.ac_lightning_camera.angles = ( 0 180 0 )
+ level.ac_lightning_camera fov 90
+ cuecamera level.ac_lightning_camera
+end
+''')
 
 # Mirror thunder variant 1's finite timing, using the original flash/unflash
 # entry points. Calling thunder itself would leave another endless random loop.
@@ -125,11 +152,12 @@ end
 cmd = ['wait 800', 'map e1l1' if a.game == 2 and not a.save else 'loadgame reference',
        'wait 5000', 'finishloadingscreen',
        'wait 1000', 'god', 'notarget', 'seta r_fastsky 0',
-       'set r_acLightningDebug 1', 'set r_acObjectMotionBlur 0',
+       f'set r_acLightningDebug {3 if a.dump_depth else 1}', 'set r_acObjectMotionBlur 0',
        # Fixed QA HUD geometry for the opaque compass pixel assertion below.
        'set ac_hud_scale 1.5', 'set ac_hud_safe 1', 'set ui_compass_scale 0.55',
        'script player exec lightning_clearfade.scr' if a.game == 2 and not a.save else 'wait 1',
-       'script player exec lightning_fixture.scr', 'wait 800']
+       'script player exec lightning_camera.scr' if a.aa_exterior_camera else 'wait 1',
+       'script player exec lightning_fixture.scr', 'wait 60000' if a.game == 0 else 'wait 800']
 cases = []
 
 def capture(label, mode, fastsky=0, taa=1, extra=None):
@@ -156,6 +184,12 @@ capture('loaded-unflash', 'off')
 capture('restart-flash', 'on', extra=['vid_restart', 'wait 3500',
         'finishloadingscreen', 'wait 700'])
 capture('restart-unflash', 'off')
+if a.game == 2 and a.save == 'e2l20000':
+    # This archived briefing starts with an animated fade. Compare surfaces
+    # after it has completed, in both temporal modes and without moving actors.
+    for taa in [0, 1]:
+        for phase, mode in [('before', 'off'), ('flash', 'on'), ('after', 'off')]:
+            capture(f'terrain-taa{taa}-{phase}', mode, taa=taa)
 cmd += ['echo AC_LIGHTNING_PULSES_BEGIN', 'script player exec lightning_pulses.scr',
         'wait 2000', 'echo AC_LIGHTNING_PULSES_END']
 capture('pulse-recovered', 'off')
@@ -171,13 +205,16 @@ for k, v in dict(com_target_game=a.game, fs_basepath=rt, fs_homepath=p,
                  com_maxfpsUnfocused=60).items():
     args += ['+set', k, str(v)]
 try:
-    proc = subprocess.run(args+['+exec', 'probe.cfg'], cwd=b, timeout=100,
+    proc = subprocess.run(args+['+exec', 'probe.cfg'], cwd=b, timeout=180,
                           stdout=subprocess.DEVNULL, stderr=subprocess.STDOUT)
 finally:
     assert snapshot() == before, 'Personal profile changed'
 log = (h/'qconsole.log').read_text(encoding='latin1')
 (out/'qconsole.log').write_text(log, encoding='latin1')
 assert proc.returncode == 0 and 'AC_LIGHTNING_PROBE_DONE' in log
+settle_begin = float(re.search(r'AC_LIGHTNING_SETTLE_BEGIN time=([0-9.]+)', log)[1])
+settle_end = float(re.search(r'AC_LIGHTNING_SETTLE_END time=([0-9.]+)', log)[1])
+assert settle_end - settle_begin >= (54.99 if a.game == 0 else 0)
 assert 'Script file compile error' not in log
 def script_errors(text):
     location = ''
@@ -237,6 +274,10 @@ for case, shot in zip(cases, shots):
     im.save(dest)
     # Summaries aid inspection; actual before/after screenshots remain evidence.
     sky = im.crop((a.width//4, 0, a.width*3//4, a.height//5))
+    if a.aa_exterior_camera:
+        # Native-verified clear sky; the broad crop also contains a nearby tree.
+        sky = im.crop(tuple(round(v * (a.width / 1920 if i % 2 == 0 else a.height / 1080))
+                            for i, v in enumerate((1300, 30, 1450, 180))))
     world = im.crop((a.width//4, a.height//3, a.width*3//4, a.height*2//3))
     case.update(image=dest.relative_to(R).as_posix(),
                 sky_mean=sum(ImageStat.Stat(sky).mean)/3,
@@ -270,15 +311,47 @@ if not a.installed:
         flash = indexed[f'taa{taa}-flash']
         after_case = indexed[f'taa{taa}-after']
         assert flash['sky_mean'] > before_case['sky_mean'] + 15
-        assert flash['world_mean'] > before_case['world_mean'] + 15
+        # Only exposed world pixels should flash. A minimum whole-scene
+        # brightness increase could require the indoor regression we fixed.
+        # Window/interior masking has its own spatial pixel test.
         assert abs(after_case['sky_mean'] - before_case['sky_mean']) < 15
     assert abs(indexed['pulse-recovered']['sky_mean'] -
                indexed['restart-unflash']['sky_mean']) < 15
+terrain_checks = []
+if not a.installed and not a.dump_depth and a.game == 2 and a.save == 'e2l20000':
+    # Depth readback proves the first patch is a coplanar downward rock face,
+    # and the others are exposed terrain. A broad "all slopes must light"
+    # assertion was incorrect. Check both protected and exposed pixels, so
+    # alternating covered/lit triangles cannot hide in whole-image averages.
+    for taa in [0, 1]:
+        base_image = Image.open(out/f'terrain-taa{taa}-before.png').convert('RGB')
+        flash_image = Image.open(out/f'terrain-taa{taa}-flash.png').convert('RGB')
+        for kind, box1080 in [('covered', (1580, 550, 1660, 570)),
+                              ('exposed', (300, 220, 370, 315)),
+                              ('exposed', (1460, 370, 1500, 380)),
+                              ('exposed', (1600, 480, 1680, 500)),
+                              ('exposed', (1300, 750, 1500, 850))]:
+            box = tuple(round(v * (a.width / 1920 if i % 2 == 0 else a.height / 1080))
+                        for i, v in enumerate(box1080))
+            base_pixels = list(base_image.crop(box).get_flattened_data())
+            flash_pixels = list(flash_image.crop(box).get_flattened_data())
+            delta = [(sum(f)-sum(b))/3 for b, f in zip(base_pixels, flash_pixels)]
+            bad = sum(abs(v) > 10 if kind == 'covered' else v < 10 for v in delta)
+            fraction = bad / len(delta)
+            mean_delta = sum(delta) / len(delta)
+            terrain_checks.append(dict(taa=taa, kind=kind, box=box,
+                                       mean_delta=mean_delta, incorrect_fraction=fraction,
+                                       maximum_incorrect_fraction=0.01))
+            assert fraction <= 0.01, ('BT terrain classification is discontinuous', taa, kind, box, fraction)
+            assert abs(mean_delta) <= 3 if kind == 'covered' else mean_delta >= 15
 result = dict(passed=True, installed_baseline=a.installed, cases=cases,
-              pulses=pulses, hud_checks=hud_checks,
+              acceptance_eligible=not a.installed and not a.dump_depth,
+              pulses=pulses, hud_checks=hud_checks, terrain_checks=terrain_checks,
               incoming_gl_errors=incoming_gl_errors(log),
               pulse_scope='Finite thunder variant 1 timing through original flash/unflash; no added random thunder thread',
               game=folder, reference_save=a.save, preexisting_script_errors=sorted(errors),
+              aa_exterior_camera=a.aa_exterior_camera,
+              settled_weather_seconds=settle_end-settle_begin,
               engine_sha256=sha(b/'openmohaa.exe'), game_sha256=sha(b/'game.dll'),
               cgame_sha256=sha(b/'cgame.dll'), personal_files_unchanged=len(before))
 (out/'result.json').write_text(json.dumps(result, indent=2)+'\n')

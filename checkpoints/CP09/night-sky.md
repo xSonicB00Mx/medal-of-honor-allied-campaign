@@ -1,5 +1,149 @@
 # Spearhead D-Day: heller Himmel im vereinfachten Modus
 
+## 08.11.2026: Gewitter auf sichtbare Aussenbereiche begrenzen
+
+Nutzerfeedback: Der neue Ganzbild-Blitz hellte auch geschlossene Raeume auf.
+Eine erste Beschraenkung auf Himmelstiefe beseitigte den starken Weissblend,
+liess aber in AA noch 7-9 RGB-Stufen Nebelaufhellung im Raum uebrig. Der
+Native-Vergleich mit deaktiviertem Nebel isoliert diese zweite Ursache:
+Innenflaechen dann exakt unveraendert, Himmel durch das Fenster weiterhin hell.
+AA setzt in `CG_ParseFogInfo_ver_6` absichtlich Bias 0.001 statt 0; deshalb
+greift der 18-Prozent-Nebelbeginn des Renderers hier nicht.
+
+`World::UpdateFog` uebertraegt waehrend eines erkannten Gewitterblitzes nun
+die normale gespeicherte Nebelfarbe. Die eigentliche Welt-/Skriptfarbe bleibt
+unangetastet: alte Flash-/Unflash-Skripte und Saves mitten im Blitz behalten
+ihre Bedeutung. Einzelne RGB-Komponenten muessen gueltig sein. Normale helle
+Nebelfarben ausserhalb eines Blitzes werden weiterhin unveraendert uebertragen.
+Das Speicherformat und die Engine/cgame-Schnittstelle aendern sich nicht.
+
+Die GL1-Aufhellung benutzt jetzt die echte Szenentiefe und eine feste
+4096er Tiefenkarte der ueberdeckenden Decken des Levels. BSP, statische Architekturmodelle und
+bewegliche Brush-Tueren werden unabhaengig von Kamerasicht/PVS beruecksichtigt.
+Vegetationsmaterialien und die bekannten Baum-/Buschmodellfamilien werden
+nur in diesem Wetterpass ausgeschlossen: Blattwerk darf kein Gebaeudedach
+simulieren. Alpha-getestete, explizit nicht solide Draht-/Zaunkarten werden
+ebenfalls ausgeschlossen. Einseitige Materialien tragen nur ihre Unterseiten
+bei, damit obere Hang-/Dachflaechen nicht selbst zu Decken werden; echte
+zweiseitige Abdeckungen wie Zeltstoff bleiben erhalten. Der normale
+Modellschattenpfad bleibt unveraendert. Ein kleiner
+Versatz zur sichtbaren Flaechenseite unterscheidet Fassade und Innenwand;
+die Dachhoehentoleranz bleibt 0.5 Welteinheiten. Dachueberstaende schuetzen
+auch darunterliegende Aussenflaechen. Keine ortsweite Umschaltung anhand der
+Spielerposition und keine CPU-Strahlen pro Bildpunkt.
+
+Die Aufhellung liegt jetzt vor der zeitlichen Aufloesung, damit Bild und
+Verdeckungsmaske gemeinsam vom TAA-Jitter befreit werden. Die bereits vorhandene
+History-Invalidierung an Blitzflanken verhindert Nachleuchten. MSAA verwendet
+eine begrenzte Tiefenebenen-Toleranz mit Sprungpruefung; der Himmel bleibt auf
+exakter Ferntiefe. So werden schräge Aeste nicht streifig und Fensterrahmen
+nicht ueberblendet. Shader/Speicher werden beim ersten Weltbild vorbereitet;
+der zusaetzliche Geometriepass laeuft nur waehrend eines Blitzes. Fehlt die
+benoetigte GL-Unterstuetzung, bleibt ein sicherer, tiefengepruefter Himmelsblitz.
+
+Regression: `tools/test_lightning_outdoor.py` verwendet vier in nativen
+Screenshots bestaetigte m5l1b-Kameras: geschlossener Raum, intaktes Fenster,
+Aussenansicht und zerbrochenes Fenster. Innenwaende/Fensterrahmen duerfen
+hoechstens 3 RGB-Stufen abweichen; sichtbarer Aussenhimmel UND Aussenmauerwerk
+muessen mindestens 10 Stufen heller werden. TAA aus/an, Save/Load und optional
+MSAA werden getrennt geprueft. Zwei anfangs als freie Fassaden gewaehlte
+Aussenbereiche liegen nach BSP-Strahlpruefung unter 16-24 Einheiten breiten
+Dachueberstaenden. Sie bleiben als abgeschattete Negativkontrollen erhalten;
+eine nachweislich freie Dachflaeche ist die zusaetzliche Positivkontrolle.
+Diagnose-/Survey-Laeufe sind keine Abnahme und werden vom Deployment abgewiesen.
+
+Zwischenstand `lightning-outdoor-r3`: 26 Aufnahmen mit MSAA4, TAA an/aus, optionalen
+Modellschatten/AO ausgeschaltet sowie Save/Load bestanden. Innenbereiche
+maximal 0.42 RGB-Stufen Abweichung; sichtbarer Himmel mindestens +70.85,
+freie Aussenflaechen mindestens +31.09. Verdeckte Fassaden maximal 1.66.
+726 aktive Blitzbilder: zusaetzlicher Pass im Median 2 ms, maximal 4 ms
+auf dem Testrechner, einschliesslich GPU-Synchronisation zur Messung.
+GL-Fehler und vorher anstehende Fehler jeweils 0; 703 Profildateien unveraendert.
+
+Die anschliessende BT-Bildkontrolle fand Streifen und Dreiecke, die grosse
+Helligkeitsmittelwerte uebersehen hatten. Ein unmaskierter Diagnosevergleich
+isolierte die Deckenklassifikation. Der Tiefenreadback bewies: Die betroffene
+Felsunterseite und der abgetastete Deckenwert gehoerten zur gleichen Ebene
+(Abweichung nur 0.006-0.033 Welteinheiten). Die Korrektur zum Texelzentrum war
+aber auf positive Z-Normalen beschraenkt. Sie gilt jetzt symmetrisch fuer
+|Normalen-Z| ueber 0.25; die Schutzluecke ist dadurch konstant etwa 3.87 statt
+wechselnd 0.85-7.37 Einheiten. Kein erhoehter globaler Bias oder Min-Filter.
+Echte Felsunterseiten bleiben gleichmaessig abgeschirmt, freie Hang-/Boden-
+flaechen blitzen. Die BT-Pixelpruefung kontrolliert beide Faelle nach Ende
+des archivierten Einblend-Fades, jeweils mit TAA an/aus.
+Steile Wandflaechen mit |Normalen-Z| unter 0.25 werden nur im Wetter-
+Tiefenpass verworfen: ihre subtexelbreiten Fussabdruecke erzeugten sonst
+isolierte schwarze Schlitze. Die Steigung stammt aus geometrischer Tiefe
+und Weltmassstab, einschliesslich Modell-/Tueren-Transformation. Die zwei
+Wetteruniforms werden anschliessend auf 0 gesetzt; regulaere Modellschatten
+verwenden weiterhin alle bisherigen Flaechen.
+
+Vier Tiefenproben glaetten die Verdeckungsgrenze per bilinearer Sichtbarkeit,
+nicht per gemischter Dachhoehe. Jede Probe erhaelt ihre eigene Ebenenkorrektur.
+Eine sichtbare Unterseite kann ihre eigene Abdeckung zudem analytisch erkennen:
+Ihr Abstand zur gleichen Strukturebene betraegt nach dem 2-Einheiten-Normal-
+versatz exakt -2/Normalen-Z. Ein Treffer innerhalb 0.125 Welteinheiten in einem
+der vier Nachbartexel rekonstruiert diese Abdeckung auch an Rasterkanten.
+Damit verschwinden die regelmaessigen Zacken am nahen Felsueberhang, ohne
+andere Flaechen durch einen groesseren globalen Tiefenbias zu verdunkeln.
+
+Eine zusaetzliche UHD-Kantenpruefung fand trotz kleiner Raum-Mittelwerte eine
+ein Pixel breite helle Naht am Paravent. Der Tiefenabzug zeigte eine echte
+Innenwand, keinen Kartenspalt: Die rechte Nachbarprobe sprang 36.989 Einheiten
+zum Paravent. Quad-Ableitungen erfanden daraus eine nach aussen gerichtete
+Normale und 68.7 Prozent Sichtbarkeit. Die Normalenberechnung waehlt nun pro
+Achse den naechsten zusammenhaengenden Tiefennachbarn; bei zwei ungueltigen
+Nachbarn bleibt der Normalenversatz 0. Der schmale Nahtbereich ist als eigene
+Negativkontrolle im Fenster-/Innenraumtest enthalten.
+
+`r_acLightningDebug 3` ermoeglicht einen einmaligen lokalen Tiefenreadback
+pro Grafik-Kontext zur Diagnose. Normale Tests benutzen Wert 1, Spieler
+standardmaessig 0; der Diagnosemodus ist keine Auslieferungsabnahme.
+
+Beim Save-Screenshot eines fruehen Testlaufs trat ein separater Nullzugriff
+auf: ein ausgeblendeter Spieler hatte einen Renderplatz, aber keinen gueltigen
+Skelettzeiger. Minidump: CG_AttachEntity -> RE_TIKI_Orientation ->
+TIKI_GetSkeletor(NULL). CG_ModelAnim prueft jetzt auch das Eltern-Skelett und
+den Modellhandle, bevor Tags ausgewertet werden; der Anhang wartet andernfalls
+einen Frame. Die normalen Ego-/Zoom-Modelle behalten diese gueltigen Zeiger.
+Weitere Save/Load-Laeufe bestanden. Keine Aenderung am Saveformat.
+
+Die unten beschriebene Ganzbildmischung ist der historische Vorlaeufer und
+wird durch diese Innenraumkorrektur ersetzt.
+
+Finale native Nachweise in `generated-local/CP09`:
+
+- `lightning-outdoor-final`: 26 UHD-Aufnahmen, vier Kameras, TAA an/aus und
+  Save/Load bestanden. Innenkontrollen einschliesslich schmaler Paraventkante
+  maximal 1.29 RGB-Stufen MAD, geschuetzte Fassaden maximal 0.98. Sichtbarer
+  Himmel mindestens +70.87, freie Geometrie mindestens +28.01. Der zuvor
+  fehlerhafte Kantenspalt ist ohne TAA exakt unveraendert; der ganze geschlossene
+  Raum hat dann maximal 2 RGB-Stufen Pixelabweichung. Visuell keine weisse Naht.
+- `lightning-msaa-final`: gleiche 26 Aufnahmen mit echtem MSAA4 bei 1080p,
+  Modellschatten/AO explizit ausgeschaltet. Innenkontrollen maximal 1.95 MAD,
+  Fassaden maximal 1.97; Himmel mindestens +70.89, freie Geometrie +28.06.
+- `lightning-bt-final`: e2l2, TAA an/aus, kurze Originalpulse, normales helles
+  Nebelbild als Negativkontrolle, explizites Fastsky, Save/Load und Grafikneustart.
+  Zusaetzliche spaete Pixelkontrollen unterscheiden Felsunterseite, steile
+  offene Waende und freie Boeden; keine Streifen-/Zackenmuster in der Bildkontrolle.
+- `lightning-sh-final`: gleiche Wetter-/TAA-/Save-/Grafikneustartkontrollen
+  in Spearhead bestanden, ohne neue Skript- oder GL-Fehler.
+- `lightning-legacy-final`: auf der alten game-DLL 3d6e1833 mitten im echten
+  BT-Blitz gespeichert; finaler Kandidat stellt den Zustand ohne erneuten
+  Flash-Aufruf wieder her und beendet ihn korrekt. Die alte Eingabe bleibt
+  unveraendert. Engine-/cgame-/game-Hashes entsprechen dem finalen Kandidaten.
+- Der synchronisierte Blitzpass benoetigte im finalen UHD-Lauf bei 724 aktiven
+  Bildern 3 ms Median / 5 ms Maximum; im MSAA-Lauf 3 / 4 ms bei 733 Bildern.
+  Das sind Messwerte dieses Rechners mit Debug-Synchronisation, keine allgemeine
+  Leistungszusage. Kein zusaetzlicher Geometriepass ausserhalb des Blitzes.
+
+Alle finalen Laeufe verwenden Engine `ca661d557584a447c7d61694b72b0b3c7558c1f90f8124cffc6ad34967ea9e5f`,
+game `139b51a1d9bbd20b114e53f58aa8a64f262798e69265136e75a50f880f3ee057` und
+cgame `d1cf1e29120439810254f65e1fefd34129e8a3b6209daf37d2d8efbe18cc39bb`.
+GL-Fehler und vorher anstehende Fehler sind 0; 703 persoenliche Profildateien
+bleiben hashgleich. Geprueft wurde der ausgelieferte GL1-Pfad; kein Anspruch
+auf eine neue GL2-Implementierung oder persoenliche Gesamtkampagnenabnahme.
+
 ## 08.11.2026: Blitzwirkung vom vereinfachten Himmel trennen
 
 Die vorherige Sperre schuetzte die Spieleroption, entfernte aber zugleich den

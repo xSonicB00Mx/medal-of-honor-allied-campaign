@@ -2027,6 +2027,7 @@ void RB_ACShadowBegin(void);
 void RB_ACShadowCapture(void);
 void RB_ACShadowFinish(void);
 void RB_ACDrawCapturedScene(GLint alphaCut);
+int RB_ACDrawWorldOccluders(const float *matrix, const vec3_t mins, const vec3_t maxs);
 void R_ACTemporalInit(void);
 void R_ACTemporalShutdown(void);
 void R_ACTemporalReset(void);

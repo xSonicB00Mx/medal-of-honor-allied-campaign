@@ -19,6 +19,8 @@ OLD_GAME_SHA = '3d6e1833ec1709f903d9177e748ba34224b3a883e14576b2074acf8624fa590c
 ap = argparse.ArgumentParser()
 ap.add_argument('run')
 ap.add_argument('--old-runtime', type=Path, default=R/'runtime-local/CP09-r1')
+ap.add_argument('--asset-runtime', type=Path, default=R/'runtime-local/CP09-r1',
+                help='Read-only game assets; old-runtime may contain only archived binaries')
 ap.add_argument('--width', type=int, default=1920)
 ap.add_argument('--height', type=int, default=1080)
 a = ap.parse_args()
@@ -118,9 +120,9 @@ def launch(stage, commands, labels):
     (h/'legacy_probe.cfg').write_text('\n'.join(commands)+'\n')
     b = bins[stage]
     args = [str(b/'openmohaa.exe')]
-    values = dict(com_target_game=2, fs_basepath=a.old_runtime, fs_homepath=p,
-                  fs_steampath=a.old_runtime, fs_gogpath=a.old_runtime,
-                  fs_microsoftstorepath=a.old_runtime, net_enabled=0,
+    values = dict(com_target_game=2, fs_basepath=a.asset_runtime, fs_homepath=p,
+                  fs_steampath=a.asset_runtime, fs_gogpath=a.asset_runtime,
+                  fs_microsoftstorepath=a.asset_runtime, net_enabled=0,
                   logfile=2, developer=1, cheats=1, thereisnomonkey=1,
                   ac_campaign_mode=1, cl_playintro=0, r_fullscreen=0, r_mode=-1,
                   r_customwidth=a.width, r_customheight=a.height,

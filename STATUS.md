@@ -1,3 +1,10 @@
+## 2026-11-08: Gewitter blitzen nur in sichtbaren Aussenbereichen
+
+- Ganzbild-Aufhellung durch geometrische Deckenabschirmung ersetzt. Innenraeume und Fensterrahmen bleiben dunkel; sichtbarer Himmel und freie Aussenflaechen blitzen auch beim Blick aus einem Fenster. Normale Nebelfarbe bleibt erhalten, r_fastsky wird nicht umgeschaltet.
+- Tiefen-/Normalenrekonstruktion, TAA-Reihenfolge und gefilterte Deckenkanten vermeiden Streifen, Felszacken und den bei UHD gefundenen schmalen Moebel-Lichtsaum. Kein neues Speicherformat, keine ausgetauschten Assets/Skripte.
+- Finale AA/SH/BT-Pruefungen, UHD, MSAA4 mit optionalen Schatten/AO aus, TAA an/aus, Save/Load, Grafikneustart und echter Altspielstand mitten im Blitz bestanden. 703 persoenliche Dateien unveraendert. Details in checkpoints/CP09/night-sky.md.
+- Technisch gepruefter Kandidat: Engine ca661d55, game 139b51a1, cgame d1cf1e29. Auslieferung folgt nach Integritaetspruefung; kein Merge, keine persoenliche Gesamtabnahme.
+
 ## 2026-11-08: Blitze ohne Fastsky-Umschaltung
 
 - Der vorherige Schutz der Spieleroption liess die Blitzwirkung am detaillierten Himmel aus. Jetzt eigener Wetterzustand aus bestehendem Gewitter-/Nebelskript; keine Aenderung von r_fastsky oder Speicherformat.

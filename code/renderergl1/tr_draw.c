@@ -438,8 +438,8 @@ void Set2DWindow(int x, int y, int w, int h, float left, float right, float bott
 	R_IssuePendingRenderCommands();
 	// Native HUD/UI also uses this immediate path (not only RB_SetGL2D).
 	// Resolve the world before any text, sprites or menu controls are drawn.
-	RB_ACTemporalFinish();
 	RB_ACLightningFinish();
+	RB_ACTemporalFinish();
 	qglViewport(x, y, w, h);
 	qglScissor(x, y, w, h);
 	qglMatrixMode(GL_PROJECTION);
