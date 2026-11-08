@@ -2,8 +2,8 @@
 
 The default fixtures look at an enclosed room, an intact window and a broken
 window. Use --survey to verify additional cameras before assigning pixel ROIs.
-JSON views may override their map coordinates and normalized indoor/outdoor/
-exterior_geometry/sheltered_geometry boxes. --no-fog is diagnostic only,
+JSON views may override their map coordinates and normalized indoor/indoor_highlight/outdoor/
+exterior_geometry/exterior_facade/sheltered_geometry boxes. --no-fog is diagnostic only,
 never visual acceptance.
 """
 import argparse
@@ -41,7 +41,12 @@ views = [
          indoor=[normalized_box(400, 200, 1500, 850),
                  # Rear wall beside the folding-screen silhouette. A raw
                  # cross-object normal once lit a single full-height UHD column.
-                 normalized_box(1641, 300, 1645, 1070)]),
+                 normalized_box(1641, 300, 1645, 1070)],
+         # These doorway/header pixels are geometrically indoors. A sparse
+         # bright seam (+94 at UHD) passed the large-room MAD average. Check
+         # positive pixel outliers as well as regional means at both scales.
+         indoor_highlight=[normalized_box(250, 200, 680, 270),
+                           normalized_box(630, 228, 665, 250)]),
     dict(name='lower-window', eye=[-2760, -5160, 380], angles=[0, 90, 0],
          indoor=[normalized_box(100, 100, 700, 850), normalized_box(1400, 100, 1650, 850),
                  normalized_box(820, 200, 850, 650)],
@@ -52,13 +57,20 @@ views = [
          # Native image plus upward BSP rays confirm exposed shingle roof.
          # (1800,120) -> (78.03,945.22,1054.11), normal (0,-.60745,.79436).
          exterior_geometry=[normalized_box(1800, 90, 1870, 140)],
-         # BSP upward rays confirm these walls are under roof/eave coverage.
-         # Preserve them as negative controls instead of requiring a flash.
-         sheltered_geometry=[normalized_box(1500, 430, 1750, 620),
-                            normalized_box(1300, 500, 1400, 630)]),
+         # Both stone facades are outdoors despite shallow roof/eave coverage.
+         # They must receive lateral sky light across the wall, not just along
+         # isolated trim. A vertical-only ceiling mask wrongly darkened them.
+         # Exclude the actual dark arch opening in the bottom-left of the
+         # near wall; retain the lower wall to its right as a separate control.
+         exterior_facade=[normalized_box(1500, 430, 1750, 565),
+                          normalized_box(1620, 570, 1750, 620),
+                          normalized_box(1300, 500, 1400, 630)]),
     dict(name='upper-window', eye=[-2760, -5160, 588], angles=[0, 90, 0],
          indoor=[normalized_box(100, 100, 700, 850), normalized_box(1400, 100, 1650, 750),
-                 normalized_box(820, 200, 850, 650)],
+                 # BSP rays prove x820..824 is the side-facing wooden reveal
+                 # (normal +X), which sees lateral sky. The opaque inward frame
+                 # starts at x826 with normal -Y and must stay unlit.
+                 normalized_box(826, 200, 850, 650)],
          outdoor=[normalized_box(1060, 245, 1120, 325)],
          exterior_geometry=[normalized_box(880, 350, 930, 400)]),
 ]
@@ -67,7 +79,7 @@ if a.views:
 for view in views:
     assert re.fullmatch(r'[A-Za-z0-9-]+', view['name'])
     assert len(view['eye']) == len(view['angles']) == 3
-    for kind in ['indoor', 'outdoor', 'exterior_geometry', 'sheltered_geometry']:
+    for kind in ['indoor', 'indoor_highlight', 'outdoor', 'exterior_geometry', 'exterior_facade', 'sheltered_geometry']:
         for box in view.get(kind, []):
             assert len(box) == 4 and 0 <= box[0] < box[2] <= 1 and 0 <= box[1] < box[3] <= 1
 
@@ -252,12 +264,47 @@ def expect(condition, check, requirement):
     if not condition:
         failures.append(dict(requirement=requirement, **check))
 
+def facade_coverage(before, flash):
+    # Signed RGB mean per pixel: changing rain or a thin illuminated trim must
+    # not hide a large unlit facade behind an acceptable regional average.
+    count = before.width * before.height
+    lit = sum(sum(f) - sum(b) >= 18 for b, f in zip(
+        before.get_flattened_data(), flash.get_flattened_data()))
+    return dict(facade_lit_pixel_fraction=lit / count,
+                facade_pixel_delta_threshold=6.0,
+                facade_required_lit_fraction=0.95)
+
+
+def indoor_highlights(before, current, taa):
+    # A tiny leak can be obvious while contributing almost nothing to MAD.
+    # Track the largest positive CHANNEL change (not RGB mean). TAA may move
+    # texture edges slightly, so allow isolated modest changes, never a flash.
+    changes = sorted(max(0, *(f - b for b, f in zip(base, flash)))
+                     for base, flash in zip(before.get_flattened_data(), current.get_flattened_data()))
+    count = len(changes)
+    percentile_index = min(count - 1, (count * 999 + 999) // 1000 - 1)
+    highlighted = sum(value > 8 for value in changes)
+    return dict(maximum_channel_brightening=changes[-1],
+                percentile999_channel_brightening=changes[percentile_index],
+                pixels_brightened_above8=highlighted,
+                fraction_brightened_above8=highlighted / count,
+                maximum_channel_tolerance=24 if taa else 8,
+                percentile999_tolerance=8)
+
+
+def expect_indoor_highlights(check):
+    expect(check['maximum_channel_brightening'] <= check['maximum_channel_tolerance'], check,
+           'Interior highlight maximum <= 8 without TAA / <= 24 with TAA')
+    expect(check['percentile999_channel_brightening'] <= check['percentile999_tolerance'], check,
+           'Interior highlight 99.9th percentile <= 8')
+
+
 if not a.survey:
     for view in views:
         for taa in [0, 1]:
             images = {phase: Image.open(out/f'{view["name"]}-taa{taa}-{phase}.png').convert('RGB')
                       for phase in ['before', 'flash', 'after']}
-            for kind in ['indoor', 'outdoor', 'exterior_geometry', 'sheltered_geometry']:
+            for kind in ['indoor', 'indoor_highlight', 'outdoor', 'exterior_geometry', 'exterior_facade', 'sheltered_geometry']:
                 for normalized in view.get(kind, []):
                     box = tuple(round(n * (a.width if i % 2 == 0 else a.height))
                                 for i, n in enumerate(normalized))
@@ -266,14 +313,23 @@ if not a.survey:
                     mad = sum(ImageStat.Stat(difference).mean)/3
                     check = dict(view=view['name'], taa=taa, kind=kind, box=box, means=means,
                                  flash_delta=means['flash']-means['before'], mean_absolute_difference=mad)
+                    if kind == 'exterior_facade':
+                        check.update(facade_coverage(images['before'].crop(box), images['flash'].crop(box)))
+                    elif kind == 'indoor_highlight':
+                        check.update(indoor_highlights(images['before'].crop(box), images['flash'].crop(box), taa))
                     checks.append(check)
                     if not a.installed:
-                        if kind in ['indoor', 'sheltered_geometry']:
+                        if kind in ['indoor', 'indoor_highlight', 'sheltered_geometry']:
                             expect(mad <= 3.0, check, 'Interior/sheltered flash MAD <= 3')
+                            if kind == 'indoor_highlight':
+                                expect_indoor_highlights(check)
                         elif kind == 'outdoor':
                             expect(check['flash_delta'] >= 10.0, check, 'Exterior sky flash delta >= 10')
-                        elif kind == 'exterior_geometry' and not a.no_fog:
+                        elif kind in ['exterior_geometry', 'exterior_facade'] and not a.no_fog:
                             expect(check['flash_delta'] >= 10.0, check, 'Exterior geometry flash delta >= 10')
+                            if kind == 'exterior_facade':
+                                expect(check['facade_lit_pixel_fraction'] >= 0.95, check,
+                                       'At least 95% of exterior facade pixels brighten by >= 6')
                         expect(abs(means['after']-means['before']) <= 3.0, check, 'Unflash recovery delta <= 3')
             for im in images.values():
                 im.close()
@@ -285,7 +341,7 @@ if not a.survey:
     for phase in ['saved-flash', 'loaded-after']:
         with Image.open(out/f'{view["name"]}-taa1-{phase}.png') as source:
             restored = source.convert('RGB')
-        for kind in ['indoor', 'outdoor', 'exterior_geometry', 'sheltered_geometry']:
+        for kind in ['indoor', 'indoor_highlight', 'outdoor', 'exterior_geometry', 'exterior_facade', 'sheltered_geometry']:
             for normalized in view.get(kind, []):
                 box = tuple(round(n * (a.width if i % 2 == 0 else a.height))
                             for i, n in enumerate(normalized))
@@ -295,14 +351,23 @@ if not a.survey:
                 mad = sum(ImageStat.Stat(ImageChops.difference(base, current)).mean)/3
                 check = dict(view=view['name'], taa=1, phase=phase, kind=kind,
                              box=box, flash_delta=delta, mean_absolute_difference=mad)
+                if kind == 'exterior_facade':
+                    check.update(facade_coverage(base, current))
+                elif kind == 'indoor_highlight':
+                    check.update(indoor_highlights(base, current, 1))
                 checks.append(check)
                 if not a.installed:
-                    if kind in ['indoor', 'sheltered_geometry'] or phase == 'loaded-after':
+                    if kind in ['indoor', 'indoor_highlight', 'sheltered_geometry'] or phase == 'loaded-after':
                         expect(mad <= 3.0, check, 'Restored interior/unflash MAD <= 3')
+                        if kind == 'indoor_highlight':
+                            expect_indoor_highlights(check)
                     elif kind == 'outdoor':
                         expect(delta >= 10.0, check, 'Restored exterior sky flash delta >= 10')
-                    elif kind == 'exterior_geometry' and not a.no_fog:
+                    elif kind in ['exterior_geometry', 'exterior_facade'] and not a.no_fog:
                         expect(delta >= 10.0, check, 'Restored exterior geometry flash delta >= 10')
+                        if kind == 'exterior_facade':
+                            expect(check['facade_lit_pixel_fraction'] >= 0.95, check,
+                                   'At least 95% of restored exterior facade pixels brighten by >= 6')
         restored.close()
     baseline.close()
 result = dict(passed=not failures, survey=a.survey, installed_baseline=a.installed,

@@ -122,6 +122,17 @@ if a.aa_exterior_camera:
 end
 ''')
 
+if a.game == 2 and a.save == 'e2l20000':
+    (h/'lightning_terrain_camera.scr').write_text('''main:
+ $player hide
+ level.ac_lightning_terrain_camera = spawn Camera
+ level.ac_lightning_terrain_camera.origin = ( 6296 -5600 2519 )
+ level.ac_lightning_terrain_camera.angles = ( 0 270 0 )
+ level.ac_lightning_terrain_camera fov 90
+ cuecamera level.ac_lightning_terrain_camera
+end
+''')
+
 # Mirror thunder variant 1's finite timing, using the original flash/unflash
 # entry points. Calling thunder itself would leave another endless random loop.
 (h/'lightning_pulses.scr').write_text('''main:
@@ -157,7 +168,10 @@ cmd = ['wait 800', 'map e1l1' if a.game == 2 and not a.save else 'loadgame refer
        'set ac_hud_scale 1.5', 'set ac_hud_safe 1', 'set ui_compass_scale 0.55',
        'script player exec lightning_clearfade.scr' if a.game == 2 and not a.save else 'wait 1',
        'script player exec lightning_camera.scr' if a.aa_exterior_camera else 'wait 1',
-       'script player exec lightning_fixture.scr', 'wait 60000' if a.game == 0 else 'wait 800']
+       'script player exec lightning_fixture.scr',
+       # The e2l2 save contains the original introductory fade. Let the level
+       # finish it before ANY photometric case, including fastsky and Save/Load.
+       'wait 60000' if a.game == 0 else ('wait 20000' if a.game == 2 and a.save == 'e2l20000' else 'wait 800')]
 cases = []
 
 def capture(label, mode, fastsky=0, taa=1, extra=None):
@@ -186,7 +200,14 @@ capture('restart-flash', 'on', extra=['vid_restart', 'wait 3500',
 capture('restart-unflash', 'off')
 if a.game == 2 and a.save == 'e2l20000':
     # This archived briefing starts with an animated fade. Compare surfaces
-    # after it has completed, in both temporal modes and without moving actors.
+    # after it has completed. Save/Load also raises the player's eye from 2519
+    # to 2552 when the introductory crouch ends. Fixed pixel ROIs would then
+    # sample different road patches, some genuinely occluded by distant hills.
+    # Preserve the geometrically verified original camera for terrain checks;
+    # all earlier Save/Load, restart, and HUD cases use the normal player view.
+    # The fixed camera lies inside the now-standing player. Hide only that
+    # local body/viewmodel so neither can cover the terrain acceptance ROIs.
+    cmd += ['set cg_drawviewmodel 0', 'script player exec lightning_terrain_camera.scr', 'wait 400']
     for taa in [0, 1]:
         for phase, mode in [('before', 'off'), ('flash', 'on'), ('after', 'off')]:
             capture(f'terrain-taa{taa}-{phase}', mode, taa=taa)
@@ -304,6 +325,7 @@ if a.game == 0:
             hud_checks.append(dict(case=label, opaque_compass_bbox=hud_box,
                                    mean_absolute_rgb_difference=error, tolerance=2.0))
             assert error <= 2.0, ('Lightning changed opaque compass pixels', label, error)
+pulse_recovery_check = None
 if not a.installed:
     indexed = {c['name']: c for c in cases}
     for taa in [0, 1]:
@@ -315,45 +337,89 @@ if not a.installed:
         # brightness increase could require the indoor regression we fixed.
         # Window/interior masking has its own spatial pixel test.
         assert abs(after_case['sky_mean'] - before_case['sky_mean']) < 15
-    assert abs(indexed['pulse-recovered']['sky_mean'] -
-               indexed['restart-unflash']['sky_mean']) < 15
+    # BT terrain captures and the following pulse share the fixed crouched
+    # camera; restart-unflash still uses the standing player after Save/Load.
+    # Compare recovery against an unflashed image from the same camera.
+    recovery_reference = ('terrain-taa1-after' if a.game == 2 and a.save == 'e2l20000'
+                          else 'restart-unflash')
+    recovery_delta = abs(indexed['pulse-recovered']['sky_mean'] -
+                         indexed[recovery_reference]['sky_mean'])
+    pulse_recovery_check = dict(reference=recovery_reference,
+                                absolute_sky_mean_delta=recovery_delta, tolerance=15)
+    assert recovery_delta < 15
 terrain_checks = []
+terrain_failures = []
 if not a.installed and not a.dump_depth and a.game == 2 and a.save == 'e2l20000':
-    # Depth readback proves the first patch is a coplanar downward rock face,
-    # and the others are exposed terrain. A broad "all slopes must light"
-    # assertion was incorrect. Check both protected and exposed pixels, so
-    # alternating covered/lit triangles cannot hide in whole-image averages.
+    # The first patch is a downward-facing lip of an exposed roadside boulder,
+    # not an enclosed cave. It can see lateral sky and must receive some flash.
+    # Require coverage as well as a mean so unlit triangles cannot hide behind
+    # a small illuminated edge. Truly enclosed-room controls live in the AA
+    # outdoor/window fixture; vertical overhead cover alone is not an interior.
     for taa in [0, 1]:
         base_image = Image.open(out/f'terrain-taa{taa}-before.png').convert('RGB')
         flash_image = Image.open(out/f'terrain-taa{taa}-flash.png').convert('RGB')
-        for kind, box1080 in [('covered', (1580, 550, 1660, 570)),
+        for kind, box1080 in [('exterior_underhang', (1580, 550, 1660, 570)),
                               ('exposed', (300, 220, 370, 315)),
                               ('exposed', (1460, 370, 1500, 380)),
                               ('exposed', (1600, 480, 1680, 500)),
-                              ('exposed', (1300, 750, 1500, 850))]:
+                              ('exposed', (1300, 750, 1500, 850)),
+                              # Continuous, nearly horizontal road viewed at a
+                              # grazing angle. Eye-depth steps exceed 1% here
+                              # although projected depth is locally affine.
+                              # Rejecting both neighbors once zeroed the normal
+                              # and produced a dark polygon amid the lit road.
+                              ('grazing_road', (1250, 575, 1400, 600)),
+                              ('grazing_road', (1330, 600, 1400, 615))]:
             box = tuple(round(v * (a.width / 1920 if i % 2 == 0 else a.height / 1080))
                         for i, v in enumerate(box1080))
             base_pixels = list(base_image.crop(box).get_flattened_data())
             flash_pixels = list(flash_image.crop(box).get_flattened_data())
             delta = [(sum(f)-sum(b))/3 for b, f in zip(base_pixels, flash_pixels)]
-            bad = sum(abs(v) > 10 if kind == 'covered' else v < 10 for v in delta)
-            fraction = bad / len(delta)
+            minimum_pixel_delta = 6 if kind == 'exterior_underhang' else 10
+            minimum_mean_delta = 10 if kind == 'exterior_underhang' else 15
+            fraction = sum(v < minimum_pixel_delta for v in delta) / len(delta)
             mean_delta = sum(delta) / len(delta)
-            terrain_checks.append(dict(taa=taa, kind=kind, box=box,
-                                       mean_delta=mean_delta, incorrect_fraction=fraction,
-                                       maximum_incorrect_fraction=0.01))
-            assert fraction <= 0.01, ('BT terrain classification is discontinuous', taa, kind, box, fraction)
-            assert abs(mean_delta) <= 3 if kind == 'covered' else mean_delta >= 15
-result = dict(passed=True, installed_baseline=a.installed, cases=cases,
+            check = dict(taa=taa, kind=kind, box=box,
+                         mean_delta=mean_delta, incorrect_fraction=fraction,
+                         minimum_pixel_delta=minimum_pixel_delta,
+                         minimum_mean_delta=minimum_mean_delta,
+                         maximum_incorrect_fraction=0.01)
+            failed = fraction > 0.01 or mean_delta < minimum_mean_delta
+            if kind == 'grazing_road':
+                # The previous defect still brightened these polygons by 10-40
+                # RGB levels, so the generic >=15 mean test did not catch it.
+                # Normalize by each pixel's remaining headroom toward white;
+                # exposed road must receive the full broad flash, not merely
+                # a few arbitrary bright spots. Keep the 99% coverage rule.
+                response = [v / max(1.0, 255.0 - sum(b) / 3.0)
+                            for b, v in zip(base_pixels, delta)]
+                response_fraction = sum(v < 0.40 for v in response) / len(response)
+                mean_response = sum(response) / len(response)
+                check.update(mean_flash_response=mean_response,
+                             weak_flash_fraction=response_fraction,
+                             minimum_pixel_flash_response=0.40,
+                             minimum_mean_flash_response=0.50)
+                failed |= response_fraction > 0.01 or mean_response < 0.50
+            terrain_checks.append(check)
+            if failed:
+                terrain_failures.append(check)
+result = dict(passed=not terrain_failures, installed_baseline=a.installed, cases=cases,
               acceptance_eligible=not a.installed and not a.dump_depth,
-              pulses=pulses, hud_checks=hud_checks, terrain_checks=terrain_checks,
+              pulses=pulses, pulse_recovery_check=pulse_recovery_check,
+              hud_checks=hud_checks, terrain_checks=terrain_checks,
+              terrain_failures=terrain_failures,
               incoming_gl_errors=incoming_gl_errors(log),
               pulse_scope='Finite thunder variant 1 timing through original flash/unflash; no added random thunder thread',
               game=folder, reference_save=a.save, preexisting_script_errors=sorted(errors),
               aa_exterior_camera=a.aa_exterior_camera,
+              terrain_camera=(dict(origin=[6296, -5600, 2519], angles=[0, 270, 0],
+                                   base_fov=90, reason='Keep validated terrain ROIs fixed across intro crouch/stand after Save/Load')
+                              if a.game == 2 and a.save == 'e2l20000' else None),
               settled_weather_seconds=settle_end-settle_begin,
               engine_sha256=sha(b/'openmohaa.exe'), game_sha256=sha(b/'game.dll'),
               cgame_sha256=sha(b/'cgame.dll'), personal_files_unchanged=len(before))
 (out/'result.json').write_text(json.dumps(result, indent=2)+'\n')
 print(json.dumps({k: result[k] for k in ('passed', 'game', 'reference_save',
     'engine_sha256', 'game_sha256', 'cgame_sha256', 'personal_files_unchanged')}, indent=2))
+
+assert not terrain_failures, f'BT terrain lighting checks failed; see {out / "result.json"}'

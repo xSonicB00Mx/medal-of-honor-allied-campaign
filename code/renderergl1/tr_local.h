@@ -2027,7 +2027,8 @@ void RB_ACShadowBegin(void);
 void RB_ACShadowCapture(void);
 void RB_ACShadowFinish(void);
 void RB_ACDrawCapturedScene(GLint alphaCut);
-int RB_ACDrawWorldOccluders(const float *matrix, const vec3_t mins, const vec3_t maxs);
+// Weather blockers; world-space bounds, arbitrary sky matrix. parts: 1 static, 2 moving, 3 both.
+int RB_ACDrawWorldOccluders(const float *matrix, const vec3_t mins, const vec3_t maxs, int parts);
 void R_ACTemporalInit(void);
 void R_ACTemporalShutdown(void);
 void R_ACTemporalReset(void);
@@ -2038,6 +2039,7 @@ void RB_ACTemporalSurfaceEnd(qboolean isolated);
 void RB_ACTemporalCapture(void);
 void RB_ACTemporalFinish(void);
 void R_ACLightningReset(void);
+void R_ACLightningWorldChanged(void);
 void RB_ACLightningBegin(void);
 void RB_ACLightningFinish(void);
 void R_ACAOInit(void);
