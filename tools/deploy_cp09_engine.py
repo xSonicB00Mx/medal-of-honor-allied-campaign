@@ -15,18 +15,19 @@ ap.add_argument('run', help='Unique backup name; native test report folder')
 ap.add_argument('--options-layout', action='store_true', help='Also install the exact options packages from the test report')
 ap.add_argument('--options-only', action='store_true', help='Install tested options packages without replacing engine or DLLs')
 ap.add_argument('--game-only', action='store_true', help='Install only the tested game DLL')
+ap.add_argument('--game', action='store_true', help='Also install the matching tested game DLL')
 ap.add_argument('--cgame', action='store_true', help='Install the matching tested cgame ABI with the engine')
 a = ap.parse_args()
-assert not (a.options_only and (a.game_only or a.cgame))
+assert not (a.options_only and (a.game_only or a.cgame or a.game))
 if a.options_only: a.options_layout = True
-assert not (a.game_only and (a.options_layout or a.cgame))
+assert not (a.game_only and (a.options_layout or a.cgame or a.game))
 assert re.fullmatch(r'[a-zA-Z0-9-]+', a.run)
 report = json.loads((R/'generated-local/CP09'/a.run/'result.json').read_text())
 engine = R/'build-local/cp00-r3/RelWithDebInfo/openmohaa.exe'
 assert digest(engine)==report['engine_sha256'], 'Test the exact engine first'
 game = engine.with_name('game.dll')
 cgame = engine.with_name('cgame.dll')
-if a.game_only: assert digest(game)==report['game_sha256'], 'Test the exact game DLL first'
+if a.game_only or a.game: assert digest(game)==report['game_sha256'], 'Test the exact game DLL first'
 if a.cgame: assert digest(cgame)==report['cgame_sha256'], 'Test the exact cgame DLL first'
 assert not subprocess.check_output(['git','diff','HEAD','--','code','mod/ui'],cwd=R), 'Commit tested sources first'
 commit = subprocess.check_output(['git','rev-parse','HEAD'],cwd=R,text=True).strip()
@@ -46,6 +47,7 @@ updates={} if a.options_only else {'openmohaa.exe':engine}
 if a.options_only:
     assert all(digest(rt/'openmohaa.exe')==report['engine_sha256'] for rt in runtimes)
 if a.game_only: updates={'game.dll':game}
+if a.game: updates['game.dll']=game
 if a.cgame: updates['cgame.dll']=cgame
 if a.options_layout:
     packages=report['packages']
@@ -83,6 +85,7 @@ try:
         if not a.options_only:
             manifest['game_dll_source_commit' if a.game_only else 'engine_source_commit']=commit
         if a.cgame: manifest['cgame_source_commit']=commit
+        if a.game: manifest['game_dll_source_commit']=commit
         for row in manifest['owned_files']:
             if row['path'] in updates: row['sha256']=digest(updates[row['path']])
         if a.options_layout:
@@ -94,6 +97,7 @@ try:
     record.update(source_commit=commit,engine_source_commit=manifests[1]['engine_source_commit'],checkpoint_source_commit=commit,
                   input_fingerprint=hashlib.sha256(json.dumps(source_rows,sort_keys=True).encode()).hexdigest())
     if a.cgame: record['cgame_source_commit']=commit
+    if a.game or a.game_only: record['game_dll_source_commit']=commit
     save(runtimes[1]/'CP09-candidate.json',record)
     for row in manifests[1]['owned_files']:
         if row['path']=='CP09-candidate.json': row['sha256']=digest(runtimes[1]/row['path'])
@@ -111,5 +115,6 @@ result = dict(source_commit=commit,engine_sha256=digest(engine),verified_files=v
 if a.game_only: result.update(game_sha256=digest(game),scope='Game DLL only; engine/cgame/assets unchanged')
 if a.options_only: result.update(scope='Shared options packages only; engine/game/cgame/artwork unchanged')
 if a.cgame: result.update(cgame_sha256=digest(cgame),scope='Engine and matching cgame; shared options' if a.options_layout else 'Engine and matching cgame')
+if a.game: result.update(game_sha256=digest(game),scope=result['scope']+' and matching game DLL')
 save(backup.parent/'deployment.json',result)
 print(json.dumps(result,indent=2))

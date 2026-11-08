@@ -1,5 +1,14 @@
 # CP09 – Regression und Abnahmekandidat
 
+## Gewitter mit vollstaendigem Himmel, 08.11.2026
+
+Blitze haben einen eigenen kurzzeitigen Renderzustand: Himmel und 3D-Szene
+hellen gemeinsam auf, HUD/Menues bleiben davor geschuetzt. Die Spielerwahl
+r_fastsky bleibt unveraendert. TAA-Historie an Blitzflanken invalidiert;
+vorhandene Spielstaende und Wetter-Skripte bleiben kompatibel.
+AA/SH/BT-Renderpruefung, echte kurze Pulsabstaende, Save/Load und UHD bestanden.
+[Technik, Abnahmegrenzen und Nachweise](night-sky.md).
+
 ## Himmelsoption gegen Missionsskripte geschuetzt, 08.11.2026
 
 Gewitterskripte duerfen r_fastsky nicht mehr als temporaeren Effekt ueberschreiben.

@@ -684,6 +684,7 @@ typedef struct {
 	//==
     qboolean skybox_farplane;
     qboolean render_terrain;
+	float acLightning;
 	//==
 
 } trRefdef_t;
@@ -2035,6 +2036,9 @@ qboolean RB_ACTemporalSurface(const void *surface);
 void RB_ACTemporalSurfaceEnd(qboolean isolated);
 void RB_ACTemporalCapture(void);
 void RB_ACTemporalFinish(void);
+void R_ACLightningReset(void);
+void RB_ACLightningBegin(void);
+void RB_ACLightningFinish(void);
 void R_ACAOInit(void);
 void R_ACAOShutdown(void);
 qboolean R_ACAOActive(void);

@@ -25,6 +25,12 @@ backEndData_t	*backEndData;
 backEndState_t	backEnd;
 
 
+// Shared scene boundary: complete temporal rendering, then weather exposure.
+static void RB_FinishSceneEffects(void) {
+    RB_ACTemporalFinish();
+    RB_ACLightningFinish();
+}
+
 static float	s_flipMatrix[16] = {
 	// convert from our coordinate system (looking down X)
 	// to OpenGL's coordinate system (looking down -Z)
@@ -1008,7 +1014,7 @@ RB_SetGL2D
 ================
 */
 void	RB_SetGL2D (void) {
-	RB_ACTemporalFinish();
+	RB_FinishSceneEffects();
 	Set2DWindow(0, 0, glConfig.vidWidth, glConfig.vidHeight, 0.0, glConfig.vidWidth, glConfig.vidHeight, 0.0, 0.0, 1.0);
 }
 
@@ -1252,12 +1258,13 @@ const void	*RB_DrawSurfs( const void *data ) {
 
 	cmd = (const drawSurfsCommand_t *)data;
 
-	RB_ACTemporalFinish();
+	RB_FinishSceneEffects();
 	backEnd.refdef = cmd->refdef;
 	backEnd.viewParms = cmd->viewParms;
 
 	RB_SetupFog();
 	RB_RenderDrawSurfList( cmd->drawSurfs, cmd->numDrawSurfs );
+	RB_ACLightningBegin();
 
 	return (const void *)(cmd + 1);
 }
@@ -1400,7 +1407,7 @@ const void *RB_ClearDepth(const void *data)
 	
 	if(tess.numIndexes)
 		RB_EndSurface();
-	RB_ACTemporalFinish();
+	RB_FinishSceneEffects();
 
 	// texture swapping test
 	if (r_showImages->integer)
@@ -1427,7 +1434,7 @@ const void	*RB_SwapBuffers( const void *data ) {
 	}
 
 	// texture swapping test
-	RB_ACTemporalFinish();
+	RB_FinishSceneEffects();
 	if ( r_showImages->integer ) {
 		RB_ShowImages(qfalse);
 	}

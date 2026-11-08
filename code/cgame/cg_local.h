@@ -332,6 +332,7 @@ extern "C" {
         float    farplane_distance;
         float    farplane_bias;
         vec3_t   farplane_color;
+        float    acLightning;
         qboolean farplane_cull;
         float    skyboxFarplane;
         qboolean renderTerrain;

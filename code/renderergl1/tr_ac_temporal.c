@@ -60,6 +60,7 @@ static qboolean ready,pending,historyValid,overflow;
 static int width,height,historyIndex,previousTime,previousFrame,previousTAA,framebufferSamples;
 static world_t *previousWorld;
 static float previousView[16],previousProjection[16];
+static float previousLightning;
 static viewParms_t sceneView;
 static trRefdef_t sceneRefdef;
 
@@ -123,6 +124,9 @@ void RB_ACTemporalBegin(void){
   &&!(backEnd.refdef.rdflags&(RDF_NOWORLDMODEL|RDF_HUD))&&!backEnd.isHyperspace;
  if(!pending){if(!Active())historyValid=qfalse;return;}
  sceneView=backEnd.viewParms;sceneRefdef=backEnd.refdef;numVertices=numBatches=0;overflow=qfalse;surfaceKey=NULL;
+ /* The original weather fog changes with each flash as well. Never blend
+  * its bright state into the next dark frame (or delay the flash onset). */
+ if(historyValid&&fabsf(previousLightning-sceneRefdef.acLightning)>.001f)historyValid=qfalse;
  memset(caches[cacheIndex].entries,0,sizeof(caches[cacheIndex].entries));caches[cacheIndex].count=0;
  if(previousWorld!=tr.world||sceneView.frameCount!=previousFrame+1||sceneRefdef.time<previousTime||sceneRefdef.time-previousTime>200||previousTAA!=taa->integer
   ||fabsf(previousProjection[0]-sceneView.projectionMatrix[0])>.01f||fabsf(previousProjection[5]-sceneView.projectionMatrix[5])>.01f)historyValid=qfalse;
@@ -308,6 +312,7 @@ void RB_ACTemporalFinish(void){
  }else Screen(blurProgram);
  memcpy(previousView,sceneView.world.modelMatrix,sizeof(previousView));memcpy(previousProjection,sceneView.projectionMatrix,sizeof(previousProjection));
  previousTime=sceneRefdef.time;previousFrame=sceneView.frameCount;previousWorld=tr.world;previousTAA=taa->integer;
+ previousLightning=sceneRefdef.acLightning;
  historyValid=!overflow;historyIndex=1-historyIndex;cacheIndex=1-cacheIndex;
 restore:
  tmBindFramebuffer(GL_FRAMEBUFFER,oldFbo);qglDrawBuffer(oldDraw);tmReadBuffer(oldRead);tmUseProgram(oldProgram);tmPopClientAttrib();tmPopAttrib();

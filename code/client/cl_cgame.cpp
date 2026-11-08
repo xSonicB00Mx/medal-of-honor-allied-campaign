@@ -633,6 +633,7 @@ void CL_InitCGameDLL( clientGameImport_t *cgi, clientGameExport_t **cge ) {
 	}
 
 	memset( cgi, 0, sizeof( clientGameImport_t ) );
+	cgi->apiversion = CGAME_IMPORT_API_VERSION;
 
 	cgi->Printf							= Com_Printf;
 	cgi->DPrintf						= Com_DPrintf;

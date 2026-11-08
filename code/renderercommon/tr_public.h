@@ -28,7 +28,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 extern "C" {
 #endif
 
-#define	REF_API_VERSION		14
+#define	REF_API_VERSION		15
 
 typedef struct dtiki_s dtiki_t;
 typedef struct skelAnimFrame_s skelAnimFrame_t;

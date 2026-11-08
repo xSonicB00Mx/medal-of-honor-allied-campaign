@@ -540,6 +540,8 @@ void CG_SetupFog() {
     cg.refdef.farplane_color[0] = cg.farplane_color[0];
     cg.refdef.farplane_color[1] = cg.farplane_color[1];
     cg.refdef.farplane_color[2] = cg.farplane_color[2];
+    cg.refdef.acLightning = cg.acLightning > 0.0f && cg.acLightning <= 1.0f
+        ? cg.acLightning : 0.0f;
     cg.refdef.farplane_cull = cg.farplane_cull;
     cg.refdef.skybox_farplane = cg.skyboxFarplane;
     cg.refdef.renderTerrain = cg.renderTerrain;

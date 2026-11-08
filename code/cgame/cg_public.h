@@ -85,7 +85,7 @@ functions imported from the main executable
 ==================================================================
 */
 
-#define CGAME_IMPORT_API_VERSION 3
+#define CGAME_IMPORT_API_VERSION 4
 
     /*
 ==================================================================
@@ -538,6 +538,11 @@ functions exported to the main executable
 #    endif
 #endif
         clientGameExport_t *GetCGameAPI(void);
+
+#ifdef CGAME_DLL
+    Q_EXPORT
+#endif
+        int AC_CGameRefdefSize(void);
 
 #ifdef __cplusplus
 }

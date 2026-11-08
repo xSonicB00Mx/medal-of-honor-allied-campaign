@@ -1741,6 +1741,7 @@ void RE_Shutdown( qboolean destroyWindow ) {
 	if ( tr.registered ) {
 		R_IssuePendingRenderCommands();
 		R_ACTemporalShutdown();
+		R_ACLightningReset();
 		R_ACAOShutdown();
 		R_ACShadowShutdown();
 		R_DeleteTextures();

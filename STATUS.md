@@ -1,3 +1,10 @@
+## 2026-11-08: Blitze ohne Fastsky-Umschaltung
+
+- Der vorherige Schutz der Spieleroption liess die Blitzwirkung am detaillierten Himmel aus. Jetzt eigener Wetterzustand aus bestehendem Gewitter-/Nebelskript; keine Aenderung von r_fastsky oder Speicherformat.
+- Kurzer Weissblend der 3D-Szene nach TAA/Blur, vor HUD/Menues; Wolkenstruktur bleibt sichtbar. TAA-Historie an Blitzflanken verworfen. Leeren Wolken-Zeichenaufruf mit GL-Fehler 1281 korrigiert.
+- AA/SH/BT-Renderpruefungen, TAA an/aus, Save/Load, Grafikneustart und originale kurze Pulsabstaende bestanden; AA auch UHD mit HUD-Pixelkontrolle. Alle 699 persoenlichen Dateien unveraendert. Details und Grenzen in checkpoints/CP09/night-sky.md.
+- Engine 040ae62d, game 884d675a, cgame 01de08c6 getestet; gemeinsame Auslieferung mit Rueckbausicherung wird abgeschlossen. Keine Assets/Skripte ersetzt, kein Merge.
+
 ## 2026-11-08: Himmel bleibt unter Kontrolle des Spielers
 
 - Erneut r_fastsky 1 im AA-Profil/gemeinsamen Preferences gefunden. Wetter-Flash setzt 1, Unflash stellt einen alten Levelwert wieder her; die bisherige Profilkorrektur schuetzte nicht davor.

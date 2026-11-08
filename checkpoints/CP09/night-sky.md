@@ -1,5 +1,93 @@
 # Spearhead D-Day: heller Himmel im vereinfachten Modus
 
+## 08.11.2026: Blitzwirkung vom vereinfachten Himmel trennen
+
+Die vorherige Sperre schuetzte die Spieleroption, entfernte aber zugleich den
+Wettertrick, mit dem der Himmel aufgehellt wurde. Der Kontrolllauf
+`generated-local/CP09/lightning-before` bestaetigt: Wetternebel wird heller,
+der detaillierte Himmel bleibt dunkel. Die Skriptsperre bleibt erforderlich;
+Blitze erhalten jetzt einen eigenen temporaeren Renderzustand.
+
+Die aktiven Wetterpakete unterscheiden sich: Nur WCR-AA setzt
+`weather_skyisbright`; die Erweiterungen besitzen dieses Flag nicht. Daher
+uebersetzt `ScriptThread::SetCvarEvent` die alten Wetter-Schreibversuche in
+`level.ac_weather_flash_requested`, sobald Wetterobjektzaehler und normale
+Nebelfarbe initialisiert sind. `World::UpdateFog` verbindet diesen Auftrag
+mit der Aufhellung gegenueber `level.farplane_color`. Rueckkehr zur normalen
+Farbe loescht den Auftrag auch bei veraltetem Ruecksetzwert 1. Eine spaetere
+helle Nebelfarbe allein loest keinen Blitz aus.
+
+Fehlt die neue Levelvariable in einem alten Spielstand mitten im Blitz,
+wird sie einmalig aus dem AA-Gewitterflag oder dem exakten alten weissen
+Flash-Farbwert der Erweiterungen wiederhergestellt. Danach ist ihr Wert 0
+verbindlich und aktiviert keine weitere farbbasierte Erkennung. Die vorhandene
+Levelvariablenspeicherung uebernimmt den Wert; kein neues Archivfeld oder
+Speicherformat. Level-/Skriptvariablen werden vor dem World-Objekt restauriert.
+Ein optionaler letzter Wert in `CS_FOGINFO` uebertraegt den Blitz an cgame und
+Renderer; alte Configstrings bedeuten Zustand 0.
+
+Der aktive GL1-Renderer mischt die fertige 3D-Szene kurz gegen Weiss
+(Alpha 0.65 mal normierte Blitzstaerke). Damit werden auch Wolken, nahe Modelle
+und Umgebung erfasst, ohne die Himmelsstruktur gegen eine einfarbige Flaeche
+auszutauschen. Die originalen Donner-/Regen-/Lichtobjekte und Blitzabstaende
+bleiben erhalten. Der Effekt liegt nach TAA/Objekt-Blur und vor HUD/Menues,
+einschliesslich des direkten Set2DWindow-Pfads. TAA verwirft seine Historie an
+Blitzflanken, damit auch der originale helle Nebel nicht nachzieht.
+
+`r_fastsky` wird dabei weder gesetzt noch gespeichert. Eine ausdrueckliche
+Spielerwahl 1 bleibt ebenfalls erhalten. Engine/cgame besitzen passende
+Versions-/Strukturgroessenpruefungen fuer die erweiterte refdef-Schnittstelle;
+die drei getesteten Binaerdateien werden gemeinsam ausgeliefert. GL2 uebernimmt
+das Feld strukturell, der neue Effekt ist fuer den ausgelieferten GL1-Pfad
+implementiert und geprueft.
+
+Bei der GL-Pruefung zusaetzlich einen vorhandenen leeren Wolken-Zeichenaufruf
+gefunden: Skyboxen ohne eigene Wolkengeometrie riefen LockArraysEXT mit null
+Vertices auf. Diesen leeren Pass ueberspringen; sichtbare Geometrie bleibt
+erhalten. Danach sowohl vor als auch nach dem Blitzpass GL-Fehler 0.
+
+Native Regression mit `tools/test_weather_lightning.py`: AA m5l1b und SH t1l3
+aus Savekopien, BT e1l1 als getrennte Renderpruefung, jeweils TAA an/aus,
+Blitz/Rueckkehr, negative Nebelkontrolle, explizites Fastsky 1, Save/Load mitten
+im Blitz und Grafikneustart. Eine endliche Folge benutzt die originalen
+flash/unflash-Einstiege mit den echten 0.2/0.1/0.1-Sekunden-Abstaenden der
+ersten Donner-Variante; alle drei Pulse werden gerendert und enden auf 0.
+Kein zusaetzlicher zufaelliger Endlos-Gewitterthread im Test.
+
+AA in UHD ebenfalls bestanden: Helligkeitsmittel im oberen Bildbereich mit
+TAA 84.50 -> 193.15 -> 84.73; Weltbereich 67.14 -> 188.83 -> 67.10.
+Deckender Kompassbereich weicht beim Blitz nur um 0.75 RGB-Stufen ab
+(Toleranz 2; fehlerhafter erster HUD-Pfad lag bei 94.70).
+Vorpruefungen: lightning-aa-r3, lightning-sh, lightning-bt-r2, lightning-release
+unter generated-local/CP09. Diese ersten Testfixtures setzten faelschlich auch
+in den Erweiterungen das AA-Wetterflag; der Paket-Audit deckte diese Luecke
+auf. Finale Pruefungen verwenden ausschliesslich die originalen flash/unflash-
+Einstiege ohne kuenstliches Flag: lightning-release-r2 (UHD), lightning-sh-native
+und lightning-bt-native. Auch nach explizitem Fastsky 1 und Unflash erzeugt
+eine normale helle Nebelfarbe keinen Blitz. Die BT-Direktstart-Skriptfehler sind unveraendert
+im alten Kontrolllauf enthalten; die Intro-Schwarzblende wird ausschliesslich
+in dessen Testprofil aufgehoben. Das ist keine BT-Missionsabnahme.
+
+Zusaetzlicher regulaerer BT-Save e2l20000 (e2l2, Waldweg zu Fuss) in
+`lightning-bt-native` besteht dieselben Pruefungen ohne Skriptfehler. Die ersten
+Bilder enthalten noch die normale Einblendung des Missionsstarts; nach
+Save/Load und Grafikneustart sind Himmel, Welt und unveraenderte Untertitel visuell
+geprueft, ohne Intro-Korrektur im Testprofil. Alle 813 protokollierten
+Blitzframes melden GL-Fehler 0, ebenso deren eingehenden Rendererzustand.
+
+`tools/test_legacy_lightning_save.py` prueft zusaetzlich die alte Savefassung:
+alte Engine/game/cgame erzeugen einen BT-Save nach genau einem echten Flash,
+waehrend der Skriptthread nur noch wartet. Die neuen Binaerdateien laden
+denselben unveraenderten Save und zeichnen den Blitz bereits vor einem neuen
+Flashbefehl. Anschliessendes Unflash und gewoehnlicher heller Nebel bleiben
+ohne Effekt. Kein kuenstliches AA-Flag und kein neuer Marker im alten Fixture;
+Nachweis `lightning-legacy-save`, Skriptfehler und GL-Fehler 0.
+
+Getestete Binaerdateien: Engine 040ae62d, game 884d675a, cgame 01de08c6.
+Alle 699 persoenlichen Dateien einschliesslich Spielstaenden und Einstellungen
+sind durch die Tests unveraendert. Keine Wetter-/Missionsskripte oder Assets
+in der Installation ersetzt.
+
 ## 08.11.2026: Spielerwahl gegen Gewitterskripte schuetzen
 
 Die reine Profilkorrektur vom 28.10. war unvollstaendig. Das aktive WCR-

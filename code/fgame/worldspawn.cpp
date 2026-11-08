@@ -651,11 +651,51 @@ void World::UpdateConfigStrings(void)
 void World::UpdateFog(void)
 {
     const char *fogInfoString;
+    float acLightning = 0.0f;
+
+    // Legacy flash/unflash requests are intercepted without touching r_fastsky.
+    // Pair the explicit request with the archived normal fog colour; returning
+    // to that colour clears even an unflash restoring a stale fastsky value 1.
+    // Level/Director are restored before World. Recover old mid-flash saves
+    // once from the original weather state, then use the explicit request.
+    if (level.vars) {
+        const ScriptVariable *request = level.vars->GetVariable("ac_weather_flash_requested");
+        const ScriptVariable *storm = level.vars->GetVariable("weather_skyisbright");
+        const ScriptVariable *normal = level.vars->GetVariable("farplane_color");
+        const ScriptVariable *weather = level.vars->GetVariable("weatherFs");
+        if (normal && normal->GetType() == VARIABLE_VECTOR && weather
+            && (weather->GetType() == VARIABLE_INTEGER || weather->GetType() == VARIABLE_FLOAT)
+            && weather->floatValue() >= 0.0f) {
+            bool requested = false;
+            if (request) {
+                requested = (request->GetType() == VARIABLE_INTEGER || request->GetType() == VARIABLE_FLOAT)
+                    && request->floatValue() > 0.0f;
+            } else if (storm) {
+                requested = (storm->GetType() == VARIABLE_INTEGER || storm->GetType() == VARIABLE_FLOAT)
+                    && storm->floatValue() > 0.0f;
+            } else {
+                // SH/BT lack AA's flag. Only the exact legacy white flash may
+                // seed missing state when resuming a save made by an old DLL.
+                requested = fabsf(farplane_color.x - 0.9f) < 0.00001f
+                    && fabsf(farplane_color.y - 0.9f) < 0.00001f
+                    && fabsf(farplane_color.z - 0.9f) < 0.00001f;
+            }
+            const Vector baseline = normal->vectorValue();
+            const float base = baseline.x * 0.2126f + baseline.y * 0.7152f + baseline.z * 0.0722f;
+            const float current = farplane_color.x * 0.2126f + farplane_color.y * 0.7152f
+                + farplane_color.z * 0.0722f;
+            // Comparisons also reject non-finite/malformed script colours.
+            if (requested && base >= 0.0f && base < 1.0f && current > base && current <= 1.0f) {
+                acLightning = (current - base) / (1.0f - base);
+            }
+            level.vars->SetVariable("ac_weather_flash_requested", acLightning > 0.0f ? 1 : 0);
+        }
+    }
     gi.SetFarPlane(farplane_distance);
 
     if (g_protocol >= protocol_e::PROTOCOL_MOHTA_MIN) {
         fogInfoString =
-            va("%d %.0f %.0f %.0f %.6f %.4f %.4f %.4f %d %.0f %.2f %.2f %.2f",
+            va("%d %.0f %.0f %.0f %.6f %.4f %.4f %.4f %d %.0f %.2f %.2f %.2f %.4f",
                farplane_cull,
                farplane_distance,
                farplane_bias,
@@ -668,15 +708,17 @@ void World::UpdateFog(void)
                farclip_override,
                farplane_color_override.x,
                farplane_color_override.y,
-               farplane_color_override.z);
+               farplane_color_override.z,
+               acLightning);
     } else {
         fogInfoString =
-            va("%d %.0f %.4f %.4f %.4f",
+            va("%d %.0f %.4f %.4f %.4f %.4f",
                farplane_cull,
                farplane_distance,
                farplane_color.x,
                farplane_color.y,
-               farplane_color.z);
+               farplane_color.z,
+               acLightning);
     }
 
     gi.setConfigstring(CS_FOGINFO, fogInfoString);

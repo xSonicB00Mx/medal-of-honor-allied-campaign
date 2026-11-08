@@ -203,6 +203,8 @@ typedef struct {
     float       sky_alpha;
     vec3_t      sky_origin;
     vec3_t      sky_axis[3];
+    // Transient mission weather effect, independent of r_fastsky. Not archived.
+    float       acLightning;
 } refdef_t;
 
 

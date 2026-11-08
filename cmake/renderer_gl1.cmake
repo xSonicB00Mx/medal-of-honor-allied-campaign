@@ -29,6 +29,7 @@ set(RENDERER_GL1_SOURCES
     ${SOURCE_DIR}/renderergl1/tr_ac_shadows.c
     ${SOURCE_DIR}/renderergl1/tr_ac_ao.c
     ${SOURCE_DIR}/renderergl1/tr_ac_temporal.c
+    ${SOURCE_DIR}/renderergl1/tr_ac_lightning.c
     ${SOURCE_DIR}/renderergl1/tr_sky_portal.cpp
     ${SOURCE_DIR}/renderergl1/tr_sky.c
     ${SOURCE_DIR}/renderergl1/tr_sphere_shade.cpp
