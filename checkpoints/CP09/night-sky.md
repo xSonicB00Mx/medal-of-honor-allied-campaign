@@ -88,6 +88,13 @@ Alle 699 persoenlichen Dateien einschliesslich Spielstaenden und Einstellungen
 sind durch die Tests unveraendert. Keine Wetter-/Missionsskripte oder Assets
 in der Installation ersetzt.
 
+Auslieferung Source 9e6d88b7: Engine/game/cgame gemeinsam in CP08-r1 und
+CP09-r1 installiert. 9086/9090 Runtime-Dateien und 9072 Originaldateien
+verifiziert, alle 699 persoenlichen Dateien beim Deployment unveraendert.
+Rueckbausicherung und Bericht unter
+generated-local/CP09/lightning-release-r2/{rollback,deployment.json}.
+Kein Merge und keine persoenliche Gesamtspielabnahme vorweggenommen.
+
 ## 08.11.2026: Spielerwahl gegen Gewitterskripte schuetzen
 
 Die reine Profilkorrektur vom 28.10. war unvollstaendig. Das aktive WCR-

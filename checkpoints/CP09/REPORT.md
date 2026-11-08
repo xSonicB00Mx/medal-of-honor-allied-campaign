@@ -7,6 +7,9 @@ hellen gemeinsam auf, HUD/Menues bleiben davor geschuetzt. Die Spielerwahl
 r_fastsky bleibt unveraendert. TAA-Historie an Blitzflanken invalidiert;
 vorhandene Spielstaende und Wetter-Skripte bleiben kompatibel.
 AA/SH/BT-Renderpruefung, echte kurze Pulsabstaende, Save/Load und UHD bestanden.
+Auch alter BT-Save mitten im Blitz erfolgreich wiederhergestellt. Source
+9e6d88b7 als passende Engine/game/cgame-Kombination in CP08/CP09 installiert;
+699 persoenliche Dateien unveraendert, Rueckbausicherung vorhanden.
 [Technik, Abnahmegrenzen und Nachweise](night-sky.md).
 
 ## Himmelsoption gegen Missionsskripte geschuetzt, 08.11.2026
