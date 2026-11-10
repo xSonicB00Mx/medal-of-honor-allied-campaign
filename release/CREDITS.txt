@@ -1,0 +1,25 @@
+MEDAL OF HONOR: ALLIED CAMPAIGN - CREDITS AND NOTICES
+
+Project: xSonicB00Mx. Development assistance: OpenAI Codex.
+Based on OpenMoHAA and its contributors; GPL-2.0-or-later source and notices
+are included. See OpenMoHAA-COPYING.txt and Allied-Campaign-Source.zip.
+Original Medal of Honor games and artwork: their respective creators and
+rightsholders, including Electronic Arts. See Original-EULA.txt.
+War Chest Restored: its authors and contributors; installed separately.
+Blood-particle artwork derived from the supplied Max Payne resources:
+Remedy Entertainment / original rightsholders. It is not engine GPL content.
+Additional artwork: user-supplied and AI-assisted widescreen/HUD adaptations,
+including images prepared with ChatGPT and Google Gemini.
+Courier New typeface: Microsoft / Monotype; the font is used as rendered game
+atlases, not distributed here as an installable font file.
+Breakthrough ammo/health drop integration builds on the community patch:
+https://community.pcgamingwiki.com/files/file/2604-medal-of-honor-allied-assault-breakthrough-ammo-and-health-drops/
+Map data: Natural Earth (public domain) and GeoNames (CC BY 4.0).
+See MAP-CREDITS.md for attribution and transformations.
+OpenAL Soft: see licenses/OpenAL. SDL2: https://www.libsdl.org/license.php
+Microsoft Visual C++ runtime files are distributed app-locally from the
+Visual Studio redistributable runtime directory; copyright Microsoft.
+
+Component licenses apply to their respective components. The engine GPL does
+not relicense game resources, third-party artwork, fonts or runtime libraries.
+The original games and War Chest Restored are required and are not bundled.

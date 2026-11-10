@@ -18,30 +18,19 @@ Allied Campaign is a single-player mod and customized [OpenMoHAA](https://github
 
 Multiplayer is outside this mod's scope. Upstream networking and server code remain in the source tree, but they are not an Allied Campaign feature or a tested release target.
 
-## Project status
+## Release and installation
 
-The planned feature set is complete. Work is now focused on bug fixes, regression testing and release preparation under **Checkpoint 9 (CP09)**.
+**Version 1.0.0 is the creator-approved, playtested release.** Download the Windows x64 ZIP from [GitHub Releases](https://github.com/xSonicB00Mx/medal-of-honor-allied-campaign/releases).
 
-A local Windows x64 / OpenGL 1 candidate is available in the development workspace. Technical checks and selected native game tests have passed, but the complete campaign playthrough and remaining performance/long-duration checks are still open. This is **not yet a generally installable public release**.
+Install Allied Assault, Spearhead, Breakthrough and **War Chest Restored for all three games** first. Back up the installation, extract the entire release ZIP into the game folder (merge folders and replace the supplied engine/DLLs), and run `Start-Allied-Campaign.cmd`.
 
-See [current status](STATUS.md), the [CP09 report](checkpoints/CP09/REPORT.md) and the [player test guide](checkpoints/CP09/PLAYER-TEST.md) for evidence and outstanding work. A passing source build is not a full campaign acceptance test.
+The release includes the matching customized engine, runtime dependencies, all Allied Campaign packages and corresponding engine source. Original game data and WCR are not bundled. A fresh, separate profile is created in `AlliedCampaign-User`; existing personal saves are not packaged or overwritten.
 
-## Requirements and installation
+See the [full English installation guide and feature details](release/README.txt) and [credits](release/CREDITS.txt). Windows x64 with the OpenGL 1 renderer is the tested target. Other WCR revisions, unrelated mods and stock OpenMoHAA binaries are not guaranteed compatible. The creator's release acceptance does not replace hardware-specific compatibility testing.
 
-The currently tested setup uses:
+Additional rendering features include ambient occlusion, temporal anti-aliasing, per-object motion blur and spatial lightning. These can be adjusted in Allied Campaign Options.
 
-- Medal of Honor: Allied Assault **and both expansions**, Spearhead and Breakthrough;
-- the WCR content baseline recorded in [third_party/wcr](third_party/wcr/);
-- Allied Campaign's matching `openmohaa.exe`, `game.dll`, `cgame.dll` and mod packages;
-- Windows x64 with the tested OpenGL 1 renderer.
-
-The mod packages alone are not sufficient with an unmodified OpenMoHAA executable. Compatibility without WCR, with other WCR revisions, with other platforms or with the OpenGL 2 renderer has not been established for this project.
-
-**Cloning this repository does not provide a playable installation.** Original game data, imported third-party assets, generated artwork packages and personal profiles are excluded. The local candidate workflow operates on an already imported and verified installation; it is not a universal installer for arbitrary game folders.
-
-For an already prepared development workspace, follow [local installation and launch instructions](checkpoints/CP09/INSTALLATION.md). Its workspace launcher can use the existing personal profile; its standalone runtime launcher creates a separate profile. Keep these paths distinct and back up saves before changing builds.
-
-A public release still needs a separately prepared distribution package and documented handling of externally supplied content. Do not upload the complete local runtime or assume that a package containing `AC` in its name contains only original project assets.
+Cloning the repository alone does not provide playable game data. [Development checkpoint reports](checkpoints/CP09/REPORT.md) retain the history of isolated tests and earlier candidate limitations.
 
 ## Source and development
 
