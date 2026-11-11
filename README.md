@@ -20,9 +20,11 @@ Multiplayer is outside this mod's scope. Upstream networking and server code rem
 
 ## Release and installation
 
-**Version 1.0.0 is the creator-approved, playtested release.** Download the Windows x64 ZIP from [GitHub Releases](https://github.com/xSonicB00Mx/medal-of-honor-allied-campaign/releases).
+**Version 1.0.1 repackages the creator-approved 1.0.0 release into three consolidated PK3 files.** Download the Windows x64 ZIP from [GitHub Releases](https://github.com/xSonicB00Mx/medal-of-honor-allied-campaign/releases).
 
 Install Allied Assault, Spearhead, Breakthrough and **War Chest Restored for all three games** first. Back up the installation, extract the entire release ZIP into the game folder (merge folders and replace the supplied engine/DLLs), and run `Start-Allied-Campaign.cmd`.
+
+When upgrading from 1.0.0, the launcher verifies and removes the 68 obsolete AC packages automatically. It preserves saves, settings and original game/WCR data. Modified or unknown legacy AC packages stop the cleanup for review. See the installation guide before upgrading.
 
 The release includes the matching customized engine, runtime dependencies, all Allied Campaign packages and corresponding engine source. Original game data and WCR are not bundled. A fresh, separate profile is created in `AlliedCampaign-User`; existing personal saves are not packaged or overwritten.
 
