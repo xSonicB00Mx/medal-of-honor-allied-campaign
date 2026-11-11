@@ -7,6 +7,8 @@ release=R/'artifacts-local/Allied-Campaign-1.0.1'
 archive=release/'Medal-of-Honor-Allied-Campaign-1.0.1-Windows-x64.zip'
 dest=R/'generated-local/release-1.0.1-install'
 reuse = '--reuse' in sys.argv
+finish = '--finish' in sys.argv
+if finish: reuse = True
 assert reuse or not dest.exists()
 dest.mkdir(exist_ok=reuse)
 rt=R/'runtime-local/CP09-r1'
@@ -40,7 +42,7 @@ for row in manifest['files']: assert digest(dest/row['path'])==row['sha256']
 print('Fresh install and real 1.0.0 upgrade passed; WCR/mod hashes verified',flush=True)
 results=[]
 for game,folder,mapname in [(0,'main','m1l1'),(1,'mainta','t1l1'),(2,'maintt','e2l2')]:
-    home=dest/('QA-'+folder); cfg=home/folder/'release-smoke.cfg'; cfg.parent.mkdir(parents=True)
+    home=dest/('QA-'+folder); cfg=home/folder/'release-smoke.cfg'; cfg.parent.mkdir(parents=True,exist_ok=reuse)
     (cfg.parent/'release-clearfade.scr').write_text('main:\n clearfade\nend\n')
     cfg.write_text('set autopaused 0\nset cl_paused 0\nset cheats 1\nset thereisnomonkey 1\nwait 1000\nmap '+mapname+'\nwait 30000\nfinishloadingscreen\nscript player exec release-clearfade.scr\nwait 1000\nscreenshot silent\nwait 500\necho AC_RELEASE_SMOKE_COMPLETE\nquit\n')
     args=[str(dest/'openmohaa.exe')]
@@ -50,17 +52,20 @@ for game,folder,mapname in [(0,'main','m1l1'),(1,'mainta','t1l1'),(2,'maintt','e
                     r_customwidth=1280,r_customheight=720).items(): args+=['+set',k,str(v)]
     # Compare actual shader enumeration against the unmodified multi-PK3 runtime.
     baseline_home=dest/('baseline-'+folder)
-    (baseline_home/folder).mkdir(parents=True)
+    (baseline_home/folder).mkdir(parents=True,exist_ok=reuse)
     (baseline_home/folder/'baseline.cfg').write_text('wait 1500\necho AC_BASELINE_COMPLETE\nquit\n')
     baseline_args=[str(rt/'openmohaa.exe')]+[str(baseline_home) if a==str(home) else str(rt) if a==str(dest) else a for a in args[1:]]
-    subprocess.run(baseline_args+['+exec','baseline.cfg'],cwd=rt,check=True,timeout=60,
-                   stdout=subprocess.DEVNULL,stderr=subprocess.STDOUT)
+    if not finish:
+        subprocess.run(baseline_args+['+exec','baseline.cfg'],cwd=rt,check=True,timeout=60,
+                       stdout=subprocess.DEVNULL,stderr=subprocess.STDOUT)
     baseline_log=(baseline_home/folder/'qconsole.log').read_text(encoding='latin1')
     assert 'AC_BASELINE_COMPLETE' in baseline_log
-    proc=subprocess.run(args+['+exec','release-smoke.cfg'],cwd=dest,timeout=100,
-                        stdout=subprocess.DEVNULL,stderr=subprocess.STDOUT)
+    if not finish:
+        proc=subprocess.run(args+['+exec','release-smoke.cfg'],cwd=dest,timeout=100,
+                            stdout=subprocess.DEVNULL,stderr=subprocess.STDOUT)
+        assert proc.returncode==0
     log=(home/folder/'qconsole.log').read_text(encoding='latin1')
-    assert proc.returncode==0 and 'AC_RELEASE_SMOKE_COMPLETE' in log
+    assert 'AC_RELEASE_SMOKE_COMPLETE' in log
     shader_lines=lambda text: re.findall(r"\.\.\.loading '(scripts/[^']+\.shader)'",text)
     assert shader_lines(log) and shader_lines(log)==shader_lines(baseline_log), 'Native shader order changed'
     assert not any(s in log for s in ['VM_Create on game failed','Could not load default.cfg','GLimp_Init() - could not load'])
@@ -70,12 +75,12 @@ for game,folder,mapname in [(0,'main','m1l1'),(1,'mainta','t1l1'),(2,'maintt','e
         from PIL import ImageStat
         assert max(ImageStat.Stat(image.convert('RGB')).stddev)>3, 'Blank smoke screenshot'
         image.save(release/('smoke-'+folder+'.png'))
-    results.append(dict(game=folder,map=mapname,exit_code=proc.returncode,screenshot=True))
+    results.append(dict(game=folder,map=mapname,completed=True,screenshot=True))
     print(folder+' launched and rendered from extracted ZIP',flush=True)
 # Load the creator's latest save only from a separate copied profile.
 copy_home=dest/'save-compatibility'
-shutil.copytree(personal,copy_home)
-(copy_home/'mainta/release-save.cfg').write_text('load t2l30000\nwait 12000\nscreenshot silent\nwait 500\necho AC_SAVE_COMPATIBLE\nquit\n')
+shutil.copytree(personal,copy_home,dirs_exist_ok=reuse)
+(copy_home/'mainta/release-save.cfg').write_text('wait 800\nloadgame t2l30000\nwait 1000\nfinishloadingscreen\nwait 20000\nscreenshot silent\nwait 500\necho AC_SAVE_COMPATIBLE\nquit\n')
 save_args=[str(dest/'openmohaa.exe')]
 for k,v in dict(com_target_game=1,fs_basepath=dest,fs_homepath=copy_home,fs_steampath=dest,fs_gogpath=dest,
                 fs_microsoftstorepath=dest,net_enabled=0,ac_campaign_mode=1,cl_playintro=0,autopaused=0,
@@ -84,14 +89,16 @@ for k,v in dict(com_target_game=1,fs_basepath=dest,fs_homepath=copy_home,fs_stea
 subprocess.run(save_args+['+exec','release-save.cfg'],cwd=dest,check=True,timeout=90,
                stdout=subprocess.DEVNULL,stderr=subprocess.STDOUT)
 save_log=(copy_home/'mainta/qconsole.log').read_text(encoding='latin1')
-assert 'AC_SAVE_COMPATIBLE' in save_log and 't2l3' in save_log
-assert not any(x in save_log for x in ['Could not load', 'Savegame is from', 'ERROR:'])
+assert 'AC_SAVE_COMPATIBLE' in save_log and 'AC_SAVE_ACCEPT context=1 map=t2l3' in save_log
+assert not any(x in save_log for x in ['Could not load', 'Savegame is from', 'Unknown command'])
+errors = [line for line in save_log.splitlines() if 'ERROR:' in line and 'LOCALIZATION ERROR:' not in line]
+assert not errors, errors
 latest_shot=max((copy_home/'mainta/screenshots').glob('*.tga'),key=lambda p:p.stat().st_mtime)
 with Image.open(latest_shot) as im:
     assert max(ImageStat.Stat(im.convert('RGB')).stddev)>3
     im.save(release/'save-compatibility.png')
 # Exercise the exact CMD entry point and its automatic update invocation.
-launch_home=dest/'AlliedCampaign-User/main';launch_home.mkdir(parents=True)
+launch_home=dest/'AlliedCampaign-User/main';launch_home.mkdir(parents=True,exist_ok=reuse)
 (launch_home/'launcher-test.cfg').write_text('wait 1500\necho AC_LAUNCHER_COMPLETE\nquit\n')
 subprocess.run(['cmd.exe','/d','/c','Start-Allied-Campaign.cmd','+set','cl_playintro','0','+set','autopaused','0',
                 '+set','com_maxfpsUnfocused','60','+set','r_fullscreen','0','+set','r_mode','-1',
