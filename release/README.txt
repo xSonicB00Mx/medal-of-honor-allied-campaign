@@ -1,4 +1,4 @@
-MEDAL OF HONOR: ALLIED CAMPAIGN 1.0.0
+MEDAL OF HONOR: ALLIED CAMPAIGN 1.0.1
 Windows x64 - War Chest Restored edition
 Released November 11, 2026
 
@@ -11,6 +11,9 @@ INSTALLATION
    mainta and maintt. Merge these folders and allow replacement of the engine
    and runtime DLLs. Do not extract into main or into an extra subfolder.
 4. Run Start-Allied-Campaign.cmd. Use this launcher for every normal session.
+   On an existing 1.0.0 installation, it automatically removes the 68 known
+   legacy AC packages after checking both their hashes and the three new
+   packages. Original game/WCR packages, saves and settings are never removed.
    No installer, Python, compiler, separate Max Payne installation or developer
    workspace is required. The matching engine, DLLs, artwork, HUD and effects
    packages are included. Original games and WCR are not included.
@@ -21,6 +24,25 @@ renderer is OpenGL 1. Advanced graphics features require appropriate GPU
 support; the name OpenGL 1 does not mean they run on legacy OpenGL-only cards.
 Compatibility with other WCR revisions and unrelated mods is not guaranteed.
 WCR-BASELINE.json records the exact package hashes used for testing.
+
+WHAT CHANGED IN 1.0.1
+The 68 separate AC packages are consolidated into exactly three:
+  main/zz_AlliedCampaign.pk3
+  mainta/zz_AlliedCampaign.pk3
+  maintt/zz_AlliedCampaign.pk3
+Their effective file contents AND enumeration order match 1.0.0. The engine,
+gameplay and save format are unchanged. This is a packaging maintenance release.
+
+UPDATING FROM 1.0.0
+Close the game, back up the installation and extract the entire 1.0.1 ZIP over
+it. Then use Start-Allied-Campaign.cmd, or run Update-Allied-Campaign.cmd once
+before using a custom launcher. Windows PowerShell is used for the one-time
+cleanup; no administrator rights or execution-policy changes are required.
+If an old AC package has been modified, an unknown old AC package is found,
+or a replacement is missing/damaged, cleanup stops before removing files.
+Follow the displayed message; do not delete original game or WCR packages.
+The updater only removes the exact 1.0.0 AC files listed in the manifest.
+Running it again is safe. Keep the AlliedCampaign-User folder in place.
 
 SAVES, SETTINGS AND UPGRADES
 A fresh profile is created in AlliedCampaign-User next to the launcher.
@@ -68,7 +90,8 @@ Simplified skies are a player option; weather scripts no longer force them on.
 TROUBLESHOOTING / REMOVAL
 If launch reports missing content, check the extraction location and WCR setup.
 Use the supplied engine and matching DLLs together, not stock OpenMoHAA binaries.
-Do not mix this release with earlier Allied Campaign package versions.
+Do not retain earlier AC packages alongside the three consolidated packages.
+The supplied launcher performs the supported 1.0.0 cleanup automatically.
 If Windows blocks a downloaded archive, review its Properties/Unblock option
 and extract it again. Do not disable antivirus or firewall protection.
 For a clean rollback, restore your installation backup or remove the separate
