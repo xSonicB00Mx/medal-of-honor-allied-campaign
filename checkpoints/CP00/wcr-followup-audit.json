@@ -1,0 +1,151 @@
+{
+  "candidate": "CP00-r2",
+  "engine_source_commit": "3eec4afb22093421b8776d2df92b87ec2fb4119e",
+  "wcr_package_fingerprint": "0d681481b7deaaa76fbeb5466de634e6e6b0caf271b975e1f8052408b41f4fe9",
+  "resources": [
+    {
+      "game": "AA",
+      "resource": "maps/m1l1.scr",
+      "provider": {
+        "package": "main/Restoration_AA_Pak1-Main.pk3",
+        "entry": "maps/m1l1.scr",
+        "crc32": "ccd75d76",
+        "size": 70951
+      },
+      "sha256": "34f4df1ad896bff5953d3cca1334e557aa05ab414dc2a4ad6fffea17c75c1cc2",
+      "line_references": {
+        "blowthedoor2:": [
+          2108
+        ],
+        "$mg42 setthread": [
+          2538
+        ]
+      },
+      "runtime_origin_verified": false
+    },
+    {
+      "game": "AA",
+      "resource": "maps/m2l1.scr",
+      "provider": {
+        "package": "main/Restoration_AA_Pak1-Main.pk3",
+        "entry": "maps/m2l1.scr",
+        "crc32": "a236cd7e",
+        "size": 18818
+      },
+      "sha256": "dcada82f39e0ea1411a07d65d5c4cf4517634c70bc9a3a8c41bf64baa39cd750",
+      "line_references": {
+        "s7_test:": [
+          673
+        ]
+      },
+      "runtime_origin_verified": true
+    },
+    {
+      "game": "SH",
+      "resource": "maps/t1l2.scr",
+      "provider": {
+        "package": "mainta/Restoration_SH_Pak1-Main.pk3",
+        "entry": "maps/t1l2.scr",
+        "crc32": "acc9041c",
+        "size": 23532
+      },
+      "sha256": "66acad9100c2b21bc010d129a45d50cf5e4ee99f05ba28624a7cd9fe982e3621",
+      "line_references": {
+        "explosionoffset": [
+          77,
+          81
+        ]
+      },
+      "runtime_origin_verified": true
+    },
+    {
+      "game": "BT",
+      "resource": "maps/e3l4.scr",
+      "provider": {
+        "package": "maintt/Restoration_BT_Pak1-Main.pk3",
+        "entry": "maps/e3l4.scr",
+        "crc32": "c007a259",
+        "size": 11819
+      },
+      "sha256": "c7d05bdb2bc228f25367e39545dd3a99ceec83d1b55892241a9363ff60fc2bca",
+      "line_references": {
+        "ObjectiveConfirmAirstrike": [
+          115
+        ],
+        "ObjectiveEscapeCastle": [
+          126
+        ],
+        "DoOutro": [
+          141
+        ]
+      },
+      "runtime_origin_verified": true
+    },
+    {
+      "game": "BT",
+      "resource": "maps/e3l4/escape.scr",
+      "provider": {
+        "package": "maintt/Restoration_BT_Pak1-Main.pk3",
+        "entry": "maps/e3l4/escape.scr",
+        "crc32": "604d72ae",
+        "size": 12245
+      },
+      "sha256": "5d2f8291422f056bb555d28f3cac2d21def58b032cf64eaaa32e457201cfbf95",
+      "line_references": {
+        "$wingametrigger waittill trigger": [
+          89,
+          337
+        ],
+        "level.escaped = 1": [
+          92
+        ],
+        "missionfailed": [
+          329
+        ]
+      },
+      "runtime_origin_verified": true
+    },
+    {
+      "game": "BT",
+      "resource": "maps/e3l4/tower.scr",
+      "provider": {
+        "package": "maintt/Restoration_BT_Pak1-Main.pk3",
+        "entry": "maps/e3l4/tower.scr",
+        "crc32": "a0ce7656",
+        "size": 18011
+      },
+      "sha256": "1b6f8c00638aba60570e04eaa922e5cf6b44d7a8cef26f102d89eeb247bc842c",
+      "line_references": {},
+      "runtime_origin_verified": true
+    },
+    {
+      "game": "BT",
+      "resource": "maps/e3l4/outro.scr",
+      "provider": {
+        "package": "maintt/Restoration_BT_Pak1-Main.pk3",
+        "entry": "maps/e3l4/outro.scr",
+        "crc32": "39b7b25b",
+        "size": 20556
+      },
+      "sha256": "1bb76a79272822d2e26550d393d64ab931cb79e95da2da74491a2a6b11cc2428",
+      "line_references": {
+        "RollTheCredits": [
+          83,
+          617
+        ]
+      },
+      "runtime_origin_verified": true
+    }
+  ],
+  "original_reference": {
+    "file_count": 9007,
+    "manifest_sha256": "1ce7e1782494bd1bb58c1918318734bccbbf50697a710b7655966113b0548b6a",
+    "exit_code": 3221225477,
+    "exit_hex": "0xc0000005",
+    "comparison_succeeded": false
+  },
+  "acceptance": {
+    "user_quote": "hat geklappt. fahre fort",
+    "scope": "CP00-r2 save/load, mission thumbnails and FOV persistence; not complete CP0 or merge approval"
+  }
+}

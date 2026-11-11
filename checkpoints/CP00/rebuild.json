@@ -1,0 +1,23 @@
+{
+  "engine_source_commit": "3eec4afb22093421b8776d2df92b87ec2fb4119e",
+  "fresh_checkout_build_passed": true,
+  "binaries_byte_identical": false,
+  "hashes": [
+    {
+      "file": "openmohaa.exe",
+      "first": "ed50e53a812d9ef1ef5ba196d1ce95f6fbecf75b388eabffec11cbfc2f61a464",
+      "fresh_checkout": "383bdcd3fe7d3f8c701ce6c304b47d1b7fdb169ca0d28fb819fc92144b7212cc"
+    },
+    {
+      "file": "game.dll",
+      "first": "a648c146a9c94522b3fc2720fac9611e836a10e1d6d2c8bc79c72e39dfd54ef4",
+      "fresh_checkout": "1cbd89d5d3735480294197c2e64b3dc1c2398c3e35b932b6635c1c46646b71e2"
+    },
+    {
+      "file": "cgame.dll",
+      "first": "d031832f4cf56040c1d42fafc380396a438975bacf381a41ca94b16772fe0e5d",
+      "fresh_checkout": "9115c56d94c716063b432631c2e24650ed74f001d741992d06bcde16dc19f380"
+    }
+  ],
+  "limitation": "SOURCE_DATE_EPOCH fixes build date; PDB paths and other compiler metadata still affect output. Fresh build compiled; no full separate gameplay validation."
+}

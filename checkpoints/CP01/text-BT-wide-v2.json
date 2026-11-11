@@ -1,0 +1,17 @@
+{
+  "game": "BT",
+  "completed": true,
+  "exit_code": 0,
+  "engine_sha256": "eef089438d26e90c354ab3d0055ff017a11fd4efb292f88e8483500eb4f3f848",
+  "cgame_sha256": "b4857bb188febaf19654932f0c3de5b96dd16ca3235c4662019967acf760ed83",
+  "errors": [],
+  "images": [
+    "profiles-local/CP01-r1/text-BT-wide-v2/maintt/screenshots/shot0000.png",
+    "profiles-local/CP01-r1/text-BT-wide-v2/maintt/screenshots/shot0001.png",
+    "profiles-local/CP01-r1/text-BT-wide-v2/maintt/screenshots/shot0002.png",
+    "profiles-local/CP01-r1/text-BT-wide-v2/maintt/screenshots/shot0003.png",
+    "profiles-local/CP01-r1/text-BT-wide-v2/maintt/screenshots/shot0004.png"
+  ],
+  "menu_preserved": true,
+  "scope": "Synthetic German text, existing native subtitle and objective renderer; real equipped optics, save/load menu. Visual review recorded separately."
+}

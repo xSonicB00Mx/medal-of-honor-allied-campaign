@@ -1,0 +1,902 @@
+{
+  "status": "INITIAL_TECHNICAL_ROUND_COMPLETE_CP09_ACCEPTANCE_OPEN",
+  "source_content": "1354fb7e6c164b8caa1ff75e0106ffbf0edb236b",
+  "engine_source": "b5573702b0073d8bfc8932a4768ffc73a3e34e0a",
+  "binaries": {
+    "openmohaa.exe": "6f5a053363aad483efb33ba5fa8b3e84561561e80db8bb8c1445a171492f710d",
+    "game.dll": "586bfc193cdef9b472c4c3de79f1b1c0f71fb2edc72387bb3bb5833925250e0a",
+    "cgame.dll": "d29cb6ff61953407e0fd0c4bc245f2579b4f2835edaa5d69e4c7c40322ceee94"
+  },
+  "wcr": {
+    "schema": 1,
+    "status": "NUTZER_AUTORISIERTE_LOKALE_REVISION_LAUFZEIT_OFFEN",
+    "version": null,
+    "version_evidence": "Local files supplied and replacement authorized by user; no verified release identifier",
+    "package_fingerprint": "3b6b38b5b04ba320a526196946c44394c4519e4197dc8d3d05788e186501cfcc",
+    "modules": [
+      {
+        "path": "main/Restoration_AA_Pak1-Main.pk3",
+        "sha256": "87bf00e9210a8cb282aae020346ffc4c2f8cfcf915b639bdf6314780394eaa3a",
+        "resources": 738,
+        "installed": true
+      },
+      {
+        "path": "main/Restoration_AA_Pak2-Bash.pk3",
+        "sha256": "7759c88b2ca96ec6ed8899e82d38b72344dbecf21ee753264fd9ec654711af02",
+        "resources": 25,
+        "installed": true
+      },
+      {
+        "path": "main/Restoration_AA_Plus-Reflections.pk3",
+        "sha256": "1f0c900fb75b27c32e81eaeab42f47d4132a590bb9e506941d85a1e4d0eb65bd",
+        "resources": 13,
+        "installed": true
+      },
+      {
+        "path": "mainta/Restoration_SH_Pak1-Main.pk3",
+        "sha256": "6858b5d44dafbb8e772d12f3501925e1530dfb2c7bd29cfe79950bb54f76a9db",
+        "resources": 513,
+        "installed": true
+      },
+      {
+        "path": "mainta/Restoration_SH_Plus-Reflections.pk3",
+        "sha256": "e40860dd59948121f9067c71a1c402e64abfcfb023631c859972909e0c406e2d",
+        "resources": 8,
+        "installed": true
+      },
+      {
+        "path": "maintt/Restoration_BT_Pak1-Main.pk3",
+        "sha256": "5c66188f2e11dee941fc9af239325f4732c129478306faca4da9e5199738f133",
+        "resources": 718,
+        "installed": true
+      },
+      {
+        "path": "maintt/Restoration_BT_Plus-Reflections.pk3",
+        "sha256": "00b12b691112fc1cce21cdf526ce7ce1b280771be026b31bf6513ced1e25fa23",
+        "resources": 18,
+        "installed": true
+      }
+    ],
+    "loose_files": "Full revision inventory retained locally; unchanged unless listed in revision report",
+    "source": "User-provided local installation; no download",
+    "authorization": "User confirmed intentional WCR update and requested future use in chat on 2026-10-13"
+  },
+  "integrity": {
+    "original": 9072,
+    "runtime_base": 9000,
+    "runtime_owned": 86
+  },
+  "personal_files": 427,
+  "personal_unchanged": true,
+  "executed_harness_cases": 46,
+  "distinct_cases": 44,
+  "clean_cases": 40,
+  "known_diagnostic_cases": 4,
+  "initial_failures": [
+    {
+      "name": "drops-aa",
+      "exit": 1,
+      "passed": false,
+      "seconds": 30.75,
+      "peak_rss": 309170176,
+      "peak_private": 903442432
+    },
+    {
+      "name": "loadout-2-replay",
+      "exit": 1,
+      "passed": false,
+      "seconds": 52.66,
+      "peak_rss": 327413760,
+      "peak_private": 1218904064
+    },
+    {
+      "name": "loadout-2-score",
+      "exit": 1,
+      "passed": false,
+      "seconds": 47.84,
+      "peak_rss": 323276800,
+      "peak_private": 1222295552
+    },
+    {
+      "name": "loadout-2-new",
+      "exit": 1,
+      "passed": false,
+      "seconds": 47.88,
+      "peak_rss": 323104768,
+      "peak_private": 1221775360
+    },
+    {
+      "name": "loadout-2-default",
+      "exit": 1,
+      "passed": false,
+      "seconds": 52.45,
+      "peak_rss": 324587520,
+      "peak_private": 1218981888
+    }
+  ],
+  "cases": [
+    {
+      "name": "metadata",
+      "exit": 0,
+      "passed": true,
+      "seconds": 0.25,
+      "peak_rss": null,
+      "peak_private": null,
+      "assessment": "PASS"
+    },
+    {
+      "name": "campaign",
+      "exit": 0,
+      "passed": true,
+      "seconds": 0.25,
+      "peak_rss": null,
+      "peak_private": null,
+      "assessment": "PASS"
+    },
+    {
+      "name": "weapon-policy",
+      "exit": 0,
+      "passed": true,
+      "seconds": 0.25,
+      "peak_rss": null,
+      "peak_private": null,
+      "assessment": "PASS"
+    },
+    {
+      "name": "shared-preferences",
+      "exit": 0,
+      "passed": true,
+      "seconds": 30.34,
+      "peak_rss": 181153792,
+      "peak_private": 770908160,
+      "assessment": "PASS"
+    },
+    {
+      "name": "score-combat",
+      "exit": 0,
+      "passed": true,
+      "seconds": 32.08,
+      "peak_rss": 333496320,
+      "peak_private": 1017126912,
+      "assessment": "PASS"
+    },
+    {
+      "name": "score-abort",
+      "exit": 0,
+      "passed": true,
+      "seconds": 21.91,
+      "peak_rss": 279191552,
+      "peak_private": 939708416,
+      "assessment": "PASS"
+    },
+    {
+      "name": "operations-finish",
+      "exit": 0,
+      "passed": true,
+      "seconds": 15.28,
+      "peak_rss": 301191168,
+      "peak_private": 928714752,
+      "assessment": "PASS"
+    },
+    {
+      "name": "shotgun-aa",
+      "exit": 0,
+      "passed": true,
+      "seconds": 26.45,
+      "peak_rss": 295948288,
+      "peak_private": 897638400,
+      "assessment": "PASS"
+    },
+    {
+      "name": "wounds-aa",
+      "exit": 0,
+      "passed": true,
+      "seconds": 42.47,
+      "peak_rss": 300326912,
+      "peak_private": 896417792,
+      "assessment": "PASS"
+    },
+    {
+      "name": "drops-aa",
+      "exit": 0,
+      "passed": true,
+      "seconds": 31.05,
+      "peak_rss": 298196992,
+      "peak_private": 914448384,
+      "assessment": "PASS"
+    },
+    {
+      "name": "menus-aa",
+      "exit": 0,
+      "passed": true,
+      "seconds": 24.69,
+      "peak_rss": 315924480,
+      "peak_private": 1014304768,
+      "assessment": "PASS"
+    },
+    {
+      "name": "shotgun-sh",
+      "exit": 0,
+      "passed": true,
+      "seconds": 27.52,
+      "peak_rss": 340250624,
+      "peak_private": 1063198720,
+      "assessment": "PASS"
+    },
+    {
+      "name": "wounds-sh",
+      "exit": 0,
+      "passed": true,
+      "seconds": 43.53,
+      "peak_rss": 328282112,
+      "peak_private": 1057611776,
+      "assessment": "PASS"
+    },
+    {
+      "name": "drops-sh",
+      "exit": 0,
+      "passed": true,
+      "seconds": 31.94,
+      "peak_rss": 334450688,
+      "peak_private": 1062797312,
+      "assessment": "PASS"
+    },
+    {
+      "name": "menus-sh",
+      "exit": 0,
+      "passed": true,
+      "seconds": 25.59,
+      "peak_rss": 378335232,
+      "peak_private": 1242701824,
+      "assessment": "PASS"
+    },
+    {
+      "name": "shotgun-bt",
+      "exit": 0,
+      "passed": true,
+      "seconds": 28.69,
+      "peak_rss": 372752384,
+      "peak_private": 1163198464,
+      "assessment": "PASS"
+    },
+    {
+      "name": "wounds-bt",
+      "exit": 0,
+      "passed": true,
+      "seconds": 44.75,
+      "peak_rss": 398307328,
+      "peak_private": 1166446592,
+      "assessment": "PASS"
+    },
+    {
+      "name": "drops-bt",
+      "exit": 0,
+      "passed": true,
+      "seconds": 33.11,
+      "peak_rss": 376664064,
+      "peak_private": 1160114176,
+      "assessment": "PASS"
+    },
+    {
+      "name": "menus-bt",
+      "exit": 0,
+      "passed": true,
+      "seconds": 27.77,
+      "peak_rss": 427941888,
+      "peak_private": 1268424704,
+      "assessment": "PASS"
+    },
+    {
+      "name": "crosshair-aa",
+      "exit": 0,
+      "passed": true,
+      "seconds": 56.78,
+      "peak_rss": 336822272,
+      "peak_private": 1007276032,
+      "assessment": "PASS"
+    },
+    {
+      "name": "crosshair-sh",
+      "exit": 0,
+      "passed": true,
+      "seconds": 49.89,
+      "peak_rss": 324153344,
+      "peak_private": 1052553216,
+      "assessment": "PASS"
+    },
+    {
+      "name": "crosshair-bt",
+      "exit": 0,
+      "passed": true,
+      "seconds": 57.02,
+      "peak_rss": 393404416,
+      "peak_private": 1192620032,
+      "assessment": "PASS"
+    },
+    {
+      "name": "finale-13",
+      "exit": 0,
+      "passed": true,
+      "seconds": 27.91,
+      "peak_rss": 261373952,
+      "peak_private": 863522816,
+      "assessment": "PASS"
+    },
+    {
+      "name": "finale-11",
+      "exit": 0,
+      "passed": true,
+      "seconds": 31.09,
+      "peak_rss": 368365568,
+      "peak_private": 1154723840,
+      "assessment": "PASS"
+    },
+    {
+      "name": "finale-14",
+      "exit": 0,
+      "passed": true,
+      "seconds": 23.47,
+      "peak_rss": 310403072,
+      "peak_private": 1043525632,
+      "assessment": "PASS"
+    },
+    {
+      "name": "loadout-0-replay",
+      "exit": 0,
+      "passed": true,
+      "seconds": 28.91,
+      "peak_rss": 294232064,
+      "peak_private": 991035392,
+      "assessment": "PASS"
+    },
+    {
+      "name": "loadout-0-score",
+      "exit": 0,
+      "passed": true,
+      "seconds": 21.25,
+      "peak_rss": 288419840,
+      "peak_private": 986615808,
+      "assessment": "PASS"
+    },
+    {
+      "name": "loadout-0-new",
+      "exit": 0,
+      "passed": true,
+      "seconds": 24.2,
+      "peak_rss": 282529792,
+      "peak_private": 986497024,
+      "assessment": "PASS"
+    },
+    {
+      "name": "loadout-0-default",
+      "exit": 0,
+      "passed": true,
+      "seconds": 28.92,
+      "peak_rss": 285057024,
+      "peak_private": 985550848,
+      "assessment": "PASS"
+    },
+    {
+      "name": "loadout-0-locked",
+      "exit": 0,
+      "passed": true,
+      "seconds": 5.11,
+      "peak_rss": 190492672,
+      "peak_private": 682573824,
+      "assessment": "PASS"
+    },
+    {
+      "name": "loadout-1-replay",
+      "exit": 0,
+      "passed": true,
+      "seconds": 55.05,
+      "peak_rss": 321396736,
+      "peak_private": 1193897984,
+      "assessment": "PASS"
+    },
+    {
+      "name": "loadout-1-score",
+      "exit": 0,
+      "passed": true,
+      "seconds": 46.62,
+      "peak_rss": 342519808,
+      "peak_private": 1204711424,
+      "assessment": "PASS"
+    },
+    {
+      "name": "loadout-1-new",
+      "exit": 0,
+      "passed": true,
+      "seconds": 50.41,
+      "peak_rss": 323207168,
+      "peak_private": 1199026176,
+      "assessment": "PASS"
+    },
+    {
+      "name": "loadout-1-default",
+      "exit": 0,
+      "passed": true,
+      "seconds": 55.12,
+      "peak_rss": 322875392,
+      "peak_private": 1205092352,
+      "assessment": "PASS"
+    },
+    {
+      "name": "loadout-1-locked",
+      "exit": 0,
+      "passed": true,
+      "seconds": 4.86,
+      "peak_rss": 204759040,
+      "peak_private": 676569088,
+      "assessment": "PASS"
+    },
+    {
+      "name": "loadout-2-replay",
+      "exit": 0,
+      "passed": true,
+      "seconds": 52.41,
+      "peak_rss": 343187456,
+      "peak_private": 1228812288,
+      "assessment": "FUNCTIONAL_CHECKS_PASS_WITH_EXISTING_SCRIPT_DIAGNOSTICS",
+      "diagnostics": [
+        "^~^~^ Script Error : command 'thread' applied to NULL listener",
+        "^~^~^ Script Error : self is NULL",
+        "^~^~^ Script Error : invalid waittill spawn for 'Level'"
+      ]
+    },
+    {
+      "name": "loadout-2-score",
+      "exit": 1,
+      "passed": false,
+      "seconds": 47.84,
+      "peak_rss": 323276800,
+      "peak_private": 1222295552,
+      "assessment": "FUNCTIONAL_CHECKS_PASS_WITH_EXISTING_SCRIPT_DIAGNOSTICS",
+      "diagnostics": [
+        "^~^~^ Script Error : command 'thread' applied to NULL listener",
+        "^~^~^ Script Error : self is NULL",
+        "^~^~^ Script Error : invalid waittill spawn for 'Level'"
+      ]
+    },
+    {
+      "name": "loadout-2-new",
+      "exit": 1,
+      "passed": false,
+      "seconds": 47.88,
+      "peak_rss": 323104768,
+      "peak_private": 1221775360,
+      "assessment": "FUNCTIONAL_CHECKS_PASS_WITH_EXISTING_SCRIPT_DIAGNOSTICS",
+      "diagnostics": [
+        "^~^~^ Script Error : command 'thread' applied to NULL listener",
+        "^~^~^ Script Error : self is NULL",
+        "^~^~^ Script Error : invalid waittill spawn for 'Level'"
+      ]
+    },
+    {
+      "name": "loadout-2-default",
+      "exit": 1,
+      "passed": false,
+      "seconds": 52.45,
+      "peak_rss": 324587520,
+      "peak_private": 1218981888,
+      "assessment": "FUNCTIONAL_CHECKS_PASS_WITH_EXISTING_SCRIPT_DIAGNOSTICS",
+      "diagnostics": [
+        "^~^~^ Script Error : command 'thread' applied to NULL listener",
+        "^~^~^ Script Error : self is NULL",
+        "^~^~^ Script Error : invalid waittill spawn for 'Level'"
+      ]
+    },
+    {
+      "name": "loadout-2-locked",
+      "exit": 0,
+      "passed": true,
+      "seconds": 4.84,
+      "peak_rss": 210128896,
+      "peak_private": 671895552,
+      "assessment": "PASS"
+    },
+    {
+      "name": "performance-0",
+      "exit": 0,
+      "passed": true,
+      "seconds": 30.77,
+      "peak_rss": 296869888,
+      "peak_private": 895029248,
+      "assessment": "PASS"
+    },
+    {
+      "name": "performance-1",
+      "exit": 0,
+      "passed": true,
+      "seconds": 30.78,
+      "peak_rss": 280555520,
+      "peak_private": 895209472,
+      "assessment": "PASS"
+    },
+    {
+      "name": "reload-memory",
+      "exit": 0,
+      "passed": true,
+      "seconds": 66.22,
+      "peak_rss": 368300032,
+      "peak_private": 1147244544,
+      "assessment": "PASS"
+    },
+    {
+      "name": "portable-candidate",
+      "exit": 0,
+      "passed": true,
+      "seconds": 30.58,
+      "peak_rss": 342405120,
+      "peak_private": 1183617024,
+      "assessment": "PASS"
+    }
+  ],
+  "harness_correction": "AA must not emit BT-only AC_DROP_POLICY diagnostics; fixed assertion, no game change",
+  "geometry_and_orientation": "C++ orientation test passed: 65536 seeds, geometry negatives, bounded events",
+  "projection": [
+    {
+      "run": "cp09-r1-cross-aa",
+      "game": "AA",
+      "installed": true,
+      "resolution": [
+        3840,
+        2160
+      ],
+      "standing_radius": 47.276,
+      "firing_radius": 99.121,
+      "moving_radius": 78.581,
+      "recovered_radius": 47.276,
+      "fov90_radius": 39.669,
+      "rifle_radius": 8.392,
+      "shot_samples": 10,
+      "projection_error_pixels": 0.0013173917288327175,
+      "binaries": {
+        "game.dll": "586bfc193cdef9b472c4c3de79f1b1c0f71fb2edc72387bb3bb5833925250e0a",
+        "cgame.dll": "d29cb6ff61953407e0fd0c4bc245f2579b4f2835edaa5d69e4c7c40322ceee94"
+      }
+    },
+    {
+      "run": "cp09-r1-cross-sh",
+      "game": "SH",
+      "installed": true,
+      "resolution": [
+        1280,
+        960
+      ],
+      "standing_radius": 21.011,
+      "firing_radius": 47.265,
+      "moving_radius": 34.87,
+      "recovered_radius": 21.011,
+      "fov90_radius": 17.631,
+      "rifle_radius": 3.73,
+      "shot_samples": 10,
+      "projection_error_pixels": 0.0008562435345140784,
+      "binaries": {
+        "game.dll": "586bfc193cdef9b472c4c3de79f1b1c0f71fb2edc72387bb3bb5833925250e0a",
+        "cgame.dll": "d29cb6ff61953407e0fd0c4bc245f2579b4f2835edaa5d69e4c7c40322ceee94"
+      }
+    },
+    {
+      "run": "cp09-r1-cross-bt",
+      "game": "BT",
+      "installed": true,
+      "resolution": [
+        3440,
+        1440
+      ],
+      "standing_radius": 31.517,
+      "firing_radius": 70.347,
+      "moving_radius": 52.387,
+      "recovered_radius": 31.517,
+      "fov90_radius": 26.446,
+      "rifle_radius": 5.594,
+      "shot_samples": 10,
+      "projection_error_pixels": 0.001145579214579584,
+      "binaries": {
+        "game.dll": "586bfc193cdef9b472c4c3de79f1b1c0f71fb2edc72387bb3bb5833925250e0a",
+        "cgame.dll": "d29cb6ff61953407e0fd0c4bc245f2579b4f2835edaa5d69e4c7c40322ceee94"
+      }
+    }
+  ],
+  "performance": [
+    {
+      "archive": [
+        [
+          "save",
+          "6"
+        ],
+        [
+          "load",
+          "6"
+        ]
+      ],
+      "run": "cp09-r1-perf-0",
+      "fx": 0,
+      "exit": 0,
+      "stages": {
+        "idle": {
+          "snapshots": 60,
+          "max_snapshot_gap_ms": 50,
+          "max_pending_commands": 0,
+          "max_snapshot_bytes": 187,
+          "frames": 187,
+          "mean_ms": 1.56,
+          "median_ms": 2,
+          "p95_ms": 2,
+          "p99_ms": 3,
+          "max_ms": 3,
+          "over_33ms": 0,
+          "over_100ms": 0,
+          "measurement": "com_speeds CPU wall time; includes driver waits, excludes limiter sleep; not GPU query time"
+        },
+        "firing": {
+          "snapshots": 119,
+          "max_snapshot_gap_ms": 50,
+          "max_pending_commands": 2,
+          "max_snapshot_bytes": 427,
+          "frames": 374,
+          "mean_ms": 1.69,
+          "median_ms": 2.0,
+          "p95_ms": 3,
+          "p99_ms": 3,
+          "max_ms": 9,
+          "over_33ms": 0,
+          "over_100ms": 0,
+          "measurement": "com_speeds CPU wall time; includes driver waits, excludes limiter sleep; not GPU query time"
+        },
+        "dying": {
+          "snapshots": 130,
+          "max_snapshot_gap_ms": 50,
+          "max_pending_commands": 3,
+          "max_snapshot_bytes": 465,
+          "frames": 406,
+          "mean_ms": 2.09,
+          "median_ms": 2.0,
+          "p95_ms": 3,
+          "p99_ms": 4,
+          "max_ms": 8,
+          "over_33ms": 0,
+          "over_100ms": 0,
+          "measurement": "com_speeds CPU wall time; includes driver waits, excludes limiter sleep; not GPU query time"
+        }
+      },
+      "errors": [],
+      "error_count": 0,
+      "events": [
+        "[2026-10-20 16:31:49 UTC+1.000] AC_MG_MOUNTED",
+        "[2026-10-20 16:31:49 UTC+1.000] AC_MG_READY gun=( -6672.433 2088.239 480.125 ) angles=( -0.000 109.600 0.000 ) player=( -6650.965 2027.947 432.125 ) target=( -6712.688 2201.289 434.125 )",
+        "[2026-10-20 16:31:54 UTC+1.000] AC_MG_SHOT health=99955.000 gunangles=( 354.505 109.600 0.000 ) view=( -0.000 109.600 0.000 )",
+        "[2026-10-20 16:31:55 UTC+1.000] AC_MG_SHOT health=99055.000 gunangles=( 354.505 109.600 0.000 ) view=( -0.000 109.600 0.000 )",
+        "[2026-10-20 16:31:56 UTC+1.000] AC_MG_SHOT health=98155.000 gunangles=( 354.505 109.600 0.000 ) view=( -0.000 109.600 0.000 )",
+        "[2026-10-20 16:31:57 UTC+1.000] AC_MG_SHOT health=97255.000 gunangles=( 354.505 109.600 0.000 ) view=( -0.000 109.600 0.000 )",
+        "[2026-10-20 16:31:58 UTC+1.000] AC_MG_SHOT health=96355.000 gunangles=( 354.505 109.600 0.000 ) view=( -0.000 109.600 0.000 )",
+        "[2026-10-20 16:32:00 UTC+1.000] AC_MG_DEATH 1",
+        "[2026-10-20 16:32:00 UTC+1.000] AC_MG_SHOT health=0.000 gunangles=( 354.505 109.600 0.000 ) view=( -0.000 109.600 0.000 )",
+        "[2026-10-20 16:32:01 UTC+1.000] AC_MG_DEATH 2",
+        "[2026-10-20 16:32:01 UTC+1.000] AC_MG_SHOT health=0.000 gunangles=( 354.505 109.600 0.000 ) view=( -0.000 109.600 0.000 )",
+        "[2026-10-20 16:32:02 UTC+1.000] AC_MG_DEATH 3",
+        "[2026-10-20 16:32:02 UTC+1.000] AC_MG_SHOT health=0.000 gunangles=( 359.417 109.600 0.000 ) view=( -0.000 109.600 0.000 )",
+        "[2026-10-20 16:32:03 UTC+1.000] AC_MG_DEATH 4",
+        "[2026-10-20 16:32:03 UTC+1.000] AC_MG_SHOT health=0.000 gunangles=( 354.505 109.600 0.000 ) view=( -0.000 109.600 0.000 )",
+        "[2026-10-20 16:32:04 UTC+1.000] AC_MG_DEATH 5",
+        "[2026-10-20 16:32:04 UTC+1.000] AC_MG_SHOT health=0.000 gunangles=( 354.505 109.600 0.000 ) view=( -0.000 109.600 0.000 )",
+        "[2026-10-20 16:32:11 UTC+1.000] AC_MG_DONE"
+      ],
+      "binaries": {
+        "openmohaa.exe": "6f5a053363aad483efb33ba5fa8b3e84561561e80db8bb8c1445a171492f710d",
+        "game.dll": "586bfc193cdef9b472c4c3de79f1b1c0f71fb2edc72387bb3bb5833925250e0a",
+        "cgame.dll": "d29cb6ff61953407e0fd0c4bc245f2579b4f2835edaa5d69e4c7c40322ceee94"
+      }
+    },
+    {
+      "archive": [
+        [
+          "save",
+          "64"
+        ],
+        [
+          "load",
+          "64"
+        ]
+      ],
+      "run": "cp09-r1-perf-1",
+      "fx": 1,
+      "exit": 0,
+      "stages": {
+        "idle": {
+          "snapshots": 60,
+          "max_snapshot_gap_ms": 50,
+          "max_pending_commands": 0,
+          "max_snapshot_bytes": 203,
+          "frames": 187,
+          "mean_ms": 1.59,
+          "median_ms": 2,
+          "p95_ms": 2,
+          "p99_ms": 3,
+          "max_ms": 3,
+          "over_33ms": 0,
+          "over_100ms": 0,
+          "measurement": "com_speeds CPU wall time; includes driver waits, excludes limiter sleep; not GPU query time"
+        },
+        "firing": {
+          "snapshots": 119,
+          "max_snapshot_gap_ms": 50,
+          "max_pending_commands": 4,
+          "max_snapshot_bytes": 485,
+          "frames": 374,
+          "mean_ms": 3.36,
+          "median_ms": 3.0,
+          "p95_ms": 5,
+          "p99_ms": 5,
+          "max_ms": 6,
+          "over_33ms": 0,
+          "over_100ms": 0,
+          "measurement": "com_speeds CPU wall time; includes driver waits, excludes limiter sleep; not GPU query time"
+        },
+        "dying": {
+          "snapshots": 130,
+          "max_snapshot_gap_ms": 50,
+          "max_pending_commands": 5,
+          "max_snapshot_bytes": 551,
+          "frames": 406,
+          "mean_ms": 3.01,
+          "median_ms": 3.0,
+          "p95_ms": 4,
+          "p99_ms": 5,
+          "max_ms": 6,
+          "over_33ms": 0,
+          "over_100ms": 0,
+          "measurement": "com_speeds CPU wall time; includes driver waits, excludes limiter sleep; not GPU query time"
+        }
+      },
+      "errors": [],
+      "error_count": 0,
+      "events": [
+        "[2026-10-20 16:32:20 UTC+1.000] AC_MG_MOUNTED",
+        "[2026-10-20 16:32:20 UTC+1.000] AC_MG_READY gun=( -6672.428 2088.166 480.125 ) angles=( -0.000 109.600 0.000 ) player=( -6650.959 2027.874 432.125 ) target=( -6712.682 2201.216 434.125 )",
+        "[2026-10-20 16:32:24 UTC+1.000] AC_MG_SHOT health=99955.000 gunangles=( 354.505 109.600 0.000 ) view=( -0.000 109.600 0.000 )",
+        "[2026-10-20 16:32:26 UTC+1.000] AC_MG_SHOT health=99055.000 gunangles=( 354.505 109.600 0.000 ) view=( -0.000 109.600 0.000 )",
+        "[2026-10-20 16:32:27 UTC+1.000] AC_MG_SHOT health=98155.000 gunangles=( 354.505 109.600 0.000 ) view=( -0.000 109.600 0.000 )",
+        "[2026-10-20 16:32:28 UTC+1.000] AC_MG_SHOT health=97255.000 gunangles=( 354.505 109.600 0.000 ) view=( -0.000 109.600 0.000 )",
+        "[2026-10-20 16:32:29 UTC+1.000] AC_MG_SHOT health=96355.000 gunangles=( 354.505 109.600 0.000 ) view=( -0.000 109.600 0.000 )",
+        "[2026-10-20 16:32:30 UTC+1.000] AC_MG_DEATH 1",
+        "[2026-10-20 16:32:30 UTC+1.000] AC_MG_SHOT health=0.000 gunangles=( 354.505 109.600 0.000 ) view=( -0.000 109.600 0.000 )",
+        "[2026-10-20 16:32:32 UTC+1.000] AC_MG_DEATH 2",
+        "[2026-10-20 16:32:32 UTC+1.000] AC_MG_SHOT health=0.000 gunangles=( 354.505 109.600 0.000 ) view=( -0.000 109.600 0.000 )",
+        "[2026-10-20 16:32:33 UTC+1.000] AC_MG_DEATH 3",
+        "[2026-10-20 16:32:33 UTC+1.000] AC_MG_SHOT health=0.000 gunangles=( 354.505 109.600 0.000 ) view=( -0.000 109.600 0.000 )",
+        "[2026-10-20 16:32:34 UTC+1.000] AC_MG_DEATH 4",
+        "[2026-10-20 16:32:34 UTC+1.000] AC_MG_SHOT health=0.000 gunangles=( 354.505 109.600 0.000 ) view=( -0.000 109.600 0.000 )",
+        "[2026-10-20 16:32:35 UTC+1.000] AC_MG_DEATH 5",
+        "[2026-10-20 16:32:35 UTC+1.000] AC_MG_SHOT health=0.000 gunangles=( 354.505 109.600 0.000 ) view=( -0.000 109.600 0.000 )",
+        "[2026-10-20 16:32:42 UTC+1.000] AC_MG_DONE"
+      ],
+      "binaries": {
+        "openmohaa.exe": "6f5a053363aad483efb33ba5fa8b3e84561561e80db8bb8c1445a171492f710d",
+        "game.dll": "586bfc193cdef9b472c4c3de79f1b1c0f71fb2edc72387bb3bb5833925250e0a",
+        "cgame.dll": "d29cb6ff61953407e0fd0c4bc245f2579b4f2835edaa5d69e4c7c40322ceee94"
+      }
+    }
+  ],
+  "memory": {
+    "passed": true,
+    "roundtrips": 10,
+    "current_save_copy_loaded": true,
+    "source_unchanged": true,
+    "phases": [
+      {
+        "cycle": 0,
+        "samples": 9,
+        "rss_median": 357691392,
+        "private_median": 1127567360
+      },
+      {
+        "cycle": 1,
+        "samples": 9,
+        "rss_median": 358850560,
+        "private_median": 1128763392
+      },
+      {
+        "cycle": 2,
+        "samples": 10,
+        "rss_median": 358912000.0,
+        "private_median": 1128804352.0
+      },
+      {
+        "cycle": 3,
+        "samples": 10,
+        "rss_median": 341508096.0,
+        "private_median": 1108566016.0
+      },
+      {
+        "cycle": 4,
+        "samples": 10,
+        "rss_median": 341680128.0,
+        "private_median": 1108566016.0
+      },
+      {
+        "cycle": 5,
+        "samples": 10,
+        "rss_median": 341778432.0,
+        "private_median": 1108713472.0
+      },
+      {
+        "cycle": 6,
+        "samples": 9,
+        "rss_median": 338399232,
+        "private_median": 1110269952
+      },
+      {
+        "cycle": 7,
+        "samples": 9,
+        "rss_median": 338276352,
+        "private_median": 1110269952
+      },
+      {
+        "cycle": 8,
+        "samples": 10,
+        "rss_median": 337944576.0,
+        "private_median": 1110396928.0
+      },
+      {
+        "cycle": 9,
+        "samples": 10,
+        "rss_median": 337473536.0,
+        "private_median": 1110298624.0
+      }
+    ],
+    "private_growth_after_warmup": -18505728.0,
+    "sustained_growth": false,
+    "note": "Ten reloads only; not proof against all long-session leaks."
+  },
+  "installation": {
+    "passed": true,
+    "steps": [
+      {
+        "result": "INTERRUPTED_FOR_TEST",
+        "copied": 25,
+        "activated": false
+      },
+      {
+        "result": "INSTALLED",
+        "files": 9086,
+        "copied": 9061,
+        "input_fingerprint": "87f9d0a95386a289e135652b3000873f260a1c34daa3e42abf13d0272e5206a2"
+      },
+      {
+        "result": "UNCHANGED",
+        "files": 9086,
+        "input_fingerprint": "87f9d0a95386a289e135652b3000873f260a1c34daa3e42abf13d0272e5206a2"
+      },
+      {
+        "result": "CHANGED_OWNED_FILE_REFUSED"
+      },
+      {
+        "result": "MOD_REMOVED_BASE_PRESERVED",
+        "base_files": 9000
+      }
+    ],
+    "source_unchanged": true,
+    "user_sentinel_preserved": true,
+    "base_files": 9000,
+    "scope": "Already merged local runtime, not arbitrary raw-game/WCR import"
+  },
+  "candidate_launch": {
+    "passed": true,
+    "context_restart": true,
+    "current_bt_save_copy_loaded": true,
+    "original_unchanged": true,
+    "no_cp08_runtime_path": true,
+    "screenshot": []
+  },
+  "candidate": {
+    "path": "runtime-local/CP09-r1",
+    "manifest_sha256": "056ae5d96aaeb91bf37ae4b7e9da059985354989076f14b8e85c49fa0b51910b",
+    "owned_files": 90,
+    "base_files": 9000
+  },
+  "gpu_timing_measured": false,
+  "natural_playthrough_accepted": false,
+  "merged": false
+}

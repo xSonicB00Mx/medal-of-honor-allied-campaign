@@ -1,0 +1,492 @@
+{
+  "engine_sha256": "cbf90dbf466db6a7c95ec79e17771612b8ff4d7b3b912547eb9deccd6212a06f",
+  "results": [
+    {
+      "game": "AA",
+      "map": "m1l1",
+      "exit": 0,
+      "commands_completed": true,
+      "save_triplet": true,
+      "script_errors": [],
+      "seconds": 7.73
+    },
+    {
+      "game": "AA",
+      "map": "m1l2a",
+      "exit": 0,
+      "commands_completed": true,
+      "save_triplet": true,
+      "script_errors": [],
+      "seconds": 7.7
+    },
+    {
+      "game": "AA",
+      "map": "m1l2b",
+      "exit": 0,
+      "commands_completed": true,
+      "save_triplet": true,
+      "script_errors": [],
+      "seconds": 7.69
+    },
+    {
+      "game": "AA",
+      "map": "m1l3a",
+      "exit": 0,
+      "commands_completed": true,
+      "save_triplet": true,
+      "script_errors": [],
+      "seconds": 6.67
+    },
+    {
+      "game": "AA",
+      "map": "m1l3b",
+      "exit": 0,
+      "commands_completed": true,
+      "save_triplet": true,
+      "script_errors": [],
+      "seconds": 6.69
+    },
+    {
+      "game": "AA",
+      "map": "m1l3c",
+      "exit": 0,
+      "commands_completed": true,
+      "save_triplet": true,
+      "script_errors": [],
+      "seconds": 6.7
+    },
+    {
+      "game": "AA",
+      "map": "m2l1",
+      "exit": 0,
+      "commands_completed": true,
+      "save_triplet": true,
+      "script_errors": [],
+      "seconds": 7.72
+    },
+    {
+      "game": "AA",
+      "map": "m2l2a",
+      "exit": 0,
+      "commands_completed": true,
+      "save_triplet": true,
+      "script_errors": [],
+      "seconds": 7.72
+    },
+    {
+      "game": "AA",
+      "map": "m2l2b",
+      "exit": 0,
+      "commands_completed": true,
+      "save_triplet": true,
+      "script_errors": [],
+      "seconds": 7.69
+    },
+    {
+      "game": "AA",
+      "map": "m2l2c",
+      "exit": 0,
+      "commands_completed": true,
+      "save_triplet": true,
+      "script_errors": [],
+      "seconds": 6.69
+    },
+    {
+      "game": "AA",
+      "map": "m2l3",
+      "exit": 0,
+      "commands_completed": true,
+      "save_triplet": true,
+      "script_errors": [],
+      "seconds": 6.72
+    },
+    {
+      "game": "AA",
+      "map": "m3l1a",
+      "exit": 0,
+      "commands_completed": true,
+      "save_triplet": true,
+      "script_errors": [],
+      "seconds": 7.7
+    },
+    {
+      "game": "AA",
+      "map": "m3l1b",
+      "exit": 0,
+      "commands_completed": true,
+      "save_triplet": true,
+      "script_errors": [],
+      "seconds": 7.7
+    },
+    {
+      "game": "AA",
+      "map": "m3l2",
+      "exit": 0,
+      "commands_completed": true,
+      "save_triplet": true,
+      "script_errors": [],
+      "seconds": 7.7
+    },
+    {
+      "game": "AA",
+      "map": "m3l3",
+      "exit": 0,
+      "commands_completed": true,
+      "save_triplet": true,
+      "script_errors": [],
+      "seconds": 7.7
+    },
+    {
+      "game": "AA",
+      "map": "m4l0",
+      "exit": 0,
+      "commands_completed": true,
+      "save_triplet": true,
+      "script_errors": [],
+      "seconds": 6.72
+    },
+    {
+      "game": "AA",
+      "map": "m4l1",
+      "exit": 0,
+      "commands_completed": true,
+      "save_triplet": true,
+      "script_errors": [],
+      "seconds": 7.7
+    },
+    {
+      "game": "AA",
+      "map": "m4l2",
+      "exit": 0,
+      "commands_completed": true,
+      "save_triplet": true,
+      "script_errors": [],
+      "seconds": 7.7
+    },
+    {
+      "game": "AA",
+      "map": "m4l3",
+      "exit": 0,
+      "commands_completed": true,
+      "save_triplet": true,
+      "script_errors": [],
+      "seconds": 7.72
+    },
+    {
+      "game": "AA",
+      "map": "m5l1a",
+      "exit": 0,
+      "commands_completed": true,
+      "save_triplet": true,
+      "script_errors": [],
+      "seconds": 6.67
+    },
+    {
+      "game": "AA",
+      "map": "m5l1b",
+      "exit": 0,
+      "commands_completed": true,
+      "save_triplet": true,
+      "script_errors": [],
+      "seconds": 7.72
+    },
+    {
+      "game": "AA",
+      "map": "m5l2a",
+      "exit": 0,
+      "commands_completed": true,
+      "save_triplet": true,
+      "script_errors": [],
+      "seconds": 7.72
+    },
+    {
+      "game": "AA",
+      "map": "m5l2b",
+      "exit": 0,
+      "commands_completed": true,
+      "save_triplet": true,
+      "script_errors": [],
+      "seconds": 7.72
+    },
+    {
+      "game": "AA",
+      "map": "m5l3",
+      "exit": 0,
+      "commands_completed": true,
+      "save_triplet": true,
+      "script_errors": [],
+      "seconds": 7.75
+    },
+    {
+      "game": "AA",
+      "map": "m6l1a",
+      "exit": 0,
+      "commands_completed": true,
+      "save_triplet": true,
+      "script_errors": [],
+      "seconds": 6.7
+    },
+    {
+      "game": "AA",
+      "map": "m6l1b",
+      "exit": 0,
+      "commands_completed": true,
+      "save_triplet": true,
+      "script_errors": [],
+      "seconds": 6.69
+    },
+    {
+      "game": "AA",
+      "map": "m6l1c",
+      "exit": 0,
+      "commands_completed": true,
+      "save_triplet": true,
+      "script_errors": [],
+      "seconds": 7.7
+    },
+    {
+      "game": "AA",
+      "map": "m6l2a",
+      "exit": 0,
+      "commands_completed": true,
+      "save_triplet": true,
+      "script_errors": [],
+      "seconds": 7.73
+    },
+    {
+      "game": "AA",
+      "map": "m6l2b",
+      "exit": 0,
+      "commands_completed": true,
+      "save_triplet": true,
+      "script_errors": [],
+      "seconds": 7.72
+    },
+    {
+      "game": "AA",
+      "map": "m6l3a",
+      "exit": 0,
+      "commands_completed": true,
+      "save_triplet": true,
+      "script_errors": [],
+      "seconds": 7.72
+    },
+    {
+      "game": "AA",
+      "map": "m6l3b",
+      "exit": 0,
+      "commands_completed": true,
+      "save_triplet": true,
+      "script_errors": [],
+      "seconds": 6.72
+    },
+    {
+      "game": "AA",
+      "map": "m6l3c",
+      "exit": 0,
+      "commands_completed": true,
+      "save_triplet": true,
+      "script_errors": [],
+      "seconds": 6.72
+    },
+    {
+      "game": "AA",
+      "map": "m6l3d",
+      "exit": 0,
+      "commands_completed": true,
+      "save_triplet": true,
+      "script_errors": [],
+      "seconds": 6.7
+    },
+    {
+      "game": "AA",
+      "map": "m6l3e",
+      "exit": 0,
+      "commands_completed": true,
+      "save_triplet": true,
+      "script_errors": [],
+      "seconds": 6.7
+    },
+    {
+      "game": "SH",
+      "map": "t1l1",
+      "exit": 0,
+      "commands_completed": true,
+      "save_triplet": true,
+      "script_errors": [],
+      "seconds": 7.77
+    },
+    {
+      "game": "SH",
+      "map": "t1l2",
+      "exit": 0,
+      "commands_completed": true,
+      "save_triplet": true,
+      "script_errors": [],
+      "seconds": 7.8
+    },
+    {
+      "game": "SH",
+      "map": "t1l3",
+      "exit": 0,
+      "commands_completed": true,
+      "save_triplet": true,
+      "script_errors": [],
+      "seconds": 7.78
+    },
+    {
+      "game": "SH",
+      "map": "t2l1",
+      "exit": 0,
+      "commands_completed": true,
+      "save_triplet": true,
+      "script_errors": [],
+      "seconds": 8.83
+    },
+    {
+      "game": "SH",
+      "map": "t2l2",
+      "exit": 0,
+      "commands_completed": true,
+      "save_triplet": true,
+      "script_errors": [],
+      "seconds": 7.78
+    },
+    {
+      "game": "SH",
+      "map": "t2l3",
+      "exit": 0,
+      "commands_completed": true,
+      "save_triplet": true,
+      "script_errors": [],
+      "seconds": 7.83
+    },
+    {
+      "game": "SH",
+      "map": "t2l4",
+      "exit": 0,
+      "commands_completed": true,
+      "save_triplet": true,
+      "script_errors": [],
+      "seconds": 7.8
+    },
+    {
+      "game": "SH",
+      "map": "t3l1",
+      "exit": 0,
+      "commands_completed": true,
+      "save_triplet": true,
+      "script_errors": [],
+      "seconds": 7.8
+    },
+    {
+      "game": "SH",
+      "map": "t3l2",
+      "exit": 0,
+      "commands_completed": true,
+      "save_triplet": true,
+      "script_errors": [],
+      "seconds": 7.8
+    },
+    {
+      "game": "BT",
+      "map": "e1l1",
+      "exit": 0,
+      "commands_completed": true,
+      "save_triplet": true,
+      "script_errors": [],
+      "seconds": 9.84
+    },
+    {
+      "game": "BT",
+      "map": "e1l2",
+      "exit": 0,
+      "commands_completed": true,
+      "save_triplet": true,
+      "script_errors": [],
+      "seconds": 8.83
+    },
+    {
+      "game": "BT",
+      "map": "e1l3",
+      "exit": 0,
+      "commands_completed": true,
+      "save_triplet": true,
+      "script_errors": [],
+      "seconds": 9.84
+    },
+    {
+      "game": "BT",
+      "map": "e1l4",
+      "exit": 0,
+      "commands_completed": true,
+      "save_triplet": true,
+      "script_errors": [],
+      "seconds": 8.83
+    },
+    {
+      "game": "BT",
+      "map": "e2l1",
+      "exit": 0,
+      "commands_completed": true,
+      "save_triplet": true,
+      "script_errors": [],
+      "seconds": 8.81
+    },
+    {
+      "game": "BT",
+      "map": "e2l2",
+      "exit": 0,
+      "commands_completed": true,
+      "save_triplet": true,
+      "script_errors": [],
+      "seconds": 8.83
+    },
+    {
+      "game": "BT",
+      "map": "e2l3",
+      "exit": 0,
+      "commands_completed": true,
+      "save_triplet": true,
+      "script_errors": [],
+      "seconds": 9.88
+    },
+    {
+      "game": "BT",
+      "map": "e3l1",
+      "exit": 0,
+      "commands_completed": true,
+      "save_triplet": true,
+      "script_errors": [],
+      "seconds": 9.88
+    },
+    {
+      "game": "BT",
+      "map": "e3l2",
+      "exit": 0,
+      "commands_completed": true,
+      "save_triplet": true,
+      "script_errors": [],
+      "seconds": 9.86
+    },
+    {
+      "game": "BT",
+      "map": "e3l3",
+      "exit": 0,
+      "commands_completed": true,
+      "save_triplet": true,
+      "script_errors": [],
+      "seconds": 8.83
+    },
+    {
+      "game": "BT",
+      "map": "e3l4",
+      "exit": 0,
+      "commands_completed": true,
+      "save_triplet": true,
+      "script_errors": [],
+      "seconds": 9.88
+    }
+  ],
+  "scope": "Independent starts only; no natural completion claim"
+}

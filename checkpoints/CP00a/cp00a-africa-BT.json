@@ -1,0 +1,2526 @@
+{
+  "baseline_warnings": [],
+  "candidate": "CP00a-r1",
+  "game": "BT",
+  "map": "e1l3",
+  "requested_skill": 1,
+  "observed_skill": [
+    "1",
+    "1.000000",
+    "1.000000"
+  ],
+  "completed": true,
+  "exit_code": 0,
+  "host_timeout": false,
+  "scope": "Six rifle then three MP40 spawned targets; natural player shots. Mission/actor drop controls and health counter never assigned. Save/load after fifth target. Only player ammo replenished for the diagnostic firing sequence.",
+  "steps": [
+    {
+      "step": 1,
+      "enemy_gun": "kar98",
+      "phases": {
+        "before": {
+          "stats": {
+            "ui_NumShotsFired": "0",
+            "ui_NumHits": "0",
+            "ui_NumEnemysKilled": "0",
+            "ui_NumComplete": "0"
+          },
+          "items": [
+            {
+              "id": 222,
+              "kind": "VehicleTank",
+              "model": "models/vehicles/sherman_base.tik",
+              "origin": "( 1754.289 -5583.623 129.611 )"
+            },
+            {
+              "id": 224,
+              "kind": "ScriptModel",
+              "model": "models/vehicles/shermantank_damaged.tik",
+              "origin": "( 1754.289 -5583.623 129.611 )"
+            },
+            {
+              "id": 650,
+              "kind": "Animate",
+              "model": "models/fx/dummy.tik",
+              "origin": "( 1460.000 -5564.000 148.000 )"
+            },
+            {
+              "id": 750,
+              "kind": "VehicleSoundEntity",
+              "model": "models/vehicles/vehiclesoundentity.tik",
+              "origin": "( 1718.642 -5682.017 207.611 )"
+            },
+            {
+              "id": 751,
+              "kind": "VehicleSoundEntity",
+              "model": "models/vehicles/vehiclesoundentity.tik",
+              "origin": "( 1655.896 -5547.976 207.611 )"
+            },
+            {
+              "id": 752,
+              "kind": "VehicleSoundEntity",
+              "model": "models/vehicles/vehiclesoundentity.tik",
+              "origin": "( 1852.683 -5619.271 207.611 )"
+            },
+            {
+              "id": 753,
+              "kind": "VehicleSoundEntity",
+              "model": "models/vehicles/vehiclesoundentity.tik",
+              "origin": "( 1789.937 -5485.229 207.611 )"
+            },
+            {
+              "id": 754,
+              "kind": "VehicleTurretGun",
+              "model": "models/vehicles/sherman_turret_main.tik",
+              "origin": "( 1755.843 -5586.880 230.010 )"
+            },
+            {
+              "id": 755,
+              "kind": "VehicleTurretGun",
+              "model": "models/vehicles/sherman_turret_mini.tik",
+              "origin": "( 1734.650 -5476.201 207.700 )"
+            }
+          ],
+          "deaths": [
+            "0"
+          ]
+        },
+        "dead": {
+          "stats": {
+            "ui_NumShotsFired": "13",
+            "ui_NumHits": "8",
+            "ui_NumEnemysKilled": "1",
+            "ui_NumComplete": "0"
+          },
+          "items": [
+            {
+              "id": 46,
+              "kind": "Weapon",
+              "model": "models/weapons/kar98.tik",
+              "origin": "( 1422.298 -5864.875 133.966 )"
+            },
+            {
+              "id": 222,
+              "kind": "VehicleTank",
+              "model": "models/vehicles/sherman_base.tik",
+              "origin": "( 1754.289 -5583.623 129.611 )"
+            },
+            {
+              "id": 224,
+              "kind": "ScriptModel",
+              "model": "models/vehicles/shermantank_damaged.tik",
+              "origin": "( 1754.289 -5583.623 129.611 )"
+            },
+            {
+              "id": 650,
+              "kind": "Animate",
+              "model": "models/fx/dummy.tik",
+              "origin": "( 1460.000 -5564.000 148.000 )"
+            },
+            {
+              "id": 750,
+              "kind": "VehicleSoundEntity",
+              "model": "models/vehicles/vehiclesoundentity.tik",
+              "origin": "( 1718.642 -5682.017 207.611 )"
+            },
+            {
+              "id": 751,
+              "kind": "VehicleSoundEntity",
+              "model": "models/vehicles/vehiclesoundentity.tik",
+              "origin": "( 1655.896 -5547.976 207.611 )"
+            },
+            {
+              "id": 752,
+              "kind": "VehicleSoundEntity",
+              "model": "models/vehicles/vehiclesoundentity.tik",
+              "origin": "( 1852.683 -5619.271 207.611 )"
+            },
+            {
+              "id": 753,
+              "kind": "VehicleSoundEntity",
+              "model": "models/vehicles/vehiclesoundentity.tik",
+              "origin": "( 1789.937 -5485.229 207.611 )"
+            },
+            {
+              "id": 754,
+              "kind": "VehicleTurretGun",
+              "model": "models/vehicles/sherman_turret_main.tik",
+              "origin": "( 1755.843 -5586.880 230.010 )"
+            },
+            {
+              "id": 755,
+              "kind": "VehicleTurretGun",
+              "model": "models/vehicles/sherman_turret_mini.tik",
+              "origin": "( 1734.650 -5476.201 207.700 )"
+            }
+          ],
+          "deaths": [
+            "1"
+          ]
+        },
+        "corpse": {
+          "stats": {
+            "ui_NumShotsFired": "15",
+            "ui_NumHits": "8",
+            "ui_NumEnemysKilled": "1",
+            "ui_NumComplete": "0"
+          },
+          "items": [
+            {
+              "id": 46,
+              "kind": "Weapon",
+              "model": "models/weapons/kar98.tik",
+              "origin": "( 1422.298 -5864.875 133.966 )"
+            },
+            {
+              "id": 222,
+              "kind": "VehicleTank",
+              "model": "models/vehicles/sherman_base.tik",
+              "origin": "( 1754.289 -5583.623 129.611 )"
+            },
+            {
+              "id": 224,
+              "kind": "ScriptModel",
+              "model": "models/vehicles/shermantank_damaged.tik",
+              "origin": "( 1754.289 -5583.623 129.611 )"
+            },
+            {
+              "id": 650,
+              "kind": "Animate",
+              "model": "models/fx/dummy.tik",
+              "origin": "( 1460.000 -5564.000 148.000 )"
+            },
+            {
+              "id": 750,
+              "kind": "VehicleSoundEntity",
+              "model": "models/vehicles/vehiclesoundentity.tik",
+              "origin": "( 1718.642 -5682.017 207.611 )"
+            },
+            {
+              "id": 751,
+              "kind": "VehicleSoundEntity",
+              "model": "models/vehicles/vehiclesoundentity.tik",
+              "origin": "( 1655.896 -5547.976 207.611 )"
+            },
+            {
+              "id": 752,
+              "kind": "VehicleSoundEntity",
+              "model": "models/vehicles/vehiclesoundentity.tik",
+              "origin": "( 1852.683 -5619.271 207.611 )"
+            },
+            {
+              "id": 753,
+              "kind": "VehicleSoundEntity",
+              "model": "models/vehicles/vehiclesoundentity.tik",
+              "origin": "( 1789.937 -5485.229 207.611 )"
+            },
+            {
+              "id": 754,
+              "kind": "VehicleTurretGun",
+              "model": "models/vehicles/sherman_turret_main.tik",
+              "origin": "( 1755.843 -5586.880 230.010 )"
+            },
+            {
+              "id": 755,
+              "kind": "VehicleTurretGun",
+              "model": "models/vehicles/sherman_turret_mini.tik",
+              "origin": "( 1734.650 -5476.201 207.700 )"
+            }
+          ],
+          "deaths": [
+            "1"
+          ]
+        }
+      },
+      "new_after_death": [
+        [
+          46,
+          "models/weapons/kar98.tik"
+        ]
+      ],
+      "new_after_corpse_fire": []
+    },
+    {
+      "step": 2,
+      "enemy_gun": "kar98",
+      "phases": {
+        "before": {
+          "stats": {
+            "ui_NumShotsFired": "15",
+            "ui_NumHits": "8",
+            "ui_NumEnemysKilled": "1",
+            "ui_NumComplete": "0"
+          },
+          "items": [
+            {
+              "id": 46,
+              "kind": "Weapon",
+              "model": "models/weapons/kar98.tik",
+              "origin": "( 1422.298 -5864.875 133.966 )"
+            },
+            {
+              "id": 222,
+              "kind": "VehicleTank",
+              "model": "models/vehicles/sherman_base.tik",
+              "origin": "( 1754.289 -5583.623 129.611 )"
+            },
+            {
+              "id": 224,
+              "kind": "ScriptModel",
+              "model": "models/vehicles/shermantank_damaged.tik",
+              "origin": "( 1754.289 -5583.623 129.611 )"
+            },
+            {
+              "id": 650,
+              "kind": "Animate",
+              "model": "models/fx/dummy.tik",
+              "origin": "( 1460.000 -5564.000 148.000 )"
+            },
+            {
+              "id": 750,
+              "kind": "VehicleSoundEntity",
+              "model": "models/vehicles/vehiclesoundentity.tik",
+              "origin": "( 1718.642 -5682.017 207.611 )"
+            },
+            {
+              "id": 751,
+              "kind": "VehicleSoundEntity",
+              "model": "models/vehicles/vehiclesoundentity.tik",
+              "origin": "( 1655.896 -5547.976 207.611 )"
+            },
+            {
+              "id": 752,
+              "kind": "VehicleSoundEntity",
+              "model": "models/vehicles/vehiclesoundentity.tik",
+              "origin": "( 1852.683 -5619.271 207.611 )"
+            },
+            {
+              "id": 753,
+              "kind": "VehicleSoundEntity",
+              "model": "models/vehicles/vehiclesoundentity.tik",
+              "origin": "( 1789.937 -5485.229 207.611 )"
+            },
+            {
+              "id": 754,
+              "kind": "VehicleTurretGun",
+              "model": "models/vehicles/sherman_turret_main.tik",
+              "origin": "( 1755.843 -5586.880 230.010 )"
+            },
+            {
+              "id": 755,
+              "kind": "VehicleTurretGun",
+              "model": "models/vehicles/sherman_turret_mini.tik",
+              "origin": "( 1734.650 -5476.201 207.700 )"
+            }
+          ],
+          "deaths": [
+            "0"
+          ]
+        },
+        "dead": {
+          "stats": {
+            "ui_NumShotsFired": "27",
+            "ui_NumHits": "11",
+            "ui_NumEnemysKilled": "2",
+            "ui_NumComplete": "0"
+          },
+          "items": [
+            {
+              "id": 46,
+              "kind": "Weapon",
+              "model": "models/weapons/kar98.tik",
+              "origin": "( 1422.298 -5864.875 133.966 )"
+            },
+            {
+              "id": 48,
+              "kind": "Weapon",
+              "model": "models/weapons/kar98.tik",
+              "origin": "( 1413.680 -5861.043 133.847 )"
+            },
+            {
+              "id": 222,
+              "kind": "VehicleTank",
+              "model": "models/vehicles/sherman_base.tik",
+              "origin": "( 1754.289 -5583.623 129.611 )"
+            },
+            {
+              "id": 224,
+              "kind": "ScriptModel",
+              "model": "models/vehicles/shermantank_damaged.tik",
+              "origin": "( 1754.289 -5583.623 129.611 )"
+            },
+            {
+              "id": 650,
+              "kind": "Animate",
+              "model": "models/fx/dummy.tik",
+              "origin": "( 1460.000 -5564.000 148.000 )"
+            },
+            {
+              "id": 750,
+              "kind": "VehicleSoundEntity",
+              "model": "models/vehicles/vehiclesoundentity.tik",
+              "origin": "( 1718.642 -5682.017 207.611 )"
+            },
+            {
+              "id": 751,
+              "kind": "VehicleSoundEntity",
+              "model": "models/vehicles/vehiclesoundentity.tik",
+              "origin": "( 1655.896 -5547.976 207.611 )"
+            },
+            {
+              "id": 752,
+              "kind": "VehicleSoundEntity",
+              "model": "models/vehicles/vehiclesoundentity.tik",
+              "origin": "( 1852.683 -5619.271 207.611 )"
+            },
+            {
+              "id": 753,
+              "kind": "VehicleSoundEntity",
+              "model": "models/vehicles/vehiclesoundentity.tik",
+              "origin": "( 1789.937 -5485.229 207.611 )"
+            },
+            {
+              "id": 754,
+              "kind": "VehicleTurretGun",
+              "model": "models/vehicles/sherman_turret_main.tik",
+              "origin": "( 1755.843 -5586.880 230.010 )"
+            },
+            {
+              "id": 755,
+              "kind": "VehicleTurretGun",
+              "model": "models/vehicles/sherman_turret_mini.tik",
+              "origin": "( 1734.650 -5476.201 207.700 )"
+            }
+          ],
+          "deaths": [
+            "1"
+          ]
+        },
+        "corpse": {
+          "stats": {
+            "ui_NumShotsFired": "29",
+            "ui_NumHits": "11",
+            "ui_NumEnemysKilled": "2",
+            "ui_NumComplete": "0"
+          },
+          "items": [
+            {
+              "id": 48,
+              "kind": "Weapon",
+              "model": "models/weapons/kar98.tik",
+              "origin": "( 1413.680 -5861.043 133.847 )"
+            },
+            {
+              "id": 222,
+              "kind": "VehicleTank",
+              "model": "models/vehicles/sherman_base.tik",
+              "origin": "( 1754.289 -5583.623 129.611 )"
+            },
+            {
+              "id": 224,
+              "kind": "ScriptModel",
+              "model": "models/vehicles/shermantank_damaged.tik",
+              "origin": "( 1754.289 -5583.623 129.611 )"
+            },
+            {
+              "id": 650,
+              "kind": "Animate",
+              "model": "models/fx/dummy.tik",
+              "origin": "( 1460.000 -5564.000 148.000 )"
+            },
+            {
+              "id": 750,
+              "kind": "VehicleSoundEntity",
+              "model": "models/vehicles/vehiclesoundentity.tik",
+              "origin": "( 1718.642 -5682.017 207.611 )"
+            },
+            {
+              "id": 751,
+              "kind": "VehicleSoundEntity",
+              "model": "models/vehicles/vehiclesoundentity.tik",
+              "origin": "( 1655.896 -5547.976 207.611 )"
+            },
+            {
+              "id": 752,
+              "kind": "VehicleSoundEntity",
+              "model": "models/vehicles/vehiclesoundentity.tik",
+              "origin": "( 1852.683 -5619.271 207.611 )"
+            },
+            {
+              "id": 753,
+              "kind": "VehicleSoundEntity",
+              "model": "models/vehicles/vehiclesoundentity.tik",
+              "origin": "( 1789.937 -5485.229 207.611 )"
+            },
+            {
+              "id": 754,
+              "kind": "VehicleTurretGun",
+              "model": "models/vehicles/sherman_turret_main.tik",
+              "origin": "( 1755.843 -5586.880 230.010 )"
+            },
+            {
+              "id": 755,
+              "kind": "VehicleTurretGun",
+              "model": "models/vehicles/sherman_turret_mini.tik",
+              "origin": "( 1734.650 -5476.201 207.700 )"
+            }
+          ],
+          "deaths": [
+            "1"
+          ]
+        }
+      },
+      "new_after_death": [
+        [
+          48,
+          "models/weapons/kar98.tik"
+        ]
+      ],
+      "new_after_corpse_fire": []
+    },
+    {
+      "step": 3,
+      "enemy_gun": "kar98",
+      "phases": {
+        "before": {
+          "stats": {
+            "ui_NumShotsFired": "29",
+            "ui_NumHits": "11",
+            "ui_NumEnemysKilled": "2",
+            "ui_NumComplete": "0"
+          },
+          "items": [
+            {
+              "id": 48,
+              "kind": "Weapon",
+              "model": "models/weapons/kar98.tik",
+              "origin": "( 1413.680 -5861.043 133.847 )"
+            },
+            {
+              "id": 222,
+              "kind": "VehicleTank",
+              "model": "models/vehicles/sherman_base.tik",
+              "origin": "( 1754.289 -5583.623 129.611 )"
+            },
+            {
+              "id": 224,
+              "kind": "ScriptModel",
+              "model": "models/vehicles/shermantank_damaged.tik",
+              "origin": "( 1754.289 -5583.623 129.611 )"
+            },
+            {
+              "id": 650,
+              "kind": "Animate",
+              "model": "models/fx/dummy.tik",
+              "origin": "( 1460.000 -5564.000 148.000 )"
+            },
+            {
+              "id": 750,
+              "kind": "VehicleSoundEntity",
+              "model": "models/vehicles/vehiclesoundentity.tik",
+              "origin": "( 1718.642 -5682.017 207.611 )"
+            },
+            {
+              "id": 751,
+              "kind": "VehicleSoundEntity",
+              "model": "models/vehicles/vehiclesoundentity.tik",
+              "origin": "( 1655.896 -5547.976 207.611 )"
+            },
+            {
+              "id": 752,
+              "kind": "VehicleSoundEntity",
+              "model": "models/vehicles/vehiclesoundentity.tik",
+              "origin": "( 1852.683 -5619.271 207.611 )"
+            },
+            {
+              "id": 753,
+              "kind": "VehicleSoundEntity",
+              "model": "models/vehicles/vehiclesoundentity.tik",
+              "origin": "( 1789.937 -5485.229 207.611 )"
+            },
+            {
+              "id": 754,
+              "kind": "VehicleTurretGun",
+              "model": "models/vehicles/sherman_turret_main.tik",
+              "origin": "( 1755.843 -5586.880 230.010 )"
+            },
+            {
+              "id": 755,
+              "kind": "VehicleTurretGun",
+              "model": "models/vehicles/sherman_turret_mini.tik",
+              "origin": "( 1734.650 -5476.201 207.700 )"
+            }
+          ],
+          "deaths": [
+            "0"
+          ]
+        },
+        "dead": {
+          "stats": {
+            "ui_NumShotsFired": "41",
+            "ui_NumHits": "14",
+            "ui_NumEnemysKilled": "3",
+            "ui_NumComplete": "0"
+          },
+          "items": [
+            {
+              "id": 48,
+              "kind": "Weapon",
+              "model": "models/weapons/kar98.tik",
+              "origin": "( 1413.680 -5861.043 133.847 )"
+            },
+            {
+              "id": 51,
+              "kind": "Weapon",
+              "model": "models/weapons/kar98.tik",
+              "origin": "( 1398.866 -5864.875 132.414 )"
+            },
+            {
+              "id": 222,
+              "kind": "VehicleTank",
+              "model": "models/vehicles/sherman_base.tik",
+              "origin": "( 1754.289 -5583.623 129.611 )"
+            },
+            {
+              "id": 224,
+              "kind": "ScriptModel",
+              "model": "models/vehicles/shermantank_damaged.tik",
+              "origin": "( 1754.289 -5583.623 129.611 )"
+            },
+            {
+              "id": 650,
+              "kind": "Animate",
+              "model": "models/fx/dummy.tik",
+              "origin": "( 1460.000 -5564.000 148.000 )"
+            },
+            {
+              "id": 750,
+              "kind": "VehicleSoundEntity",
+              "model": "models/vehicles/vehiclesoundentity.tik",
+              "origin": "( 1718.642 -5682.017 207.611 )"
+            },
+            {
+              "id": 751,
+              "kind": "VehicleSoundEntity",
+              "model": "models/vehicles/vehiclesoundentity.tik",
+              "origin": "( 1655.896 -5547.976 207.611 )"
+            },
+            {
+              "id": 752,
+              "kind": "VehicleSoundEntity",
+              "model": "models/vehicles/vehiclesoundentity.tik",
+              "origin": "( 1852.683 -5619.271 207.611 )"
+            },
+            {
+              "id": 753,
+              "kind": "VehicleSoundEntity",
+              "model": "models/vehicles/vehiclesoundentity.tik",
+              "origin": "( 1789.937 -5485.229 207.611 )"
+            },
+            {
+              "id": 754,
+              "kind": "VehicleTurretGun",
+              "model": "models/vehicles/sherman_turret_main.tik",
+              "origin": "( 1755.843 -5586.880 230.010 )"
+            },
+            {
+              "id": 755,
+              "kind": "VehicleTurretGun",
+              "model": "models/vehicles/sherman_turret_mini.tik",
+              "origin": "( 1734.650 -5476.201 207.700 )"
+            }
+          ],
+          "deaths": [
+            "1"
+          ]
+        },
+        "corpse": {
+          "stats": {
+            "ui_NumShotsFired": "43",
+            "ui_NumHits": "14",
+            "ui_NumEnemysKilled": "3",
+            "ui_NumComplete": "0"
+          },
+          "items": [
+            {
+              "id": 51,
+              "kind": "Weapon",
+              "model": "models/weapons/kar98.tik",
+              "origin": "( 1398.866 -5864.875 132.414 )"
+            },
+            {
+              "id": 222,
+              "kind": "VehicleTank",
+              "model": "models/vehicles/sherman_base.tik",
+              "origin": "( 1754.289 -5583.623 129.611 )"
+            },
+            {
+              "id": 224,
+              "kind": "ScriptModel",
+              "model": "models/vehicles/shermantank_damaged.tik",
+              "origin": "( 1754.289 -5583.623 129.611 )"
+            },
+            {
+              "id": 650,
+              "kind": "Animate",
+              "model": "models/fx/dummy.tik",
+              "origin": "( 1460.000 -5564.000 148.000 )"
+            },
+            {
+              "id": 750,
+              "kind": "VehicleSoundEntity",
+              "model": "models/vehicles/vehiclesoundentity.tik",
+              "origin": "( 1718.642 -5682.017 207.611 )"
+            },
+            {
+              "id": 751,
+              "kind": "VehicleSoundEntity",
+              "model": "models/vehicles/vehiclesoundentity.tik",
+              "origin": "( 1655.896 -5547.976 207.611 )"
+            },
+            {
+              "id": 752,
+              "kind": "VehicleSoundEntity",
+              "model": "models/vehicles/vehiclesoundentity.tik",
+              "origin": "( 1852.683 -5619.271 207.611 )"
+            },
+            {
+              "id": 753,
+              "kind": "VehicleSoundEntity",
+              "model": "models/vehicles/vehiclesoundentity.tik",
+              "origin": "( 1789.937 -5485.229 207.611 )"
+            },
+            {
+              "id": 754,
+              "kind": "VehicleTurretGun",
+              "model": "models/vehicles/sherman_turret_main.tik",
+              "origin": "( 1755.843 -5586.880 230.010 )"
+            },
+            {
+              "id": 755,
+              "kind": "VehicleTurretGun",
+              "model": "models/vehicles/sherman_turret_mini.tik",
+              "origin": "( 1734.650 -5476.201 207.700 )"
+            }
+          ],
+          "deaths": [
+            "1"
+          ]
+        }
+      },
+      "new_after_death": [
+        [
+          51,
+          "models/weapons/kar98.tik"
+        ]
+      ],
+      "new_after_corpse_fire": []
+    },
+    {
+      "step": 4,
+      "enemy_gun": "kar98",
+      "phases": {
+        "before": {
+          "stats": {
+            "ui_NumShotsFired": "43",
+            "ui_NumHits": "14",
+            "ui_NumEnemysKilled": "3",
+            "ui_NumComplete": "0"
+          },
+          "items": [
+            {
+              "id": 51,
+              "kind": "Weapon",
+              "model": "models/weapons/kar98.tik",
+              "origin": "( 1398.866 -5864.875 132.414 )"
+            },
+            {
+              "id": 222,
+              "kind": "VehicleTank",
+              "model": "models/vehicles/sherman_base.tik",
+              "origin": "( 1754.289 -5583.623 129.611 )"
+            },
+            {
+              "id": 224,
+              "kind": "ScriptModel",
+              "model": "models/vehicles/shermantank_damaged.tik",
+              "origin": "( 1754.289 -5583.623 129.611 )"
+            },
+            {
+              "id": 650,
+              "kind": "Animate",
+              "model": "models/fx/dummy.tik",
+              "origin": "( 1460.000 -5564.000 148.000 )"
+            },
+            {
+              "id": 750,
+              "kind": "VehicleSoundEntity",
+              "model": "models/vehicles/vehiclesoundentity.tik",
+              "origin": "( 1718.642 -5682.017 207.611 )"
+            },
+            {
+              "id": 751,
+              "kind": "VehicleSoundEntity",
+              "model": "models/vehicles/vehiclesoundentity.tik",
+              "origin": "( 1655.896 -5547.976 207.611 )"
+            },
+            {
+              "id": 752,
+              "kind": "VehicleSoundEntity",
+              "model": "models/vehicles/vehiclesoundentity.tik",
+              "origin": "( 1852.683 -5619.271 207.611 )"
+            },
+            {
+              "id": 753,
+              "kind": "VehicleSoundEntity",
+              "model": "models/vehicles/vehiclesoundentity.tik",
+              "origin": "( 1789.937 -5485.229 207.611 )"
+            },
+            {
+              "id": 754,
+              "kind": "VehicleTurretGun",
+              "model": "models/vehicles/sherman_turret_main.tik",
+              "origin": "( 1755.843 -5586.880 230.010 )"
+            },
+            {
+              "id": 755,
+              "kind": "VehicleTurretGun",
+              "model": "models/vehicles/sherman_turret_mini.tik",
+              "origin": "( 1734.650 -5476.201 207.700 )"
+            }
+          ],
+          "deaths": [
+            "0"
+          ]
+        },
+        "dead": {
+          "stats": {
+            "ui_NumShotsFired": "55",
+            "ui_NumHits": "17",
+            "ui_NumEnemysKilled": "4",
+            "ui_NumComplete": "0"
+          },
+          "items": [
+            {
+              "id": 45,
+              "kind": "Health",
+              "model": "models/items/item_25_healthbox.tik",
+              "origin": "( 1430.105 -5807.217 140.236 )"
+            },
+            {
+              "id": 46,
+              "kind": "Weapon",
+              "model": "models/weapons/kar98.tik",
+              "origin": "( 1412.676 -5864.875 132.764 )"
+            },
+            {
+              "id": 51,
+              "kind": "Weapon",
+              "model": "models/weapons/kar98.tik",
+              "origin": "( 1398.866 -5864.875 132.414 )"
+            },
+            {
+              "id": 222,
+              "kind": "VehicleTank",
+              "model": "models/vehicles/sherman_base.tik",
+              "origin": "( 1754.289 -5583.623 129.611 )"
+            },
+            {
+              "id": 224,
+              "kind": "ScriptModel",
+              "model": "models/vehicles/shermantank_damaged.tik",
+              "origin": "( 1754.289 -5583.623 129.611 )"
+            },
+            {
+              "id": 650,
+              "kind": "Animate",
+              "model": "models/fx/dummy.tik",
+              "origin": "( 1460.000 -5564.000 148.000 )"
+            },
+            {
+              "id": 750,
+              "kind": "VehicleSoundEntity",
+              "model": "models/vehicles/vehiclesoundentity.tik",
+              "origin": "( 1718.642 -5682.017 207.611 )"
+            },
+            {
+              "id": 751,
+              "kind": "VehicleSoundEntity",
+              "model": "models/vehicles/vehiclesoundentity.tik",
+              "origin": "( 1655.896 -5547.976 207.611 )"
+            },
+            {
+              "id": 752,
+              "kind": "VehicleSoundEntity",
+              "model": "models/vehicles/vehiclesoundentity.tik",
+              "origin": "( 1852.683 -5619.271 207.611 )"
+            },
+            {
+              "id": 753,
+              "kind": "VehicleSoundEntity",
+              "model": "models/vehicles/vehiclesoundentity.tik",
+              "origin": "( 1789.937 -5485.229 207.611 )"
+            },
+            {
+              "id": 754,
+              "kind": "VehicleTurretGun",
+              "model": "models/vehicles/sherman_turret_main.tik",
+              "origin": "( 1755.843 -5586.880 230.010 )"
+            },
+            {
+              "id": 755,
+              "kind": "VehicleTurretGun",
+              "model": "models/vehicles/sherman_turret_mini.tik",
+              "origin": "( 1734.650 -5476.201 207.700 )"
+            }
+          ],
+          "deaths": [
+            "1"
+          ]
+        },
+        "corpse": {
+          "stats": {
+            "ui_NumShotsFired": "57",
+            "ui_NumHits": "17",
+            "ui_NumEnemysKilled": "4",
+            "ui_NumComplete": "0"
+          },
+          "items": [
+            {
+              "id": 45,
+              "kind": "Health",
+              "model": "models/items/item_25_healthbox.tik",
+              "origin": "( 1430.105 -5807.217 140.236 )"
+            },
+            {
+              "id": 46,
+              "kind": "Weapon",
+              "model": "models/weapons/kar98.tik",
+              "origin": "( 1412.676 -5864.875 132.764 )"
+            },
+            {
+              "id": 222,
+              "kind": "VehicleTank",
+              "model": "models/vehicles/sherman_base.tik",
+              "origin": "( 1754.289 -5583.623 129.611 )"
+            },
+            {
+              "id": 224,
+              "kind": "ScriptModel",
+              "model": "models/vehicles/shermantank_damaged.tik",
+              "origin": "( 1754.289 -5583.623 129.611 )"
+            },
+            {
+              "id": 650,
+              "kind": "Animate",
+              "model": "models/fx/dummy.tik",
+              "origin": "( 1460.000 -5564.000 148.000 )"
+            },
+            {
+              "id": 750,
+              "kind": "VehicleSoundEntity",
+              "model": "models/vehicles/vehiclesoundentity.tik",
+              "origin": "( 1718.642 -5682.017 207.611 )"
+            },
+            {
+              "id": 751,
+              "kind": "VehicleSoundEntity",
+              "model": "models/vehicles/vehiclesoundentity.tik",
+              "origin": "( 1655.896 -5547.976 207.611 )"
+            },
+            {
+              "id": 752,
+              "kind": "VehicleSoundEntity",
+              "model": "models/vehicles/vehiclesoundentity.tik",
+              "origin": "( 1852.683 -5619.271 207.611 )"
+            },
+            {
+              "id": 753,
+              "kind": "VehicleSoundEntity",
+              "model": "models/vehicles/vehiclesoundentity.tik",
+              "origin": "( 1789.937 -5485.229 207.611 )"
+            },
+            {
+              "id": 754,
+              "kind": "VehicleTurretGun",
+              "model": "models/vehicles/sherman_turret_main.tik",
+              "origin": "( 1755.843 -5586.880 230.010 )"
+            },
+            {
+              "id": 755,
+              "kind": "VehicleTurretGun",
+              "model": "models/vehicles/sherman_turret_mini.tik",
+              "origin": "( 1734.650 -5476.201 207.700 )"
+            }
+          ],
+          "deaths": [
+            "1"
+          ]
+        }
+      },
+      "new_after_death": [
+        [
+          45,
+          "models/items/item_25_healthbox.tik"
+        ],
+        [
+          46,
+          "models/weapons/kar98.tik"
+        ]
+      ],
+      "new_after_corpse_fire": []
+    },
+    {
+      "step": 5,
+      "enemy_gun": "kar98",
+      "phases": {
+        "before": {
+          "stats": {
+            "ui_NumShotsFired": "57",
+            "ui_NumHits": "17",
+            "ui_NumEnemysKilled": "4",
+            "ui_NumComplete": "0"
+          },
+          "items": [
+            {
+              "id": 45,
+              "kind": "Health",
+              "model": "models/items/item_25_healthbox.tik",
+              "origin": "( 1430.105 -5807.217 140.236 )"
+            },
+            {
+              "id": 46,
+              "kind": "Weapon",
+              "model": "models/weapons/kar98.tik",
+              "origin": "( 1412.676 -5864.875 132.764 )"
+            },
+            {
+              "id": 222,
+              "kind": "VehicleTank",
+              "model": "models/vehicles/sherman_base.tik",
+              "origin": "( 1754.289 -5583.623 129.611 )"
+            },
+            {
+              "id": 224,
+              "kind": "ScriptModel",
+              "model": "models/vehicles/shermantank_damaged.tik",
+              "origin": "( 1754.289 -5583.623 129.611 )"
+            },
+            {
+              "id": 650,
+              "kind": "Animate",
+              "model": "models/fx/dummy.tik",
+              "origin": "( 1460.000 -5564.000 148.000 )"
+            },
+            {
+              "id": 750,
+              "kind": "VehicleSoundEntity",
+              "model": "models/vehicles/vehiclesoundentity.tik",
+              "origin": "( 1718.642 -5682.017 207.611 )"
+            },
+            {
+              "id": 751,
+              "kind": "VehicleSoundEntity",
+              "model": "models/vehicles/vehiclesoundentity.tik",
+              "origin": "( 1655.896 -5547.976 207.611 )"
+            },
+            {
+              "id": 752,
+              "kind": "VehicleSoundEntity",
+              "model": "models/vehicles/vehiclesoundentity.tik",
+              "origin": "( 1852.683 -5619.271 207.611 )"
+            },
+            {
+              "id": 753,
+              "kind": "VehicleSoundEntity",
+              "model": "models/vehicles/vehiclesoundentity.tik",
+              "origin": "( 1789.937 -5485.229 207.611 )"
+            },
+            {
+              "id": 754,
+              "kind": "VehicleTurretGun",
+              "model": "models/vehicles/sherman_turret_main.tik",
+              "origin": "( 1755.843 -5586.880 230.010 )"
+            },
+            {
+              "id": 755,
+              "kind": "VehicleTurretGun",
+              "model": "models/vehicles/sherman_turret_mini.tik",
+              "origin": "( 1734.650 -5476.201 207.700 )"
+            }
+          ],
+          "deaths": [
+            "0"
+          ]
+        },
+        "dead": {
+          "stats": {
+            "ui_NumShotsFired": "69",
+            "ui_NumHits": "20",
+            "ui_NumEnemysKilled": "5",
+            "ui_NumComplete": "0"
+          },
+          "items": [
+            {
+              "id": 45,
+              "kind": "Health",
+              "model": "models/items/item_25_healthbox.tik",
+              "origin": "( 1430.105 -5807.217 140.236 )"
+            },
+            {
+              "id": 46,
+              "kind": "Weapon",
+              "model": "models/weapons/kar98.tik",
+              "origin": "( 1412.676 -5864.875 132.764 )"
+            },
+            {
+              "id": 49,
+              "kind": "Weapon",
+              "model": "models/weapons/kar98.tik",
+              "origin": "( 1401.482 -5864.875 132.333 )"
+            },
+            {
+              "id": 222,
+              "kind": "VehicleTank",
+              "model": "models/vehicles/sherman_base.tik",
+              "origin": "( 1754.289 -5583.623 129.611 )"
+            },
+            {
+              "id": 224,
+              "kind": "ScriptModel",
+              "model": "models/vehicles/shermantank_damaged.tik",
+              "origin": "( 1754.289 -5583.623 129.611 )"
+            },
+            {
+              "id": 650,
+              "kind": "Animate",
+              "model": "models/fx/dummy.tik",
+              "origin": "( 1460.000 -5564.000 148.000 )"
+            },
+            {
+              "id": 750,
+              "kind": "VehicleSoundEntity",
+              "model": "models/vehicles/vehiclesoundentity.tik",
+              "origin": "( 1718.642 -5682.017 207.611 )"
+            },
+            {
+              "id": 751,
+              "kind": "VehicleSoundEntity",
+              "model": "models/vehicles/vehiclesoundentity.tik",
+              "origin": "( 1655.896 -5547.976 207.611 )"
+            },
+            {
+              "id": 752,
+              "kind": "VehicleSoundEntity",
+              "model": "models/vehicles/vehiclesoundentity.tik",
+              "origin": "( 1852.683 -5619.271 207.611 )"
+            },
+            {
+              "id": 753,
+              "kind": "VehicleSoundEntity",
+              "model": "models/vehicles/vehiclesoundentity.tik",
+              "origin": "( 1789.937 -5485.229 207.611 )"
+            },
+            {
+              "id": 754,
+              "kind": "VehicleTurretGun",
+              "model": "models/vehicles/sherman_turret_main.tik",
+              "origin": "( 1755.843 -5586.880 230.010 )"
+            },
+            {
+              "id": 755,
+              "kind": "VehicleTurretGun",
+              "model": "models/vehicles/sherman_turret_mini.tik",
+              "origin": "( 1734.650 -5476.201 207.700 )"
+            }
+          ],
+          "deaths": [
+            "1"
+          ]
+        },
+        "corpse": {
+          "stats": {
+            "ui_NumShotsFired": "71",
+            "ui_NumHits": "20",
+            "ui_NumEnemysKilled": "5",
+            "ui_NumComplete": "0"
+          },
+          "items": [
+            {
+              "id": 49,
+              "kind": "Weapon",
+              "model": "models/weapons/kar98.tik",
+              "origin": "( 1401.482 -5864.875 132.333 )"
+            },
+            {
+              "id": 222,
+              "kind": "VehicleTank",
+              "model": "models/vehicles/sherman_base.tik",
+              "origin": "( 1754.289 -5583.623 129.611 )"
+            },
+            {
+              "id": 224,
+              "kind": "ScriptModel",
+              "model": "models/vehicles/shermantank_damaged.tik",
+              "origin": "( 1754.289 -5583.623 129.611 )"
+            },
+            {
+              "id": 650,
+              "kind": "Animate",
+              "model": "models/fx/dummy.tik",
+              "origin": "( 1460.000 -5564.000 148.000 )"
+            },
+            {
+              "id": 750,
+              "kind": "VehicleSoundEntity",
+              "model": "models/vehicles/vehiclesoundentity.tik",
+              "origin": "( 1718.642 -5682.017 207.611 )"
+            },
+            {
+              "id": 751,
+              "kind": "VehicleSoundEntity",
+              "model": "models/vehicles/vehiclesoundentity.tik",
+              "origin": "( 1655.896 -5547.976 207.611 )"
+            },
+            {
+              "id": 752,
+              "kind": "VehicleSoundEntity",
+              "model": "models/vehicles/vehiclesoundentity.tik",
+              "origin": "( 1852.683 -5619.271 207.611 )"
+            },
+            {
+              "id": 753,
+              "kind": "VehicleSoundEntity",
+              "model": "models/vehicles/vehiclesoundentity.tik",
+              "origin": "( 1789.937 -5485.229 207.611 )"
+            },
+            {
+              "id": 754,
+              "kind": "VehicleTurretGun",
+              "model": "models/vehicles/sherman_turret_main.tik",
+              "origin": "( 1755.843 -5586.880 230.010 )"
+            },
+            {
+              "id": 755,
+              "kind": "VehicleTurretGun",
+              "model": "models/vehicles/sherman_turret_mini.tik",
+              "origin": "( 1734.650 -5476.201 207.700 )"
+            }
+          ],
+          "deaths": [
+            "1"
+          ]
+        }
+      },
+      "new_after_death": [
+        [
+          49,
+          "models/weapons/kar98.tik"
+        ]
+      ],
+      "new_after_corpse_fire": []
+    },
+    {
+      "step": 6,
+      "enemy_gun": "kar98",
+      "phases": {
+        "before": {
+          "stats": {
+            "ui_NumShotsFired": "71",
+            "ui_NumHits": "20",
+            "ui_NumEnemysKilled": "5",
+            "ui_NumComplete": "0"
+          },
+          "items": [
+            {
+              "id": 49,
+              "kind": "Weapon",
+              "model": "models/weapons/kar98.tik",
+              "origin": "( 1401.482 -5864.875 132.333 )"
+            },
+            {
+              "id": 222,
+              "kind": "VehicleTank",
+              "model": "models/vehicles/sherman_base.tik",
+              "origin": "( 1754.289 -5583.623 129.611 )"
+            },
+            {
+              "id": 224,
+              "kind": "ScriptModel",
+              "model": "models/vehicles/shermantank_damaged.tik",
+              "origin": "( 1754.289 -5583.623 129.611 )"
+            },
+            {
+              "id": 650,
+              "kind": "Animate",
+              "model": "models/fx/dummy.tik",
+              "origin": "( 1460.000 -5564.000 148.000 )"
+            },
+            {
+              "id": 750,
+              "kind": "VehicleSoundEntity",
+              "model": "models/vehicles/vehiclesoundentity.tik",
+              "origin": "( 1718.642 -5682.017 207.611 )"
+            },
+            {
+              "id": 751,
+              "kind": "VehicleSoundEntity",
+              "model": "models/vehicles/vehiclesoundentity.tik",
+              "origin": "( 1655.896 -5547.976 207.611 )"
+            },
+            {
+              "id": 752,
+              "kind": "VehicleSoundEntity",
+              "model": "models/vehicles/vehiclesoundentity.tik",
+              "origin": "( 1852.683 -5619.271 207.611 )"
+            },
+            {
+              "id": 753,
+              "kind": "VehicleSoundEntity",
+              "model": "models/vehicles/vehiclesoundentity.tik",
+              "origin": "( 1789.937 -5485.229 207.611 )"
+            },
+            {
+              "id": 754,
+              "kind": "VehicleTurretGun",
+              "model": "models/vehicles/sherman_turret_main.tik",
+              "origin": "( 1755.843 -5586.880 230.010 )"
+            },
+            {
+              "id": 755,
+              "kind": "VehicleTurretGun",
+              "model": "models/vehicles/sherman_turret_mini.tik",
+              "origin": "( 1734.650 -5476.201 207.700 )"
+            }
+          ],
+          "deaths": [
+            "0"
+          ]
+        },
+        "dead": {
+          "stats": {
+            "ui_NumShotsFired": "83",
+            "ui_NumHits": "23",
+            "ui_NumEnemysKilled": "6",
+            "ui_NumComplete": "0"
+          },
+          "items": [
+            {
+              "id": 47,
+              "kind": "Weapon",
+              "model": "models/weapons/kar98.tik",
+              "origin": "( 1415.463 -5864.875 133.112 )"
+            },
+            {
+              "id": 222,
+              "kind": "VehicleTank",
+              "model": "models/vehicles/sherman_base.tik",
+              "origin": "( 1754.289 -5583.623 129.611 )"
+            },
+            {
+              "id": 224,
+              "kind": "ScriptModel",
+              "model": "models/vehicles/shermantank_damaged.tik",
+              "origin": "( 1754.289 -5583.623 129.611 )"
+            },
+            {
+              "id": 650,
+              "kind": "Animate",
+              "model": "models/fx/dummy.tik",
+              "origin": "( 1460.000 -5564.000 148.000 )"
+            },
+            {
+              "id": 750,
+              "kind": "VehicleSoundEntity",
+              "model": "models/vehicles/vehiclesoundentity.tik",
+              "origin": "( 1718.642 -5682.017 207.611 )"
+            },
+            {
+              "id": 751,
+              "kind": "VehicleSoundEntity",
+              "model": "models/vehicles/vehiclesoundentity.tik",
+              "origin": "( 1655.896 -5547.976 207.611 )"
+            },
+            {
+              "id": 752,
+              "kind": "VehicleSoundEntity",
+              "model": "models/vehicles/vehiclesoundentity.tik",
+              "origin": "( 1852.683 -5619.271 207.611 )"
+            },
+            {
+              "id": 753,
+              "kind": "VehicleSoundEntity",
+              "model": "models/vehicles/vehiclesoundentity.tik",
+              "origin": "( 1789.937 -5485.229 207.611 )"
+            },
+            {
+              "id": 754,
+              "kind": "VehicleTurretGun",
+              "model": "models/vehicles/sherman_turret_main.tik",
+              "origin": "( 1755.843 -5586.880 230.010 )"
+            },
+            {
+              "id": 755,
+              "kind": "VehicleTurretGun",
+              "model": "models/vehicles/sherman_turret_mini.tik",
+              "origin": "( 1734.650 -5476.201 207.700 )"
+            }
+          ],
+          "deaths": [
+            "1"
+          ]
+        },
+        "corpse": {
+          "stats": {
+            "ui_NumShotsFired": "85",
+            "ui_NumHits": "23",
+            "ui_NumEnemysKilled": "6",
+            "ui_NumComplete": "0"
+          },
+          "items": [
+            {
+              "id": 47,
+              "kind": "Weapon",
+              "model": "models/weapons/kar98.tik",
+              "origin": "( 1415.463 -5864.875 133.112 )"
+            },
+            {
+              "id": 222,
+              "kind": "VehicleTank",
+              "model": "models/vehicles/sherman_base.tik",
+              "origin": "( 1754.289 -5583.623 129.611 )"
+            },
+            {
+              "id": 224,
+              "kind": "ScriptModel",
+              "model": "models/vehicles/shermantank_damaged.tik",
+              "origin": "( 1754.289 -5583.623 129.611 )"
+            },
+            {
+              "id": 650,
+              "kind": "Animate",
+              "model": "models/fx/dummy.tik",
+              "origin": "( 1460.000 -5564.000 148.000 )"
+            },
+            {
+              "id": 750,
+              "kind": "VehicleSoundEntity",
+              "model": "models/vehicles/vehiclesoundentity.tik",
+              "origin": "( 1718.642 -5682.017 207.611 )"
+            },
+            {
+              "id": 751,
+              "kind": "VehicleSoundEntity",
+              "model": "models/vehicles/vehiclesoundentity.tik",
+              "origin": "( 1655.896 -5547.976 207.611 )"
+            },
+            {
+              "id": 752,
+              "kind": "VehicleSoundEntity",
+              "model": "models/vehicles/vehiclesoundentity.tik",
+              "origin": "( 1852.683 -5619.271 207.611 )"
+            },
+            {
+              "id": 753,
+              "kind": "VehicleSoundEntity",
+              "model": "models/vehicles/vehiclesoundentity.tik",
+              "origin": "( 1789.937 -5485.229 207.611 )"
+            },
+            {
+              "id": 754,
+              "kind": "VehicleTurretGun",
+              "model": "models/vehicles/sherman_turret_main.tik",
+              "origin": "( 1755.843 -5586.880 230.010 )"
+            },
+            {
+              "id": 755,
+              "kind": "VehicleTurretGun",
+              "model": "models/vehicles/sherman_turret_mini.tik",
+              "origin": "( 1734.650 -5476.201 207.700 )"
+            }
+          ],
+          "deaths": [
+            "1"
+          ]
+        }
+      },
+      "new_after_death": [
+        [
+          47,
+          "models/weapons/kar98.tik"
+        ]
+      ],
+      "new_after_corpse_fire": []
+    },
+    {
+      "step": 7,
+      "enemy_gun": "mp40",
+      "phases": {
+        "before": {
+          "stats": {
+            "ui_NumShotsFired": "85",
+            "ui_NumHits": "23",
+            "ui_NumEnemysKilled": "6",
+            "ui_NumComplete": "0"
+          },
+          "items": [
+            {
+              "id": 47,
+              "kind": "Weapon",
+              "model": "models/weapons/kar98.tik",
+              "origin": "( 1415.463 -5864.875 133.112 )"
+            },
+            {
+              "id": 222,
+              "kind": "VehicleTank",
+              "model": "models/vehicles/sherman_base.tik",
+              "origin": "( 1754.289 -5583.623 129.611 )"
+            },
+            {
+              "id": 224,
+              "kind": "ScriptModel",
+              "model": "models/vehicles/shermantank_damaged.tik",
+              "origin": "( 1754.289 -5583.623 129.611 )"
+            },
+            {
+              "id": 650,
+              "kind": "Animate",
+              "model": "models/fx/dummy.tik",
+              "origin": "( 1460.000 -5564.000 148.000 )"
+            },
+            {
+              "id": 750,
+              "kind": "VehicleSoundEntity",
+              "model": "models/vehicles/vehiclesoundentity.tik",
+              "origin": "( 1718.642 -5682.017 207.611 )"
+            },
+            {
+              "id": 751,
+              "kind": "VehicleSoundEntity",
+              "model": "models/vehicles/vehiclesoundentity.tik",
+              "origin": "( 1655.896 -5547.976 207.611 )"
+            },
+            {
+              "id": 752,
+              "kind": "VehicleSoundEntity",
+              "model": "models/vehicles/vehiclesoundentity.tik",
+              "origin": "( 1852.683 -5619.271 207.611 )"
+            },
+            {
+              "id": 753,
+              "kind": "VehicleSoundEntity",
+              "model": "models/vehicles/vehiclesoundentity.tik",
+              "origin": "( 1789.937 -5485.229 207.611 )"
+            },
+            {
+              "id": 754,
+              "kind": "VehicleTurretGun",
+              "model": "models/vehicles/sherman_turret_main.tik",
+              "origin": "( 1755.843 -5586.880 230.010 )"
+            },
+            {
+              "id": 755,
+              "kind": "VehicleTurretGun",
+              "model": "models/vehicles/sherman_turret_mini.tik",
+              "origin": "( 1734.650 -5476.201 207.700 )"
+            }
+          ],
+          "deaths": [
+            "0"
+          ]
+        },
+        "dead": {
+          "stats": {
+            "ui_NumShotsFired": "97",
+            "ui_NumHits": "26",
+            "ui_NumEnemysKilled": "7",
+            "ui_NumComplete": "0"
+          },
+          "items": [
+            {
+              "id": 47,
+              "kind": "Weapon",
+              "model": "models/weapons/kar98.tik",
+              "origin": "( 1415.463 -5864.875 133.112 )"
+            },
+            {
+              "id": 50,
+              "kind": "Weapon",
+              "model": "models/weapons/mp40.tik",
+              "origin": "( 1402.689 -5864.875 132.295 )"
+            },
+            {
+              "id": 222,
+              "kind": "VehicleTank",
+              "model": "models/vehicles/sherman_base.tik",
+              "origin": "( 1754.289 -5583.623 129.611 )"
+            },
+            {
+              "id": 224,
+              "kind": "ScriptModel",
+              "model": "models/vehicles/shermantank_damaged.tik",
+              "origin": "( 1754.289 -5583.623 129.611 )"
+            },
+            {
+              "id": 650,
+              "kind": "Animate",
+              "model": "models/fx/dummy.tik",
+              "origin": "( 1460.000 -5564.000 148.000 )"
+            },
+            {
+              "id": 750,
+              "kind": "VehicleSoundEntity",
+              "model": "models/vehicles/vehiclesoundentity.tik",
+              "origin": "( 1718.642 -5682.017 207.611 )"
+            },
+            {
+              "id": 751,
+              "kind": "VehicleSoundEntity",
+              "model": "models/vehicles/vehiclesoundentity.tik",
+              "origin": "( 1655.896 -5547.976 207.611 )"
+            },
+            {
+              "id": 752,
+              "kind": "VehicleSoundEntity",
+              "model": "models/vehicles/vehiclesoundentity.tik",
+              "origin": "( 1852.683 -5619.271 207.611 )"
+            },
+            {
+              "id": 753,
+              "kind": "VehicleSoundEntity",
+              "model": "models/vehicles/vehiclesoundentity.tik",
+              "origin": "( 1789.937 -5485.229 207.611 )"
+            },
+            {
+              "id": 754,
+              "kind": "VehicleTurretGun",
+              "model": "models/vehicles/sherman_turret_main.tik",
+              "origin": "( 1755.843 -5586.880 230.010 )"
+            },
+            {
+              "id": 755,
+              "kind": "VehicleTurretGun",
+              "model": "models/vehicles/sherman_turret_mini.tik",
+              "origin": "( 1734.650 -5476.201 207.700 )"
+            }
+          ],
+          "deaths": [
+            "1"
+          ]
+        },
+        "corpse": {
+          "stats": {
+            "ui_NumShotsFired": "99",
+            "ui_NumHits": "26",
+            "ui_NumEnemysKilled": "7",
+            "ui_NumComplete": "0"
+          },
+          "items": [
+            {
+              "id": 50,
+              "kind": "Weapon",
+              "model": "models/weapons/mp40.tik",
+              "origin": "( 1402.689 -5864.875 132.295 )"
+            },
+            {
+              "id": 222,
+              "kind": "VehicleTank",
+              "model": "models/vehicles/sherman_base.tik",
+              "origin": "( 1754.289 -5583.623 129.611 )"
+            },
+            {
+              "id": 224,
+              "kind": "ScriptModel",
+              "model": "models/vehicles/shermantank_damaged.tik",
+              "origin": "( 1754.289 -5583.623 129.611 )"
+            },
+            {
+              "id": 650,
+              "kind": "Animate",
+              "model": "models/fx/dummy.tik",
+              "origin": "( 1460.000 -5564.000 148.000 )"
+            },
+            {
+              "id": 750,
+              "kind": "VehicleSoundEntity",
+              "model": "models/vehicles/vehiclesoundentity.tik",
+              "origin": "( 1718.642 -5682.017 207.611 )"
+            },
+            {
+              "id": 751,
+              "kind": "VehicleSoundEntity",
+              "model": "models/vehicles/vehiclesoundentity.tik",
+              "origin": "( 1655.896 -5547.976 207.611 )"
+            },
+            {
+              "id": 752,
+              "kind": "VehicleSoundEntity",
+              "model": "models/vehicles/vehiclesoundentity.tik",
+              "origin": "( 1852.683 -5619.271 207.611 )"
+            },
+            {
+              "id": 753,
+              "kind": "VehicleSoundEntity",
+              "model": "models/vehicles/vehiclesoundentity.tik",
+              "origin": "( 1789.937 -5485.229 207.611 )"
+            },
+            {
+              "id": 754,
+              "kind": "VehicleTurretGun",
+              "model": "models/vehicles/sherman_turret_main.tik",
+              "origin": "( 1755.843 -5586.880 230.010 )"
+            },
+            {
+              "id": 755,
+              "kind": "VehicleTurretGun",
+              "model": "models/vehicles/sherman_turret_mini.tik",
+              "origin": "( 1734.650 -5476.201 207.700 )"
+            }
+          ],
+          "deaths": [
+            "1"
+          ]
+        }
+      },
+      "new_after_death": [
+        [
+          50,
+          "models/weapons/mp40.tik"
+        ]
+      ],
+      "new_after_corpse_fire": []
+    },
+    {
+      "step": 8,
+      "enemy_gun": "mp40",
+      "phases": {
+        "before": {
+          "stats": {
+            "ui_NumShotsFired": "99",
+            "ui_NumHits": "26",
+            "ui_NumEnemysKilled": "7",
+            "ui_NumComplete": "0"
+          },
+          "items": [
+            {
+              "id": 50,
+              "kind": "Weapon",
+              "model": "models/weapons/mp40.tik",
+              "origin": "( 1402.689 -5864.875 132.295 )"
+            },
+            {
+              "id": 222,
+              "kind": "VehicleTank",
+              "model": "models/vehicles/sherman_base.tik",
+              "origin": "( 1754.289 -5583.623 129.611 )"
+            },
+            {
+              "id": 224,
+              "kind": "ScriptModel",
+              "model": "models/vehicles/shermantank_damaged.tik",
+              "origin": "( 1754.289 -5583.623 129.611 )"
+            },
+            {
+              "id": 650,
+              "kind": "Animate",
+              "model": "models/fx/dummy.tik",
+              "origin": "( 1460.000 -5564.000 148.000 )"
+            },
+            {
+              "id": 750,
+              "kind": "VehicleSoundEntity",
+              "model": "models/vehicles/vehiclesoundentity.tik",
+              "origin": "( 1718.642 -5682.017 207.611 )"
+            },
+            {
+              "id": 751,
+              "kind": "VehicleSoundEntity",
+              "model": "models/vehicles/vehiclesoundentity.tik",
+              "origin": "( 1655.896 -5547.976 207.611 )"
+            },
+            {
+              "id": 752,
+              "kind": "VehicleSoundEntity",
+              "model": "models/vehicles/vehiclesoundentity.tik",
+              "origin": "( 1852.683 -5619.271 207.611 )"
+            },
+            {
+              "id": 753,
+              "kind": "VehicleSoundEntity",
+              "model": "models/vehicles/vehiclesoundentity.tik",
+              "origin": "( 1789.937 -5485.229 207.611 )"
+            },
+            {
+              "id": 754,
+              "kind": "VehicleTurretGun",
+              "model": "models/vehicles/sherman_turret_main.tik",
+              "origin": "( 1755.843 -5586.880 230.010 )"
+            },
+            {
+              "id": 755,
+              "kind": "VehicleTurretGun",
+              "model": "models/vehicles/sherman_turret_mini.tik",
+              "origin": "( 1734.650 -5476.201 207.700 )"
+            }
+          ],
+          "deaths": [
+            "0"
+          ]
+        },
+        "dead": {
+          "stats": {
+            "ui_NumShotsFired": "111",
+            "ui_NumHits": "30",
+            "ui_NumEnemysKilled": "8",
+            "ui_NumComplete": "0"
+          },
+          "items": [
+            {
+              "id": 46,
+              "kind": "Health",
+              "model": "models/items/item_25_healthbox.tik",
+              "origin": "( 1418.528 -5845.722 138.284 )"
+            },
+            {
+              "id": 49,
+              "kind": "Weapon",
+              "model": "models/weapons/mp40.tik",
+              "origin": "( 1413.730 -5864.875 132.896 )"
+            },
+            {
+              "id": 50,
+              "kind": "Weapon",
+              "model": "models/weapons/mp40.tik",
+              "origin": "( 1402.689 -5864.875 132.295 )"
+            },
+            {
+              "id": 222,
+              "kind": "VehicleTank",
+              "model": "models/vehicles/sherman_base.tik",
+              "origin": "( 1754.289 -5583.623 129.611 )"
+            },
+            {
+              "id": 224,
+              "kind": "ScriptModel",
+              "model": "models/vehicles/shermantank_damaged.tik",
+              "origin": "( 1754.289 -5583.623 129.611 )"
+            },
+            {
+              "id": 650,
+              "kind": "Animate",
+              "model": "models/fx/dummy.tik",
+              "origin": "( 1460.000 -5564.000 148.000 )"
+            },
+            {
+              "id": 750,
+              "kind": "VehicleSoundEntity",
+              "model": "models/vehicles/vehiclesoundentity.tik",
+              "origin": "( 1718.642 -5682.017 207.611 )"
+            },
+            {
+              "id": 751,
+              "kind": "VehicleSoundEntity",
+              "model": "models/vehicles/vehiclesoundentity.tik",
+              "origin": "( 1655.896 -5547.976 207.611 )"
+            },
+            {
+              "id": 752,
+              "kind": "VehicleSoundEntity",
+              "model": "models/vehicles/vehiclesoundentity.tik",
+              "origin": "( 1852.683 -5619.271 207.611 )"
+            },
+            {
+              "id": 753,
+              "kind": "VehicleSoundEntity",
+              "model": "models/vehicles/vehiclesoundentity.tik",
+              "origin": "( 1789.937 -5485.229 207.611 )"
+            },
+            {
+              "id": 754,
+              "kind": "VehicleTurretGun",
+              "model": "models/vehicles/sherman_turret_main.tik",
+              "origin": "( 1755.843 -5586.880 230.010 )"
+            },
+            {
+              "id": 755,
+              "kind": "VehicleTurretGun",
+              "model": "models/vehicles/sherman_turret_mini.tik",
+              "origin": "( 1734.650 -5476.201 207.700 )"
+            }
+          ],
+          "deaths": [
+            "1"
+          ]
+        },
+        "corpse": {
+          "stats": {
+            "ui_NumShotsFired": "113",
+            "ui_NumHits": "30",
+            "ui_NumEnemysKilled": "8",
+            "ui_NumComplete": "0"
+          },
+          "items": [
+            {
+              "id": 46,
+              "kind": "Health",
+              "model": "models/items/item_25_healthbox.tik",
+              "origin": "( 1418.528 -5845.722 138.284 )"
+            },
+            {
+              "id": 49,
+              "kind": "Weapon",
+              "model": "models/weapons/mp40.tik",
+              "origin": "( 1413.730 -5864.875 132.896 )"
+            },
+            {
+              "id": 222,
+              "kind": "VehicleTank",
+              "model": "models/vehicles/sherman_base.tik",
+              "origin": "( 1754.289 -5583.623 129.611 )"
+            },
+            {
+              "id": 224,
+              "kind": "ScriptModel",
+              "model": "models/vehicles/shermantank_damaged.tik",
+              "origin": "( 1754.289 -5583.623 129.611 )"
+            },
+            {
+              "id": 650,
+              "kind": "Animate",
+              "model": "models/fx/dummy.tik",
+              "origin": "( 1460.000 -5564.000 148.000 )"
+            },
+            {
+              "id": 750,
+              "kind": "VehicleSoundEntity",
+              "model": "models/vehicles/vehiclesoundentity.tik",
+              "origin": "( 1718.642 -5682.017 207.611 )"
+            },
+            {
+              "id": 751,
+              "kind": "VehicleSoundEntity",
+              "model": "models/vehicles/vehiclesoundentity.tik",
+              "origin": "( 1655.896 -5547.976 207.611 )"
+            },
+            {
+              "id": 752,
+              "kind": "VehicleSoundEntity",
+              "model": "models/vehicles/vehiclesoundentity.tik",
+              "origin": "( 1852.683 -5619.271 207.611 )"
+            },
+            {
+              "id": 753,
+              "kind": "VehicleSoundEntity",
+              "model": "models/vehicles/vehiclesoundentity.tik",
+              "origin": "( 1789.937 -5485.229 207.611 )"
+            },
+            {
+              "id": 754,
+              "kind": "VehicleTurretGun",
+              "model": "models/vehicles/sherman_turret_main.tik",
+              "origin": "( 1755.843 -5586.880 230.010 )"
+            },
+            {
+              "id": 755,
+              "kind": "VehicleTurretGun",
+              "model": "models/vehicles/sherman_turret_mini.tik",
+              "origin": "( 1734.650 -5476.201 207.700 )"
+            }
+          ],
+          "deaths": [
+            "1"
+          ]
+        }
+      },
+      "new_after_death": [
+        [
+          46,
+          "models/items/item_25_healthbox.tik"
+        ],
+        [
+          49,
+          "models/weapons/mp40.tik"
+        ]
+      ],
+      "new_after_corpse_fire": []
+    },
+    {
+      "step": 9,
+      "enemy_gun": "mp40",
+      "phases": {
+        "before": {
+          "stats": {
+            "ui_NumShotsFired": "113",
+            "ui_NumHits": "30",
+            "ui_NumEnemysKilled": "8",
+            "ui_NumComplete": "0"
+          },
+          "items": [
+            {
+              "id": 46,
+              "kind": "Health",
+              "model": "models/items/item_25_healthbox.tik",
+              "origin": "( 1418.528 -5845.722 138.284 )"
+            },
+            {
+              "id": 49,
+              "kind": "Weapon",
+              "model": "models/weapons/mp40.tik",
+              "origin": "( 1413.730 -5864.875 132.896 )"
+            },
+            {
+              "id": 222,
+              "kind": "VehicleTank",
+              "model": "models/vehicles/sherman_base.tik",
+              "origin": "( 1754.289 -5583.623 129.611 )"
+            },
+            {
+              "id": 224,
+              "kind": "ScriptModel",
+              "model": "models/vehicles/shermantank_damaged.tik",
+              "origin": "( 1754.289 -5583.623 129.611 )"
+            },
+            {
+              "id": 650,
+              "kind": "Animate",
+              "model": "models/fx/dummy.tik",
+              "origin": "( 1460.000 -5564.000 148.000 )"
+            },
+            {
+              "id": 750,
+              "kind": "VehicleSoundEntity",
+              "model": "models/vehicles/vehiclesoundentity.tik",
+              "origin": "( 1718.642 -5682.017 207.611 )"
+            },
+            {
+              "id": 751,
+              "kind": "VehicleSoundEntity",
+              "model": "models/vehicles/vehiclesoundentity.tik",
+              "origin": "( 1655.896 -5547.976 207.611 )"
+            },
+            {
+              "id": 752,
+              "kind": "VehicleSoundEntity",
+              "model": "models/vehicles/vehiclesoundentity.tik",
+              "origin": "( 1852.683 -5619.271 207.611 )"
+            },
+            {
+              "id": 753,
+              "kind": "VehicleSoundEntity",
+              "model": "models/vehicles/vehiclesoundentity.tik",
+              "origin": "( 1789.937 -5485.229 207.611 )"
+            },
+            {
+              "id": 754,
+              "kind": "VehicleTurretGun",
+              "model": "models/vehicles/sherman_turret_main.tik",
+              "origin": "( 1755.843 -5586.880 230.010 )"
+            },
+            {
+              "id": 755,
+              "kind": "VehicleTurretGun",
+              "model": "models/vehicles/sherman_turret_mini.tik",
+              "origin": "( 1734.650 -5476.201 207.700 )"
+            }
+          ],
+          "deaths": [
+            "0"
+          ]
+        },
+        "dead": {
+          "stats": {
+            "ui_NumShotsFired": "125",
+            "ui_NumHits": "33",
+            "ui_NumEnemysKilled": "9",
+            "ui_NumComplete": "0"
+          },
+          "items": [
+            {
+              "id": 46,
+              "kind": "Health",
+              "model": "models/items/item_25_healthbox.tik",
+              "origin": "( 1418.528 -5845.722 138.284 )"
+            },
+            {
+              "id": 49,
+              "kind": "Weapon",
+              "model": "models/weapons/mp40.tik",
+              "origin": "( 1413.730 -5864.875 132.896 )"
+            },
+            {
+              "id": 51,
+              "kind": "Weapon",
+              "model": "models/weapons/mp40.tik",
+              "origin": "( 1394.465 -5864.875 132.552 )"
+            },
+            {
+              "id": 222,
+              "kind": "VehicleTank",
+              "model": "models/vehicles/sherman_base.tik",
+              "origin": "( 1754.289 -5583.623 129.611 )"
+            },
+            {
+              "id": 224,
+              "kind": "ScriptModel",
+              "model": "models/vehicles/shermantank_damaged.tik",
+              "origin": "( 1754.289 -5583.623 129.611 )"
+            },
+            {
+              "id": 650,
+              "kind": "Animate",
+              "model": "models/fx/dummy.tik",
+              "origin": "( 1460.000 -5564.000 148.000 )"
+            },
+            {
+              "id": 750,
+              "kind": "VehicleSoundEntity",
+              "model": "models/vehicles/vehiclesoundentity.tik",
+              "origin": "( 1718.642 -5682.017 207.611 )"
+            },
+            {
+              "id": 751,
+              "kind": "VehicleSoundEntity",
+              "model": "models/vehicles/vehiclesoundentity.tik",
+              "origin": "( 1655.896 -5547.976 207.611 )"
+            },
+            {
+              "id": 752,
+              "kind": "VehicleSoundEntity",
+              "model": "models/vehicles/vehiclesoundentity.tik",
+              "origin": "( 1852.683 -5619.271 207.611 )"
+            },
+            {
+              "id": 753,
+              "kind": "VehicleSoundEntity",
+              "model": "models/vehicles/vehiclesoundentity.tik",
+              "origin": "( 1789.937 -5485.229 207.611 )"
+            },
+            {
+              "id": 754,
+              "kind": "VehicleTurretGun",
+              "model": "models/vehicles/sherman_turret_main.tik",
+              "origin": "( 1755.843 -5586.880 230.010 )"
+            },
+            {
+              "id": 755,
+              "kind": "VehicleTurretGun",
+              "model": "models/vehicles/sherman_turret_mini.tik",
+              "origin": "( 1734.650 -5476.201 207.700 )"
+            }
+          ],
+          "deaths": [
+            "1"
+          ]
+        },
+        "corpse": {
+          "stats": {
+            "ui_NumShotsFired": "127",
+            "ui_NumHits": "33",
+            "ui_NumEnemysKilled": "9",
+            "ui_NumComplete": "0"
+          },
+          "items": [
+            {
+              "id": 51,
+              "kind": "Weapon",
+              "model": "models/weapons/mp40.tik",
+              "origin": "( 1394.465 -5864.875 132.552 )"
+            },
+            {
+              "id": 222,
+              "kind": "VehicleTank",
+              "model": "models/vehicles/sherman_base.tik",
+              "origin": "( 1754.289 -5583.623 129.611 )"
+            },
+            {
+              "id": 224,
+              "kind": "ScriptModel",
+              "model": "models/vehicles/shermantank_damaged.tik",
+              "origin": "( 1754.289 -5583.623 129.611 )"
+            },
+            {
+              "id": 650,
+              "kind": "Animate",
+              "model": "models/fx/dummy.tik",
+              "origin": "( 1460.000 -5564.000 148.000 )"
+            },
+            {
+              "id": 750,
+              "kind": "VehicleSoundEntity",
+              "model": "models/vehicles/vehiclesoundentity.tik",
+              "origin": "( 1718.642 -5682.017 207.611 )"
+            },
+            {
+              "id": 751,
+              "kind": "VehicleSoundEntity",
+              "model": "models/vehicles/vehiclesoundentity.tik",
+              "origin": "( 1655.896 -5547.976 207.611 )"
+            },
+            {
+              "id": 752,
+              "kind": "VehicleSoundEntity",
+              "model": "models/vehicles/vehiclesoundentity.tik",
+              "origin": "( 1852.683 -5619.271 207.611 )"
+            },
+            {
+              "id": 753,
+              "kind": "VehicleSoundEntity",
+              "model": "models/vehicles/vehiclesoundentity.tik",
+              "origin": "( 1789.937 -5485.229 207.611 )"
+            },
+            {
+              "id": 754,
+              "kind": "VehicleTurretGun",
+              "model": "models/vehicles/sherman_turret_main.tik",
+              "origin": "( 1755.843 -5586.880 230.010 )"
+            },
+            {
+              "id": 755,
+              "kind": "VehicleTurretGun",
+              "model": "models/vehicles/sherman_turret_mini.tik",
+              "origin": "( 1734.650 -5476.201 207.700 )"
+            }
+          ],
+          "deaths": [
+            "1"
+          ]
+        }
+      },
+      "new_after_death": [
+        [
+          51,
+          "models/weapons/mp40.tik"
+        ]
+      ],
+      "new_after_corpse_fire": []
+    }
+  ],
+  "errors": [
+    "^~^~^ Script Error : invalid waittill spawn for 'Level'",
+    "^~^~^ Script Error : invalid waittill prespawn for 'Level'",
+    "^~^~^ Script Error : invalid waittill spawn for 'Level'",
+    "^~^~^ Script Error : invalid waittill spawn for 'Level'",
+    "^~^~^ Script Error : invalid waittill spawn for 'Level'",
+    "^~^~^ Script Error : invalid waittill spawn for 'Level'",
+    "^~^~^ Script Error : invalid waittill spawn for 'Level'",
+    "^~^~^ Script Error : invalid waittill spawn for 'Level'",
+    "^~^~^ Script Error : invalid waittill spawn for 'Level'",
+    "^~^~^ Script Error : invalid waittill spawn for 'Level'",
+    "^~^~^ Script Error : invalid waittill spawn for 'Level'",
+    "^~^~^ Script Error : invalid waittill spawn for 'Level'",
+    "^~^~^ Script Error : invalid waittill spawn for 'Level'",
+    "^~^~^ Script Error : invalid waittill spawn for 'Level'",
+    "^~^~^ Script Error : invalid waittill spawn for 'Level'",
+    "^~^~^ Script Error : invalid waittill prespawn for 'Level'",
+    "^~^~^ Script Error : invalid waittill prespawn for 'Level'",
+    "^~^~^ Script Error : invalid waittill spawn for 'Level'",
+    "^~^~^ Script Error : invalid waittill spawn for 'Level'",
+    "^~^~^ Script Error : invalid waittill spawn for 'Level'",
+    "^~^~^ Script Error : invalid waittill prespawn for 'Level'",
+    "^~^~^ Script Error : invalid waittill spawn for 'Level'",
+    "^~^~^ Script Error : invalid waittill prespawn for 'Level'",
+    "^~^~^ Script Error : invalid waittill spawn for 'Level'",
+    "^~^~^ Script Error : invalid waittill spawn for 'Level'",
+    "^~^~^ Script Error : command 'thread' applied to NULL listener",
+    "^~^~^ Script Error : command 'thread' applied to NULL listener",
+    "^~^~^ Script Error : binary '>' applied to incompatible types 'none' and 'int'"
+  ],
+  "reference_save": [],
+  "visual_check": "PENDING",
+  "engine_sha256": "5f1eee385de3b26750b45b7aa1e98566801b716566b97af11fa5586cb5c21c91",
+  "wcr_package_fingerprint": "3b6b38b5b04ba320a526196946c44394c4519e4197dc8d3d05788e186501cfcc",
+  "evidence": [
+    {
+      "path": "profiles-local/CP00a-r1/cp00a-africa-BT/maintt/configs/omconfig.cfg",
+      "sha256": "530c706719b73fff88f00db7e6ad4c3d2905664e2f43a1cfd72fb9615bbb0685"
+    },
+    {
+      "path": "profiles-local/CP00a-r1/cp00a-africa-BT/maintt/cp00/aim.scr",
+      "sha256": "3e5353c8f5bf890bc103b9b746ee8d56a09aa9bcfbc8d4b239e9386f047ba716"
+    },
+    {
+      "path": "profiles-local/CP00a-r1/cp00a-africa-BT/maintt/cp00/base.scr",
+      "sha256": "66cdb0077300f00392118d0b0541ecb29b75ab5903089a78c9d4e06b110cfb3c"
+    },
+    {
+      "path": "profiles-local/CP00a-r1/cp00a-africa-BT/maintt/cp00/fire1.cfg",
+      "sha256": "2e47434760246185357016d2fdec35d14eb1460d2d0e036d60537a36a19fcc7b"
+    },
+    {
+      "path": "profiles-local/CP00a-r1/cp00a-africa-BT/maintt/cp00/fire2.cfg",
+      "sha256": "a6965b2b18e26e8710a1f8d3fbe59e318f435924ceef545ded771df8be8b655d"
+    },
+    {
+      "path": "profiles-local/CP00a-r1/cp00a-africa-BT/maintt/cp00/fire3.cfg",
+      "sha256": "3f6933cff3c3075f2b3363e89cb5db0c84fe30ec6f11568b95d297d4c29064ec"
+    },
+    {
+      "path": "profiles-local/CP00a-r1/cp00a-africa-BT/maintt/cp00/fire4.cfg",
+      "sha256": "5699050025da81cf3a791068c83bae273de76ac9e3ae6a4c370d48f55d83773f"
+    },
+    {
+      "path": "profiles-local/CP00a-r1/cp00a-africa-BT/maintt/cp00/fire5.cfg",
+      "sha256": "d72e63baaa69d5dc941b6d34e925f83be57c05228c7f75cf32bd984f0f0a34c7"
+    },
+    {
+      "path": "profiles-local/CP00a-r1/cp00a-africa-BT/maintt/cp00/fire6.cfg",
+      "sha256": "95f25ba0b7fe0faa829ab15d7518ffdf1eba33333c3d283c7b02ac01b3918665"
+    },
+    {
+      "path": "profiles-local/CP00a-r1/cp00a-africa-BT/maintt/cp00/fire7.cfg",
+      "sha256": "b672f4e35a31028e4420b3fcbab2b2622d01fb1b7bfef663c0d459748f12e1cf"
+    },
+    {
+      "path": "profiles-local/CP00a-r1/cp00a-africa-BT/maintt/cp00/fire8.cfg",
+      "sha256": "ad8b6ae8e64f7a3aca8c9b0c3c40612162cd9782c5c41c1aba63b4a2ae204473"
+    },
+    {
+      "path": "profiles-local/CP00a-r1/cp00a-africa-BT/maintt/cp00/fire9.cfg",
+      "sha256": "7a2ffa1514a8a2f37774a453cf7daab85e56a239a45477deee28ea7ddd5935da"
+    },
+    {
+      "path": "profiles-local/CP00a-r1/cp00a-africa-BT/maintt/cp00/remove.scr",
+      "sha256": "cf163c22ca16126dbe378c52f8dd1b4142ccda37de728089932e22d06c98021a"
+    },
+    {
+      "path": "profiles-local/CP00a-r1/cp00a-africa-BT/maintt/cp00/spawn1.scr",
+      "sha256": "90b218163651c33bd03c7a36ac5516ff073ded8ac2c5f9969c9d2febe76feead"
+    },
+    {
+      "path": "profiles-local/CP00a-r1/cp00a-africa-BT/maintt/cp00/spawn2.scr",
+      "sha256": "b36ac689ac7a1d72dfe3ea7cb741f155a8e87359446781b49e5aff00aa7e2480"
+    },
+    {
+      "path": "profiles-local/CP00a-r1/cp00a-africa-BT/maintt/cp00/spawn3.scr",
+      "sha256": "56f3a8eaf2eb9bd2934f98bfbd5753329c21470a7af576535a5a260b9a62a76e"
+    },
+    {
+      "path": "profiles-local/CP00a-r1/cp00a-africa-BT/maintt/cp00/spawn4.scr",
+      "sha256": "a7972c5f4ecb3aeb007248a8430557e9d4f4370eb07674cbaa9fe02f8f4522c4"
+    },
+    {
+      "path": "profiles-local/CP00a-r1/cp00a-africa-BT/maintt/cp00/spawn5.scr",
+      "sha256": "527d78cfd6084f294ad127a974d8432c1638feec4d5c539f377e3fab9b31e27c"
+    },
+    {
+      "path": "profiles-local/CP00a-r1/cp00a-africa-BT/maintt/cp00/spawn6.scr",
+      "sha256": "409a10d47eadd3202396569989d486b7181a69069128a51dbc75f5ec1f80e9ce"
+    },
+    {
+      "path": "profiles-local/CP00a-r1/cp00a-africa-BT/maintt/cp00/spawn7.scr",
+      "sha256": "e9cda76263ea70ded80d53389e61c82689322dd2a1c1d52c01d5b242a9c14eb7"
+    },
+    {
+      "path": "profiles-local/CP00a-r1/cp00a-africa-BT/maintt/cp00/spawn8.scr",
+      "sha256": "46b51dd0add0e94f64a4efce45b468b395b8cfa95f19839e4628da283976b65d"
+    },
+    {
+      "path": "profiles-local/CP00a-r1/cp00a-africa-BT/maintt/cp00/spawn9.scr",
+      "sha256": "0f5a82a4c5d1e1eaaa677508485aa7d42e3082e678012eed39bdeaa981508d23"
+    },
+    {
+      "path": "profiles-local/CP00a-r1/cp00a-africa-BT/maintt/cp00/step1.cfg",
+      "sha256": "dde164e3b27f87d30b8f3a58ae8d2062755635e2142d09b7e60c43c8bf92bb67"
+    },
+    {
+      "path": "profiles-local/CP00a-r1/cp00a-africa-BT/maintt/cp00/step1_before.scr",
+      "sha256": "59d18b2e55bc67ba8371cdc92c28a7c748663c14e7934b9c42bc88eec8f62786"
+    },
+    {
+      "path": "profiles-local/CP00a-r1/cp00a-africa-BT/maintt/cp00/step1_corpse.scr",
+      "sha256": "b814d5c76c2b4646024e9c1e5db00550edbd2234ad6018fc9f6c8bc92a8abbbb"
+    },
+    {
+      "path": "profiles-local/CP00a-r1/cp00a-africa-BT/maintt/cp00/step1_dead.scr",
+      "sha256": "36c22ffb7e6fa10afacf70d9bfca564a8168054755d9ca7606f43e8c313225b3"
+    },
+    {
+      "path": "profiles-local/CP00a-r1/cp00a-africa-BT/maintt/cp00/step2.cfg",
+      "sha256": "33beffe54453b674ef8c5ced9be14454d6d5cd01fe14736ca278322d47b45f1a"
+    },
+    {
+      "path": "profiles-local/CP00a-r1/cp00a-africa-BT/maintt/cp00/step2_before.scr",
+      "sha256": "52eef64d508fe2c9a5237d1a4a53cea80ce86f9f6b7717404e0fc5e24322f230"
+    },
+    {
+      "path": "profiles-local/CP00a-r1/cp00a-africa-BT/maintt/cp00/step2_corpse.scr",
+      "sha256": "e7b24fdf2d015bcf985ee68f78b391b233d5a0f20ef348d229673c38ff4d82d6"
+    },
+    {
+      "path": "profiles-local/CP00a-r1/cp00a-africa-BT/maintt/cp00/step2_dead.scr",
+      "sha256": "2aec191edd223017c8556fa1523564e16915ad0ba7db9d5fb0094da999a17e4d"
+    },
+    {
+      "path": "profiles-local/CP00a-r1/cp00a-africa-BT/maintt/cp00/step3.cfg",
+      "sha256": "4a88cfb0fe8234153a74adbf6c60f398cd5671ce0eab08cf18d9055529f00f8d"
+    },
+    {
+      "path": "profiles-local/CP00a-r1/cp00a-africa-BT/maintt/cp00/step3_before.scr",
+      "sha256": "6a375e667049fae4cb8f8c03bd23c1abfa04ade6b3576d470b19e2a7fcb51199"
+    },
+    {
+      "path": "profiles-local/CP00a-r1/cp00a-africa-BT/maintt/cp00/step3_corpse.scr",
+      "sha256": "9637741ac30332b6f533460ebcfba139ad7557e998b26c1e116bea15fafcc534"
+    },
+    {
+      "path": "profiles-local/CP00a-r1/cp00a-africa-BT/maintt/cp00/step3_dead.scr",
+      "sha256": "16586904da88530b37535f3498c0593f4dda29b0a8c694f5072fc3f6d8886847"
+    },
+    {
+      "path": "profiles-local/CP00a-r1/cp00a-africa-BT/maintt/cp00/step4.cfg",
+      "sha256": "9577feb2a906e0f21ce66f6f4aa354350582f2731ab2cc83e62fc59ec9594c83"
+    },
+    {
+      "path": "profiles-local/CP00a-r1/cp00a-africa-BT/maintt/cp00/step4_before.scr",
+      "sha256": "f6545c3895ddbac0b160e752d5a10d82fba0977b5be94be25a96ed1000f84f3c"
+    },
+    {
+      "path": "profiles-local/CP00a-r1/cp00a-africa-BT/maintt/cp00/step4_corpse.scr",
+      "sha256": "b5c3d0e05bde741bce8d90452dff45f34011e130a36be19f11bcea696d4c3cdd"
+    },
+    {
+      "path": "profiles-local/CP00a-r1/cp00a-africa-BT/maintt/cp00/step4_dead.scr",
+      "sha256": "21a754436aa29d93422c6477eb2f0af10830f92d8ae0abd1cd9a0c8507f19d1c"
+    },
+    {
+      "path": "profiles-local/CP00a-r1/cp00a-africa-BT/maintt/cp00/step5.cfg",
+      "sha256": "14b0146208fe85b269a24765714300e7230669cbf82ad1958ba5ce4d92947efd"
+    },
+    {
+      "path": "profiles-local/CP00a-r1/cp00a-africa-BT/maintt/cp00/step5_before.scr",
+      "sha256": "3fa361aa82b3ece8bb85d82db89baef645751dcd42082082757ff2603585a1cb"
+    },
+    {
+      "path": "profiles-local/CP00a-r1/cp00a-africa-BT/maintt/cp00/step5_corpse.scr",
+      "sha256": "5006737c49df085c2414491a7a43f0d28788488d48d22d95a6337b3c3842e501"
+    },
+    {
+      "path": "profiles-local/CP00a-r1/cp00a-africa-BT/maintt/cp00/step5_dead.scr",
+      "sha256": "bc8da4f2e43e78b69913f4d1fbd988e0171adf3ea32bb2b60e152c08414efbcb"
+    },
+    {
+      "path": "profiles-local/CP00a-r1/cp00a-africa-BT/maintt/cp00/step6.cfg",
+      "sha256": "506e4b8ce6a37e7810b274363dfe364b3ffaa30ca52fc9d54ec15b5019fc592c"
+    },
+    {
+      "path": "profiles-local/CP00a-r1/cp00a-africa-BT/maintt/cp00/step6_before.scr",
+      "sha256": "eaed1a707e944390468d09fc1b5d900356002b1ea1dc0408dc0cebcfd7b5cab3"
+    },
+    {
+      "path": "profiles-local/CP00a-r1/cp00a-africa-BT/maintt/cp00/step6_corpse.scr",
+      "sha256": "74344c0f758c807809fad2272f1bcbb17404fbfa29cc0b8cb5de49bd6a4af654"
+    },
+    {
+      "path": "profiles-local/CP00a-r1/cp00a-africa-BT/maintt/cp00/step6_dead.scr",
+      "sha256": "1a876d1e843babd930bb0d1d72e5755655b5630ab3e1a51043ec127aca687f0e"
+    },
+    {
+      "path": "profiles-local/CP00a-r1/cp00a-africa-BT/maintt/cp00/step7.cfg",
+      "sha256": "02cb8a847207359f920bfdedeaca2e1cf4d716978378b7d71552cd6859200c51"
+    },
+    {
+      "path": "profiles-local/CP00a-r1/cp00a-africa-BT/maintt/cp00/step7_before.scr",
+      "sha256": "ef713dbfa59dc47f5011f1dbe788b7e09eae737fac73981400f66aa948d20061"
+    },
+    {
+      "path": "profiles-local/CP00a-r1/cp00a-africa-BT/maintt/cp00/step7_corpse.scr",
+      "sha256": "1f8646b7f868a37d33da77aef8fc32053cf5333c19b5802185f125f943bd3e80"
+    },
+    {
+      "path": "profiles-local/CP00a-r1/cp00a-africa-BT/maintt/cp00/step7_dead.scr",
+      "sha256": "1de9646acce9358e5fe5c92680f4306e611d8bce89bcd7f8bd8fe849b985acbd"
+    },
+    {
+      "path": "profiles-local/CP00a-r1/cp00a-africa-BT/maintt/cp00/step8.cfg",
+      "sha256": "a5d67e8408727738a3c8ca61b4671f518a511b312e0e5e3150cec3fb8c115e7a"
+    },
+    {
+      "path": "profiles-local/CP00a-r1/cp00a-africa-BT/maintt/cp00/step8_before.scr",
+      "sha256": "14a07e3f04c86a22dd1e50fbf871c8135c9e20a0c901941c05eefcd6e58d0d6a"
+    },
+    {
+      "path": "profiles-local/CP00a-r1/cp00a-africa-BT/maintt/cp00/step8_corpse.scr",
+      "sha256": "9f218f3a62a80681b973c31d2ac8ab969c41fa8c9bb907a12b78cbfc1385653d"
+    },
+    {
+      "path": "profiles-local/CP00a-r1/cp00a-africa-BT/maintt/cp00/step8_dead.scr",
+      "sha256": "d592151063790a470808815fb25dd980afee531963b62cfb9a1d3e7923c731f5"
+    },
+    {
+      "path": "profiles-local/CP00a-r1/cp00a-africa-BT/maintt/cp00/step9.cfg",
+      "sha256": "26945f7716a57c38a8000fd2db2e506630b0fe6ef1afb18616cacdecce67cbc1"
+    },
+    {
+      "path": "profiles-local/CP00a-r1/cp00a-africa-BT/maintt/cp00/step9_before.scr",
+      "sha256": "90a772bce8000193ed9ef72b1d79c2007423a6c728584a73dc5dbc74f41149fd"
+    },
+    {
+      "path": "profiles-local/CP00a-r1/cp00a-africa-BT/maintt/cp00/step9_corpse.scr",
+      "sha256": "c356e7da98d9c3e5a10501dea5a0dce56da468b27fd594ba2a225d742c334eb5"
+    },
+    {
+      "path": "profiles-local/CP00a-r1/cp00a-africa-BT/maintt/cp00/step9_dead.scr",
+      "sha256": "f9cf2164e997691f5085e5733d4bc0acd30a5ccbf4a93e7f30b587f1ba0dc519"
+    },
+    {
+      "path": "profiles-local/CP00a-r1/cp00a-africa-BT/maintt/qconsole.log",
+      "sha256": "367bb9788c560c08410369e345f4c853f1445c8c9bd864501b985e35c4e45429"
+    },
+    {
+      "path": "profiles-local/CP00a-r1/cp00a-africa-BT/maintt/save/omconfig/cp00_after_five.sav",
+      "sha256": "bddee97d4e01864f4549ee29e4deac2278130e548b39d83b4248f06b136f7560"
+    },
+    {
+      "path": "profiles-local/CP00a-r1/cp00a-africa-BT/maintt/save/omconfig/cp00_after_five.ssv",
+      "sha256": "fcd7b243dee252ca278964b52548ddbe36a9bbd65e159a7e57baa518040c639f"
+    },
+    {
+      "path": "profiles-local/CP00a-r1/cp00a-africa-BT/maintt/save/omconfig/cp00_after_five.tga",
+      "sha256": "73817ccd44ea14a6814a63f38828eadf63139cfda674d1930b41aa4d3ac4a73a"
+    },
+    {
+      "path": "profiles-local/CP00a-r1/cp00a-africa-BT/maintt/save/omconfig/cp00_after_series.sav",
+      "sha256": "3165748923da6433624420da87f056ebc3433bfd17b0f5ea805b3bfbe239d0af"
+    },
+    {
+      "path": "profiles-local/CP00a-r1/cp00a-africa-BT/maintt/save/omconfig/cp00_after_series.ssv",
+      "sha256": "5a0f292ff3a2817b37c2a89c77ad4b3e28d2bef2116d4326f1a56cccc928d053"
+    },
+    {
+      "path": "profiles-local/CP00a-r1/cp00a-africa-BT/maintt/save/omconfig/cp00_after_series.tga",
+      "sha256": "dbf212057636c2f363cea572478a5c77dd6230523617470a4063158b947cfc14"
+    },
+    {
+      "path": "profiles-local/CP00a-r1/cp00a-africa-BT/maintt/save/omconfig/e1l30000.sav",
+      "sha256": "a9c37ed13af48d0ddcfd99bd304e7c6f227b935a67a7ddabb1901798b8e46a12"
+    },
+    {
+      "path": "profiles-local/CP00a-r1/cp00a-africa-BT/maintt/save/omconfig/e1l30000.ssv",
+      "sha256": "bb13eed61fce52a360fae85453a34d3729ab09c254b5c33a63194f131b2a5544"
+    },
+    {
+      "path": "profiles-local/CP00a-r1/cp00a-africa-BT/maintt/save/omconfig/e1l30000.tga",
+      "sha256": "9eef988a5c65ee436a7d5b04cba63de6f0038ae6f6be4c2ae8efdf07463604af"
+    },
+    {
+      "path": "profiles-local/CP00a-r1/cp00a-africa-BT/maintt/screenshots/shot0000.tga",
+      "sha256": "1aa012ab24dbca21f877752a0d860d5bfc23b8d2c79cbd12f77fed984303ef16"
+    },
+    {
+      "path": "profiles-local/CP00a-r1/cp00a-africa-BT/maintt/screenshots/shot0001.tga",
+      "sha256": "ad2ad67ffb84f9dcd77880469d3597f1323ac59dafff0a24854c1e3abf87f97f"
+    },
+    {
+      "path": "profiles-local/CP00a-r1/cp00a-africa-BT/maintt/screenshots/shot0002.tga",
+      "sha256": "967b554d551bdcabbdb1841375e453d594f1dbf8663765e78a1a8fad7bbac077"
+    },
+    {
+      "path": "profiles-local/CP00a-r1/cp00a-africa-BT/maintt/series.cfg",
+      "sha256": "f131a6a281cb7f5dbecb51f50b662872c8e9e5421c2682712c614362e6bd8aa2"
+    },
+    {
+      "path": "profiles-local/CP00a-r1/cp00a-africa-BT/qkey",
+      "sha256": "60bf93a6594a845c558e1d97b5e6c6906913084e6090e5764da31bf581213885"
+    }
+  ]
+}

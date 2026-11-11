@@ -456,6 +456,15 @@ Event EV_Layout_Fullscreen
     "Set container to be fullscreen.  This will disable the game rendering if it's active"
 );
 
+Event EV_Layout_WidescreenBackground
+(
+    "widescreenbackground",
+    EV_DEFAULT,
+    "s",
+    "shader",
+    "Draw the complete 16:9 background behind the existing menu controls"
+);
+
 Event EV_Layout_VidMode
 (
     "vidmode",
@@ -465,7 +474,22 @@ Event EV_Layout_VidMode
     "Set container's vidmode to change to when it's active"
 );
 
+Event EV_Layout_LoadingBackground
+(
+    "loadingbackground",
+    EV_DEFAULT,
+    "sffff",
+    "shader left top right bottom",
+    "Fit a loading image crop on wide screens; source canvas is 640x480 padded to 1024x512"
+);
+
+Event EV_Layout_WideCanvas("widecanvas", EV_DEFAULT, NULL, NULL, "Use a proportional 960x540 menu canvas.");
+Event EV_Layout_WidescreenPicture("widescreenpicture", EV_DEFAULT, NULL, NULL,
+    "Draw a complete 16:9 picture while retaining widget fade timing");
+
 CLASS_DECLARATION(USignal, UIWidget, NULL) {
+    {&EV_Layout_WidescreenPicture, &UIWidget::LayoutWidescreenPicture},
+    {&EV_Layout_WideCanvas, &UIWidget::LayoutWideCanvas},
     {&EV_Widget_Hide,               &UIWidget::Hide                    },
     {&EV_Widget_Activate,           &UIWidget::Activate                },
     {&EV_Layout_Size,               &UIWidget::LayoutSize              },
@@ -674,6 +698,8 @@ UIWidget::UIWidget()
     m_commandhandler           = NULL;
     m_font                     = NULL;
     m_material                 = NULL;
+    m_widescreenPicture        = false;
+    m_wideCanvas               = false;
     m_hovermaterial            = NULL;
     m_pressedmaterial          = NULL;
     m_hovermaterial_active     = false;
@@ -1056,18 +1082,9 @@ void UIWidget::Motion(void)
 
 void UIWidget::AlignPosition(void)
 {
-    if (m_bVirtual) {
-        vec2_t vNewVirtualScale;
-
-        SetVirtualScale(vNewVirtualScale);
-
-        scaleFrameVirtualRes(m_frame, m_vVirtualScale, vNewVirtualScale);
-    } else if (uid.bHighResScaling) {
-        scaleFrameVirtualRes(m_frame, m_vVirtualScale, uid.scaleRes);
-    } else {
-        vec2_t vNewVirtualScale = {1.0, 1.0};
-        scaleFrameVirtualRes(m_frame, m_vVirtualScale, vNewVirtualScale);
-    }
+    vec2_t layoutScale;
+    SetLayoutScale(layoutScale);
+    scaleFrameVirtualRes(m_frame, m_vVirtualScale, layoutScale);
 
     if (m_flags & WF_STRETCH_VERTICAL) {
         m_frame.pos.y       = 0;
@@ -1631,6 +1648,8 @@ void UIWidget::Disable(void)
 
 bool UIWidget::isEnabled(void)
 {
+    // Covers the original AA/SH/BT main-menu hotspot, including keyboard focus.
+    if (Q_stristr(m_command.c_str(), "multiplayer")) return false;
     if (!strcmp(m_enabledCvar.c_str(), "")) {
         return m_enabled;
     }
@@ -1677,13 +1696,29 @@ UIWidget *UIWidget::FindResponder(const UIPoint2D& pos)
     return this;
 }
 
+str UIWidget::menuFontName(const char *name)
+{
+    // Keep gameplay HUD fonts at their existing size. Child controls inherit
+    // their owning menu's context, including binding-table rows and headers.
+    UIWidget *root = this;
+    while (root->getParent() && root->getParent() != &uWinMan)
+        root = root->getParent();
+    if (!name || !root->getName()[0] || !strnicmp(root->getName(), "hud", 3)
+        || !stricmp(root->getName(), "view3d")) return name ? name : "verdana-12";
+    if (!strnicmp(name, "facfont-", 8) || !strnicmp(name, "verdana-", 8)
+        || !strnicmp(name, "ac-courier-", 11) || !strnicmp(name, "courier-", 8)
+        || !strnicmp(name, "handle-", 7) || !strnicmp(name, "delima-", 7))
+        return str("ac-menu-") + name;
+    return name;
+}
+
 void UIWidget::setFont(const char *name)
 {
     if (m_font) {
         delete m_font;
     }
 
-    m_font = new UIFont(name);
+    m_font = new UIFont(menuFontName(name).c_str());
 }
 
 void UIWidget::setFontHorizontalAlignment(fonthorzjustify_t alignment)
@@ -1964,7 +1999,14 @@ void UIWidget::Display(const UIRect2D& drawframe, float parent_alpha)
         col[3] = m_foreground_color.a * m_local_alpha;
         uii.Rend_SetColor(col);
 
-        if (m_flags & WF_TILESHADER) {
+        if (m_widescreenPicture) {
+            const float width = uid.vidHeight * (16.0f / 9.0f);
+            uii.Rend_Set2D(0, 0, uid.vidWidth, uid.vidHeight, 0, uid.vidWidth, uid.vidHeight, 0, -1, 1);
+            uii.Rend_Scissor(0, 0, uid.vidWidth, uid.vidHeight);
+            uii.Rend_DrawPicStretched((uid.vidWidth - width) * .5f, 0, width, uid.vidHeight,
+                0, 0, 1, 1, m_material->GetMaterial());
+            set2D();
+        } else if (m_flags & WF_TILESHADER) {
             if (m_bVirtual) {
                 float fvWidth =
                     m_frame.size.width / m_vVirtualScale[0] / uii.Rend_GetShaderWidth(m_material->GetMaterial());
@@ -2061,6 +2103,10 @@ void UIWidget::LinkCvar(str cvarname)
 void UIWidget::LinkCommand(str cmd)
 {
     m_command = cmd;
+    if (Q_stristr(cmd.c_str(), "multiplayer")) {
+        Disable();
+        AllowActivate(false);
+    }
 }
 
 void UIWidget::ExecuteShowCommands(void)
@@ -2142,22 +2188,9 @@ void UIWidget::ResetMotion(motion_t type)
 
 void UIWidget::Realign(void)
 {
-    bool bScaled = false;
-
-    if (m_bVirtual) {
-        vec2_t vNewVirtualScale;
-
-        SetVirtualScale(vNewVirtualScale);
-
-        scaleFrameVirtualRes(m_frame, m_vVirtualScale, vNewVirtualScale);
-        bScaled = true;
-    } else if (uid.bHighResScaling) {
-        scaleFrameVirtualRes(m_frame, m_vVirtualScale, uid.scaleRes);
-        bScaled = true;
-    } else {
-        vec2_t vNewVirtualScale = {1.0, 1.0};
-        bScaled                 = scaleFrameVirtualRes(m_frame, m_vVirtualScale, vNewVirtualScale);
-    }
+    vec2_t layoutScale;
+    SetLayoutScale(layoutScale);
+    bool bScaled = scaleFrameVirtualRes(m_frame, m_vVirtualScale, layoutScale);
 
     if (m_flags & WF_STRETCH_VERTICAL) {
         m_frame.pos.y       = 0;
@@ -2407,11 +2440,7 @@ bool UIWidget::isVirtual() const
 
 const vec2_t& UIWidget::getVirtualScale() const
 {
-    if (m_bVirtual) {
-        return m_vVirtualScale;
-    } else {
-        return uid.scaleRes;
-    }
+    return m_vVirtualScale;
 }
 
 const vec2_t& UIWidget::getHighResScale() const
@@ -2429,18 +2458,56 @@ void UIWidget::SetScaleCvar(Event *ev)
     m_scaleCvar = uii.Cvar_Find(ev->GetString(1).c_str());
 }
 
+// All proportional UI uses drawable pixels once. Widget frames also drive
+// scissoring and hit testing, so the renderer and pointer cannot diverge.
+static float CampaignUIValue(const char *name, float fallback, float low, float high)
+{
+    cvar_t *var = uii.Cvar_Find(name);
+    float value = var ? var->value : fallback;
+    if (!(value >= low)) return low; // also reject NaN
+    return value > high ? high : value;
+}
+
+bool UIWidget::IsCampaignHUD() const
+{
+    for (const UIWidget *p = this; p; p = p->m_parent) {
+        if (!Q_stricmpn(p->m_name.c_str(), "hud_", 4)) return true;
+    }
+    return false;
+}
+
 void UIWidget::SetVirtualScale(vec2_t out)
 {
-    if (m_scaleCvar) {
-        const float vidRatio  = (float)uid.vidWidth / (float)uid.vidHeight;
-        const float minHeight = 480;
-        const float minWidth  = minHeight * vidRatio;
-
-        out[0] = uid.vidWidth / minWidth * m_scaleCvar->value;
-        out[1] = uid.vidHeight / minHeight * m_scaleCvar->value;
+    // The shared campaign settings page has its own 16:9 canvas. Keep its
+    // controls stable while changing the scaling of the legacy menus/HUD.
+    // Descendants use the same scale for drawing, clipping and hit testing.
+    for (const UIWidget *p = this; p; p = p->m_parent) {
+        if (p->m_wideCanvas || p->m_name == "ac_scaling" || !strncmp(p->m_name.c_str(), "ac_campaign_", 12)) {
+            out[0] = out[1] = fminf(uid.vidWidth / 960.0f, uid.vidHeight / 540.0f);
+            return;
+        }
+    }
+    const bool automatic = CampaignUIValue("ac_ui_auto", 1, 0, 1) != 0;
+    const float fit = fminf(uid.vidWidth / 640.0f, uid.vidHeight / 480.0f);
+    const float base = automatic ? fit : fminf(1.0f, fit);
+    if (IsCampaignHUD()) {
+        const float legacy = m_scaleCvar ? m_scaleCvar->value : 1.0f;
+        out[0] = out[1] = base * legacy * CampaignUIValue("ac_hud_scale", 1, .5f, 2);
     } else {
-        out[0] = uid.vidWidth / 640.0;
-        out[1] = uid.vidHeight / 480.0;
+        // Full-size menus cannot grow beyond their visible 640x480 canvas.
+        out[0] = out[1] = base;
+    }
+}
+
+void UIWidget::SetLayoutScale(vec2_t out)
+{
+    if (m_bVirtual || m_scaleCvar) {
+        SetVirtualScale(out);
+    } else {
+        const float factor = IsCampaignHUD()
+            ? CampaignUIValue("ac_hud_scale", 1, .5f, 2)
+            : 1.0f;
+        out[0] = out[1] = uid.scaleRes[1] * factor;
     }
 }
 
@@ -2466,6 +2533,8 @@ void UIWidget::SetDontLocalize()
 
 CLASS_DECLARATION(UIWidget, UIWidgetContainer, NULL) {
     {&EV_Layout_BGFill,     &UIWidgetContainer::SetBGFill    },
+    {&EV_Layout_WidescreenBackground, &UIWidgetContainer::SetWidescreenBackground},
+    {&EV_Layout_LoadingBackground, &UIWidgetContainer::SetLoadingBackground},
     {&EV_Layout_Fullscreen, &UIWidgetContainer::SetFullscreen},
     {&EV_Layout_VidMode,    &UIWidgetContainer::SetVidMode   },
     {NULL,                  NULL                             }
@@ -2474,6 +2543,11 @@ CLASS_DECLARATION(UIWidget, UIWidgetContainer, NULL) {
 UIWidgetContainer::UIWidgetContainer()
 {
     m_bgfill        = UColor(0, 0, 0, 0);
+    m_widescreenBackground = NULL;
+    m_loadingBackground = NULL;
+    m_loadingCrop[0] = m_loadingCrop[1] = 0;
+    m_loadingCrop[2] = 640;
+    m_loadingCrop[3] = 480;
     m_fullscreen    = false;
     m_vidmode       = -1;
     m_currentwidnum = 0;
@@ -2484,18 +2558,9 @@ UIWidgetContainer::UIWidgetContainer()
 
 void UIWidgetContainer::AlignPosition(void)
 {
-    if (m_bVirtual) {
-        vec2_t vNewVirtualScale;
-
-        SetVirtualScale(vNewVirtualScale);
-
-        scaleFrameVirtualRes(m_frame, m_vVirtualScale, vNewVirtualScale);
-    } else if (uid.bHighResScaling) {
-        scaleFrameVirtualRes(m_frame, m_vVirtualScale, uid.scaleRes);
-    } else {
-        vec2_t vNewVirtualScale = {1.0, 1.0};
-        scaleFrameVirtualRes(m_frame, m_vVirtualScale, vNewVirtualScale);
-    }
+    vec2_t layoutScale;
+    SetLayoutScale(layoutScale);
+    scaleFrameVirtualRes(m_frame, m_vVirtualScale, layoutScale);
 
     if (m_align & WA_LEFT) {
         m_frame.pos.x = 0;
@@ -2515,6 +2580,17 @@ void UIWidgetContainer::AlignPosition(void)
         m_frame.pos.y = (uid.vidHeight - m_frame.size.height) * 0.5;
     }
 
+    if (IsCampaignHUD()) {
+        const float safe = CampaignUIValue("ac_hud_safe", 1, .8f, 1);
+        const float insetX = fmaxf(uid.vidWidth * (1 - safe) * .5f,
+            (uid.vidWidth - uid.vidHeight * (16.0f / 9.0f)) * .5f);
+        const float insetY = uid.vidHeight * (1 - safe) * .5f;
+        if (m_align & WA_LEFT) m_frame.pos.x = insetX;
+        else if (m_align & WA_RIGHT) m_frame.pos.x -= insetX;
+        if (m_align & WA_TOP) m_frame.pos.y = insetY;
+        else if (m_align & WA_BOTTOM) m_frame.pos.y -= insetY;
+    }
+
     setFrame(m_frame);
     m_startingpos = m_frame.pos;
 }
@@ -2528,7 +2604,64 @@ void UIWidgetContainer::Draw(void)
         DrawBox(0, 0, uid.vidWidth, uid.vidHeight, m_bgfill, m_local_alpha);
     }
 
+    // Use the complete supplied artwork; background labels are removed by the
+    // package builder. Interactive widgets retain their existing geometry.
+    // Scissoring crops narrower displays; ultrawide retains a centered 16:9 image.
+    if (m_widescreenBackground
+        && m_frame.size.width > 0 && m_frame.size.height > 0) {
+        // Derive the artwork width from its height, not the menu width:
+        // legacy menus use 4:3 frames, while widecanvas already uses 16:9.
+        const float width = m_frame.size.height * (16.0f / 9.0f);
+        const float x = m_frame.pos.x + (m_frame.size.width - width) * 0.5f;
+        const float color[4] = {1, 1, 1, m_local_alpha};
+        uii.Rend_SetColor(color);
+        const uihandle_t material = m_widescreenBackground->GetMaterial();
+        uii.Rend_DrawPicStretched(x, m_frame.pos.y,
+            width, m_frame.size.height, 0, 0, 1, 1, material);
+        uii.Rend_SetColor(NULL);
+    }
+
+    if (m_loadingBackground) {
+        float x = m_frame.pos.x, y = m_frame.pos.y;
+        float width = m_frame.size.width, height = m_frame.size.height;
+        float left = 0, top = 0, right = 640, bottom = 480;
+        if (uid.vidWidth * 3 > uid.vidHeight * 4) {
+            left = m_loadingCrop[0];
+            top = m_loadingCrop[1];
+            right = m_loadingCrop[2];
+            bottom = m_loadingCrop[3];
+            const float scale = fminf(uid.vidWidth / (right - left), uid.vidHeight / (bottom - top));
+            width = (right - left) * scale;
+            height = (bottom - top) * scale;
+            x = (uid.vidWidth - width) * .5f;
+            y = (uid.vidHeight - height) * .5f;
+        }
+        // Only the picture changes geometry; progress widgets retain their layout.
+        const float color[4] = {1, 1, 1, m_local_alpha};
+        uii.Rend_SetColor(color);
+        uii.Rend_DrawPicStretched(x, y, width, height,
+            left / 1024, top / 512, right / 1024, bottom / 512,
+            m_loadingBackground->GetMaterial());
+        uii.Rend_SetColor(NULL);
+    }
+
     set2D();
+}
+
+void UIWidgetContainer::SetLoadingBackground(Event *ev)
+{
+    m_loadingBackground = NULL;
+    for (int i = 0; i < 4; ++i) m_loadingCrop[i] = ev->GetFloat(i + 2);
+    // Ordered comparisons also reject NaN and infinities before division.
+    if (!(m_loadingCrop[0] >= 0 && m_loadingCrop[1] >= 0
+        && m_loadingCrop[2] <= 640 && m_loadingCrop[3] <= 480
+        && m_loadingCrop[2] > m_loadingCrop[0] && m_loadingCrop[3] > m_loadingCrop[1])) return;
+    m_loadingBackground = uWinMan.RegisterShader(ev->GetString(1));
+}
+
+void UIWidgetContainer::SetWidescreenBackground(Event *ev)
+{
+    m_widescreenBackground = uWinMan.RegisterShader(ev->GetString(1));
 }
 
 void UIWidgetContainer::Realign(void)

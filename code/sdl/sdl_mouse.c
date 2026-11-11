@@ -30,22 +30,52 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 static SDL_Cursor *cursor = NULL;
 static SDL_Surface *cursor_surface = NULL;
-static byte *cursor_image_data = NULL;
-static pCursorFree cursor_free = NULL;
+extern SDL_Window *SDL_window;
 
 void IN_GetMousePosition(int *x, int *y) {
     SDL_GetMouseState(x, y);
+    SDL_Window *window = SDL_GetMouseFocus();
+    if (window) {
+        int ww, wh, dw, dh;
+        SDL_GetWindowSize(window, &ww, &wh);
+        SDL_GL_GetDrawableSize(window, &dw, &dh);
+        if (ww > 0 && wh > 0 && dw > 0 && dh > 0) {
+            *x = (int)((double)*x * dw / ww);
+            *y = (int)((double)*y * dh / wh);
+        }
+    }
 }
 
 qboolean IN_SetCursorFromImage(const byte *pic, int width, int height, pCursorFree cursorFreeFn) {
+    SDL_Surface *source;
+    int windowWidth = 640, windowHeight = 480;
+    int size;
     IN_FreeCursor();
-
-    cursor_surface = SDL_CreateRGBSurfaceWithFormatFrom(pic, width, height, 32, 4 * width, SDL_PIXELFORMAT_ABGR8888);
-    if (!cursor_surface) {
+    // Hardware cursors use window pixels rather than drawable pixels. This
+    // matches the software cursor's 24/480 height at any resolution or DPI.
+    if (SDL_window) SDL_GetWindowSize(SDL_window, &windowWidth, &windowHeight);
+    size = Q_max(1, (windowHeight + 10) / 20);
+    source = SDL_CreateRGBSurfaceWithFormatFrom((void *)pic, width, height, 32, 4 * width, SDL_PIXELFORMAT_ABGR8888);
+    cursor_surface = SDL_CreateRGBSurfaceWithFormat(0, size, size, 32, SDL_PIXELFORMAT_ABGR8888);
+    if (!source || !cursor_surface) {
+        if (source) SDL_FreeSurface(source);
+        cursorFreeFn((byte *)pic);
+        IN_FreeCursor();
         return qfalse;
     }
-
+    SDL_SetSurfaceBlendMode(source, SDL_BLENDMODE_NONE);
+    const int result = SDL_SoftStretchLinear(source, NULL, cursor_surface, NULL);
+    SDL_FreeSurface(source);
+    cursorFreeFn((byte *)pic);
+    if (result != 0) {
+        IN_FreeCursor();
+        return qfalse;
+    }
     cursor = SDL_CreateColorCursor(cursor_surface, 0, 0);
+    if (!cursor) {
+        IN_FreeCursor();
+        return qfalse;
+    }
     SDL_SetCursor(cursor);
 
     return qtrue;
@@ -54,13 +84,11 @@ qboolean IN_SetCursorFromImage(const byte *pic, int width, int height, pCursorFr
 void IN_FreeCursor() {
     if (cursor) {
         SDL_FreeCursor(cursor);
+        cursor = NULL;
     }
     if (cursor_surface) {
         SDL_FreeSurface(cursor_surface);
-    }
-    if (cursor_image_data) {
-        cursor_free(cursor_image_data);
-        cursor_image_data = NULL;
+        cursor_surface = NULL;
     }
 }
 

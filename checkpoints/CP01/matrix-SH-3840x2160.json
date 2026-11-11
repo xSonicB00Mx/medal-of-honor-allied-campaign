@@ -1,0 +1,156 @@
+{
+  "engine_sha256": "26472ccafd8602b690e5c6242fc9e0662c3ba0e568396a7802a8d3bf7c72f679",
+  "cgame_sha256": "6855c675fbc7c3a9607a2465ca416d7579bb605190b0269af679e5e92e7625b5",
+  "game": "SH",
+  "requested": [
+    3840,
+    2160
+  ],
+  "fullscreen": false,
+  "exit_code": 0,
+  "completed": true,
+  "errors": [],
+  "geometry": [
+    "AC_PHASE_DEFAULT",
+    "AC_UI drawable=3840x2160 base=2.2500 menu=1.0000 hud=1.0000 safe=1.0000",
+    "AC_UI_ROOT hud_compass 0.000 0.000 312.480 312.480",
+    "AC_UI_CHILD compassbase 0.000 0.000 312.480 312.480 scale=2.4413,2.4413",
+    "AC_UI_CHILD compassface 0.000 0.000 312.480 312.480 scale=2.4413,2.4413",
+    "AC_UI_CHILD compassbase 0.000 0.000 312.480 312.480 scale=2.4413,2.4413",
+    "AC_UI_CHILD objarrow 0.000 0.000 312.480 312.480 scale=2.4413,2.4413",
+    "AC_UI_CHILD firstobjball 37.839 34.178 244.125 244.125 scale=2.4413,2.4413",
+    "AC_UI_CHILD secondobjball 37.839 34.178 244.125 244.125 scale=2.4413,2.4413",
+    "AC_UI_CHILD Default 0.000 0.000 312.480 312.480 scale=2.4413,2.4413",
+    "AC_UI_CHILD  39.060 39.060 234.360 234.360 scale=2.4413,2.4413",
+    "AC_PHASE_SCALED",
+    "AC_UI drawable=3840x2160 base=2.2500 menu=1.0000 hud=1.2500 safe=0.9000",
+    "AC_UI_ROOT hud_compass 192.000 108.000 390.600 390.600",
+    "AC_UI_CHILD compassbase 0.000 0.000 390.600 390.600 scale=3.0516,3.0516",
+    "AC_UI_CHILD compassface 0.000 0.000 390.600 390.600 scale=3.0516,3.0516",
+    "AC_UI_CHILD compassbase 0.000 0.000 390.600 390.600 scale=3.0516,3.0516",
+    "AC_UI_CHILD objarrow 0.000 0.000 390.600 390.600 scale=3.0516,3.0516",
+    "AC_UI_CHILD firstobjball 47.299 42.722 305.156 305.156 scale=3.0516,3.0516",
+    "AC_UI_CHILD secondobjball 47.299 42.722 305.156 305.156 scale=3.0516,3.0516",
+    "AC_UI_CHILD Default 0.000 0.000 390.600 390.600 scale=3.0516,3.0516",
+    "AC_UI_CHILD  48.825 48.825 292.950 292.950 scale=3.0516,3.0516",
+    "AC_PHASE_LOADED",
+    "AC_UI drawable=3840x2160 base=2.2500 menu=1.0000 hud=1.2500 safe=0.9000",
+    "AC_UI_ROOT hud_compass 192.000 108.000 390.600 390.600",
+    "AC_UI_CHILD compassbase 0.000 0.000 390.600 390.600 scale=3.0516,3.0516",
+    "AC_UI_CHILD compassface 0.000 0.000 390.600 390.600 scale=3.0516,3.0516",
+    "AC_UI_CHILD compassbase 0.000 0.000 390.600 390.600 scale=3.0516,3.0516",
+    "AC_UI_CHILD objarrow 0.000 0.000 390.600 390.600 scale=3.0516,3.0516",
+    "AC_UI_CHILD firstobjball 47.299 42.722 305.156 305.156 scale=3.0516,3.0516",
+    "AC_UI_CHILD secondobjball 47.299 42.722 305.156 305.156 scale=3.0516,3.0516",
+    "AC_UI_CHILD Default 0.000 0.000 390.600 390.600 scale=3.0516,3.0516",
+    "AC_UI_CHILD  48.825 48.825 292.950 292.950 scale=3.0516,3.0516",
+    "AC_UI drawable=3840x2160 base=2.2500 menu=1.0000 hud=1.2500 safe=0.9000",
+    "AC_UI_ROOT options_main 480.000 0.000 2880.000 2160.000",
+    "AC_UI_CHILD Default 0.000 0.000 2304.000 2304.000 scale=4.5000,4.5000",
+    "AC_UI_CHILD Default 1728.000 0.000 1152.000 2304.000 scale=4.5000,4.5000",
+    "AC_UI_CHILD Default 0.000 0.000 1152.000 1152.000 scale=4.5000,4.5000",
+    "AC_UI_CHILD Default 1728.000 0.000 1152.000 1152.000 scale=4.5000,4.5000",
+    "AC_UI_CHILD Default 1152.000 0.000 1152.000 1152.000 scale=4.5000,4.5000",
+    "AC_UI_CHILD Default 1728.000 1152.000 1152.000 1152.000 scale=4.5000,4.5000",
+    "AC_UI_CHILD Default 1152.000 1152.000 1152.000 1152.000 scale=4.5000,4.5000",
+    "AC_UI_CHILD Default 0.000 1152.000 1152.000 1152.000 scale=4.5000,4.5000",
+    "AC_UI_CHILD back 36.000 2016.000 432.000 108.000 scale=4.5000,4.5000",
+    "AC_UI_CHILD audio button 1287.000 1107.000 738.000 279.000 scale=4.5000,4.5000",
+    "AC_UI_CHILD controls button 747.000 1368.000 603.000 288.000 scale=4.5000,4.5000",
+    "AC_UI_CHILD video button 1953.000 1377.000 639.000 333.000 scale=4.5000,4.5000",
+    "AC_UI_CHILD Default 2556.000 0.000 288.000 72.000 scale=4.5000,4.5000",
+    "AC_UI_CHILD acid 162.000 1530.000 36.000 27.000 scale=4.5000,4.5000",
+    "AC_UI_CHILD advanced options 1242.000 279.000 873.000 414.000 scale=4.5000,4.5000",
+    "AC_UI_CHILD Default 355.500 207.000 760.500 211.500 scale=4.5000,4.5000",
+    "AC_UI_CHILD ac_scaling 1818.000 1971.000 1008.000 144.000 scale=4.5000,4.5000",
+    "AC_UI drawable=3840x2160 base=2.2500 menu=1.0000 hud=1.2500 safe=0.9000",
+    "AC_UI_ROOT ac_scaling 480.000 0.000 2880.000 2160.000",
+    "AC_UI_CHILD heading 135.000 108.000 2610.000 157.500 scale=4.5000,4.5000",
+    "AC_UI_CHILD intro 135.000 279.000 2610.000 112.500 scale=4.5000,4.5000",
+    "AC_UI_CHILD autoLabel 135.000 526.500 1350.000 117.000 scale=4.5000,4.5000",
+    "AC_UI_CHILD auto 1971.000 526.500 135.000 117.000 scale=4.5000,4.5000",
+    "AC_UI_CHILD menuLabel 135.000 702.000 1350.000 117.000 scale=4.5000,4.5000",
+    "AC_UI_CHILD menuSlider 1417.500 783.000 945.000 90.000 scale=4.5000,4.5000",
+    "AC_UI_CHILD menuValue 2398.500 760.500 423.000 117.000 scale=4.5000,4.5000",
+    "AC_UI_CHILD hudLabel 135.000 1017.000 1350.000 117.000 scale=4.5000,4.5000",
+    "AC_UI_CHILD hudSlider 1417.500 1098.000 945.000 90.000 scale=4.5000,4.5000",
+    "AC_UI_CHILD hudValue 2398.500 1075.500 423.000 117.000 scale=4.5000,4.5000",
+    "AC_UI_CHILD safeLabel 135.000 1332.000 1350.000 117.000 scale=4.5000,4.5000",
+    "AC_UI_CHILD safeSlider 1417.500 1413.000 945.000 90.000 scale=4.5000,4.5000",
+    "AC_UI_CHILD safeValue 2398.500 1390.500 423.000 117.000 scale=4.5000,4.5000",
+    "AC_UI_CHILD hint 135.000 1647.000 2610.000 117.000 scale=4.5000,4.5000",
+    "AC_UI_CHILD back 135.000 1899.000 675.000 144.000 scale=4.5000,4.5000",
+    "AC_UI_CHILD reset 1845.000 1899.000 900.000 144.000 scale=4.5000,4.5000",
+    "AC_PHASE_SMALL",
+    "AC_UI drawable=3840x2160 base=2.2500 menu=0.8500 hud=1.2500 safe=0.9000",
+    "AC_UI_ROOT ac_scaling 696.000 162.000 2448.000 1836.000",
+    "AC_UI_CHILD heading 114.750 91.800 2218.500 133.875 scale=3.8250,3.8250",
+    "AC_UI_CHILD intro 114.750 237.150 2218.500 95.625 scale=3.8250,3.8250",
+    "AC_UI_CHILD autoLabel 114.750 447.525 1147.500 99.450 scale=3.8250,3.8250",
+    "AC_UI_CHILD auto 1675.350 447.525 114.750 99.450 scale=3.8250,3.8250",
+    "AC_UI_CHILD menuLabel 114.750 596.700 1147.500 99.450 scale=3.8250,3.8250",
+    "AC_UI_CHILD menuSlider 1204.875 665.550 803.250 76.500 scale=3.8250,3.8250",
+    "AC_UI_CHILD menuValue 2038.725 646.425 359.550 99.450 scale=3.8250,3.8250",
+    "AC_UI_CHILD hudLabel 114.750 864.450 1147.500 99.450 scale=3.8250,3.8250",
+    "AC_UI_CHILD hudSlider 1204.875 933.300 803.250 76.500 scale=3.8250,3.8250",
+    "AC_UI_CHILD hudValue 2038.725 914.175 359.550 99.450 scale=3.8250,3.8250",
+    "AC_UI_CHILD safeLabel 114.750 1132.200 1147.500 99.450 scale=3.8250,3.8250",
+    "AC_UI_CHILD safeSlider 1204.875 1201.050 803.250 76.500 scale=3.8250,3.8250",
+    "AC_UI_CHILD safeValue 2038.725 1181.925 359.550 99.450 scale=3.8250,3.8250",
+    "AC_UI_CHILD hint 114.750 1399.950 2218.500 99.450 scale=3.8250,3.8250",
+    "AC_UI_CHILD back 114.750 1614.150 573.750 122.400 scale=3.8250,3.8250",
+    "AC_UI_CHILD reset 1568.250 1614.150 765.000 122.400 scale=3.8250,3.8250",
+    "AC_UI_TEST_DONE"
+  ],
+  "images": [
+    {
+      "path": "profiles-local/CP01-r1/matrix-SH-3840x2160/mainta/screenshots/shot0000.png",
+      "size": [
+        3840,
+        2160
+      ],
+      "sha256": "38c4966f120fd2d533fad925c9e123382d8fc7e7d663f3fec7eb362093cfe68c"
+    },
+    {
+      "path": "profiles-local/CP01-r1/matrix-SH-3840x2160/mainta/screenshots/shot0001.png",
+      "size": [
+        3840,
+        2160
+      ],
+      "sha256": "9bdc2f441939781d5b0b50d136cab53b786b0b98aa1fab844e982ff57bd8464b"
+    },
+    {
+      "path": "profiles-local/CP01-r1/matrix-SH-3840x2160/mainta/screenshots/shot0002.png",
+      "size": [
+        3840,
+        2160
+      ],
+      "sha256": "462bc96510bc5d8c714cb36884b08e24da8e60613cf8fdaeeee2de6518fb84c8"
+    },
+    {
+      "path": "profiles-local/CP01-r1/matrix-SH-3840x2160/mainta/screenshots/shot0003.png",
+      "size": [
+        3840,
+        2160
+      ],
+      "sha256": "8ba9e72fbefa0845e293042328e92dae50ff173edf2c3fad3112e052082b2156"
+    },
+    {
+      "path": "profiles-local/CP01-r1/matrix-SH-3840x2160/mainta/screenshots/shot0004.png",
+      "size": [
+        3840,
+        2160
+      ],
+      "sha256": "ed6a157a1de8947eec63f10ba152d048e9e66e4a1cb344f54e49fb8f98277737"
+    },
+    {
+      "path": "profiles-local/CP01-r1/matrix-SH-3840x2160/mainta/screenshots/shot0005.png",
+      "size": [
+        3840,
+        2160
+      ],
+      "sha256": "6d0d35357f536087383702c645a20161595f44bbcc3cea4fb7c8a37b5d2bd695"
+    }
+  ],
+  "scope": "Actual rendered window/framebuffer and transformed widget geometry; no physical-monitor or OS-DPI-switch claim."
+}

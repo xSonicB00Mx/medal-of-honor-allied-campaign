@@ -829,6 +829,8 @@ static int GLimp_SetMode(int mode, qboolean fullscreen, qboolean noborder, qbool
 		return RSERR_INVALID_MODE;
 	}
 
+	SDL_GL_GetDrawableSize(SDL_window, &glConfig.vidWidth, &glConfig.vidHeight);
+	glConfig.windowAspect = (float)glConfig.vidWidth / glConfig.vidHeight;
 	SDL_ShowWindow( SDL_window );
 
 	GLimp_DetectAvailableModes();

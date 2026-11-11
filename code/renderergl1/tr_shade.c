@@ -23,6 +23,18 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 #include "tr_local.h"
 
+// Wide FOV exposes the back of single-sheet weapon stocks and view sleeves.
+// Keep their native materials, but render both faces only in the local
+// first-person pass. World weapons, other players and UI previews are unchanged.
+static void RB_CullViewModel( cullType_t cullType ) {
+	if (cullType == CT_FRONT_SIDED && backEnd.currentEntity &&
+		(backEnd.currentEntity->e.renderfx & (RF_FIRST_PERSON | RF_DEPTHHACK)) ==
+			(RF_FIRST_PERSON | RF_DEPTHHACK)) {
+		cullType = CT_TWO_SIDED;
+	}
+	GL_Cull( cullType );
+}
+
 /*
 
   THIS ENTIRE FILE IS BACK END
@@ -1541,7 +1553,7 @@ void RB_StageIteratorGeneric( void )
 	//
 	// set face culling appropriately
 	//
-	GL_Cull( input->shader->cullType );
+	RB_CullViewModel( input->shader->cullType );
 
 	// set polygon offset if necessary
 	if ( input->shader->polygonOffset )
@@ -1671,7 +1683,7 @@ void RB_StageIteratorVertexLitTextureUnfogged( void )
 	//
 	// set face culling appropriately
 	//
-	GL_Cull( input->shader->cullType );
+	RB_CullViewModel( input->shader->cullType );
 
 	//
 	// set arrays and lock
@@ -1732,7 +1744,7 @@ void RB_StageIteratorLightmappedMultitextureUnfogged( void ) {
 	//
 	// set face culling appropriately
 	//
-	GL_Cull( input->shader->cullType );
+	RB_CullViewModel( input->shader->cullType );
 
 	//
 	// set color, pointers, and lock
@@ -1858,6 +1870,8 @@ void RB_EndSurface( void ) {
 	// call off to shader specific tess end function
 	//
 	tess.currentStageIteratorFunc();
+	RB_ACShadowCapture();
+	RB_ACTemporalCapture();
 
 	if (!(tr.refdef.rdflags & RDF_NOWORLDMODEL) && !backEnd.in2D)
 	{

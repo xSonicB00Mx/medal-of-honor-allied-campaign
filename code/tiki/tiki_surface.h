@@ -23,6 +23,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 // tiki_surface.h : TIKI Surface
 
 #pragma once
+#include "../qcommon/ac_effects.h"
 
 #ifdef __cplusplus
 extern "C" {

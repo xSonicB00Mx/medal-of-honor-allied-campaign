@@ -598,6 +598,7 @@ void R_SetupProjection( void ) {
 	tr.viewParms.projectionMatrix[7] = 0;
 	tr.viewParms.projectionMatrix[11] = -1;
 	tr.viewParms.projectionMatrix[15] = 0;
+	R_ACTemporalJitter();
 }
 
 /*

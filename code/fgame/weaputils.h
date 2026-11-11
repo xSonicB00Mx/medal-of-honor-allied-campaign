@@ -220,6 +220,7 @@ class Explosion : public Projectile
 	   qboolean			constant_damage;
 	   qboolean			damage_every_frame;
 
+       int acScoreKills = 0; // Transient: highscore runs cannot be saved.
 	   Explosion();
 	   void				SetRadius( Event *ev );
 	   void				SetRadiusDamage( Event *ev );

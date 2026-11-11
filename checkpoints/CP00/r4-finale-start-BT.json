@@ -1,0 +1,83 @@
+{
+  "candidate": "CP00-r4",
+  "game": "BT",
+  "map": "e3l4",
+  "run_id": "r4-finale-start-BT",
+  "engine_source_commit": "af7bb7c6e706fcc64e5933a22457333274f3de22",
+  "engine_sha256": "5f1eee385de3b26750b45b7aa1e98566801b716566b97af11fa5586cb5c21c91",
+  "wcr_package_fingerprint": "3b6b38b5b04ba320a526196946c44394c4519e4197dc8d3d05788e186501cfcc",
+  "exit_code": 0,
+  "timed_out": false,
+  "elapsed_seconds": 41.73,
+  "active_state": true,
+  "script_errors": [
+    "^~^~^ Script Error : invalid waittill trigger for 'AISpawnPoint'",
+    "^~^~^ Script Error : invalid waittill trigger for 'AISpawnPoint'",
+    "^~^~^ Script Error : invalid waittill trigger for 'AISpawnPoint'",
+    "^~^~^ Script Error : invalid waittill trigger for 'AISpawnPoint'",
+    "^~^~^ Script Error : invalid waittill trigger for 'PathNode'",
+    "^~^~^ Script Error : Not allowed to delete a path node",
+    "^~^~^ Script Error : invalid waittill trigger for 'AISpawnPoint'",
+    "^~^~^ Script Error : invalid waittill spawn for 'Level'"
+  ],
+  "commands_finished": true,
+  "complete_save_triplet": true,
+  "resource_origins": [
+    "File \"maps/e3l4.scr\" found in \"$RUNTIME\\maintt\\Restoration_BT_Pak1-Main.pk3\"",
+    "File \"maps/e3l4/escape.scr\" found in \"$RUNTIME\\maintt\\Restoration_BT_Pak1-Main.pk3\"",
+    "File \"maps/e3l4/tower.scr\" found in \"$RUNTIME\\maintt\\Restoration_BT_Pak1-Main.pk3\"",
+    "File \"maps/e3l4/outro.scr\" found in \"$RUNTIME\\maintt\\Restoration_BT_Pak1-Main.pk3\""
+  ],
+  "evidence": [
+    {
+      "path": "profiles-local/CP00-r4/r4-finale-start-BT/maintt/configs/omconfig.cfg",
+      "sha256": "3db735ace0e2f0a9c4a7221ec5278e06190601afa77b60909ffd0037a9f5bea1"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-finale-start-BT/maintt/cp00-probe.cfg",
+      "sha256": "17fd5e0a37935174dc8c7cff7a2258fcf0c8b077a926a7bb305b1c24dd1fc7d0"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-finale-start-BT/maintt/qconsole.log",
+      "sha256": "5b94206fb838292965fed4dbebec7049fc062367abc0ee1dee403ebc9bda7bbb"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-finale-start-BT/maintt/save/omconfig/cp00_e3l4.sav",
+      "sha256": "6f9b03e6b0afc8bee8c0a87de53ae74df56582ad5c38ebed9680c5a26475a01b"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-finale-start-BT/maintt/save/omconfig/cp00_e3l4.ssv",
+      "sha256": "e697e87369fa7b83a09c6fc108929ec0dec53212fd21af114145ae0b4cf514fa"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-finale-start-BT/maintt/save/omconfig/cp00_e3l4.tga",
+      "sha256": "3f67c3aa8d85042660e38e59383168311d71eaebbc4b5cc7d85c9c5442be983d"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-finale-start-BT/maintt/save/omconfig/e3l40000.sav",
+      "sha256": "e6726fbc21937ef3eb6a9bc8821c8857e5e181211702e26b93f3db5203ef3522"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-finale-start-BT/maintt/save/omconfig/e3l40000.ssv",
+      "sha256": "c51f5749f63a631f2c8d942a9f9508c8ab813e6821cf32bf2e4368bb8e12f4be"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-finale-start-BT/maintt/save/omconfig/e3l40000.tga",
+      "sha256": "b810878f1d76152f6b9657285d212d71dd8bd579e280aca519b909375cdaa2ff"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-finale-start-BT/maintt/screenshots/shot0000.tga",
+      "sha256": "0be7f0fdcda32a816c4b4af100c81450f496bec1ebcc0c8b33b33577192aaab0"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-finale-start-BT/maintt/screenshots/shot0001.tga",
+      "sha256": "fc099fc3cb062cf2149d25436179193631ee18acbf7c60696d8bf9ebfabe8524"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-finale-start-BT/qkey",
+      "sha256": "e5ae1841263f5353e0e1ab35082dbf5622519b2895fc2b1238ae93fd69a8d162"
+    }
+  ],
+  "scope": "Map startup and idle scene only. No combat, MG42 progression, natural transition or finale completion asserted.",
+  "visual_check": "PASS: rendered shot0001 inspected; scene visible. Does not prove full mission completion."
+}

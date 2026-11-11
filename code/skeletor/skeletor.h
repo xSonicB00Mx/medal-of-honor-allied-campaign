@@ -122,7 +122,7 @@ public:
     void                             PrintBoneList();
     void                             LoadMorphTargetNames(skelHeaderGame_t *modelHeader);
     void                             GetFrame(skelAnimFrame_t *newFrame);
-    int                              GetMorphWeightFrame(int *data);
+    int                              GetMorphWeightFrame(int *data, bool procedural = true);
     SkelMat4&                        GetBoneFrame(int boneIndex) const;
     void                             GetFrameBounds(SkelVec3 *, SkelVec3 *);
     float                            GetModelLODRadius();

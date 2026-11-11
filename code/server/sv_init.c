@@ -1044,21 +1044,17 @@ void SV_Init (void)
 	Cvar_Get ("fraglimit", "20", CVAR_SERVERINFO);
 	Cvar_Get ("timelimit", "0", CVAR_SERVERINFO);
 	Cvar_Get ("sv_keywords", "", CVAR_SERVERINFO);
-	// Changed in OPM
-	//  Dedicated servers are playable only in multiplayer mode,
-	//  so make Free-For-All the default value.
-	if (com_dedicated->integer) {
-		g_gametype = Cvar_Get ( "g_gametype", "1", CVAR_SERVERINFO | CVAR_LATCH );
-	} else {
-		g_gametype = Cvar_Get ( "g_gametype", "0", CVAR_SERVERINFO | CVAR_LATCH );
-	}
+	// This distribution is single-player only, even with an old MP config.
+	Cvar_Set("g_gametype", "0");
+	g_gametype = Cvar_Get("g_gametype", "0", CVAR_SERVERINFO | CVAR_ROM);
 	g_gametypestring = Cvar_Get( "g_gametypestring", "0", CVAR_SERVERINFO | CVAR_LATCH );
 	Cvar_Get( "sv_keywords", "", CVAR_SERVERINFO );
 	Cvar_Get( "protocol", va( "%i", PROTOCOL_VERSION ), CVAR_SERVERINFO | CVAR_ROM );
 	sv_mapname = Cvar_Get( "mapname", "nomap", CVAR_SERVERINFO | CVAR_ROM );
 	sv_privateClients = Cvar_Get( "sv_privateClients", "0", CVAR_SERVERINFO );
 	sv_hostname = Cvar_Get( "sv_hostname", "Nameless OpenMoHAA Battle", CVAR_SERVERINFO | CVAR_ARCHIVE );
-	sv_maxclients = Cvar_Get( "sv_maxclients", "1", CVAR_SERVERINFO | CVAR_LATCH );
+	Cvar_Set("sv_maxclients", "1");
+	sv_maxclients = Cvar_Get( "sv_maxclients", "1", CVAR_SERVERINFO | CVAR_ROM );
 
 	sv_minRate = Cvar_Get ("sv_minRate", "0", CVAR_ARCHIVE | CVAR_SERVERINFO );
 	sv_maxRate = Cvar_Get( "sv_maxRate", "0", CVAR_ARCHIVE | CVAR_SERVERINFO );

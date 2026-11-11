@@ -1,0 +1,21 @@
+{
+  "game": "AA",
+  "exit": 0,
+  "completed": true,
+  "engine_sha256": "4a7f7512e9508ab88b6284e9997e9c00384be683f70c53a8083996eb3e2bd86c",
+  "cgame_sha256": "1143ec6f5749be5d8dd03139e4403c9fa2b3ddcc93703679de149f26d0a8a9d1",
+  "images": [
+    "profiles-local/CP02-r1/mist-AA-v1/main/screenshots/shot0000.png",
+    "profiles-local/CP02-r1/mist-AA-v1/main/screenshots/shot0001.png",
+    "profiles-local/CP02-r1/mist-AA-v1/main/screenshots/shot0002.png",
+    "profiles-local/CP02-r1/mist-AA-v1/main/screenshots/shot0003.png",
+    "profiles-local/CP02-r1/mist-AA-v1/main/screenshots/shot0004.png",
+    "profiles-local/CP02-r1/mist-AA-v1/main/screenshots/shot0005.png",
+    "profiles-local/CP02-r1/mist-AA-v1/main/screenshots/shot0006.png",
+    "profiles-local/CP02-r1/mist-AA-v1/main/screenshots/shot0007.png",
+    "profiles-local/CP02-r1/mist-AA-v1/main/screenshots/shot0008.png"
+  ],
+  "mist_events": [],
+  "errors": [],
+  "saved_off": false
+}

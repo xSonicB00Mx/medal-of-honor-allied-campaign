@@ -72,6 +72,7 @@ public:
     void setColor(UColor col);
     void setAlpha(float alpha);
     void setFont(const char *fontname);
+    const char *getName() const { return name.c_str(); }
     int  getMaxWidthIndex(const char *text, int maxlen);
     int  getWidth(const char *text, int maxlen);
     int  getCharWidth(unsigned short ch);
@@ -84,6 +85,7 @@ public:
     int  DBCSGetWordBlockCount(const char *text, int maxlen);
 
 private:
+    float MenuScale() const;
     void CheckRefreshFont();
 };
 

@@ -25,6 +25,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 #include "../sys_loadlib.h"
 #include "../sys_curl.h"
 #include "../sys_update_checker.h"
+#include "../../renderercommon/tr_types.h"
 
 // a pointer to the last piece of data retrieved from the clipboard is stored here,
 // so that it can be cleaned up when new data is retrieved, preventing memory leaks
@@ -287,6 +288,7 @@ Sys_GetCGameAPI
 void* Sys_GetCGameAPI(void* parms)
 {
     void* (*GetCGameAPI) (void*);
+    int (*GetRefdefSize) (void);
     const char* gamename = "cgame" DLL_SUFFIX DLL_EXT;
 
     if (cgame_library)
@@ -301,6 +303,13 @@ void* Sys_GetCGameAPI(void* parms)
     }
 
     Com_Printf("Sys_GetCGameAPI(%s): succeeded ...\n", gamename);
+    GetRefdefSize = (int (*)(void))Sys_LoadFunction(cgame_library, "AC_CGameRefdefSize");
+    if (!GetRefdefSize || GetRefdefSize() != sizeof(refdef_t)) {
+        Sys_UnloadCGame();
+        Com_Error(ERR_FATAL,
+            "Allied Campaign engine/cgame mismatch. Install matching openmohaa.exe and cgame.dll binaries.");
+        return NULL;
+    }
     GetCGameAPI = (void* (*)(void*))Sys_LoadFunction(cgame_library, "GetCGameAPI");
 
     if (!GetCGameAPI)

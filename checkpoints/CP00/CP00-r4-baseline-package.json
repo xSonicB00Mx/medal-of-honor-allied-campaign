@@ -1,0 +1,11 @@
+{
+  "candidate": "CP00-r4",
+  "package": "artifacts-local/CP00-r4-baseline-local.zip",
+  "files": 437,
+  "bytes": 93740140,
+  "sha256": "d37f6c4efce05e669745b1fc0b7e3ecd0f0497c8e0677cf86e7a3c31d7b9bb93",
+  "crc_passed": true,
+  "evidence_hashes_rechecked": 396,
+  "hash_mismatches": 0,
+  "scope": "Local reference evidence and exact probe inputs; not a replacement for the existing complete r4 runtime backup. No assets uploaded to Git."
+}

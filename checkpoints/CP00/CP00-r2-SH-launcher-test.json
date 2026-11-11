@@ -1,0 +1,62 @@
+{
+  "candidate": "CP00-r2",
+  "game": "SH",
+  "actual_workspace_cmd_used": true,
+  "fs_path_override_in_test": false,
+  "menu_callback_save_created": [
+    "t1l20000.ssv"
+  ],
+  "new_save_has_thumbnail": true,
+  "new_menu_save_loaded_after_restart": true,
+  "load_method": "Console command; actual Load-button click requires separate UI check",
+  "fov_90_persisted": true,
+  "fov_restart_lines": [
+    "[2026-10-13 22:20:08 UTC+1.000] \"cg_fov\" is:\"90\" default:\"80\""
+  ],
+  "path_rejection": false,
+  "visual_check": "PASS: menu background, mission thumbnail, old and newly created save entry visible in shot0001.tga",
+  "evidence": [
+    {
+      "path": "generated-local/CP00-r2/SH/menu.log",
+      "sha256": "1440374d58fbff24bcb5907b126f62c10e12c56114c00ca6dca819e3b8466506"
+    },
+    {
+      "path": "generated-local/CP00-r2/SH/restart.log",
+      "sha256": "e11052eb8a459806ae58f48baf6c9f3f7d8caa90d51d3fa9bd10174bc824efd2"
+    },
+    {
+      "path": "profiles-local/CP00-r2/SH/mainta/screenshots/shot0000.tga",
+      "sha256": "978c702de7dbd96a5c67d331128e1ce5b1d367aab80066ad298883f8c501dc20"
+    },
+    {
+      "path": "profiles-local/CP00-r2/SH/mainta/screenshots/shot0001.tga",
+      "sha256": "fbab180d79df21ab5653b2117747e6bd37816167e568c390c194667c2bbafe9e"
+    },
+    {
+      "path": "profiles-local/CP00-r2/SH/mainta/screenshots/shot0002.tga",
+      "sha256": "a91cf60ba3952f45ecf260f73ecf87856b43f7bf51e294d8fdf52b0f3e53b665"
+    },
+    {
+      "path": "profiles-local/CP00-r2/SH/mainta/screenshots/shot0003.tga",
+      "sha256": "d1a1fb5dec17747895408ead6bb15b1a11962dfad1a746e3a36532fa7f04028d"
+    },
+    {
+      "path": "profiles-local/CP00-r2/SH/mainta/screenshots/shot0004.tga",
+      "sha256": "9fbcea59b17b2aa03326972daa2fc954f7ff6f25fafc94dfa508c257403dba3a"
+    },
+    {
+      "path": "profiles-local/CP00-r2/SH/mainta/save/omconfig/cp00_sh.tga",
+      "sha256": "aa88f8d382b02ff7a13f4ceb3df3519008a0d1b9f3c5c257ea7a0cb560d688cb"
+    },
+    {
+      "path": "profiles-local/CP00-r2/SH/mainta/save/omconfig/t1l20000.tga",
+      "sha256": "defbd689ac3cfa4fa312b6861aadb58078e0b894e7f7ccca5d9180b04997e0f5"
+    },
+    {
+      "path": "generated-local/CP00-r2/SH/tested-omconfig.cfg",
+      "sha256": "1f5c54831c1e423b70b52d9cc9154dc1c1ea6cf56840303be8d08b2a7f54a4c5",
+      "note": "Profile snapshot before final developer-flag cleanup; AA includes subsequent live mouse test."
+    }
+  ],
+  "delivery_profile_developer_flag": 0
+}

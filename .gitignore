@@ -14,6 +14,9 @@ build*
 *.sav
 *.ssv
 *.bundle
+__pycache__/
+*.pyc
+/Start-CP00*.cmd
 !tools/build-cp00.ps1
 *.swp
 *tags
@@ -63,3 +66,17 @@ out
 # Flex and Bison
 ####################
 /code/parser/generated
+
+/Start-CP01*.cmd
+
+!checkpoints/**/build-manifest.json
+
+/Start-CP02*.cmd
+
+/Start-CP03*.cmd
+/Start-CP04*.cmd
+/Start-CP05*.cmd
+/Start-CP06*.cmd
+/Start-CP07*.cmd
+/Start-CP08*.cmd
+/Start-CP09*.cmd

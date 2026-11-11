@@ -1,0 +1,149 @@
+{
+  "tests": [
+    {
+      "game": "AA",
+      "run": "aa-r1",
+      "installed": false,
+      "width": 3840,
+      "height": 2160,
+      "hud_scale": 1.66,
+      "labels": [
+        "springfield",
+        "kar98",
+        "binoculars",
+        "camera",
+        "gasmask",
+        "overlay cleared"
+      ],
+      "outputs": [
+        "artifacts-local/HUD-Overlays-AA-aa-r1-00.png",
+        "artifacts-local/HUD-Overlays-AA-aa-r1-01.png",
+        "artifacts-local/HUD-Overlays-AA-aa-r1-02.png",
+        "artifacts-local/HUD-Overlays-AA-aa-r1-03.png",
+        "artifacts-local/HUD-Overlays-AA-aa-r1-04.png",
+        "artifacts-local/HUD-Overlays-AA-aa-r1-05.png"
+      ],
+      "exit_code": 0,
+      "cgame_sha256": "e37540c6c12c0eb31c6e79d51e3a8d207bbc2734d3f7f0f4d59c825d2050d709",
+      "errors": []
+    },
+    {
+      "game": "SH",
+      "run": "sh-r1",
+      "installed": false,
+      "width": 3840,
+      "height": 2160,
+      "hud_scale": 1.66,
+      "labels": [
+        "springfield",
+        "kar98",
+        "binoculars",
+        "camera",
+        "gasmask",
+        "overlay cleared"
+      ],
+      "outputs": [
+        "artifacts-local/HUD-Overlays-SH-sh-r1-00.png",
+        "artifacts-local/HUD-Overlays-SH-sh-r1-01.png",
+        "artifacts-local/HUD-Overlays-SH-sh-r1-02.png",
+        "artifacts-local/HUD-Overlays-SH-sh-r1-03.png",
+        "artifacts-local/HUD-Overlays-SH-sh-r1-04.png",
+        "artifacts-local/HUD-Overlays-SH-sh-r1-05.png"
+      ],
+      "exit_code": 0,
+      "cgame_sha256": "e37540c6c12c0eb31c6e79d51e3a8d207bbc2734d3f7f0f4d59c825d2050d709",
+      "errors": []
+    },
+    {
+      "game": "AA",
+      "run": "aa-43-r1",
+      "installed": false,
+      "width": 1280,
+      "height": 960,
+      "hud_scale": 1.66,
+      "labels": [
+        "springfield",
+        "kar98",
+        "binoculars",
+        "camera",
+        "gasmask",
+        "overlay cleared"
+      ],
+      "outputs": [
+        "artifacts-local/HUD-Overlays-AA-aa-43-r1-00.png",
+        "artifacts-local/HUD-Overlays-AA-aa-43-r1-01.png",
+        "artifacts-local/HUD-Overlays-AA-aa-43-r1-02.png",
+        "artifacts-local/HUD-Overlays-AA-aa-43-r1-03.png",
+        "artifacts-local/HUD-Overlays-AA-aa-43-r1-04.png",
+        "artifacts-local/HUD-Overlays-AA-aa-43-r1-05.png"
+      ],
+      "exit_code": 0,
+      "cgame_sha256": "e37540c6c12c0eb31c6e79d51e3a8d207bbc2734d3f7f0f4d59c825d2050d709",
+      "errors": []
+    },
+    {
+      "game": "BT",
+      "run": "bt-installed-r1",
+      "installed": true,
+      "width": 3840,
+      "height": 2160,
+      "hud_scale": 1.66,
+      "labels": [
+        "springfield",
+        "kar98",
+        "binoculars",
+        "camera",
+        "gasmask",
+        "overlay cleared"
+      ],
+      "outputs": [
+        "artifacts-local/HUD-Overlays-BT-bt-installed-r1-00.png",
+        "artifacts-local/HUD-Overlays-BT-bt-installed-r1-01.png",
+        "artifacts-local/HUD-Overlays-BT-bt-installed-r1-02.png",
+        "artifacts-local/HUD-Overlays-BT-bt-installed-r1-03.png",
+        "artifacts-local/HUD-Overlays-BT-bt-installed-r1-04.png",
+        "artifacts-local/HUD-Overlays-BT-bt-installed-r1-05.png"
+      ],
+      "exit_code": 0,
+      "cgame_sha256": "e37540c6c12c0eb31c6e79d51e3a8d207bbc2734d3f7f0f4d59c825d2050d709",
+      "errors": []
+    }
+  ],
+  "geometry": [
+    {
+      "name": "zoomoverlay",
+      "mean_alpha_delta": 0.3477630615234375,
+      "boundary_mismatch_pixels": 30
+    },
+    {
+      "name": "kartop",
+      "mean_alpha_delta": 0.3481903076171875,
+      "boundary_mismatch_pixels": 33
+    },
+    {
+      "name": "karbottom",
+      "mean_alpha_delta": 0.3553466796875,
+      "boundary_mismatch_pixels": 32
+    },
+    {
+      "name": "binocularsoverlay",
+      "mean_alpha_delta": 0.4929351806640625,
+      "boundary_mismatch_pixels": 65
+    },
+    {
+      "name": "cameraoverlay",
+      "mean_alpha_delta": 0.13873291015625,
+      "boundary_mismatch_pixels": 20
+    }
+  ],
+  "integrity": {
+    "original_files_unchanged": 9072,
+    "runtime_base_files_unchanged": 9000,
+    "mp1_files_unchanged": 8,
+    "user_profile_files_unchanged": 80,
+    "rollback_copy": "generated-local/widescreen/backups/overlays-r1"
+  },
+  "post_test_user_files_unchanged": 80,
+  "owned_hashes_verified": 53,
+  "source_commit": "d580996f69ae9777fe03ee9a9d8624a94b5c738d"
+}

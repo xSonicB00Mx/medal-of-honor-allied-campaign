@@ -1,0 +1,62 @@
+{
+  "candidate": "CP00-r2",
+  "game": "AA",
+  "actual_workspace_cmd_used": true,
+  "fs_path_override_in_test": false,
+  "menu_callback_save_created": [
+    "m1l2a0000.ssv"
+  ],
+  "new_save_has_thumbnail": true,
+  "new_menu_save_loaded_after_restart": true,
+  "load_method": "Console command; actual Load-button click requires separate UI check",
+  "fov_90_persisted": true,
+  "fov_restart_lines": [
+    "[2026-10-13 22:19:14 UTC+1.000] \"cg_fov\" is:\"90\" default:\"80\""
+  ],
+  "path_rejection": false,
+  "visual_check": "PASS: menu background, mission thumbnail, old and newly created save entry visible in shot0001.tga",
+  "evidence": [
+    {
+      "path": "generated-local/CP00-r2/AA/menu.log",
+      "sha256": "341eeed3d5b5b1a2793ee1069766a14713870b8d69cbc59e05b698e424f4372a"
+    },
+    {
+      "path": "generated-local/CP00-r2/AA/restart.log",
+      "sha256": "02409771727cb49472d129016f1922d65cbd23e735825914aa83a68afb31e621"
+    },
+    {
+      "path": "profiles-local/CP00-r2/AA/main/screenshots/shot0000.tga",
+      "sha256": "c90d8d322ba9293cb2296764af187620b15a79d4895afe1ac26441aa9f5c3b10"
+    },
+    {
+      "path": "profiles-local/CP00-r2/AA/main/screenshots/shot0001.tga",
+      "sha256": "cbf0967fe0404eb8015341dfea41d8a505a6d33f9225375d3e4cc4537bebd748"
+    },
+    {
+      "path": "profiles-local/CP00-r2/AA/main/screenshots/shot0002.tga",
+      "sha256": "441e9b2a6f229cddab136a1532e689dbdcc003ec8d6482782b6ec14ccb329512"
+    },
+    {
+      "path": "profiles-local/CP00-r2/AA/main/screenshots/shot0003.tga",
+      "sha256": "14c45e51343ff766229265e13e870383e627d3302e135f57f5829a00889d9297"
+    },
+    {
+      "path": "profiles-local/CP00-r2/AA/main/screenshots/shot0004.tga",
+      "sha256": "bf239db190ce81546cbb4b397f4ec36f649dc1f151ef234231f4a81e6e8ea12e"
+    },
+    {
+      "path": "profiles-local/CP00-r2/AA/main/save/omconfig/cp00_aa.tga",
+      "sha256": "ae411cac369b9bc5c2933b00aaf90a63eec8ecc5ad05d8e3b95487780e9d31e7"
+    },
+    {
+      "path": "profiles-local/CP00-r2/AA/main/save/omconfig/m1l2a0000.tga",
+      "sha256": "5f3bff14557298ff02e1b8b247cc5b622885db7f08ce4b985b152bb6804eb622"
+    },
+    {
+      "path": "generated-local/CP00-r2/AA/tested-omconfig.cfg",
+      "sha256": "4c729b1f81860911b53581f10d0855672bd046e74d7548e1692a60ba09d9cadc",
+      "note": "Profile snapshot before final developer-flag cleanup; AA includes subsequent live mouse test."
+    }
+  ],
+  "delivery_profile_developer_flag": 0
+}

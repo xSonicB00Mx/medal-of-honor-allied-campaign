@@ -1,0 +1,18 @@
+[
+  {
+    "game": "AA",
+    "source": "runtime-local/CP05a-r3/main/Restoration_AA_Pak1-Main.pk3",
+    "source_sha256": "118b4db5a401445ad7a1e9f70eec031a74b7c6c2a24f4e4bd2658dc9743873ec",
+    "changed_sites": 2,
+    "guard": "level.end_level == 1",
+    "scope": "Only credits completion/skip after actual finale; no airstrike/timer/escape trigger altered"
+  },
+  {
+    "game": "BT",
+    "source": "runtime-local/CP05a-r3/maintt/pak1.pk3",
+    "source_sha256": "5fb06eb9d08aa1975070753192ebbfeb50170f3fa1562af0b531d41c1efc2fa3",
+    "changed_sites": 2,
+    "guard": "level.escaped == 1",
+    "scope": "Only credits completion/skip after actual finale; no airstrike/timer/escape trigger altered"
+  }
+]

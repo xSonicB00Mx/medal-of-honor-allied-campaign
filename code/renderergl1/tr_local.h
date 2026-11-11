@@ -684,6 +684,7 @@ typedef struct {
 	//==
     qboolean skybox_farplane;
     qboolean render_terrain;
+	float acLightning;
 	//==
 
 } trRefdef_t;
@@ -782,6 +783,7 @@ typedef struct srfPoly_s {
 	int				numVerts;
 	polyVert_t		*verts;
 	int				renderfx;
+    int entityNumber; // ENTITYNUM_WORLD, or a skinned decal's owning actor.
 } srfPoly_t;
 
 typedef struct srfMarkFragment_s {
@@ -2019,6 +2021,31 @@ SHADOWS
 
 void RB_ShadowTessEnd( void );
 void RB_ComputeShadowVolume();
+void R_ACShadowInit(void);
+void R_ACShadowShutdown(void);
+void RB_ACShadowBegin(void);
+void RB_ACShadowCapture(void);
+void RB_ACShadowFinish(void);
+void RB_ACDrawCapturedScene(GLint alphaCut);
+// Weather blockers; world-space bounds, arbitrary sky matrix. parts: 1 static, 2 moving, 3 both.
+int RB_ACDrawWorldOccluders(const float *matrix, const vec3_t mins, const vec3_t maxs, int parts);
+void R_ACTemporalInit(void);
+void R_ACTemporalShutdown(void);
+void R_ACTemporalReset(void);
+void R_ACTemporalJitter(void);
+void RB_ACTemporalBegin(void);
+qboolean RB_ACTemporalSurface(const void *surface);
+void RB_ACTemporalSurfaceEnd(qboolean isolated);
+void RB_ACTemporalCapture(void);
+void RB_ACTemporalFinish(void);
+void R_ACLightningReset(void);
+void R_ACLightningWorldChanged(void);
+void RB_ACLightningBegin(void);
+void RB_ACLightningFinish(void);
+void R_ACAOInit(void);
+void R_ACAOShutdown(void);
+qboolean R_ACAOActive(void);
+void RB_ACAOApply(void);
 void RB_ShadowFinish( void );
 void RB_ProjectionShadowDeform( void );
 
@@ -2084,6 +2111,7 @@ void RE_AddRefSpriteToScene(const refEntity_t* ent);
 void RE_AddTerrainMarkToScene(int iTerrainIndex, qhandle_t hShader, int numVerts, const polyVert_t* verts, int renderfx);
 refEntity_t* RE_GetRenderEntity(int entityNumber);
 qboolean RE_AddPolyToScene(qhandle_t hShader, int numVerts, const polyVert_t* verts, int renderfx);
+qboolean RE_AddEntityPolyToScene(qhandle_t shader, int numVerts, const polyVert_t *verts, const refEntity_t *entity);
 void RE_AddLightToScene( const vec3_t org, float intensity, float r, float g, float b, int type );
 void RE_AddAdditiveLightToScene( const vec3_t org, float intensity, float r, float g, float b );
 void RE_RenderScene( const refdef_t *fd );

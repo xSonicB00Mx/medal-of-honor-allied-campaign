@@ -1208,6 +1208,40 @@ Appends lines containing "set variable value" for all variables
 with the archive flag set to qtrue.
 ============
 */
+// Share player preferences, never mission state, save pointers or network setup.
+void Cvar_WriteCampaignPreferences(fileHandle_t f)
+{
+    static const char *prefixes[] = {"r_", "s_", "m_", "j_", "joy_", "in_", "ter_", "vss_", "cg_"};
+    static const char *names[] = {
+        "sensitivity", "skill", "g_skill", "g_subtitle", "detail", "viewsize",
+        "com_blood", "com_maxfps", "com_maxfpsUnfocused", "com_maxfpsMinimized",
+        "cl_run", "cl_freelook", "cl_mouseAccel", "cl_mouseAccelOffset", "cl_mouseAccelStyle",
+        "cl_pitchspeed", "cl_yawspeed", "cl_altbindings", "cl_ctrlbindings", "cl_playintro",
+        "cl_consoleKeys", "ui_crosshair", "ui_compass_scale", "ui_weaponsbar", "ui_weaponsbartime",
+        "ui_itemsbar", "ui_gmbox", "ui_minicon", "ui_voodoo", "fps", "fps_location",
+        "ac_ui_auto", "ac_menu_scale", "ac_hud_scale", "ac_hud_safe", "ac_blood_mist",
+        "ac_world_blood", "ac_body_wounds", "ac_corpse_effects", "ac_player_flinch_percent", "ac_bt_drop_limits", "ac_hud_outline",
+        "ac_loadout_0", "ac_loadout_1", "ac_loadout_2", "ac_loadout_3", "ac_loadout_4", "ac_loadout_5", "ac_loadout_6"
+    };
+    cvar_t *var;
+    int i;
+    for (var = cvar_vars; var; var = var->next) {
+        qboolean selected = qfalse;
+        const char *value;
+        if (!var->name || !(var->flags & CVAR_ARCHIVE)
+            || (var->flags & (CVAR_ROM | CVAR_INIT))) continue;
+        for (i = 0; i < ARRAY_LEN(prefixes); ++i)
+            if (!Q_stricmpn(var->name, prefixes[i], strlen(prefixes[i]))) selected = qtrue;
+        for (i = 0; i < ARRAY_LEN(names); ++i)
+            if (!Q_stricmp(var->name, names[i])) selected = qtrue;
+        if (!selected) continue;
+        // Video/audio options may be awaiting a renderer or sound restart.
+        value = var->latchedString ? var->latchedString : var->string;
+        if (strpbrk(var->name, " \t\";\n\r") || strpbrk(value, "\"\n\r")) continue;
+        FS_Printf(f, "seta %s \"%s\"\n", var->name, value);
+    }
+}
+
 void Cvar_WriteVariables(fileHandle_t f)
 {
 	cvar_t	*var;

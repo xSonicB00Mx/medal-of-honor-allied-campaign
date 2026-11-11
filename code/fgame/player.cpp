@@ -28,6 +28,9 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 #include "entity.h"
 #include "consoleevent.h"
 #include "player.h"
+#include "../qcommon/ac_score.h"
+#include "../qcommon/ac_loadout.h"
+#include "../qcommon/ac_missions.h"
 #include "worldspawn.h"
 #include "weapon.h"
 #include "trigger.h"
@@ -3142,6 +3145,7 @@ void Player::Killed(Event *ev)
         static_cast<Player *>(attacker)->KilledPlayerInDeathmatch(this, (meansOfDeath_t)meansofdeath);
     }
 
+    if(g_gametype->integer==GT_SINGLE_PLAYER)gi.AC_ScoreEvent(AC_SCORE_DEATH,0);
     deadflag = DEAD_DYING;
     health   = 0;
 
@@ -4657,8 +4661,86 @@ void Player::ClientThink(void)
     }
 }
 
+bool Player::ACLoadoutEligible() const
+{
+    if(g_gametype->integer!=GT_SINGLE_PLAYER || !gi.Cvar_Get("ac_campaign_mode","0",0)->integer
+        || gi.Cvar_Get("ac_replay","0",0)->integer!=1
+        || !gi.Cvar_Get("ac_loadout_authorized","0",0)->integer)return false;
+    const int op=gi.Cvar_Get("ac_operation","-1",0)->integer;
+    if(op<0 || op>=AC_MISSION_COUNT)return false;
+    const str key=str("|")+level.mapname+"|";
+    return strstr(ac_missions[op].chain,key.c_str())!=NULL;
+}
+
+const char *Player::ACStateFile() const
+{
+    return ACLoadoutEligible()?"global/ac_loadout":g_statefile->string;
+}
+
+void Player::ACApplyLoadout()
+{
+    if(!ACLoadoutEligible() || LoadingSavegame || deadflag || !level.vars
+        || (client->ps.pm_flags & PMF_FROZEN) || m_pTurret || m_pVehicle
+        || !GetActiveWeapon(WEAPON_MAIN) || IsNewActiveWeapon())return;
+    // Level variables already participate in save archives: no new save fields.
+    if(level.vars->GetVariable("ac_loadout_applied"))return;
+    ScriptVariable *ready=level.vars->GetVariable("ac_loadout_ready");
+    if(!ready){level.vars->SetVariable("ac_loadout_ready",level.time+2.0f);return;}
+    if(level.time<ready->floatValue())return;
+    level.vars->SetVariable("ac_loadout_applied",1);
+    const int op=gi.Cvar_Get("ac_operation","-1",0)->integer;
+    const bool first=!Q_stricmp(level.mapname,ac_missions[op].first);
+    Weapon *equip=NULL;
+    for(int slot=0;slot<AC_LOADOUT_SLOTS;slot++) {
+        const int index=gi.Cvar_Get(va("ac_loadout_%d",slot),"0",0)->integer-1;
+        if(index<0 || index>=AC_LOADOUT_COUNT || !ac_loadoutWeapons[index].selectable || ac_loadoutWeapons[index].slot!=slot)continue;
+        const acLoadoutWeapon_t &choice=ac_loadoutWeapons[index];
+        Item *existing=FindItemByModelname(choice.model);
+        Item *item=existing?existing:giveItem(choice.model);
+        if(!item || !item->IsSubclassOfWeapon()) {
+            gi.Printf("AC_LOADOUT_ERROR grant %s\n",choice.model);continue;
+        }
+        Weapon *weapon=(Weapon *)item;
+        // Preserve pickups across sublevels. A scripted inventory reset may
+        // require restoring the selected weapon, but never removes later loot.
+        if(first && slot<6) {
+            const int mask=1<<slot;
+            for(int i=inventory.NumObjects();i>0;i--) {
+                Item *item=(Item *)G_GetEntity(inventory.ObjectAt(i));
+                if(item && item!=weapon && item->IsSubclassOfWeapon() && !item->IsSubclassOfInventoryItem()) {
+                    Weapon *oldWeapon=(Weapon *)item;
+                    if(oldWeapon->GetWeaponClass() & mask) {
+                        if(GetActiveWeapon(WEAPON_MAIN)==oldWeapon) {
+                            DeactivateWeapon(WEAPON_MAIN);equip=weapon;
+                        }
+                        oldWeapon->Delete();
+                    }
+                }
+            }
+        }
+        if(existing) {
+            if(!equip)equip=weapon;
+            continue;
+        }
+        const str ammo=weapon->GetAmmoType(FIRE_PRIMARY);
+        const int clip=weapon->GetClipSize(FIRE_PRIMARY);
+        if(ammo.length() && ammo!="none") {
+            const int reserve=slot==4 || slot==6?5:slot==5?(clip>2?30:5):clip>0?clip*3:60;
+            GiveAmmo(ammo,reserve,MaxAmmoCount(ammo)>reserve?MaxAmmoCount(ammo):reserve);
+        }
+        const str secondary=weapon->GetAmmoType(FIRE_SECONDARY);
+        if(secondary.length() && secondary!="none" && secondary!=ammo)
+            GiveAmmo(secondary,5,MaxAmmoCount(secondary)>5?MaxAmmoCount(secondary):5);
+        if(!equip)equip=weapon;
+        gi.Printf("AC_LOADOUT_GIVE slot=%d weapon=%s\n",slot,choice.model);
+    }
+    if(!GetActiveWeapon(WEAPON_MAIN) && equip)useWeapon(equip,WEAPON_MAIN);
+    gi.Printf("AC_LOADOUT_APPLIED map=%s first=%d\n",level.mapname.c_str(),first);
+}
+
 void Player::Think(void)
 {
+    ACApplyLoadout();
     static cvar_t *g_aimLagTime = NULL;
 
     int     m_iClientWeaponCommand;
@@ -5066,9 +5148,9 @@ void Player::LoadStateTable(void)
     torso_conditionals.FreeObjectList();
 
     statemap_Legs =
-        GetStatemap(str(g_statefile->string) + "_Legs.st", (Condition<Class> *)m_conditions, &legs_conditionals, false);
+        GetStatemap(str(ACStateFile()) + "_Legs.st", (Condition<Class> *)m_conditions, &legs_conditionals, false);
     statemap_Torso = GetStatemap(
-        str(g_statefile->string) + "_Torso.st", (Condition<Class> *)m_conditions, &torso_conditionals, false
+        str(ACStateFile()) + "_Torso.st", (Condition<Class> *)m_conditions, &torso_conditionals, false
     );
 
     movecontrol = MOVECONTROL_LEGS;
@@ -6759,12 +6841,24 @@ void Player::SetPlayerView(
         client->ps.damage_angles[PITCH] = G_CRandom() * level.earthquake_magnitude * EARTHQUAKE_SCREENSHAKE_PITCH;
         client->ps.damage_angles[YAW]   = G_CRandom() * level.earthquake_magnitude * EARTHQUAKE_SCREENSHAKE_YAW;
         client->ps.damage_angles[ROLL]  = G_CRandom() * level.earthquake_magnitude * EARTHQUAKE_SCREENSHAKE_ROLL;
-    } else if (damage_count) {
-        client->ps.damage_angles[PITCH] = damage_angles[PITCH];
-        client->ps.damage_angles[YAW]   = damage_angles[YAW];
-        client->ps.damage_angles[ROLL]  = damage_angles[ROLL];
+    } else if (damage_count && (g_gametype->integer != GT_SINGLE_PLAYER
+        || gi.Cvar_Get("ac_player_flinch_percent", "20", CVAR_ARCHIVE)->integer)) {
+        const int percent = Q_clamp_int(gi.Cvar_Get("ac_player_flinch_percent", "20", CVAR_ARCHIVE)->integer, 0, 100);
+        const float intensity = g_gametype->integer == GT_SINGLE_PLAYER ? ((percent + 5) / 10) * 0.1f : 1.0f;
+        client->ps.damage_angles[PITCH] = damage_angles[PITCH] * intensity;
+        client->ps.damage_angles[YAW]   = damage_angles[YAW] * intensity;
+        client->ps.damage_angles[ROLL]  = damage_angles[ROLL] * intensity;
     } else {
         VectorClear(client->ps.damage_angles);
+    }
+
+    // Gate only hit-induced camera motion, preserving red damage blend,
+    // weapon recoil and scripted earthquake/view-variation effects.
+    if (damage_count && gi.Cvar_Get("ac_flinch_debug", "0", 0)->integer) {
+        gi.Printf("AC_FLINCH enabled=%d health=%.2f alpha=%.3f source=%.3f,%.3f,%.3f camera=%.3f,%.3f,%.3f\n",
+            gi.Cvar_Get("ac_player_flinch_percent", "20", CVAR_ARCHIVE)->integer, health, damage_alpha,
+            damage_angles.x, damage_angles.y, damage_angles.z,
+            client->ps.damage_angles[0], client->ps.damage_angles[1], client->ps.damage_angles[2]);
     }
 
     if (m_vViewVariation != vec_zero) {
@@ -7645,6 +7739,13 @@ void Player::UpdateStats(void)
          && (activeweap && !activeweap->IsSubclassOfInventoryItem() && activeweap->GetUseCrosshair()))
         || m_pTurret || (m_pVehicle && m_pVehicle->IsSubclassOfVehicleTank());
 
+    int crosshairSpread = 0;
+    if (g_gametype->integer == GT_SINGLE_PLAYER && !IsDead()) {
+        Weapon *aimWeapon = m_pTurret ? static_cast<Weapon *>(m_pTurret.Pointer()) : (m_pVehicle ? NULL : activeweap);
+        if (aimWeapon) crosshairSpread = aimWeapon->GetCrosshairSpread();
+    }
+    if (crosshairSpread >= 0) client->ps.stats[STAT_AC_SPREAD] = crosshairSpread;
+
     client->ps.stats[STAT_COMPASSNORTH] = ANGLE2SHORT(world->m_fNorth);
 
     if (VectorCompare(vObjectiveLocation, vec_zero)) {
@@ -8016,6 +8117,14 @@ void Player::DumpState(Event *ev)
     gi.DPrintf(
         "Legs: %s Torso: %s\n", currentState_Legs ? currentState_Legs->getName() : "NULL", currentState_Torso->getName()
     );
+    for(int i=1;i<=inventory.NumObjects();i++) {
+        Item *item=(Item *)G_GetEntity(inventory.ObjectAt(i));
+        if(!item || !item->IsSubclassOfWeapon())continue;
+        Weapon *w=(Weapon *)item;
+        gi.DPrintf("AC_WEAPON_STATE model=%s active=%d clip=%d reserve=%d secondary=%d\n",
+            w->model.c_str(),w==GetActiveWeapon(WEAPON_MAIN),w->ClipAmmo(FIRE_PRIMARY),
+            AmmoCount(w->GetAmmoType(FIRE_PRIMARY)),AmmoCount(w->GetAmmoType(FIRE_SECONDARY)));
+    }
 }
 
 void Player::ForceTorsoState(Event *ev)

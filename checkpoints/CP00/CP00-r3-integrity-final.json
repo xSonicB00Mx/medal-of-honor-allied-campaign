@@ -1,0 +1,42 @@
+{
+  "original_files": 9064,
+  "original_hashes_unchanged": false,
+  "original_differences": [
+    {
+      "path": "main/Restoration_AA_Pak1-Main.pk3",
+      "expected": "7eabd9f0ec97b67d819bfad538c6d31ef9a369c0550bcb99ea67e11a6a5f1234",
+      "actual": "87bf00e9210a8cb282aae020346ffc4c2f8cfcf915b639bdf6314780394eaa3a"
+    },
+    {
+      "path": "mainta/Restoration_SH_Pak1-Main.pk3",
+      "expected": "febae06ba8417dfaaf0fa62e29474d2bc06dae4d7026d87ed4d0e07446c09b97",
+      "actual": "6858b5d44dafbb8e772d12f3501925e1530dfb2c7bd29cfe79950bb54f76a9db"
+    },
+    {
+      "path": "mainta/Restoration_SH_Plus-Reflections.pk3",
+      "expected": "8f6dfe7230857e59593b508d20f234786bfd14e9bed164057e089ea5e65ebaf1",
+      "actual": "e40860dd59948121f9067c71a1c402e64abfcfb023631c859972909e0c406e2d"
+    },
+    {
+      "path": "maintt/Restoration_BT_Pak1-Main.pk3",
+      "expected": "b50023f2ccd4eb2d34ced4b6b91e751d0c19e0e3af84c0f76420ff4d6ede2a22",
+      "actual": "5c66188f2e11dee941fc9af239325f4732c129478306faca4da9e5199738f133"
+    },
+    {
+      "path": "maintt/Restoration_BT_Plus-Reflections.pk3",
+      "expected": "e07bfc70a5182a76cc30885585cbe4803b74c4ae3730a15ba2fbc3244e6c7009",
+      "actual": "00b12b691112fc1cce21cdf526ce7ce1b280771be026b31bf6513ced1e25fa23"
+    },
+    {
+      "path": "Uninstall-WCRestored.bat",
+      "expected": "eaa4c749bc0bb34fe8698e43993f07031b3c95c6ead15496071a806e19c52a5c",
+      "actual": "9f96166721dd662424febae8bb0e6b0439bc0f35956c33666eb1c71433fe2ea8"
+    }
+  ],
+  "snapshot_only": true,
+  "independent_snapshot_hashes_match": true,
+  "mp1_recorded_files_unchanged": 8,
+  "runtime_data_hashes_match": 8992,
+  "runtime_owned_hashes_match": 17,
+  "independent_write_protection": false
+}

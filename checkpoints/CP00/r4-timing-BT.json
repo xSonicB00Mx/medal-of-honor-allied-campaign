@@ -1,0 +1,75 @@
+{
+  "candidate": "CP00-r4",
+  "game": "BT",
+  "map": "e1l2",
+  "record_seconds": 30,
+  "resolution": [
+    1280,
+    960
+  ],
+  "fov": 90,
+  "renderer": "GL1",
+  "skill": 1,
+  "engine_sha256": "5f1eee385de3b26750b45b7aa1e98566801b716566b97af11fa5586cb5c21c91",
+  "engine_source_commit": "af7bb7c6e706fcc64e5933a22457333274f3de22",
+  "wcr_package_fingerprint": "3b6b38b5b04ba320a526196946c44394c4519e4197dc8d3d05788e186501cfcc",
+  "replay_results": [
+    {
+      "run": "measured1",
+      "frames": 598,
+      "mean_ms": 8.487,
+      "median_ms": 8.0,
+      "p95_ms": 9,
+      "p99_ms": 10,
+      "max_ms": 18,
+      "clipped_at_255_ms": 0,
+      "engine_summary": "# 599 frames 5.1 seconds 118.0 fps 3.0/8.5/18.0/0.8 ms",
+      "duration_log_sha256": "52beb65b25f3bdc7521f0b29383ebdee45840ec500099dff78a7248ccd61d004"
+    },
+    {
+      "run": "measured2",
+      "frames": 598,
+      "mean_ms": 8.502,
+      "median_ms": 8.0,
+      "p95_ms": 9,
+      "p99_ms": 10,
+      "max_ms": 24,
+      "clipped_at_255_ms": 0,
+      "engine_summary": "# 599 frames 5.1 seconds 117.8 fps 2.0/8.5/24.0/1.0 ms",
+      "duration_log_sha256": "0daa1b12b3d5da08653eecc849f60dce81f5be39b17264a700607410d7c6a806"
+    }
+  ],
+  "demo_sha256": "0fb311c3042b55fb54d5b40260b2c9cb23e989156110569ccf76c112b640cab2",
+  "scope": "Idle-scene client timedemo; live AI runs only while recording. Not live-combat or display-present timings. Millisecond resolution, durations clipped to 255 ms by engine; two fresh replay processes.",
+  "visual_check": "Reviewed recording end screenshot: vehicle intro scene. Replay presentation was not visually checked.",
+  "evidence": [
+    {
+      "path": "generated-local/CP00-r4/r4-timing-BT/measured1-frametimes.txt",
+      "sha256": "52beb65b25f3bdc7521f0b29383ebdee45840ec500099dff78a7248ccd61d004"
+    },
+    {
+      "path": "generated-local/CP00-r4/r4-timing-BT/measured1.log",
+      "sha256": "0c14e74afbf3f5aef2823b65eea420840a1d067161175eaac16c275803da75b8"
+    },
+    {
+      "path": "generated-local/CP00-r4/r4-timing-BT/measured2-frametimes.txt",
+      "sha256": "0daa1b12b3d5da08653eecc849f60dce81f5be39b17264a700607410d7c6a806"
+    },
+    {
+      "path": "generated-local/CP00-r4/r4-timing-BT/measured2.log",
+      "sha256": "51f738764e3b088fc82dc0b87657817dadb94d04c265e8e9373821d26e9fd169"
+    },
+    {
+      "path": "generated-local/CP00-r4/r4-timing-BT/record.log",
+      "sha256": "164eb435e845cfb1fbf0464eb5446bad222c472d088467c5533b324b403067e9"
+    },
+    {
+      "path": "generated-local/CP00-r4/r4-timing-BT/replay1.log",
+      "sha256": "c98502a71c5f259af08b5a20460a67bce56d56ac9f58a50afad455449284fafc"
+    },
+    {
+      "path": "generated-local/CP00-r4/r4-timing-BT/timed1.log",
+      "sha256": "5c1a3c621c49be2a153b8420efae4bd072e7f01880876980b6608559d1b1bad8"
+    }
+  ]
+}

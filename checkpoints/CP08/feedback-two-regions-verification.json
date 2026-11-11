@@ -1,0 +1,91 @@
+{
+  "passed": true,
+  "paired_damage_checks": 72,
+  "same_shot_body_and_rear_hits": 14,
+  "dying_tests": [
+    {
+      "report": "dying-release-AA.json",
+      "game": "AA",
+      "weapon": "colt45",
+      "pairs": 12,
+      "positive_pairs": 3,
+      "same_shot_body_and_rear_hits": 2,
+      "corpse_events": 4,
+      "pass_events": 16,
+      "game_sha256": "ccfed171adc76eac1cba2bd7e617347fe0e67869cc12aa694a24c0c2ad63d1c8"
+    },
+    {
+      "report": "dying-release-SH.json",
+      "game": "SH",
+      "weapon": "colt45",
+      "pairs": 12,
+      "positive_pairs": 8,
+      "same_shot_body_and_rear_hits": 1,
+      "corpse_events": 2,
+      "pass_events": 6,
+      "game_sha256": "ccfed171adc76eac1cba2bd7e617347fe0e67869cc12aa694a24c0c2ad63d1c8"
+    },
+    {
+      "report": "dying-release-BT.json",
+      "game": "BT",
+      "weapon": "colt45",
+      "pairs": 12,
+      "positive_pairs": 7,
+      "same_shot_body_and_rear_hits": 1,
+      "corpse_events": 1,
+      "pass_events": 6,
+      "game_sha256": "ccfed171adc76eac1cba2bd7e617347fe0e67869cc12aa694a24c0c2ad63d1c8"
+    },
+    {
+      "report": "dying-release-kar98-ready.json",
+      "game": "AA",
+      "weapon": "kar98",
+      "pairs": 12,
+      "positive_pairs": 7,
+      "same_shot_body_and_rear_hits": 5,
+      "corpse_events": 7,
+      "pass_events": 18,
+      "game_sha256": "ccfed171adc76eac1cba2bd7e617347fe0e67869cc12aa694a24c0c2ad63d1c8"
+    },
+    {
+      "report": "dying-release-bar-ready.json",
+      "game": "AA",
+      "weapon": "bar",
+      "pairs": 12,
+      "positive_pairs": 5,
+      "same_shot_body_and_rear_hits": 2,
+      "corpse_events": 4,
+      "pass_events": 10,
+      "game_sha256": "ccfed171adc76eac1cba2bd7e617347fe0e67869cc12aa694a24c0c2ad63d1c8"
+    },
+    {
+      "report": "dying-release-mp40-pelvis.json",
+      "game": "AA",
+      "weapon": "mp40",
+      "pairs": 12,
+      "positive_pairs": 3,
+      "same_shot_body_and_rear_hits": 3,
+      "corpse_events": 3,
+      "pass_events": 8,
+      "game_sha256": "ccfed171adc76eac1cba2bd7e617347fe0e67869cc12aa694a24c0c2ad63d1c8"
+    }
+  ],
+  "menu_tests": [
+    "two-regions-final-fresh.json",
+    "two-regions-final-full.json",
+    "two-regions-release-mid.json",
+    "two-regions-release-4k.json"
+  ],
+  "final_binaries": {
+    "openmohaa.exe": "145195123820bb70573372b0d679043b26df5f7e838c0973797fb863e261c3b2",
+    "game.dll": "ccfed171adc76eac1cba2bd7e617347fe0e67869cc12aa694a24c0c2ad63d1c8",
+    "cgame.dll": "7a9cf39e3204e9491a7f6180e531cdcaa168ca28df39763662e2a53aaec796dd"
+  },
+  "scope": "Native isolated fixtures; same-frame ac_corpse_effects on/off; original weapon damage. First five weapon runs and 4:3/4K menus precede UI-only removal of selected map-place label. Full HD/ultrawide and MP40 use final executable.",
+  "limits": [
+    "No full campaign playthrough or all WCR/weapon/animation combinations.",
+    "Main-menu widget binding checked and native menus rendered; no physical mouse-click test.",
+    "Early probe and separate on/off runs are diagnostics, not an identical-pose damage comparison.",
+    "Initial mp40/kar98 release runs fired before weapon readiness; mp40-ready missed the posed body. Positive final retries are listed above."
+  ]
+}

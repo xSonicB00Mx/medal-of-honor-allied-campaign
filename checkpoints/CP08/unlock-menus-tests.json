@@ -1,0 +1,165 @@
+{
+  "menu_states": [
+    {
+      "run": "unlock-fresh-r2",
+      "briefings": [
+        0
+      ],
+      "progress_preserved": true,
+      "images": [
+        "profiles-local/level-replay/unlock-fresh-r2/main/screenshots/shot0000.png",
+        "profiles-local/level-replay/unlock-fresh-r2/main/screenshots/shot0001.png",
+        "profiles-local/level-replay/unlock-fresh-r2/main/screenshots/shot0002.png"
+      ],
+      "engine_sha256": "1e13d27952e747bc85353ee676978bda7222560ea7e16849ec5112ba0bb1474b"
+    },
+    {
+      "run": "unlock-partial-r2",
+      "briefings": [
+        0
+      ],
+      "progress_preserved": true,
+      "images": [
+        "profiles-local/level-replay/unlock-partial-r2/main/screenshots/shot0000.png",
+        "profiles-local/level-replay/unlock-partial-r2/main/screenshots/shot0001.png",
+        "profiles-local/level-replay/unlock-partial-r2/main/screenshots/shot0002.png"
+      ],
+      "engine_sha256": "1e13d27952e747bc85353ee676978bda7222560ea7e16849ec5112ba0bb1474b"
+    },
+    {
+      "run": "unlock-mid-r2",
+      "briefings": [
+        0,
+        1,
+        2,
+        4,
+        5,
+        7
+      ],
+      "progress_preserved": true,
+      "images": [
+        "profiles-local/level-replay/unlock-mid-r2/main/screenshots/shot0000.png",
+        "profiles-local/level-replay/unlock-mid-r2/main/screenshots/shot0001.png",
+        "profiles-local/level-replay/unlock-mid-r2/main/screenshots/shot0002.png"
+      ],
+      "engine_sha256": "1e13d27952e747bc85353ee676978bda7222560ea7e16849ec5112ba0bb1474b"
+    },
+    {
+      "run": "unlock-full-r2",
+      "briefings": [
+        0,
+        1,
+        2,
+        4,
+        5,
+        7,
+        8,
+        9,
+        10,
+        12,
+        13,
+        14
+      ],
+      "progress_preserved": true,
+      "images": [
+        "profiles-local/level-replay/unlock-full-r2/main/screenshots/shot0000.png",
+        "profiles-local/level-replay/unlock-full-r2/main/screenshots/shot0001.png",
+        "profiles-local/level-replay/unlock-full-r2/main/screenshots/shot0002.png"
+      ],
+      "engine_sha256": "1e13d27952e747bc85353ee676978bda7222560ea7e16849ec5112ba0bb1474b"
+    }
+  ],
+  "additional_checks": [
+    {
+      "run": "unlock-click",
+      "case": "menu",
+      "operation": "aa_torch",
+      "done": true,
+      "events": [
+        "[2026-10-15 12:34:06 UTC+1.000] AC_PROGRESS valid=1 completed=0 resume=0 slot=keep operation=-1 replay=0",
+        "[2026-10-15 12:34:06 UTC+1.000] AC_LEVEL_PROGRESS 7 0 skill=1",
+        "[2026-10-15 12:34:08 UTC+1.000] AC_UI_CURRENT ac_level_list",
+        "[2026-10-15 12:34:08 UTC+1.000] AC_UI drawable=1920x1080 base=1.1250 menu=1.0000 hud=1.0000 safe=1.0000",
+        "[2026-10-15 12:34:08 UTC+1.000] AC_UI_ROOT ac_level_list 0.000 0.000 1920.000 1080.000",
+        "[2026-10-15 12:34:08 UTC+1.000] AC_TEST_DONE"
+      ],
+      "state_before": "ACPROG1 0 0 keep\n",
+      "state_after": "ACPROG1 0 0 keep\n",
+      "images": [
+        "profiles-local/level-replay/unlock-click/main/screenshots/shot0000.png",
+        "profiles-local/level-replay/unlock-click/main/screenshots/shot0001.png",
+        "profiles-local/level-replay/unlock-click/main/screenshots/shot0002.png"
+      ],
+      "scope": "Isolated seeded profile; synthetic native completion, not a natural playthrough.",
+      "engine_sha256": "1e13d27952e747bc85353ee676978bda7222560ea7e16849ec5112ba0bb1474b",
+      "passed": true
+    },
+    {
+      "run": "unlock-guards",
+      "case": "locked",
+      "operation": "aa_torch",
+      "done": true,
+      "events": [
+        "[2026-10-15 12:34:14 UTC+1.000] AC_LEVEL_LOCKED",
+        "[2026-10-15 12:34:14 UTC+1.000] AC_BRIEFING_LOCKED",
+        "[2026-10-15 12:34:14 UTC+1.000] AC_PROGRESS valid=1 completed=0 resume=0 slot=keep operation=-1 replay=0",
+        "[2026-10-15 12:34:14 UTC+1.000] AC_LEVEL_PROGRESS 0 0 skill=1",
+        "[2026-10-15 12:34:14 UTC+1.000] AC_TEST_DONE"
+      ],
+      "state_before": "ACPROG1 0 0 keep\n",
+      "state_after": "ACPROG1 0 0 keep\n",
+      "images": [
+        "profiles-local/level-replay/unlock-guards/main/screenshots/shot0000.png"
+      ],
+      "scope": "Isolated seeded profile; synthetic native completion, not a natural playthrough.",
+      "engine_sha256": "1e13d27952e747bc85353ee676978bda7222560ea7e16849ec5112ba0bb1474b",
+      "passed": true
+    },
+    {
+      "run": "unlock-old-briefing",
+      "case": "briefing",
+      "operation": "aa_torch",
+      "done": true,
+      "events": [
+        "[2026-10-15 12:34:20 UTC+1.000] AC_BRIEFING_REPLAY aa_torch briefing/briefing1",
+        "[2026-10-15 12:34:20 UTC+1.000] AC_CONTEXT_RESTART 0 -> 0 briefing/briefing1 child=29428",
+        "[2026-10-15 12:34:22 UTC+1.000] AC_BRIEFING_STARTED briefing/briefing1",
+        "[2026-10-15 12:34:22 UTC+1.000] Saving to briefing_briefing10000AC_SAVE_PROTECTED briefing replay",
+        "[2026-10-15 12:34:26 UTC+1.000] AC_PROGRESS valid=1 completed=127 resume=7 slot=keep operation=0 replay=3",
+        "[2026-10-15 12:34:26 UTC+1.000] AC_LEVEL_PROGRESS 2097151 0 skill=1",
+        "[2026-10-15 12:34:27 UTC+1.000] AC_BRIEFING_COMPLETE",
+        "[2026-10-15 12:34:27 UTC+1.000] AC_REPLAY_RETURN_MAIN skill=1"
+      ],
+      "state_before": "ACPROG1 127 7 keep\n",
+      "state_after": "ACPROG1 127 7 keep\n",
+      "images": [],
+      "scope": "Isolated seeded profile; synthetic native completion, not a natural playthrough.",
+      "engine_sha256": "1e13d27952e747bc85353ee676978bda7222560ea7e16849ec5112ba0bb1474b",
+      "passed": true
+    },
+    {
+      "run": "unlock-43",
+      "case": "inspect",
+      "operation": "aa_torch",
+      "done": true,
+      "events": [
+        "[2026-10-15 12:34:54 UTC+1.000] AC_PROGRESS valid=1 completed=32767 resume=15 slot=- operation=-1 replay=0",
+        "[2026-10-15 12:34:54 UTC+1.000] AC_LEVEL_PROGRESS 4294967295 2097151 skill=1",
+        "[2026-10-15 12:34:56 UTC+1.000] AC_UI_CURRENT ac_briefing_room",
+        "[2026-10-15 12:34:56 UTC+1.000] AC_UI drawable=1024x768 base=0.8000 menu=1.0000 hud=1.0000 safe=1.0000",
+        "[2026-10-15 12:34:56 UTC+1.000] AC_UI_ROOT ac_briefing_room 0.000 96.000 1024.000 576.000",
+        "[2026-10-15 12:34:56 UTC+1.000] AC_TEST_DONE"
+      ],
+      "state_before": "ACPROG1 32767 15 -\n",
+      "state_after": "ACPROG1 32767 15 -\n",
+      "images": [
+        "profiles-local/level-replay/unlock-43/main/screenshots/shot0000.png",
+        "profiles-local/level-replay/unlock-43/main/screenshots/shot0001.png",
+        "profiles-local/level-replay/unlock-43/main/screenshots/shot0002.png"
+      ],
+      "scope": "Isolated seeded profile; synthetic native completion, not a natural playthrough.",
+      "engine_sha256": "1e13d27952e747bc85353ee676978bda7222560ea7e16849ec5112ba0bb1474b",
+      "passed": true
+    }
+  ]
+}

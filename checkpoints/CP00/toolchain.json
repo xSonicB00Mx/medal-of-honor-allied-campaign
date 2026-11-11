@@ -1,0 +1,27 @@
+{
+  "compiler": "MSVC 14.44.35207 (VS 2022 17.14.38)",
+  "sdk": "10.0.26100.0",
+  "cmake": "4.4.4",
+  "configuration": "RelWithDebInfo x64",
+  "parser": "winflexbison 2.5.25 / Bison 3.8.2 / Flex 2.6.4",
+  "openal": "OpenAL Soft 1.24.3",
+  "sdl": "bundled SDL 2.32.8",
+  "downloads": [
+    {
+      "file": "cmake-4.4.4-windows-x86_64.zip",
+      "sha256": "bace36e94b31c68ab6fa295f26dfa11219e0701cf7c94b0284a7d1cb13dac536"
+    },
+    {
+      "file": "gh_2.102.0_windows_amd64.zip",
+      "sha256": "ae64e556ecc240b200f7eba60d550e4bb60d78e860e69dd88c449405b86067f4"
+    },
+    {
+      "file": "openal-soft-1.24.3-bin.zip",
+      "sha256": "03c8c0c0bcdba9d3fb54b0d3c2f9a565f81b3e2a19a538dd394f9b8cb6caaa22"
+    },
+    {
+      "file": "win_flex_bison-2.5.25.zip",
+      "sha256": "8d324b62be33604b2c45ad1dd34ab93d722534448f55a16ca7292de32b6ac135"
+    }
+  ]
+}

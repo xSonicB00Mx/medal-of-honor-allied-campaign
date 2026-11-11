@@ -1,0 +1,201 @@
+{
+  "schema": 1,
+  "source_archive": "x_data.ras",
+  "source_sha256": "dcdf91e3d1097f0869a48abe8834504e02a8b53ca25234a630cd637200be7bbf",
+  "reader": "tools/ras_reader/PROVENANCE.md",
+  "members": [
+    {
+      "path": "data/database/decals/bitmaps/Blood.jpg",
+      "sha256": "90f04400f627dea0e0b51896e23953b0cca465e082b09aab6c2fdaac128382fa"
+    },
+    {
+      "path": "data/database/decals/bitmaps/Blood_alpha.jpg",
+      "sha256": "09575f703a65226857b4f0910f91c5719ffa6048fb37a8e40d2b557ba090ad46"
+    }
+  ],
+  "size": [
+    64,
+    64
+  ],
+  "alpha_extrema": [
+    0,
+    250
+  ],
+  "conversion": "Original RGB JPEG plus separate grayscale alpha, unscaled RGBA TGA. No recoloring.",
+  "usage": "Original MP1 decal for world stains; original MP1 particle image for falling drops.",
+  "package_sha256": "c9a255811bbc1f3c9447ba69c67f0030154fbc34803b2253c5a3ef5b584b0a57",
+  "redistribution": "Local only; no MP1 assets in Git",
+  "budgets": {
+    "drops": 256,
+    "drop_lifetime_ms": 2200,
+    "world_marks": "existing cg_marks_max budget"
+  },
+  "particle_import": {
+    "source": "data/database/particles/blood/blood_projectile_trail.rps",
+    "sha256": "658d9128c7033394383a5bfdfcf0621d69bf5cca9688339ef727e053e966e06b",
+    "images": [
+      {
+        "image": "blood\\splat1\\splat0000.TGA",
+        "sha256": "9e2ec55e2d15c5ff92d0a10056821692a026f08370251c5c955e192e07d0a69c",
+        "bytes": 812
+      },
+      {
+        "image": "blood\\splat1\\splat0000.PCX",
+        "sha256": "29e048a7ba9ad35f078a309302be295c3abacfb4927426b5c70f1e9b1b2ee007",
+        "bytes": 979
+      },
+      {
+        "image": "blood\\splat1\\splat0001.TGA",
+        "sha256": "a2198065dbbd886bf00113b4a722d0217081d13f3cf030af06499d8a2b3c7ea2",
+        "bytes": 812
+      },
+      {
+        "image": "blood\\splat1\\splat0001.PCX",
+        "sha256": "7336c70908d93dbea0ce0e5373bb80306b871cb60b6684d888915346fad2afb1",
+        "bytes": 973
+      },
+      {
+        "image": "blood\\splat1\\splat0002.TGA",
+        "sha256": "38d84af90c9e90750fcb37f589abdadcfd5fa98ceeb61f1b6d0bdc25826a6491",
+        "bytes": 812
+      },
+      {
+        "image": "blood\\splat1\\splat0002.PCX",
+        "sha256": "19cfb4f03916e1d25ccbc6e12c5c9585fc109a3f66d2a92aab09b094ed0e95cc",
+        "bytes": 981
+      },
+      {
+        "image": "blood\\splat1\\splat0003.TGA",
+        "sha256": "21c0d17e2921ad345ef9cbc05ed9066ceb8fbf8037a58eb65ad50a3dca9b08fc",
+        "bytes": 812
+      },
+      {
+        "image": "blood\\splat1\\splat0003.PCX",
+        "sha256": "d9c2c723880f6db635bbbda9e4ffab2a3ca249727ba2012f90b94f6213e4a7f5",
+        "bytes": 991
+      },
+      {
+        "image": "blood\\splat1\\splat0004.TGA",
+        "sha256": "77c8028ebafb46bcdf6c0532382295d3ca3f6b29afd0f9bf3501d6a4e71ce2f5",
+        "bytes": 812
+      },
+      {
+        "image": "blood\\splat1\\splat0004.PCX",
+        "sha256": "4c69b13faee947d8e86490db6be8460f09d6a368684a1360e3d154ba6e01b18b",
+        "bytes": 992
+      },
+      {
+        "image": "blood\\splat1\\splat0005.TGA",
+        "sha256": "f3a94300c1bcccdb405c5fac843ea0fc838b1a957261cbdf9fbebd046349130d",
+        "bytes": 812
+      },
+      {
+        "image": "blood\\splat1\\splat0005.PCX",
+        "sha256": "b459a38d2396fd9ba089bf828cab0a059e2306fa7d69a0589a6e4d6318174a50",
+        "bytes": 997
+      },
+      {
+        "image": "blood\\splat1\\splat0006.TGA",
+        "sha256": "6ba09ccee2ef172850ffef1d7ab5b6906ef7e55097cbbbe883b91070d73ee888",
+        "bytes": 812
+      },
+      {
+        "image": "blood\\splat1\\splat0006.PCX",
+        "sha256": "de1759e52eaf1ef9c3433ec935934a3b13902271d5389296a6fea9cd01c819f2",
+        "bytes": 1017
+      },
+      {
+        "image": "blood\\splat1\\splat0007.TGA",
+        "sha256": "ba28fbf6450d2c1091a9d646131c38738c6c4849e1f7e0b70afbf09a775c33cf",
+        "bytes": 812
+      },
+      {
+        "image": "blood\\splat1\\splat0007.PCX",
+        "sha256": "7723c258623610f0a919d2e8b07ed92590d22cc102f3245a71e45359d578ffe6",
+        "bytes": 1022
+      },
+      {
+        "image": "blood\\splat1\\splat0008.TGA",
+        "sha256": "0f6d47ea5c82e8a34b3fabf930d896bec7603eda6226e2d998ca89a709d88ccd",
+        "bytes": 812
+      },
+      {
+        "image": "blood\\splat1\\splat0008.PCX",
+        "sha256": "98454c074aca5cec443e78cb96fbc2443ff1232e05e59ac67a7debfeb7d31d27",
+        "bytes": 1040
+      },
+      {
+        "image": "blood\\splat1\\splat0009.TGA",
+        "sha256": "6e636a4a835c0943b11d7ee2827610142c12633d862008caed736e59c6851532",
+        "bytes": 812
+      },
+      {
+        "image": "blood\\splat1\\splat0009.PCX",
+        "sha256": "0328bfba818889dbe1209d3c232dd16ef6e0f50c3075f0cd369571b2dd5fddd9",
+        "bytes": 1039
+      },
+      {
+        "image": "blood\\splat1\\splat0010.TGA",
+        "sha256": "b8fa09db339c6a03bc2b831c091f083bd4901787f48d1b7368ccc55690a09876",
+        "bytes": 812
+      },
+      {
+        "image": "blood\\splat1\\splat0010.PCX",
+        "sha256": "5e59e2463d5b371b3af403fdeabc05710c632a28ad447458578596337ef0aa49",
+        "bytes": 1045
+      },
+      {
+        "image": "blood\\splat1\\splat0011.TGA",
+        "sha256": "1dec1eae32069cf94df5fec8bbba45204e16b0a2cc653b5b8feb4a6a221f3576",
+        "bytes": 812
+      },
+      {
+        "image": "blood\\splat1\\splat0011.PCX",
+        "sha256": "3bd5cbcd603658734603772c74bf5c7a461161b9f97cb6c304395023af740b70",
+        "bytes": 1039
+      },
+      {
+        "image": "blood\\splat1\\splat0012.TGA",
+        "sha256": "b6cc083c4814d0c9db4fc72fc80621ed96ca50ffdea3df3b1bf4791dbf37d352",
+        "bytes": 812
+      },
+      {
+        "image": "blood\\splat1\\splat0012.PCX",
+        "sha256": "d4024e6714984bf62bcc5b46c516b64eb7b10990f77a1c75a54ffa0305b48ad1",
+        "bytes": 1028
+      },
+      {
+        "image": "blood\\splat1\\splat0013.TGA",
+        "sha256": "dc3ce4223e7d991c70aa5b3f42e36ee8f9e04e82304c47213fe7b501b8c065de",
+        "bytes": 812
+      },
+      {
+        "image": "blood\\splat1\\splat0013.PCX",
+        "sha256": "e4fbf4ddb664b2af1797902cac43030357acdf0f309b209385263bd30c805f3f",
+        "bytes": 1011
+      },
+      {
+        "image": "blood\\splat1\\splat0014.TGA",
+        "sha256": "09d2971562ea18d2a85a7d340796f3ccdf19d2c6cadeae6a3f2641d224d8d502",
+        "bytes": 812
+      },
+      {
+        "image": "blood\\splat1\\splat0014.PCX",
+        "sha256": "36a9e6a5c585fcc7380bdae94cddc94fdb9ecaa714e1619e03fafe95c5be48f0",
+        "bytes": 995
+      },
+      {
+        "image": "blood\\splat1\\splat0015.TGA",
+        "sha256": "6221dd1ac429b3ce84b9ebf1fcfd48a13a9e052a7f232cea33285d9fe307fbd7",
+        "bytes": 812
+      },
+      {
+        "image": "blood\\splat1\\splat0015.PCX",
+        "sha256": "5bca14ded1d351df034df07aacd7c3ea0794e9da85326e5e7e7553b631b79e31",
+        "bytes": 983
+      }
+    ],
+    "conversion": "Embedded original 16x16 TGA RGB plus PCX alpha; no recoloring/resizing",
+    "simulation": "Independent bounded collision simulation"
+  }
+}

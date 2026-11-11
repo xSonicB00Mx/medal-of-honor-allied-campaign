@@ -28,7 +28,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 extern "C" {
 #endif
 
-#define	REF_API_VERSION		14
+#define	REF_API_VERSION		15
 
 typedef struct dtiki_s dtiki_t;
 typedef struct skelAnimFrame_s skelAnimFrame_t;
@@ -72,6 +72,7 @@ typedef struct {
 	void	(*ClearScene)( void );
 	void	(*AddRefEntityToScene)( const refEntity_t *re, int parentEntityNumber );
 	qboolean(*AddPolyToScene)( qhandle_t hShader , int numVerts, const polyVert_t *verts, int num );
+    qboolean (*AddEntityPolyToScene)(qhandle_t shader, int numVerts, const polyVert_t *verts, const refEntity_t *entity);
 	int		(*LightForPoint)( vec3_t point, vec3_t ambientLight, vec3_t directedLight, vec3_t lightDir );
 	void	(*AddLightToScene)( const vec3_t org, float intensity, float r, float g, float b, int type );
 	void	(*AddAdditiveLightToScene)( const vec3_t org, float intensity, float r, float g, float b );

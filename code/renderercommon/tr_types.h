@@ -153,6 +153,11 @@ typedef struct {
 	int         bonestart;
 	int         morphstart;
 	qboolean    hasMorph;
+    qboolean    acFullDetail; // bounded close-range wound geometry; never networked
+    qboolean    acShadowCaster; // renderer-only, never saved/networked
+    int         acShadowOwner; // attachments share their parent silhouette
+    unsigned int acMotionId; // stable temporary-model pool slot; renderer-only
+    unsigned int acMotionGeneration; // spawn time guards recycled slots; NOT archived
 } refEntity_t;
 
 
@@ -198,6 +203,8 @@ typedef struct {
     float       sky_alpha;
     vec3_t      sky_origin;
     vec3_t      sky_axis[3];
+    // Transient mission weather effect, independent of r_fastsky. Not archived.
+    float       acLightning;
 } refdef_t;
 
 

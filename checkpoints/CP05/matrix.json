@@ -1,0 +1,65 @@
+[
+  {
+    "run": "final-AA-rear",
+    "valid_wounds": 14,
+    "restored": 14,
+    "stable_transforms": true,
+    "exit_checked": true
+  },
+  {
+    "run": "final-AA-side",
+    "valid_wounds": 16,
+    "restored": 16,
+    "stable_transforms": true,
+    "exit_checked": true
+  },
+  {
+    "run": "final-SH-front",
+    "valid_wounds": 14,
+    "restored": 14,
+    "stable_transforms": true,
+    "exit_checked": true
+  },
+  {
+    "run": "final-SH-rear",
+    "valid_wounds": 14,
+    "restored": 14,
+    "stable_transforms": true,
+    "exit_checked": true
+  },
+  {
+    "run": "final-SH-side",
+    "valid_wounds": 14,
+    "restored": 14,
+    "stable_transforms": true,
+    "exit_checked": true
+  },
+  {
+    "run": "final-BT-front",
+    "valid_wounds": 16,
+    "restored": 16,
+    "stable_transforms": true,
+    "exit_checked": true
+  },
+  {
+    "run": "final-BT-rear",
+    "valid_wounds": 14,
+    "restored": 14,
+    "stable_transforms": true,
+    "exit_checked": true
+  },
+  {
+    "run": "final-BT-side",
+    "valid_wounds": 16,
+    "restored": 16,
+    "stable_transforms": true,
+    "exit_checked": true
+  },
+  {
+    "run": "final-AA-wall",
+    "valid_wounds": 16,
+    "restored": 16,
+    "stable_transforms": true,
+    "exit_checked": true
+  }
+]

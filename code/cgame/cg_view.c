@@ -540,6 +540,8 @@ void CG_SetupFog() {
     cg.refdef.farplane_color[0] = cg.farplane_color[0];
     cg.refdef.farplane_color[1] = cg.farplane_color[1];
     cg.refdef.farplane_color[2] = cg.farplane_color[2];
+    cg.refdef.acLightning = cg.acLightning > 0.0f && cg.acLightning <= 1.0f
+        ? cg.acLightning : 0.0f;
     cg.refdef.farplane_cull = cg.farplane_cull;
     cg.refdef.skybox_farplane = cg.skyboxFarplane;
     cg.refdef.renderTerrain = cg.renderTerrain;
@@ -826,6 +828,8 @@ Generates and draws a game scene and status information at the given time.
 */
 void CG_DrawActiveFrame(int serverTime, int frameTime, stereoFrame_t stereoView, qboolean demoPlayback)
 {
+    cgi.UI_GetHighResolutionScale(cgs.uiHiResScale);
+
     cg.time         = serverTime;
     cg.frametime    = frameTime;
     cg.demoPlayback = demoPlayback;
@@ -1024,6 +1028,8 @@ void CG_DrawActiveFrame(int serverTime, int frameTime, stereoFrame_t stereoView,
 
     CG_AddBulletTracers();
     CG_AddBulletImpacts();
+    CG_ACBloodFrame();
+    CG_ACMortarFrame();
     CG_AddBeams();
 
     if (cg_acidtrip->integer) {

@@ -1263,6 +1263,7 @@ CL_Disconnect_f
 ==================
 */
 void CL_Disconnect_f( void ) {
+    AC_CancelLevelReplay();
 	qboolean bConsoleState;
 
 	if ( clc.state == CA_DISCONNECTED ) {
@@ -1300,10 +1301,7 @@ CL_Reconnect_f
 ================
 */
 void CL_Reconnect_f( void ) {
-	if ( !strlen( cl_reconnectArgs ) )
-		return;
-	Cvar_Set("ui_singlePlayerActive", "0");
-	Cbuf_AddText( va("connect %s\n", cl_reconnectArgs ) );
+    Com_Printf("Allied Campaign is single-player only.\n");
 }
 
 /*
@@ -1313,87 +1311,7 @@ CL_Connect
 ================
 */
 void CL_Connect( const char *server, netadrtype_t family ) {
-	const char *serverString;
-
-	// save arguments for reconnect
-	switch(family)
-	{
-	case netadrtype_t::NA_IP:
-		Q_strncpyz( cl_reconnectArgs, "-4 ", sizeof( cl_reconnectArgs ) );
-		break;
-	case netadrtype_t::NA_IP6:
-		Q_strncpyz( cl_reconnectArgs, "-6 ", sizeof( cl_reconnectArgs ) );
-		break;
-	default:
-		cl_reconnectArgs[0] = 0;
-		break;
-	}
-
-	Q_strcat( cl_reconnectArgs, sizeof( cl_reconnectArgs ), server );
-
-	Cvar_Set( "ui_singlePlayerActive", "0" );
-
-	// fire a message off to the motd server
-	CL_RequestMotd();
-
-	// clear any previous "server full" type messages
-	clc.serverMessage[ 0 ] = 0;
-
-	if( com_sv_running->integer && !strcmp( server, "localhost" ) ) {
-		// if running a local server, kill it
-		SV_Shutdown( "Server quit" );
-	}
-
-	// make sure a local server is killed
-	Cvar_Set( "sv_killserver", "1" );
-	SV_Frame( 0 );
-
-	CL_Disconnect();
-	UI_CloseConsole();
-
-	/* MrE: 2000-09-13: now called in CL_DownloadsComplete
-	CL_FlushMemory( );
-	*/
-
-	Q_strncpyz( clc.servername, server, sizeof( clc.servername ) );
-
-	if( !NET_StringToAdr( clc.servername, &clc.serverAddress, family ) ) {
-		Com_Printf( "Bad server address\n" );
-		clc.state = CA_DISCONNECTED;
-		UI_PushMenu("badserveraddy");
-		return;
-	}
-	if( clc.serverAddress.port == 0 ) {
-		clc.serverAddress.port = BigShort( PORT_SERVER );
-	}
-	serverString = NET_AdrToStringwPort(clc.serverAddress);
-
-	Com_Printf( "%s resolved to %s\n", clc.servername, serverString );
-
-	if (cl_guidServerUniq->integer)
-		CL_UpdateGUID(serverString, strlen(serverString));
-	else
-		CL_UpdateGUID(NULL, 0);
-
-	// if we aren't playing on a lan, we need to authenticate
-	// with the cd key
-	// wombat: no authorization in mohaa. need to send challenge to server though
-	if( NET_IsLocalAddress( clc.serverAddress ) ) {
-		clc.state = CA_CHALLENGING;
-	}
-	else {
-		clc.state = CA_CONNECTING;
-
-		// Set a client challenge number that ideally is mirrored back by the server.
-		clc.challenge = (((unsigned int)rand() << 16) ^ (unsigned int)rand()) ^ Com_Milliseconds();
-	}
-
-	clc.connectTime = -99999;	// CL_CheckForResend() will fire immediately
-	clc.connectPacketCount = 0;
-	clc.connectStartTime = cls.realtime;
-
-	// server connection string
-	Cvar_Set( "cl_currentServerAddress", server );
+    Com_Printf("Allied Campaign is single-player only.\n");
 }
 
 /*
@@ -3627,7 +3545,7 @@ void CL_Init( void ) {
 #endif
 
 	cl_altbindings = Cvar_Get( "cl_altbindings", "0", CVAR_ARCHIVE );
-	cl_ctrlbindings = Cvar_Get( "cl_altbindings", "0", CVAR_ARCHIVE );
+	cl_ctrlbindings = Cvar_Get( "cl_ctrlbindings", "0", CVAR_ARCHIVE );
 
 	cl_conXOffset = Cvar_Get ("cl_conXOffset", "0", 0);
 #ifdef MACOS_X

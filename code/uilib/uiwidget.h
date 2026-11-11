@@ -134,6 +134,8 @@ protected:
     float                 m_indent;
     float                 m_bottomindent;
     UIReggedMaterial     *m_material;
+    bool m_widescreenPicture;
+    bool m_wideCanvas;
     UIReggedMaterial     *m_hovermaterial;
     UIReggedMaterial     *m_pressedmaterial;
     bool                  m_hovermaterial_active;
@@ -232,6 +234,8 @@ public:
     void LayoutBorderColor(Event *ev);
     void LayoutShader(Event *ev);
     void LayoutTileShader(Event *ev);
+    void LayoutWidescreenPicture(Event *ev) { m_widescreenPicture = true; }
+    void LayoutWideCanvas(Event *ev) { m_wideCanvas = true; }
     void LayoutHoverShader(Event *ev);
     void LayoutPressedShader(Event *ev);
     void LayoutFadeIn(Event *ev);
@@ -259,6 +263,8 @@ public:
     //====
 
     void            SetVirtualScale(vec2_t out);
+    void            SetLayoutScale(vec2_t out);
+    bool            IsCampaignHUD() const;
     void            SetDontLocalize();
     void            setParent(UIWidget *parent);
     class UIWidget *getParent(void);
@@ -277,6 +283,7 @@ public:
     bool               IsDying(void);
     class UIWidget    *FindResponder(const UIPoint2D& pos);
     void               setFont(const char *name);
+    str                menuFontName(const char *name);
     void               setFontHorizontalAlignment(fonthorzjustify_t alignment);
     void               setFontVerticalAlignment(fontvertjustify_t alignment);
     void               setShow(bool visible);
@@ -366,6 +373,9 @@ public:
 class UIWidgetContainer : public UIWidget
 {
     UColor   m_bgfill;
+    UIReggedMaterial *m_widescreenBackground;
+    UIReggedMaterial *m_loadingBackground;
+    float m_loadingCrop[4];
     qboolean m_fullscreen;
     int      m_vidmode;
     int      m_currentwidnum;
@@ -385,6 +395,8 @@ public:
 
     void      Realign(void) override;
     void      SetBGFill(Event *ev);
+    void      SetWidescreenBackground(Event *ev);
+    void      SetLoadingBackground(Event *ev);
     void      SetFullscreen(Event *ev);
     void      SetVidMode(Event *ev);
     int       getVidMode(void);

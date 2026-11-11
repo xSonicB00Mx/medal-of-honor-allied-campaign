@@ -132,7 +132,7 @@ R_BoxSurfaces_r
 
 =================
 */
-void R_BoxSurfaces_r(mnode_t *node, vec3_t mins, vec3_t maxs, surfaceType_t **list, int listsize, int *listlength, vec3_t dir) {
+void R_BoxSurfaces_r(mnode_t *node, vec3_t mins, vec3_t maxs, surfaceType_t **list, int listsize, int *listlength, vec3_t dir, qboolean precise) {
 
 	int			s, c;
 	msurface_t	*surf, **mark;
@@ -145,7 +145,7 @@ void R_BoxSurfaces_r(mnode_t *node, vec3_t mins, vec3_t maxs, surfaceType_t **li
 		} else if (s == 2) {
 			node = node->children[1];
 		} else {
-			R_BoxSurfaces_r(node->children[0], mins, maxs, list, listsize, listlength, dir);
+			R_BoxSurfaces_r(node->children[0], mins, maxs, list, listsize, listlength, dir, precise);
 			node = node->children[1];
 		}
 	}
@@ -159,11 +159,11 @@ void R_BoxSurfaces_r(mnode_t *node, vec3_t mins, vec3_t maxs, surfaceType_t **li
 		//
 		surf = *mark;
 		// check if the surface has NOIMPACT or NOMARKS set
-		if ( ( surf->shader->surfaceFlags & ( SURF_NOIMPACT | SURF_NOMARKS ) ) ) {
+		if ( ( surf->shader->surfaceFlags & (precise ? (SURF_SKY|SURF_NODRAW|SURF_PUDDLE) : ( SURF_NOIMPACT | SURF_NOMARKS )) ) ) {
 			surf->viewCount = tr.viewCount;
 		}
 		// extra check for surfaces to avoid list overflows
-		else if (*(surf->data) == SF_FACE) {
+		else if (*(surf->data) == SF_FACE && !precise) {
 			// the face plane should go through the box
 			s = BoxOnPlaneSide( mins, maxs, &(( srfSurfaceFace_t * ) surf->data)->plane );
 			if (s == 1 || s == 2) {
@@ -173,7 +173,7 @@ void R_BoxSurfaces_r(mnode_t *node, vec3_t mins, vec3_t maxs, surfaceType_t **li
 				surf->viewCount = tr.viewCount;
 			}
 		}
-		else if (*(surfaceType_t *) (surf->data) != SF_GRID) surf->viewCount = tr.viewCount;
+		else if (*(surfaceType_t *) (surf->data) != SF_GRID && !(precise && (*(surf->data)==SF_TRIANGLES || *(surf->data)==SF_FACE))) surf->viewCount = tr.viewCount;
 		// check the viewCount because the surface may have
 		// already been added if it spans multiple leafs
 		if (surf->viewCount != tr.viewCount) {
@@ -207,7 +207,7 @@ void R_AddMarkFragments(int numClipPoints, vec3_t clipPoints[2][MAX_VERTS_ON_POL
 
 		R_ChopPolyBehindPlane( numClipPoints, clipPoints[pingPong],
 						   &numClipPoints, clipPoints[!pingPong],
-							normals[i], dists[i], 0.5 );
+							normals[i], dists[i], fOnEpsilon < 0 ? -fOnEpsilon : 0.5 );
 		pingPong ^= 1;
 		if ( numClipPoints == 0 ) {
 			break;
@@ -413,6 +413,10 @@ void R_AddMarkFragmentsToTerrain(
     dists[numPlanes - 1] += 108.f;
 }
 
+static float AC_MarkTriangleDistance(const vec3_t p,const vec3_t d,const vec3_t a,const vec3_t b,const vec3_t c) {
+    vec3_t e1,e2,h,v,q;float det,u,w,t;VectorSubtract(b,a,e1);VectorSubtract(c,a,e2);CrossProduct(d,e2,h);det=DotProduct(e1,h);if(fabsf(det)<1e-6f)return 9999;
+    VectorSubtract(p,a,v);u=DotProduct(v,h)/det;if(u<0 || u>1)return 9999;CrossProduct(v,e1,q);w=DotProduct(d,q)/det;if(w<0 || u+w>1)return 9999;t=DotProduct(e2,q)/det;return t;
+}
 void R_TessellateMarkFragments(
 	int* pReturnedPoints,
 	int* pReturnedFragments,
@@ -442,7 +446,7 @@ void R_TessellateMarkFragments(
 	cTerraPatchUnpacked_t* terraPatch;
 	int numClipPoints;
 
-    bSkipTerrain = ter_minMarkRadius->value * ter_minMarkRadius->value >= (long double)fRadiusSquared;
+    bSkipTerrain = fRadiusSquared >= 0 && ter_minMarkRadius->value * ter_minMarkRadius->value >= (long double)fRadiusSquared;
 
 	for (i = 0; i < numsurfaces; i++) {
 		if (*surfaces[i] == SF_GRID) {
@@ -492,7 +496,7 @@ void R_TessellateMarkFragments(
                             numPlanes, normals, dists,
                             maxPoints, pointBuffer,
                             fragmentBuffer,
-                            pReturnedPoints, pReturnedFragments, 0.f);
+                            pReturnedPoints, pReturnedFragments, fRadiusSquared < 0 ? -0.01f : 0.f);
 
                         if (*pReturnedFragments == maxFragments) {
                             return;	// not enough space for more fragments
@@ -516,7 +520,7 @@ void R_TessellateMarkFragments(
                             numPlanes, normals, dists,
                             maxPoints, pointBuffer,
                             fragmentBuffer,
-                            pReturnedPoints, pReturnedFragments, 0.f);
+                            pReturnedPoints, pReturnedFragments, fRadiusSquared < 0 ? -0.01f : 0.f);
 
                         if (*pReturnedFragments == maxFragments) {
                             return;	// not enough space for more fragments
@@ -527,7 +531,7 @@ void R_TessellateMarkFragments(
 		} else if (*surfaces[i] == SF_FACE) {
             surf = (srfSurfaceFace_t*)surfaces[i];
             // check the normal of this face
-            if (DotProduct(surf->plane.normal, projectionDir) > -0.5) {
+            if (fRadiusSquared >= 0 && DotProduct(surf->plane.normal, projectionDir) > -0.5) {
                 continue;
             }
 
@@ -539,15 +543,28 @@ void R_TessellateMarkFragments(
                     VectorMA(v, MARKER_OFFSET, surf->plane.normal, clipPoints[0][j]);
                 }
 
+                if(fRadiusSquared < 0) {
+                    VectorSubtract(clipPoints[0][0],clipPoints[0][1],v1);VectorSubtract(clipPoints[0][2],clipPoints[0][1],v2);CrossProduct(v1,v2,normal);VectorNormalize(normal);
+                    if(DotProduct(normal,projectionDir)>-0.1f) continue;
+                }
                 // add the fragments of this face
                 R_AddMarkFragments(3, clipPoints,
                     numPlanes, normals, dists,
                     maxPoints, pointBuffer,
                     fragmentBuffer,
-                    pReturnedPoints, pReturnedFragments, 0.f);
+                    pReturnedPoints, pReturnedFragments, fRadiusSquared < 0 ? -0.01f : 0.f);
                 if (*pReturnedFragments == maxFragments) {
                     return;	// not enough space for more fragments
                 }
+            }
+        } else if (*surfaces[i] == SF_TRIANGLES && fRadiusSquared < 0) {
+            srfTriangles_t *tri=(srfTriangles_t*)surfaces[i];
+            for(k=0;k<tri->numIndexes;k+=3) {
+                for(j=0;j<3;++j) VectorCopy(tri->verts[tri->indexes[k+j]].xyz,clipPoints[0][j]);
+                VectorSubtract(clipPoints[0][0],clipPoints[0][1],v1);VectorSubtract(clipPoints[0][2],clipPoints[0][1],v2);CrossProduct(v1,v2,normal);VectorNormalize(normal);
+                if(DotProduct(normal,projectionDir)>-0.1f) continue;
+                if(*pReturnedFragments>=maxFragments)return;
+                R_AddMarkFragments(3,clipPoints,numPlanes,normals,dists,maxPoints,pointBuffer,fragmentBuffer,pReturnedPoints,pReturnedFragments,-0.01f);
             }
 		} else if (*surfaces[i] == SF_TERRAIN_PATCH) {
 			terraPatch = (cTerraPatchUnpacked_t*)surfaces[i];
@@ -609,6 +626,11 @@ int R_MarkFragments( int numPoints, const vec3_t *points, const vec3_t projectio
 		AddPointToBounds( points[i], mins, maxs );
 		VectorAdd( points[i], projection, temp );
 		AddPointToBounds( temp, mins, maxs );
+		// Curved-road collision meshes can sit slightly above their draw mesh.
+		if (fRadiusSquared < 0) {
+			VectorMA(points[i], 2.f, projectionDir, temp);
+			AddPointToBounds(temp, mins, maxs);
+		}
 		// make sure we get all the leafs (also the one(s) in front of the hit surface)
 		VectorMA( points[i], -20, projectionDir, temp );
 		AddPointToBounds( temp, mins, maxs );
@@ -623,6 +645,7 @@ int R_MarkFragments( int numPoints, const vec3_t *points, const vec3_t projectio
     if (radius >= 32.f) frontpush = 32.f;
     backpush = radius;
 	if (radius >= 20.f) backpush = radius;
+    if (fRadiusSquared < 0) frontpush = backpush = 0.5f;
 
 	if (numPoints > MAX_VERTS_ON_POLY) numPoints = MAX_VERTS_ON_POLY;
 	// create the bounding planes for the to be projected polygon
@@ -645,8 +668,51 @@ int R_MarkFragments( int numPoints, const vec3_t *points, const vec3_t projectio
 	returnedFragments = 0;
 	numsurfaces = 0;
 
-	R_BoxSurfaces_r(tr.world->nodes, mins, maxs, surfaces, 64, &numsurfaces, projectionDir);
-	if (!numsurfaces) return 0;
+	R_BoxSurfaces_r(tr.world->nodes, mins, maxs, surfaces, 64, &numsurfaces, projectionDir, fRadiusSquared < 0);
+    // The legacy BSP surface collector does not include terrain patches.
+    // Precise blood marks clip against the real heightfield, without deep projection.
+    if (fRadiusSquared < 0) {
+        int patchIndex, x, y, t, k;
+        for (patchIndex=0;patchIndex<tr.world->numTerraPatches;++patchIndex) {
+            cTerraPatchUnpacked_t *patch=&tr.world->terraPatches[patchIndex];
+            if(maxs[0]<patch->x0 || mins[0]>patch->x0+512 || maxs[1]<patch->y0 || mins[1]>patch->y0+512) continue;
+            for(x=0;x<8;++x) for(y=0;y<8;++y) {
+                vec3_t v[4], clip[2][MAX_VERTS_ON_POLY]; int mode, first;
+                const int odd[2][3]={{0,3,1},{2,1,3}}, even[2][3]={{3,2,0},{1,0,2}};
+                const int (*indices)[3]=((x+y)&1)?odd:even;
+                if(maxs[0]<patch->x0+x*64 || mins[0]>patch->x0+(x+1)*64 || maxs[1]<patch->y0+y*64 || mins[1]>patch->y0+(y+1)*64) continue;
+                mode=ri.CM_TerrainSquareType(patchIndex,x,y); if(!mode) continue;
+                for(k=0;k<4;++k) { int dx=(k==1 || k==2),dy=(k>=2); v[k][0]=patch->x0+(x+dx)*64;v[k][1]=patch->y0+(y+dy)*64;v[k][2]=patch->z0+2*patch->heightmap[(y+dy)*9+x+dx]; }
+                for(t=0;t<2;++t) {
+                    if(((x+y)&1) ? (mode==(t?6:3)) : (mode==(t?4:5))) continue;
+                    if(returnedFragments>=maxFragments) return returnedFragments;
+                    first=returnedFragments;
+                    for(k=0;k<3;++k) VectorCopy(v[indices[t][k]],clip[0][k]);
+                    R_AddMarkFragments(3,clip,numPoints+2,normals,dists,maxPoints,pointBuffer,fragmentBuffer,&returnedPoints,&returnedFragments,-0.01f);
+                    if(returnedFragments>first) fragmentBuffer[first].iIndex=patchIndex+1;
+                }
+            }
+        }
+    }
+    if(fRadiusSquared<0) {
+        // Reconcile the collision proxy with the nearest actual draw surface.
+        // AA curves can stand above the proxy; BT curved roads can lie just
+        // below it. Allow at most 2 units behind the hit for a curve only,
+        // never a deeper floor or a flat surface behind a wall. Keep the thin
+        // clipping slab instead of projecting through all nearby layers.
+        vec3_t center;int u,n,m,bestSurface=-1;float best=9999;VectorClear(center);for(u=0;u<numPoints;++u)VectorMA(center,1.f/numPoints,points[u],center);
+        for(u=0;u<numsurfaces;++u) {
+            if(*surfaces[u]==SF_GRID) { srfGridMesh_t *grid=(srfGridMesh_t*)surfaces[u];
+                for(m=0;m<grid->height-1;++m)for(n=0;n<grid->width-1;++n){drawVert_t *v=grid->verts+m*grid->width+n;float d=AC_MarkTriangleDistance(center,projectionDir,v[0].xyz,v[grid->width].xyz,v[1].xyz);if(fabsf(d)<fabsf(best)){best=d;bestSurface=u;}d=AC_MarkTriangleDistance(center,projectionDir,v[1].xyz,v[grid->width].xyz,v[grid->width+1].xyz);if(fabsf(d)<fabsf(best)){best=d;bestSurface=u;}}
+            } else if(*surfaces[u]==SF_FACE) { srfSurfaceFace_t *face=(srfSurfaceFace_t*)surfaces[u];int *ix=(int*)((byte*)face+face->ofsIndices);for(m=0;m<face->numIndices;m+=3){float d=AC_MarkTriangleDistance(center,projectionDir,face->points[ix[m]],face->points[ix[m+1]],face->points[ix[m+2]]);if(fabsf(d)<fabsf(best)){best=d;bestSurface=u;}}
+            }
+        }
+        if((best<0 && best>=-16) || (best>0 && best<=2 && bestSurface>=0 && *surfaces[bestSurface]==SF_GRID)) {
+            dists[numPoints]+=best;dists[numPoints+1]-=best;
+        }
+        if(ri.Cvar_Get("ac_fx_debug","0",0)->integer>2) ri.Printf(PRINT_ALL,"AC_NEAREST %f\n",best);
+    }
+    if (!numsurfaces) return returnedFragments;
 
     R_TessellateMarkFragments(
         &returnedPoints,
@@ -796,7 +862,7 @@ int R_MarkFragments( int numPoints, const vec3_t *points, const vec3_t projectio
 #endif
 }
 
-void R_BoxSurfacesForBModel_r(bmodel_t* pBmodel, const vec3_t mins, const vec3_t maxs, surfaceType_t** list, int listsize, int* listlength, const vec3_t dir)
+void R_BoxSurfacesForBModel_r(bmodel_t* pBmodel, const vec3_t mins, const vec3_t maxs, surfaceType_t** list, int listsize, int* listlength, const vec3_t dir, qboolean precise)
 {
 	int s;
 	int c;
@@ -809,8 +875,7 @@ void R_BoxSurfacesForBModel_r(bmodel_t* pBmodel, const vec3_t mins, const vec3_t
 		s = surf->shader->surfaceFlags;
 		c = surf->shader->contentFlags;
 
-		if (!(s & SURF_NOIMPACT)
-			&& !(s & SURF_NOMARKS)
+		if (!(s & (precise ? (SURF_SKY|SURF_NODRAW|SURF_PUDDLE) : (SURF_NOIMPACT|SURF_NOMARKS)))
 			&& !(c & CONTENTS_FOG))
 		{
 			switch (*surf->data)
@@ -831,7 +896,7 @@ void R_BoxSurfacesForBModel_r(bmodel_t* pBmodel, const vec3_t mins, const vec3_t
 				break;
 			}
             case SF_GRID:
-                surf->viewCount = tr.viewCount;
+                if(!precise)surf->viewCount = tr.viewCount;
 				break;
 			default:
 				break;
@@ -920,17 +985,17 @@ int R_MarkFragmentsForInlineModel(clipHandle_t bmodel, const vec3_t vAngles, con
 	}
 
 	VectorCopy(vTransProjDir, normals[numPoints]);
-	dists[numPoints] = DotProduct(normals[numPoints], vTransPoints[0]) - 32.f;
+	dists[numPoints] = DotProduct(normals[numPoints], vTransPoints[0]) - (fRadiusSquared<0 ? .5f : 32.f);
 
 	VectorCopy(vTransProjDir, normals[numPoints + 1]);
 	VectorInverse(normals[numPoints + 1]);
-	dists[numPoints + 1] = DotProduct(normals[numPoints + 1], vTransPoints[0]) - 20.f;
+	dists[numPoints + 1] = DotProduct(normals[numPoints + 1], vTransPoints[0]) - (fRadiusSquared<0 ? .5f : 20.f);
 
 	returnedPoints = 0;
 	returnedFragments = 0;
 	numsurfaces = 0;
 
-	R_BoxSurfacesForBModel_r(pBmodel, vMins, vMaxs, surfaces, ARRAY_LEN(surfaces), &numsurfaces, vTransProjDir);
+	R_BoxSurfacesForBModel_r(pBmodel, vMins, vMaxs, surfaces, ARRAY_LEN(surfaces), &numsurfaces, vTransProjDir, fRadiusSquared<0);
 	if (!numsurfaces) {
 		return 0;
 	}

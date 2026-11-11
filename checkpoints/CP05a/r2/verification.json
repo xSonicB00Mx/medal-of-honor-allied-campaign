@@ -1,0 +1,115 @@
+{
+  "road-before": {
+    "save_sha256": "641aff78c5af19c765724e2e9493e0705f738f089c2ccd9252f785480a8adaf3",
+    "binaries": {
+      "openmohaa.exe": "7f4de9225dc4c7ed8c8b78d5077a41fb25c8fc91e284e29af5af948af9240b65",
+      "game.dll": "01e4b64526057305667b835661ed022173fd1d4fca7e38cdf02b1f340bcc7d83",
+      "cgame.dll": "5aea335ba5f4418381bb7af57fbb9cb6f9bf15a94d8db1f093751df418e417ee"
+    },
+    "projection_attempts": 13,
+    "zero_fragment_attempts": 12,
+    "created_marks": 1,
+    "expiry_ms": [
+      30016
+    ],
+    "nearest_surface_distances": [
+      1.819245,
+      1.828827,
+      1.829259,
+      1.540985,
+      1.692876,
+      1.289994,
+      1.460255,
+      1.263943,
+      1.255385,
+      1.432895,
+      1.485983,
+      1.469768,
+      1.463553
+    ]
+  },
+  "road-after": {
+    "save_sha256": "641aff78c5af19c765724e2e9493e0705f738f089c2ccd9252f785480a8adaf3",
+    "binaries": {
+      "openmohaa.exe": "e9785d661bea4573ae0dbe666979d9407b7e804d0b27bc49e6770a7883b6e870",
+      "game.dll": "01e4b64526057305667b835661ed022173fd1d4fca7e38cdf02b1f340bcc7d83",
+      "cgame.dll": "5aea335ba5f4418381bb7af57fbb9cb6f9bf15a94d8db1f093751df418e417ee"
+    },
+    "projection_attempts": 17,
+    "zero_fragment_attempts": 0,
+    "created_marks": 17,
+    "expiry_ms": [
+      30018,
+      30016,
+      30016,
+      30016,
+      30012,
+      30016,
+      30016,
+      30016,
+      30018,
+      30017,
+      30015,
+      30015,
+      30015,
+      30017,
+      30001,
+      30001,
+      30016
+    ],
+    "nearest_surface_distances": [
+      1.833253,
+      1.831826,
+      1.824683,
+      1.828063,
+      1.364258,
+      1.465636,
+      1.268997,
+      1.260366,
+      1.438245,
+      1.721984,
+      1.676778,
+      1.712173,
+      1.707148,
+      1.702681,
+      1.487355,
+      1.471627,
+      1.454057
+    ]
+  },
+  "blocker_save_load": {
+    "run": "r2-AA-blocker",
+    "occluded_no_hit": true,
+    "disabled_no_hit": true,
+    "post_load_hit": true,
+    "removed_wounds_not_loaded": true,
+    "one_original_death": true
+  },
+  "visual_review": {
+    "before": "profiles-local/CP05a-r2/road-before/maintt/screenshots/shot0002.png",
+    "after": "profiles-local/CP05a-r2/road-after/maintt/screenshots/shot0002.png",
+    "after_about_26_seconds": "profiles-local/CP05a-r2/road-after/maintt/screenshots/shot0003.png",
+    "result": "Visible stains on dirt road only after fix; remain in later screenshot. Same save/fixture, native shot timings/seeds may differ."
+  },
+  "AA_wall_floor": {
+    "run": "r2-AA-wall-confirmed",
+    "marks_created": 13,
+    "expiry_ms": [
+      30016,
+      30016,
+      30016,
+      30016,
+      30016,
+      30016,
+      30016,
+      30001,
+      30001,
+      30014,
+      30016,
+      30016,
+      30016
+    ],
+    "rear_wall_confirmed": true
+  },
+  "user_profile_files_unchanged": 47
+}

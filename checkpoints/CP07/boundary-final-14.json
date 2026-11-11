@@ -1,0 +1,32 @@
+{
+  "operation": "sh_berlin",
+  "case": "success",
+  "expected_completed": 32767,
+  "actual_completed": 32767,
+  "pass_state": true,
+  "exit": 1,
+  "test_stopped_after_event": true,
+  "events": [
+    "[2026-10-14 12:48:09 UTC+1.000] AC_MISSION_ENTRY sh_berlin t3l2",
+    "[2026-10-14 12:48:10 UTC+1.000] ^~^~^ Script Error : invalid waittill prespawn for 'Level'",
+    "[2026-10-14 12:48:10 UTC+1.000] D:\\Medal of Honor - Allied Campaign\\allied-campaign-workspace\\runtime-local\\CP07-r1\\mainta\\zzzzz_AC_Campaign.pk3 (2 files)",
+    "[2026-10-14 12:48:10 UTC+1.000] D:\\Medal of Honor - Allied Campaign\\allied-campaign-workspace\\runtime-local\\CP07-r1\\mainta\\zzzz_AC_UI.pk3 (2 files)",
+    "[2026-10-14 12:48:10 UTC+1.000] D:\\Medal of Honor - Allied Campaign\\allied-campaign-workspace\\runtime-local\\CP07-r1\\main\\zzzzz_AC_Campaign.pk3 (3 files)",
+    "[2026-10-14 12:48:10 UTC+1.000] D:\\Medal of Honor - Allied Campaign\\allied-campaign-workspace\\runtime-local\\CP07-r1\\main\\zzzz_AC_Wounds.pk3 (3 files)",
+    "[2026-10-14 12:48:10 UTC+1.000] D:\\Medal of Honor - Allied Campaign\\allied-campaign-workspace\\runtime-local\\CP07-r1\\main\\zzzz_AC_UI.pk3 (2 files)",
+    "[2026-10-14 12:48:10 UTC+1.000] D:\\Medal of Honor - Allied Campaign\\allied-campaign-workspace\\runtime-local\\CP07-r1\\main\\zzzz_AC_MP1.pk3 (18 files)",
+    "[2026-10-14 12:48:11 UTC+1.000] ^~^~^ Script Error : invalid waittill spawn for 'Level'",
+    "[2026-10-14 12:48:11 UTC+1.000] AC_PROGRESS_COMMIT completed=16383 resume=14 slot=t3l20000",
+    "[2026-10-14 12:48:15 UTC+1.000] AC_PROGRESS valid=1 completed=16383 resume=14 slot=t3l20000 operation=14 replay=0",
+    "[2026-10-14 12:48:23 UTC+1.000] AC_PROGRESS valid=1 completed=16383 resume=14 slot=t3l20000 operation=14 replay=0",
+    "[2026-10-14 12:48:23 UTC+1.000] AC_BOUNDARY_DONE",
+    "[2026-10-14 12:48:23 UTC+1.000] AC_PROGRESS_COMMIT completed=32767 resume=15 slot=-",
+    "[2026-10-14 12:48:23 UTC+1.000] AC_MISSION_COMPLETE sh_berlin"
+  ],
+  "errors": [
+    "[2026-10-14 12:48:10 UTC+1.000] ^~^~^ Script Error : invalid waittill prespawn for 'Level'",
+    "[2026-10-14 12:48:11 UTC+1.000] ^~^~^ Script Error : invalid waittill spawn for 'Level'"
+  ],
+  "scope": "Seeded test profile and synthetic native intermission/negative case; not natural mission completion",
+  "engine_sha256": "a44be3dcf26497acf1851b6c8729ed6e9298dfad97facdace7aae5936223628d"
+}

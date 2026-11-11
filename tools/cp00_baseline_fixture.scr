@@ -1,0 +1,98 @@
+// Diagnostic fixture only: no mission entity or success flag is changed.
+main:
+    level.cp00_deaths = 0
+    level.cp00_base = $player.origin
+    local.dir = angles_toforward $player.angles
+    level.cp00_target = $player.origin + local.dir * 160
+    // Reject placements inside the map. Prefer the viewing direction, then
+    // try the four cardinal directions with an actor-sized world trace.
+    // Sweep above the slope, then lower the entire actor box onto terrain.
+    local.dirs[1] = local.dir
+    local.dirs[2] = ( 1 0 0 )
+    local.dirs[3] = ( 0 1 0 )
+    local.dirs[4] = ( -1 0 0 )
+    local.dirs[5] = ( 0 -1 0 )
+    level.cp00_placement = 0
+    for (local.i = 1; local.i <= 5; local.i++)
+    {
+        local.start = $player.origin + ( 0 0 128 )
+        local.goal = local.start + local.dirs[local.i] * 160
+        local.hit = trace local.start local.goal 1 ( -16 -16 0 ) ( 16 16 94 )
+        local.error = vector_length (local.hit - local.goal)
+        if (local.error < 1)
+        {
+            local.floor = trace local.goal (local.goal - ( 0 0 256 )) 1 ( -16 -16 0 ) ( 16 16 94 )
+            local.drop = vector_length (local.goal - local.floor)
+            if ((local.drop < 1) || (local.drop >= 255))
+                continue
+            level.cp00_target = local.floor + ( 0 0 2 )
+            level.cp00_placement = local.i
+            break
+        }
+    }
+    println ("CP00_PLACEMENT=" + level.cp00_placement)
+    if (level.cp00_placement == 0)
+        end
+    level.cp00_subject = spawn models/human/german_wehrmact_soldier.tik origin level.cp00_target targetname "cp00_subject" gun "Mauser KAR 98K"
+    level.cp00_subject.origin = level.cp00_target
+    level.cp00_subject.angles = $player.angles + ( 0 180 0 )
+    level.cp00_subject threatbias ignoreme
+    level.cp00_subject ai_off
+    level.cp00_subject thread deathwatch
+    wait 0.5
+    $player give models/weapons/colt45.tik
+    $player use models/weapons/colt45.tik
+    local.aim = level.cp00_subject.origin + ( 0 0 50 )
+    local.eye = $player.origin + ( 0 0 64 )
+    $player.viewangles = vector_toangles (local.aim - local.eye)
+    println ("CP00_FIXTURE_READY origin=" + $player.origin + " target=" + level.cp00_subject.origin)
+    waitthread snapshot "alive"
+    if (level.cp00_subject.health > 0)
+        setcvar cp00_next "exec cp00/combat.cfg"
+end
+
+deathwatch:
+    self waittill death
+    // The live target is stationary for repeatable aim. Resume its normal
+    // killed-state processing immediately after the genuine death event.
+    self ai_on
+    level.cp00_deaths++
+    println ("CP00_DEATH_EVENT count=" + level.cp00_deaths)
+end
+
+aim_corpse:
+    if (level.cp00_subject != NULL)
+    {
+        local.aim = level.cp00_subject.origin + ( 0 0 8 )
+        local.eye = $player.origin + ( 0 0 64 )
+        $player.viewangles = vector_toangles (local.aim - local.eye)
+    }
+end
+
+snapshot local.label:
+    println ("CP00_SNAPSHOT_BEGIN " + local.label)
+    println ("CP00_DEATHS " + level.cp00_deaths)
+    if (level.cp00_subject != NULL)
+    {
+        println ("CP00_SUBJECT health=" + level.cp00_subject.health + " origin=" + level.cp00_subject.origin + " mins=" + level.cp00_subject.getmins + " maxs=" + level.cp00_subject.getmaxs + " anim=" + level.cp00_subject.animname)
+        local.start = level.cp00_subject.origin + ( -100 0 40 )
+        local.end = level.cp00_subject.origin + ( 100 0 40 )
+        local.hit = trace local.start local.end 0
+        println ("CP00_TRACE start=" + local.start + " end=" + local.end + " hit=" + local.hit)
+        local.start = level.cp00_subject.origin + ( -100 0 6 )
+        local.end = level.cp00_subject.origin + ( 100 0 6 )
+        local.hit = trace local.start local.end 0
+        println ("CP00_LOW_TRACE start=" + local.start + " end=" + local.end + " hit=" + local.hit)
+    }
+    for (local.i = 0; local.i < 1024; local.i++)
+    {
+        local.ent = getentbyentnum local.i
+        if (local.ent != NULL)
+        {
+            local.distance = vector_length (local.ent.origin - level.cp00_base)
+            if ((local.distance < 700) && (local.ent.model != NIL))
+                println ("CP00_ENTITY id=" + local.ent.entnum + " class=" + local.ent.classname + " model=" + local.ent.model + " health=" + local.ent.health + " origin=" + local.ent.origin)
+        }
+    }
+    println ("CP00_SNAPSHOT_END " + local.label)
+end

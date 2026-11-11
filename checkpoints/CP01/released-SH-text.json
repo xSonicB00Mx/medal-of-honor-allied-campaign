@@ -1,0 +1,17 @@
+{
+  "game": "SH",
+  "completed": true,
+  "exit_code": 0,
+  "engine_sha256": "3f73d114b38099d701fcdf87e2b6531af75df580d79a819bc3ca2a1433ae53a5",
+  "cgame_sha256": "9db11f136c37ad6698b3acc2d0343ee19d15db772a7cff82af82f919f1e526ee",
+  "errors": [],
+  "images": [
+    "profiles-local/CP01-r1/released-SH-text/mainta/screenshots/shot0000.png",
+    "profiles-local/CP01-r1/released-SH-text/mainta/screenshots/shot0001.png",
+    "profiles-local/CP01-r1/released-SH-text/mainta/screenshots/shot0002.png",
+    "profiles-local/CP01-r1/released-SH-text/mainta/screenshots/shot0003.png",
+    "profiles-local/CP01-r1/released-SH-text/mainta/screenshots/shot0004.png"
+  ],
+  "menu_preserved": true,
+  "scope": "Synthetic German text, existing native subtitle and objective renderer; real equipped optics, save/load menu. Visual review recorded separately."
+}

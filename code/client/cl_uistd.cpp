@@ -1250,7 +1250,7 @@ void UIFakkLabel::DrawStatCompass(float frac)
     vTexCoords[2][1] = 1.0;
 
     vVerts[2][0] = vCenter[0] + fCosVal * vCenter[1] - vCompassDir[0] * vCenter[0];
-    vVerts[2][1] = vCenter[1] * fSinVal + vCenter[0] - vCompassDir[1] * vCenter[1];
+    vVerts[2][1] = vCenter[0] * fSinVal + vCenter[1] - vCompassDir[1] * vCenter[1];
 
     re.DrawTrianglePic(vVerts, vTexCoords, m_statbar_material->GetMaterial());
 }
@@ -1411,24 +1411,7 @@ void UIFakkLabel::Draw(void)
     if (m_stat_configstring != -1) {
         m_font->setColor(m_foreground_color);
 
-        if (m_bOutlinedText) {
-            m_font->PrintOutlinedJustified(
-                getClientFrame(),
-                m_iFontAlignmentHorizontal,
-                m_iFontAlignmentVertical,
-                Sys_LV_CL_ConvertString(va("%s", CL_ConfigString(cl.snap.ps.stats[m_stat_configstring]))),
-                UBlack,
-                getVirtualScale()
-            );
-        } else {
-            m_font->PrintJustified(
-                getClientFrame(),
-                m_iFontAlignmentHorizontal,
-                m_iFontAlignmentVertical,
-                Sys_LV_CL_ConvertString(va("%s", CL_ConfigString(cl.snap.ps.stats[m_stat_configstring]))),
-                getVirtualScale()
-            );
-        }
+        PrintLabelText(Sys_LV_CL_ConvertString(va("%s", CL_ConfigString(cl.snap.ps.stats[m_stat_configstring]))), m_foreground_color);
         return;
     }
 
@@ -1438,24 +1421,7 @@ void UIFakkLabel::Draw(void)
         if (m_statbar_or == L_STATBAR_NONE) {
             m_font->setColor(m_foreground_color);
 
-            if (m_bOutlinedText) {
-                m_font->PrintOutlinedJustified(
-                    getClientFrame(),
-                    m_iFontAlignmentHorizontal,
-                    m_iFontAlignmentVertical,
-                    va("%d", delta),
-                    UBlack,
-                    getVirtualScale()
-                );
-            } else {
-                m_font->PrintJustified(
-                    getClientFrame(),
-                    m_iFontAlignmentHorizontal,
-                    m_iFontAlignmentVertical,
-                    va("%d", delta),
-                    getVirtualScale()
-                );
-            }
+            PrintLabelText(va("%d", delta), m_foreground_color);
             return;
         }
 
@@ -1532,24 +1498,7 @@ void UIFakkLabel::Draw(void)
 
         m_font->setColor(m_foreground_color);
 
-        if (m_bOutlinedText) {
-            m_font->PrintOutlinedJustified(
-                getClientFrame(),
-                m_iFontAlignmentHorizontal,
-                m_iFontAlignmentVertical,
-                Sys_LV_CL_ConvertString(va("%s", CL_ConfigString(CS_WEAPONS + cl.snap.ps.activeItems[m_itemindex]))),
-                UBlack,
-                getVirtualScale()
-            );
-        } else {
-            m_font->PrintJustified(
-                getClientFrame(),
-                m_iFontAlignmentHorizontal,
-                m_iFontAlignmentVertical,
-                Sys_LV_CL_ConvertString(va("%s", CL_ConfigString(CS_WEAPONS + cl.snap.ps.activeItems[m_itemindex]))),
-                getVirtualScale()
-            );
-        }
+        PrintLabelText(Sys_LV_CL_ConvertString(va("%s", CL_ConfigString(CS_WEAPONS + cl.snap.ps.activeItems[m_itemindex]))), m_foreground_color);
 
         return;
     }
@@ -1644,7 +1593,7 @@ void UIFakkLabel::Draw(void)
         }
     }
 
-    if (m_rendermodel) {
+    if (m_rendermodel && m_cvarname != "ac_loadout_preview") {
         VectorSet(mins, -16, -16, 0);
         VectorSet(maxs, 16, 16, 96);
     } else {

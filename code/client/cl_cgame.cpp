@@ -23,10 +23,26 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 #include "client.h"
 #include "cl_ui.h"
+#include "../tiki/tiki_surface.h"
 #include "cl_uiradar.h"
 #include "../corepp/tiki.h"
 #include "../qcommon/localization.h"
 #include "../qcommon/bg_compat.h"
+#include "../qcommon/ac_local_records.h"
+
+// Only local single-player uses references. Remote connections and demo
+// recording keep the self-contained wire format for portable playback.
+static ACLocalRecords<ac_wound_t,256> acLocalWounds;
+unsigned long long CL_ACStoreLocalWound(const ac_wound_t *wound) {
+    if(!wound || !cls.cgameStarted || clc.state!=CA_ACTIVE || clc.demorecording
+        || clc.demoplaying || clc.serverAddress.type!=NA_LOOPBACK
+        || Cvar_VariableIntegerValue("g_gametype")!=GT_SINGLE_PLAYER)return 0;
+    return acLocalWounds.Store(*wound);
+}
+static qboolean CL_ACTakeLocalWound(unsigned long long token,ac_wound_t *wound) {
+    if(!wound || clc.demoplaying || clc.serverAddress.type!=NA_LOOPBACK)return qfalse;
+    return acLocalWounds.Take(token,*wound)?qtrue:qfalse;
+}
 
 extern qboolean loadCamera(const char *name);
 extern void startCamera(int time);
@@ -534,6 +550,7 @@ CL_ShutdownCGame
 ====================
 */
 void CL_ShutdownCGame( void ) {
+	acLocalWounds.Clear();
 	cls.cgameStarted = qfalse;
 
 	if( cge )
@@ -583,9 +600,12 @@ CL_RestoreSavedCgameState
 ====================
 */
 void CL_RestoreSavedCgameState() {
-	if (cls.savedCgameState) {
-		cge->CG_LoadStateToBuffer(cls.savedCgameState, cls.savedCgameStateSize, cl.snap.serverTime);
-	}
+    if (cls.savedCgameState) {
+        void *state=cls.savedCgameState;size_t size=cls.savedCgameStateSize;
+        cls.savedCgameState=NULL;cls.savedCgameStateSize=0;
+        cge->CG_LoadStateToBuffer(state,size,cl.snap.serverTime);
+        Z_Free(state);
+    }
 }
 
 /*
@@ -613,6 +633,7 @@ void CL_InitCGameDLL( clientGameImport_t *cgi, clientGameExport_t **cge ) {
 	}
 
 	memset( cgi, 0, sizeof( clientGameImport_t ) );
+	cgi->apiversion = CGAME_IMPORT_API_VERSION;
 
 	cgi->Printf							= Com_Printf;
 	cgi->DPrintf						= Com_DPrintf;
@@ -731,6 +752,7 @@ void CL_InitCGameDLL( clientGameImport_t *cgi, clientGameExport_t **cge ) {
 	
 	cgi->R_AddLightToScene			= re.AddLightToScene;
 	cgi->R_AddPolyToScene			= re.AddPolyToScene;
+    cgi->R_AddEntityPolyToScene = re.AddEntityPolyToScene;
 	cgi->R_AddTerrainMarkToScene	= re.AddTerrainMarkToScene;
 	cgi->R_SetColor					= re.SetColor;
 	cgi->R_DrawStretchPic			= re.DrawStretchPic;
@@ -808,6 +830,10 @@ void CL_InitCGameDLL( clientGameImport_t *cgi, clientGameExport_t **cge ) {
 	cgi->Tag_NumForName				= TIKI_Tag_NameToNum;
 	cgi->Tag_NameForNum				= TIKI_Tag_NumToName;
 
+	cgi->AC_DeformPatch = TIKI_ACDeformPatch;
+	cgi->AC_CacheCollision = TIKI_ACCacheCollision;
+	cgi->AC_CollideSegment = TIKI_ACCollideSegment;
+	cgi->AC_TakeLocalWound = CL_ACTakeLocalWound;
 	cgi->ForceUpdatePose			= re.ForceUpdatePose;
 	cgi->TIKI_Orientation			= re.TIKI_Orientation;
 	cgi->TIKI_IsOnGround			= re.TIKI_IsOnGround;

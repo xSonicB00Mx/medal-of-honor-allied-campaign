@@ -1,0 +1,55 @@
+{
+  "passed": true,
+  "baseline": "mg-before-reproduction.json",
+  "mg_tests": [
+    "mg-after-local.json",
+    "mg-after-normal.json",
+    "mg-after-roundtrip.json"
+  ],
+  "wounds": [
+    {
+      "run": "mg-after-local",
+      "generated": 248,
+      "received": 248,
+      "missing": 0
+    },
+    {
+      "run": "mg-after-roundtrip",
+      "generated": 235,
+      "received": 235,
+      "missing": 0
+    }
+  ],
+  "damage_regressions": [
+    {
+      "report": "dying-mg-fix-AA-pelvis.json",
+      "pairs": 12,
+      "equal": true,
+      "positive": 8,
+      "corpse_contacts": 7
+    },
+    {
+      "report": "dying-mg-fix-SH.json",
+      "pairs": 12,
+      "equal": true,
+      "positive": 5,
+      "corpse_contacts": 1
+    },
+    {
+      "report": "dying-mg-fix-BT-pelvis.json",
+      "pairs": 12,
+      "equal": true,
+      "positive": 6,
+      "corpse_contacts": 4
+    }
+  ],
+  "menu": "menu-mg-fix.json",
+  "save_compatibility": "Existing save with 33 wounds loaded; new save with 41 wounds written and reloaded unchanged. Level archive API remains 15; DLL API is 16.",
+  "unit_tests": "local-record copy, one-time read, reset/stale tokens, bounded eviction; visual orientation/interval checks",
+  "diagnostics": "Initial MG setup attempts had disabled script execution, invalid labels, or obstructed aim and are not performance evidence; retained in logs-local/cp08-mg-setup. Initial AA/BT torso-aim runs missed the corpse mesh; pelvis retries above are passing evidence.",
+  "limits": [
+    "Isolated m1l1 save copy with the original MG relocated to a traced clear lane and synthetic targets; native Shoot event at 60 ms. Not a natural replay of the whole enemy wave.",
+    "Performance observations are from this local PC in Full HD, not a guarantee for all hardware/maps.",
+    "No full campaign, multiplayer, or demo recording/playback performance matrix. Demo/remote connections retain legacy self-contained transport."
+  ]
+}

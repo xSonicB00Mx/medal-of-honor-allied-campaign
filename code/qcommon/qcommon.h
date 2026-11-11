@@ -685,6 +685,7 @@ qboolean Cvar_Command( void );
 // was handled. (print or change)
 
 void 	Cvar_WriteVariables( fileHandle_t f );
+void Cvar_WriteCampaignPreferences(fileHandle_t f);
 // writes lines containing "set variable value" for all variables
 // with the archive flag set to true.
 
@@ -1264,6 +1265,22 @@ void Key_KeynameCompletion( void(*callback)(const char *s) );
 // for keyname autocompletion
 
 void Key_WriteBindings( fileHandle_t f );
+#include "ac_score.h"
+void AC_ScoreEvent(int event, int value);
+qboolean AC_ScoreIntermission(const char *map,const char *nextMap,qboolean success);
+void AC_GetScoreRecord(int level, acScoreRecord_t *record);
+const acScoreResult_t *AC_GetScoreResult(void);
+qboolean AC_ScoreSaveBlocked(qboolean notify);
+void AC_CancelLevelReplay(void);
+int AC_MissionState(int index);
+void Com_WriteConfiguration(void);
+qboolean AC_ResetCampaignProgress(void);
+qboolean AC_CampaignMapCommand(const char *map);
+qboolean AC_LevelCompleted(int index);
+qboolean AC_CampaignTransition(const char *current, const char *nextMap);
+void AC_CampaignSaved(const char *slot, const char *map);
+qboolean AC_CampaignCanSave(const char *slot);
+void AC_CampaignRestore(int operation, int replay, const char *map);
 // for writing the config files
 
 void S_ClearSoundBuffer( void );
@@ -1454,6 +1471,11 @@ void Sys_CloseMutex( void );
 void Sys_ShowConsole( int visLevel, qboolean quitOnClose );
 void Sys_DebugPrint(const char* message);
 void Sys_PumpMessageLoop( void );
+#ifdef _WIN32
+int Sys_ACTransitionMain(int argc, char **argv);
+void Sys_ACTransitionStart(unsigned long childPid);
+void Sys_ACTransitionPresented(void);
+#endif
 
 qboolean SaveRegistryInfo( qboolean user, const char *pszName, void *pvBuf, long lSize );
 qboolean LoadRegistryInfo( qboolean user, const char *pszName, void *pvBuf, long *plSize );

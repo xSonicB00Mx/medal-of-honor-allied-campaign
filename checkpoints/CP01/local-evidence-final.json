@@ -1,0 +1,636 @@
+{
+  "files": [
+    {
+      "path": "profiles-local/CP01-r1/manual-escape-final/main/manual.cfg",
+      "bytes": 731,
+      "sha256": "409b3b89f7c1f0cce740a8b0d7ccff8cdb7a2fb6f9b4b873eb7d006509fa89fd"
+    },
+    {
+      "path": "profiles-local/CP01-r1/manual-escape-final/main/qconsole.log",
+      "bytes": 36424,
+      "sha256": "95354007aa243a9b7ecca94bc344036db51ed9ddd40fbeb101b9aebcd7d3497b"
+    },
+    {
+      "path": "profiles-local/CP01-r1/manual-escape-final/main/configs/omconfig.cfg",
+      "bytes": 7433,
+      "sha256": "82ba34e8933a5ba25ddc0e9b95146b1a03487349e89befca14282d18658d79a6"
+    },
+    {
+      "path": "profiles-local/CP01-r1/reflow-clean-AA/main/qconsole.log",
+      "bytes": 120905,
+      "sha256": "148f065f023f09a2b8ac8b7f35e178a8672c28bf6d122d5e5ca4c090824de3e9"
+    },
+    {
+      "path": "profiles-local/CP01-r1/reflow-clean-AA/main/reflow.cfg",
+      "bytes": 1072,
+      "sha256": "84a0d3507eea4957ebdc1711d11b8313c2a9a079322190d9e2287706a5bd7940"
+    },
+    {
+      "path": "profiles-local/CP01-r1/reflow-clean-AA/main/configs/omconfig.cfg",
+      "bytes": 7457,
+      "sha256": "19cbcedd312d47dddadb474182103bad8a1a91ccd5fb668f2ea66e53898ec99f"
+    },
+    {
+      "path": "profiles-local/CP01-r1/reflow-clean-AA/main/screenshots/shot0000.png",
+      "bytes": 893096,
+      "sha256": "849fbbd15a84a80c5de31d5950a7d2360503f1b8b8c3f2c0d96091cb85f865dc"
+    },
+    {
+      "path": "profiles-local/CP01-r1/reflow-clean-AA/main/screenshots/shot0000.tga",
+      "bytes": 3686418,
+      "sha256": "14804252ed514ed9e377e5feb2e27b831e50d119dfb40f7b789e115c377f0a52"
+    },
+    {
+      "path": "profiles-local/CP01-r1/reflow-clean-AA/main/screenshots/shot0001.png",
+      "bytes": 704796,
+      "sha256": "1476afeab88d4d876ea8f83997bc7398de065ee72fff30c40ced4e634317633c"
+    },
+    {
+      "path": "profiles-local/CP01-r1/reflow-clean-AA/main/screenshots/shot0001.tga",
+      "bytes": 3686418,
+      "sha256": "a7fbee79a2e530786303c8b305b0b6bf5b636d661844c031e98a90bda24e2233"
+    },
+    {
+      "path": "profiles-local/CP01-r1/reflow-clean-AA/main/screenshots/shot0002.png",
+      "bytes": 774506,
+      "sha256": "ac185e6502883b2329d2ac92ea5f07769d92df8e9068aab67d327373bac282b2"
+    },
+    {
+      "path": "profiles-local/CP01-r1/reflow-clean-AA/main/screenshots/shot0002.tga",
+      "bytes": 3686418,
+      "sha256": "7460e7e6815859c35c90691443ad2da06b140ce85e50299511df49fff0c4e6ce"
+    },
+    {
+      "path": "profiles-local/CP01-r1/reflow-clean-AA/main/screenshots/shot0003.png",
+      "bytes": 815991,
+      "sha256": "264a68813eabb78cb7bf69e4e1c0f8f0db1e79e9ab0dd69287c797bb65cb19b6"
+    },
+    {
+      "path": "profiles-local/CP01-r1/reflow-clean-AA/main/screenshots/shot0003.tga",
+      "bytes": 3686418,
+      "sha256": "9ea4445dd0f838569d1a440927b6797dbd684cf60c9465a99b6901b4d53638df"
+    },
+    {
+      "path": "profiles-local/CP01-r1/reflow-clean-AA/main/screenshots/shot0004.png",
+      "bytes": 796560,
+      "sha256": "c630dbae712e465ee8f9428c7aacbd193f33c0bafa7e0f8c47038a17e545a29e"
+    },
+    {
+      "path": "profiles-local/CP01-r1/reflow-clean-AA/main/screenshots/shot0004.tga",
+      "bytes": 3686418,
+      "sha256": "5555432e6d1c5d3a88990e614a1db9f4164559ee2912e48f6625290f7d949f75"
+    },
+    {
+      "path": "profiles-local/CP01-r1/reflow-clean-AA/main/screenshots/shot0005.png",
+      "bytes": 136298,
+      "sha256": "ec053a79971d73fe549bfaf1aca96e7d24aae59b61948700b14590ab502205b5"
+    },
+    {
+      "path": "profiles-local/CP01-r1/reflow-clean-AA/main/screenshots/shot0005.tga",
+      "bytes": 4320018,
+      "sha256": "baa5bfae7572da3544d0546e6776feafc2cb5dc3cae434b3dbb40b806595525c"
+    },
+    {
+      "path": "profiles-local/CP01-r1/reflow-clean-AA/main/screenshots/shot0006.png",
+      "bytes": 208933,
+      "sha256": "191f2d29e1741dbe39395cc17b398a79316165c056a477439b90d00e4c774afd"
+    },
+    {
+      "path": "profiles-local/CP01-r1/reflow-clean-AA/main/screenshots/shot0006.tga",
+      "bytes": 6912018,
+      "sha256": "907fc3c738264571593e70c8ade3c6a12f7f42d2ed13256fbaeba27c1058af83"
+    },
+    {
+      "path": "profiles-local/CP01-r1/reflow-clean-AA/main/screenshots/shot0007.png",
+      "bytes": 142050,
+      "sha256": "a9f9116e494e5a0b1251bc75e55b413049b9ce14012bb8a256f3dde414185604"
+    },
+    {
+      "path": "profiles-local/CP01-r1/reflow-clean-AA/main/screenshots/shot0007.tga",
+      "bytes": 3686418,
+      "sha256": "981754299f08dec71678d32ca67be31614486a8bd536c3e2b4b34503d458a415"
+    },
+    {
+      "path": "profiles-local/CP01-r1/reflow-clean-BT/maintt/qconsole.log",
+      "bytes": 156940,
+      "sha256": "046de43431e3057ff35e721784d055143d10cd812459465e0767ab6cb4333b88"
+    },
+    {
+      "path": "profiles-local/CP01-r1/reflow-clean-BT/maintt/reflow.cfg",
+      "bytes": 1072,
+      "sha256": "84a0d3507eea4957ebdc1711d11b8313c2a9a079322190d9e2287706a5bd7940"
+    },
+    {
+      "path": "profiles-local/CP01-r1/reflow-clean-BT/maintt/configs/omconfig.cfg",
+      "bytes": 8377,
+      "sha256": "87ca9fd42f5f09eaca164ab1e0ab85b2581f95a825c3e30842c63f71af602c89"
+    },
+    {
+      "path": "profiles-local/CP01-r1/reflow-clean-BT/maintt/screenshots/shot0000.png",
+      "bytes": 816353,
+      "sha256": "8520dbd932a7f620578003dea628ef06e662ebb51bbac89f0687ce28f7778941"
+    },
+    {
+      "path": "profiles-local/CP01-r1/reflow-clean-BT/maintt/screenshots/shot0000.tga",
+      "bytes": 3686418,
+      "sha256": "2af7072b3a5c3e364f376feb857234e5f78ec5dabaf3a7792580824a2a1f288e"
+    },
+    {
+      "path": "profiles-local/CP01-r1/reflow-clean-BT/maintt/screenshots/shot0001.png",
+      "bytes": 704796,
+      "sha256": "1476afeab88d4d876ea8f83997bc7398de065ee72fff30c40ced4e634317633c"
+    },
+    {
+      "path": "profiles-local/CP01-r1/reflow-clean-BT/maintt/screenshots/shot0001.tga",
+      "bytes": 3686418,
+      "sha256": "a7fbee79a2e530786303c8b305b0b6bf5b636d661844c031e98a90bda24e2233"
+    },
+    {
+      "path": "profiles-local/CP01-r1/reflow-clean-BT/maintt/screenshots/shot0002.png",
+      "bytes": 780982,
+      "sha256": "f6f03b5f7c66d1f09abd5a29d23bf37c46c38c2ec59abd862611b2548f76830b"
+    },
+    {
+      "path": "profiles-local/CP01-r1/reflow-clean-BT/maintt/screenshots/shot0002.tga",
+      "bytes": 3686418,
+      "sha256": "1762f7b5b61c87479521f199be542a6da4d43c71885d7e6604e5fd9e30918f3b"
+    },
+    {
+      "path": "profiles-local/CP01-r1/reflow-clean-BT/maintt/screenshots/shot0003.png",
+      "bytes": 828967,
+      "sha256": "f339271512a6bb61b85f392de6f6714033874341f7ec5c6de75d14ed26c398f0"
+    },
+    {
+      "path": "profiles-local/CP01-r1/reflow-clean-BT/maintt/screenshots/shot0003.tga",
+      "bytes": 3686418,
+      "sha256": "90b99e1675cf076a35274d0b430fec8be99c553883885cc850bfd4aa48c8fe8f"
+    },
+    {
+      "path": "profiles-local/CP01-r1/reflow-clean-BT/maintt/screenshots/shot0004.png",
+      "bytes": 796560,
+      "sha256": "c630dbae712e465ee8f9428c7aacbd193f33c0bafa7e0f8c47038a17e545a29e"
+    },
+    {
+      "path": "profiles-local/CP01-r1/reflow-clean-BT/maintt/screenshots/shot0004.tga",
+      "bytes": 3686418,
+      "sha256": "5555432e6d1c5d3a88990e614a1db9f4164559ee2912e48f6625290f7d949f75"
+    },
+    {
+      "path": "profiles-local/CP01-r1/reflow-clean-BT/maintt/screenshots/shot0005.png",
+      "bytes": 117412,
+      "sha256": "16f1ab353921f057950591cef2a943253108c1975bbd79799dccfbb8afb85ae3"
+    },
+    {
+      "path": "profiles-local/CP01-r1/reflow-clean-BT/maintt/screenshots/shot0005.tga",
+      "bytes": 4320018,
+      "sha256": "4802ce966f4d56edd0beec776f44646e4541673c697c9e34def909d3495309c9"
+    },
+    {
+      "path": "profiles-local/CP01-r1/reflow-clean-BT/maintt/screenshots/shot0006.png",
+      "bytes": 177587,
+      "sha256": "9ec9ec05f48dec6d1364194428eb0da9008ad9f0a412056a052d55fa327e7285"
+    },
+    {
+      "path": "profiles-local/CP01-r1/reflow-clean-BT/maintt/screenshots/shot0006.tga",
+      "bytes": 6912018,
+      "sha256": "3f0f39d87b840d867763f3a2991a417554e816c872fb890c85a0e5f0fa2eea94"
+    },
+    {
+      "path": "profiles-local/CP01-r1/reflow-clean-BT/maintt/screenshots/shot0007.png",
+      "bytes": 119852,
+      "sha256": "d38f4d53c57b3edbdb1ed526b4f2a7329436839135258bfef6a70b917b3a0d34"
+    },
+    {
+      "path": "profiles-local/CP01-r1/reflow-clean-BT/maintt/screenshots/shot0007.tga",
+      "bytes": 3686418,
+      "sha256": "39cbb2ea18bcb8c2df7c24c517a9e07d85a2b158f9298e5ccba1f3cbbaeee8f3"
+    },
+    {
+      "path": "profiles-local/CP01-r1/reflow-clean-SH/mainta/qconsole.log",
+      "bytes": 147357,
+      "sha256": "96c81b8488df38c614d85db9194dd3186d02423d6c208874354910064a51bb66"
+    },
+    {
+      "path": "profiles-local/CP01-r1/reflow-clean-SH/mainta/reflow.cfg",
+      "bytes": 1072,
+      "sha256": "84a0d3507eea4957ebdc1711d11b8313c2a9a079322190d9e2287706a5bd7940"
+    },
+    {
+      "path": "profiles-local/CP01-r1/reflow-clean-SH/mainta/configs/omconfig.cfg",
+      "bytes": 7849,
+      "sha256": "349e861d3fbccaa97e1da2eb6c1ba635fbc9aa8958110b333413bdcb8e6409f6"
+    },
+    {
+      "path": "profiles-local/CP01-r1/reflow-clean-SH/mainta/screenshots/shot0000.png",
+      "bytes": 815031,
+      "sha256": "4b38bf75d414634c1a9b28dfa9111dccd755747efc1cecb68304b4b3924725db"
+    },
+    {
+      "path": "profiles-local/CP01-r1/reflow-clean-SH/mainta/screenshots/shot0000.tga",
+      "bytes": 3686418,
+      "sha256": "72218ca4da7ebc55e28fa083a00dbddce56a1136ee45ab0e65c895e9338d987d"
+    },
+    {
+      "path": "profiles-local/CP01-r1/reflow-clean-SH/mainta/screenshots/shot0001.png",
+      "bytes": 704796,
+      "sha256": "1476afeab88d4d876ea8f83997bc7398de065ee72fff30c40ced4e634317633c"
+    },
+    {
+      "path": "profiles-local/CP01-r1/reflow-clean-SH/mainta/screenshots/shot0001.tga",
+      "bytes": 3686418,
+      "sha256": "a7fbee79a2e530786303c8b305b0b6bf5b636d661844c031e98a90bda24e2233"
+    },
+    {
+      "path": "profiles-local/CP01-r1/reflow-clean-SH/mainta/screenshots/shot0002.png",
+      "bytes": 773462,
+      "sha256": "6f0d063627390dce410e0317a838bc45110c6e15ede8481c9b33242616651f73"
+    },
+    {
+      "path": "profiles-local/CP01-r1/reflow-clean-SH/mainta/screenshots/shot0002.tga",
+      "bytes": 3686418,
+      "sha256": "781f9d9fdece2c9c74566229542b986646cd83ea58b5537cb9e2a170b8e6d5b2"
+    },
+    {
+      "path": "profiles-local/CP01-r1/reflow-clean-SH/mainta/screenshots/shot0003.png",
+      "bytes": 828967,
+      "sha256": "f339271512a6bb61b85f392de6f6714033874341f7ec5c6de75d14ed26c398f0"
+    },
+    {
+      "path": "profiles-local/CP01-r1/reflow-clean-SH/mainta/screenshots/shot0003.tga",
+      "bytes": 3686418,
+      "sha256": "90b99e1675cf076a35274d0b430fec8be99c553883885cc850bfd4aa48c8fe8f"
+    },
+    {
+      "path": "profiles-local/CP01-r1/reflow-clean-SH/mainta/screenshots/shot0004.png",
+      "bytes": 796560,
+      "sha256": "c630dbae712e465ee8f9428c7aacbd193f33c0bafa7e0f8c47038a17e545a29e"
+    },
+    {
+      "path": "profiles-local/CP01-r1/reflow-clean-SH/mainta/screenshots/shot0004.tga",
+      "bytes": 3686418,
+      "sha256": "5555432e6d1c5d3a88990e614a1db9f4164559ee2912e48f6625290f7d949f75"
+    },
+    {
+      "path": "profiles-local/CP01-r1/reflow-clean-SH/mainta/screenshots/shot0005.png",
+      "bytes": 117412,
+      "sha256": "16f1ab353921f057950591cef2a943253108c1975bbd79799dccfbb8afb85ae3"
+    },
+    {
+      "path": "profiles-local/CP01-r1/reflow-clean-SH/mainta/screenshots/shot0005.tga",
+      "bytes": 4320018,
+      "sha256": "4802ce966f4d56edd0beec776f44646e4541673c697c9e34def909d3495309c9"
+    },
+    {
+      "path": "profiles-local/CP01-r1/reflow-clean-SH/mainta/screenshots/shot0006.png",
+      "bytes": 177587,
+      "sha256": "9ec9ec05f48dec6d1364194428eb0da9008ad9f0a412056a052d55fa327e7285"
+    },
+    {
+      "path": "profiles-local/CP01-r1/reflow-clean-SH/mainta/screenshots/shot0006.tga",
+      "bytes": 6912018,
+      "sha256": "3f0f39d87b840d867763f3a2991a417554e816c872fb890c85a0e5f0fa2eea94"
+    },
+    {
+      "path": "profiles-local/CP01-r1/reflow-clean-SH/mainta/screenshots/shot0007.png",
+      "bytes": 119852,
+      "sha256": "d38f4d53c57b3edbdb1ed526b4f2a7329436839135258bfef6a70b917b3a0d34"
+    },
+    {
+      "path": "profiles-local/CP01-r1/reflow-clean-SH/mainta/screenshots/shot0007.tga",
+      "bytes": 3686418,
+      "sha256": "39cbb2ea18bcb8c2df7c24c517a9e07d85a2b158f9298e5ccba1f3cbbaeee8f3"
+    },
+    {
+      "path": "profiles-local/CP01-r1/released-AA-text/main/binocular.scr",
+      "bytes": 103,
+      "sha256": "1436a696883ed58ed30b665592fbe9affbab35eef9370ec67b7306df3a4093c3"
+    },
+    {
+      "path": "profiles-local/CP01-r1/released-AA-text/main/qconsole.log",
+      "bytes": 53038,
+      "sha256": "582f3890b1d7edf5b5729f8afcb08df78659372a91e150a4bd2ba74dc62544e8"
+    },
+    {
+      "path": "profiles-local/CP01-r1/released-AA-text/main/scope.scr",
+      "bytes": 109,
+      "sha256": "8f01eec14e30837748d479114ca6f888b1db685c8232a1910f6a639408b3d36f"
+    },
+    {
+      "path": "profiles-local/CP01-r1/released-AA-text/main/text.cfg",
+      "bytes": 1015,
+      "sha256": "90d1bcd78dcc06c130aadca74f6ab7553c222230e90f1e6b3454465521eb4c2c"
+    },
+    {
+      "path": "profiles-local/CP01-r1/released-AA-text/main/text.scr",
+      "bytes": 1111,
+      "sha256": "2b10076b006254a5079e855ed22f7b84a2e91546ab8f35a9356157edacad143f"
+    },
+    {
+      "path": "profiles-local/CP01-r1/released-AA-text/main/configs/omconfig.cfg",
+      "bytes": 9177,
+      "sha256": "558d813db932b852b178a34b74f5adfd8b1cf24b923b05ae2181a85c27915770"
+    },
+    {
+      "path": "profiles-local/CP01-r1/released-AA-text/main/screenshots/shot0000.png",
+      "bytes": 1072277,
+      "sha256": "f06e7c69e18d39314ab5895290c9ce6c35845355f4124224bf9edd9553bb2888"
+    },
+    {
+      "path": "profiles-local/CP01-r1/released-AA-text/main/screenshots/shot0000.tga",
+      "bytes": 3686418,
+      "sha256": "7b4495c2ebc17a82bf823ec104c70ad8e49af33fbd18372e758efce5ec20da05"
+    },
+    {
+      "path": "profiles-local/CP01-r1/released-AA-text/main/screenshots/shot0001.png",
+      "bytes": 797407,
+      "sha256": "bf12435f998ffdc92e0aca7d19226f64ee80da12a609b8a92508f3a6d324db71"
+    },
+    {
+      "path": "profiles-local/CP01-r1/released-AA-text/main/screenshots/shot0001.tga",
+      "bytes": 3686418,
+      "sha256": "6f4f011145927ecbcf1c6d19b0fc247935215666b0b7213aead28056fb342aab"
+    },
+    {
+      "path": "profiles-local/CP01-r1/released-AA-text/main/screenshots/shot0002.png",
+      "bytes": 762291,
+      "sha256": "3ca0dcea3ebe0f6ad05b5a28024f50ab4eae33243a3a656a8b30185e2114fa64"
+    },
+    {
+      "path": "profiles-local/CP01-r1/released-AA-text/main/screenshots/shot0002.tga",
+      "bytes": 3686418,
+      "sha256": "7058eb4265766d5cf6cdc10af74fe1df4b8b21c0b8082433af76a56c3bc82df6"
+    },
+    {
+      "path": "profiles-local/CP01-r1/released-AA-text/main/screenshots/shot0003.png",
+      "bytes": 1031004,
+      "sha256": "4c9c8af788b5831e7354af860e8a56daeb824fe992009bafe01d701ba9349bb9"
+    },
+    {
+      "path": "profiles-local/CP01-r1/released-AA-text/main/screenshots/shot0003.tga",
+      "bytes": 3686418,
+      "sha256": "1e2f4270c1539ec6dc21b636139939e461d672386fb3611085d58a6f3d1544b1"
+    },
+    {
+      "path": "profiles-local/CP01-r1/released-AA-text/main/screenshots/shot0004.png",
+      "bytes": 142742,
+      "sha256": "41f3f07c01257c2e2c7824e767e278265ae46da7dc1160e25d393a9c8cd7bd3a"
+    },
+    {
+      "path": "profiles-local/CP01-r1/released-AA-text/main/screenshots/shot0004.tga",
+      "bytes": 3686418,
+      "sha256": "5f2e2614e0812f07a617a9bd8d1a0c846f4152d2071ae312dce867ec06ec4248"
+    },
+    {
+      "path": "profiles-local/CP01-r1/released-AA-text/main/save/omconfig/cp01_text.sav",
+      "bytes": 199032,
+      "sha256": "6d2817be1a0ab0d14e79d8b1c453de5f1cfee659d268de49fcdff18137bf9490"
+    },
+    {
+      "path": "profiles-local/CP01-r1/released-AA-text/main/save/omconfig/cp01_text.ssv",
+      "bytes": 15020,
+      "sha256": "81592d6f5d4d69107cc83d620cf34f1c4cd17f890ff6cf92200a214beb124a3d"
+    },
+    {
+      "path": "profiles-local/CP01-r1/released-AA-text/main/save/omconfig/cp01_text.tga",
+      "bytes": 196626,
+      "sha256": "fda9d3511b0e5fd108f29dd3247acab0704d6242d2aa7cf4800b0f204079de1a"
+    },
+    {
+      "path": "profiles-local/CP01-r1/released-AA-text/main/save/omconfig/m2l10000.sav",
+      "bytes": 183524,
+      "sha256": "be2d7dd167e73718e67534900879038aca31abbfe70c8b551fcae8788a90525b"
+    },
+    {
+      "path": "profiles-local/CP01-r1/released-AA-text/main/save/omconfig/m2l10000.ssv",
+      "bytes": 15020,
+      "sha256": "711b21a52d7488cda2d205a2c26332566d0e5bcbd755a5e26da0fa47f8b13ab4"
+    },
+    {
+      "path": "profiles-local/CP01-r1/released-AA-text/main/save/omconfig/m2l10000.tga",
+      "bytes": 196626,
+      "sha256": "13904d91c8f09aa0f4b2aa90a18b7e0e9abd932eec4f17e70bb419d2399716e7"
+    },
+    {
+      "path": "profiles-local/CP01-r1/released-BT-text/maintt/binocular.scr",
+      "bytes": 103,
+      "sha256": "1436a696883ed58ed30b665592fbe9affbab35eef9370ec67b7306df3a4093c3"
+    },
+    {
+      "path": "profiles-local/CP01-r1/released-BT-text/maintt/qconsole.log",
+      "bytes": 67535,
+      "sha256": "356ac3f3f3fd61f761cbcc02722119bfcc98787f656af54b0d3588cd94c2f833"
+    },
+    {
+      "path": "profiles-local/CP01-r1/released-BT-text/maintt/scope.scr",
+      "bytes": 109,
+      "sha256": "8f01eec14e30837748d479114ca6f888b1db685c8232a1910f6a639408b3d36f"
+    },
+    {
+      "path": "profiles-local/CP01-r1/released-BT-text/maintt/text.cfg",
+      "bytes": 1025,
+      "sha256": "81aeccfa01502c0a2c12d979e0772fbc055c7f843b6dbd09a539b276ad46537c"
+    },
+    {
+      "path": "profiles-local/CP01-r1/released-BT-text/maintt/text.scr",
+      "bytes": 1111,
+      "sha256": "2b10076b006254a5079e855ed22f7b84a2e91546ab8f35a9356157edacad143f"
+    },
+    {
+      "path": "profiles-local/CP01-r1/released-BT-text/maintt/configs/omconfig.cfg",
+      "bytes": 10103,
+      "sha256": "bd7563cdb1c0cb946b373620ac3cbe3120dab4459f1a622fc4ae7278f49f2428"
+    },
+    {
+      "path": "profiles-local/CP01-r1/released-BT-text/maintt/screenshots/shot0000.png",
+      "bytes": 7203470,
+      "sha256": "10554722aabad2e9d0bb5e57e021274b1749a0d6cbbc75271ef732958f08483c"
+    },
+    {
+      "path": "profiles-local/CP01-r1/released-BT-text/maintt/screenshots/shot0000.tga",
+      "bytes": 22118418,
+      "sha256": "382bc33a5bfd5469cda35519817c1fe85dd617adaa14c15eead0762bc231ab11"
+    },
+    {
+      "path": "profiles-local/CP01-r1/released-BT-text/maintt/screenshots/shot0001.png",
+      "bytes": 964141,
+      "sha256": "38606b52e2d680d263613e0a36a8e29b0fa96c02ea0035b18de6f870c780fdba"
+    },
+    {
+      "path": "profiles-local/CP01-r1/released-BT-text/maintt/screenshots/shot0001.tga",
+      "bytes": 22118418,
+      "sha256": "8773280ef633aebea8d24aa065caf0d2b823daa181c27d7758deed1a49b6454c"
+    },
+    {
+      "path": "profiles-local/CP01-r1/released-BT-text/maintt/screenshots/shot0002.png",
+      "bytes": 911436,
+      "sha256": "f6f57e37cf69716a00deedae3ab2ad233c485660f89163588e835b4d58e44a8f"
+    },
+    {
+      "path": "profiles-local/CP01-r1/released-BT-text/maintt/screenshots/shot0002.tga",
+      "bytes": 22118418,
+      "sha256": "09809fbed5cb09b289ee3e1d879df3ae3a305fb5e2f9e337df49cedfd0f78604"
+    },
+    {
+      "path": "profiles-local/CP01-r1/released-BT-text/maintt/screenshots/shot0003.png",
+      "bytes": 2096852,
+      "sha256": "b8a526379ccd2b495dc6b8bc483dd37c0eb425b08070776a6bd67bb2676bc9ed"
+    },
+    {
+      "path": "profiles-local/CP01-r1/released-BT-text/maintt/screenshots/shot0003.tga",
+      "bytes": 22118418,
+      "sha256": "2e3075e96a3b3fe8d4e393aad17dbc31fd89e6650aa31edddf231eb64a0ed58a"
+    },
+    {
+      "path": "profiles-local/CP01-r1/released-BT-text/maintt/screenshots/shot0004.png",
+      "bytes": 243343,
+      "sha256": "76ce875b4489940006cf5883ec534c4818e8b30774dc875e49fa18032db8af83"
+    },
+    {
+      "path": "profiles-local/CP01-r1/released-BT-text/maintt/screenshots/shot0004.tga",
+      "bytes": 22118418,
+      "sha256": "e47904bf056ceb5ac0feed83473c54033503fe2dcfadda1185a919218a2a59ab"
+    },
+    {
+      "path": "profiles-local/CP01-r1/released-BT-text/maintt/save/omconfig/cp01_text.sav",
+      "bytes": 533717,
+      "sha256": "ff9770dc1c64e8206e63e2654b3b48e842525263c9ea320689c99d0d57499aa8"
+    },
+    {
+      "path": "profiles-local/CP01-r1/released-BT-text/maintt/save/omconfig/cp01_text.ssv",
+      "bytes": 15020,
+      "sha256": "e2a70dbe73cc1422f93f88316e2f0abbef85487a22febb12c4835f235f89ed8b"
+    },
+    {
+      "path": "profiles-local/CP01-r1/released-BT-text/maintt/save/omconfig/cp01_text.tga",
+      "bytes": 196626,
+      "sha256": "ee13b219c292b38061d54dc84dba9a6fc7224b4bc9949a456a743e95abbc59dd"
+    },
+    {
+      "path": "profiles-local/CP01-r1/released-BT-text/maintt/save/omconfig/reference.sav",
+      "bytes": 530477,
+      "sha256": "629d84718232a5fd1ce5476780baa9af18a51511cfe5867b6454f8aac0c4a70b"
+    },
+    {
+      "path": "profiles-local/CP01-r1/released-BT-text/maintt/save/omconfig/reference.ssv",
+      "bytes": 15020,
+      "sha256": "0c42260d6ea85a7a435e3edee4a163e8327165dca51b9cda63ebd938c4afa315"
+    },
+    {
+      "path": "profiles-local/CP01-r1/released-BT-text/maintt/save/omconfig/reference.tga",
+      "bytes": 196626,
+      "sha256": "3fef42dc39dd25196a88649cc3f4872b90926412360879bedcdea6614a98b46c"
+    },
+    {
+      "path": "profiles-local/CP01-r1/released-SH-text/mainta/binocular.scr",
+      "bytes": 103,
+      "sha256": "1436a696883ed58ed30b665592fbe9affbab35eef9370ec67b7306df3a4093c3"
+    },
+    {
+      "path": "profiles-local/CP01-r1/released-SH-text/mainta/qconsole.log",
+      "bytes": 63498,
+      "sha256": "5d012847cb4d1762daaeb759951cf931aa3bcf3f860fa70e4201533b3fc25967"
+    },
+    {
+      "path": "profiles-local/CP01-r1/released-SH-text/mainta/scope.scr",
+      "bytes": 109,
+      "sha256": "8f01eec14e30837748d479114ca6f888b1db685c8232a1910f6a639408b3d36f"
+    },
+    {
+      "path": "profiles-local/CP01-r1/released-SH-text/mainta/text.cfg",
+      "bytes": 1025,
+      "sha256": "81aeccfa01502c0a2c12d979e0772fbc055c7f843b6dbd09a539b276ad46537c"
+    },
+    {
+      "path": "profiles-local/CP01-r1/released-SH-text/mainta/text.scr",
+      "bytes": 1111,
+      "sha256": "2b10076b006254a5079e855ed22f7b84a2e91546ab8f35a9356157edacad143f"
+    },
+    {
+      "path": "profiles-local/CP01-r1/released-SH-text/mainta/configs/omconfig.cfg",
+      "bytes": 9573,
+      "sha256": "28e1c0c89157b0452b8a07a9b79d08df33555eb18c7a72919f4605d0253932a7"
+    },
+    {
+      "path": "profiles-local/CP01-r1/released-SH-text/mainta/screenshots/shot0000.png",
+      "bytes": 6095676,
+      "sha256": "81950079d9a0d22a1d5b3f49e9286b47a468102044ca316cbf9f620526fdf0ac"
+    },
+    {
+      "path": "profiles-local/CP01-r1/released-SH-text/mainta/screenshots/shot0000.tga",
+      "bytes": 24883218,
+      "sha256": "193dbc75fdae604acc78957ea7ffea60ce1db1c5cec2d0e10713016a4a59061a"
+    },
+    {
+      "path": "profiles-local/CP01-r1/released-SH-text/mainta/screenshots/shot0001.png",
+      "bytes": 2067845,
+      "sha256": "f9745f9e151e38fcf812c8968037ed0509366147e03edadf6f7d0ccd19306b90"
+    },
+    {
+      "path": "profiles-local/CP01-r1/released-SH-text/mainta/screenshots/shot0001.tga",
+      "bytes": 24883218,
+      "sha256": "16736fa8a55a3dffdd11db25734177afefb43d1fc476add0ed2103e825dfd639"
+    },
+    {
+      "path": "profiles-local/CP01-r1/released-SH-text/mainta/screenshots/shot0002.png",
+      "bytes": 2083886,
+      "sha256": "166a2a5af483fbb20c919a16385903d21af92eab5949dccaa97d05b282d11054"
+    },
+    {
+      "path": "profiles-local/CP01-r1/released-SH-text/mainta/screenshots/shot0002.tga",
+      "bytes": 24883218,
+      "sha256": "e2241b3ad7314ffb6adc77104a169c8416b111f0e62d88c164e08da21e15ef83"
+    },
+    {
+      "path": "profiles-local/CP01-r1/released-SH-text/mainta/screenshots/shot0003.png",
+      "bytes": 3751031,
+      "sha256": "1f7c98d3f8658d86d0edeebc25722530024b0a3e1f1f172b20d4ff7d6f9e70af"
+    },
+    {
+      "path": "profiles-local/CP01-r1/released-SH-text/mainta/screenshots/shot0003.tga",
+      "bytes": 24883218,
+      "sha256": "4ee0ee77014b11b35c947319416235c39325c2bc68b131f5b7b2cb1b91545119"
+    },
+    {
+      "path": "profiles-local/CP01-r1/released-SH-text/mainta/screenshots/shot0004.png",
+      "bytes": 423601,
+      "sha256": "d1619511d02565acaf9d7d23b8251476e7c01c63507f6e81574ca313cbf5962e"
+    },
+    {
+      "path": "profiles-local/CP01-r1/released-SH-text/mainta/screenshots/shot0004.tga",
+      "bytes": 24883218,
+      "sha256": "a25eb300b81bb42a308a64ca30eda1e5358a6c1ed9615087c7a9393d6aeaed9c"
+    },
+    {
+      "path": "profiles-local/CP01-r1/released-SH-text/mainta/save/omconfig/cp01_text.sav",
+      "bytes": 653935,
+      "sha256": "34ca5aacdc68fbdc24277bf91f71a5b08593a2a782089f64f2f52bdfc608c8b6"
+    },
+    {
+      "path": "profiles-local/CP01-r1/released-SH-text/mainta/save/omconfig/cp01_text.ssv",
+      "bytes": 14860,
+      "sha256": "76484bc9cf6ec4b65ae943e2bd0d55bdcf651434b59975494a9db726f1665fc0"
+    },
+    {
+      "path": "profiles-local/CP01-r1/released-SH-text/mainta/save/omconfig/cp01_text.tga",
+      "bytes": 196626,
+      "sha256": "7dc29c7e5a7c0c78dfc648cef9fb1fd954367e420d26f3873e571d45124d6eb8"
+    },
+    {
+      "path": "profiles-local/CP01-r1/released-SH-text/mainta/save/omconfig/reference.sav",
+      "bytes": 654322,
+      "sha256": "9e410c5c4fe304948226ac8076825ff201e6777e095849dfafd06786c61d4ecd"
+    },
+    {
+      "path": "profiles-local/CP01-r1/released-SH-text/mainta/save/omconfig/reference.ssv",
+      "bytes": 14860,
+      "sha256": "f5f1cde465b87eed9867ebde1c2fc6871e2a5c718f551e36d279340fa1f9f8c4"
+    },
+    {
+      "path": "profiles-local/CP01-r1/released-SH-text/mainta/save/omconfig/reference.tga",
+      "bytes": 196626,
+      "sha256": "fc5c73904bba33b0c613606e0c8324e17dcf9fb653d8aeb7b220d0147e24f050"
+    }
+  ],
+  "uploaded": false,
+  "base_inventory": "local-evidence.json"
+}

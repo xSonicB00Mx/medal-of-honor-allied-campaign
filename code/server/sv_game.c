@@ -37,6 +37,13 @@ int numDebugStrings;
 
 static int modelUserCount[ MAX_MODELS ];
 
+static unsigned long long SV_ACStoreLocalWound(const ac_wound_t *wound) {
+#ifndef DEDICATED
+    if(g_gametype->integer==GT_SINGLE_PLAYER)return CL_ACStoreLocalWound(wound);
+#endif
+    return 0;
+}
+
 void SV_GameError( const char *string ) {
 	Com_Error( ERR_DROP, "%s", string );
 }
@@ -1876,6 +1883,11 @@ void SV_InitGameProgs( void ) {
 	import.Tag_NameForNum				= PF_Tag_NumToName;
 	import.TIKI_OrientationInternal		= PF_TIKI_OrientationInternal;
 	import.TIKI_TransformInternal		= PF_TIKI_TransformInternal;
+    import.AC_SurfaceTrace = TIKI_ACSurfaceTrace;
+    import.AC_BuildPatch = TIKI_ACBuildPatch;
+    import.AC_StoreLocalWound = SV_ACStoreLocalWound;
+    import.AC_ScoreEvent = AC_ScoreEvent;
+    import.AC_ScoreIntermission = AC_ScoreIntermission;
 	import.TIKI_IsOnGroundInternal		= PF_TIKI_IsOnGroundInternal;
 	import.TIKI_SetPoseInternal			= PF_SetPoseInternal;
 

@@ -25,6 +25,13 @@ backEndData_t	*backEndData;
 backEndState_t	backEnd;
 
 
+// Expose the original scene before temporal reconstruction, so its depth mask
+// and color share the exact same jitter. Lightning transitions reset history.
+static void RB_FinishSceneEffects(void) {
+    RB_ACLightningFinish();
+    RB_ACTemporalFinish();
+}
+
 static float	s_flipMatrix[16] = {
 	// convert from our coordinate system (looking down X)
 	// to OpenGL's coordinate system (looking down -Z)
@@ -642,7 +649,13 @@ void RB_BeginDrawingView (void) {
 			if (r_fastsky->integer)
 			{
 				clearBits |= GL_COLOR_BUFFER_BIT;
-				qglClearColor(0.5, 0.5, 1.0, 1.0);
+				// The simplified sky must retain the map's atmosphere. A fixed
+				// bright blue background turns night missions into daylight.
+				// Use this view's color directly, even when fog is disabled.
+				qglClearColor(
+					backEnd.viewParms.farplane_color[0] * tr.identityLight,
+					backEnd.viewParms.farplane_color[1] * tr.identityLight,
+					backEnd.viewParms.farplane_color[2] * tr.identityLight, 1.0);
 			}
 		}
 	}
@@ -707,6 +720,8 @@ void RB_RenderDrawSurfList( drawSurf_t *drawSurfs, int numDrawSurfs ) {
 
 	// clear the z buffer, set the modelview, etc
 	RB_BeginDrawingView ();
+	RB_ACShadowBegin();
+	RB_ACTemporalBegin();
 
 	// draw everything
 	oldEntityNum = -1;
@@ -724,7 +739,9 @@ void RB_RenderDrawSurfList( drawSurf_t *drawSurfs, int numDrawSurfs ) {
 	for (i = 0, drawSurf = drawSurfs ; i < numDrawSurfs ; i++, drawSurf++) {
 		if ( drawSurf->sort == (unsigned)oldSort && *drawSurf->surface != SF_SPRITE ) {
 			// fast path, same as previous sort
+			qboolean isolated = RB_ACTemporalSurface(drawSurf->surface);
 			rb_surfaceTable[ *drawSurf->surface ]( drawSurf->surface );
+			RB_ACTemporalSurfaceEnd(isolated);
 			continue;
 		}
 		oldSort = (int)drawSurf->sort;
@@ -747,6 +764,7 @@ void RB_RenderDrawSurfList( drawSurf_t *drawSurfs, int numDrawSurfs ) {
 			if (oldShader != NULL) {
 				RB_EndSurface();
 			}
+			if (shader->sort > SS_SEE_THROUGH) RB_ACShadowFinish();
 			RB_BeginSurface( shader );
 			oldShader = shader;
 			oldDlightMap = dlightMap;
@@ -872,7 +890,11 @@ void RB_RenderDrawSurfList( drawSurf_t *drawSurfs, int numDrawSurfs ) {
 		}
 
 		// add the triangles for this surface
-		rb_surfaceTable[ *drawSurf->surface ]( drawSurf->surface );
+		{
+			qboolean isolated = RB_ACTemporalSurface(drawSurf->surface);
+			rb_surfaceTable[ *drawSurf->surface ]( drawSurf->surface );
+			RB_ACTemporalSurfaceEnd(isolated);
+		}
 	}
 
 	// draw the contents of the last shader batch
@@ -886,6 +908,7 @@ void RB_RenderDrawSurfList( drawSurf_t *drawSurfs, int numDrawSurfs ) {
 		qglDepthRange (0, 1.0);
 	}
 
+	RB_ACShadowFinish();
 	RB_ShadowFinish();
 	if (!(backEnd.refdef.rdflags & RDF_HUD)) {
 		RB_RenderFlares();
@@ -992,6 +1015,7 @@ RB_SetGL2D
 ================
 */
 void	RB_SetGL2D (void) {
+	RB_FinishSceneEffects();
 	Set2DWindow(0, 0, glConfig.vidWidth, glConfig.vidHeight, 0.0, glConfig.vidWidth, glConfig.vidHeight, 0.0, 0.0, 1.0);
 }
 
@@ -1013,6 +1037,14 @@ void RE_StretchRaw (int x, int y, int w, int h, int cols, int rows, int componen
 		return;
 	}
 	R_IssuePendingRenderCommands();
+    // Raw movies draw immediately, outside the queued UI shader path. Clear
+    // the full-screen movie's pillarbox here so old frames/window color cannot
+    // remain beside a centered 4:3 image. Embedded movie rectangles are unchanged.
+    if((w==glConfig.vidWidth || h==glConfig.vidHeight)
+        && abs(2*x+w-glConfig.vidWidth)<=1 && abs(2*y+h-glConfig.vidHeight)<=1) {
+        qglClearColor(0,0,0,1);
+        qglClear(GL_COLOR_BUFFER_BIT);
+    }
 
 	// we definately want to sync every frame for the cinematics
 	qglFinish();
@@ -1227,11 +1259,13 @@ const void	*RB_DrawSurfs( const void *data ) {
 
 	cmd = (const drawSurfsCommand_t *)data;
 
+	RB_FinishSceneEffects();
 	backEnd.refdef = cmd->refdef;
 	backEnd.viewParms = cmd->viewParms;
 
 	RB_SetupFog();
 	RB_RenderDrawSurfList( cmd->drawSurfs, cmd->numDrawSurfs );
+	RB_ACLightningBegin();
 
 	return (const void *)(cmd + 1);
 }
@@ -1374,6 +1408,7 @@ const void *RB_ClearDepth(const void *data)
 	
 	if(tess.numIndexes)
 		RB_EndSurface();
+	RB_FinishSceneEffects();
 
 	// texture swapping test
 	if (r_showImages->integer)
@@ -1400,6 +1435,7 @@ const void	*RB_SwapBuffers( const void *data ) {
 	}
 
 	// texture swapping test
+	RB_FinishSceneEffects();
 	if ( r_showImages->integer ) {
 		RB_ShowImages(qfalse);
 	}

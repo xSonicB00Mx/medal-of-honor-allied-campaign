@@ -181,14 +181,14 @@ public:
 
 private:
     void ContinueEffectExecution(Event *ev);
-    void ExecuteEffect(int iEffect, int iStartCommand, Vector vPos, Vector vAngles, float axis[3][3]);
+    void ExecuteEffect(int iEffect, int iStartCommand, Vector vPos, Vector vAngles, float axis[3][3], bool acAuthorized=false);
 
 public:
     ClientSpecialEffectsManager();
 
     void             LoadEffects();
     qboolean         EffectsPending();
-    void             MakeEffect_Normal(int iEffect, Vector vPos, Vector vNormal);
+    void             MakeEffect_Normal(int iEffect, Vector vPos, Vector vNormal, bool acAuthorized=false);
     void             MakeEffect_Angles(int iEffect, Vector vPos, Vector vAngles);
     void             MakeEffect_Axis(int iEffect, Vector vPos, float axis[3][3]);
     specialeffect_t *GetTestEffectPointer();

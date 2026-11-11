@@ -1,0 +1,17 @@
+{
+  "case": "default",
+  "game": 2,
+  "errors": [
+    "^~^~^ Script Error : command 'thread' applied to NULL listener",
+    "^~^~^ Script Error : self is NULL",
+    "^~^~^ Script Error : invalid waittill spawn for 'Level'"
+  ],
+  "locations": [
+    "maps/e3l3/scene3.scr:11",
+    "maps/e3l3/scene2.scr:356",
+    "global/vehicles_thinkers.scr:887"
+  ],
+  "reference": "checkpoints/CP08/loadout.md and local profiles-local/loadout/baseline-bt2/result.json",
+  "classification": "Pre-existing diagnostics, not proof of harmless gameplay",
+  "natural_playthrough_required": true
+}

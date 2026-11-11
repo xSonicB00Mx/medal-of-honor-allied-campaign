@@ -1,0 +1,36 @@
+{
+  "game": "BT",
+  "exit": 0,
+  "completed": true,
+  "engine_sha256": "4a7f7512e9508ab88b6284e9997e9c00384be683f70c53a8083996eb3e2bd86c",
+  "cgame_sha256": "1143ec6f5749be5d8dd03139e4403c9fa2b3ddcc93703679de149f26d0a8a9d1",
+  "images": [
+    "profiles-local/CP02-r1/mist-BT-v3/maintt/screenshots/shot0000.png",
+    "profiles-local/CP02-r1/mist-BT-v3/maintt/screenshots/shot0001.png",
+    "profiles-local/CP02-r1/mist-BT-v3/maintt/screenshots/shot0002.png",
+    "profiles-local/CP02-r1/mist-BT-v3/maintt/screenshots/shot0003.png",
+    "profiles-local/CP02-r1/mist-BT-v3/maintt/screenshots/shot0004.png",
+    "profiles-local/CP02-r1/mist-BT-v3/maintt/screenshots/shot0005.png",
+    "profiles-local/CP02-r1/mist-BT-v3/maintt/screenshots/shot0006.png",
+    "profiles-local/CP02-r1/mist-BT-v3/maintt/screenshots/shot0007.png",
+    "profiles-local/CP02-r1/mist-BT-v3/maintt/screenshots/shot0008.png"
+  ],
+  "mist_events": [
+    "AC_MIST time=70255 effect=30 enabled=0 pos=6143.375,-5758.312,2558.625",
+    "AC_MIST time=71167 effect=30 enabled=0 pos=6142.312,-5760.312,2559.625",
+    "AC_MIST time=74364 effect=30 enabled=0 pos=6140.625,-5757.375,2561.562",
+    "AC_MIST time=75259 effect=30 enabled=0 pos=6141.562,-5761.938,2558.250",
+    "AC_MIST time=78414 effect=31 enabled=0 pos=6140.125,-5758.125,2560.125",
+    "AC_MIST time=82508 effect=31 enabled=0 pos=6140.125,-5758.438,2559.750",
+    "AC_MIST time=83404 effect=31 enabled=0 pos=6141.125,-5759.000,2559.875",
+    "AC_MIST time=86606 effect=30 enabled=1 pos=6142.875,-5762.125,2559.250",
+    "AC_MIST time=87521 effect=30 enabled=1 pos=6141.312,-5757.125,2556.750",
+    "AC_MIST time=90719 effect=30 enabled=1 pos=6141.312,-5759.125,2559.875",
+    "AC_MIST time=91611 effect=30 enabled=1 pos=6139.938,-5759.062,2559.062",
+    "AC_MIST time=94765 effect=31 enabled=1 pos=6141.062,-5758.562,2560.312",
+    "AC_MIST time=98859 effect=31 enabled=1 pos=6140.375,-5758.188,2560.188",
+    "AC_MIST time=99757 effect=31 enabled=1 pos=6141.750,-5758.688,2560.750"
+  ],
+  "errors": [],
+  "saved_off": true
+}

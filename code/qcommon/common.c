@@ -589,7 +589,7 @@ quake3 set test blah + map test
 ============================================================================
 */
 
-#define	MAX_CONSOLE_LINES	32
+#define	MAX_CONSOLE_LINES	64
 int		com_numConsoleLines;
 char	*com_consoleLines[MAX_CONSOLE_LINES];
 
@@ -1534,6 +1534,11 @@ void Com_GameRestart_f(void)
 	Com_GameRestart(0, qtrue);
 }
 
+void Com_WriteConfiguration(void);
+void Com_InitTargetGameWithType(target_game_e target_game, qboolean bIsDemo);
+#include "ac_progress_impl.h"
+#include "ac_context_impl.h"
+
 #ifndef STANDALONE
 
 // TTimo: centralizing the cl_cdkey stuff after I discovered a buffer overflow problem with the dedicated server version
@@ -1752,6 +1757,8 @@ void Com_Init( char *commandLine ) {
 	// override anything from the config files with command line args
 	Com_StartupVariable( NULL );
 
+	AC_WaitForPreviousContext();
+
 	// get the developer cvar set as early as possible
 	Com_StartupVariable( "developer" );
 
@@ -1857,6 +1864,8 @@ void Com_Init( char *commandLine ) {
 
 	Cbuf_AddText( "exec localized.cfg\n" );
 	Cbuf_AddText( "exec autoexec.cfg\n" );
+	if(Cvar_VariableIntegerValue("ac_campaign_mode"))
+		Cbuf_AddText("exec ac_shared.cfg\nexec ac_preferences.cfg\n");
 	Cbuf_Execute( 0 );
 	Com_StartupVariable( NULL );
 	Cvar_Set( "config", configname );
@@ -1876,6 +1885,36 @@ void Com_Init( char *commandLine ) {
 	Cmd_SetCommandCompletionFunc( "writeconfig", Cmd_CompleteCfgName );
 	Cmd_AddCommand("pause", Com_Pause_f);
 	Cmd_AddCommand("game_restart", Com_GameRestart_f);
+	Cmd_AddCommand("ac_context", AC_Context_f);
+	Cmd_AddCommand("ac_load", AC_Context_f);
+	Cvar_Get("ac_campaign_mode", "0", CVAR_INIT);
+	Cvar_Get("ac_blood_mist", "1", CVAR_ARCHIVE);
+	Cvar_Get("ac_world_blood", "1", CVAR_ARCHIVE);
+	Cvar_Get("ac_body_wounds", "1", CVAR_ARCHIVE);
+	Cvar_Get("ac_corpse_effects", "1", CVAR_ARCHIVE);
+	// Migrate the former three-state preference only when no percentage exists.
+	Cvar_Get("ac_player_flinch_percent", *Cvar_VariableString("ac_player_flinch_mode")
+		? (Cvar_VariableIntegerValue("ac_player_flinch_mode") == 0 ? "0"
+		: Cvar_VariableIntegerValue("ac_player_flinch_mode") == 2 ? "100" : "20") : "20", CVAR_ARCHIVE);
+	Cvar_Get("ac_bt_drop_limits", "0", CVAR_ARCHIVE);
+	Cvar_Get("ac_hud_outline", "0", CVAR_ARCHIVE);
+	Cvar_Get("ac_operation", "-1", CVAR_INIT);
+	Cvar_Get("ac_replay", "0", CVAR_INIT);
+	Cvar_Get("ac_level_skill", "1", CVAR_INIT);
+    Cvar_Get("ac_next_skill", "1", CVAR_ARCHIVE);
+    for (int slot=0;slot<7;slot++) Cvar_Get(va("ac_loadout_%d",slot),"0",CVAR_ARCHIVE);
+    Cvar_Get("ac_loadout_authorized","0",CVAR_INIT);
+	Cvar_Get("ac_campaign_skill", *Cvar_VariableString("skill")?Cvar_VariableString("skill"):"1", CVAR_INIT);
+	Cvar_Get("ac_campaign_g_skill", *Cvar_VariableString("g_skill")?Cvar_VariableString("g_skill"):"1", CVAR_INIT);
+	Cvar_Get("ac_expected_map", "", CVAR_INIT);
+	Cvar_Get("ac_native_transition", "", CVAR_ROM);
+	Cmd_AddCommand("ac_mission", AC_Mission_f);
+	Cmd_AddCommand("ac_continue", AC_Continue_f);
+	Cmd_AddCommand("ac_level_replay", AC_LevelReplay_f);
+	Cmd_AddCommand("ac_briefing_replay", AC_Briefing_f);
+	Cmd_AddCommand("ac_return_main", AC_ReturnMain_f);
+	Cmd_AddCommand("ac_progress_report", AC_ProgressReport_f);
+    Cmd_AddCommand("ac_score_report", AC_ScoreReport_f);
 
 	// override anything from the config files with command line args
 	Com_StartupVariable( NULL );
@@ -2134,6 +2173,7 @@ void Com_WriteConfiguration( void ) {
 	cvar_modifiedFlags &= ~CVAR_ARCHIVE;
 
 	Com_WriteConfigToFile( config->string );
+	AC_WriteSharedConfiguration();
 
 	// not needed for dedicated
 #ifndef DEDICATED

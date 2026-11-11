@@ -1,0 +1,24 @@
+{
+  "game": "AA",
+  "map": "m1l2a",
+  "exit_code": 0,
+  "timeout": false,
+  "duration_seconds": 4.0,
+  "active_state": true,
+  "save_requested": true,
+  "load_lines": [
+    "[2026-10-13 21:26:13 UTC+1.000] Loading game...cp00_aa",
+    "[2026-10-13 21:26:14 UTC+1.000] CP00_SAVELOAD_COMMANDS_FINISHED"
+  ],
+  "commands_finished": true,
+  "menu_return_command_finished": true,
+  "screenshots": [
+    "main/screenshots/shot0000.tga",
+    "main/screenshots/shot0001.tga"
+  ],
+  "save_files": [
+    "main/save/omconfig/cp00_aa.sav",
+    "main/save/omconfig/cp00_aa.ssv"
+  ],
+  "note": "Command-driven rendered smoke, not manual gameplay or natural level transition."
+}

@@ -1,0 +1,37 @@
+{
+  "source_commit": "c0f6342352b2971f52c462574e528f58edf9220b",
+  "technical_candidate": true,
+  "full_acceptance": false,
+  "personal_acceptance": false,
+  "merged": false,
+  "direction_wall_runs": 10,
+  "confirmed_geometry_events": 77,
+  "wound_records_received": 154,
+  "script_errors": 0,
+  "runs_use_reported_binary_revisions": true,
+  "final_animation_runs": [
+    "live-AA-r2",
+    "live-SH-r2",
+    "live-BT-r2"
+  ],
+  "migration": "compat-final.json",
+  "independent_switches_and_process_restart": "options.json",
+  "real_launchers": "launcher-persistence.json",
+  "rendered_ui": [
+    "ui-AA-4k.json",
+    "ui-SH-fhd.json",
+    "ui-BT-wide.json"
+  ],
+  "unit_random_cases": 65536,
+  "unit_interval_cases": 6,
+  "documented_failed_partial_runs": [
+    "exit-AA-side (old 32-triangle cap)",
+    "live-AA (planned death shot missed)",
+    "initial launcher test queried non-archived console variables before opening options; fixed harness opens actual options first"
+  ],
+  "final_binaries": {
+    "openmohaa.exe": "857729f142304e9a918d3d59e2de401d88bb408684fd6e482847f4094e75a386",
+    "game.dll": "1c8ef2c8a18c447e9cd27209bbce056e5bcd8c3560e16dcfe47169631316e388",
+    "cgame.dll": "d246cc21e8740b213075c32a69790b2336e58062ca3eee5761da0103da2f799c"
+  }
+}

@@ -1,0 +1,99 @@
+{
+  "final_runs": [
+    {
+      "run": "clean-AA-43.json",
+      "resolution": [
+        1280,
+        960
+      ],
+      "root": [
+        "0.000",
+        "120.000",
+        "1280.000",
+        "720.000"
+      ],
+      "engine": "6be07ca8a4b81d447dfed372267e8f72d60115c594a4e6d71435e6943be5d0c4"
+    },
+    {
+      "run": "clean-AA-4k.json",
+      "resolution": [
+        3840,
+        2160
+      ],
+      "root": [
+        "0.000",
+        "0.000",
+        "3840.000",
+        "2160.000"
+      ],
+      "engine": "6be07ca8a4b81d447dfed372267e8f72d60115c594a4e6d71435e6943be5d0c4"
+    },
+    {
+      "run": "clean-AA-fhd.json",
+      "resolution": [
+        1920,
+        1080
+      ],
+      "root": [
+        "0.000",
+        "0.000",
+        "1920.000",
+        "1080.000"
+      ],
+      "engine": "6be07ca8a4b81d447dfed372267e8f72d60115c594a4e6d71435e6943be5d0c4"
+    },
+    {
+      "run": "clean-AA-wide.json",
+      "resolution": [
+        2560,
+        1080
+      ],
+      "root": [
+        "320.000",
+        "0.000",
+        "1920.000",
+        "1080.000"
+      ],
+      "engine": "6be07ca8a4b81d447dfed372267e8f72d60115c594a4e6d71435e6943be5d0c4"
+    },
+    {
+      "run": "clean-BT-qhd.json",
+      "resolution": [
+        2560,
+        1440
+      ],
+      "root": [
+        "0.000",
+        "0.000",
+        "2560.000",
+        "1440.000"
+      ],
+      "engine": "6be07ca8a4b81d447dfed372267e8f72d60115c594a4e6d71435e6943be5d0c4"
+    },
+    {
+      "run": "clean-SH-hd.json",
+      "resolution": [
+        1280,
+        720
+      ],
+      "root": [
+        "0.000",
+        "0.000",
+        "1280.000",
+        "720.000"
+      ],
+      "engine": "6be07ca8a4b81d447dfed372267e8f72d60115c594a4e6d71435e6943be5d0c4"
+    }
+  ],
+  "elements_per_page": 25,
+  "bounded_and_pairwise_nonoverlapping": true,
+  "user_files_preserved": 56,
+  "visual_review": [
+    "clean-AA-fhd",
+    "clean-SH-hd",
+    "clean-BT-qhd",
+    "clean-AA-43",
+    "clean-AA-wide"
+  ],
+  "native_pointer_input_tested": false
+}

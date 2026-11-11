@@ -1,0 +1,88 @@
+{
+  "body_light_comparison": {
+    "region": [
+      948,
+      390,
+      995,
+      450
+    ],
+    "pixels": 1133,
+    "before_mean_rgb": [
+      62.556045895851724,
+      26.1738746690203,
+      30.566637246248895
+    ],
+    "after_mean_rgb": [
+      28.4783759929391,
+      14.066195939982348,
+      16.236540158870255
+    ],
+    "fullbright_diagnostic_mean_rgb": [
+      98.62842012356576,
+      47.87555163283319,
+      52.79258605472198
+    ]
+  },
+  "AA_1920_1080_canvas_bounds": {
+    "briefing-before-AA": [
+      0,
+      1439
+    ],
+    "briefing-after-AA": [
+      240,
+      1679
+    ]
+  },
+  "observed_flight": [
+    "after-reacting/main/shot0003",
+    "final-blood-BT/maintt/shot0003"
+  ],
+  "observed_ground": [
+    "after-reacting/main/shot0006",
+    "final-blood-SH/mainta/shot0006"
+  ],
+  "movie_live_inspection": [
+    {
+      "game": "SH",
+      "profile": "movie-SH-verified",
+      "surface": "Computer Use sky.get_window_state",
+      "result": "Visible playing video with equal black pillarboxes at 1280x720"
+    },
+    {
+      "game": "BT",
+      "profile": "movie-BT-verified",
+      "surface": "Computer Use sky.get_window_state",
+      "result": "Visible playing video with equal black pillarboxes at 1280x720"
+    }
+  ],
+  "invalid_visual_probes": [
+    "briefing-SH-wide",
+    "briefing-BT-fhd"
+  ],
+  "invalid_visual_reason": "Queued test commands delayed the map-script cinematic until after quit; black room screenshots do not verify videos. Replaced by direct cinematic launch plus window capture.",
+  "original_artwork_unchanged": true,
+  "final_briefing_aspects": {
+    "briefing-AA-wide": {
+      "dimensions": [
+        2560,
+        1080
+      ],
+      "canvas_x_bounds": [
+        560,
+        1999
+      ],
+      "visually_reviewed": true
+    },
+    "briefing-AA-4x3": {
+      "dimensions": [
+        1280,
+        960
+      ],
+      "canvas_x_bounds": [
+        0,
+        1279
+      ],
+      "visually_reviewed": true
+    }
+  }
+}

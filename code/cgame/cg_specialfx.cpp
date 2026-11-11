@@ -42,8 +42,8 @@ Event EV_SFX_EffectDelay
 (
     "effectdelay",
     EV_DEFAULT,
-    "iivvvvv",
-    "iEffect iCurrEmitter vPos vAngles vAxisA vAxisB vAxisC",
+    "iivvvvvI",
+    "iEffect iCurrEmitter vPos vAngles vAxisA vAxisB vAxisC acAuthorized",
     "Resumes the execution of iEffect effect from its iCurrEmitter emitter."
 );
 
@@ -452,11 +452,11 @@ void ClientSpecialEffectsManager::ContinueEffectExecution(Event *ev)
     norm = ev->GetVector(7);
     VectorCopy(norm, axis[2]);
 
-    ExecuteEffect(ev->GetInteger(1), ev->GetInteger(2), ev->GetVector(3), ev->GetVector(4), axis);
+    ExecuteEffect(ev->GetInteger(1), ev->GetInteger(2), ev->GetVector(3), ev->GetVector(4), axis, ev->NumArgs()>7 && ev->GetInteger(8)!=0);
 }
 
 void ClientSpecialEffectsManager::ExecuteEffect(
-    int iEffect, int iStartCommand, Vector vPos, Vector vAngles, float axis[3][3]
+    int iEffect, int iStartCommand, Vector vPos, Vector vAngles, float axis[3][3], bool acAuthorized
 )
 {
     int                     i;
@@ -474,6 +474,10 @@ void ClientSpecialEffectsManager::ExecuteEffect(
     tmpEntity.renderfx      = 0;
     tmpEntity.shaderRGBA[3] = -1;
 
+    if (iStartCommand == 0 && (iEffect == SFX_BHIT_HUMAN_UNIFORM_LITE || iEffect == SFX_BHIT_HUMAN_UNIFORM_HARD)
+        && cgi.Cvar_Get("ac_fx_debug", "0", 0)->integer)
+        cgi.Printf("AC_MIST time=%d effect=%d enabled=%d pos=%.3f,%.3f,%.3f authorized=%d\n", cg.time, iEffect,
+            acAuthorized && cgi.Cvar_Get("ac_blood_mist", "1", CVAR_ARCHIVE)->integer, vPos.x, vPos.y, vPos.z,acAuthorized);
     pEffect       = &this->m_effects[iEffect];
     iCommandCount = pEffect->m_iCommandCount;
     if (pEffect->m_iCommandCount) {
@@ -495,6 +499,7 @@ void ClientSpecialEffectsManager::ExecuteEffect(
                 ev1.AddVector(axis[0]);
                 ev1.AddVector(axis[1]);
                 ev1.AddVector(axis[2]);
+                ev1.AddInteger(acAuthorized);
 
                 PostEvent(ev1, pCommand->fCommandTime - fStartCommandTime);
                 m_iNumPendingEvents++;
@@ -521,7 +526,20 @@ void ClientSpecialEffectsManager::ExecuteEffect(
                 pCommand->emitter->cgd.createTime = cg.time;
                 commandManager.SetSpawnthing(pCommand->emitter);
 
+                // Tint only this invocation of the existing human-uniform emitter.
+                // Restore the shared template immediately; delays use the same path.
+                const bool redMist = (iEffect == SFX_BHIT_HUMAN_UNIFORM_LITE
+                    || iEffect == SFX_BHIT_HUMAN_UNIFORM_HARD)
+                    && acAuthorized && cgi.Cvar_Get("ac_blood_mist", "1", CVAR_ARCHIVE)->integer;
+                float originalColor[3];
+                for (int channel = 0; channel < 3; ++channel) {
+                    originalColor[channel] = pCommand->emitter->cgd.color[channel];
+                    if (redMist) pCommand->emitter->cgd.color[channel] *=
+                        channel == 0 ? 0.65f : 0.035f;
+                }
                 (commandManager.*pCommand->endfcn)();
+                for (int channel = 0; channel < 3; ++channel)
+                    pCommand->emitter->cgd.color[channel] = originalColor[channel];
             }
         }
 
@@ -530,14 +548,14 @@ void ClientSpecialEffectsManager::ExecuteEffect(
     }
 }
 
-void ClientSpecialEffectsManager::MakeEffect_Normal(int iEffect, Vector vPos, Vector vNormal)
+void ClientSpecialEffectsManager::MakeEffect_Normal(int iEffect, Vector vPos, Vector vNormal, bool acAuthorized)
 {
     Vector vAngles;
     float  axis[3][3];
 
     vAngles = vNormal.toAngles();
     AnglesToAxis(vAngles, axis);
-    ClientSpecialEffectsManager::ExecuteEffect(iEffect, 0, vPos, vAngles, axis);
+    ClientSpecialEffectsManager::ExecuteEffect(iEffect, 0, vPos, vAngles, axis, acAuthorized);
 }
 
 void ClientSpecialEffectsManager::MakeEffect_Angles(int iEffect, Vector vPos, Vector vAngles)
@@ -1196,3 +1214,6 @@ specialeffect_t *ClientSpecialEffectsManager::GetTestEffectPointer()
 {
     return &m_effects[SFX_TEST_EFFECT];
 }
+
+#include "ac_blood_impl.h"
+#include "ac_mortar_aim.h"

@@ -936,6 +936,7 @@ typedef struct {
     vec3_t sky_axis[3];
     qboolean skybox_farplane;
     qboolean render_terrain;
+	float acLightning;
 } trRefdef_t;
 
 

@@ -724,6 +724,7 @@ void CIN_CloseAllVideos(void);
 void CL_InitCGame( void );
 void CL_InitCGameDLL( void );
 void CL_ShutdownCGame( void );
+unsigned long long CL_ACStoreLocalWound(const ac_wound_t *wound);
 qboolean CL_GameCommand( void );
 void CL_CGameRendering( stereoFrame_t stereo );
 void CL_CGame2D( stereoFrame_t stereo );

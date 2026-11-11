@@ -1,0 +1,73 @@
+{
+  "game": "AA",
+  "exit": 0,
+  "completed": true,
+  "engine_sha256": "48bc3cdcb5506a36399e650bb1b74ec6106d703d5d7774ccad60eeeefe9d2b36",
+  "cgame_sha256": "b604b493a89254044bde291f2cca1115cd7fec779f1a4385ad3659760c625005",
+  "images": [
+    "profiles-local/CP04-r1/wound-AA-v2/main/screenshots/shot0000.png",
+    "profiles-local/CP04-r1/wound-AA-v2/main/screenshots/shot0001.png",
+    "profiles-local/CP04-r1/wound-AA-v2/main/screenshots/shot0002.png"
+  ],
+  "geometry_events": [
+    "AC_HIT id=1 time=7100 entity=202 generation=3.250 weapon=models/weapons/colt45.tik group=1 seed=3869685147 entry=1 exit=1 surface=0/1/114",
+    "AC_HIT id=2 time=8000 entity=202 generation=3.250 weapon=models/weapons/colt45.tik group=1 seed=4070107876 entry=1 exit=1 surface=0/1/114"
+  ],
+  "mark_events": [
+    "AC_MARK drop -6441.411 -3789.667 475.171",
+    "AC_MARK drop -6443.849 -3793.474 475.605",
+    "AC_MARK drop -6434.521 -3795.145 475.907",
+    "AC_MARK drop -6438.858 -3799.844 476.429",
+    "AC_MARK drop -6443.115 -3802.625 476.719",
+    "AC_MARK drop -6440.662 -3791.929 475.452",
+    "AC_MARK drop -6516.428 -3823.219 478.421",
+    "AC_MARK drop -6503.097 -3837.339 480.271",
+    "AC_MARK drop -6523.363 -3834.549 479.716",
+    "AC_MARK drop -6437.511 -3804.449 477.000",
+    "AC_MARK drop -6436.917 -3792.793 475.597",
+    "AC_MARK drop -6433.429 -3805.298 477.146",
+    "AC_MARK drop -6434.443 -3802.579 476.807",
+    "AC_MARK drop -6430.673 -3792.754 475.660",
+    "AC_MARK drop -6428.549 -3789.755 475.320",
+    "AC_MARK drop -6507.375 -3833.293 479.736",
+    "AC_MARK drop -6512.021 -3827.473 478.982"
+  ],
+  "mist_events": [
+    "AC_MIST time=7554 effect=30 enabled=1 pos=-6481.625,-3813.375,546.625",
+    "AC_MIST time=8466 effect=30 enabled=1 pos=-6481.500,-3814.000,546.812"
+  ],
+  "errors": [],
+  "saved_off": true,
+  "rendered_mark_fragments": [
+    2,
+    2,
+    1,
+    1,
+    1,
+    2,
+    1,
+    1,
+    2,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    2
+  ],
+  "wounds": [
+    "AC_WOUND id=1 branch=0 entity=202 usage=511 group=1 radius=1.80 seed=605297582 rotation=113.268311 flip=1,0 triangles=8",
+    "AC_WOUND id=2 branch=0 entity=202 usage=511 group=1 radius=1.80 seed=808076497 rotation=263.373383 flip=0,1 triangles=4"
+  ],
+  "received": [
+    "AC_WOUND_RECEIVED id=1 branch=0 triangles=8 rotation=113.268311 flip=1,0",
+    "AC_WOUND_RECEIVED id=2 branch=0 triangles=4 rotation=263.373383 flip=0,1"
+  ],
+  "drawn": [],
+  "archive": [
+    "AC_WOUND_ARCHIVE save count=0",
+    "AC_WOUND_ARCHIVE save count=0"
+  ]
+}

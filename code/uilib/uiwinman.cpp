@@ -265,7 +265,11 @@ void UIWindowManager::UpdateViews(void)
             VectorSet4(col, 1, 1, 1, 1);
             uii.Rend_SetColor(col);
 
-            uii.Rend_DrawPicStretched(uid.mouseX, uid.mouseY, 0, 0, 0, 0, 1, 1, m_cursor->GetMaterial());
+            // Logical 24px pointer at 480p; explicit dimensions decouple the
+            // display size from the HD texture and from menu/HUD scale sliders.
+            const float cursorSize = 24.0f * uid.vidHeight / 480.0f;
+            uii.Rend_DrawPicStretched(uid.mouseX, uid.mouseY, cursorSize, cursorSize,
+                0, 0, 1, 1, m_cursor->GetMaterial());
         }
 
         m_font->setColor(UWhite);
@@ -598,17 +602,18 @@ qboolean UIWindowManager::KeyEvent(int key, unsigned int time)
     return true;
 }
 
-void UIWindowManager::CreateMenus(void)
+void UIWindowManager::CreateMenus(bool preserveExisting)
 {
     int i;
     int n;
 
-    menuManager.DeleteAllMenus();
+    if (!preserveExisting) menuManager.DeleteAllMenus();
 
     n = uWinMan.m_children.NumObjects();
     for (i = 1; i <= n; i++) {
         UIWidget *w = uWinMan.m_children.ObjectAt(i);
         if (w->isSubclassOf(UIWidgetContainer)) {
+            if (preserveExisting && menuManager.FindMenu(w->getName())) continue;
             UIWidgetContainer *wid = (UIWidgetContainer *)w;
             Menu              *m   = new Menu(w->getName());
 

@@ -1,4 +1,9 @@
 # Medal of Honor: Allied Campaign
+> Aktuelle Freigabe 14.10.2026: eigenstaendig bis einschliesslich CP8 weiterarbeiten. Die frueheren Umfangsgrenzen und Zwischenstopps bis CP8 sind aufgehoben. Anforderungen, Integritaet und getrennte technische/persoenliche Abnahme gelten weiter; keine Mergefreigabe.
+> Frühere Arbeitsfreigabe 14.10.2026: Der Nutzer beauftragt die eigenständige Fortsetzung bis einschließlich CP1 ohne Zwischenfreigaben. Die Stopps nach CP0 und CP0a sind für diesen Lauf aufgehoben. Fachliche Anforderungen und ehrliche Testgrenzen bleiben bestehen; persönliche Spielabnahmen werden nicht erfunden. Der ausdrücklich abgewählte BT-Finaltest bleibt ausgelassen.
+> Neueste Erweiterung 14.10.2026 nach CP05-r2: Weltblut 30 Sekunden, 1,5-fache Groesse, AA-Boden-/Wandkorrekturen und Leichentreffer sind jetzt direkt im Chat beauftragt. Die fruehere CP5-Grenze ist insoweit erweitert; keine Mergefreigabe oder persoenliche Abnahme unterstellt.
+
+> Vorherige Erweiterung 14.10.2026: autonom bis einschließlich CP5, ohne Zwischenfreigaben; neue Spieloptionen ausschließlich Englisch. Technische Anforderungen bleiben bestehen. Keine persönliche Abnahme oder Mergefreigabe unterstellt. CP5a bleibt außerhalb des Auftrags.
 ## Verbindlicher Arbeitsauftrag für Codex
 
 Stand des Plans: 13. Oktober 2026 · Revision 8. Vollständig aktualisierte Anleitung; ersetzt Revision 1 bis 7, nicht nur ein Ergänzungsblatt. Dieses Dokument beschreibt den Sollzustand und die Umsetzung; es behauptet nicht, dass die lokale Installation bereits untersucht oder die Mod bereits gebaut wurde.
@@ -312,6 +317,8 @@ Erstelle reproduzierbare Testszenen bzw. Testsavegames in allen drei Spielen: Me
 **Zusätzliche WCR-Basisprüfungen:** Wähle anhand des lokalen Changelogs pro Titel sichtbare restaurierte Inhalte und mindestens einen anspruchsvollen Skriptablauf. Prüfe vorhandene Optionsfunktionen, Dialog-/Untertitelabläufe, Modelle/Animationen, Briefingstart und Save/Load. Ergänze einen MG42-Benutzungs-/Fortschrittstest in AA; `m1l1` und `m2l1` sind durch den Autorenhinweis begründete Kandidaten, deren tatsächliche lokale Skripte geprüft werden müssen. [S29] Keine Erfolgsflags nur setzen, um eine blockierte Mission zu überspringen.
 
 Prüfe außerdem die in der lokalen WCR-Fassung vorhandene erweiterte BT-Endsequenz bis zum echten Abschluss und sichere dafür eine wiederholbare Referenz. Fehlt sie, den Bestand gegen das lokale Changelog erklären; nicht ungefragt eine andere WCR-Version beschaffen. Alle automatisierten Prüfungen und tatsächlich durchgespielten Passagen getrennt protokollieren. Ein Startbildschirm mit WCR-Logo oder ein vorhandenes PK3 ist noch keine Inhaltsabnahme.
+
+**Nutzerentscheidung vom 14.10.2026 für CP00-r4:** Den vollständigen BT-Finaltest einschließlich Flucht, Outro/Abspann und Timerfehlschlag auf ausdrücklichen Wunsch überspringen. Dieser Test ist damit für die aktuelle CP0-Runde abgewählt, nicht bestanden. Vorhandene Start-/Save-Nachweise und bekannte Skriptwarnungen bleiben getrennt dokumentiert. Die Entscheidung erteilt keine vollständige CP0-Abnahme, keinen Merge und keine CP0a-Freigabe.
 
 Ergänze Referenzfälle für Gegner vor einer Wand, seitlich liegende bzw. auf dem Rücken liegende Leichen und bereits platzierte menschliche 3D-Leichen. Dokumentiere das unveränderte Treffer-/Kollisionsverhalten, das Verschwinden von Leichen und die bisherigen Statistik-/Skriptreaktionen. Erfasse Pistolen, MPs, Gewehre und MGs anhand der tatsächlichen Waffen-IDs. In diesem Schritt noch keine Leichenreaktionen implementieren.
 

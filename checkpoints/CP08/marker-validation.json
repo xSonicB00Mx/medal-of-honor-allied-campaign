@@ -1,0 +1,257 @@
+[
+  {
+    "id": "aa_torch",
+    "latitude": 35.85048,
+    "longitude": -0.318,
+    "region": 0,
+    "pixel": [
+      149.7412604749485,
+      228.7112186061282
+    ],
+    "source": {
+      "provider": "GeoNames",
+      "id": "2506385",
+      "url": "https://www.geonames.org/2506385",
+      "license": "CC BY 4.0",
+      "anchor_name": "Arzew"
+    }
+  },
+  {
+    "id": "aa_trondheim",
+    "latitude": 63.43049,
+    "longitude": 10.39506,
+    "region": 1,
+    "pixel": [
+      317.06462063512885,
+      50.43743382013491
+    ],
+    "source": {
+      "provider": "GeoNames",
+      "id": "3133880",
+      "url": "https://www.geonames.org/3133880",
+      "license": "CC BY 4.0",
+      "anchor_name": "Trondheim"
+    }
+  },
+  {
+    "id": "bt_kasserine",
+    "latitude": 35.16758,
+    "longitude": 8.83651,
+    "region": 0,
+    "pixel": [
+      277.7145308730467,
+      240.43882180814956
+    ],
+    "source": {
+      "provider": "GeoNames",
+      "id": "2473457",
+      "url": "https://www.geonames.org/2473457",
+      "license": "CC BY 4.0",
+      "anchor_name": "Kasserine"
+    }
+  },
+  {
+    "id": "bt_bizerte",
+    "latitude": 37.27442,
+    "longitude": 9.87391,
+    "region": 0,
+    "pixel": [
+      292.21661462313136,
+      203.92722572381447
+    ],
+    "source": {
+      "provider": "GeoNames",
+      "id": "2472706",
+      "url": "https://www.geonames.org/2472706",
+      "license": "CC BY 4.0",
+      "anchor_name": "Bizerte"
+    }
+  },
+  {
+    "id": "bt_sicily",
+    "latitude": 37.75,
+    "longitude": 14.25,
+    "region": 0,
+    "pixel": [
+      353.39111209556995,
+      195.54585904253673
+    ],
+    "source": {
+      "provider": "GeoNames",
+      "id": "2523119",
+      "url": "https://www.geonames.org/2523119",
+      "license": "CC BY 4.0",
+      "anchor_name": "Sicilia"
+    }
+  },
+  {
+    "id": "bt_cassino",
+    "latitude": 41.48581,
+    "longitude": 13.82835,
+    "region": 0,
+    "pixel": [
+      347.49675734983714,
+      127.7218246776498
+    ],
+    "source": {
+      "provider": "GeoNames",
+      "id": "3179781",
+      "url": "https://www.geonames.org/3179781",
+      "license": "CC BY 4.0",
+      "anchor_name": "Cassino"
+    }
+  },
+  {
+    "id": "bt_anzio",
+    "latitude": 41.45263,
+    "longitude": 12.62157,
+    "region": 0,
+    "pixel": [
+      330.62686663465774,
+      128.34083532315654
+    ],
+    "source": {
+      "provider": "GeoNames",
+      "id": "3183005",
+      "url": "https://www.geonames.org/3183005",
+      "license": "CC BY 4.0",
+      "anchor_name": "Anzio"
+    }
+  },
+  {
+    "id": "sh_normandy",
+    "latitude": 49.18585,
+    "longitude": -0.35912,
+    "region": 1,
+    "pixel": [
+      226.37197890967124,
+      270.14371178023947
+    ],
+    "source": {
+      "provider": "GeoNames",
+      "id": "3029241",
+      "url": "https://www.geonames.org/3029241",
+      "license": "CC BY 4.0",
+      "anchor_name": "Caen"
+    }
+  },
+  {
+    "id": "aa_normandy",
+    "latitude": 49.18585,
+    "longitude": -0.35912,
+    "region": 1,
+    "pixel": [
+      226.37197890967124,
+      270.14371178023947
+    ],
+    "source": {
+      "provider": "GeoNames",
+      "id": "3029241",
+      "url": "https://www.geonames.org/3029241",
+      "license": "CC BY 4.0",
+      "anchor_name": "Caen"
+    }
+  },
+  {
+    "id": "aa_resistance",
+    "latitude": 49.18585,
+    "longitude": -0.35912,
+    "region": 1,
+    "pixel": [
+      226.37197890967124,
+      270.14371178023947
+    ],
+    "source": {
+      "provider": "GeoNames",
+      "id": "3029241",
+      "url": "https://www.geonames.org/3029241",
+      "license": "CC BY 4.0",
+      "anchor_name": "Caen"
+    }
+  },
+  {
+    "id": "aa_brittany",
+    "latitude": 48.39029,
+    "longitude": -4.48628,
+    "region": 1,
+    "pixel": [
+      191.56662478470403,
+      280.3271935182585
+    ],
+    "source": {
+      "provider": "GeoNames",
+      "id": "3030300",
+      "url": "https://www.geonames.org/3030300",
+      "license": "CC BY 4.0",
+      "anchor_name": "Brest"
+    }
+  },
+  {
+    "id": "bt_battaglia",
+    "latitude": 44.21667,
+    "longitude": 11.58333,
+    "region": 0,
+    "pixel": [
+      316.11304030663786,
+      75.63603116334394
+    ],
+    "source": {
+      "provider": "GeoNames",
+      "id": "3182279",
+      "url": "https://www.geonames.org/3182279",
+      "license": "CC BY 4.0",
+      "anchor_name": "Monte Battaglia"
+    }
+  },
+  {
+    "id": "sh_ardennes",
+    "latitude": 50.00347,
+    "longitude": 5.71844,
+    "region": 1,
+    "pixel": [
+      277.62553535423257,
+      259.5057799781604
+    ],
+    "source": {
+      "provider": "GeoNames",
+      "id": "2802583",
+      "url": "https://www.geonames.org/2802583",
+      "license": "CC BY 4.0",
+      "anchor_name": "Bastogne"
+    }
+  },
+  {
+    "id": "aa_schmerzen",
+    "latitude": 49.75565,
+    "longitude": 6.63935,
+    "region": 1,
+    "pixel": [
+      285.39179560758436,
+      262.7490211336517
+    ],
+    "source": {
+      "provider": "GeoNames",
+      "id": "2821164",
+      "url": "https://www.geonames.org/2821164",
+      "license": "CC BY 4.0",
+      "anchor_name": "Trier"
+    }
+  },
+  {
+    "id": "sh_berlin",
+    "latitude": 52.52437,
+    "longitude": 13.41053,
+    "region": 1,
+    "pixel": [
+      342.4948199012622,
+      225.51942429183356
+    ],
+    "source": {
+      "provider": "GeoNames",
+      "id": "2950159",
+      "url": "https://www.geonames.org/2950159",
+      "license": "CC BY 4.0",
+      "anchor_name": "Berlin"
+    }
+  }
+]

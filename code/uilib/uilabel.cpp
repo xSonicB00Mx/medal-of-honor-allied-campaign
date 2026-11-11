@@ -273,6 +273,21 @@ void UILabel::Draw(void)
         }
 
         if (m_bLinkCvarToShader) {
+            if (m_cvarname == "ui_signshader") {
+                static const char *signs[][2] = {
+                    {"newgame_sign", "operations"}, {"textures/mohmenu/new_game_sign", "operations"},
+                    {"options_sign", "options"}, {"warrecords_sign", "war_records"},
+                    {"briefingroom_sign", "briefing_room"}, {"textures/mohmenu/briefing_room_sign", "briefing_room"},
+                    {"maplist_sign", "map_list"}, {"textures/mohmenu/map_list_sign", "map_list"},
+                    {"credits_sign", "credits"}, {"textures/mohmenu/credits_sign", "credits"},
+                    {"textures/mohmenu/load_save_sign", "load_save"}
+                };
+                for (unsigned i=0; i<sizeof(signs)/sizeof(signs[0]); ++i)
+                    if (!strcmp(string, signs[i][0])) {
+                        string = va("textures/ac/widescreen/%s_sign", signs[i][1]);
+                        break;
+                    }
+            }
             if (str::icmp(m_sCurrentShaderName, string)) {
                 m_sCurrentShaderName = string;
 
@@ -309,24 +324,47 @@ void UILabel::Draw(void)
         ng = m_foreground_color.g;
         nb = m_foreground_color.b;
 
-        m_font->setColor(UColor(nr, ng, nb, m_foreground_color.a * m_local_alpha));
+        PrintLabelText(string, UColor(nr, ng, nb, m_foreground_color.a * m_local_alpha));
+    }
+}
 
-        if (m_bOutlinedText) {
-            // print the text
-            m_font->PrintOutlinedJustified(
-                getClientFrame(),
-                m_iFontAlignmentHorizontal,
-                m_iFontAlignmentVertical,
-                string,
-                UBlack,
-                getVirtualScale()
-            );
-        } else {
-            // print the text
-            m_font->PrintJustified(
-                getClientFrame(), m_iFontAlignmentHorizontal, m_iFontAlignmentVertical, string, getVirtualScale()
-            );
+void UILabel::PrintLabelText(const char *string, const UColor& textColor)
+{
+    m_font->setColor(textColor);
+    const cvar_t *hudOutline = uii.Cvar_Find("ac_hud_outline");
+    if (IsCampaignHUD()) {
+        // Use the same layout in both modes, including top-left labels.
+        if (hudOutline && hudOutline->integer) {
+            const float *scale = getVirtualScale();
+            const float dx = scale ? scale[0] * 2 : 2;
+            const float dy = scale ? scale[1] * 2 : 2;
+            m_font->setColor(UColor(0, 0, 0, textColor.a));
+            for (int x = -1; x <= 1; ++x) for (int y = -1; y <= 1; ++y) {
+                if (!x && !y) continue;
+                UIRect2D outlineRect = getClientFrame();
+                outlineRect.pos.x += x * dx; outlineRect.pos.y += y * dy;
+                m_font->PrintJustified(outlineRect, m_iFontAlignmentHorizontal,
+                    m_iFontAlignmentVertical, string, scale);
+            }
+            m_font->setColor(textColor);
         }
+        m_font->PrintJustified(getClientFrame(), m_iFontAlignmentHorizontal,
+            m_iFontAlignmentVertical, string, getVirtualScale());
+    } else if (m_bOutlinedText) {
+        // print the text
+        m_font->PrintOutlinedJustified(
+            getClientFrame(),
+            m_iFontAlignmentHorizontal,
+            m_iFontAlignmentVertical,
+            string,
+            UBlack,
+            getVirtualScale()
+        );
+    } else {
+        // print the text
+        m_font->PrintJustified(
+            getClientFrame(), m_iFontAlignmentHorizontal, m_iFontAlignmentVertical, string, getVirtualScale()
+        );
     }
 }
 

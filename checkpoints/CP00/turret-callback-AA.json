@@ -1,0 +1,60 @@
+{
+  "candidate": "CP00-r2",
+  "scope": "Isolated turret use callback; not natural MG42 mission progression",
+  "cheats_enabled_for_fixture_execution": true,
+  "mission_flags_modified": false,
+  "observed": [
+    [
+      "FIRST",
+      "0"
+    ],
+    [
+      "DISMOUNT",
+      "0"
+    ],
+    [
+      "SECOND",
+      "0"
+    ]
+  ],
+  "passed": false,
+  "exit_code": 0,
+  "upstream_fix": "44ce0595c2bbe1c3d5933e16e9130c2d7cf1306d",
+  "evidence": [
+    {
+      "path": "profiles-local/CP00-r2/turret-callback-AA/main/configs/omconfig.cfg",
+      "sha256": "64e613576bb1962873454256942abb55c1b6f6cf6b02adcb71453f7a9843d32c"
+    },
+    {
+      "path": "profiles-local/CP00-r2/turret-callback-AA/main/cp00/turret.scr",
+      "sha256": "b535147254d10898061a0418f4ddf755cf6888d339bf57d4dce422b3bb2f4231"
+    },
+    {
+      "path": "profiles-local/CP00-r2/turret-callback-AA/main/cp00-turret.cfg",
+      "sha256": "166db5c0b49d4da153f70fdda2c06114f95e61281b9c8d49780d34e68d4d73cf"
+    },
+    {
+      "path": "profiles-local/CP00-r2/turret-callback-AA/main/qconsole.log",
+      "sha256": "b81ea72cb2f6a5d1ca8cea406deb12e64c45e62e36c53146f71fc2e62e5eb356"
+    },
+    {
+      "path": "profiles-local/CP00-r2/turret-callback-AA/main/save/omconfig/m2l10000.sav",
+      "sha256": "e1b76b81e9b05bdfa829632b12d71faa63d24f2ae88d2092f6183cb87ec382e9"
+    },
+    {
+      "path": "profiles-local/CP00-r2/turret-callback-AA/main/save/omconfig/m2l10000.ssv",
+      "sha256": "bcdb680a8aff0f4d31fc9248b648e1cef58ba4a0a3a4083f9778f46a8174f75a"
+    },
+    {
+      "path": "profiles-local/CP00-r2/turret-callback-AA/main/save/omconfig/m2l10000.tga",
+      "sha256": "1159ea52fd4e6e5628f71e6c11173b62124e23650da19bc98cb78936a06dd348"
+    },
+    {
+      "path": "profiles-local/CP00-r2/turret-callback-AA/qkey",
+      "sha256": "e063faca500cf4a65280c2531485782f6f5950e3bff658ab8868946703345654"
+    }
+  ],
+  "engine_source_commit": "3eec4afb22093421b8776d2df92b87ec2fb4119e",
+  "engine_sha256": "ed50e53a812d9ef1ef5ba196d1ce95f6fbecf75b388eabffec11cbfc2f61a464",
+  "wcr_package_fingerprint": "0d681481b7deaaa76fbeb5466de634e6e6b0caf271b975e1f8052408b41f4fe9"
+}

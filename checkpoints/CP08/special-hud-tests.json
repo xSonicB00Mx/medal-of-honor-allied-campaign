@@ -1,0 +1,41 @@
+[
+  {
+    "game": "AA",
+    "run": "aa-r1",
+    "installed": false,
+    "outputs": [
+      "artifacts-local/SpecialHUD-AA-aa-r1-objectives-166.png",
+      "artifacts-local/SpecialHUD-AA-aa-r1-objectives-100.png",
+      "artifacts-local/SpecialHUD-AA-aa-r1-closed.png",
+      "artifacts-local/SpecialHUD-AA-aa-r1-indicator-fixture.png"
+    ],
+    "errors": [],
+    "exit_code": 0
+  },
+  {
+    "game": "SH",
+    "run": "sh-r2",
+    "installed": false,
+    "outputs": [
+      "artifacts-local/SpecialHUD-SH-sh-r2-objectives-166.png",
+      "artifacts-local/SpecialHUD-SH-sh-r2-objectives-100.png",
+      "artifacts-local/SpecialHUD-SH-sh-r2-closed.png",
+      "artifacts-local/SpecialHUD-SH-sh-r2-indicator-fixture.png"
+    ],
+    "errors": [],
+    "exit_code": 0
+  },
+  {
+    "game": "BT",
+    "run": "bt-installed-r1",
+    "installed": true,
+    "outputs": [
+      "artifacts-local/SpecialHUD-BT-bt-installed-r1-objectives-166.png",
+      "artifacts-local/SpecialHUD-BT-bt-installed-r1-objectives-100.png",
+      "artifacts-local/SpecialHUD-BT-bt-installed-r1-closed.png",
+      "artifacts-local/SpecialHUD-BT-bt-installed-r1-indicator-fixture.png"
+    ],
+    "errors": [],
+    "exit_code": 0
+  }
+]

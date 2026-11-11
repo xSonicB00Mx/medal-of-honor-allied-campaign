@@ -1,0 +1,91 @@
+{
+  "source_commit": "0f9632ab7d720f66ddb5ac5f786f02fd0d1d84e8",
+  "status": "INSTALLED_TESTED",
+  "tests": [
+    {
+      "kind": "menu",
+      "run": "mp-aa-r2",
+      "game": "AA",
+      "exit": 0,
+      "completed": true,
+      "errors": [],
+      "images": [
+        "profiles-local/singleplayer-jeep/mp-aa-r2/main/screenshots/shot0000.png"
+      ],
+      "binaries": {
+        "openmohaa.exe": "8c39e2c2d247a20fd9f03907a1712230ba11bdd92d011a9bfbace8913a3f9bee",
+        "game.dll": "ee3618be9796c96720c17751bacfc53bed68848455f070e3cc43e84f893e51b9",
+        "cgame.dll": "d2bbb077fbc5a2b2a54c4a8a0fb42ec1476f8e8ab2ac46e14abce33ceeae7ed7"
+      },
+      "event_count": 30
+    },
+    {
+      "kind": "menu",
+      "run": "mp-sh-r2",
+      "game": "SH",
+      "exit": 0,
+      "completed": true,
+      "errors": [],
+      "images": [
+        "profiles-local/singleplayer-jeep/mp-sh-r2/mainta/screenshots/shot0000.png"
+      ],
+      "binaries": {
+        "openmohaa.exe": "8c39e2c2d247a20fd9f03907a1712230ba11bdd92d011a9bfbace8913a3f9bee",
+        "game.dll": "ee3618be9796c96720c17751bacfc53bed68848455f070e3cc43e84f893e51b9",
+        "cgame.dll": "d2bbb077fbc5a2b2a54c4a8a0fb42ec1476f8e8ab2ac46e14abce33ceeae7ed7"
+      },
+      "event_count": 30
+    },
+    {
+      "kind": "menu",
+      "run": "mp-bt-r2",
+      "game": "BT",
+      "exit": 0,
+      "completed": true,
+      "errors": [],
+      "images": [
+        "profiles-local/singleplayer-jeep/mp-bt-r2/maintt/screenshots/shot0000.png"
+      ],
+      "binaries": {
+        "openmohaa.exe": "8c39e2c2d247a20fd9f03907a1712230ba11bdd92d011a9bfbace8913a3f9bee",
+        "game.dll": "ee3618be9796c96720c17751bacfc53bed68848455f070e3cc43e84f893e51b9",
+        "cgame.dll": "d2bbb077fbc5a2b2a54c4a8a0fb42ec1476f8e8ab2ac46e14abce33ceeae7ed7"
+      },
+      "event_count": 30
+    },
+    {
+      "kind": "jeep",
+      "run": "jeep-r1",
+      "game": "AA",
+      "exit": 0,
+      "completed": true,
+      "errors": [],
+      "images": [
+        "profiles-local/singleplayer-jeep/jeep-r1/main/screenshots/shot0000.png",
+        "profiles-local/singleplayer-jeep/jeep-r1/main/screenshots/shot0001.png",
+        "profiles-local/singleplayer-jeep/jeep-r1/main/screenshots/shot0002.png"
+      ],
+      "binaries": {
+        "openmohaa.exe": "30d7deba2e2fbbe56ce18dabbc46ed495d08f5fb3760d3f91880048d25389fea",
+        "game.dll": "ee3618be9796c96720c17751bacfc53bed68848455f070e3cc43e84f893e51b9",
+        "cgame.dll": "d2bbb077fbc5a2b2a54c4a8a0fb42ec1476f8e8ab2ac46e14abce33ceeae7ed7"
+      },
+      "event_count": 425
+    }
+  ],
+  "integrity": {
+    "original_files_unchanged": 9072,
+    "runtime_base_files_unchanged": 9000,
+    "mp1_files_unchanged": 8,
+    "user_profile_files_unchanged": 80,
+    "rollback_copy": "generated-local/widescreen/backups/singleplayer-jeep-r1"
+  },
+  "personal_acceptance": false,
+  "merged": false,
+  "ci": {
+    "run": 38653992534,
+    "conclusion": "success",
+    "head": "0f9632ab7d720f66ddb5ac5f786f02fd0d1d84e8"
+  },
+  "remote_verified": "0f9632ab7d720f66ddb5ac5f786f02fd0d1d84e8"
+}

@@ -1,0 +1,62 @@
+{
+  "candidate": "CP00-r2",
+  "game": "BT",
+  "actual_workspace_cmd_used": true,
+  "fs_path_override_in_test": false,
+  "menu_callback_save_created": [
+    "e1l20000.ssv"
+  ],
+  "new_save_has_thumbnail": true,
+  "new_menu_save_loaded_after_restart": true,
+  "load_method": "Console command; actual Load-button click requires separate UI check",
+  "fov_90_persisted": true,
+  "fov_restart_lines": [
+    "[2026-10-13 22:20:33 UTC+1.000] \"cg_fov\" is:\"90\" default:\"80\""
+  ],
+  "path_rejection": false,
+  "visual_check": "PASS: menu background, mission thumbnail, old and newly created save entry visible in shot0001.tga",
+  "evidence": [
+    {
+      "path": "generated-local/CP00-r2/BT/menu.log",
+      "sha256": "2052a8b676647eb6cfc1aa902cde9e04b3579f082cc1731eeb6a3df1def9153f"
+    },
+    {
+      "path": "generated-local/CP00-r2/BT/restart.log",
+      "sha256": "a0295c3a91ad235c5bc216dd256b4655b666e1edfee6fe463dc61520930c8fe5"
+    },
+    {
+      "path": "profiles-local/CP00-r2/BT/maintt/screenshots/shot0000.tga",
+      "sha256": "9007710ba17a8c49f355c81263b6c2474f9914f0fa5e324353ebc47d3a0940fe"
+    },
+    {
+      "path": "profiles-local/CP00-r2/BT/maintt/screenshots/shot0001.tga",
+      "sha256": "8f574d6330923a4e604adcfa27cecba767460eb39dab31747f17092849e97d81"
+    },
+    {
+      "path": "profiles-local/CP00-r2/BT/maintt/screenshots/shot0002.tga",
+      "sha256": "ebcc46993e1a90e8b5d181ea6edc5825a7ed03d7c75ba017b709b1d7481480a4"
+    },
+    {
+      "path": "profiles-local/CP00-r2/BT/maintt/screenshots/shot0003.tga",
+      "sha256": "a7eecdffe8c1a5254601e8049419513934c985a2cf434d88a501678bb004b1f6"
+    },
+    {
+      "path": "profiles-local/CP00-r2/BT/maintt/screenshots/shot0004.tga",
+      "sha256": "df13b5f578e85c28d87a32da3dcfab3325fe67fa208fd5ec2939d75a1f4fc489"
+    },
+    {
+      "path": "profiles-local/CP00-r2/BT/maintt/save/omconfig/cp00_bt.tga",
+      "sha256": "03319748cee7f578330b373fd1d99316b3c7cb058a59a947be7a53dbad0ffeca"
+    },
+    {
+      "path": "profiles-local/CP00-r2/BT/maintt/save/omconfig/e1l20000.tga",
+      "sha256": "6bb5c0c8f5334e56e6a5c4ae68ef4d9772e2eefb9cff87a7ffb8dd3fad106ec6"
+    },
+    {
+      "path": "generated-local/CP00-r2/BT/tested-omconfig.cfg",
+      "sha256": "b91f7316fc59d185b40094e75f53af0c9c8a8830454f7544b4ece0dc386fa75e",
+      "note": "Profile snapshot before final developer-flag cleanup; AA includes subsequent live mouse test."
+    }
+  ],
+  "delivery_profile_developer_flag": 0
+}

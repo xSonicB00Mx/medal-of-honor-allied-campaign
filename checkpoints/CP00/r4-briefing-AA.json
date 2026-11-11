@@ -1,0 +1,59 @@
+{
+  "candidate": "CP00-r4",
+  "game": "AA",
+  "map": "briefing/briefing1",
+  "run_id": "r4-briefing-AA",
+  "engine_source_commit": "af7bb7c6e706fcc64e5933a22457333274f3de22",
+  "engine_sha256": "5f1eee385de3b26750b45b7aa1e98566801b716566b97af11fa5586cb5c21c91",
+  "wcr_package_fingerprint": "3b6b38b5b04ba320a526196946c44394c4519e4197dc8d3d05788e186501cfcc",
+  "exit_code": 0,
+  "timed_out": false,
+  "elapsed_seconds": 21.73,
+  "active_state": true,
+  "script_errors": [],
+  "commands_finished": true,
+  "complete_save_triplet": false,
+  "resource_origins": [
+    "File \"maps/briefing/briefing1.scr\" found in \"$RUNTIME\\main\\Restoration_AA_Pak1-Main.pk3\""
+  ],
+  "evidence": [
+    {
+      "path": "profiles-local/CP00-r4/r4-briefing-AA/main/configs/omconfig.cfg",
+      "sha256": "3b69a7bc3682d40abd61c723628dd67008cd3704dc93d2623c109d8cd8bd0681"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-briefing-AA/main/cp00-probe.cfg",
+      "sha256": "a703d28b2757b41c6f32d49d8ffe4bceffcd9a4e50144b56de00e421c73ca143"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-briefing-AA/main/qconsole.log",
+      "sha256": "36f8119456eee104723fe283c2564473e91fb226527dd0fb676481fa84d7e97e"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-briefing-AA/main/save/omconfig/briefing_briefing10000.sav",
+      "sha256": "2a0918ba00411c37ff52c37b7954b3c155eae5664fd66c41727dae2f56c4f021"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-briefing-AA/main/save/omconfig/briefing_briefing10000.ssv",
+      "sha256": "818c93c0c11a997f3c9b220efa89b7371113da12962b13808bf0f8f3534b91c8"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-briefing-AA/main/save/omconfig/briefing_briefing10000.tga",
+      "sha256": "16fac24c96b322738f584e281462241256ca0f484bcc3255f24632cd181bf76c"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-briefing-AA/main/screenshots/shot0000.tga",
+      "sha256": "c76cb137a05181f0cd2dfe82e52e45b65db9de79968dd6e2b6823ce9cfb537a0"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-briefing-AA/main/screenshots/shot0001.tga",
+      "sha256": "874dc7a91005edf28f20ee2383e179d27f07e9da63fd55d07e0619ad994b60ec"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-briefing-AA/qkey",
+      "sha256": "eabf2f7c33caf76d12b2d925cec30a30a346d208e8555539b73c3eadeb15da8f"
+    }
+  ],
+  "scope": "Map startup and idle scene only. No combat, MG42 progression, natural transition or finale completion asserted.",
+  "visual_check": "PASS: rendered shot0001 inspected; scene visible. Does not prove full mission completion."
+}

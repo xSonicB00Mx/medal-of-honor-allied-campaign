@@ -1,0 +1,31 @@
+{
+  "run": "r2-AA-wall",
+  "candidate": "CP05a-r2",
+  "map": "m1l2a",
+  "model": "models/human/german_misc_worker.tik",
+  "game": "AA",
+  "reacting": false,
+  "wall": true,
+  "mist": 0,
+  "completed": true,
+  "exit": 0,
+  "images": [
+    "profiles-local/CP05a-r2/r2-AA-wall/main/screenshots/shot0000.png",
+    "profiles-local/CP05a-r2/r2-AA-wall/main/screenshots/shot0001.png",
+    "profiles-local/CP05a-r2/r2-AA-wall/main/screenshots/shot0002.png",
+    "profiles-local/CP05a-r2/r2-AA-wall/main/screenshots/shot0003.png",
+    "profiles-local/CP05a-r2/r2-AA-wall/main/screenshots/shot0004.png",
+    "profiles-local/CP05a-r2/r2-AA-wall/main/screenshots/shot0005.png",
+    "profiles-local/CP05a-r2/r2-AA-wall/main/screenshots/shot0006.png",
+    "profiles-local/CP05a-r2/r2-AA-wall/main/screenshots/shot0007.png",
+    "profiles-local/CP05a-r2/r2-AA-wall/main/screenshots/shot0008.png",
+    "profiles-local/CP05a-r2/r2-AA-wall/main/screenshots/shot0009.png"
+  ],
+  "binaries": {
+    "openmohaa.exe": "e9785d661bea4573ae0dbe666979d9407b7e804d0b27bc49e6770a7883b6e870",
+    "game.dll": "01e4b64526057305667b835661ed022173fd1d4fca7e38cdf02b1f340bcc7d83",
+    "cgame.dll": "5aea335ba5f4418381bb7af57fbb9cb6f9bf15a94d8db1f093751df418e417ee"
+  },
+  "events": [],
+  "errors": []
+}

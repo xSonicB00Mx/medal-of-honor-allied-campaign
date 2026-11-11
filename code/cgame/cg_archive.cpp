@@ -26,11 +26,14 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 #include "memarchiver.h"
 #include "../corepp/tiki.h"
 
+#include "ac_wounds_impl.h"
+
 void CG_ArchiveStuff(MemArchiver& archiver, int svsTime)
 {
 	archiver.SetBaseTime(svsTime);
 	commandManager.ArchiveToMemory(archiver);
 	CG_ArchiveVSSGlobals(archiver);
+    CG_ACWoundsArchive(archiver);
 }
 
 size_t CG_SaveStateToBuffer(void** out, int svsTime)

@@ -1,0 +1,39 @@
+{
+  "operation": "sh_normandy",
+  "case": "success",
+  "expected_completed": 255,
+  "actual_completed": 255,
+  "pass_state": true,
+  "exit": 0,
+  "test_stopped_after_event": false,
+  "events": [
+    "[2026-10-14 12:45:36 UTC+1.000] AC_MISSION_ENTRY sh_normandy t1l3",
+    "[2026-10-14 12:45:37 UTC+1.000] D:\\Medal of Honor - Allied Campaign\\allied-campaign-workspace\\runtime-local\\CP07-r1\\mainta\\zzzzz_AC_Campaign.pk3 (2 files)",
+    "[2026-10-14 12:45:37 UTC+1.000] D:\\Medal of Honor - Allied Campaign\\allied-campaign-workspace\\runtime-local\\CP07-r1\\mainta\\zzzz_AC_UI.pk3 (2 files)",
+    "[2026-10-14 12:45:37 UTC+1.000] D:\\Medal of Honor - Allied Campaign\\allied-campaign-workspace\\runtime-local\\CP07-r1\\main\\zzzzz_AC_Campaign.pk3 (3 files)",
+    "[2026-10-14 12:45:37 UTC+1.000] D:\\Medal of Honor - Allied Campaign\\allied-campaign-workspace\\runtime-local\\CP07-r1\\main\\zzzz_AC_Wounds.pk3 (3 files)",
+    "[2026-10-14 12:45:37 UTC+1.000] D:\\Medal of Honor - Allied Campaign\\allied-campaign-workspace\\runtime-local\\CP07-r1\\main\\zzzz_AC_UI.pk3 (2 files)",
+    "[2026-10-14 12:45:37 UTC+1.000] D:\\Medal of Honor - Allied Campaign\\allied-campaign-workspace\\runtime-local\\CP07-r1\\main\\zzzz_AC_MP1.pk3 (18 files)",
+    "[2026-10-14 12:45:38 UTC+1.000] ^~^~^ Script Error : invalid waittill spawn for 'Level'",
+    "[2026-10-14 12:45:38 UTC+1.000] AC_PROGRESS_COMMIT completed=127 resume=7 slot=t1l30000",
+    "[2026-10-14 12:45:42 UTC+1.000] AC_PROGRESS valid=1 completed=127 resume=7 slot=t1l30000 operation=7 replay=0",
+    "[2026-10-14 12:45:50 UTC+1.000] AC_PROGRESS valid=1 completed=127 resume=7 slot=t1l30000 operation=7 replay=0",
+    "[2026-10-14 12:45:50 UTC+1.000] AC_BOUNDARY_DONE",
+    "[2026-10-14 12:45:50 UTC+1.000] AC_PROGRESS_COMMIT completed=255 resume=8 slot=-",
+    "[2026-10-14 12:45:50 UTC+1.000] AC_MISSION_COMPLETE sh_normandy",
+    "[2026-10-14 12:45:50 UTC+1.000] AC_CONTEXT_RESTART 1 -> 0 briefing/briefing3 child=17008",
+    "[2026-10-14 12:45:52 UTC+1.000] AC_MISSION_ENTRY aa_normandy briefing/briefing3",
+    "[2026-10-14 12:45:53 UTC+1.000] D:\\Medal of Honor - Allied Campaign\\allied-campaign-workspace\\runtime-local\\CP07-r1\\main\\zzzzz_AC_Campaign.pk3 (3 files)",
+    "[2026-10-14 12:45:53 UTC+1.000] D:\\Medal of Honor - Allied Campaign\\allied-campaign-workspace\\runtime-local\\CP07-r1\\main\\zzzz_AC_Wounds.pk3 (3 files)",
+    "[2026-10-14 12:45:53 UTC+1.000] D:\\Medal of Honor - Allied Campaign\\allied-campaign-workspace\\runtime-local\\CP07-r1\\main\\zzzz_AC_UI.pk3 (2 files)",
+    "[2026-10-14 12:45:53 UTC+1.000] D:\\Medal of Honor - Allied Campaign\\allied-campaign-workspace\\runtime-local\\CP07-r1\\main\\zzzz_AC_MP1.pk3 (18 files)",
+    "[2026-10-14 12:45:53 UTC+1.000] AC_PROGRESS_COMMIT completed=255 resume=8 slot=briefing_briefing30000",
+    "[2026-10-14 12:45:55 UTC+1.000] AC_PROGRESS valid=1 completed=255 resume=8 slot=briefing_briefing30000 operation=8 replay=0",
+    "[2026-10-14 12:45:55 UTC+1.000] AC_CHILD_READY"
+  ],
+  "errors": [
+    "[2026-10-14 12:45:38 UTC+1.000] ^~^~^ Script Error : invalid waittill spawn for 'Level'"
+  ],
+  "scope": "Seeded test profile and synthetic native intermission/negative case; not natural mission completion",
+  "engine_sha256": "a44be3dcf26497acf1851b6c8729ed6e9298dfad97facdace7aae5936223628d"
+}

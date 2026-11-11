@@ -1,0 +1,32 @@
+[
+  {
+    "file": "land.geojson",
+    "url": "https://raw.githubusercontent.com/nvkelso/natural-earth-vector/master/geojson/ne_50m_land.geojson",
+    "sha256": "e874b27a51d146452be360cafb3cc50c86001074a67d534113e6534682f9826b",
+    "bytes": 1636166
+  },
+  {
+    "file": "cities15000.zip",
+    "url": "https://download.geonames.org/export/dump/cities15000.zip",
+    "sha256": "2fb16be8fede1f2c4b5d506517106fedf16e9e3d16b2e1c6b8f52c96ea7aa673",
+    "bytes": 3361402
+  },
+  {
+    "file": "geonames-readme.txt",
+    "url": "https://download.geonames.org/export/dump/readme.txt",
+    "sha256": "b1957379b6c1242c700c98ac9a8aa0a09f56c3c0a50ee72175527005f48ef2c5",
+    "bytes": 8843
+  },
+  {
+    "file": "BE.zip",
+    "url": "https://download.geonames.org/export/dump/BE.zip",
+    "sha256": "d0261744973f40d00410f2f26b2f8331a4e9655a9dc9beb8aee54c8891f2359e",
+    "bytes": 678026
+  },
+  {
+    "file": "IT.zip",
+    "url": "https://download.geonames.org/export/dump/IT.zip",
+    "sha256": "5f0bf142001679143ce4e19a78805aae5e46d686616e5942548bef714f4ebdaf",
+    "bytes": 4360201
+  }
+]

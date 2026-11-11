@@ -128,6 +128,10 @@ void CG_RegisterCvars(void)
     cvar_t *temp;
 
     cgi.Cvar_Get("g_subtitle", "0", CVAR_ARCHIVE);
+    cgi.Cvar_Get("ac_blood_mist", "1", CVAR_ARCHIVE);
+    cgi.Cvar_Get("ac_world_blood", "1", CVAR_ARCHIVE);
+    cgi.Cvar_Get("ac_body_wounds", "1", CVAR_ARCHIVE);
+    cgi.Cvar_Get("ac_corpse_effects", "1", CVAR_ARCHIVE);
     cg_viewsize                   = cgi.Cvar_Get("viewsize", "100", CVAR_ARCHIVE);
     cg_addMarks                   = cgi.Cvar_Get("cg_marks_add", "1", CVAR_ARCHIVE);
     cg_maxMarks                   = cgi.Cvar_Get("cg_marks_max", "256", CVAR_ARCHIVE | CVAR_LATCH);
@@ -574,6 +578,7 @@ void CG_PrepRefresh(void)
     cgs.media.pausedShader             = cgi.R_RegisterShaderNoMip("textures/menu/paused");
     cgs.media.backTileShader           = cgi.R_RegisterShader("gfx/2d/backtile");
     cgs.media.zoomOverlayShader        = cgi.R_RegisterShaderNoMip("textures/hud/zoomoverlay");
+    cgs.media.cameraOverlayShader      = cgi.R_RegisterShaderNoMip("textures/hud/cameraoverlay");
     cgs.media.kar98TopOverlayShader    = cgi.R_RegisterShaderNoMip("textures/hud/kartop.tga");
     cgs.media.kar98BottomOverlayShader = cgi.R_RegisterShaderNoMip("textures/hud/karbottom.tga");
     cgs.media.binocularsOverlayShader  = cgi.R_RegisterShaderNoMip("textures/hud/binocularsoverlay");
@@ -659,6 +664,8 @@ void CG_GameStateReceived(void)
     }
 
     CG_InitMarks();
+    CG_ACBloodReset();
+    CG_ACWoundsReset();
 
     CG_RegisterSounds();
 
@@ -690,6 +697,8 @@ void CG_ServerRestarted(void)
     CG_RestartCommandManager();
     // get rid of left over decals from the last game
     CG_InitMarks();
+    CG_ACBloodReset();
+    CG_ACWoundsReset();
     // clear all the swipes
     CG_ClearSwipes();
     // Reset tempmodels
@@ -709,6 +718,11 @@ Called after every level change or subsystem restart
 */
 void CG_Init(clientGameImport_t *imported, int serverMessageNum, int serverCommandSequence, int clientNum)
 {
+    if (imported->apiversion != CGAME_IMPORT_API_VERSION) {
+        imported->Error(ERR_FATAL,
+            "Allied Campaign engine/cgame mismatch. Install matching openmohaa.exe and cgame.dll binaries.");
+        return;
+    }
     cgi = *imported;
 
     cg_protocol = cgi.Cvar_Get("com_protocol", "", 0)->integer;
@@ -811,6 +825,11 @@ GetCGameAPI
 The only exported function from this module
 ================
 */
+int AC_CGameRefdefSize(void)
+{
+    return sizeof(refdef_t);
+}
+
 clientGameExport_t *GetCGameAPI(void)
 {
     cge.CG_Init                     = CG_Init;
@@ -924,9 +943,11 @@ void Com_Printf(const char *msg, ...)
 
 void CG_ParseFogInfo_ver_15(const char *str)
 {
+    // Optional extension; original configstrings and old saves mean no flash.
+    cg.acLightning = 0.0f;
     sscanf(
         str,
-        "%d %f %f %f %f %f %f %f %d %f %f %f %f",
+        "%d %f %f %f %f %f %f %f %d %f %f %f %f %f",
         &cg.farplane_cull,
         &cg.farplane_distance,
         &cg.farplane_bias,
@@ -939,12 +960,14 @@ void CG_ParseFogInfo_ver_15(const char *str)
         &cg.farclipOverride,
         &cg.farplaneColorOverride[0],
         &cg.farplaneColorOverride[1],
-        &cg.farplaneColorOverride[2]
+        &cg.farplaneColorOverride[2],
+        &cg.acLightning
     );
 }
 
 void CG_ParseFogInfo_ver_6(const char *str)
 {
+    cg.acLightning = 0.0f;
     //
     // clear all unsupported fields in protocol below version 15
     //
@@ -961,12 +984,13 @@ void CG_ParseFogInfo_ver_6(const char *str)
 
     sscanf(
         str,
-        "%d %f %f %f %f",
+        "%d %f %f %f %f %f",
         &cg.farplane_cull,
         &cg.farplane_distance,
         &cg.farplane_color[0],
         &cg.farplane_color[1],
-        &cg.farplane_color[2]
+        &cg.farplane_color[2],
+        &cg.acLightning
     );
 }
 

@@ -1,0 +1,23 @@
+{
+  "source_commit": "ba8f94cd03f82a682ee936793dd5b7e8d197df4e",
+  "package": "artifacts-local/CP08-r1-MG-fix-update.zip",
+  "sha256": "98952450110f0686ee34f01a30228617c30ca2295da969764713a4be79e1c0b4",
+  "size": 11657449,
+  "crc_verified": true,
+  "changed_owned_files": [
+    "cgame.dll",
+    "game.dll",
+    "openmohaa.exe"
+  ],
+  "other_owned_files_unchanged": true,
+  "protected_input_files_verified": 9072,
+  "runtime_base_files_verified": 9000,
+  "runtime_manifest_sha256": "6f45a317476e48059eb5d2ccf2724a951ffca0a06ee4b0fe521d1685a15d4d92",
+  "binaries": {
+    "cgame.dll": "d2bbb077fbc5a2b2a54c4a8a0fb42ec1476f8e8ab2ac46e14abce33ceeae7ed7",
+    "game.dll": "304065dc386b4d62169a1ca370adcb8cf1b4d35a4d8bd8f95a82020935ea941e",
+    "openmohaa.exe": "62016329ff76c55c0f10aa9390129e4163fa84ef57578df5872dc350a5eb4182"
+  },
+  "user_profile": "Unchanged; isolated copies only",
+  "historical_snapshots": "Previous CP08 archives retained"
+}

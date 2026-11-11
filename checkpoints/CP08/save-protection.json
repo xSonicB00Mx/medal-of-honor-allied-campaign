@@ -1,0 +1,27 @@
+{
+  "engine_sha256": "6eec3e413d87b1924563ccf5b3ddca7aaa16a42ba95755cb19e3848bc3cc57d7",
+  "cases": [
+    {
+      "case": "replay-protection",
+      "exit": 0,
+      "progress_unchanged": true,
+      "save_unchanged": true,
+      "events": [
+        "[2026-10-14 13:01:10 UTC+1.000] AC_MISSION_ENTRY aa_torch m1l1",
+        "[2026-10-14 13:01:15 UTC+1.000] Saving to protected_mainAC_SAVE_PROTECTED main campaign resume point; choose another save name",
+        "[2026-10-14 13:01:16 UTC+1.000] AC_PROGRESS valid=1 completed=1 resume=1 slot=protected_main operation=0 replay=1"
+      ]
+    },
+    {
+      "case": "optional-protection",
+      "exit": 0,
+      "progress_unchanged": true,
+      "save_unchanged": true,
+      "events": [
+        "[2026-10-14 13:01:19 UTC+1.000] AC_MISSION_DETACHED console or optional map",
+        "[2026-10-14 13:01:24 UTC+1.000] Saving to protected_mainAC_SAVE_PROTECTED main campaign resume point; choose another save name",
+        "[2026-10-14 13:01:25 UTC+1.000] AC_PROGRESS valid=1 completed=1 resume=1 slot=protected_main operation=-1 replay=0"
+      ]
+    }
+  ]
+}

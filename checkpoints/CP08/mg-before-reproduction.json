@@ -1,0 +1,35 @@
+{
+  "run": "mg-profile-clear",
+  "scope": "m1l1 copied save; original mounted MG relocated onto a traced clear lane; native shoot at 60 ms with high-health live target then five death animations. The old transport overflowed before the death phase.",
+  "snapshot_max": {
+    "gap": 250,
+    "bytes": 24732,
+    "pending": 509
+  },
+  "confirmed_hits": 53,
+  "reliable_overflow": true,
+  "client_dropped": true,
+  "log_sha256": "0a5f067f2618e2759998717d76e9a4fe1efdbc660a74f8933a502123699c6de7",
+  "binaries": {
+    "openmohaa.exe": "ea6cd53d753720f4b6192f29b8a79f3ef82c3a37236f7717ef9327b903712593",
+    "game.dll": "ccfed171adc76eac1cba2bd7e617347fe0e67869cc12aa694a24c0c2ad63d1c8",
+    "cgame.dll": "7a9cf39e3204e9491a7f6180e531cdcaa168ca28df39763662e2a53aaec796dd"
+  },
+  "geometry_us": {
+    "trace": {
+      "count": 53,
+      "mean": 138.49,
+      "max": 206
+    },
+    "build": {
+      "count": 105,
+      "mean": 69.75,
+      "max": 97
+    },
+    "deform": {
+      "count": 596,
+      "mean": 17.22,
+      "max": 111
+    }
+  }
+}

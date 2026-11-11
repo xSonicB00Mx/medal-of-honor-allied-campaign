@@ -30,7 +30,9 @@ extern "C" {
 #endif
 
 #define PRODUCT_NAME					"OpenMoHAA"
+#ifndef PRODUCT_DATE
 #define PRODUCT_DATE					__DATE__
+#endif
 
 #define BASEGAME				"main"
 // We're always legacy
@@ -1933,6 +1935,7 @@ typedef struct usercmd_s {
 #define RF_SHADOW_PRECISE		(1<<24)		// this entity can have a precise shadow applied to it
 #define RF_INVISIBLE			(1<<25)		// This entity is invisible, and only negative lights will light it up
 #define RF_ALWAYSDRAW			(1<<26)		// This entity is invisible, and only negative lights will light it up
+#define RF_AC_CORPSE_PROXY (1<<27) // SP visual-only adapter for BSP corpse models
 #define RF_PRECISESHADOW		(1<<28)		// This entity is invisible, and only negative lights will light it up
 //
 // use this mask when propagating renderfx from one entity to another

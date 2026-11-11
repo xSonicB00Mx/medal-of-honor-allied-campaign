@@ -42,6 +42,8 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 #include "object.h"
 #include "../corepp/tiki.h"
 #include "weapturret.h"
+#include "ac_score_game.h"
+bool *acScoreBulletHit = NULL;
 
 Event EV_Sentient_ReloadWeapon
 (
@@ -1516,6 +1518,7 @@ void Sentient::ArmorDamage(Event *ev)
         G_DebugDamage(damage, this, attacker, inflictor);
     }
 
+    const float acBeforeHealth=health;
     if (!(flags & FL_GODMODE)
         && ((g_gametype->integer != GT_SINGLE_PLAYER) || !(attacker) || (attacker) == this
             || !(attacker->IsSubclassOfSentient()) || (attacker->m_Team != m_Team))) {
@@ -1544,6 +1547,22 @@ void Sentient::ArmorDamage(Event *ev)
 
             if (act->IsImmortal()) {
                 health = 1;
+            }
+        }
+    }
+
+    if(g_gametype->integer==GT_SINGLE_PLAYER && IsSubclassOfActor() && acBeforeHealth>0
+        && attacker && attacker->IsSubclassOfPlayer() && damage>0 && !(flags & FL_GODMODE)) {
+        if(attacker->m_Team==m_Team) {
+            gi.AC_ScoreEvent(AC_SCORE_FRIENDLY,(int)ceil(fmin(damage,acBeforeHealth)));
+        } else if(health<acBeforeHealth) {
+            const bool bullet=meansofdeath==MOD_BULLET || meansofdeath==MOD_FAST_BULLET || meansofdeath==MOD_SHOTGUN;
+            if(bullet && acScoreBulletHit)*acScoreBulletHit=true;
+            if(health<0.1f) {
+                if(meansofdeath==MOD_GRENADE && inflictor && inflictor->isSubclassOf(Explosion)) {
+                    ::Explosion *explosion=static_cast<::Explosion *>(inflictor);
+                    gi.AC_ScoreEvent(AC_SCORE_GRENADE_KILL,++explosion->acScoreKills);
+                } else gi.AC_ScoreEvent(AC_SCORE_KILL,bullet && (location==HITLOC_HEAD || location==HITLOC_HELMET));
             }
         }
     }
@@ -1980,9 +1999,21 @@ void Sentient::DropInventoryItems(void)
     int   i;
     Item *item;
 
+    // Evaluate live, including saves created with the earlier patched scripts.
+    // Original BT loadout disables both drops except e1l1 and weapons in e1l3.
+    const bool bt = g_gametype->integer == GT_SINGLE_PLAYER && g_target_game == target_game_e::TG_MOHTT;
+    const bool limits = gi.Cvar_Get("ac_bt_drop_limits", "0", CVAR_ARCHIVE)->integer != 0;
+    const bool firstMap = !Q_stricmp(level.mapname.c_str(), "e1l1");
+    const bool thirdMap = !Q_stricmp(level.mapname.c_str(), "e1l3");
+    const bool noHealth = bt ? (limits && (!firstMap || level.mbNoDropHealth)) : level.mbNoDropHealth;
+    const bool noWeapons = bt ? (limits && ((!firstMap && !thirdMap) || level.mbNoDropWeapons)) : level.mbNoDropWeapons;
+    const bool hardHealthLimit = skill->integer == 2 && (!bt || limits);
+    if (bt && gi.Cvar_Get("ac_drop_debug", "0", 0)->integer)
+        gi.Printf("AC_DROP_POLICY limits=%d nohealth=%d noweapons=%d hard=%d forcehealth=%d forceweapon=%d\n", limits, noHealth, noWeapons, hardHealthLimit, m_bForceDropHealth, m_bForceDropWeapon);
+
     if (m_bForceDropHealth) {
         giveItem("ITEMS/item_25_healthbox.tik", 25);
-    } else if (skill->integer != 2 && !level.mbNoDropHealth) {
+    } else if (!hardHealthLimit && !noHealth) {
         static cvar_t *ai_health_kar  = gi.Cvar_Get("ai_health_kar", "6", CVAR_CHEAT);
         static cvar_t *ai_health_mp40 = gi.Cvar_Get("ai_health_mp40points", "2", CVAR_CHEAT);
 
@@ -2008,17 +2039,23 @@ void Sentient::DropInventoryItems(void)
         // Added in 2.30
         //  Force drop the item when specified
         if (m_bForceDropWeapon && item->IsSubclassOfWeapon()) {
-            item->Drop();
+            const qboolean dropped = item->Drop();
+            if (bt && gi.Cvar_Get("ac_drop_debug", "0", 0)->integer)
+                gi.Printf("AC_DROP_ITEM limits=%d model=%s dropped=%d\n", limits, item->model.c_str(), dropped);
             continue;
         }
 
-        if (!m_bDontDropWeapons && !level.mbNoDropWeapons) {
-            item->Drop();
+        if (!m_bDontDropWeapons && !noWeapons) {
+            const qboolean dropped = item->Drop();
+            if (bt && gi.Cvar_Get("ac_drop_debug", "0", 0)->integer)
+                gi.Printf("AC_DROP_ITEM limits=%d model=%s dropped=%d\n", limits, item->model.c_str(), dropped);
             continue;
         }
 
         if (!item->IsSubclassOfWeapon()) {
-            item->Drop();
+            const qboolean dropped = item->Drop();
+            if (bt && gi.Cvar_Get("ac_drop_debug", "0", 0)->integer)
+                gi.Printf("AC_DROP_ITEM limits=%d model=%s dropped=%d\n", limits, item->model.c_str(), dropped);
             continue;
         }
 

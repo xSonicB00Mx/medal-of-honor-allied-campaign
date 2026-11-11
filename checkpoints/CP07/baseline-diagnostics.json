@@ -1,0 +1,144 @@
+{
+  "scope": "Direct starts without progression or synthetic completion; CP6 baseline in developer mode",
+  "engine_sha256": "cbf90dbf466db6a7c95ec79e17771612b8ff4d7b3b912547eb9deccd6212a06f",
+  "cases": [
+    {
+      "map": "e1l2",
+      "exit": 0,
+      "errors": [
+        "[2026-10-14 12:50:35 UTC+1.000] ^~^~^ Script Error : ModifyDrive used improperly... (used before the level is spawned)",
+        "[2026-10-14 12:50:35 UTC+1.000] ^~^~^ Script Error : ModifyDrive used improperly... (used before the level is spawned)",
+        "[2026-10-14 12:50:35 UTC+1.000] ^~^~^ Script Error : ModifyDrive used improperly... (used before the level is spawned)"
+      ]
+    },
+    {
+      "map": "e1l4",
+      "exit": 0,
+      "errors": [
+        "[2026-10-14 12:50:55 UTC+1.000] ^~^~^ Script Error : Trying to set a collision model with a NULL entity.",
+        "[2026-10-14 12:50:55 UTC+1.000] ^~^~^ Script Error : command 'thread' applied to NULL listener",
+        "[2026-10-14 12:50:57 UTC+1.000] ^~^~^ Script Error : invalid waittill spawn for 'Level'",
+        "[2026-10-14 12:51:00 UTC+1.000] ^~^~^ Script Error : command 'connect_paths' applied to NULL listener",
+        "[2026-10-14 12:51:00 UTC+1.000] ^~^~^ Script Error : Field 'target' applied to NULL listener",
+        "[2026-10-14 12:51:00 UTC+1.000] ^~^~^ Script Error : Cannot cast 'none' to listener"
+      ]
+    },
+    {
+      "map": "e2l3",
+      "exit": 0,
+      "errors": [
+        "[2026-10-14 12:51:19 UTC+1.000] ^~^~^ Script Error : invalid waittill prespawn for 'Level'",
+        "[2026-10-14 12:51:19 UTC+1.000] ^~^~^ Script Error : invalid waittill spawn for 'Level'",
+        "[2026-10-14 12:51:19 UTC+1.000] ^~^~^ Script Error : invalid waittill spawn for 'Level'",
+        "[2026-10-14 12:51:19 UTC+1.000] ^~^~^ Script Error : invalid waittill spawn for 'Level'",
+        "[2026-10-14 12:51:19 UTC+1.000] ^~^~^ Script Error : invalid waittill spawn for 'Level'",
+        "[2026-10-14 12:51:19 UTC+1.000] ^~^~^ Script Error : invalid waittill spawn for 'Level'",
+        "[2026-10-14 12:51:19 UTC+1.000] ^~^~^ Script Error : invalid waittill spawn for 'Level'",
+        "[2026-10-14 12:51:19 UTC+1.000] ^~^~^ Script Error : invalid waittill spawn for 'Level'",
+        "[2026-10-14 12:51:19 UTC+1.000] ^~^~^ Script Error : invalid waittill spawn for 'Level'",
+        "[2026-10-14 12:51:19 UTC+1.000] ^~^~^ Script Error : invalid waittill spawn for 'Level'",
+        "[2026-10-14 12:51:19 UTC+1.000] ^~^~^ Script Error : invalid waittill spawn for 'Level'",
+        "[2026-10-14 12:51:19 UTC+1.000] ^~^~^ Script Error : invalid waittill spawn for 'Level'",
+        "[2026-10-14 12:51:19 UTC+1.000] ^~^~^ Script Error : invalid waittill spawn for 'Level'",
+        "[2026-10-14 12:51:19 UTC+1.000] ^~^~^ Script Error : invalid waittill spawn for 'Level'",
+        "[2026-10-14 12:51:19 UTC+1.000] ^~^~^ Script Error : invalid waittill spawn for 'Level'",
+        "[2026-10-14 12:51:19 UTC+1.000] ^~^~^ Script Error : invalid waittill spawn for 'Level'",
+        "[2026-10-14 12:51:19 UTC+1.000] ^~^~^ Script Error : invalid waittill spawn for 'Level'",
+        "[2026-10-14 12:51:19 UTC+1.000] ^~^~^ Script Error : invalid waittill spawn for 'Level'",
+        "[2026-10-14 12:51:19 UTC+1.000] ^~^~^ Script Error : invalid waittill spawn for 'Level'",
+        "[2026-10-14 12:51:19 UTC+1.000] ^~^~^ Script Error : invalid waittill spawn for 'Level'",
+        "[2026-10-14 12:51:19 UTC+1.000] ^~^~^ Script Error : invalid waittill spawn for 'Level'",
+        "[2026-10-14 12:51:19 UTC+1.000] ^~^~^ Script Error : invalid waittill spawn for 'Level'",
+        "[2026-10-14 12:51:19 UTC+1.000] ^~^~^ Script Error : invalid waittill spawn for 'Level'",
+        "[2026-10-14 12:51:19 UTC+1.000] ^~^~^ Script Error : invalid waittill spawn for 'Level'",
+        "[2026-10-14 12:51:19 UTC+1.000] ^~^~^ Script Error : invalid waittill spawn for 'Level'",
+        "[2026-10-14 12:51:19 UTC+1.000] ^~^~^ Script Error : invalid waittill spawn for 'Level'",
+        "[2026-10-14 12:51:19 UTC+1.000] ^~^~^ Script Error : invalid waittill spawn for 'Level'",
+        "[2026-10-14 12:51:19 UTC+1.000] ^~^~^ Script Error : invalid waittill spawn for 'Level'",
+        "[2026-10-14 12:51:19 UTC+1.000] ^~^~^ Script Error : invalid waittill spawn for 'Level'",
+        "[2026-10-14 12:51:19 UTC+1.000] ^~^~^ Script Error : invalid waittill spawn for 'Level'",
+        "[2026-10-14 12:51:19 UTC+1.000] ^~^~^ Script Error : invalid waittill spawn for 'Level'",
+        "[2026-10-14 12:51:19 UTC+1.000] ^~^~^ Script Error : invalid waittill spawn for 'Level'",
+        "[2026-10-14 12:51:19 UTC+1.000] ^~^~^ Script Error : invalid waittill prespawn for 'Level'",
+        "[2026-10-14 12:51:19 UTC+1.000] ^~^~^ Script Error : invalid waittill spawn for 'Level'",
+        "[2026-10-14 12:51:19 UTC+1.000] ^~^~^ Script Error : invalid waittill spawn for 'Level'",
+        "[2026-10-14 12:51:19 UTC+1.000] ^~^~^ Script Error : invalid waittill prespawn for 'Level'",
+        "[2026-10-14 12:51:19 UTC+1.000] ^~^~^ Script Error : invalid waittill spawn for 'Level'",
+        "[2026-10-14 12:51:19 UTC+1.000] ^~^~^ Script Error : invalid waittill spawn for 'Level'",
+        "[2026-10-14 12:51:19 UTC+1.000] ^~^~^ Script Error : invalid waittill spawn for 'Level'",
+        "[2026-10-14 12:51:19 UTC+1.000] ^~^~^ Script Error : invalid waittill spawn for 'Level'",
+        "[2026-10-14 12:51:19 UTC+1.000] ^~^~^ Script Error : invalid waittill spawn for 'Level'",
+        "[2026-10-14 12:51:19 UTC+1.000] ^~^~^ Script Error : invalid waittill spawn for 'Level'",
+        "[2026-10-14 12:51:19 UTC+1.000] ^~^~^ Script Error : invalid waittill spawn for 'Level'",
+        "[2026-10-14 12:51:19 UTC+1.000] ^~^~^ Script Error : invalid waittill spawn for 'Level'",
+        "[2026-10-14 12:51:19 UTC+1.000] ^~^~^ Script Error : invalid waittill spawn for 'Level'",
+        "[2026-10-14 12:51:19 UTC+1.000] ^~^~^ Script Error : invalid waittill spawn for 'Level'",
+        "[2026-10-14 12:51:19 UTC+1.000] ^~^~^ Script Error : invalid waittill spawn for 'Level'",
+        "[2026-10-14 12:51:19 UTC+1.000] ^~^~^ Script Error : invalid waittill spawn for 'Level'",
+        "[2026-10-14 12:51:19 UTC+1.000] ^~^~^ Script Error : invalid waittill spawn for 'Level'",
+        "[2026-10-14 12:51:19 UTC+1.000] ^~^~^ Script Error : invalid waittill spawn for 'Level'",
+        "[2026-10-14 12:51:19 UTC+1.000] ^~^~^ Script Error : invalid waittill spawn for 'Level'",
+        "[2026-10-14 12:51:19 UTC+1.000] ^~^~^ Script Error : invalid waittill spawn for 'Level'",
+        "[2026-10-14 12:51:19 UTC+1.000] ^~^~^ Script Error : invalid waittill spawn for 'Level'",
+        "[2026-10-14 12:51:19 UTC+1.000] ^~^~^ Script Error : invalid waittill spawn for 'Level'",
+        "[2026-10-14 12:51:19 UTC+1.000] ^~^~^ Script Error : invalid waittill spawn for 'Level'",
+        "[2026-10-14 12:51:19 UTC+1.000] ^~^~^ Script Error : invalid waittill spawn for 'Level'",
+        "[2026-10-14 12:51:19 UTC+1.000] ^~^~^ Script Error : invalid waittill spawn for 'Level'",
+        "[2026-10-14 12:51:19 UTC+1.000] ^~^~^ Script Error : invalid waittill spawn for 'Level'",
+        "[2026-10-14 12:51:19 UTC+1.000] ^~^~^ Script Error : invalid waittill spawn for 'Level'",
+        "[2026-10-14 12:51:19 UTC+1.000] ^~^~^ Script Error : invalid waittill spawn for 'Level'",
+        "[2026-10-14 12:51:19 UTC+1.000] ^~^~^ Script Error : invalid waittill spawn for 'Level'",
+        "[2026-10-14 12:51:19 UTC+1.000] ^~^~^ Script Error : invalid waittill prespawn for 'Level'",
+        "[2026-10-14 12:51:19 UTC+1.000] ^~^~^ Script Error : invalid waittill prespawn for 'Level'",
+        "[2026-10-14 12:51:19 UTC+1.000] ^~^~^ Script Error : invalid waittill prespawn for 'Level'",
+        "[2026-10-14 12:51:19 UTC+1.000] ^~^~^ Script Error : invalid waittill spawn for 'Level'",
+        "[2026-10-14 12:51:19 UTC+1.000] ^~^~^ Script Error : invalid waittill spawn for 'Level'",
+        "[2026-10-14 12:51:19 UTC+1.000] ^~^~^ Script Error : Field 'health' applied to NULL listener",
+        "[2026-10-14 12:51:19 UTC+1.000] ^~^~^ Script Error : command 'ai_off' applied to NULL listener",
+        "[2026-10-14 12:51:19 UTC+1.000] ^~^~^ Script Error : command 'nodamage' applied to NULL listener"
+      ]
+    },
+    {
+      "map": "e3l2",
+      "exit": 0,
+      "errors": [
+        "[2026-10-14 12:51:35 UTC+1.000] ^~^~^ Script Error : invalid waittill spawn for 'Level'",
+        "[2026-10-14 12:51:38 UTC+1.000] ^~^~^ Script Error : binary '>' applied to incompatible types 'none' and 'int'",
+        "[2026-10-14 12:51:40 UTC+1.000] ^~^~^ Script Error : command 'QueryTurretSlotEntity' applied to NULL listener",
+        "[2026-10-14 12:51:40 UTC+1.000] ^~^~^ Script Error : command 'hide' applied to NIL",
+        "[2026-10-14 12:51:40 UTC+1.000] ^~^~^ Script Error : command 'waitTill' applied to NULL listener",
+        "[2026-10-14 12:51:40 UTC+1.000] ^~^~^ Script Error : command 'thread' applied to NULL listener"
+      ]
+    },
+    {
+      "map": "e3l3",
+      "exit": 0,
+      "errors": [
+        "[2026-10-14 12:51:52 UTC+1.000] ^~^~^ Script Error : command 'thread' applied to NULL listener",
+        "[2026-10-14 12:51:52 UTC+1.000] ^~^~^ Script Error : self is NULL",
+        "[2026-10-14 12:51:55 UTC+1.000] ^~^~^ Script Error : invalid waittill spawn for 'Level'"
+      ]
+    },
+    {
+      "map": "e3l4",
+      "exit": 0,
+      "errors": [
+        "[2026-10-14 12:52:14 UTC+1.000] ^~^~^ Script Error : invalid waittill trigger for 'AISpawnPoint'",
+        "[2026-10-14 12:52:14 UTC+1.000] ^~^~^ Script Error : invalid waittill trigger for 'AISpawnPoint'",
+        "[2026-10-14 12:52:14 UTC+1.000] ^~^~^ Script Error : invalid waittill trigger for 'AISpawnPoint'",
+        "[2026-10-14 12:52:14 UTC+1.000] ^~^~^ Script Error : invalid waittill trigger for 'AISpawnPoint'",
+        "[2026-10-14 12:52:14 UTC+1.000] ^~^~^ Script Error : invalid waittill trigger for 'PathNode'",
+        "[2026-10-14 12:52:14 UTC+1.000] ^~^~^ Script Error : Not allowed to delete a path node",
+        "[2026-10-14 12:52:14 UTC+1.000] ^~^~^ Script Error : invalid waittill trigger for 'AISpawnPoint'",
+        "[2026-10-14 12:52:14 UTC+1.000] ^~^~^ Script Error : invalid waittill spawn for 'Level'"
+      ]
+    },
+    {
+      "map": "t1l3",
+      "exit": 0,
+      "errors": [
+        "[2026-10-14 12:52:33 UTC+1.000] ^~^~^ Script Error : invalid waittill spawn for 'Level'"
+      ]
+    }
+  ]
+}

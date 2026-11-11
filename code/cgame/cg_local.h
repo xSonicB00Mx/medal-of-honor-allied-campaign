@@ -40,6 +40,18 @@ class MemArchiver;
 extern "C" {
 #endif
 
+    void CG_ACImpactMark(qhandle_t,const vec3_t,const vec3_t,float,float,int);
+    void CG_ACWoundsEvent(void);
+    void CG_ACWoundsRemove(void);
+    void CG_ACWoundsReset(void);
+    void CG_ACWoundsDraw(refEntity_t *model,int usage);
+    void CG_ACBloodEvent(void);
+    void CG_ACBloodFrame(void);
+    void CG_ACMortarEvent(void);
+    void CG_ACMortarFrame(void);
+    void CG_ACBloodBody(refEntity_t *model);
+    void CG_ACBloodReset(void);
+
     typedef struct {
         int   anim;
         int   frame;
@@ -160,6 +172,8 @@ extern "C" {
         float radius;
         int markShader;
         int alphaFade;
+        int lifetime; // zero keeps the original mark lifetime
+        int usage; // owner generation for attached blood marks
         int fadein;
         markPoly_t* markPolys;
     } markObj_t;
@@ -318,6 +332,7 @@ extern "C" {
         float    farplane_distance;
         float    farplane_bias;
         vec3_t   farplane_color;
+        float    acLightning;
         qboolean farplane_cull;
         float    skyboxFarplane;
         qboolean renderTerrain;
@@ -361,6 +376,7 @@ extern "C" {
         qhandle_t     pausedShader;
         qhandle_t     levelExitShader;
         qhandle_t     zoomOverlayShader;
+        qhandle_t     cameraOverlayShader;
         qhandle_t     kar98TopOverlayShader;
         qhandle_t     kar98BottomOverlayShader;
         qhandle_t     binocularsOverlayShader;

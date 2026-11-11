@@ -1228,6 +1228,10 @@ TriggerSave::TriggerSave()
 
 void TriggerSave::SaveGame(Event *ev)
 {
+    // Native checkpoint triggers are automatic, even though they use savegame.
+    // Suppress them silently during a Mission List run; manual requests still warn.
+    if (gi.Cvar_Get("ac_campaign_mode", "0", 0)->integer
+        && gi.Cvar_Get("ac_replay", "0", 0)->integer == 2) return;
     gi.setConfigstring(CS_SAVENAME, m_sSaveName);
     gi.SendConsoleCommand("savegame");
 }

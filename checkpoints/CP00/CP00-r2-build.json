@@ -1,0 +1,82 @@
+{
+  "schema": 1,
+  "build_id": "CP00-r2",
+  "source_commit": "4d86762c550eb96663f50013069d8da6ffa5c793",
+  "engine_source_commit": "3eec4afb22093421b8776d2df92b87ec2fb4119e",
+  "upstream_commit": "a2f340195975f4f042e28a60b62561dd9a0b2700",
+  "data_files": 8992,
+  "data_manifest_sha256": "a9ce8bd47895d4fb07211c04621f1eb6f433c52938e4380da4325661251eefa4",
+  "owned_files": [
+    {
+      "path": "OpenAL64.dll",
+      "sha256": "4f7f49003562e1056fd0f25274d021d94e9eaceb9b0c5eba9c3df5123e4e355d"
+    },
+    {
+      "path": "OpenMoHAA-COPYING.txt",
+      "sha256": "f675a8c8e587f65b3bbf7f6a85a113eda45fdbc6005dc317af21bf8de7d3c204"
+    },
+    {
+      "path": "Original-EULA.txt",
+      "sha256": "413fc05d54060b4cd983a274ae214d94ab1d05d1f276925c850080eabfb27ba1"
+    },
+    {
+      "path": "SDL2.dll",
+      "sha256": "490fd069834f308c7ec168f0c29de8d20e1b4914e14de690414874a8697296fb"
+    },
+    {
+      "path": "Start-AA.cmd",
+      "sha256": "212efd72a55784b6c2157fa1acbdd2f39238421a95ae640f8099d8aa6d24801e"
+    },
+    {
+      "path": "Start-BT.cmd",
+      "sha256": "4ed179fd16f4a8a0baf30228fb59c16c91e225253a7f1e991689ff6bcee59785"
+    },
+    {
+      "path": "Start-SH.cmd",
+      "sha256": "262eaf9b8cfb15424512e9645c8c3ea4bcf4ec956f750a7f205e75d5f3e39f5c"
+    },
+    {
+      "path": "cgame.dll",
+      "sha256": "d031832f4cf56040c1d42fafc380396a438975bacf381a41ca94b16772fe0e5d"
+    },
+    {
+      "path": "game.dll",
+      "sha256": "a648c146a9c94522b3fc2720fac9611e836a10e1d6d2c8bc79c72e39dfd54ef4"
+    },
+    {
+      "path": "launch_openmohaa_base.exe",
+      "sha256": "8f2c265a0a372ae6a9f8f134d67eacb8d3b4a0b5515f1910d2113b5dbd499587"
+    },
+    {
+      "path": "launch_openmohaa_breakthrough.exe",
+      "sha256": "b41a925b528b7dec5c4915044b7203a4f414b84a01a84165c59c66948ba0c0cd"
+    },
+    {
+      "path": "launch_openmohaa_spearhead.exe",
+      "sha256": "5030a06e636448ad82d693e40d8b82cfbf7d3c99613d58574fc35e7900e12cfc"
+    },
+    {
+      "path": "licenses/OpenAL/COPYING",
+      "sha256": "d808ce217e5b611854da622b57ec29fe545584c48bc5352fae72a4b6e5074a15"
+    },
+    {
+      "path": "licenses/OpenAL/LICENSE-pffft",
+      "sha256": "64056328b3e7bc104e24ef96accc1a7abead156f0c02d1b87c97e3f3a28030de"
+    },
+    {
+      "path": "licenses/OpenAL/readme.txt",
+      "sha256": "26535df83482a8a0377e6fc1b8171385c9fb41e78f7f39398dbf645960cd9438"
+    },
+    {
+      "path": "omohaaded.exe",
+      "sha256": "8afe2e71e910eeaf8e36696c62152a9b369382c831c4e7421919cc24fe248df0"
+    },
+    {
+      "path": "openmohaa.exe",
+      "sha256": "ed50e53a812d9ef1ef5ba196d1ce95f6fbecf75b388eabffec11cbfc2f61a464"
+    }
+  ],
+  "save_schema": "Unmodified OpenMoHAA; original save compatibility untested",
+  "weapon_policy": "No Allied Campaign effects implemented",
+  "status": "TECHNICAL_TESTS_PENDING"
+}

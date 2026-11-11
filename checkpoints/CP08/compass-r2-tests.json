@@ -1,0 +1,92 @@
+{
+  "runs": [
+    {
+      "game": "AA",
+      "run": "align-aa-r2",
+      "installed": false,
+      "angles": [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          90
+        ],
+        [
+          0,
+          180
+        ],
+        [
+          0,
+          270
+        ],
+        [
+          30,
+          45
+        ],
+        [
+          -30,
+          225
+        ]
+      ],
+      "outputs": [
+        "artifacts-local/HUD-Compass-AA-align-aa-r2-00.png",
+        "artifacts-local/HUD-Compass-AA-align-aa-r2-01.png",
+        "artifacts-local/HUD-Compass-AA-align-aa-r2-02.png",
+        "artifacts-local/HUD-Compass-AA-align-aa-r2-03.png",
+        "artifacts-local/HUD-Compass-AA-align-aa-r2-04.png",
+        "artifacts-local/HUD-Compass-AA-align-aa-r2-05.png"
+      ],
+      "exit_code": 0
+    },
+    {
+      "game": "SH",
+      "run": "align-sh-r2",
+      "installed": false,
+      "angles": [
+        [
+          0,
+          45
+        ],
+        [
+          0,
+          225
+        ]
+      ],
+      "outputs": [
+        "artifacts-local/HUD-Compass-SH-align-sh-r2-00.png",
+        "artifacts-local/HUD-Compass-SH-align-sh-r2-01.png"
+      ],
+      "exit_code": 0
+    },
+    {
+      "game": "BT",
+      "run": "align-bt-installed-r2",
+      "installed": true,
+      "angles": [
+        [
+          0,
+          45
+        ],
+        [
+          0,
+          225
+        ]
+      ],
+      "outputs": [
+        "artifacts-local/HUD-Compass-BT-align-bt-installed-r2-00.png",
+        "artifacts-local/HUD-Compass-BT-align-bt-installed-r2-01.png"
+      ],
+      "exit_code": 0
+    }
+  ],
+  "integrity": {
+    "original_files_unchanged": 9072,
+    "runtime_base_files_unchanged": 9000,
+    "mp1_files_unchanged": 8,
+    "user_profile_files_unchanged": 80,
+    "rollback_copy": "generated-local/widescreen/backups/compass-r2"
+  },
+  "scope": "Native compositing and rotation smoke; not exhaustive compass gameplay acceptance"
+}

@@ -1,0 +1,10 @@
+{
+  "exit": 3221226505,
+  "seconds": 12.234999999869615,
+  "events": [
+    "[2026-10-14 12:09:24 UTC+1.000] AC_CONTEXT_BEGIN 0 -> 1 t1l2"
+  ],
+  "saves": [
+    "main/save/omconfig/m1l2a0000.sav"
+  ]
+}

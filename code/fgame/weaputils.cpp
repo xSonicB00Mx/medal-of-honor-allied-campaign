@@ -39,6 +39,9 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 #include "debuglines.h"
 #include "smokegrenade.h"
 
+#include "ac_hit_impl.h"
+#include "ac_score_game.h"
+
 constexpr unsigned long MAX_TRAVEL_DIST = 16216;
 
 static void FlashPlayers(Vector org, float r, float g, float b, float a, float rad, float time, int type);
@@ -1137,6 +1140,8 @@ void Projectile::DoDecal(void)
 
 void Projectile::Touch(Event *ev)
 {
+    if(Q_stristr(model.c_str(),"granatwerferproj") && gi.Cvar_Get("ac_mortar_debug","0",0)->integer)
+        gi.Printf("AC_MORTAR_IMPACT point=%.3f,%.3f,%.3f\n",origin.x,origin.y,origin.z);
     Entity *other;
     Entity *owner;
     str     realname;
@@ -1837,9 +1842,12 @@ void PlaceLandmine(const Vector& origin, Entity *owner, const str& model, Weapon
         return;
     }
 
+    const bool replayMine=owner && owner->IsSubclassOfPlayer() && ((Player *)owner)->ACLoadoutEligible();
     args.setArg("model", model.c_str());
-    args.setArg("setthread", "global/landmine.scr::steppedOn");
-    args.setArg("$defuseThread", "global/landmine.scr::defuse");
+    args.setArg("setthread", replayMine?"global/ac_loadout_mine.scr::steppedOn":"global/landmine.scr::steppedOn");
+    args.setArg("$defuseThread", replayMine?"global/ac_loadout_mine.scr::defuse":"global/landmine.scr::defuse");
+    // Stock multiplayer mines only respond to clients. Replays contain AI.
+    if(replayMine)args.setArg("spawnflags","8");
     args.setArg("targetname", "landmine");
 
     l = args.Spawn();
@@ -1874,6 +1882,12 @@ void PlaceLandmine(const Vector& origin, Entity *owner, const str& model, Weapon
     }
 
     trigger->NewAnim("idle");
+
+    if(replayMine) {
+        ScriptThreadLabel init;
+        init.Set("global/ac_loadout_mine.scr::init");
+        init.Execute(trigger,owner,ListenerPtr());
+    }
 
     if (g_gametype->integer == GT_SINGLE_PLAYER) {
         if (!owner) {
@@ -2183,6 +2197,10 @@ float BulletAttack(
     float    oldfrac;
     int      bulletbits;
 
+    ACScoreShot acShot(owner);
+    const bool acShotgunDebug=weap && ACWeaponGroup(weap->model.c_str())==5
+        && gi.Cvar_Get("ac_fx_debug","0",0)->integer>1;
+    const int acShotgunStart=acShotgunDebug?gi.Milliseconds():0;
     lastSurfaceFlags = 0;
     iNumHit          = 0;
 
@@ -2197,14 +2215,24 @@ float BulletAttack(
         count = 63;
     }
 
+    // Script-fired vehicle guns can have no sentient owner. Keep their exact
+    // weapon identity for cosmetics; retain the original damage/stat ownership.
+    Weapon *const acVisualWeapon = weap;
     if (!owner || owner->IsDead() || owner == world) {
         weap = NULL;
     }
 
     for (i = 0; i < count; i++) {
         trace_t tracethrough;
+        bool acCorpseSeen[MAX_GENTITIES]={};
 
         vTraceEnd = start + (dir * range) + (right * grandom() * spread.x) + (up * grandom() * spread.y);
+        if (owner && owner->client && gi.Cvar_Get("ac_crosshair_debug", "0", 0)->integer) {
+            const Vector offset = vTraceEnd - start - dir * range;
+            gi.Printf("AC_SPREAD_SAMPLE range=%.4f sigma=%.5f,%.5f offset=%.5f,%.5f\n",
+                range, spread.x, spread.y, offset * right, offset * up);
+        }
+
 
         vDir = vTraceEnd - start;
 
@@ -2230,26 +2258,14 @@ float BulletAttack(
             while (trace.fraction < 1.0f) {
                 Vector vDeltaTrace;
 
-                trace = G_Trace(
-                    vTraceStart, vec_zero, vec_zero, vTraceEnd, newowner, MASK_SHOT_TRIG, false, "BulletAttack", true
-                );
+                trace = ACTraceBullet(vTraceStart, vTraceEnd, newowner);
 
                 vTmpEnd = trace.endpos;
 
                 if (bThroughThing) {
                     bThroughThing = qfalse;
 
-                    tracethrough = G_Trace(
-                        vTmpEnd,
-                        vec_zero,
-                        vec_zero,
-                        vTraceStart + vDir * -4,
-                        newowner,
-                        MASK_SHOT,
-                        qfalse,
-                        "BulletAttack2",
-                        qtrue
-                    );
+                    tracethrough = ACTraceBullet(vTmpEnd, vTraceStart + vDir * -4, newowner, MASK_SHOT);
 
                     if (!(tracethrough.surfaceFlags & (SURF_FOLIAGE | SURF_GLASS | SURF_PUDDLE | SURF_PAPER))
                         && (!(tracethrough.surfaceFlags & SURF_WOOD) || !bulletthroughwood)
@@ -2335,7 +2351,18 @@ float BulletAttack(
                     ent = NULL;
                 }
 
+                Vector acEnd=vTmpEnd;
+                if(ent && ACCorpse(ent)) {
+                    // A legacy corpse box can end the native trace before its mesh.
+                    // Recheck only the small remainder against the unchanged world mask.
+                    trace_t visual=G_Trace(vTraceStart,vec_zero,vec_zero,vTmpEnd+vDir*128,ent,MASK_SHOT,false,"AC corpse visibility",true);
+                    acEnd=visual.endpos;
+                }
+                ACCorpseSegment(vTraceStart,acEnd,vDir,acVisualWeapon,acCorpseSeen);
+
                 if (ent && ent != world && ent != owner) {
+                    const bool acMistContact = g_gametype->integer==GT_SINGLE_PLAYER && ent->takedamage
+                        && ent->IsSubclassOfActor() && ent->health>0 && acVisualWeapon && ACWeaponGroup(acVisualWeapon->model.c_str());
                     if (ent->takedamage) {
                         if (g_gametype->integer == GT_SINGLE_PLAYER && !iNumHit) {
                             BulletAttack_Stat(owner, ent, &trace, weap);
@@ -2346,6 +2373,8 @@ float BulletAttack(
                         // Get the original value of the victims health or water
 
                         original_value = ent->health;
+                        acCorpseSeen[ent->edict->s.number]=true;
+                        ACVisualHit(ent, acVisualWeapon, trace.endpos, vDir);
 
                         ent->Damage(
                             world,
@@ -2377,12 +2406,12 @@ float BulletAttack(
                             gi.MSG_EndCGM();
                         } else if (trace.location >= 0 && ent->IsSubclassOfSentient()) {
                             gi.SetBroadcastVisible(vTmpEnd, NULL);
-                            gi.MSG_StartCGM(BG_MapCGMToProtocol(g_protocol, CGM_BULLET_8));
+                            gi.MSG_StartCGM(acMistContact ? CGM_AC_FLESH : BG_MapCGMToProtocol(g_protocol, CGM_BULLET_8));
                             gi.MSG_WriteCoord(vTmpEnd[0]);
                             gi.MSG_WriteCoord(vTmpEnd[1]);
                             gi.MSG_WriteCoord(vTmpEnd[2]);
                             gi.MSG_WriteDir(trace.plane.normal);
-                            gi.MSG_WriteBits(bulletlarge, bulletbits);
+                            gi.MSG_WriteBits(acMistContact ? !!bulletlarge : bulletlarge, acMistContact ? 1 : bulletbits);
                             gi.MSG_EndCGM();
                         } else if (ent->edict->r.contents & CONTENTS_SOLID) {
                             gi.SetBroadcastVisible(vTmpEnd, NULL);
@@ -2616,6 +2645,7 @@ float BulletAttack(
 
     gi.MSG_EndCGM();
 
+    if(acShotgunDebug)gi.Printf("AC_SHOTGUN pellets=%d damage=%.3f server_ms=%d\n",count,damage_total,gi.Milliseconds()-acShotgunStart);
     if (damage_total > 0) {
         return damage_total;
     } else {
@@ -2797,6 +2827,7 @@ Projectile *HeavyAttack(Vector start, Vector dir, str projectileModel, float rea
 
     proj->setSize(proj->mins, proj->maxs);
     proj->setOrigin(start);
+    if(Q_stristr(projectileModel.c_str(),"granatwerferproj") && gi.Cvar_Get("ac_mortar_debug","0",0)->integer)gi.Printf("AC_MORTAR_LAUNCH owner=%d point=%.3f,%.3f,%.3f velocity=%.3f,%.3f,%.3f gravity=%.3f dt=%.5f\n",owner->entnum,start.x,start.y,start.z,proj->velocity.x,proj->velocity.y,proj->velocity.z,proj->gravity,level.frametime);
     proj->origin.copyTo(proj->edict->s.origin2);
 
     if (proj->m_beam) {

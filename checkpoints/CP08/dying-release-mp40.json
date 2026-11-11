@@ -1,0 +1,22 @@
+{
+  "game": "AA",
+  "weapon": "mp40",
+  "fx": 1,
+  "exit": 0,
+  "completed": false,
+  "events": [
+    "AC_WOUND_ARCHIVE save count=0"
+  ],
+  "errors": [],
+  "images": [
+    "profiles-local/CP08-r1/dying-release-mp40/main/screenshots/shot0000.png",
+    "profiles-local/CP08-r1/dying-release-mp40/main/screenshots/shot0001.png",
+    "profiles-local/CP08-r1/dying-release-mp40/main/screenshots/shot0002.png",
+    "profiles-local/CP08-r1/dying-release-mp40/main/screenshots/shot0003.png"
+  ],
+  "binaries": {
+    "openmohaa.exe": "2f4806421b90c6f9dd286cabbed3438ad40bdd6163e08b6ea28f01fe21402255",
+    "game.dll": "ccfed171adc76eac1cba2bd7e617347fe0e67869cc12aa694a24c0c2ad63d1c8",
+    "cgame.dll": "7a9cf39e3204e9491a7f6180e531cdcaa168ca28df39763662e2a53aaec796dd"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "path": "artifacts-local/CP03-r1-runtime.zip",
+  "sha256": "91071bb5a8f8e6d6322146ca1f570da3d65719faeda0a6f4d26d8445cd459791",
+  "bytes": 2814488143,
+  "crc_verified": true,
+  "upload_allowed": false,
+  "contains_original_assets": true,
+  "source_commit": "405908bec47f5b41650c8553420ca6778ae3bfc2"
+}

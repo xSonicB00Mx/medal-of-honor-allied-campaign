@@ -1,0 +1,11 @@
+{
+  "candidate": "CP00-r4",
+  "package": "artifacts-local/CP00-r4-bt-foot-local.zip",
+  "files": 168,
+  "bytes": 65732107,
+  "sha256": "7a611fa975b3b9bd61b8203c441776b2919978f369db84f6d11f92915c5dcc4d",
+  "crc_passed": true,
+  "checked_references": 177,
+  "hash_mismatches": 0,
+  "scope": "Independent local evidence package for BT foot controls and combat probes. Includes rejected placement run. Runtime already backed up separately; no original assets or saves in Git."
+}

@@ -1714,6 +1714,10 @@ void TurretGun::P_CreateViewModel(void)
     char newmodel[MAX_STRING_TOKENS];
     int  tagnum;
 
+    // The portable MG uses its animated world model while being assembled.
+    // No *_setup_viewmodel.tik exists in SH/BT; create the FPS model once ready.
+    if(model=="models/weapons/mg42portable_placed_setup.tik")return;
+
     if (!pTurretCameras) {
         pTurretCameras = gi.Cvar_Get("g_turretcameras", "1", 0);
     }

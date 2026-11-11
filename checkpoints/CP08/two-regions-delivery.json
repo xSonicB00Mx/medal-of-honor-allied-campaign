@@ -1,0 +1,28 @@
+{
+  "source_commit": "879e9b3376065431d4e54aed31adc18effae76ed",
+  "package": "artifacts-local/CP08-r1-two-region-update.zip",
+  "sha256": "34a58f0fb6fed583677d463715e91e6e98c7fcfa02cd913666b0a4bd107ca776",
+  "size": 11381232,
+  "crc_verified": true,
+  "changed_owned_files": [
+    "game.dll",
+    "main/zzzzz_AC_Campaign.pk3",
+    "mainta/zzzzz_AC_Campaign.pk3",
+    "maintt/zzzzz_AC_Campaign.pk3",
+    "openmohaa.exe",
+    "MAP-CREDITS.md"
+  ],
+  "other_owned_files_unchanged": true,
+  "protected_input_files_verified": 9072,
+  "runtime_base_files_verified": 9000,
+  "runtime_manifest_sha256": "f59baeab3597e4d576b3105338a8b231d1632b140fbc4641e164490c1f9d686c",
+  "binaries": {
+    "openmohaa.exe": "145195123820bb70573372b0d679043b26df5f7e838c0973797fb863e261c3b2",
+    "game.dll": "ccfed171adc76eac1cba2bd7e617347fe0e67869cc12aa694a24c0c2ad63d1c8",
+    "cgame.dll": "7a9cf39e3204e9491a7f6180e531cdcaa168ca28df39763662e2a53aaec796dd"
+  },
+  "screenshots_zip": "artifacts-local/Allied-Campaign-Zwei-Regionen.zip",
+  "screenshots_sha256": "1755b5fb917a7f5ca43129168e29e8e875c393755ce42fee608f83e5be52ab20",
+  "user_profile": "Unchanged; isolated tests only",
+  "historical_full_snapshot": "artifacts-local/CP08-r1-runtime.zip unchanged"
+}

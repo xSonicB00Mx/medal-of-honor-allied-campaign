@@ -1,0 +1,9 @@
+{
+  "path": "artifacts-local/CP05-r1-runtime.zip",
+  "sha256": "9b31801a4dbba2ccc92ca977ab298147b17568f5a4a5742410fd5344b86f9ead",
+  "bytes": 2814565299,
+  "crc_verified": true,
+  "upload_allowed": false,
+  "contains_original_assets": true,
+  "source_commit": "c0f6342352b2971f52c462574e528f58edf9220b"
+}

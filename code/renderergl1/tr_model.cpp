@@ -849,6 +849,7 @@ void R_AddSkelSurfaces(trRefEntity_t *ent)
     ent->e.bonestart = TIKI_Skel_Bones_Index;
     TIKI_Skel_Bones_Index += num_tags;
 
+    if(ent->e.renderfx&RF_AC_CORPSE_PROXY)return; // BSP body already renders; keep only its decal adapter.
     ent->e.hasMorph = qfalse;
 
     //
@@ -1081,9 +1082,9 @@ void RB_SkelMesh(skelSurfaceGame_t *sf)
     assert(bFound);
 
     //
-    // Process LOD
+    // Process LOD. Attached barycentric wounds use the full-detail triangles.
     //
-    if (skelmodel->pLOD) {
+    if (skelmodel->pLOD && !backEnd.currentEntity->e.acFullDetail) {
         float lod_val;
         int   renderfx;
 

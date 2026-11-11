@@ -1,0 +1,118 @@
+{
+  "schema": 2,
+  "build_id": "CP01-r2",
+  "source_commit": "114c0d8d941a15b5d748a058cb9d529319ac5506",
+  "engine_source_commit": "114c0d8d941a15b5d748a058cb9d529319ac5506",
+  "upstream_commit": "a2f340195975f4f042e28a60b62561dd9a0b2700",
+  "wcr_package_fingerprint": "3b6b38b5b04ba320a526196946c44394c4519e4197dc8d3d05788e186501cfcc",
+  "data_manifest_sha256": "79024db88fc0a193780087590452fdcbf73519988643d86e0eb3d530fe968e4d",
+  "runtime_data_manifest": "generated-local/CP00-r4/runtime-data-manifest.json",
+  "input_manifest": "generated-local/CP00-r4/input-manifest.json",
+  "data_files": 9000,
+  "owned_files": [
+    {
+      "path": "OpenAL64.dll",
+      "sha256": "4f7f49003562e1056fd0f25274d021d94e9eaceb9b0c5eba9c3df5123e4e355d"
+    },
+    {
+      "path": "OpenMoHAA-COPYING.txt",
+      "sha256": "f675a8c8e587f65b3bbf7f6a85a113eda45fdbc6005dc317af21bf8de7d3c204"
+    },
+    {
+      "path": "Original-EULA.txt",
+      "sha256": "413fc05d54060b4cd983a274ae214d94ab1d05d1f276925c850080eabfb27ba1"
+    },
+    {
+      "path": "SDL2.dll",
+      "sha256": "490fd069834f308c7ec168f0c29de8d20e1b4914e14de690414874a8697296fb"
+    },
+    {
+      "path": "Start-AA.cmd",
+      "sha256": "9fa8c40a0636f224c0710f9ed311b2ada589cf48249d37641e080cd8fbca1685"
+    },
+    {
+      "path": "Start-BT.cmd",
+      "sha256": "48f8ec77cbeffd659ceef3d24425db0532fda6049c4578fc5a4e8d9f39524d02"
+    },
+    {
+      "path": "Start-SH.cmd",
+      "sha256": "509e1f7fde55078b6846038b139e625be4563f0a12b7a1c9bd3e92e48b1956ae"
+    },
+    {
+      "path": "cgame.dll",
+      "sha256": "9db11f136c37ad6698b3acc2d0343ee19d15db772a7cff82af82f919f1e526ee"
+    },
+    {
+      "path": "game.dll",
+      "sha256": "1b29fe13231a6fe3f527aed04fed17f3f7e9e867a6cc88edb8e6c079f76aec87"
+    },
+    {
+      "path": "launch_openmohaa_base.exe",
+      "sha256": "1ddd69493e8a9257dc96a724dff5d38b0d3c63921022373f74263233a2444478"
+    },
+    {
+      "path": "launch_openmohaa_breakthrough.exe",
+      "sha256": "862672850a3b7dcf736358cc38b2528daa8bd04b6e13bf0df7499deaf3e132ae"
+    },
+    {
+      "path": "launch_openmohaa_spearhead.exe",
+      "sha256": "7fa61a6a5a29dd3c2d4d58ee9fa25b17bb3c216897a1b76a95be3185887ceabd"
+    },
+    {
+      "path": "licenses/OpenAL/COPYING",
+      "sha256": "d808ce217e5b611854da622b57ec29fe545584c48bc5352fae72a4b6e5074a15"
+    },
+    {
+      "path": "licenses/OpenAL/LICENSE-pffft",
+      "sha256": "64056328b3e7bc104e24ef96accc1a7abead156f0c02d1b87c97e3f3a28030de"
+    },
+    {
+      "path": "licenses/OpenAL/readme.txt",
+      "sha256": "26535df83482a8a0377e6fc1b8171385c9fb41e78f7f39398dbf645960cd9438"
+    },
+    {
+      "path": "omohaaded.exe",
+      "sha256": "650e908103cfddb9f609358e5635f586813fcae5e7479d24c4f2d96bca4aa21b"
+    },
+    {
+      "path": "openmohaa.exe",
+      "sha256": "3f73d114b38099d701fcdf87e2b6531af75df580d79a819bc3ca2a1433ae53a5"
+    },
+    {
+      "path": "main/zzzz_AC_UI.pk3",
+      "sha256": "41b1d6800984c7680030228ca320abc3907d79c7a9964edd2f0066039e14b466"
+    },
+    {
+      "path": "mainta/zzzz_AC_UI.pk3",
+      "sha256": "242e3f51cbd913f62e15463fc5c45362904af84c31b3ae5f594a62981ff59f8b"
+    },
+    {
+      "path": "maintt/zzzz_AC_UI.pk3",
+      "sha256": "242e3f51cbd913f62e15463fc5c45362904af84c31b3ae5f594a62981ff59f8b"
+    },
+    {
+      "path": "maintt/zzzz_AC_BT_Drops.pk3",
+      "sha256": "3638dca7306fe570278fe9ae4497acbe57bb398a7ffc8967d750fff36a699da8"
+    }
+  ],
+  "save_schema": "Unchanged OpenMoHAA archive layout; saves load in tested contexts. BT patch requires a new mission for full activation.",
+  "weapon_policy": "WCR preserved; no CP2 or later effects",
+  "toolchain": {
+    "cmake": "4.4.4",
+    "msbuild": "17.14.51",
+    "generator": "Visual Studio 17 2022 x64",
+    "configuration": "RelWithDebInfo",
+    "flex_bison": "2.5.25",
+    "options": [
+      "USE_HTTP=OFF",
+      "USE_RENDERER_DLOPEN=OFF",
+      "BUILD_RENDERER_GL2=OFF"
+    ]
+  },
+  "merge_recipe": "tools/import_cp00a.py at 114c0d8d941a15b5d748a058cb9d529319ac5506",
+  "ui_recipe": "tools/package_cp01_ui.py at 114c0d8d941a15b5d748a058cb9d529319ac5506",
+  "status": "IMPLEMENTED_TESTED_WITH_DOCUMENTED_COVERAGE_LIMITS",
+  "personal_acceptance": false,
+  "merged": false,
+  "change": "English option labels; unchanged CP01-r1 engine"
+}

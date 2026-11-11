@@ -1,0 +1,81 @@
+{
+  "candidate": "CP00-r1",
+  "files": [
+    {
+      "path": "profiles-local/CP00-r1/scene-AA/main/qconsole.log",
+      "sha256": "773d2e847affb6ba72e0a661dd01db1122519aaf09ea2c591f072984363adbb8",
+      "bytes": 68272
+    },
+    {
+      "path": "profiles-local/CP00-r1/scene-AA/main/screenshots/shot0000.tga",
+      "sha256": "091bf546ef6deb6db0e7ff9cf09beca280ffff856250fa3ec04785075ff0dace",
+      "bytes": 3686418
+    },
+    {
+      "path": "profiles-local/CP00-r1/scene-AA/main/screenshots/shot0001.tga",
+      "sha256": "cab351c9aabd30cb0e5a9d31b32e52131da4a7ad7f1064343fab31bc2304bb34",
+      "bytes": 3686418
+    },
+    {
+      "path": "profiles-local/CP00-r1/AA/main/save/omconfig/cp00_aa.sav",
+      "sha256": "3ab6248f13db12afa6673adcd3d1699785fe2ea734bed73641b6bc2e3b7c6a07",
+      "bytes": 341244
+    },
+    {
+      "path": "profiles-local/CP00-r1/AA/main/save/omconfig/cp00_aa.ssv",
+      "sha256": "1008f8a3bcc66c0a5ff168e44c1d5347d4b1cab3bb9eb8373587f3d10e061c47",
+      "bytes": 14860
+    },
+    {
+      "path": "profiles-local/CP00-r1/scene-SH/mainta/qconsole.log",
+      "sha256": "009e499392f2247d29082c35ad5f7b3c250dfd0848b85908b80bb5afef395065",
+      "bytes": 71905
+    },
+    {
+      "path": "profiles-local/CP00-r1/scene-SH/mainta/screenshots/shot0000.tga",
+      "sha256": "dd50df715e21c1d7120b056b2aaf4bef3aae003d6d29d9ecaed0b03ebdeb984e",
+      "bytes": 3686418
+    },
+    {
+      "path": "profiles-local/CP00-r1/scene-SH/mainta/screenshots/shot0001.tga",
+      "sha256": "a58b728df2048b38207c191b49097a466622f3c66e820714b2043ae9708e555b",
+      "bytes": 3686418
+    },
+    {
+      "path": "profiles-local/CP00-r1/SH/mainta/save/omconfig/cp00_sh.sav",
+      "sha256": "1095332fcab2935cc3fdc4a4902b58c119b37daa34021fccee19dd86aaea9d66",
+      "bytes": 324844
+    },
+    {
+      "path": "profiles-local/CP00-r1/SH/mainta/save/omconfig/cp00_sh.ssv",
+      "sha256": "4c21681ddc914df758b76bcc83206e5b9070227d3cbe3a2acee25b184db4533d",
+      "bytes": 14860
+    },
+    {
+      "path": "profiles-local/CP00-r1/scene-BT/maintt/qconsole.log",
+      "sha256": "fed50382f7d81b9a1f896d13ac27b08f7ac62256e5fcf6621cead02cdc8f799d",
+      "bytes": 92362
+    },
+    {
+      "path": "profiles-local/CP00-r1/scene-BT/maintt/screenshots/shot0000.tga",
+      "sha256": "450ce3a1179bd7b0cc93d62e004b6813aeac05b5fe5fa3dbe2e696334e2083be",
+      "bytes": 3686418
+    },
+    {
+      "path": "profiles-local/CP00-r1/scene-BT/maintt/screenshots/shot0001.tga",
+      "sha256": "b98f5e869212debbfb230567204bf5d12822dec01cdb5600526b66dc9b8eae59",
+      "bytes": 3686418
+    },
+    {
+      "path": "profiles-local/CP00-r1/BT/maintt/save/omconfig/cp00_bt.sav",
+      "sha256": "f5f09414048a646017436944c9c881504473d9ed7ed9f0ff7b02b6f32293e84f",
+      "bytes": 634501
+    },
+    {
+      "path": "profiles-local/CP00-r1/BT/maintt/save/omconfig/cp00_bt.ssv",
+      "sha256": "9fee8684b6e083dfe195870c8f2fe21744660b9a9395567c29e9c92b66f95332",
+      "bytes": 14828
+    }
+  ],
+  "assets_uploaded": false
+}

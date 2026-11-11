@@ -1,191 +1,90 @@
-# Contributing guidelines
+# Contributing to Medal of Honor: Allied Campaign
 
-Whether you're reporting issues or coding, follow the guidelines below to help keep the project consistent and maintainable.
+Allied Campaign combines Allied Assault, Spearhead and Breakthrough into one single-player experience using a customized OpenMoHAA engine and a verified WCR content baseline.
 
-All contributions, including **issues**, **discussions**, **code comments**, **commit messages**, and **documentation**, must be written in *English*. This ensures clarity and consistency for all contributors.
+The planned feature set is complete. Current work focuses on **bug fixes, regression testing, documentation and release preparation**. Discuss new features or changes to gameplay balance with the maintainer before implementing them.
 
-There are many ways to contribute. Contributions are welcome in the following areas:
-- Fixing [bugs and crashes](#issues).
-- Documentation improvements
-- Performance improvements
-- Testing
-- Helping users (issues, discussions)
-- Suggesting enhancements (via issues only)
+These guidelines apply to this fork. Contributions submitted to OpenMoHAA itself must follow that project's own rules.
 
-New features are designed and implemented by maintainers, so the project's direction and maintenance burden stay consistent.
+## Reporting a bug
 
-If you want to propose a new feature, please open an issue first.
+Use [this repository's issues](https://github.com/xSonicB00Mx/medal-of-honor-allied-campaign/issues). Check existing reports first, then include:
 
-Do not start implementing a new feature before getting approval. Pull requests that introduce unapproved features may be closed without review.
+- Allied Campaign build ID or commit, plus the engine version from the log;
+- campaign (AA, SH or BT), mission and map name;
+- launch mode: campaign progression, Operations replay, custom LOADOUT, Mission List score run or loaded save;
+- difficulty, relevant options and any additional modifications;
+- expected behavior, actual behavior and repeatable steps;
+- whether a fresh level start and a loaded save behave differently;
+- operating system, GPU, resolution and HUD/menu font scaling for display problems;
+- a relevant `qconsole.log` excerpt, crash information and screenshots where useful.
 
----
+Remove sensitive local paths or other personal information from shared logs. Do not commit save files or complete profiles. If a save is needed to reproduce a bug, arrange a separate test copy with the maintainer.
 
-## Issues
+Use the matching Allied Campaign binaries and packages when reproducing an issue. Replacing only the executable with an upstream development build is not a valid compatibility test for the fork.
 
-Before opening a new issue:
-1. Make sure you're running the [latest development version](https://github.com/openmoh/openmohaa/releases/tag/dev).
-2. Check if the issue already exists.
+## Protect the campaign and the player's data
 
-When filing an issue, include as much detail as possible, this helps reproducing and fixing the problem effectively:
-- Clear description of the bug.
-- Steps to reproduce.
-- Log file (`qconsole.log`) and crash output if applicable:
-    - Attach the relevant log file.
-    - For crashes, paste the console output that includes the backtrace.
-- Operating System and version. Example: `Debian 13`.
-- Full game version. Example: `0.70.0-alpha+0.0b1a20dcf win_msvc64-x86_64-debug`. The version is obtained at the start of the log file, or by executing the `version` command in console.
+- Test in independent, ignored runtimes and profiles. Never run destructive tests against a personal save, progress file or score record.
+- Keep original installations and imported sources read-only. Do not use hardlinks or junctions that allow tests to modify the source installation.
+- Preserve the pinned WCR integration. Do not silently remove, replace or update WCR or restore its scripts to vanilla versions.
+- Operations replays must not roll back campaign progress. Custom LOADOUTs belong only to completed Operations replays; Mission List runs retain standard equipment.
+- Preserve save compatibility where possible. Any unavoidable migration or incompatibility must be documented and reviewed before deployment.
+- Visual hit effects must not accidentally change damage, bullet penetration, death behavior, random gameplay outcomes or item drops.
+- Keep UI text in English. Existing project discussion and checkpoint reports may be in German; English is preferred for shared technical documentation and code comments.
 
-## Usage of generative AI / Large language models
+## Preparing a change
 
-### Policy
+1. Read [STATUS.md](STATUS.md), the relevant checkpoint report and any applicable [AGENTS.md](AGENTS.md) instructions. [PLAN.md](PLAN.md) records the original scope; later user decisions and checkpoint reports explain subsequent changes.
+2. Confirm the appropriate base branch with the maintainer. Active checkpoint work may be ahead of `main`. Use a focused topic branch; do not push directly to `main` or rewrite shared history.
+3. Match the surrounding code style and keep the patch limited to the problem. Preserve copyright headers, licenses and attribution.
+4. Update the canonical source or generator when changing packaged data. Do not fix only an ignored runtime copy. Keep original/generated asset packages out of Git.
+5. Record what you tested, what passed and what remains untested. Keep documentation consistent with the delivered behavior.
 
-This project requires that all contributions be human-authored.
+## Build and validation
 
-Do not submit any code, documentation, issues, pull requests, commit messages or comments that are generated using AI or similar assistive tools (such as Microsoft Copilot, Anthropic Claude, ChatGPT...).
+The tested development target is Windows x64 with Visual Studio 2022 and OpenGL 1. See the [build helper](tools/build-cp00.ps1) and [CI workflow](.github/workflows/cp00-validation.yml) for configuration and parser-tool requirements. The inherited [compilation reference](docs/markdown/04-coding/01-compiling.md) provides engine background; its broader platform claims are not an Allied Campaign acceptance matrix.
 
-- **No AI-derived patches**. If the change was proposed by an AI, it must not be ported over "by hand". If the idea came from AI, treat is as untrusted and do your own independent implementation.
-- **No AI-assisted refactors**. Mass rewrites, LLM-based formatting, or modernization are not accepted.
-- **Enforcement**. Maintainers may request clarification. PRs suspected of AI involvement may be rejected or reverted, and may lead to a ban.
+Source and metadata checks, run from the repository root with Python 3:
 
-#### Acceptable uses
-
-- **Non-generative tools** are allowed: static analyzers, formatters, linters, sanitizers, fuzzers and IDE features are fine as long they do not generate code.
-- **Translation tools** to help communicating between people.
-
-### Reasoning
-
-This policy exists due to:
-- **Copyright and licensing risk**. The origin of the outputs may be unclear as these tools plagiarize the original sources without permission.
-- **Security and authenticity**. AI produces plausible code but may often look wrong. This could work, but would turn into undefined behavior, vulnerabilities, or time spent in a debugger.
-- **Maintability**. Changes must be explainable and reviewable. Humans can explain tradeoffs they consciously accepted. Generated code can't. If you can't explain why a specific line exists, it shouldn't be proposed at all.
-- **Respect for maintainers**. Submitting contributions generated by these tools waste maintainers resources to review them.
-
-### Responsibility
-
-When submitting, you agree that:
-
-- The submission **complies with this policy**. Changes must be able to be explained and justified during review.
-- The submission **can be declined** if it is **suspected to use AI** or is raising reviewability concerns.
-
-## Coding
-
-### Compatibility
-
-All changes must stay retro-compatible with the original game:
-- Assets must be loaded correctly.
-- Changes related to networking must be compatible with existing MOHAA clients and servers, these changes must not cause an error/disconnect.
-- Scripts/mods must remain functional.
-- The singleplayer campaign must be fully playable.
-
-### Coding style & Guidelines
-
-- Match the existing code style in any files you modify.
-- Avoid personal tags or author comments (.e.g., `// @Name: note`). Git already tracks authorship.
-- Ensure the code builds successfully using CI.
-- Use **camelCase** notation for all variables, and **PascalCase** notation for functions. Even if some existing code doesn't.
-- Format code using `clang-format`.
-    - In VSCode from the command palette: **Format document**
-
-### Event declaration
-
-When declaring a new Event, use the following structure:
-```cpp
-Event EV_YourEventName  // Pascal Case naming convention
-(
-    "name",             // Each parameter on a new line
-    flags,
-    "format specifiers...",
-    "argument names...",
-    "description"
-);
+```text
+python tools/validate_cp00.py
+python tools/validate_campaign.py
+python tools/generate_weapon_policy.py --check
 ```
 
-### Code annotations
+Asset-independent visual tests, with CMake and the Visual Studio generator available:
 
-When modifying existing code from the original game or adding new classes, annotate your changes using one of the following patterns:
-
-#### Additions
-
-```cpp
-// Added in OPM
-//  Description
+```text
+cmake -S tests/ac_visual -B build-local/ac-visual-tests -A x64
+cmake --build build-local/ac-visual-tests --config Release
+ctest --test-dir build-local/ac-visual-tests -C Release --output-on-failure
 ```
 
-#### Changes
+Run checks appropriate to the change. Documentation-only edits need link and diff checks, not a full game rebuild. Engine or gameplay changes require the affected binaries to be rebuilt and relevant tests to run. Shared behavior should be checked in AA, SH and BT; UI changes should cover relevant aspect ratios and scaling settings.
 
-```cpp
-// Changed in OPM
-//  Description
-```
+Native test scripts often require a prepared local runtime, external assets and particular fixtures. Read their inputs and output paths before running them; they are not all usable from a fresh clone. Use isolated profiles and compare protected data before and after testing. Known diagnostics must be identified explicitly, not silently counted as an error-free run.
 
-#### Fixes
+Keep source validation, compilation, native tests, natural playthrough acceptance and merge approval separate. Refer to the [CP09 report](checkpoints/CP09/REPORT.md) for the current limits.
 
-```cpp
-// Fixed in OPM
-//  Description
-```
+## What belongs in Git
 
-#### Removal
+Commit project source, build/test tools, documentation and suitable metadata. Review staged paths explicitly before committing.
 
-```cpp
-// Removed in OPM
-//  Description
-```
+Do not commit original game files, WCR archives, Max Payne resources, generated game/artwork packages, compiled binaries, local toolchains, personal configurations, saves, credentials or runtime backups. Keep these in the ignored local work areas. A generated package's project filename is not evidence that all of its contents may be redistributed.
 
-If referencing a specific game version, replace OPM with that version number. Example:
-```cpp
-// Added in 2.11
-//  Make sure to clean turret stuff up
-//  when the player is deleted
-```
-Known versions are `1.00`, `1.10`, `1.11`, `2.0`, `2.1`, `2.11`, `2.15`, `2.30`, `2.40`.
+Changes involving artwork or imported resources must document their origin and how they are packaged. Preserve third-party notices and consult the maintainer before adding external content to a distribution.
 
-You can also group multiple related functions like this:
-```cpp
-// Added in OPM
-//====
-void Function1();
-void Function2();
-void Function3();
-//====
-```
+## AI-assisted contributions
 
-For new source files, include the annotation after the license notice.
+This project is developed with AI assistance, so AI-assisted code and documentation are permitted here. Contributors remain responsible for understanding, reviewing and testing their changes, checking provenance and describing important limitations. Disclose material AI assistance in the pull request; do not invent test results, approvals or authorship claims.
 
-### Source files
+This does not override the contribution policies of OpenMoHAA or any other upstream project.
 
-- Always put the license notice as the header of the file (template [here](docs/markdown/05-contributing/01-license-header.md)).
-- Only `#include` what's necessary.
-- Each source file should contain related classes and functions.
+## Pull requests and review
 
----
+A pull request should explain the concrete problem, resulting behavior, affected campaigns, relevant validation and any save/content compatibility risks. Include a screenshot for meaningful UI changes when it can be shared appropriately. Link the issue or checkpoint report where applicable.
 
-## Pull Requests
+Keep changes reviewable and avoid unrelated refactors. Do not claim a clean playthrough based only on scripted fixtures, or a successful runtime deployment based only on a source build. Merging requires the maintainer's approval for that change; a successful test run alone is not merge authorization.
 
-Pull Requests are the preferred way of submitting code changes.
-
-### Before you start
-
-1. **Discuss major changes first**: open an issue or discuss about it.
-2. **Create a branch** based on the `main` branch (you shouldn't commit directly on `main`)
-3. **Keep PRs as small as possible and focused**: One clear purpose per PR.
-
-### Submitting a PR
-
-- Target the correct branch (usually `main`).
-- Add a short and clear description of what you changed and why.
-- Reference matching issues (e.g. `Fixes #123`).
-- Make sure your code builds and passes tests.
-- Test locally to ensure your changes don't break functionality or compatibility.
-
-### Reviews
-
-- Maintainers may ask for tweaks or commit changes directly to your PR, that's normal.
-- Stay polite and technical.
-- Once approved, your changes will be merged.
-
-### Additional Notes
-
-- Contributions follow the same license as the project.
-- Keep things consistent with existing code and docs.
-- If you're unsure about anything, you can discuss it on Discord via [this link](https://discord.gg/NYtH58R).
+Contributions must retain the applicable project and component licenses. See [COPYING.txt](COPYING.txt) and the notices in the files you modify.

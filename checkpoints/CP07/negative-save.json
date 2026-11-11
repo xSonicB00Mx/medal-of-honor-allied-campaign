@@ -1,0 +1,37 @@
+{
+  "operation": "bt_battaglia",
+  "case": "save",
+  "expected_completed": 2047,
+  "actual_completed": 2047,
+  "pass_state": true,
+  "exit": 0,
+  "test_stopped_after_event": false,
+  "events": [
+    "[2026-10-14 12:49:15 UTC+1.000] AC_MISSION_ENTRY bt_battaglia e3l4",
+    "[2026-10-14 12:49:17 UTC+1.000] D:\\Medal of Honor - Allied Campaign\\allied-campaign-workspace\\runtime-local\\CP07-r1\\maintt\\zzzzz_AC_Campaign.pk3 (3 files)",
+    "[2026-10-14 12:49:17 UTC+1.000] D:\\Medal of Honor - Allied Campaign\\allied-campaign-workspace\\runtime-local\\CP07-r1\\maintt\\zzzz_AC_UI.pk3 (2 files)",
+    "[2026-10-14 12:49:17 UTC+1.000] D:\\Medal of Honor - Allied Campaign\\allied-campaign-workspace\\runtime-local\\CP07-r1\\maintt\\zzzz_AC_BT_Drops.pk3 (6 files)",
+    "[2026-10-14 12:49:17 UTC+1.000] D:\\Medal of Honor - Allied Campaign\\allied-campaign-workspace\\runtime-local\\CP07-r1\\main\\zzzzz_AC_Campaign.pk3 (3 files)",
+    "[2026-10-14 12:49:17 UTC+1.000] D:\\Medal of Honor - Allied Campaign\\allied-campaign-workspace\\runtime-local\\CP07-r1\\main\\zzzz_AC_Wounds.pk3 (3 files)",
+    "[2026-10-14 12:49:17 UTC+1.000] D:\\Medal of Honor - Allied Campaign\\allied-campaign-workspace\\runtime-local\\CP07-r1\\main\\zzzz_AC_UI.pk3 (2 files)",
+    "[2026-10-14 12:49:17 UTC+1.000] D:\\Medal of Honor - Allied Campaign\\allied-campaign-workspace\\runtime-local\\CP07-r1\\main\\zzzz_AC_MP1.pk3 (18 files)",
+    "[2026-10-14 12:49:19 UTC+1.000] ^~^~^ Script Error : invalid waittill trigger for 'AISpawnPoint'",
+    "[2026-10-14 12:49:19 UTC+1.000] ^~^~^ Script Error : invalid waittill trigger for 'PathNode'",
+    "[2026-10-14 12:49:19 UTC+1.000] ^~^~^ Script Error : Not allowed to delete a path node",
+    "[2026-10-14 12:49:19 UTC+1.000] ^~^~^ Script Error : invalid waittill spawn for 'Level'",
+    "[2026-10-14 12:49:19 UTC+1.000] AC_PROGRESS_COMMIT completed=2047 resume=11 slot=e3l40000",
+    "[2026-10-14 12:49:23 UTC+1.000] AC_PROGRESS valid=1 completed=2047 resume=11 slot=e3l40000 operation=11 replay=0",
+    "[2026-10-14 12:49:23 UTC+1.000] AC_PROGRESS_COMMIT completed=2047 resume=11 slot=campaign_test",
+    "[2026-10-14 12:49:23 UTC+1.000] AC_SAVE_ACCEPT context=2 map=e3l4",
+    "[2026-10-14 12:49:27 UTC+1.000] AC_PROGRESS valid=1 completed=2047 resume=11 slot=campaign_test operation=11 replay=0",
+    "[2026-10-14 12:49:27 UTC+1.000] AC_BOUNDARY_DONE"
+  ],
+  "errors": [
+    "[2026-10-14 12:49:19 UTC+1.000] ^~^~^ Script Error : invalid waittill trigger for 'AISpawnPoint'",
+    "[2026-10-14 12:49:19 UTC+1.000] ^~^~^ Script Error : invalid waittill trigger for 'PathNode'",
+    "[2026-10-14 12:49:19 UTC+1.000] ^~^~^ Script Error : Not allowed to delete a path node",
+    "[2026-10-14 12:49:19 UTC+1.000] ^~^~^ Script Error : invalid waittill spawn for 'Level'"
+  ],
+  "scope": "Seeded test profile and synthetic native intermission/negative case; not natural mission completion",
+  "engine_sha256": "a44be3dcf26497acf1851b6c8729ed6e9298dfad97facdace7aae5936223628d"
+}

@@ -185,6 +185,11 @@ RB_SurfacePolychain
 void RB_SurfacePolychain( srfPoly_t *p ) {
 	int		i;
 	int		numv;
+    vec3_t normal={0,0,0};
+    if(p->entityNumber!=ENTITYNUM_WORLD && p->numVerts>=3) {
+        vec3_t e1,e2;VectorSubtract(p->verts[1].xyz,p->verts[0].xyz,e1);VectorSubtract(p->verts[2].xyz,p->verts[0].xyz,e2);
+        CrossProduct(e2,e1,normal);VectorNormalize(normal);
+    }
 
 	RB_CHECKOVERFLOW( p->numVerts, 3*(p->numVerts - 2) );
 
@@ -192,6 +197,7 @@ void RB_SurfacePolychain( srfPoly_t *p ) {
 	numv = tess.numVertexes;
 	for ( i = 0; i < p->numVerts; i++ ) {
 		VectorCopy( p->verts[i].xyz, tess.xyz[numv] );
+        VectorCopy(normal,tess.normal[numv]);
 		tess.texCoords[numv][0][0] = p->verts[i].st[0];
 		tess.texCoords[numv][0][1] = p->verts[i].st[1];
 		*(int *)&tess.vertexColors[numv] = *(int *)p->verts[ i ].modulate;

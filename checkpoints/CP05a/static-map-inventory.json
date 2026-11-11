@@ -1,0 +1,657 @@
+[
+  {
+    "map": "maps/m3l1a.bsp",
+    "count": 44,
+    "bodies": [
+      {
+        "model": "models/static/body_german01.tik",
+        "origin": [
+          1656.0,
+          4784.0,
+          -504.0
+        ],
+        "angles": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "model": "models/static/body_us06.tik",
+        "origin": [
+          2600.0,
+          5048.02978515625,
+          -538.0499877929688
+        ],
+        "angles": [
+          10.0,
+          90.0,
+          0.0
+        ]
+      },
+      {
+        "model": "models/static/body_us01.tik",
+        "origin": [
+          2012.5400390625,
+          4612.2001953125,
+          -504.29998779296875
+        ],
+        "angles": [
+          0.0,
+          45.0,
+          0.0
+        ]
+      },
+      {
+        "model": "models/static/body_usvest06.tik",
+        "origin": [
+          2152.0,
+          4800.0,
+          -504.0
+        ],
+        "angles": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "model": "models/static/body_usvest03.tik",
+        "origin": [
+          1900.9100341796875,
+          4580.56982421875,
+          -504.0
+        ],
+        "angles": [
+          0.0,
+          225.0,
+          0.0
+        ]
+      },
+      {
+        "model": "models/static/body_us04.tik",
+        "origin": [
+          2604.909912109375,
+          4797.25,
+          -504.0
+        ],
+        "angles": [
+          0.0,
+          45.0,
+          0.0
+        ]
+      },
+      {
+        "model": "models/static/body_us01.tik",
+        "origin": [
+          2500.5400390625,
+          4596.2001953125,
+          -504.29998779296875
+        ],
+        "angles": [
+          0.0,
+          45.0,
+          0.0
+        ]
+      },
+      {
+        "model": "models/static/body_us05.tik",
+        "origin": [
+          1087.0,
+          -126.0,
+          -470.0
+        ],
+        "angles": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "model": "models/static/body_us01.tik",
+        "origin": [
+          -221.00999450683594,
+          1161.8699951171875,
+          -455.29998779296875
+        ],
+        "angles": [
+          0.0,
+          90.0,
+          0.0
+        ]
+      },
+      {
+        "model": "models/static/body_us05.tik",
+        "origin": [
+          310.94000244140625,
+          1035.5999755859375,
+          -458.0
+        ],
+        "angles": [
+          0.0,
+          225.0,
+          0.0
+        ]
+      },
+      {
+        "model": "models/static/body_us05.tik",
+        "origin": [
+          1489.5999755859375,
+          651.9099731445312,
+          -457.0
+        ],
+        "angles": [
+          0.0,
+          135.0,
+          0.0
+        ]
+      },
+      {
+        "model": "models/static/body_us05.tik",
+        "origin": [
+          252.0,
+          563.0,
+          -460.0
+        ],
+        "angles": [
+          0.0,
+          90.0,
+          0.0
+        ]
+      },
+      {
+        "model": "models/static/body_us05.tik",
+        "origin": [
+          -1083.0899658203125,
+          -583.75,
+          -475.0
+        ],
+        "angles": [
+          0.0,
+          45.0,
+          0.0
+        ]
+      },
+      {
+        "model": "models/static/body_usvest03.tik",
+        "origin": [
+          696.0,
+          -242.0,
+          -471.0
+        ],
+        "angles": [
+          0.0,
+          270.0,
+          0.0
+        ]
+      },
+      {
+        "model": "models/static/body_usvest05.tik",
+        "origin": [
+          -678.1199951171875,
+          814.8800048828125,
+          -459.0
+        ],
+        "angles": [
+          0.0,
+          45.0,
+          0.0
+        ]
+      },
+      {
+        "model": "models/static/body_us05.tik",
+        "origin": [
+          -1274.0,
+          1080.239990234375,
+          -452.510009765625
+        ],
+        "angles": [
+          355.0,
+          90.0,
+          0.0
+        ]
+      },
+      {
+        "model": "models/static/body_usvest04.tik",
+        "origin": [
+          -830.0,
+          -1081.8199462890625,
+          -507.1199951171875
+        ],
+        "angles": [
+          355.0,
+          90.0,
+          0.0
+        ]
+      },
+      {
+        "model": "models/static/body_us04.tik",
+        "origin": [
+          -352.05999755859375,
+          -985.4000244140625,
+          -492.0
+        ],
+        "angles": [
+          0.0,
+          225.0,
+          0.0
+        ]
+      },
+      {
+        "model": "models/static/body_us05.tik",
+        "origin": [
+          43.0,
+          -941.0,
+          -496.0
+        ],
+        "angles": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "model": "models/static/body_us05.tik",
+        "origin": [
+          -534.4000244140625,
+          434.9100036621094,
+          -465.0
+        ],
+        "angles": [
+          0.0,
+          135.0,
+          0.0
+        ]
+      },
+      {
+        "model": "models/static/body_us06.tik",
+        "origin": [
+          -1126.75,
+          -51.77000045776367,
+          -467.0
+        ],
+        "angles": [
+          0.0,
+          135.0,
+          0.0
+        ]
+      },
+      {
+        "model": "models/static/body_us05.tik",
+        "origin": [
+          -390.0,
+          -406.0,
+          -470.0
+        ],
+        "angles": [
+          0.0,
+          270.0,
+          0.0
+        ]
+      },
+      {
+        "model": "models/static/body_us04.tik",
+        "origin": [
+          1266.780029296875,
+          -858.2899780273438,
+          -488.0
+        ],
+        "angles": [
+          0.0,
+          210.0,
+          0.0
+        ]
+      },
+      {
+        "model": "models/static/body_us01.tik",
+        "origin": [
+          -1620.800048828125,
+          839.8400268554688,
+          -461.29998779296875
+        ],
+        "angles": [
+          0.0,
+          77.0,
+          0.0
+        ]
+      },
+      {
+        "model": "models/static/body_us05.tik",
+        "origin": [
+          -905.0900268554688,
+          1165.25,
+          -454.0
+        ],
+        "angles": [
+          0.0,
+          45.0,
+          0.0
+        ]
+      },
+      {
+        "model": "models/static/body_us05.tik",
+        "origin": [
+          -241.0,
+          -31.0,
+          -465.0
+        ],
+        "angles": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "model": "models/static/body_usvest04.tik",
+        "origin": [
+          1130.0,
+          712.0,
+          -459.0
+        ],
+        "angles": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "model": "models/static/body_usvest04.tik",
+        "origin": [
+          -1308.6199951171875,
+          320.79998779296875,
+          -466.0
+        ],
+        "angles": [
+          0.0,
+          92.0,
+          0.0
+        ]
+      },
+      {
+        "model": "models/static/body_us01.tik",
+        "origin": [
+          -1435.800048828125,
+          -316.1600036621094,
+          -474.29998779296875
+        ],
+        "angles": [
+          0.0,
+          77.0,
+          0.0
+        ]
+      },
+      {
+        "model": "models/static/body_usvest06.tik",
+        "origin": [
+          824.5399780273438,
+          978.5700073242188,
+          -456.0
+        ],
+        "angles": [
+          0.0,
+          315.0,
+          0.0
+        ]
+      },
+      {
+        "model": "models/static/body_us04.tik",
+        "origin": [
+          497.17999267578125,
+          -1109.0400390625,
+          -506.510009765625
+        ],
+        "angles": [
+          355.0,
+          70.0,
+          0.0
+        ]
+      },
+      {
+        "model": "models/static/body_us01.tik",
+        "origin": [
+          1577.989990234375,
+          -156.8300018310547,
+          -467.57000732421875
+        ],
+        "angles": [
+          355.0,
+          90.0,
+          0.0
+        ]
+      },
+      {
+        "model": "models/static/body_usvest05.tik",
+        "origin": [
+          1336.9100341796875,
+          -531.1199951171875,
+          -474.0
+        ],
+        "angles": [
+          0.0,
+          135.0,
+          0.0
+        ]
+      },
+      {
+        "model": "models/static/body_usvest03.tik",
+        "origin": [
+          906.9099731445312,
+          -833.4299926757812,
+          -480.0
+        ],
+        "angles": [
+          0.0,
+          225.0,
+          0.0
+        ]
+      },
+      {
+        "model": "models/static/body_us01.tik",
+        "origin": [
+          1434.989990234375,
+          1128.8699951171875,
+          -456.29998779296875
+        ],
+        "angles": [
+          0.0,
+          90.0,
+          0.0
+        ]
+      },
+      {
+        "model": "models/static/body_us04.tik",
+        "origin": [
+          415.0,
+          218.0,
+          -464.0
+        ],
+        "angles": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "model": "models/static/body_us04.tik",
+        "origin": [
+          -1596.0,
+          0.0,
+          -468.0
+        ],
+        "angles": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "model": "models/static/body_us01.tik",
+        "origin": [
+          1458.800048828125,
+          250.83999633789062,
+          -467.29998779296875
+        ],
+        "angles": [
+          0.0,
+          115.0,
+          0.0
+        ]
+      },
+      {
+        "model": "models/static/body_us04.tik",
+        "origin": [
+          -23.059999465942383,
+          264.6000061035156,
+          -463.0
+        ],
+        "angles": [
+          0.0,
+          225.0,
+          0.0
+        ]
+      },
+      {
+        "model": "models/static/body_us06.tik",
+        "origin": [
+          -1444.77001953125,
+          1497.22998046875,
+          -453.0
+        ],
+        "angles": [
+          0.0,
+          45.0,
+          0.0
+        ]
+      },
+      {
+        "model": "models/static/body_us04.tik",
+        "origin": [
+          -2019.06005859375,
+          1296.5999755859375,
+          -447.0
+        ],
+        "angles": [
+          0.0,
+          225.0,
+          0.0
+        ]
+      },
+      {
+        "model": "models/static/body_us04.tik",
+        "origin": [
+          -442.0,
+          4602.0,
+          -385.0
+        ],
+        "angles": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "model": "models/static/body_us04.tik",
+        "origin": [
+          169.94000244140625,
+          -341.3999938964844,
+          -472.0
+        ],
+        "angles": [
+          0.0,
+          225.0,
+          0.0
+        ]
+      },
+      {
+        "model": "models/static/body_us06.tik",
+        "origin": [
+          867.0,
+          274.0,
+          -467.0
+        ],
+        "angles": [
+          0.0,
+          90.0,
+          0.0
+        ]
+      }
+    ]
+  },
+  {
+    "map": "maps/m3l3.bsp",
+    "count": 4,
+    "bodies": [
+      {
+        "model": "models/static/body_german01.tik",
+        "origin": [
+          -6688.0,
+          3672.0,
+          8.0
+        ],
+        "angles": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "model": "models/static/body_german01.tik",
+        "origin": [
+          4080.0,
+          2008.0,
+          -272.0
+        ],
+        "angles": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "model": "models/static/body_german01.tik",
+        "origin": [
+          4072.0,
+          2112.0,
+          -272.0
+        ],
+        "angles": [
+          0.0,
+          225.0,
+          0.0
+        ]
+      },
+      {
+        "model": "models/static/body_german01.tik",
+        "origin": [
+          -6656.0,
+          3576.0,
+          8.0
+        ],
+        "angles": [
+          0.0,
+          135.0,
+          0.0
+        ]
+      }
+    ]
+  },
+  {
+    "map": "maps/m5l1a.bsp",
+    "count": 1,
+    "bodies": [
+      {
+        "model": "models/static/body_usvest04.tik",
+        "origin": [
+          744.0,
+          -1160.0,
+          -44.0
+        ],
+        "angles": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      }
+    ]
+  }
+]

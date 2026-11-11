@@ -3077,6 +3077,26 @@ void ScriptThread::MapEvent(Event *ev)
 
 void ScriptThread::SetCvarEvent(Event *ev)
 {
+    // AC: sky quality belongs to the player. Legacy weather scripts temporarily
+    // set fastsky for lightning and restore a saved value afterwards. Both writes
+    // can overwrite a newer player choice or leak into archived/shared settings
+    // on save, shutdown or a map transition. Intercept at the script boundary,
+    // including resumed threads from existing saves; console/UI writes still work.
+    if (!Q_stricmp(ev->GetString(1), "r_fastsky")) {
+        // Translate the legacy weather request into transient level state.
+        // Expansion weather has no AA weather_skyisbright flag. Never forward
+        // either the flash or the saved restore value to the player's cvar.
+        if (level.vars) {
+            const ScriptVariable *normal = level.vars->GetVariable("farplane_color");
+            const ScriptVariable *weather = level.vars->GetVariable("weatherFs");
+            if (normal && normal->GetType() == VARIABLE_VECTOR && weather
+                && (weather->GetType() == VARIABLE_INTEGER || weather->GetType() == VARIABLE_FLOAT)
+                && weather->floatValue() >= 0.0f) {
+                level.vars->SetVariable("ac_weather_flash_requested", atof(ev->GetString(2)) == 1.0 ? 1 : 0);
+            }
+        }
+        return;
+    }
     gi.cvar_set(ev->GetString(1), ev->GetString(2));
 }
 

@@ -52,6 +52,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 static char G_ErrorMessage[4096];
 profGame_t  G_profStruct;
 
+void ACSpawnStaticCorpses();
 qboolean  LoadingSavegame = false;
 qboolean  LoadingServer   = false;
 Archiver *currentArc      = NULL;
@@ -1340,10 +1341,10 @@ qboolean LevelArchiveValid(Archiver& arc)
     arc.ArchiveInteger(&version);
     arc.ArchiveInteger(&savegame_version);
 
-    if (version < GAME_API_VERSION) {
+    if (version < GAME_SAVE_API_VERSION) {
         gi.Printf("Savegame from an older version (%d) of MOHAA.\n", version);
         return qfalse;
-    } else if (version > GAME_API_VERSION) {
+    } else if (version > GAME_SAVE_API_VERSION) {
         gi.Printf("Savegame from version %d of MOHAA.\n", version);
         return qfalse;
     }
@@ -1400,7 +1401,7 @@ qboolean G_ArchiveLevel(
             arc.Create(filename);
 
             // write out the version number
-            temp = GAME_API_VERSION;
+            temp = GAME_SAVE_API_VERSION;
             arc.ArchiveInteger(&temp);
             temp = SAVEGAME_VERSION;
             arc.ArchiveInteger(&temp);
@@ -1574,6 +1575,7 @@ qboolean G_ArchiveLevel(
         if (arc.Loading()) {
             arc.Close();
             LoadingSavegame = false;
+            ACSpawnStaticCorpses();
             gi.Printf(HUD_MESSAGE_YELLOW "%s\n", gi.LV_ConvertString("Game Loaded"));
         } else {
             arc.Close();
@@ -1874,6 +1876,9 @@ void G_BeginIntermission(const char *map_name, INTTYPE_e transtype, bool no_fade
 
     level.intermissiontime = level.time;
     level.intermissiontype = transtype;
+    Player *scorePlayer=static_cast<Player *>(g_entities[0].entity);
+    if(gi.AC_ScoreIntermission(level.mapname.c_str(),map_name,
+        scorePlayer && !scorePlayer->IsDead() && !level.died_already && transtype!=TRANS_MISSION_FAILED))return;
 
     if (!no_fade) {
         G_FadeOut(2.0f);
@@ -1998,6 +2003,13 @@ void G_ExitLevel(void)
 
         gi.SendConsoleCommand(command);
     } else {
+        // Only a genuine successful native intermission authorizes campaign progression.
+        // A map/gamemap console command does not set this one-use proof.
+        Player *campaignPlayer = (Player *)g_entities[0].entity;
+        if (campaignPlayer && !campaignPlayer->IsDead() && !level.died_already
+            && level.intermissiontype != TRANS_MISSION_FAILED && level.intermissiontime > 0) {
+            gi.cvar_set("ac_native_transition", va("%s|%s",level.mapname.c_str(),level.nextmap.c_str()));
+        }
         Com_sprintf(command, sizeof(command), "gamemap \"%s\"\n", level.nextmap.c_str());
         gi.SendConsoleCommand(command);
     }

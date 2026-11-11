@@ -1,0 +1,294 @@
+{
+  "tested_windows": 24,
+  "physical_monitors_claimed": false,
+  "results": [
+    {
+      "game": "AA",
+      "resolution": [
+        1280,
+        960
+      ],
+      "width": 128.0,
+      "height": 128.0,
+      "height_fraction": 0.13333333333333333,
+      "square": true,
+      "passed": true
+    },
+    {
+      "game": "AA",
+      "resolution": [
+        1920,
+        1080
+      ],
+      "width": 144.0,
+      "height": 144.0,
+      "height_fraction": 0.13333333333333333,
+      "square": true,
+      "passed": true
+    },
+    {
+      "game": "AA",
+      "resolution": [
+        1920,
+        1200
+      ],
+      "width": 160.0,
+      "height": 160.0,
+      "height_fraction": 0.13333333333333333,
+      "square": true,
+      "passed": true
+    },
+    {
+      "game": "AA",
+      "resolution": [
+        2560,
+        1440
+      ],
+      "width": 192.0,
+      "height": 192.0,
+      "height_fraction": 0.13333333333333333,
+      "square": true,
+      "passed": true
+    },
+    {
+      "game": "AA",
+      "resolution": [
+        2560,
+        1920
+      ],
+      "width": 256.0,
+      "height": 256.0,
+      "height_fraction": 0.13333333333333333,
+      "square": true,
+      "passed": true
+    },
+    {
+      "game": "AA",
+      "resolution": [
+        3440,
+        1440
+      ],
+      "width": 192.0,
+      "height": 192.0,
+      "height_fraction": 0.13333333333333333,
+      "square": true,
+      "passed": true
+    },
+    {
+      "game": "AA",
+      "resolution": [
+        3840,
+        2160
+      ],
+      "width": 288.0,
+      "height": 288.0,
+      "height_fraction": 0.13333333333333333,
+      "square": true,
+      "passed": true
+    },
+    {
+      "game": "AA",
+      "resolution": [
+        5120,
+        1440
+      ],
+      "width": 192.0,
+      "height": 192.0,
+      "height_fraction": 0.13333333333333333,
+      "square": true,
+      "passed": true
+    },
+    {
+      "game": "BT",
+      "resolution": [
+        1280,
+        960
+      ],
+      "width": 138.88,
+      "height": 138.88,
+      "height_fraction": 0.14466666666666667,
+      "square": true,
+      "passed": true
+    },
+    {
+      "game": "BT",
+      "resolution": [
+        1920,
+        1080
+      ],
+      "width": 156.24,
+      "height": 156.24,
+      "height_fraction": 0.14466666666666667,
+      "square": true,
+      "passed": true
+    },
+    {
+      "game": "BT",
+      "resolution": [
+        1920,
+        1200
+      ],
+      "width": 173.6,
+      "height": 173.6,
+      "height_fraction": 0.14466666666666667,
+      "square": true,
+      "passed": true
+    },
+    {
+      "game": "BT",
+      "resolution": [
+        2560,
+        1440
+      ],
+      "width": 208.32,
+      "height": 208.32,
+      "height_fraction": 0.14466666666666667,
+      "square": true,
+      "passed": true
+    },
+    {
+      "game": "BT",
+      "resolution": [
+        2560,
+        1920
+      ],
+      "width": 277.76,
+      "height": 277.76,
+      "height_fraction": 0.14466666666666667,
+      "square": true,
+      "passed": true
+    },
+    {
+      "game": "BT",
+      "resolution": [
+        3440,
+        1440
+      ],
+      "width": 208.32,
+      "height": 208.32,
+      "height_fraction": 0.14466666666666667,
+      "square": true,
+      "passed": true
+    },
+    {
+      "game": "BT",
+      "resolution": [
+        3840,
+        2160
+      ],
+      "width": 312.48,
+      "height": 312.48,
+      "height_fraction": 0.14466666666666667,
+      "square": true,
+      "passed": true
+    },
+    {
+      "game": "BT",
+      "resolution": [
+        5120,
+        1440
+      ],
+      "width": 208.32,
+      "height": 208.32,
+      "height_fraction": 0.14466666666666667,
+      "square": true,
+      "passed": true
+    },
+    {
+      "game": "SH",
+      "resolution": [
+        1280,
+        960
+      ],
+      "width": 138.88,
+      "height": 138.88,
+      "height_fraction": 0.14466666666666667,
+      "square": true,
+      "passed": true
+    },
+    {
+      "game": "SH",
+      "resolution": [
+        1920,
+        1080
+      ],
+      "width": 156.24,
+      "height": 156.24,
+      "height_fraction": 0.14466666666666667,
+      "square": true,
+      "passed": true
+    },
+    {
+      "game": "SH",
+      "resolution": [
+        1920,
+        1200
+      ],
+      "width": 173.6,
+      "height": 173.6,
+      "height_fraction": 0.14466666666666667,
+      "square": true,
+      "passed": true
+    },
+    {
+      "game": "SH",
+      "resolution": [
+        2560,
+        1440
+      ],
+      "width": 208.32,
+      "height": 208.32,
+      "height_fraction": 0.14466666666666667,
+      "square": true,
+      "passed": true
+    },
+    {
+      "game": "SH",
+      "resolution": [
+        2560,
+        1920
+      ],
+      "width": 277.76,
+      "height": 277.76,
+      "height_fraction": 0.14466666666666667,
+      "square": true,
+      "passed": true
+    },
+    {
+      "game": "SH",
+      "resolution": [
+        3440,
+        1440
+      ],
+      "width": 208.32,
+      "height": 208.32,
+      "height_fraction": 0.14466666666666667,
+      "square": true,
+      "passed": true
+    },
+    {
+      "game": "SH",
+      "resolution": [
+        3840,
+        2160
+      ],
+      "width": 312.48,
+      "height": 312.48,
+      "height_fraction": 0.14466666666666667,
+      "square": true,
+      "passed": true
+    },
+    {
+      "game": "SH",
+      "resolution": [
+        5120,
+        1440
+      ],
+      "width": 208.32,
+      "height": 208.32,
+      "height_fraction": 0.14466666666666667,
+      "square": true,
+      "passed": true
+    }
+  ]
+}

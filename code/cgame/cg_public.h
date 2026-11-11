@@ -26,6 +26,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 #pragma once
 
 #include "../renderercommon/tr_types.h"
+#include "../qcommon/ac_effects.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -84,7 +85,7 @@ functions imported from the main executable
 ==================================================================
 */
 
-#define CGAME_IMPORT_API_VERSION 3
+#define CGAME_IMPORT_API_VERSION 4
 
     /*
 ==================================================================
@@ -299,6 +300,7 @@ functions exported to the main executable
         void (*R_AddRefSpriteToScene)(const refEntity_t *ent);
         void (*R_AddLightToScene)(const vec3_t origin, float intensity, float r, float g, float b, int type);
         qboolean (*R_AddPolyToScene)(qhandle_t hShader, int numVerts, const polyVert_t *verts, int renderfx);
+        qboolean (*R_AddEntityPolyToScene)(qhandle_t shader, int numVerts, const polyVert_t *verts, const refEntity_t *entity);
         void (*R_AddTerrainMarkToScene)(
             int terrainIndex, qhandle_t hShader, int numVerts, const polyVert_t *verts, int renderFx
         );
@@ -445,6 +447,10 @@ functions exported to the main executable
         clientAnim_t *anim;
         stopWatch_t  *stopWatch;
 
+        void (*AC_DeformPatch)(struct dtiki_s *,const ac_pose_t *,const ac_patch_triangle_t *,int,vec3_t *);
+        void (*AC_CacheCollision)(struct dtiki_s *,const ac_pose_t *,int);
+        int (*AC_CollideSegment)(int,int,const vec3_t,const vec3_t,float *);
+        qboolean (*AC_TakeLocalWound)(unsigned long long,ac_wound_t *);
     } clientGameImport_t;
 
     /*
@@ -525,13 +531,18 @@ functions exported to the main executable
     } clientGameExport_t;
 
 #ifdef CGAME_DLL
-#    ifdef WIN32
+#    ifdef _WIN32
     __declspec(dllexport)
 #    else
     __attribute__((visibility("default")))
 #    endif
 #endif
         clientGameExport_t *GetCGameAPI(void);
+
+#ifdef CGAME_DLL
+    Q_EXPORT
+#endif
+        int AC_CGameRefdefSize(void);
 
 #ifdef __cplusplus
 }

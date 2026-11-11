@@ -1,0 +1,125 @@
+{
+  "candidate": "CP00-r4",
+  "game": "AA",
+  "map": "m2l1",
+  "scope": "Controlled spawned actor and normal player attack input; not natural mission progression.",
+  "exit_code": 0,
+  "completed": true,
+  "fixture_ready": true,
+  "script_errors": [],
+  "records": [
+    "CP00_FIXTURE_READY origin=( -6628.000 -3864.000 482.262 ) target=( -6477.645 -3809.290 482.262 )",
+    "CP00_SNAPSHOT_BEGIN alive",
+    "CP00_DEATHS 0",
+    "CP00_SUBJECT health=100.000 origin=( -6477.645 -3809.290 482.262 ) mins=( -15.000 -15.000 0.000 ) maxs=( 15.000 15.000 94.000 ) anim=",
+    "CP00_TRACE start=( -6577.645 -3809.290 522.262 ) end=( -6377.645 -3809.290 522.262 ) hit=( -6492.770 -3809.290 522.262 )",
+    "CP00_ENTITY id=0 class=Player model=models/player/_american_army_winter_gloves.tik health=750.000 origin=( -6628.000 -3864.000 482.262 )",
+    "CP00_ENTITY id=199 class=Weapon model=models/weapons/springfield.tik health=0.000 origin=( -6603.737 -3863.474 551.941 )",
+    "CP00_ENTITY id=202 class=Actor model=models/human/german_wehrmact_soldier.tik health=100.000 origin=( -6477.645 -3809.290 482.262 )",
+    "CP00_ENTITY id=225 class=Weapon model=models/weapons/kar98.tik health=0.000 origin=( -6477.312 -3823.372 527.243 )",
+    "CP00_SNAPSHOT_END alive",
+    "CP00_DEATH_EVENT count=1",
+    "CP00_SNAPSHOT_BEGIN after_shots",
+    "CP00_DEATHS 1",
+    "CP00_SUBJECT health=0.000 origin=( -6477.645 -3809.290 482.262 ) mins=( -15.000 -15.000 0.000 ) maxs=( 15.000 15.000 94.000 ) anim=",
+    "CP00_TRACE start=( -6577.645 -3809.290 522.262 ) end=( -6377.645 -3809.290 522.262 ) hit=( -6492.770 -3809.290 522.262 )",
+    "CP00_ENTITY id=0 class=Player model=models/player/_american_army_winter_gloves.tik health=750.000 origin=( -6628.000 -3864.000 482.262 )",
+    "CP00_ENTITY id=199 class=Weapon model=models/weapons/springfield.tik health=0.000 origin=( -6612.113 -3852.094 557.455 )",
+    "CP00_ENTITY id=202 class=Actor model=models/human/german_wehrmact_soldier.tik health=0.000 origin=( -6477.645 -3809.290 482.262 )",
+    "CP00_ENTITY id=225 class=Weapon model=models/weapons/kar98.tik health=0.000 origin=( -6463.212 -3858.919 485.360 )",
+    "CP00_ENTITY id=226 class=Weapon model=models/weapons/colt45.tik health=0.000 origin=( -6601.918 -3853.488 534.501 )",
+    "CP00_SNAPSHOT_END after_shots",
+    "CP00_SNAPSHOT_BEGIN after_20s",
+    "CP00_DEATHS 1",
+    "CP00_SUBJECT health=0.000 origin=( -6477.645 -3809.290 482.262 ) mins=( -15.000 -15.000 0.000 ) maxs=( 15.000 15.000 94.000 ) anim=",
+    "CP00_TRACE start=( -6577.645 -3809.290 522.262 ) end=( -6377.645 -3809.290 522.262 ) hit=( -6492.770 -3809.290 522.262 )",
+    "CP00_ENTITY id=0 class=Player model=models/player/_american_army_winter_gloves.tik health=750.000 origin=( -6628.000 -3864.000 482.262 )",
+    "CP00_ENTITY id=199 class=Weapon model=models/weapons/springfield.tik health=0.000 origin=( -6612.113 -3852.094 557.455 )",
+    "CP00_ENTITY id=202 class=Actor model=models/human/german_wehrmact_soldier.tik health=0.000 origin=( -6477.645 -3809.290 482.262 )",
+    "CP00_ENTITY id=225 class=Weapon model=models/weapons/kar98.tik health=0.000 origin=( -6463.212 -3858.919 485.360 )",
+    "CP00_ENTITY id=226 class=Weapon model=models/weapons/colt45.tik health=0.000 origin=( -6602.570 -3858.299 538.198 )",
+    "CP00_SNAPSHOT_END after_20s",
+    "CP00_BASELINE_DONE"
+  ],
+  "visual_check": "PENDING",
+  "engine_sha256": "5f1eee385de3b26750b45b7aa1e98566801b716566b97af11fa5586cb5c21c91",
+  "evidence": [
+    {
+      "path": "profiles-local/CP00-r4/r4-baseline-v3-AA/main/baseline.cfg",
+      "sha256": "3bc56b361c3ebb9a58c268c3ec7d7130d5bf51c923006eb3552a6fcfa7839c57"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-baseline-v3-AA/main/configs/omconfig.cfg",
+      "sha256": "ca0b5c30bee571857fc6cb1c2259e36db6a8b9ac07f42b18835ec28bb877f1db"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-baseline-v3-AA/main/cp00/after_20s.scr",
+      "sha256": "1ef1bde1132399dd2093452728ccf18a36a1afe6d53658746b09f3f4a903b2a5"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-baseline-v3-AA/main/cp00/after_shots.scr",
+      "sha256": "7964e396e3ee37960a22040130844b8fa2ee6a98a02a787b7577cbef146165c3"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-baseline-v3-AA/main/cp00/baseline.scr",
+      "sha256": "abf1b5722df91989201c6cbe657dbaa2b2c1b06699ff9a58811f4de4dc87fd34"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-baseline-v3-AA/main/qconsole.log",
+      "sha256": "97674d81724d092d077018a2f0f6ba731f6e8166b2b17698318f6f2323cbf525"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-baseline-v3-AA/main/save/omconfig/cp00_after_combat.sav",
+      "sha256": "7548864f921ed7cf519761fc9c9ebe4f14a542ed435d4bce2919fc594b45e4a9"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-baseline-v3-AA/main/save/omconfig/cp00_after_combat.ssv",
+      "sha256": "ec5c502202efb625d108588e79ad3b64218bb105ebce89bb14547b48073bcf8f"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-baseline-v3-AA/main/save/omconfig/cp00_after_combat.tga",
+      "sha256": "8039285b1a3f63fd46c0064b6ff428856bc667442e180433b181b2ffe8954eed"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-baseline-v3-AA/main/save/omconfig/cp00_before_combat.sav",
+      "sha256": "3906876a6530868e69553ebf8a75a62ac9a99bdd86c30cd936a607117557c385"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-baseline-v3-AA/main/save/omconfig/cp00_before_combat.ssv",
+      "sha256": "8c23d12d14dd31f825fdb8aefc6572545b138ebdad93b22e0e3529ec47b256d3"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-baseline-v3-AA/main/save/omconfig/cp00_before_combat.tga",
+      "sha256": "0024d011c1667e5e5263ae879c1c7c4388f635414b815fc3873a24e0e107ae20"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-baseline-v3-AA/main/save/omconfig/m2l10000.sav",
+      "sha256": "b80e5bc23e67ee5127b6b6f6af1e66b6fec122fccb844d06dfcdbe1376ca84c3"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-baseline-v3-AA/main/save/omconfig/m2l10000.ssv",
+      "sha256": "99c5ae845775635c27133f05d580868ed21bf7b32a48e5628e6294d51b02f425"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-baseline-v3-AA/main/save/omconfig/m2l10000.tga",
+      "sha256": "ba8667642b68326441f497f501944bc4c75066d97b9866d3740ac931572a9c19"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-baseline-v3-AA/main/screenshots/shot0000.tga",
+      "sha256": "ba02df15d8e9a6da88cd96fafeb9355db691e7bc7a6be9c5235ea598e58be1f6"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-baseline-v3-AA/main/screenshots/shot0001.tga",
+      "sha256": "5babd4fcef6c67cebd649817af60379e157fa13177c2404fa796f6886b13a5ac"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-baseline-v3-AA/main/screenshots/shot0002.tga",
+      "sha256": "345d8addab178c55b2a35b0325e1793e2a57926371820a012447a7eaddb0a2d9"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-baseline-v3-AA/qkey",
+      "sha256": "80d85ddd0d8c56d535d8790f4d6007d438c88dedaa2a3fa61be63197dcce5232"
+    }
+  ],
+  "assessment": "INVALID_CORPSE_REFERENCE: AI remained disabled after death; upright frozen animation."
+}

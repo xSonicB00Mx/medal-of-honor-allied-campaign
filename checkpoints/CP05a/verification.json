@@ -1,0 +1,268 @@
+{
+  "engine_source_commit": "08e6aba4aabb7e9d9cafa50d9df0e7f6118dd571",
+  "runs": {
+    "final-AA": {
+      "binaries": {
+        "openmohaa.exe": "7f4de9225dc4c7ed8c8b78d5077a41fb25c8fc91e284e29af5af948af9240b65",
+        "game.dll": "913b32476bcc530e605d05e376ed05de15d9b3e98687bfee09b56c12c82cacd0",
+        "cgame.dll": "5e0889854c75db8c40f9c0ce4dcb7f41b77d36440ccd45328e0ef51fd754582e"
+      },
+      "groups": [
+        "1",
+        "2",
+        "3",
+        "4"
+      ],
+      "corpse_hits_before_reload": 4,
+      "post_reload_hit": true,
+      "disabled_no_hit": true,
+      "death_events": 1,
+      "stable_transform_samples": 144,
+      "item_weapon_counts_before_after": [
+        {
+          "models/weapons/springfield.tik": 1,
+          "models/weapons/bar.tik": 1,
+          "models/weapons/kar98.tik": 2,
+          "models/weapons/colt45.tik": 1,
+          "models/weapons/mp40.tik": 1
+        },
+        {
+          "models/weapons/springfield.tik": 1,
+          "models/weapons/bar.tik": 1,
+          "models/weapons/kar98.tik": 2,
+          "models/weapons/colt45.tik": 1,
+          "models/weapons/mp40.tik": 1
+        }
+      ],
+      "occluded_no_hit": true,
+      "removed_save_load_empty": false
+    },
+    "final-SH": {
+      "binaries": {
+        "openmohaa.exe": "7f4de9225dc4c7ed8c8b78d5077a41fb25c8fc91e284e29af5af948af9240b65",
+        "game.dll": "913b32476bcc530e605d05e376ed05de15d9b3e98687bfee09b56c12c82cacd0",
+        "cgame.dll": "5e0889854c75db8c40f9c0ce4dcb7f41b77d36440ccd45328e0ef51fd754582e"
+      },
+      "groups": [
+        "1",
+        "2",
+        "3",
+        "4"
+      ],
+      "corpse_hits_before_reload": 4,
+      "post_reload_hit": true,
+      "disabled_no_hit": true,
+      "death_events": 1,
+      "stable_transform_samples": 132,
+      "item_weapon_counts_before_after": [
+        {
+          "models/weapons/kar98.tik": 4,
+          "models/items/item_25_healthbox.tik": 1,
+          "models/weapons/mp40.tik": 1,
+          "models/weapons/bar.tik": 1,
+          "models/items/pulse_explosive.tik": 1,
+          "models/weapons/colt45.tik": 1,
+          "models/weapons/sten.tik": 1,
+          "models/weapons/p38.tik": 1
+        },
+        {
+          "models/weapons/kar98.tik": 3,
+          "models/items/item_25_healthbox.tik": 1,
+          "models/weapons/mp40.tik": 1,
+          "models/weapons/bar.tik": 1,
+          "models/items/pulse_explosive.tik": 1,
+          "models/weapons/colt45.tik": 1,
+          "models/weapons/sten.tik": 1
+        }
+      ],
+      "occluded_no_hit": false,
+      "removed_save_load_empty": false
+    },
+    "final-BT": {
+      "binaries": {
+        "openmohaa.exe": "7f4de9225dc4c7ed8c8b78d5077a41fb25c8fc91e284e29af5af948af9240b65",
+        "game.dll": "913b32476bcc530e605d05e376ed05de15d9b3e98687bfee09b56c12c82cacd0",
+        "cgame.dll": "5e0889854c75db8c40f9c0ce4dcb7f41b77d36440ccd45328e0ef51fd754582e"
+      },
+      "groups": [
+        "1",
+        "2",
+        "3",
+        "4"
+      ],
+      "corpse_hits_before_reload": 4,
+      "post_reload_hit": true,
+      "disabled_no_hit": true,
+      "death_events": 1,
+      "stable_transform_samples": 132,
+      "item_weapon_counts_before_after": [
+        {
+          "models/weapons/thompsonsmg.tik": 1,
+          "models/weapons/it_w_carcano.tik": 1,
+          "models/weapons/mp40.tik": 1,
+          "models/weapons/kar98.tik": 1,
+          "models/weapons/colt45.tik": 1,
+          "models/weapons/bar.tik": 1
+        },
+        {
+          "models/weapons/thompsonsmg.tik": 1,
+          "models/weapons/it_w_carcano.tik": 1,
+          "models/weapons/mp40.tik": 1,
+          "models/weapons/kar98.tik": 1,
+          "models/weapons/colt45.tik": 1,
+          "models/weapons/bar.tik": 1
+        }
+      ],
+      "occluded_no_hit": false,
+      "removed_save_load_empty": false
+    },
+    "cleanup-AA": {
+      "binaries": {
+        "openmohaa.exe": "7f4de9225dc4c7ed8c8b78d5077a41fb25c8fc91e284e29af5af948af9240b65",
+        "game.dll": "01e4b64526057305667b835661ed022173fd1d4fca7e38cdf02b1f340bcc7d83",
+        "cgame.dll": "5aea335ba5f4418381bb7af57fbb9cb6f9bf15a94d8db1f093751df418e417ee"
+      },
+      "groups": [
+        "1",
+        "2",
+        "3",
+        "4"
+      ],
+      "corpse_hits_before_reload": 4,
+      "post_reload_hit": true,
+      "disabled_no_hit": true,
+      "death_events": 1,
+      "stable_transform_samples": 144,
+      "item_weapon_counts_before_after": [
+        {
+          "models/weapons/springfield.tik": 1,
+          "models/weapons/bar.tik": 1,
+          "models/weapons/kar98.tik": 2,
+          "models/weapons/colt45.tik": 1,
+          "models/weapons/mp40.tik": 1
+        },
+        {
+          "models/weapons/springfield.tik": 1,
+          "models/weapons/bar.tik": 1,
+          "models/weapons/kar98.tik": 2,
+          "models/weapons/colt45.tik": 1,
+          "models/weapons/mp40.tik": 1
+        }
+      ],
+      "occluded_no_hit": true,
+      "removed_save_load_empty": true
+    },
+    "release-BSP": {
+      "binaries": {
+        "openmohaa.exe": "7f4de9225dc4c7ed8c8b78d5077a41fb25c8fc91e284e29af5af948af9240b65",
+        "game.dll": "01e4b64526057305667b835661ed022173fd1d4fca7e38cdf02b1f340bcc7d83",
+        "cgame.dll": "5aea335ba5f4418381bb7af57fbb9cb6f9bf15a94d8db1f093751df418e417ee"
+      },
+      "groups": [
+        "1",
+        "2",
+        "3",
+        "4"
+      ],
+      "corpse_hits_before_reload": 6,
+      "post_reload_hit": true,
+      "disabled_no_hit": true,
+      "death_events": 0,
+      "stable_transform_samples": 148,
+      "item_weapon_counts_before_after": [
+        {
+          "models/items/item_100_healthbox.tik": 1,
+          "models/items/item_25_healthbox.tik": 2,
+          "models/weapons/thompsonsmg.tik": 1,
+          "models/weapons/colt45.tik": 1,
+          "models/weapons/springfield.tik": 1,
+          "models/weapons/bar.tik": 1,
+          "models/weapons/mp40.tik": 1,
+          "models/weapons/kar98.tik": 1
+        },
+        {
+          "models/items/item_100_healthbox.tik": 1,
+          "models/items/item_25_healthbox.tik": 2,
+          "models/weapons/thompsonsmg.tik": 1,
+          "models/weapons/colt45.tik": 1,
+          "models/weapons/springfield.tik": 1,
+          "models/weapons/bar.tik": 1,
+          "models/weapons/mp40.tik": 1,
+          "models/weapons/kar98.tik": 1
+        }
+      ],
+      "occluded_no_hit": false,
+      "removed_save_load_empty": false
+    },
+    "final-mist-off": {
+      "binaries": {
+        "openmohaa.exe": "7f4de9225dc4c7ed8c8b78d5077a41fb25c8fc91e284e29af5af948af9240b65",
+        "game.dll": "10cb3d3d8055741b13f803868ec000eb9e2b24ca6bad8d734b1477cd9a8340ca",
+        "cgame.dll": "5e0889854c75db8c40f9c0ce4dcb7f41b77d36440ccd45328e0ef51fd754582e"
+      },
+      "groups": [
+        "1",
+        "2",
+        "3",
+        "4"
+      ],
+      "corpse_hits_before_reload": 4,
+      "post_reload_hit": true,
+      "disabled_no_hit": true,
+      "death_events": 1,
+      "stable_transform_samples": 132,
+      "item_weapon_counts_before_after": [
+        {
+          "models/weapons/springfield.tik": 1,
+          "models/weapons/bar.tik": 1,
+          "models/weapons/colt45.tik": 1,
+          "models/weapons/kar98.tik": 1,
+          "models/weapons/mp40.tik": 1
+        },
+        {
+          "models/weapons/springfield.tik": 1,
+          "models/weapons/bar.tik": 1,
+          "models/weapons/colt45.tik": 1,
+          "models/weapons/kar98.tik": 1,
+          "models/weapons/mp40.tik": 1
+        }
+      ],
+      "occluded_no_hit": false,
+      "removed_save_load_empty": false
+    }
+  },
+  "wall_and_floor": {
+    "run": "final-wall-worker",
+    "map": "m1l2a",
+    "marks_created": 13,
+    "expiry_ms": [
+      30017,
+      30013,
+      30013,
+      30013,
+      30013,
+      30014,
+      30012,
+      30013,
+      30014,
+      30014,
+      30013,
+      30013,
+      30014
+    ],
+    "rear_wall_confirmed": true,
+    "binaries": {
+      "openmohaa.exe": "7f4de9225dc4c7ed8c8b78d5077a41fb25c8fc91e284e29af5af948af9240b65",
+      "game.dll": "10cb3d3d8055741b13f803868ec000eb9e2b24ca6bad8d734b1477cd9a8340ca",
+      "cgame.dll": "5e0889854c75db8c40f9c0ce4dcb7f41b77d36440ccd45328e0ef51fd754582e"
+    }
+  },
+  "switches_restart": true,
+  "preserved_user_profile_files": 47,
+  "item_count_note": "No increase; ordinary SH cleanup may decrease counts. Not exhaustive deterministic drop regression.",
+  "visual_review": [
+    "release-BSP/main/screenshots/shot0006.png: native BSP body wounds visible; single original body",
+    "final-AA/main/screenshots/shot0010.png: English option fits",
+    "final-wall-worker/main/screenshots/shot0008.png: ground stains visible at about 26 seconds"
+  ]
+}

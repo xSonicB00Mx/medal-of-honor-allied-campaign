@@ -553,6 +553,7 @@ movement on the server game.
         STAT_INFOCLIENT_HEALTH,
         STAT_DAMAGEDIR,
         STAT_SECONDARY_AMMO, // added in 2.0
+        STAT_AC_SPREAD, // SP-only 95% angular spread, unsigned 16-bit; unused legacy slot 31
         STAT_LAST_STAT
     } playerstat_t;
 
@@ -821,6 +822,8 @@ movement on the server game.
         CGM6_VOICE_CHAT,
     };
 
+    // Private local-SP visual message; outside both legacy CGM enum ranges.
+    #define CGM_AC_FLESH 63
     int BG_MapCGMToProtocol(int protocol, int messageNumber);
 
 #ifdef __cplusplus

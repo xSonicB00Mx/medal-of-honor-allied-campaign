@@ -1,0 +1,8 @@
+{
+  "game": "BT",
+  "movie": "briefinge1.roq",
+  "exit": 0,
+  "completed": true,
+  "engine_sha256": "5392e6851e35dbbe4db4d2b83156e34ba610f8e0ec9aecf840a3e00fac68bc9e",
+  "visual_inspection": "See r2 visual-review.json; internal game screenshots precede the immediate cinematic draw"
+}

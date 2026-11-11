@@ -1,0 +1,45 @@
+{
+  "candidate": "CP00-r4",
+  "aa_briefing_image_visible": true,
+  "sh_film_visible": true,
+  "bt_film_visible": true,
+  "sh_following_t1l1_loaded": true,
+  "bt_following_e1l1_loaded": true,
+  "sh_completion_method": "Movie observed; Escape and Alt+F4 attempted before following map appeared, so full uninterrupted playback not asserted",
+  "bt_completion_method": "First live run reached e1l1 without skip input; second run captured briefing film itself and then closed",
+  "failed_queued_probe": "SH and BT scripted probes showed black frames: wait/screenshot/quit commands delayed the queued cinematic. These probes are not visual passes.",
+  "evidence": [
+    {
+      "path": "generated-local/CP00-r4/briefing-AA.png",
+      "sha256": "fbaa78f1465ffafe65b2a84cb989d4b8f661bf13dfc5816c51e3a036dc2f2b12"
+    },
+    {
+      "path": "generated-local/CP00-r4/briefing-live-SH.png",
+      "sha256": "3d57af72eb46e53c5194abb6916d02dc1de4e3430520b346f0d466c9638c9f07"
+    },
+    {
+      "path": "generated-local/CP00-r4/briefing-live-BT.png",
+      "sha256": "a5526417a5518902018bfa58755f3034f5c0ba591e43bf10484e23e3fc078a79"
+    },
+    {
+      "path": "generated-local/CP00-r4/intro-live-BT.png",
+      "sha256": "33823a8f01308cbfee3b43458b3757609c5e4eec7fcc0df502e1bf3c8a4dcf27"
+    },
+    {
+      "path": "generated-local/CP00-r4/menu-review.png",
+      "sha256": "a88e590aaa4519cdc5e48b2db0fafcd6264c07c5b77521a468dd6c17311eb5b2"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-briefing-live-BT/maintt/qconsole.log",
+      "sha256": "5e4ee7c78dea27226d5e3be832dcb8b7157be6369638975c4495f5940899113c"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-briefing-live-BT-v2/maintt/qconsole.log",
+      "sha256": "0bed1569c571247768e18e5e877547317330ffa955a1dcd0131d133961891645"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-briefing-live-SH/mainta/qconsole.log",
+      "sha256": "ba2f0ab25ee4f58ae49574bb57c1ce7fc7599244d3814fb2d4ddbdba9e666ace"
+    }
+  ]
+}

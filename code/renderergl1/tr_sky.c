@@ -843,7 +843,11 @@ void RB_StageIteratorSky( void ) {
 	// by the generic shader routine
 	R_BuildCloudData( &tess );
 
-	RB_StageIteratorGeneric();
+	// A textured skybox need not have a separate cloud layer. Avoid submitting
+	// an empty array (LockArraysEXT rejects zero vertices) in that case.
+	if (tess.numVertexes > 0 && tess.numIndexes > 0) {
+		RB_StageIteratorGeneric();
+	}
 
 	// draw the inner skybox
 

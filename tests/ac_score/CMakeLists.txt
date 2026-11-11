@@ -1,0 +1,5 @@
+cmake_minimum_required(VERSION 3.16)
+project(ac_score_tests C)
+add_executable(ac_score_tests score.c)
+enable_testing()
+add_test(NAME score_formula COMMAND ac_score_tests)

@@ -1,0 +1,98 @@
+{
+  "candidate": "CP00-r4",
+  "engine_source_commit": "af7bb7c6e706fcc64e5933a22457333274f3de22",
+  "game_dll_sha256": "58168ef879108c5fe89d96d3e2b69517fe4107487a9cdf6ba82a91115874eef4",
+  "expected": "accepted",
+  "accepted": true,
+  "offset_rejection_count": 0,
+  "vector_occurrences": {
+    "before": [
+      1,
+      1
+    ],
+    "after": [
+      1,
+      1
+    ]
+  },
+  "callbacks": [
+    "cp00_offset_b",
+    "cp00_offset_a"
+  ],
+  "passed": true,
+  "scope": "Event acceptance, native-compatible inert offset, archive retention and synthetic detonation callbacks; not natural Flak mission completion",
+  "evidence": [
+    {
+      "path": "profiles-local/CP00-r4/offset-r4-accepted/mainta/configs/omconfig.cfg",
+      "sha256": "d34917d5bf824aab93f16c64dd8962c58f7b89ccb07998c48c9797cfa5478164"
+    },
+    {
+      "path": "profiles-local/CP00-r4/offset-r4-accepted/mainta/cp00/setup.scr",
+      "sha256": "59120a0030c2c4624b4f06dd1b5e2cca2002073323908a68a32ec6a6df4fd902"
+    },
+    {
+      "path": "profiles-local/CP00-r4/offset-r4-accepted/mainta/cp00/trigger.scr",
+      "sha256": "2dcc1f3c9fcf58b0bf1449070341c1416131d04e91bdbd5db47c8b7f9d058565"
+    },
+    {
+      "path": "profiles-local/CP00-r4/offset-r4-accepted/mainta/cp00-first.cfg",
+      "sha256": "4929219f031672b7c3bb5e7280c0d74b92932c60a7a2745a8fdc21c429de5f02"
+    },
+    {
+      "path": "profiles-local/CP00-r4/offset-r4-accepted/mainta/cp00-reload.cfg",
+      "sha256": "b74faf25cfdd765ff9f1c67a72e8b9bdce28512808ded63b72ff2ea5d7077d94"
+    },
+    {
+      "path": "profiles-local/CP00-r4/offset-r4-accepted/mainta/first.log",
+      "sha256": "f9f4f0c334e66768ebddad6f9518327cb43e9055b69d85de9d428fa77c41ea28"
+    },
+    {
+      "path": "profiles-local/CP00-r4/offset-r4-accepted/mainta/qconsole.log",
+      "sha256": "f6d425decbf02819d474ba00d171bcb3bec7dd0554528a45c1edbcb5eb253fee"
+    },
+    {
+      "path": "profiles-local/CP00-r4/offset-r4-accepted/mainta/reload.log",
+      "sha256": "f6d425decbf02819d474ba00d171bcb3bec7dd0554528a45c1edbcb5eb253fee"
+    },
+    {
+      "path": "profiles-local/CP00-r4/offset-r4-accepted/mainta/save/omconfig/cp00_offset_after.sav",
+      "sha256": "4932679355d8f3ad7d9ae3d941f15112d99188ff1865d24f1b51caa71730e7c4"
+    },
+    {
+      "path": "profiles-local/CP00-r4/offset-r4-accepted/mainta/save/omconfig/cp00_offset_after.ssv",
+      "sha256": "7f3dda8debbceb2207db600a502efb0c4b3cd07390745729dd0df7f018c791d7"
+    },
+    {
+      "path": "profiles-local/CP00-r4/offset-r4-accepted/mainta/save/omconfig/cp00_offset_after.tga",
+      "sha256": "e6f820c2fbb77edee4b975ae563cfa414dd4ffa177df8397ec1b9d1f64a77acd"
+    },
+    {
+      "path": "profiles-local/CP00-r4/offset-r4-accepted/mainta/save/omconfig/cp00_offset_before.sav",
+      "sha256": "a0bafc77f71496884365a55822cf26a0812ecb64660aa99c76470f9258930d9e"
+    },
+    {
+      "path": "profiles-local/CP00-r4/offset-r4-accepted/mainta/save/omconfig/cp00_offset_before.ssv",
+      "sha256": "0d4454c7d9bed4a3c49d2544099a1c3f13df135dcbd6e85f597e46f69b9f5841"
+    },
+    {
+      "path": "profiles-local/CP00-r4/offset-r4-accepted/mainta/save/omconfig/cp00_offset_before.tga",
+      "sha256": "53c37f45734366b569988a617e7ac0fa918e7408d770f4603ad9e207b5c0e70d"
+    },
+    {
+      "path": "profiles-local/CP00-r4/offset-r4-accepted/mainta/save/omconfig/t1l20000.sav",
+      "sha256": "7c63eec92d58e1cd18417bdfc7ab654e28252f01ac9d6cdb481fc39b0574748a"
+    },
+    {
+      "path": "profiles-local/CP00-r4/offset-r4-accepted/mainta/save/omconfig/t1l20000.ssv",
+      "sha256": "205c487430b0ec2aef48426f6971fbc05d589ba9baf9dd02bcdf12a638e2d128"
+    },
+    {
+      "path": "profiles-local/CP00-r4/offset-r4-accepted/mainta/save/omconfig/t1l20000.tga",
+      "sha256": "49e4ad536e2384a62fc66d931833c9a99b523fe9725c37bc9a849d38de6ad51e"
+    },
+    {
+      "path": "profiles-local/CP00-r4/offset-r4-accepted/qkey",
+      "sha256": "6c7ca9f5a279868ba1f35fb9380cf108e52c3ef1e0068ea3fce8db5e82823f0c"
+    }
+  ]
+}

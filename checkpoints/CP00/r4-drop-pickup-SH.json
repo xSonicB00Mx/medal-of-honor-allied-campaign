@@ -1,0 +1,103 @@
+{
+  "candidate": "CP00-r4",
+  "game": "SH",
+  "completed": true,
+  "exit_code": 0,
+  "health_before": [
+    "686.000"
+  ],
+  "health_after": [
+    "750.000"
+  ],
+  "item_removed": true,
+  "records": [
+    "CP00_PICKUP_BEFORE_HEALTH 686.000",
+    "CP00_PICKUP_BEFORE_ORIGIN ( 2472.068 3067.491 168.868 )",
+    "CP00_PICKUP_ITEM models/items/item_25_healthbox.tik origin=( 2309.749 3003.721 175.364 )",
+    "CP00_PICKUP_AFTER_HEALTH 750.000",
+    "CP00_PICKUP_AFTER_ORIGIN ( 2203.849 2961.117 167.224 )",
+    "CP00_PICKUP_ITEM_REMOVED",
+    "CP00_PICKUP_DONE"
+  ],
+  "errors": [],
+  "scope": "Normal walking toward the health item dropped in the preceding series. Player health not assigned; no direct item-use callback. Save/load between death and pickup.",
+  "reference_save": [
+    {
+      "path": "profiles-local/CP00-r4/r4-drops-v1-SH/mainta/save/omconfig/cp00_after_series.sav",
+      "sha256": "c8c97e027d8e8301f7cc06017c5ebdcafae3e020922eac6816ddc8b3d69bee6b"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-drops-v1-SH/mainta/save/omconfig/cp00_after_series.ssv",
+      "sha256": "89811892a5960121a6b9f88386d989bc37bd555fcfca077806979ca03e5a7cf3"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-drops-v1-SH/mainta/save/omconfig/cp00_after_series.tga",
+      "sha256": "bbe55ef29cca879113f0f33b85b1e14bd254084f3cb649ed1a09287308a18817"
+    }
+  ],
+  "series_report_sha256": "ffb9d30549fe1e2ed31be0af6214f26c5e6ed0e13697d2a810049a1769a6b0d0",
+  "visual_check": "Reviewed before/after screenshots: white health item visible before walking, HUD health 91 to 100, messages Recovered 25 Health and Got 64 Smg Rounds (twice). Ammo inventory delta not separately queried.",
+  "evidence": [
+    {
+      "path": "profiles-local/CP00-r4/r4-drop-pickup-SH/mainta/configs/omconfig.cfg",
+      "sha256": "6eff60154b185ce7aaa4f926472a8191737c86e90b4553add5ffc37e802c1368"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-drop-pickup-SH/mainta/cp00/after.scr",
+      "sha256": "d8587e02a39f64f45310c20d244fdc1292d6e29aa6918f34e3ad7467adb360da"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-drop-pickup-SH/mainta/cp00/before.scr",
+      "sha256": "f7dddac10e69bcbe3206293b2d67fec26665678f6538aaedf152bdd25cf7cd2e"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-drop-pickup-SH/mainta/cp00/walk.cfg",
+      "sha256": "c6fdaf7973644434960ace54d687062a120da1f8d906b29d1e59d38b7adafb44"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-drop-pickup-SH/mainta/pickup.cfg",
+      "sha256": "cb34598f8a68b5c6bd50f508da4cda9f9ad69ed49de10cce77d03a6489f90edb"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-drop-pickup-SH/mainta/qconsole.log",
+      "sha256": "f72dcc54bb24214f88a129feeded7b10b91d07a6a9a071e79b6f3c48fc0bd1af"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-drop-pickup-SH/mainta/save/omconfig/cp00_after_pickup.sav",
+      "sha256": "c7be720095b5a9c5156d0f713e0ac9080c9072a5ca6a71190b3767057c3bc719"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-drop-pickup-SH/mainta/save/omconfig/cp00_after_pickup.ssv",
+      "sha256": "a231ef98fe861fefd0e5430532ef5d019da542561fa058b565a5f3b27dd9899d"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-drop-pickup-SH/mainta/save/omconfig/cp00_after_pickup.tga",
+      "sha256": "63b03b822fba1fe7af52a04c5c49be29eed07ce6f17d82f44e26ea9533faa7b8"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-drop-pickup-SH/mainta/save/omconfig/cp00_reference.sav",
+      "sha256": "c8c97e027d8e8301f7cc06017c5ebdcafae3e020922eac6816ddc8b3d69bee6b"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-drop-pickup-SH/mainta/save/omconfig/cp00_reference.ssv",
+      "sha256": "89811892a5960121a6b9f88386d989bc37bd555fcfca077806979ca03e5a7cf3"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-drop-pickup-SH/mainta/save/omconfig/cp00_reference.tga",
+      "sha256": "bbe55ef29cca879113f0f33b85b1e14bd254084f3cb649ed1a09287308a18817"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-drop-pickup-SH/mainta/screenshots/shot0000.tga",
+      "sha256": "e89e2ef380d5d49d91c8a0e5c1a778a54a250ec84efd42346dda89ebc7617a50"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-drop-pickup-SH/mainta/screenshots/shot0001.tga",
+      "sha256": "1cdde2809ad5ea842705381f63d9b9bf9bcd3e8d0253c4e0c4bd5d55ded5b0f0"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-drop-pickup-SH/qkey",
+      "sha256": "72bcc69b4eaaab51ea8595175e1fffb57d1c88a7df0b033e510271cdc172c04e"
+    }
+  ],
+  "assessment": "VALID_HEALTH_PICKUP_AFTER_SAVE_LOAD: normal walking removed the health item and raised internal health 686 to 750; HUD 91 to 100. No player-health assignment or direct pickup callback."
+}

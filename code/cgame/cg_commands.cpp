@@ -3951,6 +3951,10 @@ void ClientGameCommandManager::PlaySound(
         channel      = aliaschannel;
     }
 
+    if (debugSound->integer > 1) {
+        cgi.Printf("AC_SOUND_PLAY alias=%s file=%s volume=%.3f entity=%d\n",
+            sound_name.c_str(), name, volume, current_entity_number);
+    }
     if (current_entity_number == -1) {
         cgi.S_StartSound(
             origin,

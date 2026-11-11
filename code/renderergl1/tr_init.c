@@ -1740,6 +1740,10 @@ void RE_Shutdown( qboolean destroyWindow ) {
 
 	if ( tr.registered ) {
 		R_IssuePendingRenderCommands();
+		R_ACTemporalShutdown();
+		R_ACLightningReset();
+		R_ACAOShutdown();
+		R_ACShadowShutdown();
 		R_DeleteTextures();
 	}
 
@@ -1862,6 +1866,9 @@ refexport_t *GetRefAPI ( int apiVersion, refimport_t *rimp ) {
 	}
 
 	R_Init();
+	R_ACShadowInit();
+	R_ACAOInit();
+	R_ACTemporalInit();
 
 	// the RE_ functions are Renderer Entry points
 
@@ -1886,6 +1893,7 @@ refexport_t *GetRefAPI ( int apiVersion, refimport_t *rimp ) {
 	re.ClearScene = RE_ClearScene;
 	re.AddRefEntityToScene = RE_AddRefEntityToScene;
 	re.AddPolyToScene = RE_AddPolyToScene;
+    re.AddEntityPolyToScene = RE_AddEntityPolyToScene;
 	re.LightForPoint = R_LightForPoint;
 	re.AddLightToScene = RE_AddLightToScene;
 	re.AddAdditiveLightToScene = RE_AddAdditiveLightToScene;

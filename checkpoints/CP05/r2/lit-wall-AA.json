@@ -1,0 +1,52 @@
+{
+  "run": "lit-wall-AA",
+  "revision": "r2",
+  "game": "AA",
+  "reacting": true,
+  "wall": true,
+  "mist": 1,
+  "completed": true,
+  "exit": 0,
+  "images": [
+    "profiles-local/CP05-r2/lit-wall-AA/main/screenshots/shot0000.png",
+    "profiles-local/CP05-r2/lit-wall-AA/main/screenshots/shot0001.png",
+    "profiles-local/CP05-r2/lit-wall-AA/main/screenshots/shot0002.png",
+    "profiles-local/CP05-r2/lit-wall-AA/main/screenshots/shot0003.png",
+    "profiles-local/CP05-r2/lit-wall-AA/main/screenshots/shot0004.png",
+    "profiles-local/CP05-r2/lit-wall-AA/main/screenshots/shot0005.png",
+    "profiles-local/CP05-r2/lit-wall-AA/main/screenshots/shot0006.png",
+    "profiles-local/CP05-r2/lit-wall-AA/main/screenshots/shot0007.png"
+  ],
+  "binaries": {
+    "openmohaa.exe": "12ea43b62babb71d2059dc04dc6943734914a3530d7e47515cfc7ad8a00b2d74",
+    "game.dll": "c1481a6a0010c275bed5d25d042cd6112bd174c21f28a95220f698e906828771",
+    "cgame.dll": "f6a06df284990a026cd9fccd93f96ab8c21214e5337772e1ceaa620737d25d8c"
+  },
+  "events": [
+    "AC_HIT id=1 time=5500 entity=202 generation=2.250 weapon=models/weapons/colt45.tik group=1 seed=3411138139 entry=1 exit=1 surface=0/1/466",
+    "AC_RECEIVE argc=31",
+    "AC_MARK_FRAGMENTS 1",
+    "AC_MARK rear -6628.645 -3700.820 534.578",
+    "AC_DROP_BODY_BLOCK status=1",
+    "AC_DROP_BODY_BLOCK status=1",
+    "AC_DROP_BODY_BLOCK status=1",
+    "AC_DROP_BODY_BLOCK status=1",
+    "AC_DROP_BODY_BLOCK status=1",
+    "AC_DROP_BODY_BLOCK status=1",
+    "AC_DROP_BODY_BLOCK status=1",
+    "AC_DROP_BODY_BLOCK status=1",
+    "AC_DROP_HIT entity=1022 solid=0 fraction=0.052178 flags=67109024",
+    "AC_MARK_FRAGMENTS 2",
+    "AC_MARK drop -6639.946 -3767.943 475.950",
+    "AC_DROP_HIT entity=1022 solid=0 fraction=0.036362 flags=67109024",
+    "AC_MARK_FRAGMENTS 1",
+    "AC_MARK drop -6627.920 -3785.277 476.767",
+    "AC_DROP_HIT entity=1022 solid=0 fraction=0.939181 flags=67109024",
+    "AC_MARK_FRAGMENTS 1",
+    "AC_MARK drop -6630.779 -3772.101 476.035",
+    "AC_DROP_HIT entity=1022 solid=0 fraction=0.145218 flags=67109024",
+    "AC_MARK_FRAGMENTS 1",
+    "AC_MARK drop -6637.037 -3789.022 477.149"
+  ],
+  "errors": []
+}

@@ -1,0 +1,126 @@
+{
+  "schema": 2,
+  "build_id": "CP04-r1",
+  "source_commit": "e4de696cb837c3d34f995aedcd4c18bbdba5c4af",
+  "engine_source_commit": "e4de696cb837c3d34f995aedcd4c18bbdba5c4af",
+  "upstream_commit": "a2f340195975f4f042e28a60b62561dd9a0b2700",
+  "wcr_package_fingerprint": "3b6b38b5b04ba320a526196946c44394c4519e4197dc8d3d05788e186501cfcc",
+  "data_manifest_sha256": "79024db88fc0a193780087590452fdcbf73519988643d86e0eb3d530fe968e4d",
+  "runtime_data_manifest": "generated-local/CP00-r4/runtime-data-manifest.json",
+  "input_manifest": "generated-local/CP00-r4/input-manifest.json",
+  "data_files": 9000,
+  "owned_files": [
+    {
+      "path": "OpenAL64.dll",
+      "sha256": "4f7f49003562e1056fd0f25274d021d94e9eaceb9b0c5eba9c3df5123e4e355d"
+    },
+    {
+      "path": "OpenMoHAA-COPYING.txt",
+      "sha256": "f675a8c8e587f65b3bbf7f6a85a113eda45fdbc6005dc317af21bf8de7d3c204"
+    },
+    {
+      "path": "Original-EULA.txt",
+      "sha256": "413fc05d54060b4cd983a274ae214d94ab1d05d1f276925c850080eabfb27ba1"
+    },
+    {
+      "path": "SDL2.dll",
+      "sha256": "490fd069834f308c7ec168f0c29de8d20e1b4914e14de690414874a8697296fb"
+    },
+    {
+      "path": "Start-AA.cmd",
+      "sha256": "e62bbe43849bc1a2095d2b6c984a0ff1d446513abc937d4a5c6a1bc90ddfbd3e"
+    },
+    {
+      "path": "Start-BT.cmd",
+      "sha256": "87d1e6bf951da7bc973b1778816a69ab650e0677f2518d4362811dbd85121ae3"
+    },
+    {
+      "path": "Start-SH.cmd",
+      "sha256": "0addbad54dcd9b7dd50f8e865fc3467ac5d6ed35ea234367704d6ff87a2f093b"
+    },
+    {
+      "path": "cgame.dll",
+      "sha256": "c5d0c55b4dafaf1962d2ecd8f64d627fd502ffab7e412efd0a673b6562881aa7"
+    },
+    {
+      "path": "game.dll",
+      "sha256": "048afee1eeefeb8d4de5fc3daa07f89e4aa368e6a362ee35d5859c8965e76264"
+    },
+    {
+      "path": "launch_openmohaa_base.exe",
+      "sha256": "1ddd69493e8a9257dc96a724dff5d38b0d3c63921022373f74263233a2444478"
+    },
+    {
+      "path": "launch_openmohaa_breakthrough.exe",
+      "sha256": "862672850a3b7dcf736358cc38b2528daa8bd04b6e13bf0df7499deaf3e132ae"
+    },
+    {
+      "path": "launch_openmohaa_spearhead.exe",
+      "sha256": "7fa61a6a5a29dd3c2d4d58ee9fa25b17bb3c216897a1b76a95be3185887ceabd"
+    },
+    {
+      "path": "licenses/OpenAL/COPYING",
+      "sha256": "d808ce217e5b611854da622b57ec29fe545584c48bc5352fae72a4b6e5074a15"
+    },
+    {
+      "path": "licenses/OpenAL/LICENSE-pffft",
+      "sha256": "64056328b3e7bc104e24ef96accc1a7abead156f0c02d1b87c97e3f3a28030de"
+    },
+    {
+      "path": "licenses/OpenAL/readme.txt",
+      "sha256": "26535df83482a8a0377e6fc1b8171385c9fb41e78f7f39398dbf645960cd9438"
+    },
+    {
+      "path": "main/zzzz_AC_MP1.pk3",
+      "sha256": "31fb203555db5208ff6ba2f5ae70f2300ca01caa3f6490c0e5331d174f5be0db"
+    },
+    {
+      "path": "main/zzzz_AC_UI.pk3",
+      "sha256": "646ec1fa36a5addac1ed05c71e0aa950e0cb57f1e19deb3d4056a5d9320da55e"
+    },
+    {
+      "path": "main/zzzz_AC_Wounds.pk3",
+      "sha256": "07270b4cd4e76321d1b817765d53d15d0501c928b8257b4e3785f417adbeb619"
+    },
+    {
+      "path": "mainta/zzzz_AC_UI.pk3",
+      "sha256": "4bb43572afc4654900f82d629695266967f400fae6fb2fd3c68aa836dc823886"
+    },
+    {
+      "path": "maintt/zzzz_AC_BT_Drops.pk3",
+      "sha256": "3638dca7306fe570278fe9ae4497acbe57bb398a7ffc8967d750fff36a699da8"
+    },
+    {
+      "path": "maintt/zzzz_AC_UI.pk3",
+      "sha256": "4bb43572afc4654900f82d629695266967f400fae6fb2fd3c68aa836dc823886"
+    },
+    {
+      "path": "omohaaded.exe",
+      "sha256": "085d92616d5f46df3ae3901796ad6313f99b978a2e4c57bd3ac4325eb5374802"
+    },
+    {
+      "path": "openmohaa.exe",
+      "sha256": "b6f6266c398702de40df4e46b8f332ae3de863b2849685d907dbd799c5a0e0cf"
+    }
+  ],
+  "save_schema": "Original server save layout; CP4+ appends versioned cgame wound state. New wound saves require this or later build.",
+  "weapon_policy": "mod/effects/weapon_policy.json version 3",
+  "toolchain": {
+    "cmake": "4.4.4",
+    "msbuild": "17.14.51",
+    "generator": "Visual Studio 17 2022 x64",
+    "configuration": "RelWithDebInfo",
+    "flex_bison": "2.5.25",
+    "options": [
+      "USE_HTTP=OFF",
+      "USE_RENDERER_DLOPEN=OFF",
+      "BUILD_RENDERER_GL2=OFF"
+    ]
+  },
+  "merge_recipe": "tools/import_cp00a.py at 114c0d8d941a15b5d748a058cb9d529319ac5506",
+  "ui_recipe": "tools/package_cp01_ui.py at 114c0d8d941a15b5d748a058cb9d529319ac5506",
+  "status": "TECHNICAL_CANDIDATE_WITH_REPORTED_TEST_LIMITS",
+  "personal_acceptance": false,
+  "merged": false,
+  "change": "Saved red human hit mist; English options"
+}

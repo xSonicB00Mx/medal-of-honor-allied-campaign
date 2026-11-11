@@ -30,6 +30,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 #include "entity.h"
 #include "item.h"
 #include "weapon.h"
+#include "ac_crosshair.h"
 #include "scriptmaster.h"
 #include "sentient.h"
 #include "misc.h"
@@ -1389,27 +1390,9 @@ void Weapon::Shoot(Event *ev)
 
     if (firetype[mode] != FT_LANDMINE || CanPlaceLandmine(pos, owner)) {
         if (m_fFireSpreadMultAmount[mode] != 0.0f) {
-            float fTime = level.time - m_fFireSpreadMultTime[mode];
-
-            if (fTime <= m_fFireSpreadMultTimeCap[mode]) {
-                float fDecay = fTime * m_fFireSpreadMultFalloff[mode];
-
-                if (m_fFireSpreadMult[mode] <= 0.0f) {
-                    m_fFireSpreadMult[mode] -= fDecay;
-
-                    if (m_fFireSpreadMult[mode] > 0.0f) {
-                        m_fFireSpreadMult[mode] = 0.0f;
-                    }
-                } else {
-                    m_fFireSpreadMult[mode] -= fDecay;
-
-                    if (m_fFireSpreadMult[mode] < 0.0f) {
-                        m_fFireSpreadMult[mode] = 0.0f;
-                    }
-                }
-            } else {
-                m_fFireSpreadMult[mode] = 0.0f;
-            }
+            m_fFireSpreadMult[mode] = AC_SpreadBeforeShot(m_fFireSpreadMult[mode],
+                m_fFireSpreadMultAmount[mode], m_fFireSpreadMultFalloff[mode],
+                level.time - m_fFireSpreadMultTime[mode], m_fFireSpreadMultTimeCap[mode]);
 
             m_fFireSpreadMultTime[mode] = level.time;
         }
@@ -1427,26 +1410,12 @@ void Weapon::Shoot(Event *ev)
         case FT_BULLET:
             {
                 Vector            vSpread;
-                float             fSpreadFactor;
                 int               tracerFrequency;
                 SafePtr<Sentient> ownerPtr;
 
                 if (owner) {
                     if (owner->client) {
-                        Player *player = (Player *)owner.Pointer();
-
-                        fSpreadFactor = GetSpreadFactor(mode);
-
-                        vSpread       = bulletspreadmax[mode] * fSpreadFactor;
-                        fSpreadFactor = 1.0f - fSpreadFactor;
-                        vSpread += bulletspread[mode] * fSpreadFactor;
-                        vSpread *= m_fFireSpreadMult[mode] + 1.0f;
-
-                        if (m_iZoom) {
-                            if (player->IsSubclassOfPlayer() && player->IsZoomed()) {
-                                vSpread *= 1.0f + fSpreadFactor * (m_fZoomSpreadMult - 1.0f);
-                            }
-                        }
+                        vSpread = GetPlayerBulletSpread(mode, m_fFireSpreadMult[mode]);
                     }
                 } else {
                     vSpread = (bulletspreadmax[mode] + bulletspread[mode]) * 0.5f;
@@ -1499,28 +1468,10 @@ void Weapon::Shoot(Event *ev)
         case FT_FAKEBULLET:
             {
                 Vector vSpread;
-                float  fSpreadFactor;
 
                 if (owner) {
                     if (owner->client) {
-                        Player *player = (Player *)owner.Pointer();
-
-                        fSpreadFactor = player->velocity.length() / sv_runspeed->integer;
-
-                        if (fSpreadFactor > 1.0f) {
-                            fSpreadFactor = 1.0f;
-                        }
-
-                        vSpread       = bulletspreadmax[mode] * fSpreadFactor;
-                        fSpreadFactor = 1.0f - fSpreadFactor;
-                        vSpread += bulletspread[mode] * fSpreadFactor;
-                        vSpread *= m_fFireSpreadMult[mode] + 1.0f;
-
-                        if (m_iZoom) {
-                            if (player->IsSubclassOfPlayer() && player->IsZoomed()) {
-                                vSpread *= 1.0f + fSpreadFactor * (m_fZoomSpreadMult - 1.0f);
-                            }
-                        }
+                        vSpread = GetPlayerBulletSpread(mode, m_fFireSpreadMult[mode]);
                     }
                 } else {
                     vSpread = (bulletspreadmax[mode] + bulletspread[mode]) * 0.5f;
@@ -2484,8 +2435,13 @@ void Weapon::PickupWeapon(Event *ev)
 
     hasweapon = sen->HasItem(item_name);
     hasclass  = sen->HasWeaponClass(weapon_class);
+    // Completed Operations replays may collect distinct weapons in one class.
+    // Duplicate guns still become ammunition; normal campaigns/score runs keep
+    // their original pickup rules.
+    const bool replayInventory=other->IsSubclassOfPlayer() && ((Player *)other)->ACLoadoutEligible();
+    if(!hasweapon && replayInventory)hasclass=false;
 
-    if ((g_gametype->integer || g_realismmode->integer) && !hasclass && !IsSecondaryWeapon()
+    if (!replayInventory && (g_gametype->integer || g_realismmode->integer) && !hasclass && !IsSecondaryWeapon()
         && sen->HasPrimaryWeapon()) {
         // Make sure the sentient doesn't have a primary weapon on DM modes
         return;
@@ -4219,6 +4175,42 @@ float Weapon::GetSpreadFactor(firemode_t mode)
     }
 
     return fSpreadFactor;
+}
+
+// The firing path and the HUD use the same interpolation, without sampling RNG.
+Vector Weapon::GetPlayerBulletSpread(firemode_t mode, float fireMultiplier)
+{
+    const float moving = GetSpreadFactor(mode);
+    const float still = 1.0f - moving;
+    Vector spread = bulletspreadmax[mode] * moving;
+    spread += bulletspread[mode] * still;
+    spread *= fireMultiplier + 1.0f;
+    if (m_iZoom && owner && owner->IsSubclassOfPlayer() && ((Player *)owner.Pointer())->IsZoomed()) {
+        spread *= 1.0f + still * (m_fZoomSpreadMult - 1.0f);
+    }
+    return spread;
+}
+
+int Weapon::GetCrosshairSpread()
+{
+    // Projectile arcs, melee and tools do not have a Gaussian bullet footprint.
+    const firemode_t mode = FIRE_PRIMARY;
+    if (firetype[mode] != FT_BULLET && firetype[mode] != FT_FAKEBULLET) return 0;
+    Vector spread;
+    if (owner && owner->client) {
+        // Save restoration can query stats before the level clock is restored.
+        // Keep the archived HUD value until the clock is valid, rather than
+        // resurrecting the stored (not yet decayed) multiplier for one frame.
+        const float elapsed = level.time - m_fFireSpreadMultTime[mode];
+        if (elapsed < 0.0f && m_fFireSpreadMultAmount[mode] != 0.0f) return -1;
+        const float mult = AC_SpreadBeforeShot(m_fFireSpreadMult[mode], m_fFireSpreadMultAmount[mode],
+            m_fFireSpreadMultFalloff[mode], elapsed, m_fFireSpreadMultTimeCap[mode]);
+        spread = GetPlayerBulletSpread(mode, mult);
+    } else {
+        // Ownerless vehicle turrets use this same fallback in Weapon::Shoot.
+        spread = (bulletspreadmax[mode] + bulletspread[mode]) * 0.5f;
+    }
+    return AC_EncodeSpread95(spread.x, spread.y, bulletrange[mode]);
 }
 
 //======================

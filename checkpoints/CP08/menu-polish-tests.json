@@ -1,0 +1,75 @@
+{
+  "native": [
+    {
+      "game": "AA",
+      "images": [
+        "artifacts-local/MenuPolish-aa-installed-final-main.png",
+        "artifacts-local/MenuPolish-aa-installed-final-back-hover.png",
+        "artifacts-local/MenuPolish-aa-installed-final-quit-hover.png",
+        "artifacts-local/MenuPolish-aa-installed-final-options.png",
+        "artifacts-local/MenuPolish-aa-installed-final-controls.png",
+        "artifacts-local/MenuPolish-aa-installed-final-mission-list.png",
+        "artifacts-local/MenuPolish-aa-installed-final-hud.png"
+      ],
+      "errors": [],
+      "baseline": false,
+      "installed": true
+    },
+    {
+      "game": "SH",
+      "images": [
+        "artifacts-local/MenuPolish-sh-uhd-r1-main.png",
+        "artifacts-local/MenuPolish-sh-uhd-r1-back-hover.png",
+        "artifacts-local/MenuPolish-sh-uhd-r1-quit-hover.png",
+        "artifacts-local/MenuPolish-sh-uhd-r1-options.png",
+        "artifacts-local/MenuPolish-sh-uhd-r1-controls.png",
+        "artifacts-local/MenuPolish-sh-uhd-r1-mission-list.png",
+        "artifacts-local/MenuPolish-sh-uhd-r1-hud.png"
+      ],
+      "errors": [],
+      "baseline": false,
+      "installed": false
+    },
+    {
+      "game": "BT",
+      "images": [
+        "artifacts-local/MenuPolish-bt-r4-main.png",
+        "artifacts-local/MenuPolish-bt-r4-back-hover.png",
+        "artifacts-local/MenuPolish-bt-r4-quit-hover.png",
+        "artifacts-local/MenuPolish-bt-r4-options.png",
+        "artifacts-local/MenuPolish-bt-r4-controls.png",
+        "artifacts-local/MenuPolish-bt-r4-mission-list.png",
+        "artifacts-local/MenuPolish-bt-r4-hud.png"
+      ],
+      "errors": [],
+      "baseline": false,
+      "installed": false
+    }
+  ],
+  "metrics": [
+    {
+      "folder": "main",
+      "fonts": 18,
+      "metrics_factor": 0.66,
+      "crc": "PASS"
+    },
+    {
+      "folder": "mainta",
+      "fonts": 19,
+      "metrics_factor": 0.66,
+      "crc": "PASS"
+    },
+    {
+      "folder": "maintt",
+      "fonts": 19,
+      "metrics_factor": 0.66,
+      "crc": "PASS"
+    }
+  ],
+  "real_mouse_hover": [
+    "artifacts-local/MenuPolish-native-back-hover.png",
+    "artifacts-local/MenuPolish-native-quit-hover.png"
+  ],
+  "final_batch": "menu-polish-r2",
+  "profile_files_unchanged": 95
+}

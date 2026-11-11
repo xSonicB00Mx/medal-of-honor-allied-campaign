@@ -1,0 +1,42 @@
+// Isolated diagnostic placement: require two vertically aligned world hits.
+main:
+    level.cp00_base = $player.origin
+    local.dirs[1] = ( 1 0 0 )
+    local.dirs[2] = ( 0 1 0 )
+    local.dirs[3] = ( -1 0 0 )
+    local.dirs[4] = ( 0 -1 0 )
+    level.cp00_placement = 0
+    for (local.i = 1; local.i <= 4; local.i++)
+    {
+        local.dir = local.dirs[local.i]
+        local.start = $player.origin + ( 0 0 50 )
+        local.wall = trace local.start (local.start + local.dir * 400) 1
+        local.dist = vector_length (local.wall - local.start)
+        if ((local.dist < 100) || (local.dist > 398))
+            continue
+        local.upper = trace (local.start + ( 0 0 20 )) (local.start + ( 0 0 20 ) + local.dir * 400) 1
+        local.error = vector_length (local.upper - local.wall - ( 0 0 20 ))
+        if (local.error > 6)
+            continue
+        local.goal = local.wall - local.dir * 40 + ( 0 0 64 )
+        local.floor = trace local.goal (local.goal - ( 0 0 256 )) 1 ( -16 -16 0 ) ( 16 16 94 )
+        local.drop = vector_length (local.goal - local.floor)
+        if ((local.drop < 1) || (local.drop > 250))
+            continue
+        level.cp00_target = local.floor + ( 0 0 2 )
+        level.cp00_placement = local.i
+        level.cp03_wall = local.wall
+        break
+    }
+    println ("CP03_WALL_PLACEMENT=" + level.cp00_placement)
+    if (level.cp00_placement == 0)
+        end
+    level.cp00_subject = spawn models/human/german_wehrmact_soldier.tik origin level.cp00_target targetname "cp00_subject" gun "Mauser KAR 98K"
+    level.cp00_subject.angles = vector_toangles (level.cp00_base - level.cp00_target)
+    level.cp00_subject threatbias ignoreme
+    level.cp00_subject ai_off
+    level.cp00_subject.health = 10000
+    local.eye = $player.origin + ( 0 0 64 )
+    $player.viewangles = vector_toangles ((level.cp00_subject.origin + ( 0 0 50 )) - local.eye)
+    println ("CP03_WALL_READY target=" + level.cp00_subject.origin + " wall=" + level.cp03_wall)
+end

@@ -1,0 +1,9 @@
+{
+  "status": "PASS",
+  "candidate": "CP00-r4",
+  "data_files": 9000,
+  "wcr_preserved": true,
+  "profiles_unchanged": true,
+  "original_candidate_unchanged": true,
+  "scope": "Disposable runtime copy; engine and owned launchers removed, exact pre-engine WCR data restored. Original programs remain in the full input snapshot."
+}

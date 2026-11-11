@@ -1,0 +1,154 @@
+{
+  "resolution": [
+    3840,
+    2160
+  ],
+  "hud_scale": 1.66,
+  "restored_objects": 15,
+  "counter_variants": 32,
+  "retained_original_objects": [
+    "item_papers1",
+    "item_papers2",
+    "item_uniform",
+    "item_uniform_weh",
+    "item_uniform_dak"
+  ],
+  "reason": "Provider refusal; no fallback generation",
+  "tests": [
+    {
+      "game": "AA",
+      "run": "candidate-aa-r1",
+      "installed": false,
+      "width": 3840,
+      "height": 2160,
+      "hud_scale": 1.66,
+      "labels": [
+        [
+          "binoculars",
+          "radio",
+          "explosives",
+          "camera",
+          "battery",
+          "bangalores"
+        ],
+        [
+          "counter 3"
+        ],
+        [
+          "counter 12"
+        ],
+        [
+          "counter 0"
+        ],
+        [
+          "removed bangalores"
+        ],
+        [
+          "clipboard",
+          "gasmask",
+          "papers_level1",
+          "papers_level2",
+          "wirecutters",
+          "radio_explosives"
+        ],
+        [
+          "removed radio_explosives"
+        ],
+        [
+          "uniform",
+          "uniform_weh",
+          "uniform_dak",
+          "tigerii_manual",
+          "battleplans"
+        ],
+        [
+          "removed battleplans"
+        ]
+      ],
+      "outputs": [
+        "artifacts-local/HUD-Inventory-AA-candidate-aa-r1-00.png",
+        "artifacts-local/HUD-Inventory-AA-candidate-aa-r1-01.png",
+        "artifacts-local/HUD-Inventory-AA-candidate-aa-r1-02.png",
+        "artifacts-local/HUD-Inventory-AA-candidate-aa-r1-03.png",
+        "artifacts-local/HUD-Inventory-AA-candidate-aa-r1-04.png",
+        "artifacts-local/HUD-Inventory-AA-candidate-aa-r1-05.png",
+        "artifacts-local/HUD-Inventory-AA-candidate-aa-r1-06.png",
+        "artifacts-local/HUD-Inventory-AA-candidate-aa-r1-07.png",
+        "artifacts-local/HUD-Inventory-AA-candidate-aa-r1-08.png"
+      ],
+      "exit_code": 0
+    },
+    {
+      "game": "SH",
+      "run": "candidate-sh-r1",
+      "installed": false,
+      "width": 3840,
+      "height": 2160,
+      "hud_scale": 1.66,
+      "labels": [
+        [
+          "binoculars",
+          "stickybomb",
+          "explosives",
+          "camera"
+        ],
+        [
+          "charge counter 3 -> 2"
+        ],
+        [
+          "sticky counter 9 -> 8"
+        ],
+        [
+          "removed camera"
+        ]
+      ],
+      "outputs": [
+        "artifacts-local/HUD-Inventory-SH-candidate-sh-r1-00.png",
+        "artifacts-local/HUD-Inventory-SH-candidate-sh-r1-01.png",
+        "artifacts-local/HUD-Inventory-SH-candidate-sh-r1-02.png",
+        "artifacts-local/HUD-Inventory-SH-candidate-sh-r1-03.png"
+      ],
+      "exit_code": 0
+    },
+    {
+      "game": "BT",
+      "run": "installed-bt-r1",
+      "installed": true,
+      "width": 3840,
+      "height": 2160,
+      "hud_scale": 1.66,
+      "labels": [
+        [
+          "keys",
+          "plunger",
+          "stickybomb",
+          "binoculars",
+          "explosives"
+        ],
+        [
+          "charge counter 3 -> 2"
+        ],
+        [
+          "removed explosives"
+        ]
+      ],
+      "outputs": [
+        "artifacts-local/HUD-Inventory-BT-installed-bt-r1-00.png",
+        "artifacts-local/HUD-Inventory-BT-installed-bt-r1-01.png",
+        "artifacts-local/HUD-Inventory-BT-installed-bt-r1-02.png"
+      ],
+      "exit_code": 0
+    }
+  ],
+  "personal_acceptance": false,
+  "merged": false,
+  "fixture_correction": "BT uses chargesN inventory entries, not SH democharge.scr. Intermediate debug-marker assertions failed; installed-bt-r1 completed and was visually verified.",
+  "deployment": {
+    "original_files_unchanged": 9072,
+    "runtime_base_files_unchanged": 9000,
+    "mp1_files_unchanged": 8,
+    "user_profile_files_unchanged": 80,
+    "rollback_copy": "generated-local/widescreen/backups/inventory-r1"
+  },
+  "source_commit": "68cb7331773d4f8c7082a3cea13849eaa048cb8a"
+}

@@ -1,0 +1,244 @@
+{
+  "candidate": "CP00-r4",
+  "game": "BT",
+  "map": "e2l3",
+  "scope": "Controlled spawned actor: AI off while alive for repeatable aim, AI on at genuine death to process corpse. Normal player attack input before/after death; not natural mission progression.",
+  "exit_code": 0,
+  "completed": true,
+  "fixture_ready": true,
+  "script_errors": [
+    "^~^~^ Script Error : invalid waittill prespawn for 'Level'",
+    "^~^~^ Script Error : invalid waittill spawn for 'Level'",
+    "^~^~^ Script Error : invalid waittill spawn for 'Level'",
+    "^~^~^ Script Error : invalid waittill spawn for 'Level'",
+    "^~^~^ Script Error : invalid waittill spawn for 'Level'",
+    "^~^~^ Script Error : invalid waittill spawn for 'Level'",
+    "^~^~^ Script Error : invalid waittill spawn for 'Level'",
+    "^~^~^ Script Error : invalid waittill spawn for 'Level'",
+    "^~^~^ Script Error : invalid waittill spawn for 'Level'",
+    "^~^~^ Script Error : invalid waittill spawn for 'Level'",
+    "^~^~^ Script Error : invalid waittill spawn for 'Level'",
+    "^~^~^ Script Error : invalid waittill spawn for 'Level'",
+    "^~^~^ Script Error : invalid waittill spawn for 'Level'",
+    "^~^~^ Script Error : invalid waittill spawn for 'Level'",
+    "^~^~^ Script Error : invalid waittill spawn for 'Level'",
+    "^~^~^ Script Error : invalid waittill spawn for 'Level'",
+    "^~^~^ Script Error : invalid waittill spawn for 'Level'",
+    "^~^~^ Script Error : invalid waittill spawn for 'Level'",
+    "^~^~^ Script Error : invalid waittill spawn for 'Level'",
+    "^~^~^ Script Error : invalid waittill spawn for 'Level'",
+    "^~^~^ Script Error : invalid waittill spawn for 'Level'",
+    "^~^~^ Script Error : invalid waittill spawn for 'Level'",
+    "^~^~^ Script Error : invalid waittill spawn for 'Level'",
+    "^~^~^ Script Error : invalid waittill spawn for 'Level'",
+    "^~^~^ Script Error : invalid waittill spawn for 'Level'",
+    "^~^~^ Script Error : invalid waittill spawn for 'Level'",
+    "^~^~^ Script Error : invalid waittill spawn for 'Level'",
+    "^~^~^ Script Error : invalid waittill spawn for 'Level'",
+    "^~^~^ Script Error : invalid waittill spawn for 'Level'",
+    "^~^~^ Script Error : invalid waittill spawn for 'Level'",
+    "^~^~^ Script Error : invalid waittill spawn for 'Level'",
+    "^~^~^ Script Error : invalid waittill spawn for 'Level'",
+    "^~^~^ Script Error : invalid waittill prespawn for 'Level'",
+    "^~^~^ Script Error : invalid waittill spawn for 'Level'",
+    "^~^~^ Script Error : invalid waittill spawn for 'Level'",
+    "^~^~^ Script Error : invalid waittill prespawn for 'Level'",
+    "^~^~^ Script Error : invalid waittill spawn for 'Level'",
+    "^~^~^ Script Error : invalid waittill spawn for 'Level'",
+    "^~^~^ Script Error : invalid waittill spawn for 'Level'",
+    "^~^~^ Script Error : invalid waittill spawn for 'Level'",
+    "^~^~^ Script Error : invalid waittill spawn for 'Level'",
+    "^~^~^ Script Error : invalid waittill spawn for 'Level'",
+    "^~^~^ Script Error : invalid waittill spawn for 'Level'",
+    "^~^~^ Script Error : invalid waittill spawn for 'Level'",
+    "^~^~^ Script Error : invalid waittill spawn for 'Level'",
+    "^~^~^ Script Error : invalid waittill spawn for 'Level'",
+    "^~^~^ Script Error : invalid waittill spawn for 'Level'",
+    "^~^~^ Script Error : invalid waittill spawn for 'Level'",
+    "^~^~^ Script Error : invalid waittill spawn for 'Level'",
+    "^~^~^ Script Error : invalid waittill spawn for 'Level'",
+    "^~^~^ Script Error : invalid waittill spawn for 'Level'",
+    "^~^~^ Script Error : invalid waittill spawn for 'Level'",
+    "^~^~^ Script Error : invalid waittill spawn for 'Level'",
+    "^~^~^ Script Error : invalid waittill spawn for 'Level'",
+    "^~^~^ Script Error : invalid waittill spawn for 'Level'",
+    "^~^~^ Script Error : invalid waittill spawn for 'Level'",
+    "^~^~^ Script Error : invalid waittill spawn for 'Level'",
+    "^~^~^ Script Error : invalid waittill spawn for 'Level'",
+    "^~^~^ Script Error : invalid waittill spawn for 'Level'",
+    "^~^~^ Script Error : invalid waittill spawn for 'Level'",
+    "^~^~^ Script Error : invalid waittill spawn for 'Level'",
+    "^~^~^ Script Error : invalid waittill prespawn for 'Level'",
+    "^~^~^ Script Error : invalid waittill prespawn for 'Level'",
+    "^~^~^ Script Error : invalid waittill prespawn for 'Level'",
+    "^~^~^ Script Error : invalid waittill spawn for 'Level'",
+    "^~^~^ Script Error : invalid waittill spawn for 'Level'",
+    "^~^~^ Script Error : Field 'health' applied to NULL listener",
+    "^~^~^ Script Error : command 'ai_off' applied to NULL listener",
+    "^~^~^ Script Error : command 'nodamage' applied to NULL listener"
+  ],
+  "records": [
+    "CP00_DEATH_EVENT count=1",
+    "CP00_FIXTURE_READY origin=( -822.349 6232.281 126.290 ) target=( -652.696 6208.770 121.806 )",
+    "CP00_SNAPSHOT_BEGIN alive",
+    "CP00_DEATHS 1",
+    "CP00_SUBJECT health=0.000 origin=( -652.696 6208.770 121.806 ) mins=( -15.000 -15.000 0.000 ) maxs=( 15.000 15.000 90.000 ) anim=",
+    "CP00_TRACE start=( -752.696 6208.770 161.806 ) end=( -552.696 6208.770 161.806 ) hit=( -667.821 6208.770 161.806 )",
+    "CP00_LOW_TRACE start=( -752.696 6208.770 127.806 ) end=( -552.696 6208.770 127.806 ) hit=( -667.821 6208.770 127.806 )",
+    "CP00_ENTITY id=0 class=Player model=models/player/_american_army_82nd.tik health=750.000 origin=( -822.349 6232.281 126.290 )",
+    "CP00_ENTITY id=81 class=DrivableVehicle model=models/vehicles/willys.tik health=1000.000 origin=( -797.524 6256.079 125.183 )",
+    "CP00_ENTITY id=83 class=Actor model=models/human/sc_al_brit_pilot.tik health=100.000 origin=( -822.336 6277.523 167.601 )",
+    "CP00_ENTITY id=560 class=Actor model=models/human/german_wehrmact_soldier.tik health=0.000 origin=( -652.696 6208.770 121.806 )",
+    "CP00_ENTITY id=567 class=Weapon model=models/weapons/kar98.tik health=0.000 origin=( -707.762 6179.066 178.218 )",
+    "CP00_ENTITY id=858 class=VehicleSoundEntity model=models/vehicles/vehiclesoundentity.tik health=0.000 origin=( -865.524 6290.540 205.783 )",
+    "CP00_ENTITY id=859 class=VehicleSoundEntity model=models/vehicles/vehiclesoundentity.tik health=0.000 origin=( -729.524 6290.540 205.783 )",
+    "CP00_ENTITY id=860 class=VehicleSoundEntity model=models/vehicles/vehiclesoundentity.tik health=0.000 origin=( -865.524 6210.735 200.203 )",
+    "CP00_ENTITY id=861 class=VehicleSoundEntity model=models/vehicles/vehiclesoundentity.tik health=0.000 origin=( -729.524 6210.735 200.203 )",
+    "CP00_ENTITY id=963 class=Actor model=models/human/german_doubleagent.tik health=100.000 origin=( -685.349 6382.281 126.696 )",
+    "CP00_ENTITY id=964 class=Weapon model=models/weapons/kar98.tik health=0.000 origin=( -685.016 6368.198 171.677 )",
+    "CP00_ENTITY id=965 class=Actor model=models/human/german_doubleagent.tik health=100.000 origin=( -685.349 6082.281 126.696 )",
+    "CP00_ENTITY id=966 class=Weapon model=models/weapons/kar98.tik health=0.000 origin=( -685.016 6068.198 171.677 )",
+    "CP00_ENTITY id=967 class=Actor model=models/human/german_doubleagent.tik health=100.000 origin=( -985.349 6382.281 126.696 )",
+    "CP00_ENTITY id=968 class=Weapon model=models/weapons/kar98.tik health=0.000 origin=( -985.016 6368.198 171.677 )",
+    "CP00_ENTITY id=969 class=Actor model=models/human/german_doubleagent.tik health=100.000 origin=( -985.349 6082.281 126.696 )",
+    "CP00_ENTITY id=970 class=Weapon model=models/weapons/kar98.tik health=0.000 origin=( -985.016 6068.198 171.677 )",
+    "CP00_SNAPSHOT_END alive",
+    "CP00_STATS_BEGIN_alive",
+    "CP00_STATS_END_alive",
+    "CP00_SNAPSHOT_BEGIN after_shots",
+    "CP00_DEATHS 1",
+    "CP00_SUBJECT health=0.000 origin=( -566.190 6208.770 118.188 ) mins=( -15.000 -15.000 0.000 ) maxs=( 15.000 15.000 8.000 ) anim=",
+    "CP00_TRACE start=( -666.190 6208.770 158.188 ) end=( -466.190 6208.770 158.188 ) hit=( -466.190 6208.770 158.188 )",
+    "CP00_LOW_TRACE start=( -666.190 6208.770 124.188 ) end=( -466.190 6208.770 124.188 ) hit=( -466.190 6208.770 124.188 )",
+    "CP00_ENTITY id=560 class=Actor model=models/human/german_wehrmact_soldier.tik health=0.000 origin=( -566.190 6208.770 118.188 )",
+    "CP00_ENTITY id=567 class=Weapon model=models/weapons/kar98.tik health=0.000 origin=( -613.112 6123.801 133.401 )",
+    "CP00_SNAPSHOT_END after_shots",
+    "CP00_STATS_BEGIN_after_shots",
+    "CP00_STATS_END_after_shots",
+    "CP00_SNAPSHOT_BEGIN after_corpse_shots",
+    "CP00_DEATHS 1",
+    "CP00_SUBJECT health=0.000 origin=( -566.190 6208.770 118.188 ) mins=( -15.000 -15.000 0.000 ) maxs=( 15.000 15.000 8.000 ) anim=",
+    "CP00_TRACE start=( -666.190 6208.770 158.188 ) end=( -466.190 6208.770 158.188 ) hit=( -466.190 6208.770 158.188 )",
+    "CP00_LOW_TRACE start=( -666.190 6208.770 124.188 ) end=( -466.190 6208.770 124.188 ) hit=( -466.190 6208.770 124.188 )",
+    "CP00_ENTITY id=560 class=Actor model=models/human/german_wehrmact_soldier.tik health=0.000 origin=( -566.190 6208.770 118.188 )",
+    "CP00_ENTITY id=567 class=Weapon model=models/weapons/kar98.tik health=0.000 origin=( -613.112 6123.801 133.401 )",
+    "CP00_SNAPSHOT_END after_corpse_shots",
+    "CP00_STATS_BEGIN_after_corpse_shots",
+    "CP00_STATS_END_after_corpse_shots",
+    "CP00_SNAPSHOT_BEGIN after_delay",
+    "CP00_DEATHS 1",
+    "CP00_SUBJECT health=0.000 origin=( -566.190 6208.770 118.188 ) mins=( -15.000 -15.000 0.000 ) maxs=( 15.000 15.000 8.000 ) anim=",
+    "CP00_TRACE start=( -666.190 6208.770 158.188 ) end=( -466.190 6208.770 158.188 ) hit=( -466.190 6208.770 158.188 )",
+    "CP00_LOW_TRACE start=( -666.190 6208.770 124.188 ) end=( -466.190 6208.770 124.188 ) hit=( -466.190 6208.770 124.188 )",
+    "CP00_ENTITY id=560 class=Actor model=models/human/german_wehrmact_soldier.tik health=0.000 origin=( -566.190 6208.770 118.188 )",
+    "CP00_ENTITY id=567 class=Weapon model=models/weapons/kar98.tik health=0.000 origin=( -613.112 6123.801 133.401 )",
+    "CP00_SNAPSHOT_END after_delay",
+    "CP00_STATS_BEGIN_after_delay",
+    "CP00_STATS_END_after_delay",
+    "CP00_BASELINE_DONE"
+  ],
+  "visual_check": "PENDING",
+  "reference_save": [],
+  "weapon": "models/weapons/colt45.tik",
+  "linger_seconds": 3,
+  "engine_sha256": "5f1eee385de3b26750b45b7aa1e98566801b716566b97af11fa5586cb5c21c91",
+  "engine_source_commit": "af7bb7c6e706fcc64e5933a22457333274f3de22",
+  "wcr_package_fingerprint": "3b6b38b5b04ba320a526196946c44394c4519e4197dc8d3d05788e186501cfcc",
+  "evidence": [
+    {
+      "path": "profiles-local/CP00-r4/r4-baseline-v7-BT/maintt/baseline.cfg",
+      "sha256": "a884db4316826a1af9da5939d9b0a161c914d6a607ad92a6b7c0182f479d0c2d"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-baseline-v7-BT/maintt/configs/omconfig.cfg",
+      "sha256": "4cd771343c11f24b2a49bf97d7bfc2a39018125754039561180a5bb191bc7e41"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-baseline-v7-BT/maintt/cp00/after_corpse_shots.scr",
+      "sha256": "43a3b76b1aed24ca327569c9d552756eb6df9551fcf4968d49ed5838f5f9c12a"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-baseline-v7-BT/maintt/cp00/after_delay.scr",
+      "sha256": "d156491173a4f3bbde99d540caf0d6d0141ffc87cda9c26b188275a032dc9f4a"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-baseline-v7-BT/maintt/cp00/after_shots.scr",
+      "sha256": "7964e396e3ee37960a22040130844b8fa2ee6a98a02a787b7577cbef146165c3"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-baseline-v7-BT/maintt/cp00/aim_corpse.scr",
+      "sha256": "2f9f99738a6b084a30cc1cb6cc420b1289ec300fc561119bc30ce34826c67a13"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-baseline-v7-BT/maintt/cp00/baseline.scr",
+      "sha256": "984045c86a4307386e44348e7949afd6e37766aa69f8dd119e4aa83c97532b0e"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-baseline-v7-BT/maintt/qconsole.log",
+      "sha256": "47912c3dceddd5ccd616b5e0da3709bef7292e85cb8945c1a7d05b46a80df147"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-baseline-v7-BT/maintt/save/omconfig/cp00_after_combat.sav",
+      "sha256": "a5230534f77b7d2b3d49b67b4e930c0169310f361f1b051c43bbb4ba1edb2e3c"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-baseline-v7-BT/maintt/save/omconfig/cp00_after_combat.ssv",
+      "sha256": "1da0e5184b9f039b34fef1a9e10ee85bc9ed9fb4cf0b2856b816ed865af7a2a5"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-baseline-v7-BT/maintt/save/omconfig/cp00_after_combat.tga",
+      "sha256": "a69cb843816fb25abf8ff0a0c46ebf0c04ddaf116138e6bf01549f322b7afdb8"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-baseline-v7-BT/maintt/save/omconfig/cp00_before_combat.sav",
+      "sha256": "14de976efa047442f97f022997c5e543abd20c09a12f206ba69ce8159cd9bdab"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-baseline-v7-BT/maintt/save/omconfig/cp00_before_combat.ssv",
+      "sha256": "ac3e8b954dcf1da5b36b1af7676b9ef3e769e6391ae9d5c6047d7ac55546fa67"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-baseline-v7-BT/maintt/save/omconfig/cp00_before_combat.tga",
+      "sha256": "d804daa919bf8cfa07324c6530a4db975be4da253d8980891e5d570e056845d3"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-baseline-v7-BT/maintt/save/omconfig/e2l30000.sav",
+      "sha256": "6a48881ebc48201a5ff194f6566c0b7484a87f37694238351da2e90e73047444"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-baseline-v7-BT/maintt/save/omconfig/e2l30000.ssv",
+      "sha256": "c371a395900d4a30c69fa94b85214a26afa04831cf80ab4054aede2978f14235"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-baseline-v7-BT/maintt/save/omconfig/e2l30000.tga",
+      "sha256": "2e8b4b48f716999c642652e57be3ac0d0e9d2e4da461e38a05d601e0aa8f7807"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-baseline-v7-BT/maintt/screenshots/shot0000.tga",
+      "sha256": "082b38a51689f1ba24aadd6d350b8caf6daef3ea11dc4cec627ba6c698b450c7"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-baseline-v7-BT/maintt/screenshots/shot0001.tga",
+      "sha256": "5046a111968b1116320f0d61dc6868c90b6c29d7f52e455c2590459c04fd7fc0"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-baseline-v7-BT/maintt/screenshots/shot0002.tga",
+      "sha256": "1833a85aab6cf3c4ffed9a073c0edf601f837d957eb359f1ee00fde9fac1ffc7"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-baseline-v7-BT/maintt/screenshots/shot0003.tga",
+      "sha256": "1854440d538b8fc0af51b5c5e6b431c4cd5f51819fba2cfd3763bd9b115ea988"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-baseline-v7-BT/qkey",
+      "sha256": "b43aae15a6d814f1e600a93f639c8171879992e6c86c225a33fd324938b076a9"
+    }
+  ],
+  "assessment": "INVALID_TEST_SETUP: user confirms selected starts place the player in a moving vehicle without an available weapon. Combat fixture started before player-control prerequisites were met; zero player shots cannot diagnose a BT weapon/combat defect. Target already dead before intended firing; background warnings are separate observations.",
+  "next_run_preconditions": [
+    "On foot after normal vehicle/intro completion",
+    "Free player movement",
+    "Visible active weapon",
+    "A real test shot confirmed before spawning the fixture"
+  ]
+}

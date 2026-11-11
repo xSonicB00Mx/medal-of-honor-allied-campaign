@@ -1,14 +1,14 @@
 {
   "schema": 1,
-  "status": "INVENTARISIERT_LAUFZEIT_OFFEN",
+  "status": "NUTZER_AUTORISIERTE_LOKALE_REVISION_LAUFZEIT_OFFEN",
   "version": null,
-  "version_evidence": "No standalone WCR readme/changelog found; do not infer version from website",
-  "package_fingerprint": "0d681481b7deaaa76fbeb5466de634e6e6b0caf271b975e1f8052408b41f4fe9",
+  "version_evidence": "Local files supplied and replacement authorized by user; no verified release identifier",
+  "package_fingerprint": "3b6b38b5b04ba320a526196946c44394c4519e4197dc8d3d05788e186501cfcc",
   "modules": [
     {
       "path": "main/Restoration_AA_Pak1-Main.pk3",
-      "sha256": "7eabd9f0ec97b67d819bfad538c6d31ef9a369c0550bcb99ea67e11a6a5f1234",
-      "resources": 695,
+      "sha256": "87bf00e9210a8cb282aae020346ffc4c2f8cfcf915b639bdf6314780394eaa3a",
+      "resources": 738,
       "installed": true
     },
     {
@@ -25,29 +25,30 @@
     },
     {
       "path": "mainta/Restoration_SH_Pak1-Main.pk3",
-      "sha256": "febae06ba8417dfaaf0fa62e29474d2bc06dae4d7026d87ed4d0e07446c09b97",
-      "resources": 511,
+      "sha256": "6858b5d44dafbb8e772d12f3501925e1530dfb2c7bd29cfe79950bb54f76a9db",
+      "resources": 513,
       "installed": true
     },
     {
       "path": "mainta/Restoration_SH_Plus-Reflections.pk3",
-      "sha256": "8f6dfe7230857e59593b508d20f234786bfd14e9bed164057e089ea5e65ebaf1",
+      "sha256": "e40860dd59948121f9067c71a1c402e64abfcfb023631c859972909e0c406e2d",
       "resources": 8,
       "installed": true
     },
     {
       "path": "maintt/Restoration_BT_Pak1-Main.pk3",
-      "sha256": "b50023f2ccd4eb2d34ced4b6b91e751d0c19e0e3af84c0f76420ff4d6ede2a22",
-      "resources": 717,
+      "sha256": "5c66188f2e11dee941fc9af239325f4732c129478306faca4da9e5199738f133",
+      "resources": 718,
       "installed": true
     },
     {
       "path": "maintt/Restoration_BT_Plus-Reflections.pk3",
-      "sha256": "e07bfc70a5182a76cc30885585cbe4803b74c4ae3730a15ba2fbc3244e6c7009",
+      "sha256": "00b12b691112fc1cce21cdf526ce7ce1b280771be026b31bf6513ced1e25fa23",
       "resources": 18,
       "installed": true
     }
   ],
-  "loose_files": "See excluded complete input manifest; provenance checked against local uninstaller where possible",
-  "source": "https://www.moddb.com/mods/war-chest-restored"
+  "loose_files": "Full revision inventory retained locally; unchanged unless listed in revision report",
+  "source": "User-provided local installation; no download",
+  "authorization": "User confirmed intentional WCR update and requested future use in chat on 2026-10-13"
 }

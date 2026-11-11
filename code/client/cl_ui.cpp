@@ -1134,11 +1134,7 @@ getScreenWidth
 */
 static float getScreenWidth()
 {
-    if (uid.bHighResScaling) {
-        return maxWidthRes;
-    } else {
-        return uid.vidWidth;
-    }
+    return uid.vidWidth / uid.scaleRes[0];
 }
 
 /*
@@ -1201,15 +1197,14 @@ getDefaultGMBoxRectangle
 */
 static UIRect2D getDefaultGMBoxRectangle(void)
 {
-    UIRect2D dmRect = getDefaultDMBoxRectangle();
-    float    height = uid.vidHeight * ui_compass_scale->value * 0.25f;
-    float    y      = dmRect.size.height + dmRect.pos.y;
-
-    if (height < y) {
-        height = y;
-    }
-
-    return UIRect2D(20.0f, height, (getScreenWidth() - 20) * uid.scaleRes[0], 128.0f * uid.scaleRes[1]);
+    const float size = uid.scaleRes[1] * Com_Clamp(.5f, 2, Cvar_VariableValue("ac_hud_scale"));
+    const float safe = Com_Clamp(.8f, 1, Cvar_VariableValue("ac_hud_safe"));
+    const float width = fminf((float)uid.vidWidth, uid.vidHeight * (16.f/9.f)) * safe;
+    const float left = (uid.vidWidth - width) * .5f;
+    const float compass = 128 * fminf(uid.vidWidth/640.f, uid.vidHeight/480.f) * ui_compass_scale->value
+        * Com_Clamp(.5f, 2, Cvar_VariableValue("ac_hud_scale"));
+    return UIRect2D(left + 20*size, fmaxf(compass, 120*size) + uid.vidHeight*(1-safe)*.5f,
+        width - 40*size, 128*size);
 }
 
 /*
@@ -1219,12 +1214,11 @@ getDefaultDMBoxRectangle
 */
 static UIRect2D getDefaultDMBoxRectangle(void)
 {
-    float width;
-    float screenWidth = getScreenWidth();
-
-    width = screenWidth * uid.scaleRes[0] * ui_compass_scale->value * 0.2f;
-
-    return UIRect2D(width, 0, (screenWidth - (width + 192.0f)) * uid.scaleRes[0], 120.0f * uid.scaleRes[1]);
+    const float size = uid.scaleRes[1] * Com_Clamp(.5f, 2, Cvar_VariableValue("ac_hud_scale"));
+    const float safe = Com_Clamp(.8f, 1, Cvar_VariableValue("ac_hud_safe"));
+    const float width = fminf((float)uid.vidWidth, uid.vidHeight * (16.f/9.f)) * safe;
+    return UIRect2D((uid.vidWidth-width)*.5f + 180*size, uid.vidHeight*(1-safe)*.5f,
+        fmaxf(100*size, width - 380*size), 120*size);
 }
 
 /*
@@ -1234,7 +1228,12 @@ UI_GetObjectivesTop
 */
 float UI_GetObjectivesTop(void)
 {
-    return getDefaultGMBoxRectangle().pos.y;
+    float bottom = getDefaultGMBoxRectangle().pos.y;
+    if (hud_compass && hud_compass->GetContainerWidget()) {
+        UIRect2D frame = hud_compass->GetContainerWidget()->getFrame();
+        bottom = fmaxf(bottom, frame.pos.y + frame.size.height);
+    }
+    return bottom;
 }
 
 /*
@@ -1244,12 +1243,8 @@ UI_GetObjectivesTop
 */
 void UI_GetHighResolutionScale(vec2_t scale)
 {
-    if (uid.bHighResScaling) {
-        scale[0] = uid.scaleRes[0];
-        scale[1] = uid.scaleRes[1];
-    } else {
-        scale[0] = scale[1] = 1.0;
-    }
+    float factor = Com_Clamp(.5f, 2.0f, Cvar_VariableValue("ac_hud_scale"));
+    scale[0] = scale[1] = uid.scaleRes[1] * factor;
 }
 
 /*
@@ -1820,6 +1815,17 @@ Updates the UI.
 */
 void UI_Update(void)
 {
+    bool layoutChanged = false;
+    const char *layoutCvars[] = {"ac_ui_auto", "ac_hud_scale", "ac_hud_safe", "ui_compass_scale"};
+    for (const char *name : layoutCvars) {
+        cvar_t *var = Cvar_FindVar(name);
+        if (var && var->modified) {
+            var->modified = qfalse;
+            layoutChanged = true;
+        }
+    }
+    if (layoutChanged) UI_ResolutionChange();
+
     Menu    *currentMenu;
     UIRect2D frame;
 
@@ -2603,6 +2609,7 @@ UI_PushMenu
 */
 void UI_PushMenu(const char *name)
 {
+    if((!Q_stricmp(name,"loadsave") || !Q_stricmp(name,"loadgame") || !Q_stricmp(name,"savegame")) && AC_ScoreSaveBlocked(qtrue))return;
     Menu    *menu  = menuManager.CurrentMenu();
     qboolean bDiff = qfalse;
 
@@ -2632,6 +2639,7 @@ UI_ForceMenu
 */
 void UI_ForceMenu(const char *name)
 {
+    if((!Q_stricmp(name,"loadsave") || !Q_stricmp(name,"loadgame") || !Q_stricmp(name,"savegame")) && AC_ScoreSaveBlocked(qtrue))return;
     Menu    *menu  = menuManager.CurrentMenu();
     qboolean bDiff = qfalse;
 
@@ -3188,154 +3196,7 @@ UI_StartDMMap_f
 */
 void UI_StartDMMap_f(void)
 {
-    int         iDedicated;
-    int         iMaxClients;
-    int         iUseGameSpy;
-    int         iGameType = GT_FFA;
-    int         iFragLimit;
-    int         iTimeLimit;
-    int         iTeamDamage;
-    int         iInactiveSpectate;
-    int         iInactiveKick;
-    const char *pszTemp;
-    const char *pszGameTypeString = "Free-For-All";
-    const char *pszMapName;
-    const char *pszMapListCvar = "sv_maplist";
-    const char *pszMapListString;
-    char        szHostName[32];
-
-    if (Cmd_Argc() > 1) {
-        iGameType = atoi(Cmd_Argv(1));
-        if (Cmd_Argc() > 2) {
-            pszGameTypeString = Cmd_Argv(2);
-
-            if (Cmd_Argc() > 3) {
-                pszMapListCvar = Cmd_Argv(3);
-            }
-        }
-    }
-
-    pszMapName = CvarGetForUI("ui_dmmap", "");
-
-    if (!*pszMapName) {
-        return;
-    }
-
-    iDedicated = atoi(CvarGetForUI("ui_dedicated", "0"));
-
-    if (iDedicated < 0) {
-        iDedicated = 0;
-    } else if (iDedicated > 1) {
-        iDedicated = 1;
-    }
-
-    Cvar_SetValue("ui_dedicated", iDedicated);
-
-    iMaxClients = atoi(CvarGetForUI("ui_maxclients", "0"));
-
-    if (iMaxClients < 1) {
-        iMaxClients = 1;
-    } else if (iMaxClients > MAX_CLIENTS) {
-        iMaxClients = MAX_CLIENTS;
-    }
-
-    Cvar_SetValue("ui_maxclients", iMaxClients);
-
-    iUseGameSpy = atoi(CvarGetForUI("ui_gamespy", "0"));
-
-    if (iUseGameSpy < 0) {
-        iUseGameSpy = 0;
-    } else if (iUseGameSpy > 1) {
-        iUseGameSpy = 1;
-    }
-
-    Cvar_SetValue("ui_gamespy", iUseGameSpy);
-
-    iFragLimit = atoi(CvarGetForUI("ui_fraglimit", "0"));
-
-    if (iFragLimit < 0) {
-        iFragLimit = 0;
-    }
-
-    Cvar_SetValue("ui_fraglimit", iFragLimit);
-
-    iTimeLimit = atoi(CvarGetForUI("ui_timelimit", "0"));
-
-    if (iTimeLimit < 0) {
-        iTimeLimit = 0;
-    }
-
-    Cvar_SetValue("ui_timelimit", iTimeLimit);
-
-    iTeamDamage = atoi(CvarGetForUI("ui_teamdamage", "0"));
-
-    if (iTeamDamage < 0) {
-        iTeamDamage = 0;
-    } else if (iTeamDamage > 1) {
-        iTeamDamage = 1;
-    }
-
-    Cvar_SetValue("ui_teamdamage", iTeamDamage);
-
-    iInactiveSpectate = atoi(CvarGetForUI("ui_inactivespectate", "0"));
-
-    if (iInactiveSpectate < 0) {
-        iInactiveSpectate = 0;
-    }
-
-    Cvar_SetValue("ui_inactivespectate", iInactiveSpectate);
-
-    iInactiveKick = atoi(CvarGetForUI("ui_inactivekick", "0"));
-
-    if (iInactiveKick < 0) {
-        iInactiveKick = 0;
-    }
-
-    Cvar_SetValue("ui_inactivekick", iInactiveKick);
-
-    pszMapListString = CvarGetForUI(pszMapListCvar, "");
-
-    pszTemp = CvarGetForUI("ui_hostname", "Nameless Battle");
-    Q_strncpyz(szHostName, pszTemp, sizeof(szHostName));
-
-    for (int i = 0; i < sizeof(szHostName); i++) {
-        if (szHostName[i] == ';' || szHostName[i] == '"' || szHostName[i] == '\\') {
-            szHostName[i] = '_';
-        }
-    }
-
-    Cvar_Set("ui_hostname", szHostName);
-
-    Cbuf_AddText(
-        va("set dedicated %i;"
-           "set sv_maxclients %i;"
-           "set sv_gamespy %i;"
-           "set g_gametype %i;"
-           "set g_gametypestring \"%s\";"
-           "set fraglimit %i;"
-           "set timelimit %i;"
-           "set g_teamdamage %i;"
-           "set g_inactivespectate %i;"
-           "set g_inactivekick %i;"
-           "set sv_maplist \"%s\";"
-           "set sv_hostname \"%s\";"
-           "set cheats 0;"
-           "wait;"
-           "map \"%s\"\n",
-           iDedicated,
-           iMaxClients,
-           iUseGameSpy,
-           iGameType,
-           pszGameTypeString,
-           iFragLimit,
-           iTimeLimit,
-           iTeamDamage,
-           iInactiveSpectate,
-           iInactiveKick,
-           pszMapListString,
-           szHostName,
-           pszMapName)
-    );
+    Com_Printf("Allied Campaign is single-player only.\n");
 }
 
 /*
@@ -3552,13 +3413,18 @@ UI_LoadMenu
 void UI_LoadMenu(const char *name)
 {
     char buffer[256];
+    char menuName[MAX_QPATH];
+    Q_strncpyz(menuName, COM_SkipPath(name), sizeof(menuName));
+    COM_StripExtension(menuName, menuName, sizeof(menuName));
+    if (menuManager.FindMenu(menuName)) return;
 
     Com_sprintf(buffer, sizeof(buffer), "ui/%s", name);
     COM_StripExtension(buffer, buffer, sizeof(buffer));
     Q_strcat(buffer, 256, ".urc");
 
     new UILayout(buffer);
-    uWinMan.CreateMenus();
+    // Lazy loading must not delete Menu objects still referenced by HUD caches.
+    uWinMan.CreateMenus(true);
     UI_FocusMenuIfExists();
 }
 
@@ -3567,6 +3433,54 @@ void UI_LoadMenu(const char *name)
 UI_LoadMenu_f
 ====================
 */
+static void UI_CampaignOptions_f(void)
+{
+    if (!menuManager.FindMenu("ac_scaling")) UI_LoadMenu("ac_scaling");
+    Cvar_Get("ac_blood_mist", "1", CVAR_ARCHIVE);
+    Cvar_Get("ac_world_blood", "1", CVAR_ARCHIVE);
+    Cvar_Get("ac_body_wounds", "1", CVAR_ARCHIVE);
+    Cvar_Get("ac_corpse_effects", "1", CVAR_ARCHIVE);
+    UI_PushMenu("ac_scaling");
+}
+
+#include "ac_campaign_ui.h"
+#include "ac_loadout_ui.h"
+#include "ac_saves_ui.h"
+
+static void UI_AlliedCampaign_f(void)
+{
+    AC_ShowOperations();
+}
+
+static void UI_AlliedSaves_f(void)
+{
+    AC_ShowSavedGames();
+}
+
+static void UI_CampaignReport_f(void)
+{
+    Menu *current = menuManager.CurrentMenu();
+    Com_Printf("AC_UI_CURRENT %s\n", current ? current->m_name.c_str() : "none");
+    Com_Printf("AC_UI_MUSIC %s offset=%u\n", S_GetMusicFilename(), S_GetMusicOffset());
+    const char *name = Cmd_Argc() > 1 ? Cmd_Argv(1) : "hud_compass";
+    Menu *menu = menuManager.FindMenu(name);
+    Com_Printf("AC_UI drawable=%dx%d base=%.4f menu=%.4f hud=%.4f safe=%.4f\n",
+        uid.vidWidth, uid.vidHeight, uid.scaleRes[1], Cvar_VariableValue("ac_menu_scale"),
+        Cvar_VariableValue("ac_hud_scale"), Cvar_VariableValue("ac_hud_safe"));
+    if (!menu) { Com_Printf("AC_UI missing %s\n", name); return; }
+    UIWidget *root = menu->GetContainerWidget();
+    UIRect2D f = root->getFrame();
+    Com_Printf("AC_UI_ROOT %s %.3f %.3f %.3f %.3f\n", name, f.pos.x, f.pos.y, f.size.width, f.size.height);
+    for (UIWidget *child = root->getFirstChild(); child; child = root->getNextChild(child)) {
+        if (Q_stristr(child->getCommand().c_str(), "multiplayer"))
+            Com_Printf("AC_UI_MP_ENTRY enabled=%d\n", child->isEnabled());
+        UIRect2D c = child->getFrame();
+        Com_Printf("AC_UI_CHILD %s %.3f %.3f %.3f %.3f scale=%.4f,%.4f\n",
+            child->getName(), c.pos.x, c.pos.y, c.size.width, c.size.height,
+            child->getVirtualScale()[0], child->getVirtualScale()[1]);
+    }
+}
+
 void UI_LoadMenu_f(void)
 {
     UI_LoadMenu(Cmd_Argv(1));
@@ -3881,30 +3795,23 @@ void UI_ResolutionChange(void)
     UIRect2D frame;
 
     if (com_target_game->integer >= TG_MOHTA) {
-        ui_compass_scale = Cvar_Get("ui_compass_scale", "0.75", CVAR_ARCHIVE | CVAR_LATCH);
+        ui_compass_scale = Cvar_Get("ui_compass_scale", "0.75", CVAR_ARCHIVE);
     } else {
         // Older version doesn't have an adjustable compass, so assume 0.5 by default
-        ui_compass_scale = Cvar_Get("ui_compass_scale", "0.55", CVAR_ARCHIVE | CVAR_LATCH);
+        ui_compass_scale = Cvar_Get("ui_compass_scale", "0.55", CVAR_ARCHIVE);
     }
 
+    Cvar_Get("ac_ui_auto", "1", CVAR_ARCHIVE);
+    Cvar_Get("ac_menu_scale", "1", CVAR_ARCHIVE);
+    Cvar_Get("ac_hud_scale", "1", CVAR_ARCHIVE);
+    Cvar_Get("ac_hud_safe", "1", CVAR_ARCHIVE);
     CL_FillUIImports();
     CL_FillUIDef();
 
-    // Added in OPM
-    //  Scaling for high resolutions
-    if (uid.vidWidth > maxWidthRes && uid.vidHeight > maxHeightRes) {
-        const float vidRatio = (float)uid.vidWidth / (float)uid.vidHeight;
-
-        uid.scaleRes[0] = (float)uid.vidWidth / (maxHeightRes * vidRatio);
-        uid.scaleRes[1] = (float)uid.vidHeight / maxHeightRes;
-        //uid.scaleRes[0] = (float)uid.vidWidth / maxWidthRes;
-        //uid.scaleRes[1] = (float)uid.vidHeight / maxHeightRes;
-        uid.bHighResScaling = qtrue;
-    } else {
-        uid.scaleRes[0]     = 1;
-        uid.scaleRes[1]     = 1;
-        uid.bHighResScaling = qfalse;
-    }
+    const float base = Cvar_VariableValue("ac_ui_auto") != 0
+        ? fminf(uid.vidWidth / 1280.0f, uid.vidHeight / 960.0f) : 1.0f;
+    uid.scaleRes[0] = uid.scaleRes[1] = fmaxf(.25f, base);
+    uid.bHighResScaling = qtrue;
 
     if (!uie.ResolutionChange) {
         return;
@@ -5315,6 +5222,21 @@ void CL_InitializeUI(void)
     Cvar_Set("game_version", va("v%s", com_target_shortversion->string));
 
     // Add all commands
+    Cmd_AddCommand("ac_ui_options", UI_CampaignOptions_f);
+    Cmd_AddCommand("ac_main_menu", AC_MainMenu_f);
+    Cmd_AddCommand("ac_loadout", AC_Loadout_f);
+    Cmd_AddCommand("ac_campaign", UI_AlliedCampaign_f);
+    Cmd_AddCommand("ac_level_list", AC_LevelList_f);
+    Cmd_AddCommand("ac_score_results", AC_ScoreResults_f);
+    Cmd_AddCommand("ac_score_locked", AC_ScoreLocked_f);
+    Cmd_AddCommand("ac_score_failed", AC_ScoreFailed_f);
+    Cmd_AddCommand("ac_score_failure_menu", AC_ScoreFailureMenu_f);
+    Cmd_AddCommand("ac_briefing_play", AC_BriefingPlay_f);
+    Cmd_AddCommand("ac_briefing", AC_BriefingMenu_f);
+    Cmd_AddCommand("ac_reset_progress", AC_ResetProgressMenu_f);
+    Cmd_AddCommand("ac_saves", UI_AlliedSaves_f);
+    Cmd_AddCommand("ac_saves_load", AC_LoadSelectedSave_f);
+    Cmd_AddCommand("ac_ui_report", UI_CampaignReport_f);
     Cmd_AddCommand("pushmenu", UI_PushMenu_f);
     Cmd_AddCommand("pushmenu_sp", UI_PushMenuSP_f);
     Cmd_AddCommand("pushmenu_dm", UI_PushMenuMP_f);

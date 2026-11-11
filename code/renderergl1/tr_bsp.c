@@ -2249,6 +2249,7 @@ void RE_LoadWorldMap( const char *name ) {
     vec3_t			vDefSundir;
     gamelump_t		lump, lump2, lump3;
 
+    R_ACTemporalReset();
     vDefSundir[0] = 0.45f;
     vDefSundir[1] = 0.3f;
     vDefSundir[2] = 0.9f;
@@ -2445,6 +2446,10 @@ void RE_LoadWorldMap( const char *name ) {
     ri.UI_LoadResource("*115");
     R_VisDebugLoad(name);
     ri.UI_LoadResource("*116");
+
+    // s_worldData has a stable address across map loads. Invalidate spatial
+    // weather data explicitly after geometry/static models are ready.
+    R_ACLightningWorldChanged();
 }
 
 /*
@@ -2505,4 +2510,5 @@ freed world data
 void R_ClearWorld(void) {
     tr.world = NULL;
     tr.worldMapLoaded = qfalse;
+    R_ACLightningWorldChanged();
 }

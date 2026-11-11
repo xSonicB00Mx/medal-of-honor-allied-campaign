@@ -1,0 +1,227 @@
+{
+  "candidate": "CP00-r4",
+  "game": "BT",
+  "map": "e2l2",
+  "scope": "Controlled spawned actor: AI off while alive for repeatable aim, AI on at genuine death to process corpse. Normal player attack input before/after death; not natural mission progression.",
+  "exit_code": 0,
+  "completed": true,
+  "fixture_ready": true,
+  "script_errors": [],
+  "records": [
+    "CP00_PLACEMENT=1",
+    "CP00_FIXTURE_READY origin=( 6140.761 -5600.980 2505.142 ) target=( 6140.761 -5760.980 2491.420 )",
+    "CP00_SNAPSHOT_BEGIN alive",
+    "CP00_DEATHS 0",
+    "CP00_SUBJECT health=100.000 origin=( 6140.761 -5760.980 2491.420 ) mins=( -15.000 -15.000 0.000 ) maxs=( 15.000 15.000 94.000 ) anim=",
+    "CP00_TRACE start=( 6040.761 -5760.980 2531.420 ) end=( 6240.761 -5760.980 2531.420 ) hit=( 6125.636 -5760.980 2531.420 )",
+    "CP00_LOW_TRACE start=( 6040.761 -5760.980 2497.420 ) end=( 6240.761 -5760.980 2497.420 ) hit=( 6040.761 -5760.980 2497.420 )",
+    "CP00_ENTITY id=0 class=Player model=models/player/_american_army_82nd.tik health=750.000 origin=( 6140.761 -5600.980 2505.142 )",
+    "CP00_ENTITY id=210 class=Actor model=models/human/sc_al_us_pilot_cmd.tik health=100.000 origin=( 6286.934 -5679.086 2476.232 )",
+    "CP00_ENTITY id=323 class=Weapon model=models/weapons/thompsonsmg.tik health=0.000 origin=( 6275.863 -5666.847 2529.761 )",
+    "CP00_ENTITY id=327 class=Weapon model=models/weapons/it_w_carcano.tik health=0.000 origin=( 6128.430 -5623.799 2580.058 )",
+    "CP00_ENTITY id=401 class=Actor model=models/human/german_wehrmact_soldier.tik health=100.000 origin=( 6140.761 -5760.980 2491.420 )",
+    "CP00_ENTITY id=407 class=Weapon model=models/weapons/kar98.tik health=0.000 origin=( 6141.093 -5775.063 2536.401 )",
+    "CP00_SNAPSHOT_END alive",
+    "CP00_STATS_BEGIN_alive",
+    "CP00_STATS_END_alive",
+    "CP00_DEATH_EVENT count=1",
+    "CP00_SNAPSHOT_BEGIN after_shots",
+    "CP00_DEATHS 1",
+    "CP00_SUBJECT health=0.000 origin=( 6140.761 -5799.787 2483.204 ) mins=( -15.000 -15.000 0.000 ) maxs=( 15.000 15.000 42.000 ) anim=",
+    "CP00_TRACE start=( 6040.761 -5799.787 2523.204 ) end=( 6240.761 -5799.787 2523.204 ) hit=( 6240.761 -5799.787 2523.204 )",
+    "CP00_LOW_TRACE start=( 6040.761 -5799.787 2489.204 ) end=( 6240.761 -5799.787 2489.204 ) hit=( 6040.761 -5799.787 2489.204 )",
+    "CP00_ENTITY id=0 class=Player model=models/player/_american_army_82nd.tik health=750.000 origin=( 6140.761 -5600.980 2505.142 )",
+    "CP00_ENTITY id=210 class=Actor model=models/human/sc_al_us_pilot_cmd.tik health=100.000 origin=( 6287.691 -5679.079 2476.184 )",
+    "CP00_ENTITY id=323 class=Weapon model=models/weapons/thompsonsmg.tik health=0.000 origin=( 6277.628 -5666.791 2530.854 )",
+    "CP00_ENTITY id=327 class=Weapon model=models/weapons/it_w_carcano.tik health=0.000 origin=( 6138.100 -5628.161 2563.779 )",
+    "CP00_ENTITY id=401 class=Actor model=models/human/german_wehrmact_soldier.tik health=0.000 origin=( 6140.761 -5799.787 2483.204 )",
+    "CP00_ENTITY id=408 class=Weapon model=models/weapons/kar98.tik health=0.000 origin=( 6133.462 -5625.177 2574.092 )",
+    "CP00_SNAPSHOT_END after_shots",
+    "CP00_STATS_BEGIN_after_shots",
+    "CP00_STATS_END_after_shots",
+    "CP00_SNAPSHOT_BEGIN after_corpse_shots",
+    "CP00_DEATHS 1",
+    "CP00_SUBJECT health=0.000 origin=( 6140.761 -5799.787 2483.204 ) mins=( -15.000 -15.000 0.000 ) maxs=( 15.000 15.000 8.000 ) anim=",
+    "CP00_TRACE start=( 6040.761 -5799.787 2523.204 ) end=( 6240.761 -5799.787 2523.204 ) hit=( 6240.761 -5799.787 2523.204 )",
+    "CP00_LOW_TRACE start=( 6040.761 -5799.787 2489.204 ) end=( 6240.761 -5799.787 2489.204 ) hit=( 6040.761 -5799.787 2489.204 )",
+    "CP00_ENTITY id=0 class=Player model=models/player/_american_army_82nd.tik health=750.000 origin=( 6140.761 -5600.980 2505.142 )",
+    "CP00_ENTITY id=210 class=Actor model=models/human/sc_al_us_pilot_cmd.tik health=100.000 origin=( 6286.139 -5679.312 2476.279 )",
+    "CP00_ENTITY id=323 class=Weapon model=models/weapons/thompsonsmg.tik health=0.000 origin=( 6274.979 -5667.195 2529.753 )",
+    "CP00_ENTITY id=327 class=Weapon model=models/weapons/it_w_carcano.tik health=0.000 origin=( 6138.100 -5628.161 2563.779 )",
+    "CP00_ENTITY id=401 class=Actor model=models/human/german_wehrmact_soldier.tik health=0.000 origin=( 6140.761 -5799.787 2483.204 )",
+    "CP00_ENTITY id=408 class=Weapon model=models/weapons/kar98.tik health=0.000 origin=( 6130.074 -5612.309 2566.159 )",
+    "CP00_SNAPSHOT_END after_corpse_shots",
+    "CP00_STATS_BEGIN_after_corpse_shots",
+    "CP00_STATS_END_after_corpse_shots",
+    "CP00_SNAPSHOT_BEGIN after_delay",
+    "CP00_DEATHS 1",
+    "CP00_SUBJECT health=0.000 origin=( 6140.761 -5799.787 2483.204 ) mins=( -15.000 -15.000 0.000 ) maxs=( 15.000 15.000 8.000 ) anim=",
+    "CP00_TRACE start=( 6040.761 -5799.787 2523.204 ) end=( 6240.761 -5799.787 2523.204 ) hit=( 6240.761 -5799.787 2523.204 )",
+    "CP00_LOW_TRACE start=( 6040.761 -5799.787 2489.204 ) end=( 6240.761 -5799.787 2489.204 ) hit=( 6040.761 -5799.787 2489.204 )",
+    "CP00_ENTITY id=0 class=Player model=models/player/_american_army_82nd.tik health=750.000 origin=( 6140.761 -5600.980 2505.142 )",
+    "CP00_ENTITY id=210 class=Actor model=models/human/sc_al_us_pilot_cmd.tik health=100.000 origin=( 6284.456 -5680.370 2476.365 )",
+    "CP00_ENTITY id=323 class=Weapon model=models/weapons/thompsonsmg.tik health=0.000 origin=( 6274.718 -5665.082 2530.681 )",
+    "CP00_ENTITY id=327 class=Weapon model=models/weapons/it_w_carcano.tik health=0.000 origin=( 6138.100 -5628.161 2563.779 )",
+    "CP00_ENTITY id=401 class=Actor model=models/human/german_wehrmact_soldier.tik health=0.000 origin=( 6140.761 -5799.787 2483.204 )",
+    "CP00_ENTITY id=408 class=Weapon model=models/weapons/kar98.tik health=0.000 origin=( 6126.136 -5612.285 2561.076 )",
+    "CP00_SNAPSHOT_END after_delay",
+    "CP00_STATS_BEGIN_after_delay",
+    "CP00_STATS_END_after_delay",
+    "CP00_BASELINE_DONE"
+  ],
+  "visual_check": "Reviewed after-death and after-corpse-fire screenshots: corpse visible lying on its back, weapon visible.",
+  "reference_save": [
+    {
+      "path": "profiles-local/CP00-r4/r4-bt-foot-e2l2/maintt/save/omconfig/cp00_foot_ready.sav",
+      "sha256": "629d84718232a5fd1ce5476780baa9af18a51511cfe5867b6454f8aac0c4a70b"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-bt-foot-e2l2/maintt/save/omconfig/cp00_foot_ready.ssv",
+      "sha256": "0c42260d6ea85a7a435e3edee4a163e8327165dca51b9cda63ebd938c4afa315"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-bt-foot-e2l2/maintt/save/omconfig/cp00_foot_ready.tga",
+      "sha256": "3fef42dc39dd25196a88649cc3f4872b90926412360879bedcdea6614a98b46c"
+    }
+  ],
+  "readiness_report": {
+    "path": "checkpoints/CP00/r4-bt-foot-e2l2.json",
+    "sha256": "0afeff928695dffee6c693fa8a96f29a8b00d32c6e6079e6d1a3ff7be5019437"
+  },
+  "weapon": "models/weapons/kar98.tik",
+  "linger_seconds": 3,
+  "death_counts": [
+    "0",
+    "1",
+    "1",
+    "1"
+  ],
+  "valid_death_sequence": true,
+  "statistics": {
+    "alive": {
+      "ui_NumShotsFired": "1",
+      "ui_NumHits": "0",
+      "ui_NumEnemysKilled": "0",
+      "ui_NumComplete": "0"
+    },
+    "after_shots": {
+      "ui_NumShotsFired": "4",
+      "ui_NumHits": "2",
+      "ui_NumEnemysKilled": "1",
+      "ui_NumComplete": "0"
+    },
+    "after_corpse_shots": {
+      "ui_NumShotsFired": "6",
+      "ui_NumHits": "2",
+      "ui_NumEnemysKilled": "1",
+      "ui_NumComplete": "0"
+    },
+    "after_delay": {
+      "ui_NumShotsFired": "6",
+      "ui_NumHits": "2",
+      "ui_NumEnemysKilled": "1",
+      "ui_NumComplete": "0"
+    }
+  },
+  "engine_sha256": "5f1eee385de3b26750b45b7aa1e98566801b716566b97af11fa5586cb5c21c91",
+  "engine_source_commit": "af7bb7c6e706fcc64e5933a22457333274f3de22",
+  "wcr_package_fingerprint": "3b6b38b5b04ba320a526196946c44394c4519e4197dc8d3d05788e186501cfcc",
+  "evidence": [
+    {
+      "path": "profiles-local/CP00-r4/r4-foot-matrix-kar98-BT/maintt/baseline.cfg",
+      "sha256": "c8bb87b9aa3c599ea48d465f54d2266e5d9b96446e11c7b847ad9b8634d4728c"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-foot-matrix-kar98-BT/maintt/configs/omconfig.cfg",
+      "sha256": "745cbe64b58d5a021e639dcc8e71d1c1a89d643c0b0997a81b214b9afe920f3e"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-foot-matrix-kar98-BT/maintt/cp00/after_corpse_shots.scr",
+      "sha256": "43a3b76b1aed24ca327569c9d552756eb6df9551fcf4968d49ed5838f5f9c12a"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-foot-matrix-kar98-BT/maintt/cp00/after_delay.scr",
+      "sha256": "d156491173a4f3bbde99d540caf0d6d0141ffc87cda9c26b188275a032dc9f4a"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-foot-matrix-kar98-BT/maintt/cp00/after_shots.scr",
+      "sha256": "7964e396e3ee37960a22040130844b8fa2ee6a98a02a787b7577cbef146165c3"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-foot-matrix-kar98-BT/maintt/cp00/aim_corpse.scr",
+      "sha256": "2f9f99738a6b084a30cc1cb6cc420b1289ec300fc561119bc30ce34826c67a13"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-foot-matrix-kar98-BT/maintt/cp00/baseline.scr",
+      "sha256": "912c36adbe66f530f9dffb0d0db1ca413fead427e7d63b3a8d65b610ae9ee9c2"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-foot-matrix-kar98-BT/maintt/cp00/combat.cfg",
+      "sha256": "e1deb45028a07e26d9ef9fe41daba6dc80635679a5b97fcb568b12abdda6669d"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-foot-matrix-kar98-BT/maintt/qconsole.log",
+      "sha256": "6adb0408795c6933edc2ab1a3e5fc4f258d566f2272eb2df66405f107f213600"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-foot-matrix-kar98-BT/maintt/save/omconfig/cp00_after_combat.sav",
+      "sha256": "a5c1df5b544be2defdfda289133149e151f1284548bd2a4b3da4da0ffca16cd0"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-foot-matrix-kar98-BT/maintt/save/omconfig/cp00_after_combat.ssv",
+      "sha256": "dacf5d117aadace791ce8321c249dbfda7c59cac7d0d97bfa2f764e8111cb99f"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-foot-matrix-kar98-BT/maintt/save/omconfig/cp00_after_combat.tga",
+      "sha256": "38e9403e9a53ce585389d7bc71e0f23c765ef9e07c7d8a57f5fd3e6a7e859848"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-foot-matrix-kar98-BT/maintt/save/omconfig/cp00_before_combat.sav",
+      "sha256": "8349bdeccf2a1dbdd9f628a5bc9d27d444982b06e21064770dc0ea2d657e8e0f"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-foot-matrix-kar98-BT/maintt/save/omconfig/cp00_before_combat.ssv",
+      "sha256": "369026fb476fef6bc9d26bd90f4efc3c4563ad8a9cfbb629741a024ba1e9451e"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-foot-matrix-kar98-BT/maintt/save/omconfig/cp00_before_combat.tga",
+      "sha256": "638896b03b206f41c23b9172cab6f5a90feb49a1d065f374b806632cbb3ca359"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-foot-matrix-kar98-BT/maintt/save/omconfig/cp00_reference.sav",
+      "sha256": "629d84718232a5fd1ce5476780baa9af18a51511cfe5867b6454f8aac0c4a70b"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-foot-matrix-kar98-BT/maintt/save/omconfig/cp00_reference.ssv",
+      "sha256": "0c42260d6ea85a7a435e3edee4a163e8327165dca51b9cda63ebd938c4afa315"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-foot-matrix-kar98-BT/maintt/save/omconfig/cp00_reference.tga",
+      "sha256": "3fef42dc39dd25196a88649cc3f4872b90926412360879bedcdea6614a98b46c"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-foot-matrix-kar98-BT/maintt/screenshots/shot0000.tga",
+      "sha256": "0aa743abdd95d8f2c0d799bac8b6465033c4349a2eba88017396599b50c53115"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-foot-matrix-kar98-BT/maintt/screenshots/shot0001.tga",
+      "sha256": "71c899a31a616d0e6388cde2f12f6d6f462ede7ce1ffd7eca87f67c2fab03bb9"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-foot-matrix-kar98-BT/maintt/screenshots/shot0002.tga",
+      "sha256": "56048d9e5af44c3884fec3e62fee896ccd5d51d8cf88f33290f408633774c694"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-foot-matrix-kar98-BT/maintt/screenshots/shot0003.tga",
+      "sha256": "a1a8926b67f4cddb5b5dd13bbcc18450ca18c0f523ce6a92952351b90eb20433"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-foot-matrix-kar98-BT/qkey",
+      "sha256": "6cae003e1f08d079bf57d3f87585b72b730c79c703973516f39da11841da30d9"
+    }
+  ],
+  "command_warnings": [
+    "Unknown command \"+reload\""
+  ],
+  "reload_note": "The optional +reload command was unknown. Actual corpse-directed shots are confirmed by increasing shot counters. Not a manual-reload test; final tool uses the normal reload command."
+}

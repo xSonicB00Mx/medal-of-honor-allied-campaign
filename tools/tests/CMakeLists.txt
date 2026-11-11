@@ -1,0 +1,5 @@
+cmake_minimum_required(VERSION 3.20)
+project(ACCrosshairTests LANGUAGES CXX)
+add_executable(dynamic_crosshair_math dynamic_crosshair_math.cpp)
+enable_testing()
+add_test(NAME dynamic_crosshair_math COMMAND dynamic_crosshair_math)

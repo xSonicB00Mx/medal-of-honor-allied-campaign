@@ -1,0 +1,65 @@
+{
+  "candidate": "CP00-r4",
+  "game": "BT",
+  "map": "e1l2",
+  "completed": false,
+  "active_weapon": true,
+  "timed_out": false,
+  "exit_code": 1,
+  "scope": "Read-only wait for a normal active player weapon after vehicle intro; no skip or completion flags.",
+  "markers": [
+    "CP00_FOOT_ENTRY_ACTIVE_WEAPON=models/weapons/thompsonsmg.tik"
+  ],
+  "evidence": [
+    {
+      "path": "profiles-local/CP00-r4/r4-bt-foot-entry/maintt/configs/omconfig.cfg",
+      "sha256": "ace5639f6d2cff610ead1669098d8fc0907b8a402daf8208f11c3c5fdec75441"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-bt-foot-entry/maintt/cp00/ready.scr",
+      "sha256": "4192f51765753f6ad8a63256b0fc2268353701c26d0bf4f86156c8cb3dbcdbf1"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-bt-foot-entry/maintt/entry.cfg",
+      "sha256": "4bf7087d09421b46f382b48d401c19698436f5ef4d01db02e08e30f8260bcfb7"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-bt-foot-entry/maintt/OpenMoHAA.pid",
+      "sha256": "a07ef0ad2c09ecf63e72ed00d4ee78280bd20b61d5c4afb9dca8791356878461"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-bt-foot-entry/maintt/qconsole.log",
+      "sha256": "f7b6a72891ceb0bff3fabf77f08990f18aa82e41483963500884c8492be9786d"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-bt-foot-entry/maintt/save/omconfig/e1l20000.sav",
+      "sha256": "3eb686ccc93358e95db8010727e79ae948b95aa85f9de2604779232f9dcd4579"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-bt-foot-entry/maintt/save/omconfig/e1l20000.ssv",
+      "sha256": "5209bff27f59d4426e1b7bfab14a371f57949c881be2233af090748aeeb7541f"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-bt-foot-entry/maintt/save/omconfig/e1l20000.tga",
+      "sha256": "6f2a19864b90659a54f5ce6bd2a668592aa3e3066a328b31aa35d97f68e2ffef"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-bt-foot-entry/maintt/save/omconfig/e1l20001.sav",
+      "sha256": "a5f531b29d7ba48fbe75f2be914089cb727bf9416270a46778a657db5ed88d48"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-bt-foot-entry/maintt/save/omconfig/e1l20001.ssv",
+      "sha256": "3d018a89da6ce7162e6d8ef2efd630ea3b71f44132fb31916f55e0783a4c8627"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-bt-foot-entry/maintt/save/omconfig/e1l20001.tga",
+      "sha256": "420875f01cb94f49f18ff920947d53bc278faeed5daa09c745233ed92348607b"
+    },
+    {
+      "path": "profiles-local/CP00-r4/r4-bt-foot-entry/qkey",
+      "sha256": "6f611593403bcd8274e6d31f6d7bda035d0ce0368a1b56907fbecb4151bb1014"
+    }
+  ],
+  "assessment": "INCOMPLETE: active weapon and mine-detector acquisition logged, but no requested save, screenshot or completion marker; exit 1. Cause of incomplete probe not established. Not a valid combat reference or mission acceptance.",
+  "timed_out_field_scope": "Only the in-game observer timeout marker, not a determination of host process termination cause."
+}

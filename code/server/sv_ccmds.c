@@ -181,6 +181,12 @@ static void SV_Map_f( void ) {
 
 	Com_BackslashToSlash( mapname );
 
+	if (!Q_stricmpn(mapname, "dm/", 3) || !Q_stricmpn(mapname, "obj/", 4)
+		|| !Q_stricmpn(mapname, "lib/", 4) || !Q_stricmpn(mapname, "tow/", 4)) {
+		Com_Printf("Allied Campaign is single-player only.\n");
+		return;
+	}
+
 	spawnpos = strchr( mapname, '$' );
 	if( spawnpos )
 	{
@@ -265,6 +271,7 @@ static void SV_Map_f( void ) {
 	*/
 
 	// start up the map
+	if (AC_CampaignMapCommand(map)) return;
 	SV_SpawnServer( mapname, qfalse, qfalse, qfalse );
 
 	if( g_gametype->integer == GT_SINGLE_PLAYER ) {
@@ -289,6 +296,7 @@ static void SV_GameMap_f( void ) {
 	}
 
 	map = Cmd_Argv( 1 );
+	if (AC_CampaignTransition(svs.mapName, map)) return;
 	Com_DPrintf( "SV_GameMap(%s)\n", map );
 
 	Q_strncpyz( svs.gameName, "current", sizeof( svs.gameName ) );
@@ -317,6 +325,7 @@ This allows fair starts with variable load times.
 ================
 */
 static void SV_MapRestart_f( void ) {
+    if(AC_ScoreSaveBlocked(qfalse)){Cbuf_AddText("ac_score_failed\n");return;}
 	if( com_frameTime == sv.serverId ) {
 		return;
 	}
@@ -1680,6 +1689,7 @@ SV_LoadLastGame_f
 */
 void SV_LoadLastGame_f( void )
 {
+    if(AC_ScoreSaveBlocked(qtrue))return;
 	Cbuf_AddText( va( "loadgame %s\n", Cvar_Get( "g_lastsave", "", 0 )->string ) );
 }
 
@@ -1967,9 +1977,10 @@ void SV_AddOperatorCommands(void) {
 	// Added in 2.30
     Cmd_AddCommand("reloadmap", SV_ReloadMap_f);
 
-	// Changed in 2.0
-	//  Set medium mode regardless of if the developer mode is set
-	SV_MediumMode_f();
+	// Campaign preferences survive a content-context restart.
+	if (Cvar_VariableIntegerValue("ac_campaign_mode") && Cvar_VariableIntegerValue("skill")==0) SV_EasyMode_f();
+	else if (Cvar_VariableIntegerValue("ac_campaign_mode") && Cvar_VariableIntegerValue("skill")==2) SV_HardMode_f();
+	else SV_MediumMode_f();
 }
 
 /*
@@ -2405,6 +2416,8 @@ qboolean SV_ArchiveServerFile(qboolean loading, qboolean autosave)
 SV_Loadgame_f
 ==================
 */
+#include "ac_save_metadata.h"
+
 void SV_Loadgame_f(void)
 {
 #ifndef DEDICATED
@@ -2412,6 +2425,7 @@ void SV_Loadgame_f(void)
 	const char *name;
 	const char *archive_name;
 	qboolean    bStartedGame;
+    if(AC_ScoreSaveBlocked(qtrue))return;
 
 	if (com_cl_running && com_cl_running->integer && clc.state != CA_DISCONNECTED && cg_gametype->integer
 		|| com_sv_running && com_sv_running->integer && g_gametype->integer != GT_SINGLE_PLAYER) {
@@ -2446,7 +2460,9 @@ void SV_Loadgame_f(void)
 	Com_Printf("Loading game...%s\n", name);
 	if (strstr(name, "..") || strchr(name, '/') || strchr(name, '\\')) {
 		Com_Printf("Bad savedir.\n");
+		return;
 	}
+	if (!AC_CheckSaveMetadata(name)) return;
 
 	Q_strncpyz(svs.gameName, name, sizeof(svs.gameName));
 	archive_name = Com_GetArchiveFileName(name, "sav");
@@ -2466,6 +2482,7 @@ void SV_Loadgame_f(void)
 	}
 
 	if (ge->LevelArchiveValid(archive_name) && SV_ArchiveServerFile(qtrue, qfalse)) {
+		AC_CampaignRestore(!strcmp(ac_loadedMap,svs.mapName)?ac_loadedOperation:-1,ac_loadedReplay,svs.mapName);
 		SV_SpawnServer(svs.mapName, qtrue, qfalse, qfalse);
 		svs.soundsNeedLoad = qtrue;
 	} else if (bStartedGame) {
@@ -2572,6 +2589,7 @@ SV_SaveGame
 */
 void SV_SaveGame(const char *gamename, qboolean autosave)
 {
+    if(AC_ScoreSaveBlocked(!autosave))return;
 #ifndef DEDICATED
 	char *ptr;
 	char  name[64];
@@ -2597,6 +2615,7 @@ void SV_SaveGame(const char *gamename, qboolean autosave)
 	}
 
 	Com_Printf("Saving to %s", name);
+    if(!AC_CampaignCanSave(name)) return;
 	if (autosave) {
 		Com_Printf(" (autosave)...\n");
 	} else {
@@ -2610,9 +2629,12 @@ void SV_SaveGame(const char *gamename, qboolean autosave)
 			Z_Free(cls.savedCgameState);
 			cls.savedCgameState = 0;
 		}
+		Q_strncpyz(svs.gameName, "current", sizeof(svs.gameName));
+		Com_Printf("Save failed; campaign resume point unchanged.\n");
+		return;
 	}
 
-	SV_ArchiveServerFile(qfalse, autosave);
+	if (SV_ArchiveServerFile(qfalse, autosave)) AC_WriteSaveMetadata(name);
 
 	Com_Printf("Done.\n");
 
@@ -2629,6 +2651,7 @@ static char savegame_name[64];
 
 void SV_Savegame_f(void)
 {
+    if(AC_ScoreSaveBlocked(qtrue))return;
 #ifndef DEDICATED
 	char *s;
 
@@ -2673,6 +2696,7 @@ void SV_CheckSaveGame(void)
 
 void SV_Autosavegame_f(void)
 {
+    if(AC_ScoreSaveBlocked(qfalse))return;
 #ifndef DEDICATED
 	SV_SaveGame(NULL, qtrue);
 #endif

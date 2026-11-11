@@ -1,0 +1,56 @@
+[
+  {
+    "game": "AA",
+    "path": "models/fx/bh_human_uniform_hard.tik",
+    "provider": "main/Pak0.pk3",
+    "sha256": "71bcfb3c4749fc889197babc842563027e6ad3868317d7f6f4f9c929885528c0"
+  },
+  {
+    "game": "AA",
+    "path": "models/fx/bh_human_uniform_lite.tik",
+    "provider": "main/Pak0.pk3",
+    "sha256": "0becbc1ece6a75fe35f82a3c7a91c54cccb43ed98b199f040af99ca9c8173899"
+  },
+  {
+    "game": "AA",
+    "path": "scripts/effects.shader",
+    "provider": "main/Pak0.pk3",
+    "sha256": "18a556a2bf501aff30d3b65d27c0ca12a805ace102e41de8397d278b281a4524"
+  },
+  {
+    "game": "SH",
+    "path": "models/fx/bh_human_uniform_hard.tik",
+    "provider": "main/Pak0.pk3",
+    "sha256": "71bcfb3c4749fc889197babc842563027e6ad3868317d7f6f4f9c929885528c0"
+  },
+  {
+    "game": "SH",
+    "path": "models/fx/bh_human_uniform_lite.tik",
+    "provider": "main/Pak0.pk3",
+    "sha256": "0becbc1ece6a75fe35f82a3c7a91c54cccb43ed98b199f040af99ca9c8173899"
+  },
+  {
+    "game": "SH",
+    "path": "scripts/effects.shader",
+    "provider": "mainta/pak1.pk3",
+    "sha256": "17e8a0f49515d7c5ad85007b80e6ccd4025e3eb1e709ee71ec63309aa0f6492a"
+  },
+  {
+    "game": "BT",
+    "path": "models/fx/bh_human_uniform_hard.tik",
+    "provider": "main/Pak0.pk3",
+    "sha256": "71bcfb3c4749fc889197babc842563027e6ad3868317d7f6f4f9c929885528c0"
+  },
+  {
+    "game": "BT",
+    "path": "models/fx/bh_human_uniform_lite.tik",
+    "provider": "main/Pak0.pk3",
+    "sha256": "0becbc1ece6a75fe35f82a3c7a91c54cccb43ed98b199f040af99ca9c8173899"
+  },
+  {
+    "game": "BT",
+    "path": "scripts/effects.shader",
+    "provider": "maintt/pak1.pk3",
+    "sha256": "15a7528e2085a04e9f05ff12a986b724514fd7ec9acab977098f6e6c06ddcbe5"
+  }
+]

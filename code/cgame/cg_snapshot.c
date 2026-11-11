@@ -254,10 +254,10 @@ static void CG_TransitionSnapshot(qboolean differentServer)
 
     if (differentServer) {
         cgi.CL_RestoreSavedCgameState();
-    } else {
-        cgi.CL_ClearSavedCgameState();
     }
 
+    // Pending save state belongs to the next server-count transition.
+    // Do not discard it while processing an older queued snapshot.
     // this allows the view model to still look normal when the player is on ground
     cg.snap->ps.walking = cg.snap->ps.groundEntityNum != ENTITYNUM_NONE;
 }
@@ -465,7 +465,7 @@ void CG_ProcessSnapshots(void)
             }
         }
 
-        differentServer = cg.snap->serverTime <= cgi.GetServerStartTime();
+        differentServer = ((cg.nextSnap->snapFlags ^ cg.snap->snapFlags) & SNAPFLAG_SERVERCOUNT) != 0;
 
         // if our time is < nextFrame's, we have a nice interpolating state
         if (cg.time >= cg.snap->serverTime && cg.time < cg.nextSnap->serverTime && !differentServer) {
