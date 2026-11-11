@@ -1,6 +1,12 @@
 # Embedded as a single PowerShell command in Update-Allied-Campaign.cmd.
 # No execution-policy changes, elevation, wildcard deletions or profile writes.
 $ErrorActionPreference = 'Stop';
+function Get-AcHash([string]$path) {
+    $stream = [IO.File]::OpenRead($path);
+    $sha = [Security.Cryptography.SHA256]::Create();
+    try { return [BitConverter]::ToString($sha.ComputeHash($stream)).Replace('-','').ToLowerInvariant(); }
+    finally { $stream.Dispose(); $sha.Dispose(); };
+};
 try {
     $root = [IO.Path]::GetFullPath($env:AC_RELEASE_ROOT).TrimEnd('\');
     $manifest = Get-Content -LiteralPath (Join-Path $root 'Allied-Campaign-manifest.json') -Raw | ConvertFrom-Json;
@@ -18,7 +24,7 @@ try {
         if (Test-Path -LiteralPath $path) {
             $item = Get-Item -LiteralPath $path;
             if ($item.PSIsContainer -or ($item.Attributes -band [IO.FileAttributes]::ReparsePoint)) { throw 'Invalid legacy package type.' };
-            if ((Get-FileHash -LiteralPath $path -Algorithm SHA256).Hash -ne $entry.sha256) { throw ('Modified legacy package: ' + $entry.path + '. Nothing was removed. Move it out of the game folders manually after making a backup.'); };
+            if ((Get-AcHash $path) -ne $entry.sha256) { throw ('Modified legacy package: ' + $entry.path + '. Nothing was removed. Move it out of the game folders manually after making a backup.'); };
             $pending += $path;
         };
     };
@@ -32,7 +38,7 @@ try {
         foreach ($folder in @('main','mainta','maintt')) {
             $relative = $folder + '/zz_AlliedCampaign.pk3';
             $expected = @($manifest.files | Where-Object { $_.path -eq $relative });
-            if ($expected.Count -ne 1 -or (Get-FileHash -LiteralPath (Join-Path $root $relative) -Algorithm SHA256).Hash -ne $expected[0].sha256) { throw 'Consolidated package checksum failed. Extract the complete ZIP again. Nothing was removed.' };
+            if ($expected.Count -ne 1 -or (Get-AcHash (Join-Path $root $relative)) -ne $expected[0].sha256) { throw 'Consolidated package checksum failed. Extract the complete ZIP again. Nothing was removed.' };
         };
         foreach ($path in $pending) { Remove-Item -LiteralPath $path -Force -ErrorAction Stop; };
         Write-Host ('Allied Campaign updated: removed ' + $pending.Count + ' legacy packages. The 3 consolidated packages are ready. Saves and settings were preserved.');

@@ -4,12 +4,14 @@ import hashlib
 import json
 import shutil
 import subprocess
+import tempfile
 from cp09_candidate import R, digest
 
 
 def run_tests(release):
-    sandbox = R/'generated-local/release-1.0.1-updater-tests'
-    sandbox.mkdir(exist_ok=False)
+    parent = R/'generated-local/release-1.0.1-updater-tests'
+    parent.mkdir(exist_ok=True)
+    sandbox = Path(tempfile.mkdtemp(prefix='run-',dir=parent))
     source = release/'payload/Update-Allied-Campaign.cmd'
     cases = ['fresh', 'upgrade', 'modified-old', 'unknown-old', 'missing-new', 'corrupt-new', 'unsafe-path']
     for case in cases:
